@@ -1,4 +1,4 @@
-package com.seleri.impulse
+package de.seleri.impulse
 
 import org.junit.Test
 
