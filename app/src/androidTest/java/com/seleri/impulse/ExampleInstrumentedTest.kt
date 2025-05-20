@@ -1,4 +1,4 @@
-package com.example.impulse
+package com.seleri.impulse
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
