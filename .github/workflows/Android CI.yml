@@ -54,21 +54,21 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          api-level: ${{ matrix.api-level }}
-          build-tools: '33.0.2'
-          components: |
-            platform-tools
-            platforms;android-${{ matrix.api-level }}
-            system-images;android-${{ matrix.api-level }};google_apis;x86_64
-            emulator
+
+      - name: Install required SDK packages
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" \
+                     "emulator" \
+                     "platforms;android-${{ matrix.api-level }}" \
+                     "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
 
       - name: Create and start emulator
         run: |
           echo "no" | avdmanager create avd -n ci-emulator -k "system-images;android-${{ matrix.api-level }};google_apis;x86_64" --force
-          sdkmanager --install "emulator"
           nohup emulator -avd ci-emulator -no-window -no-audio -gpu swiftshader_indirect &
-          adb wait-for-device shell 'while [[ -z "$(getprop sys.boot_completed)" ]]; do sleep 5; done;'
+          adb wait-for-device
+          adb shell 'while [[ -z "$(getprop sys.boot_completed)" ]]; do sleep 5; done;'
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
