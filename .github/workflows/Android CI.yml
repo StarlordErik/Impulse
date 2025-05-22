@@ -2,15 +2,15 @@ name: Android CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-    name: Build Debug APK
-    runs-on: ubuntu-latest
 
+  code-quality:
+    name: Code Quality & Unit Tests
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,17 +18,54 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
-      - name: Cache Gradle files
-        uses: actions/cache@v4
+      - name: Run Lint
+        run: ./gradlew lint
+
+      - name: Run detekt
+        run: ./gradlew detekt
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+  instrumentation-tests:
+    name: Instrumentation Tests
+    needs: code-quality
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        api-level: [29, 33, 34]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle
+          distribution: temurin
+          java-version: 17
+
+      - name: Run Emulator Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          script: ./gradlew connectedDebugAndroidTest
+
+  build-apk:
+    name: Build Debug APK
+    needs: instrumentation-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
@@ -39,5 +76,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: impulse-debug
+          path: app/build/outputs/apk/debug/impulse-debug.apk
