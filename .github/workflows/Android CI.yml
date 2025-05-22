@@ -36,7 +36,7 @@ jobs:
   instrumentation-tests:
     name: Instrumentation Tests
     # needs: code-quality
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         api-level: [33]
@@ -62,28 +62,28 @@ jobs:
           profile: Nexus 6
           script: ./gradlew connectedDebugAndroidTest
 
-  build-apk:
-    name: Build Debug APK
-    needs: [instrumentation-tests]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+#  build-apk:
+#    name: Build Debug APK
+#    needs: [instrumentation-tests]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+#      - name: Set up JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: temurin
+#          java-version: 17
 
-      - name: Grant execute permission to gradlew
-        run: chmod +x ./gradlew
+#      - name: Grant execute permission to gradlew
+#        run: chmod +x ./gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+#      - name: Build Debug APK
+#        run: ./gradlew assembleDebug
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+#      - name: Upload APK
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: debug-apk
+#          path: app/build/outputs/apk/debug/app-debug.apk
