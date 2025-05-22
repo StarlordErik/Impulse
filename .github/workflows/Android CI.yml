@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, dev ]
 
 jobs:
   build-and-test:
@@ -17,7 +17,7 @@ jobs:
         api-level: [29, 34, 35]
 
     env:
-      ANDROID_SDK_ROOT: /usr/local/android-sdk
+      ANDROID_SDK_ROOT: $HOME/android-sdk
       JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot
 
     steps:
