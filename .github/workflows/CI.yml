@@ -36,11 +36,14 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Install Android SDK
-        uses: android-actions/setup-android@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          build-tools: '35.0.0'  # Optional: kannst auch 34.0.0 wählen
+      - name: Install SDK packages
+        run: |
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
+            "platforms;android-${{ matrix.api-level }}" \
+            "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
+            "build-tools;35.0.0" \
+            "platform-tools" \
+            "emulator"
 
       - name: Assemble Debug APK
         run: ./gradlew assembleDebug --stacktrace
