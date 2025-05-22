@@ -40,13 +40,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Prepare cmdline-tools
+      - name: Install Android SDK Command-line Tools
         run: |
           mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
-          if [ ! -d "$ANDROID_SDK_ROOT/cmdline-tools/latest" ]; then
-            mv $ANDROID_SDK_ROOT/tools $ANDROID_SDK_ROOT/cmdline-tools/latest || true
-          fi
-        shell: bash
+          cd $ANDROID_SDK_ROOT/cmdline-tools
+          curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip
+          unzip -q commandlinetools.zip -d tmp
+          mv tmp/cmdline-tools latest
+          rm -rf tmp commandlinetools.zip
 
       - name: Install SDK packages for API ${{ matrix.api-level }}
         run: |
