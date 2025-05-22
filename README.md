@@ -1,6 +1,30 @@
 # Impulse Wiki
 Für ein wenig mehr knowledge sharing...
 
+## Kotlin 
+... insbesonder im Vergleich zu Java.
+
+### kurze, wichtige Unterschiede zu Java
+* kein `;` am Ende einer Zeile
+* `new` wird nicht benötigt
+* man kann `null` nicht mehr (so einfach) zuweisen
+* Getter und Setter werden automatisch benutzt: `person.getName() --> person.name`
+* expliziter cast überflüssig
+* mehr fancy stuff (bspw. Hinzufügen neuer Funktionen zu bestehenden Klassen)
+
+### Variablen
+Variablen bestimmen ihren Typ selbst, wenn sie das können.
+```kotlin
+val unveränderbareVariable = 10  // val steht für Value
+unveränderbareVariable = 12  // illegal
+
+var veränderlich = 10
+veränderlich = 12  // ez
+
+val freundin: String = "Lea"  // gelesen: Value mit dem Namen "Freundin" vom Datentyp "String" hat den Wert "Lea"
+```
+Man sollte immer `val` verwenden, solange man sie nicht explizit verändern möchte --> ist sicherer.
+
 ## Wie testen wir auf den richtigen Geräten?
 Wir sollten sicherstellen, dass die App zumindest auf unseren Geräten läuft, ggf. noch auf einem allgemeinen Gerät. Dafür müssen wir die Emulatoren vernünfitg konfigurieren - wobei das teilweise bloß eine schicke Spielerei ist. :D
 
