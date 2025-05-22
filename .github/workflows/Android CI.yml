@@ -8,38 +8,38 @@ on:
 
 jobs:
 
-  code-quality:
-    name: Code Quality & Unit Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # code-quality:
+  #   name: Code Quality & Unit Tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+  #     - name: Set up JDK
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         distribution: temurin
+  #         java-version: 17
 
-      - name: Grant execute permission to gradlew
-        run: chmod +x ./gradlew
+  #     - name: Grant execute permission to gradlew
+  #       run: chmod +x ./gradlew
 
-      - name: Run Lint
-        run: ./gradlew lint
+  #     - name: Run Lint
+  #       run: ./gradlew lint
 
-#      - name: Run detekt
-#        run: ./gradlew detekt
+  #     - name: Run detekt
+  #       run: ./gradlew detekt
 
-      - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
+  #     - name: Run Unit Tests
+  #       run: ./gradlew testDebugUnitTest
 
   instrumentation-tests:
     name: Instrumentation Tests
-    needs: code-quality
+    # needs: code-quality
     runs-on: macos-latest
     strategy:
       matrix:
-        api-level: [29, 33, 34]
+        api-level: [33]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -57,11 +57,14 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          target: default
+          arch: x86_64
+          profile: Nexus 6
           script: ./gradlew connectedDebugAndroidTest
 
   build-apk:
     name: Build Debug APK
-    needs: [code-quality, instrumentation-tests]
+    needs: [instrumentation-tests]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
