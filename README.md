@@ -2,7 +2,7 @@
 Für ein wenig mehr knowledge sharing...
 
 ## Kotlin 
-... insbesonder im Vergleich zu Java.
+... insbesonde im Vergleich zu Java.
 
 ### kurze, wichtige Unterschiede zu Java
 * kein `;` am Ende einer Zeile
