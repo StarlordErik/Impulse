@@ -19,7 +19,6 @@ jobs:
     env:
       ANDROID_SDK_ROOT: $HOME/android-sdk
       JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot
-      PATH: ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin:${{ env.PATH }}
 
     steps:
       - name: Checkout repository
@@ -51,6 +50,9 @@ jobs:
           mv temp/cmdline-tools/* latest/
           rm -rf temp commandlinetools.zip
         shell: bash
+
+      - name: Add SDK tools to PATH
+        run: echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
 
       - name: Install SDK packages for API ${{ matrix.api-level }}
         run: |
