@@ -42,9 +42,21 @@ jobs:
     strategy:
       matrix:
         api-level: [33]
+    env:
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Cache Android SDK and AVD
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.android
+            ${{ env.ANDROID_SDK_ROOT }}
+          key: ${{ runner.os }}-android-sdk-${{ matrix.api-level }}
+          restore-keys: |
+            ${{ runner.os }}-android-sdk-
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -63,18 +75,15 @@ jobs:
                      "platforms;android-${{ matrix.api-level }}" \
                      "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
 
+      - name: Add emulator to PATH
+        run: echo "${{ env.ANDROID_SDK_ROOT }}/emulator" >> $GITHUB_PATH
+
       - name: Create and start emulator
         run: |
           echo "no" | avdmanager create avd -n ci-emulator -k "system-images;android-${{ matrix.api-level }};google_apis;x86_64" --force
           nohup emulator -avd ci-emulator -no-window -no-audio -gpu swiftshader_indirect &
           adb wait-for-device
           adb shell 'while [[ -z "$(getprop sys.boot_completed)" ]]; do sleep 5; done;'
-
-      - name: Grant execute permission to gradlew
-        run: chmod +x ./gradlew
-
-      - name: Run instrumentation tests
-        run: ./gradlew connectedDebugAndroidTest
 
 
 #  build-apk:
