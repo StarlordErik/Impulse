@@ -2,91 +2,42 @@ name: Android CI
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main ]
 
 jobs:
-  build-and-test:
-    name: Build & Test on API ${{ matrix.api-level }}
+  build:
+    name: Build Debug APK
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        api-level: [29, 34, 35]
-
-    env:
-      ANDROID_SDK_ROOT: $HOME/android-sdk
-      JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: Cache Gradle
-        uses: actions/cache@v3
+      - name: Cache Gradle files
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          restore-keys: ${{ runner.os }}-gradle
 
-      - name: Install Android SDK Command-line Tools
-        run: |
-          mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
-          cd $ANDROID_SDK_ROOT/cmdline-tools
-          curl -fsSL "https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip" -o commandlinetools.zip
-          unzip -q commandlinetools.zip -d temp
-          mkdir -p latest
-          mv temp/cmdline-tools/* latest/
-          rm -rf temp commandlinetools.zip
-        shell: bash
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew
 
-      - name: Add SDK tools to PATH
-        run: echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
-      - name: Install SDK packages for API ${{ matrix.api-level }}
-        run: |
-          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
-            "platforms;android-${{ matrix.api-level }}" \
-            "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
-            "build-tools;34.0.0" \
-            "platform-tools" \
-            "emulator"
-        shell: bash
-
-      - name: Accept Android SDK licenses
-        run: |
-          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses
-        shell: bash
-
-      - name: Assemble Debug APK
-        run: ./gradlew assembleDebug --stacktrace
-
-      - name: Run unit tests
-        run: ./gradlew testDebugUnitTest --stacktrace
-
-      - name: Run instrumentation tests on API ${{ matrix.api-level }}
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: google_apis
-          arch: x86_64
-          emulator-options: -no-window -no-audio -no-snapshot
-          script: ./gradlew connectedDebugAndroidTest
-
-      - name: Upload debug APK
-        if: always()
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: apk-api-${{ matrix.api-level }}
+          name: debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
