@@ -19,6 +19,7 @@ jobs:
     env:
       ANDROID_SDK_ROOT: $HOME/android-sdk
       JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot
+      PATH: ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin:${{ env.PATH }}
 
     steps:
       - name: Checkout repository
@@ -44,24 +45,26 @@ jobs:
         run: |
           mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
           cd $ANDROID_SDK_ROOT/cmdline-tools
-          curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip
-          unzip -q commandlinetools.zip -d tmp
-          mv tmp/cmdline-tools latest
-          rm -rf tmp commandlinetools.zip
+          curl -fsSL "https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip" -o commandlinetools.zip
+          unzip -q commandlinetools.zip -d temp
+          mkdir -p latest
+          mv temp/cmdline-tools/* latest/
+          rm -rf temp commandlinetools.zip
+        shell: bash
 
       - name: Install SDK packages for API ${{ matrix.api-level }}
         run: |
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
+          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
             "platforms;android-${{ matrix.api-level }}" \
             "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
-            "build-tools;35.0.0" \
+            "build-tools;34.0.0" \
             "platform-tools" \
             "emulator"
         shell: bash
 
       - name: Accept Android SDK licenses
         run: |
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses
         shell: bash
 
       - name: Assemble Debug APK
