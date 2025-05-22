@@ -17,8 +17,7 @@ jobs:
         api-level: [29, 34, 35]
 
     env:
-      # Standard in GitHub Runner für Android
-      ANDROID_SDK_ROOT: ${{ runner.tool_cache }}/android-sdk
+      ANDROID_SDK_ROOT: /usr/local/android-sdk
       JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot
 
     steps:
