@@ -2,43 +2,41 @@ name: Android CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
 
-  # code-quality:
-  #   name: Code Quality & Unit Tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  code-quality:
+    name: Code Quality & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Set up JDK
-  #       uses: actions/setup-java@v4
-  #       with:
-  #         distribution: temurin
-  #         java-version: 17
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
-  #     - name: Grant execute permission to gradlew
-  #       run: chmod +x ./gradlew
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew
 
-  #     - name: Run Lint
-  #       run: ./gradlew lint
+      - name: Run Lint
+        run: ./gradlew lint
 
-  #     - name: Run detekt
-  #       run: ./gradlew detekt
+      - name: Run detekt
+        run: ./gradlew detekt
 
-  #     - name: Run Unit Tests
-  #       run: ./gradlew testDebugUnitTest
-
-
-    # needs: code-quality WICHTIG HINTER NAME EINFÜGEN 
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
 
   build:
     name: Build Debug APK
     runs-on: ubuntu-latest
+    needs: code-quality
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -71,7 +69,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        api-level: [29]
+        api-level: [29, 30, 31, 32, 33, 34]
 
     steps:
       - name: Checkout code
@@ -106,5 +104,5 @@ jobs:
           arch: x86_64
           emulator-options: "-no-window -no-audio -no-boot-anim -accel auto -gpu swiftshader_indirect -memory 2048"
           disable-animations: true
-          emulator-boot-timeout: 300
+          emulator-boot-timeout: 600
           script: ./gradlew connectedDebugAndroidTest
