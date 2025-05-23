@@ -68,6 +68,7 @@ jobs:
     name: Instrumentation Tests
     runs-on: ubuntu-latest
     needs: build
+    timeout-minutes: 20
     strategy:
       matrix:
         api-level: [33]
@@ -101,12 +102,9 @@ jobs:
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: google_apis
+          target: default
           arch: x86_64
-          emulator-options: "-no-window -no-audio -no-snapshot-save -no-boot-anim -accel auto"
+          emulator-options: "-no-window -no-audio -no-boot-anim -accel auto -gpu swiftshader_indirect -memory 2048"
           disable-animations: true
-          script: |
-            echo "Waiting for emulator to boot..."
-            adb wait-for-device
-            adb devices
-            ./gradlew connectedDebugAndroidTest
+          emulator-build-timeout: 300
+          script: ./gradlew connectedDebugAndroidTest
