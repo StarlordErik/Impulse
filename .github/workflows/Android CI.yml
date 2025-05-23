@@ -73,7 +73,7 @@ jobs:
         api-level: [33]
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup JDK 17
@@ -105,14 +105,8 @@ jobs:
           arch: x86_64
           emulator-options: "-no-window -no-audio -no-snapshot-save -no-boot-anim -accel auto"
           disable-animations: true
-          script: ./gradlew connectedDebugAndroidTest
-
-      - name: Wait for emulator to boot
-        run: |
-          adb wait-for-device
-          boot_completed=""
-          until [[ "$boot_completed" == "1" ]]; do
-            boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
-            echo "Waiting for emulator to boot... ($boot_completed)"
-            sleep 5
-          done
+          script: |
+            echo "Waiting for emulator to boot..."
+            adb wait-for-device
+            adb devices
+            ./gradlew connectedDebugAndroidTest
