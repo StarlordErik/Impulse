@@ -71,7 +71,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        api-level: [33]
+        api-level: [29]
 
     steps:
       - name: Checkout code
@@ -106,5 +106,5 @@ jobs:
           arch: x86_64
           emulator-options: "-no-window -no-audio -no-boot-anim -accel auto -gpu swiftshader_indirect -memory 2048"
           disable-animations: true
-          emulator-build-timeout: 300
+          emulator-boot-timeout: 300
           script: ./gradlew connectedDebugAndroidTest
