@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Kommentar zum Testen der CI/CD-Pipeline
+        // Kommentar zum Testen der CI/CD-Pipeline+1
     }
 }
