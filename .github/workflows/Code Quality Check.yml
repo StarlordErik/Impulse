@@ -5,12 +5,12 @@ on:
     branches:
       - main
       - dev
-      - features/**
+      - feature/**
   pull_request:
     branches:
       - main
       - dev
-      - features/**
+      - feature/**
 
 jobs:
   code-quality-check:
