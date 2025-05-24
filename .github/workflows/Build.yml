@@ -16,6 +16,9 @@ jobs:
     name: Build TEST-Impulse.apk
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
