@@ -46,11 +46,3 @@ jobs:
 
       - name: Run ${{ matrix.task }}
         run: ./gradlew ${{ matrix.task }}
-
-
-      - name: Upload Detekt Report
-        if: matrix.task == 'detekt' && always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: detekt-report
-          path: build/reports/problems/problems-report.html
