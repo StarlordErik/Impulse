@@ -45,3 +45,17 @@ Wir sollten sicherstellen, dass die App zumindest auf unseren Geräten läuft, g
 Standardmäßig steht einem das Google Pixel 3a oder so zur Verfügung. Das klingt doch gut! 
 
 Aber! Wir sollten da das Betriebssystem auf unsere niedrigste, zu nutzende Android-Version (Android 10 (Q)) setzen.
+
+## Clean Code
+Als Teil der CI/CD-Pipeline ist es auch gut zu wissen, worauf man sich hier eigentlich einlässt!
+
+Gradle ermöglicht das Checken durch Lint und detekt über eine eigene Konsole. Diese findet man hier:
+1. in der IDE oben rechts auf dem Elefanten
+2. kleines Fenster-Icon mit Tooltip "Execute Gradle Task"
+3. eingeben: "app:detekt" oder "app:lint"
+4. bei gefunden "Problemen" muss man in der Ausgabe unten links auf den zweiten Error von unten: dort werden alle Fehler gelistet
+
+### detekt
+detekt findet "schlechten" Kotlin-Code.
+
+In root/config/detekt/detekt.yml kann man die Bedingungen zum Failen von detekt konfigurieren!
