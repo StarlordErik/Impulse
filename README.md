@@ -1,4 +1,26 @@
 # Impulse Wiki
+Was ist für dieses Projekt wichtig zu beachten?
+
+## Feature Branches
+Jeder Feature Branch muss folgende Namenskonvention einhalten: 
+```
+feature/name
+```
+Der Grund ist das Erkennen durch die CI/CD-Pipeline - im Umkehrschluss wird jeder Branch abseits feature/*, dev, main nicht getestet.
+
+## CI/CD-Pipeline
+Die Pipeline ist vorerst voll funktionsfähig, führt diverse Tests aus und baut auch eine herunterladbare APK zum Debuggen. ABER github stellt nur begrenzt viele Github-Action-Minuten zur Verfügung. Das führte dazu, dass auf Feature-Branches beim Push nur Code-Quality-Tests durchgeführt werden. Auf dem dev-Branch wird zusätzlich noch die APK gebaut und auf dem Main-Branch werden für allen relevanten Android APIs Emulatoren erstellt und Integration-Tests durchgeführt. Vor allem die Emulatoren-Durchläufe sind extrem teuer, vor allem bei jedem kleinen Push! Das Ganze funktioniert also nur, wenn wir hauptsächlich auf den Feature-Branches arbeiten - ebenso zur Dokumentation in bspw. dieser wunderschönen ReadMe hier.
+
+### "Kosten" von pushes
+Die folgende Werte sollen nur illustrieren, was mit dem Guthaben gemeint ist. Die Prozentangabe bezieht sich auf das gesamte Monats-Guthaben an Workflow-Minuten.
+feature-Branches: ca. 0,15 % --> bis zu 700 pushes pro Monat möglich
+dev-Branch: ca. 0,2 % --> bis zu 500
+main-Branch: ca. 1,3% --> bis zu 80
+
+Das können wir so ohne weiteres also in keinster Weise erreichen - vorausgesetzt wir pushen nicht jede Zeile auf main. :D
+
+
+# Android-App Wiki
 Für ein wenig mehr knowledge sharing...
 
 ## Kotlin 
