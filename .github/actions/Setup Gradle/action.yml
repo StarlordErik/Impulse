@@ -1,0 +1,14 @@
+name: Setup Gradle
+description: "Setup Gradle and make gradlew executable"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Gradle Cache
+      uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: wrapper
+        cache-read-only: false
+
+    - name: Grant execute permission to gradlew
+      shell: bash
+      run: chmod +x ./gradlew
