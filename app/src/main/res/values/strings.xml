@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Impulse</string>
+    <string name="Spiel1">Spiel 1</string>
+    <string name="Spiel2">Spiel 2</string>
 </resources>
