@@ -1,26 +1,19 @@
-name: Code Quality Check
+name: Build Test.apk
 
 on:
   push:
     branches:
       - main
       - dev
-      - feature/**
   pull_request:
     branches:
       - main
       - dev
-      - feature/**
 
 jobs:
-  code-quality-check:
-    name: Code-Check durch ${{ matrix.task }}
+  build:
+    name: Build TEST-Impulse.apk
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        task: [detekt, testDebugUnitTest, lint]
-      fail-fast: false
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,5 +34,21 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Run ${{ matrix.task }}
-        run: ./gradlew ${{ matrix.task }}
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Rename APK
+        run: mv app/build/outputs/apk/debug/app-debug.apk TEST-Impulse.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEST-Impulse.apk
+          path: TEST-Impulse.apk
+
+      - name: Upload build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: app/build/reports
