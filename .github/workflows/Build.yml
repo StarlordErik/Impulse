@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - feature/optimierung-ci-cd-emulator
   pull_request:
     branches:
       - main
