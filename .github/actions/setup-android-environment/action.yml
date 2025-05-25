@@ -4,17 +4,22 @@ runs:
   using: "composite"
   steps:
     - name: Setup JDK 17
+      shell: bash
       uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
 
+
     - name: Setup Gradle cache
+      shell: bash
       uses: gradle/actions/setup-gradle@v4
       with:
         gradle-version: wrapper
         cache-read-only: false
         cache-cleanup: never # Das hier löschen, falls es mit dem Caching-Speicherplatz auf github eng wird.
 
+
     - name: Grant execute permission to gradlew
+      shell: bash
       run: chmod +x ./gradlew
