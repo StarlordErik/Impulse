@@ -9,43 +9,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:orientation="vertical">
 
-        <!-- App Name -->
-        <TextView
-            android:id="@+id/app_name"
+        <!-- Titel-Container -->
+        <FrameLayout
+            android:id="@+id/title_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:paddingBottom="48dp"
-            android:textColor="#FFFFFF" />
+            android:padding="24dp">
 
-        <!-- Buttons -->
-        <Button
-            android:id="@+id/button_screen1"
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/app_name"
+                android:textSize="64sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#FFFFFF" />
+        </FrameLayout>
+
+        <!-- Button-Bereich -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Spiel1"
-            android:textSize="24sp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#2C2C2C"
-            android:textColor="#FFFFFF" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <Button
-            android:id="@+id/button_screen2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Spiel2"
-            android:textSize="24sp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#2C2C2C"
-            android:textColor="#FFFFFF" />
+            <Button
+                android:id="@+id/button_screen1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Spiel1"
+                android:textSize="24sp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#2C2C2C"
+                android:textColor="#FFFFFF" />
 
-        <!-- Add more buttons as needed -->
+            <Button
+                android:id="@+id/button_screen2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Spiel2"
+                android:textSize="24sp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#2C2C2C"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
