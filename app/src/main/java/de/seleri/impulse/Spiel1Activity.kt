@@ -84,15 +84,93 @@ class Spiel1Activity : AppCompatActivity() {
         "How would you describe the feeling of being in love in one word?",
         "What's the most pain you've ever been in that wasn't physical?",
         "What´s been your happiest memory this past year?",
-
-
+        "What is your 1st love's name and the reason you fell in love with him/her?",
+        "What do you crave more of?",
+        "What would your younger self not believe about your life today?",
+        "Wildcard - both players: Write the three most important things in life to you. After 30 seconds, compare.",
+        "Wildcard - both players: Draw your current mood. Then compare.",
+        "What is something you wouldn't want to change about yourself?",
+        "Wildcard: Questions are an art form. Create your own question.",
+        "What was the last time you surprised yourself?",
+        "When you're asked how are you, hof often do you answer truthfully?",
+        "Have you changed your mind about anything recently?",
+        "How are you, really?",
+        "Has a stranger ever changed your life?",
+        "What's been the best compliment a stranger has ever given you?",
+        "What is a compliment you wish you received more frequently?",
+        "What title would you give this chapter in your life?",
+        "Wildcard: Press shuffle on your music library. Explain the first song that comes up.",
+        "What part of your life works? What part of your life hurts?",
+        "Wildcard: Call someone you admire and tell them why you appreciate them! (put on speaker phone)",
+        "Wildcard: Show your first photo in your camera roll. Explain.",
+        "Wildcard: Swap seats with your partner.",
+        "Wildcard: Sing the chorus of your favorite song of all time. Get into it!",
+        "If you could have it your way: Who would you be with? Where would you be? & What would you be doing?",
+        "What lesson took you the longest to unlearn?",
+        "Finish the sentences: Strangers would describe me as ___. Only I know that I am ___.",
+        "What is the most unexplainable thing that's ever happened to you?",
+        "What is the last thing you lied to your mother about?",
+        "What are you still trying to prove to yourself?",
+        "What are you more afraid of, failure or success? And why?",
+        "Wildcard - both players: Think of something you strongly dislike that most people love. On the count of three say it out loud!",
+        "What questions are you trying to answer most in your life right now?",
+        "What has been your earliest recollection of happiness?",
+        "Wildcard: Ask a question you'd be too afraid to ask. Something you wouldn't dare to ask.",
+        "Final Card of the deck: Each player write a message to the other. Fold and exchange. Open only once you two have parted."
     )
 
     @Suppress("MaxLineLength")
     private val texts3 = listOf(
-        "Erster Text 3",
-        "Zweiter Text 3",
-        "Dritter Text 3"
+        "In one word, how would you describe our conversation?",
+        "Wildcard: Give your partner a compliment you don't think the hear enough.",
+        "Wildcard: Admit something.",
+        "What do you recommend I let go of, if anything?",
+        "How does one earn your vulnerability? Have I earned it? How can I earn more?",
+        "What do you think my weakness is?",
+        "What can I help you with?",
+        "What about me most surprised you?",
+        "Wildcard: Play a round of rock paper scissors. Winner can ask their partner anything. Loser must answer.",
+        "Wildcard - both players: Write down one thing you want to let go of this year. Read out loud, then rip up together.",
+        "Wildcard - both players: Write down a goal for this year. Fold & exchange. Hold each other accountable.",
+        "If we were in a band, what would our name be?",
+        "What do you think our most important similarity is?",
+        "Wildcard: Give each other nicknames!",
+        "Do you believe everyone has a calling? If so, do you think I've found mine?",
+        "When this game is over, what will you remember about me?",
+        "When in this game did you fell most connected to me?",
+        "Wildcard - both players: Dare your partner to do something outside of their comfort zone in the next week.",
+        "What question were you most afraid of to answer?",
+        "Wildcard: Take a selfie together.",
+        "Wildcard: Scroll through each other's Instagrams. Find the picture you feel best represents your partner's essence and comment why you chose that image.",
+        "Based on what you learned about me, what book would you recommend I read?",
+        "How would you describe me to a stranger.",
+        "What do you admire most about me?",
+        "What do you think I should know about myself that perhaps I'm unaware of?",
+        "Why do you think we met?",
+        "Wildcard - both players: Write a song about your partner in 30 seconds. Then sing it out loud. Get into it!",
+        "What answer of mine made you light up?",
+        "How do our personalities complement each other?",
+        "What do you think my superpower is?",
+        "What would be the perfect gift for me?",
+        "What has this conversation taught you about yourself?",
+        "What parts of yourself do you see in me?",
+        "What do I need to hear right now?",
+        "Wildcard - both players: Swap a song suggestion your partner may enjoy.",
+        "Wildcard: Create your own question. Make it count.",
+        "Based on what you learned about me, does my social media accurately reflect who I am? Why or why not?",
+        "Wildcard: Both players share something you're most grateful for in this current moment.",
+        "In one word, describe how you feel right now.",
+        "Wildcard: Give your partner a hug. Not the crappy kind. A warm fluffy one.",
+        "What is a lesson you will take away form our conversation?",
+        "Based on what you know about me, do you have any Netflix recommendations?",
+        "What about me is hardest for you to understand?",
+        "What am I most qualified to give advice about?",
+        "If you could prescribe me one thing to do for the rest of this month, what would it be and why?",
+        "Wildcard: Both players write a note to your younger selves in 1 minute. Option to compare.",
+        "What do you think my defining characteristic is?",
+        "What do you think I fear the most?",
+        "What can we create together?",
+        "What would make you feel closer to me?"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,11 +181,6 @@ class Spiel1Activity : AppCompatActivity() {
         val btnSpiel1 = findViewById<Button>(R.id.btnSpiel1)
         val btnSpiel2 = findViewById<Button>(R.id.btnSpiel2)
         val btnSpiel3 = findViewById<Button>(R.id.btnSpiel3)
-
-        // Initiale zufällige Texte setzen
-        btnSpiel1.text = texts1.random()
-        btnSpiel2.text = texts2.random()
-        btnSpiel3.text = texts3.random()
 
         // Klick-Listener für btnSpiel1
         btnSpiel1.setOnClickListener {

@@ -40,7 +40,7 @@
                 android:id="@+id/button_screen1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Spiel1"
+                android:text="@string/we_re_not_really_strangers"
                 android:textSize="24sp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#2C2C2C"
