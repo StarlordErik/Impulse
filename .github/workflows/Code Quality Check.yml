@@ -36,6 +36,7 @@ jobs:
         with:
           gradle-version: wrapper
           cache-read-only: false
+          cache-cleanup: never
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
