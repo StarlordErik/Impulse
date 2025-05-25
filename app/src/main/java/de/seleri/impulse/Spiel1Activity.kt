@@ -9,7 +9,7 @@ import kotlin.random.Random
 class Spiel1Activity : AppCompatActivity() {
 
     @Suppress("MaxLineLength")
-    private val texts1 = listOf(
+    private val perception = listOf(
         "Do I look kind? Explain.",
         "What is my body language telling you right now?",
         "Do I seem like a coffee or tea person? Sweetened or unsweetened?",
@@ -63,7 +63,7 @@ class Spiel1Activity : AppCompatActivity() {
         )
 
     @Suppress("MaxLineLength")
-    private val texts2 = listOf(
+    private val connection = listOf(
         "Describe your perfect day!",
         "Reminder: Be more interested in understanding others than being understood.",
         "Are you lying to yourself about anything?",
@@ -120,7 +120,7 @@ class Spiel1Activity : AppCompatActivity() {
     )
 
     @Suppress("MaxLineLength")
-    private val texts3 = listOf(
+    private val reflection = listOf(
         "In one word, how would you describe our conversation?",
         "Wildcard: Give your partner a compliment you don't think the hear enough.",
         "Wildcard: Admit something.",
@@ -178,27 +178,26 @@ class Spiel1Activity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_spiel1)
 
-        val btnSpiel1 = findViewById<Button>(R.id.btnSpiel1)
-        val btnSpiel2 = findViewById<Button>(R.id.btnSpiel2)
-        val btnSpiel3 = findViewById<Button>(R.id.btnSpiel3)
+        val btnSpiel11 = findViewById<Button>(R.id.btnSpiel11)
+        val btnSpiel12 = findViewById<Button>(R.id.btnSpiel12)
+        val btnSpiel13 = findViewById<Button>(R.id.btnSpiel13)
 
         // Klick-Listener für btnSpiel1
-        btnSpiel1.setOnClickListener {
-            val randomIndex = Random.nextInt(texts1.size)
-            btnSpiel1.text = texts1[randomIndex]
+        btnSpiel11.setOnClickListener {
+            val randomIndex = Random.nextInt(perception.size)
+            btnSpiel11.text = perception[randomIndex]
         }
 
         // Klick-Listener für btnSpiel2
-        btnSpiel2.setOnClickListener {
-            val randomIndex = Random.nextInt(texts2.size)
-            btnSpiel2.text = texts2[randomIndex]
+        btnSpiel12.setOnClickListener {
+            val randomIndex = Random.nextInt(connection.size)
+            btnSpiel12.text = connection[randomIndex]
         }
 
         // Klick-Listener für btnSpiel3
-        btnSpiel3.setOnClickListener {
-            val randomIndex = Random.nextInt(texts3.size)
-            btnSpiel3.text = texts3[randomIndex]
+        btnSpiel13.setOnClickListener {
+            val randomIndex = Random.nextInt(reflection.size)
+            btnSpiel13.text = reflection[randomIndex]
         }
     }
 }
-

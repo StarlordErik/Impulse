@@ -6,4 +6,7 @@
     <string name="level_2_connection">Level 2: Connection</string>
     <string name="level_1_perception">Level 1: Perception</string>
     <string name="we_re_not_really_strangers">We\'re not really strangers</string>
+    <string name="von_0_bis_100">Von 0 bis 100</string>
+    <string name="freitextfragen">Freitextfragen</string>
+    <string name="fun_facts">Fun Facts</string>
 </resources>
