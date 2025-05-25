@@ -17,5 +17,4 @@ jobs:
 
   emulator-tests:
     name: Emulator-Tests
-    needs: [ code-quality-check, build ]
     uses: ./.github/workflows/Emulator-Tests.yml
