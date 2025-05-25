@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Setup Android environment
-        uses: ./.github/actions/Setup Android Environment
+      - name: Setup Android Environment
+        uses: ./.github/actions/setup-android-environment
 
       - name: Run ${{ matrix.task }}
         run: ./gradlew ${{ matrix.task }}
