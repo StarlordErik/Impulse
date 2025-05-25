@@ -3,12 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#121212"
+    android:padding="16dp">
 
-    <TextView
+    <Button
+        android:id="@+id/btnSpiel21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Spiel2"
-        android:textSize="28sp"
-        android:textStyle="bold"/>
+        android:text="@string/von_0_bis_100"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnSpiel22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/freitextfragen"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+
 </LinearLayout>
