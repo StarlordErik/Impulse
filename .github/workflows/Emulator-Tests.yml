@@ -12,6 +12,9 @@ jobs:
         api-level: [29]
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Setup Android Environment
         uses: ./.github/actions/setup-android-environment
 

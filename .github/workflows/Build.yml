@@ -8,6 +8,9 @@ jobs:
     name: TEST-Impulse.apk
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Setup Android Environment
         uses: ./.github/actions/setup-android-environment
 
