@@ -25,12 +25,6 @@ jobs:
       - name: Setup Android Environment
         uses: ./.github/actions/Setup Android Environment
 
-      - name: Download APK artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: TEST-Impulse.apk
-          path: ./artifacts/TEST-Impulse.apk
-
       - name: AVD cache
         uses: actions/cache@v4
         id: avd-cache
@@ -44,8 +38,8 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: default
-          arch: x86_64
+          #target: default
+          #arch: x86_64
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
