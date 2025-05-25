@@ -24,15 +24,6 @@ jobs:
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
 
-      - name: AVD cache
-        uses: actions/cache@v4
-        id: avd-cache
-        with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: avd-${{ matrix.api-level }}
-
       - name: create AVD and generate snapshot for caching (API <= 29)
         if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level < 30
         uses: reactivecircus/android-emulator-runner@v2
@@ -54,6 +45,15 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
+
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ matrix.api-level }}
 
       - name: run tests (API <= 29)
         if: matrix.api-level < 30
