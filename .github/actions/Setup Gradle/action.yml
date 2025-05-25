@@ -1,5 +1,5 @@
-name: Setup Android Environment
-description: "Set up Java and Gradle, and make gradlew executable"
+name: Setup Gradle
+description: "Setup Gradle and make gradlew executable"
 runs:
   using: "composite"
   steps:

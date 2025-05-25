@@ -10,20 +10,13 @@ jobs:
     strategy:
       matrix:
         api-level: [29, 30, 31, 32, 33, 34]
-      fail-fast: false
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Enable KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
-      - name: Setup Android Environment
-        uses: ./.github/actions/Setup Android Environment
+      - name: Setup Gradle
+        uses: ./.github/actions/Setup Gradle
 
       - name: AVD cache
         uses: actions/cache@v4
