@@ -3,13 +3,16 @@ description: "Check out repo, set up Java and Gradle, and make gradlew executabl
 runs:
   using: "composite"
   steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
     - name: Setup JDK 17
       uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
 
-    - name: Setup Gradle cache
+    - name: Setup Gradle Cache
       uses: gradle/actions/setup-gradle@v4
       with:
         gradle-version: wrapper
