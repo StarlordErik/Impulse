@@ -1,0 +1,11 @@
+name: feature Pipeline
+
+on:
+  push:
+    branches: [feature/**]
+  pull_request:
+    branches: [feature/**]
+
+jobs:
+  code-quality-check:
+    uses: ./.github/workflows/Code Quality Check.yml

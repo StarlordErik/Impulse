@@ -1,14 +1,10 @@
 name: Emulator-Tests
 
 on:
-  workflow_run:
-    workflows: ["Code Quality Check", "Build Test.apk"]
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   emulator-tests:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && contains(['main', 'feature/optimierung-ci-cd-emulator'], github.event.workflow_run.head_branch) }}
     name: Emulator-Test auf API
     runs-on: ubuntu-latest
     strategy:

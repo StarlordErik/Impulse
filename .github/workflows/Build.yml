@@ -1,15 +1,7 @@
 name: Build Test.apk
 
 on:
-  push:
-    branches:
-      - main
-      - dev
-      - feature/optimierung-ci-cd-emulator
-  pull_request:
-    branches:
-      - main
-      - dev
+  workflow_call:
 
 jobs:
   build:

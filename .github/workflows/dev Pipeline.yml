@@ -1,0 +1,14 @@
+name: dev Pipeline
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  code-quality-check:
+    uses: ./.github/workflows/Code Quality Check.yml
+
+  build:
+    uses: ./.github/workflows/Build.yml
