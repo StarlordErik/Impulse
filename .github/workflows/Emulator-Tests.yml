@@ -7,6 +7,7 @@ jobs:
   emulator-tests:
     name: auf API
     runs-on: ubuntu-latest
+    timeout-minutes: 7
     strategy:
       matrix:
         api-level: [29, 30, 31, 32, 33, 34]
@@ -34,9 +35,11 @@ jobs:
           key: avd-${{ matrix.api-level }}
 
       - name: create AVD and generate snapshot for caching (API <= 29)
+        timeout-minutes: 6
         if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level < 30
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          emulator-boot-timeout: 300
           api-level: ${{ matrix.api-level }}
           arch: x86
           force-avd-creation: false
@@ -45,9 +48,11 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       - name: create AVD and generate snapshot for caching (API 30+)
+        timeout-minutes: 6
         if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level > 29
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          emulator-boot-timeout: 300
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           force-avd-creation: false
@@ -56,9 +61,11 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       - name: run tests (API <= 29)
+        timeout-minutes: 6
         if: matrix.api-level < 30
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          emulator-boot-timeout: 300
           api-level: ${{ matrix.api-level }}
           arch: x86
           force-avd-creation: false
@@ -67,9 +74,11 @@ jobs:
           script: ./gradlew connectedCheck
 
       - name: run tests (API 30+)
+        timeout-minutes: 6
         if: matrix.api-level > 29
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          emulator-boot-timeout: 300
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           force-avd-creation: false
