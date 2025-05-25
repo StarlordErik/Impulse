@@ -8,7 +8,9 @@ on:
 
 jobs:
   code-quality-check:
+    name: Code-Check
     uses: ./.github/workflows/Code Quality Check.yml
 
   build:
+    name: Build
     uses: ./.github/workflows/Build.yml
