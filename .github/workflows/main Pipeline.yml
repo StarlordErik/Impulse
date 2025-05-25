@@ -2,7 +2,7 @@ name: main Pipeline
 
 on:
   push:
-    branches: [ main, feature/optimierung-ci-cd-emulator ]
+    branches: [ main, feature/optimierung-ci-cd-emulator]
   pull_request:
     branches: [ main ]
 
