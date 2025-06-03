@@ -1,0 +1,49 @@
+spiele:
+  - id: 1
+    name: "We're not really strangers"
+  - id: 2
+    name: "Fun Facts"
+
+
+
+genres:
+  - id: 1
+    spieleIDs: [1]
+    name:
+      de: ""
+      en: "Level 1: Perception"
+  - id: 2
+    spieleIDs: [1]
+    name:
+      de: ""
+      en: "Level 2: Connection"
+  - id: 3
+    spieleIDs: [1]
+    name:
+      de: ""
+      en: "Level 3: Reflection"
+  - id: 4
+    spieleIDs: [2]
+    name:
+      de: "Von 0 bis 100"
+      en: ""
+  - id: 5
+    spieleIDs: [2]
+    name:
+      de: "Freitextfragen"
+      en: ""
+
+
+
+karten:
+  - id: 1
+    genreIds: [1]
+    text:
+      de: ""
+      en: "Do I look kind? Explain."
+
+  - id: 2
+    genreIds: [1]
+    text:
+      de: ""
+      en: "What is my body language telling you right now?"
