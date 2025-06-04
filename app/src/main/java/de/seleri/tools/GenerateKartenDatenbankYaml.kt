@@ -1,0 +1,104 @@
+package de.seleri.tools
+
+import org.yaml.snakeyaml.DumperOptions
+import org.yaml.snakeyaml.Yaml
+import java.io.File
+
+/**
+ * Dieses kleine Programm liest eine Liste von englischen Sätzen (hardcoded oder aus
+ * einer externen Datei), vergibt fortlaufend IDs, packt genreIDs = [1,2] und
+ * text.de = "" sowie text.en = <Satz> zusammen und schreibt das Ganze als YAML
+ * nach app/src/main/res/raw/karten.yml.
+ */
+fun main() {
+    // 1) Hier kannst du entweder hartkodiert arbeiten oder aus "cards.txt" einlesen.
+    // Beispiel: harte Liste von Sätzen
+    val englishSentences = listOf(
+        "Do I look kind? Explain.",
+        "What is my body language telling you right now?",
+        "Do I seem like a coffee or tea person? Sweetened or unsweetened?",
+        "Do you think I've ever been fired from a job? If so, what for?",
+        "Wildcard: Close your eyes. What color are my eyes?",
+        "What about me is most strange or unfamiliar to you?",
+        "Do I seem like a morning person or a night owl? Why?",
+        "Do you think I've ever checked an ex's phone for evidence?",
+        "Do I seem like more of creative or analytical type? Explain.",
+        "How likely am I to go camping? How high maintenance is my set up?",
+        "Wildcard - both players: Write down something others would never guess about you just by looking at you. Compare.",
+        "Wildcard - both players: Make an assumption about me.",
+        "How many speeding tickets do you think I've gotten in my life?",
+        "Wildcard: Draw a portrait of each other to the best of your ability. After 1 Minute, exchange.",
+        "What do you think is the hardest part of what I do for a living?",
+        "As a child, what do you think I wanted to be?",
+        "On a scale of 1-10, how messy do you think my car is? 1 being cleanest, 10 a complete disaster. Explain.",
+        "What subject do you think I thrived in at school? Did I fail any?",
+        "If you were to buy me a present, knowing nothing about me other than what I look like, what would it be?",
+        "What does my Instagram tell you about me?",
+        "Wildcard - both players: Think of your favorite brand of cereal. On the count of three, say your answers out loud!",
+        "Wildcard - both players: Think of your favorite childhood TV show of all time. On the count of three, say it out loud!",
+        "Wildcard - both players: Ask and answer the next question in a different accent.",
+        "Reminder: Let go of your attachment of the outcome.",
+        "Do I seem like a cat or dog person?",
+        "Wildcard: Maintain eye contact for thirty seconds. What did you notice?",
+        "What do my shoes tell you about me?",
+        "Wildcard - both players: Rate your dancing skills on a scale of 1-10. On the count of three, say your answers out loud!",
+        "Wildcard: Draw a picture together. (30 seconds)",
+        "What do you think my celebrity crush is?",
+        "What fast food restaurant do you think I'm most likely to drive through? What's my order?",
+        "What do you think my go to karaoke song is?",
+        "Finish the sentence: just by looking at you I'd think ___.",
+        "What reality show do you think I'm most likely to binge watch? Explain?",
+        "Do you think plants thrive or die in my care. Explain.",
+        "What about me intrigues you?",
+        "Wildcard: Close your eyes. What color is my shirt?",
+        "What do you think I'm most likely to splurge on?",
+        "Do you think I was popular in school? Explain.",
+        "What compliment do you think I hear the most?",
+        "What does my phone wallpaper tell about me?",
+        "Do you think I intimidate others? Why or why not?",
+        "If Myspace were still a thing; what would my profile song be?",
+        "What character would I play in a movie?",
+        "Do you think I'm usually early, on time, or late to events? Explain.",
+        "Do I seem like someone who would get a name tattooed on myself? Why or why not?",
+        "What was your first impression of me?",
+        "Do I remind you of anyone?",
+        "Do you think I fall in love easily? Why or why not?",
+        "What's the first thing you noticed about me?"
+    )
+
+    // 2) Baue für jeden Satz eine Map mit id, genreIDs und text (de="", en=<Satz>)
+    val cardsList: List<Map<String, Any>> = englishSentences.mapIndexed { index, sentence ->
+        mapOf(
+            "id" to (index + 1),
+            "genreIDs" to listOf(1),
+            "text" to mapOf(
+                "de" to "",
+                "en" to sentence
+            )
+        )
+    }
+
+    // 3) Gesamtstruktur: { "karten": [ {…}, {…}, … ] }
+    val root: Map<String, Any> = mapOf("karten" to cardsList)
+
+    // 4) SnakeYAML - Optionen so setzen, dass Listen und Maps schön formatiert werden
+    val dumperOptions = DumperOptions().apply {
+        defaultFlowStyle = DumperOptions.FlowStyle.BLOCK     // Listen wie [1, 2]
+        isPrettyFlow = true                                  // saubere Einrückungen
+        //defaultScalarStyle = DumperOptions.ScalarStyle.PLAIN // einfache Strings, unquoted wenn möglich
+    }
+    val yaml = Yaml(dumperOptions)
+
+    // 5) Pfad zur Zieldatei in res/raw
+    //    Achte darauf, dass "res/raw" existiert!
+    //    (Anlegen via Rechtsklick → New → Android Resource Directory → Resource type: raw)
+    val outputFile = File("app/src/main/res/raw/tmp_karten_datenbank.yml")
+
+    // 6) Schreibe das YAML
+    outputFile.parentFile?.mkdirs() // sicherstellen, dass der Ordner existiert
+    outputFile.writer(Charsets.UTF_8).use { writer ->
+        yaml.dump(root, writer)
+    }
+
+    println("tmp_karten_datenbank.yml erfolgreich geschrieben: ${outputFile.absolutePath}")
+}
