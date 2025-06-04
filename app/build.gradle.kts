@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.impulse"
+    namespace = "de.seleri.impulse"
     compileSdk = 35
 
     defaultConfig {
@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.snakeyaml)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

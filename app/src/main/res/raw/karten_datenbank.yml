@@ -6,6 +6,7 @@ spiele:
 
 
 
+
 genres:
   - id: 1
     spieleIDs: [1]
@@ -22,6 +23,8 @@ genres:
     name:
       de: ""
       en: "Level 3: Reflection"
+
+
   - id: 4
     spieleIDs: [2]
     name:
@@ -37,13 +40,13 @@ genres:
 
 karten:
   - id: 1
-    genreIds: [1]
+    genreIDs: [1]
     text:
       de: ""
       en: "Do I look kind? Explain."
 
   - id: 2
-    genreIds: [1]
+    genreIDs: [1]
     text:
       de: ""
       en: "What is my body language telling you right now?"

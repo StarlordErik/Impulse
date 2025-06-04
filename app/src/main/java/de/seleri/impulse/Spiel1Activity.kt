@@ -3,7 +3,6 @@ package de.seleri.impulse
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.impulse.R
 import kotlin.random.Random
 
 class Spiel1Activity : AppCompatActivity() {

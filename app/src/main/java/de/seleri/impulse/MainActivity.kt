@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.impulse.R
 
 const val EIN_DRITTEL = 1.0 / 3.0
 
