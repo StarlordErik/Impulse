@@ -1,51 +1,33 @@
-spiele:
-  - id: 1
-    name: "We're not really strangers"
-  - id: 2
-    name: "Fun Facts"
-kategorien:
-  - id: 1
-    name:
-      de: ""
-      en: "Level 1: Perception"
-    ursprungsSpieleID: 1
-    weitereSpieleIDs: []
-  - id: 2
-    name:
-      de: ""
-      en: "Level 2: Connection"
-    ursprungsSpieleID: 1
-    weitereSpieleIDs: []
-  - id: 3
-    name:
-      de: ""
-      en: "Level 3: Reflection"
-    ursprungsSpieleID: 1
-    weitereSpieleIDs: []
-  - id: 4
-    name:
-      de: "Von 0 bis 100"
-      en: ""
-    ursprungsSpieleID: 2
-    weitereSpieleIDs: []
-  - id: 5
-    name:
-      de: "Freitextfragen"
-      en: ""
-    ursprungsSpieleID: 2
-    weitereSpieleIDs: []
-
 karten:
   - id: 1
     text:
       de: ""
       en: "Do I look kind? Explain."
-    ursprungsKategorienID: 1
-    weitereKategorienIDs: [2, 3]
-
   - id: 2
     text:
       de: ""
       en: "What is my body language telling you right now?"
-    ursprungsKategorienID: 1
-    weitereKategorienIDs: [2, 3]
+
+kategorien:
+  - id: 1
+    ursprungsKartenIDs: [1,2]
+    weitereKartenIDs: []
+    name:
+      de: ""
+      en: "Level 1: Perception"
+  - id: 2
+    name:
+      de: ""
+      en: "Level 2: Connection"
+    ursprungsKartenIDs: []
+    weitereKartenIDs: []
+
+spiele:
+  - id: 1
+    name: "We're not really strangers"
+    ursprungsKategorienIDs: [1,2]
+    weitereKategorienIDs: []
+  - id: 2
+    name: "Fun Facts"
+    ursprungsKategorienIDs: []
+    weitereKategorienIDs: []

@@ -1,14 +1,12 @@
-karten:
-- id: 1
-  text:
-    de: ""
-    en: "Do I look kind? Explain."
-  ursprungsKategorienID: 1
-  weitereKategorienIDs: [2, 3]
-
-- id: 2
-  text:
-    de: ""
-    en: "What is my body language telling you right now?"
-  ursprungsKategorienID: 1
-  weitereKategorienIDs: [2, 3]
+  - id: 1
+    text:
+      de: ""
+      en: "Do I look kind? Explain."
+  - id: 2
+    text:
+      de: ""
+      en: "What is my body language telling you right now?"
+  - id: 3
+    text:
+      de: ""
+      en: "!\"§$%&/()=?\n\t ,.-;:_#+'*\\{[]}´`~^°@€"
