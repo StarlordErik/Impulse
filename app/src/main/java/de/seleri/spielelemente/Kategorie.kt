@@ -50,17 +50,17 @@ fun main() {
     )
 
     val kategorienListe = englischeTestKategorien.mapIndexed { index, name ->
-        val localizedKategoriennamen: MutableMap<Sprachen, String> = mutableMapOf()
+        val localizedKategorieNamen: MutableMap<Sprachen, String> = mutableMapOf()
         for (sprache in Sprachen.entries) {
             if (sprache == Sprachen.EN) {
-                localizedKategoriennamen[sprache] = name
+                localizedKategorieNamen[sprache] = name
             } else {
-                localizedKategoriennamen[sprache] = ""
+                localizedKategorieNamen[sprache] = ""
             }
         }
         Kategorie(
             id = index + 1,
-            localizedNamen = localizedKategoriennamen,
+            localizedNamen = localizedKategorieNamen,
             urspruenglicheKartenIDs = listOf(1,2),
             weitereKartenIDs = listOf()
         )
