@@ -1,10 +1,11 @@
 package de.seleri.spielelemente
-
+/*
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 
-data class Karte(
-    var id: Int = 0, var localizedKartentexte: Map<Sprachen, String> = emptyMap()
+class Karte(
+    var id: Int = 0,
+    var localizedKartentexte: Map<Sprachen, String> = emptyMap()
 ) : ToYaml {
     override fun objToYaml(): String {
         val output = StringBuilder()
@@ -48,19 +49,24 @@ data class Karte(
 }
 
 fun main() {
-    val englishSentences = listOf(
+    val englischeTestKartentexte = listOf(
         "Do I look kind? Explain.",
         "What is my body language telling you right now?",
         "!\"§$%&/()=?\n\t ,.-;:_#+'*\\{[]}´`~^°@€"
     )
 
-    val cardsList = englishSentences.mapIndexed { index, sentence ->
+    val cardsList = englischeTestKartentexte.mapIndexed { index, text ->
+        val localizedKartentexte: MutableMap<Sprachen, String> = mutableMapOf()
+        for (sprache in Sprachen.entries) {
+            if (sprache == Sprachen.EN) {
+                localizedKartentexte[sprache] = text
+            } else {
+                localizedKartentexte[sprache] = ""
+            }
+        }
         Karte(
             id = index + 1,
-            localizedKartentexte = mapOf(
-                Sprachen.DE to "",
-                Sprachen.EN to sentence
-            )
+            localizedKartentexte = localizedKartentexte
         )
     }
 
@@ -97,7 +103,7 @@ fun main() {
     println(identisch)
 
     val alleKartenAlsString = StringBuilder()
-    cardsList.forEach{
+    cardsList.forEach {
         alleKartenAlsString.append(it.objToYaml())
     }
     val outputFile = File("app/src/main/res/raw/tmp_karten_datenbank.yml")
@@ -106,3 +112,4 @@ fun main() {
 
     println("\ntmp_karten_datenbank.yml erfolgreich geschrieben:\n${outputFile.absolutePath}")
 }
+*/

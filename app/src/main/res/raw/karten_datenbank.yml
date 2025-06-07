@@ -1,33 +1,37 @@
-karten:
-  - id: 1
-    text:
-      de: ""
-      en: "Do I look kind? Explain."
-  - id: 2
-    text:
-      de: ""
-      en: "What is my body language telling you right now?"
+Karten:
+  - ID: 1
+    Text:
+      DE: ""
+      EN: "Do I look kind? Explain."
+  - ID: 2
+    Text:
+      DE: ""
+      EN: "What is my body language telling you right now?"
 
-kategorien:
-  - id: 1
-    ursprungsKartenIDs: [1,2]
-    weitereKartenIDs: []
-    name:
-      de: ""
-      en: "Level 1: Perception"
-  - id: 2
-    name:
-      de: ""
-      en: "Level 2: Connection"
-    ursprungsKartenIDs: []
-    weitereKartenIDs: []
+Kategorien:
+  - ID: 1
+    Name:
+      DE: ""
+      EN: "Level 1: Perception"
+    ursprüngliche_Karten-IDs: [1,2]
+    weitere_Karten-IDs: []
+  - ID: 2
+    Name:
+      DE: ""
+      EN: "Level 2: Connection"
+    ursprüngliche_Karten-IDs: []
+    weitere_Karten-IDs: []
 
 spiele:
-  - id: 1
-    name: "We're not really strangers"
-    ursprungsKategorienIDs: [1,2]
-    weitereKategorienIDs: []
-  - id: 2
-    name: "Fun Facts"
-    ursprungsKategorienIDs: []
-    weitereKategorienIDs: []
+  - ID: 1
+    Name:
+      DE: "Wir sind nicht wirklich Fremde"
+      EN: "We're not really strangers"
+    ursprüngliche_Kategorien-IDs: [1,2]
+    weitere_Kategorien-IDs: []
+  - ID: 2
+    Name:
+      DE: "Fun Facts"
+      EN: "Fun Facts"
+    ursprüngliche_Kategorien-IDs: []
+    weitere_Kategorien-IDs: []
