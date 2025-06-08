@@ -47,5 +47,4 @@ fun main(){
 fun datenbankAusYamlGenerieren(): MutableMap<String, List<Any>> {
     return mutableMapOf<String, List<Any>>()
 }
-
- */
+*/
