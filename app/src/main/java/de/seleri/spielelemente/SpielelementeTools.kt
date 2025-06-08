@@ -19,6 +19,14 @@ fun localizationsToYaml(output: StringBuilder, localizations: Map<Sprachen, Stri
     }
 }
 
+fun kartenListenToYaml(output: StringBuilder, prefix: String, karten: List<Karte>) {
+    listenToYaml(output, prefix, karten.map { it.id })
+}
+
+fun kategorieListenToYaml(output: StringBuilder, prefix: String, kategorien: List<Kategorie>) {
+    listenToYaml(output, prefix, kategorien.map { it.id })
+}
+
 fun listenToYaml(output: StringBuilder, prefix: String, ids: List<Int>) {
     output.append("$prefix$IDS")
     if (ids.isNotEmpty()) {

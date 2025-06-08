@@ -1,12 +1,18 @@
   - ID: 1
-    Text:
+    Name:
       DE: ""
-      EN: "Do I look kind? Explain."
+      EN: "Level 1: Perception"
+    ursprüngliche_Karten-IDs: [1,2]
+    weitere_Karten-IDs: []
   - ID: 2
-    Text:
+    Name:
       DE: ""
-      EN: "What is my body language telling you right now?"
+      EN: "Level 2: Connection"
+    ursprüngliche_Karten-IDs: [1,2]
+    weitere_Karten-IDs: []
   - ID: 3
-    Text:
+    Name:
       DE: ""
       EN: "!\"§$%&/()=?\n\t ,.-;:_#+'*\\{[]}´`~^°@€"
+    ursprüngliche_Karten-IDs: [1,2]
+    weitere_Karten-IDs: []
