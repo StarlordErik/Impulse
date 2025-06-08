@@ -3,8 +3,8 @@ package de.seleri.spielelemente
 import org.yaml.snakeyaml.Yaml
 
 data class Karte(
-    var id: Int = 0,
-    var localizedTexte: Map<Sprachen, String> = emptyMap()
+    val id: Int,
+    val localizedTexte: Map<Sprachen, String>
 ) : ToYaml {
     override fun toYaml(): String {
         val output = StringBuilder()

@@ -3,10 +3,10 @@ package de.seleri.spielelemente
 import org.yaml.snakeyaml.Yaml
 
 data class Kategorie(
-    var id: Int = 0,
-    var localizedNamen: Map<Sprachen, String> = emptyMap(),
-    var urspruenglicheKarten: List<Karte> = emptyList(),
-    var weitereKarten: List<Karte> = emptyList()
+    val id: Int,
+    val localizedNamen: Map<Sprachen, String> ,
+    val urspruenglicheKarten: List<Karte>,
+    var weitereKarten: List<Karte>
 ): ToYaml{
     override fun toYaml(): String {
         val output = StringBuilder()
@@ -23,7 +23,7 @@ data class Kategorie(
         return output.toString()
     }
 
-    fun getKarten(): List<Karte>{
+    fun getAlleKarten(): List<Karte>{
         val karten = mutableListOf<Karte>()
         karten.addAll(urspruenglicheKarten)
         karten.addAll(weitereKarten)
@@ -32,14 +32,10 @@ data class Kategorie(
 }
 
 fun eingabeToKategorie(id: Int, sprache: Sprachen, name: String, urspruenglicheKarten: List<Karte>): Kategorie {
-    val localizedKategorieNamen: MutableMap<Sprachen, String> = mutableMapOf()
-    Sprachen.entries.forEach {
-        if (it == sprache) {
-            localizedKategorieNamen[it] = name
-        } else {
-            localizedKategorieNamen[it] = ""
-        }
+    val localizedKategorieNamen = Sprachen.entries.associateWith {
+        if (it == sprache) name else ""
     }
+
     return Kategorie(
         id = id,
         localizedNamen = localizedKategorieNamen,
@@ -60,15 +56,13 @@ fun yamlToKategorie(yamlInput: String, moeglicheKarten: List<Karte>): Kategorie 
     val localizedNamen = namen.mapKeys { Sprachen.valueOf(it.key) }
 
     val urspruenglicheKartenIDs = kategorieDaten["ursprüngliche_Karten-IDs"] as List<Int>
-    val urspruenglicheKarten = mutableListOf<Karte>()
-    urspruenglicheKartenIDs.forEach {
-        urspruenglicheKarten.add(moeglicheKarten.find { k -> k.id == it }!!)
+    val urspruenglicheKarten = urspruenglicheKartenIDs.map { zuFindendeId ->
+        moeglicheKarten.find { it.id == zuFindendeId } ?: error("Karte mit ID $zuFindendeId nicht gefunden")
     }
 
     val weitereKartenIDs = kategorieDaten["weitere_Karten-IDs"] as List<Int>
-    val weitereKarten = mutableListOf<Karte>()
-    weitereKartenIDs.forEach {
-        weitereKarten.add(moeglicheKarten.find { k -> k.id == it }!!)
+    val weitereKarten = weitereKartenIDs.map { zuFindendeId ->
+        moeglicheKarten.find { it.id == zuFindendeId } ?: error("Karte mit ID $zuFindendeId nicht gefunden")
     }
 
     return Kategorie(

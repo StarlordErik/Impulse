@@ -41,6 +41,8 @@ val TEST_KATEGORIE_2: Kategorie = Kategorie(
     weitereKarten = emptyList()
 )
 
+val ALLE_TEST_KATEGORIEN: List<Kategorie> = listOf(TEST_KATEGORIE_1, TEST_KATEGORIE_2)
+
 class KategorieTest {
     @Test
     fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
@@ -113,5 +115,11 @@ class KategorieTest {
     fun `Test Rundreise yamlToKategorieToYaml - Konvertierung von YAML zu Kategorie und wieder zurueck`() {
         assertEquals(TEST_KATEGORIE_1_YAML, yamlToKategorie(TEST_KATEGORIE_1_YAML, ALLE_TEST_KARTEN).toYaml())
         assertEquals(TEST_KATEGORIE_2_YAML, yamlToKategorie(TEST_KATEGORIE_2_YAML, ALLE_TEST_KARTEN).toYaml())
+    }
+
+    @Test
+    fun `Test getAlleKarten() - Ausgabe aller Karten einer Kategorie`() {
+        assertEquals(1, TEST_KATEGORIE_1.getAlleKarten().size)
+        assertEquals(2, TEST_KATEGORIE_2.getAlleKarten().size)
     }
 }
