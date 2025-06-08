@@ -3,49 +3,27 @@ package de.seleri.spielelemente
 import org.yaml.snakeyaml.Yaml
 
 data class Karte(
-    val id: Int,
-    val localizedTexte: Map<Sprachen, String>
-) : ToYaml {
+    override val id: Int, override val localizations: Localizations
+) : LokalisierbaresSpielelement(id, localizations), ToYaml {
+
     override fun toYaml(): String {
         val output = StringBuilder()
-
         output.append("$ID_$id")
-
         output.append(TEXT__)
-        localizationsToYaml(output, localizedTexte)
-
+        output.append(localizations.toYaml())
         return output.toString()
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-fun yamlToKarte(yamlInput: String): Karte {
-
-    // Yaml().load() gibt eine Liste zurück, wenn der Input mit "-" beginnt.
-    val kartenDaten: Map<String, Any> = (Yaml().load(yamlInput) as List<Map<String, Any>>)[0]
-
-    val id = kartenDaten["ID"] as Int
-
-    val text = kartenDaten["Text"] as Map<String, String>
-    val localizedTexte = text.mapKeys { Sprachen.valueOf(it.key) }
-
-    return Karte(
-        id = id,
-        localizedTexte = localizedTexte
-    )
+fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
+    return Karte(id, eingabeToLocalizations(sprache, text))
 }
 
-fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
-    val localizedKartenTexte: MutableMap<Sprachen, String> = mutableMapOf()
-    Sprachen.entries.forEach {
-        if (it == sprache) {
-            localizedKartenTexte[it] = text
-        } else {
-            localizedKartenTexte[it] = ""
-        }
-    }
-    return Karte(
-        id = id,
-        localizedTexte = localizedKartenTexte
-    )
+@Suppress("UNCHECKED_CAST")
+fun yamlToKarte(yamlInput: String): Karte {
+    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)[0]
+    val id = data[ID] as Int
+    val text = data[TEXT] as Map<String, String>
+    val localizations = Localizations(text.mapKeys { Sprachen.valueOf(it.key) })
+    return Karte(id, localizations)
 }

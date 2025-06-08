@@ -1,44 +1,70 @@
 package de.seleri.spielelemente
 
+const val KARTEN: String = "Karten"
+const val KATEGORIEN: String = "Kategorien"
+const val SPIELE: String = "Spiele"
+
 private const val EIN_TAB: String = "  "
 private const val ZWEI_TAB: String = "$EIN_TAB$EIN_TAB"
-private const val DREI_TAB: String = "$ZWEI_TAB$EIN_TAB"
+const val DREI_TAB: String = "$ZWEI_TAB$EIN_TAB"
 
-const val ID_: String = "${EIN_TAB}- ID: "
-const val TEXT__: String = "\n${ZWEI_TAB}Text:\n"
-const val NAME__: String = "\n${ZWEI_TAB}Name:\n"
+const val ID: String = "ID"
+const val ID_: String = "$EIN_TAB- $ID: "
 
-const val URSPRUENGLICHE: String = "${ZWEI_TAB}ursprüngliche_"
-const val WEITERE: String = "${ZWEI_TAB}weitere_"
-private const val IDS: String = "-IDs: ["
-private const val LISTENENDE: String = "]\n"
+const val TEXT: String = "Text"
+const val TEXT__: String = "\n$ZWEI_TAB$TEXT:\n"
+const val NAME: String = "Name"
+const val NAME__: String = "\n$ZWEI_TAB$NAME:\n"
 
-fun localizationsToYaml(output: StringBuilder, localizations: Map<Sprachen, String>) {
-    localizations.forEach { (sprache, localizedText) ->
-        output.append("$DREI_TAB$sprache: \"${escapeYamlString(localizedText)}\"\n")
-    }
+const val URSPRUENGLICHE: String = "ursprüngliche_"
+const val TAB_URSPRUENGLICHE: String = "$ZWEI_TAB$URSPRUENGLICHE"
+const val WEITERE: String = "weitere_"
+const val TAB_WEITERE: String = "$ZWEI_TAB$WEITERE"
+const val IDS: String = "-${ID}s"
+const val IDS_: String = "$IDS: ["
+const val LISTENENDE: String = "]\n"
+
+
+// So sieht die Struktur in der Datenbank aus:
+
+val KARTE = """
+    |$EIN_TAB- $ID: X
+    |$ZWEI_TAB$TEXT:
+    |${DREI_TAB}XX: "XXX"
+    |${DREI_TAB}XX: "XXX"
+    |""".trimMargin()
+
+val KATEGORIE = """
+    |$EIN_TAB- $ID: X
+    |$ZWEI_TAB$NAME:
+    |${DREI_TAB}XX: "XXX"
+    |${DREI_TAB}XX: "XXX"
+    |$TAB_URSPRUENGLICHE$KARTEN$IDS: [X,X,X]
+    |$TAB_WEITERE$KARTEN$IDS: [X,X,X]
+    |""".trimMargin()
+
+val SPIEL = """
+    |$EIN_TAB- $ID: X
+    |$ZWEI_TAB$NAME:
+    |${DREI_TAB}XX: "XXX"
+    |${DREI_TAB}XX: "XXX"
+    |$TAB_URSPRUENGLICHE$KATEGORIEN$IDS: [X,X,X]
+    |$TAB_WEITERE$KATEGORIEN$IDS: [X,X,X]
+    |""".trimMargin()
+
+fun main() {
+    println("$KARTEN:")
+    print(KARTE)
+    print(KARTE)
+    println("\n$KATEGORIEN:")
+    print(KATEGORIE)
+    print(KATEGORIE)
+    println("\n$SPIELE:")
+    print(SPIEL)
+    print(SPIEL)
 }
 
-fun kartenListenToYaml(output: StringBuilder, prefix: String, karten: List<Karte>) {
-    listenToYaml(output, prefix, karten.map { it.id })
-}
-
-fun kategorieListenToYaml(output: StringBuilder, prefix: String, kategorien: List<Kategorie>) {
-    listenToYaml(output, prefix, kategorien.map { it.id })
-}
-
-fun listenToYaml(output: StringBuilder, prefix: String, ids: List<Int>) {
-    output.append("$prefix$IDS")
-    if (ids.isNotEmpty()) {
-        ids.forEach {
-            output.append("$it,")
-        }
-        output.deleteCharAt(output.lastIndex)
-    }
-    output.append(LISTENENDE)
-}
-
-private fun escapeYamlString(input: String): String {
+fun escapeYamlString(input: String): String {
     return input
         .replace("\\", "\\\\")
         .replace("\"", "\\\"")
