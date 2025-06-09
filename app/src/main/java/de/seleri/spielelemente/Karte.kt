@@ -3,11 +3,15 @@ package de.seleri.spielelemente
 import org.yaml.snakeyaml.Yaml
 
 data class Karte(
-    override val id: Int, override val localizations: Localizations
-) : LokalisierbaresSpielelement(id, localizations)
+    override val id: Int, override val localizations: MutableMap<Sprachen, String>
+) : LokalisierbaresSpielelement(id, localizations) {
 
-fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
-    return Karte(id, eingabeToLocalizations(sprache, text))
+    override fun toYaml(): String {
+        val output = StringBuilder()
+        output.append(super.toYaml())
+        stringZwischenfuegen(output, "$id", TEXT__, true)
+        return output.toString()
+    }
 }
 
 fun yamlToKarten(yamlInput: String): List<Karte> {
@@ -15,9 +19,10 @@ fun yamlToKarten(yamlInput: String): List<Karte> {
     return data.map { yamlToKarte(it) }
 }
 
-@Suppress("UNCHECKED_CAST")
-fun yamlToKarte(data: Map<String, Any>): Karte{
-    val id = data[ID] as Int
-    val localizations = yamlToLocalization(data)
-    return Karte(id, localizations)
+fun yamlToKarte(data: Map<String, Any>): Karte {
+    return yamlToLokalisierbaresElement(data, ::Karte)
+}
+
+fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
+    return eingabeToLokalisierbaresElement(id, sprache, text, ::Karte)
 }

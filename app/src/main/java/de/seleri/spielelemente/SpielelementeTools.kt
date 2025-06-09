@@ -63,11 +63,3 @@ fun main() {
     print(SPIEL)
     print(SPIEL)
 }
-
-fun escapeYamlString(input: String): String {
-    return input
-        .replace("\\", "\\\\")
-        .replace("\"", "\\\"")
-        .replace("\n", "\\n")
-        .replace("\t", "\\t")
-}

@@ -7,15 +7,13 @@ const val TEST_SPIEL_1_EINGABE: String = "Impulse"
 const val TEST_SPIEL_1_YAML: String = """  - ID: 1
     Name:
       DE: ""
-      EN: "Impulse"
+      EN: "$TEST_SPIEL_1_EINGABE"
     ursprüngliche_Kategorien-IDs: []
     weitere_Kategorien-IDs: [1]
 """
 val TEST_SPIEL_1: Spiel = Spiel(
-    id = 1, localizations = Localizations(
-        mutableMapOf(
-            Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
-        )
+    id = 1, localizations = mutableMapOf(
+        Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
     ), urspruenglicheElemente = emptyList(), weitereElemente = listOf(TEST_KATEGORIE_1)
 )
 
@@ -29,11 +27,7 @@ const val TEST_SPIEL_2_YAML: String = """  - ID: 2
 """
 val TEST_SPIEL_2: Spiel = Spiel(
     id = 2,
-    localizations = Localizations(
-        mutableMapOf(
-            Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
-        )
-    ),
+    localizations = mutableMapOf(Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""),
     urspruenglicheElemente = listOf(TEST_KATEGORIE_1, TEST_KATEGORIE_2),
     weitereElemente = emptyList()
 )

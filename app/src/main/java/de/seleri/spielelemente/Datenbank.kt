@@ -40,22 +40,7 @@ class Datenbank(private val dateiname: String) {
     }
 
     fun kartenZuKategorieHinzufuegen(kategorie: Kategorie, kartenIDs: List<Int>) {
-        val gefundeneKarten = mutableListOf<Karte>()
-        val fehlendeIDs = mutableListOf<Int>()
-
-        for (id in kartenIDs) {
-            val karte = karten.find { it.id == id }
-            if (karte != null) {
-                gefundeneKarten.add(karte)
-            } else {
-                fehlendeIDs.add(id)
-            }
-        }
-        if (fehlendeIDs.isNotEmpty()) {
-            println("Folgende Karten-IDs wurden nicht gefunden und daher nicht hinzugefügt:\n$fehlendeIDs")
-        }
-
-        kategorie.kartenHinzufuegen(gefundeneKarten)
+        kategorie.kartenHinzufuegen(findeElemente(kartenIDs, karten))
         speichereYaml()
     }
 
@@ -67,22 +52,7 @@ class Datenbank(private val dateiname: String) {
     }
 
     fun kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<Int>) {
-        val gefundeneKategorien = mutableListOf<Kategorie>()
-        val fehlendeIDs = mutableListOf<Int>()
-
-        for (id in kategorienIDs) {
-            val kategorie = kategorien.find { it.id == id }
-            if (kategorie != null) {
-                gefundeneKategorien.add(kategorie)
-            } else {
-                fehlendeIDs.add(id)
-            }
-        }
-        if (fehlendeIDs.isNotEmpty()) {
-            println("Folgende Kategorie-IDs wurden nicht gefunden und daher nicht hinzugefügt:\n$fehlendeIDs")
-        }
-
-        spiel.kategorienHinzufuegen(gefundeneKategorien)
+        spiel.kategorienHinzufuegen(findeElemente(kategorienIDs, kategorien))
         speichereYaml()
     }
 
