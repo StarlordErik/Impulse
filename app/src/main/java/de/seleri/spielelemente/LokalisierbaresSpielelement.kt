@@ -1,8 +1,20 @@
 package de.seleri.spielelemente
 
-abstract class LokalisierbaresSpielelement(
+open class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: Localizations
-)
+) : ToYaml{
+    fun setUebersetzung(sprache: Sprachen, name: String) {
+        localizations.setUebersetzung(sprache, name)
+    }
+
+    override fun toYaml(): String {
+        val output = StringBuilder()
+        output.append("$ID_$id")
+        output.append(TEXT__)
+        output.append(localizations.toYaml())
+        return output.toString()
+    }
+}
 
 fun <T : LokalisierbaresSpielelement> eingabeToLokalisierbaresElement(
     id: Int, sprache: Sprachen, text: String, constructor: (Int, Localizations) -> T

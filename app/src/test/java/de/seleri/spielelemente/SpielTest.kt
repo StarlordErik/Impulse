@@ -13,7 +13,7 @@ const val TEST_SPIEL_1_YAML: String = """  - ID: 1
 """
 val TEST_SPIEL_1: Spiel = Spiel(
     id = 1, localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
         )
     ), urspruenglicheElemente = emptyList(), weitereElemente = listOf(TEST_KATEGORIE_1)
@@ -30,7 +30,7 @@ const val TEST_SPIEL_2_YAML: String = """  - ID: 2
 val TEST_SPIEL_2: Spiel = Spiel(
     id = 2,
     localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
         )
     ),
@@ -70,20 +70,20 @@ class SpielTest {
 
     @Test
     fun `Test yamlToSpiel() - Konvertierung von YAML zu Spiel`() {
-        val spiel1 = yamlToSpiel(TEST_SPIEL_1_YAML, ALLE_TEST_KATEGORIEN)
+        val spiel1 = yamlToSpiele(TEST_SPIEL_1_YAML, ALLE_TEST_KATEGORIEN)[0]
         assertEquals(TEST_SPIEL_1, spiel1)
 
-        val spiel2 = yamlToSpiel(TEST_SPIEL_2_YAML, ALLE_TEST_KATEGORIEN)
+        val spiel2 = yamlToSpiele(TEST_SPIEL_2_YAML, ALLE_TEST_KATEGORIEN)[0]
         assertEquals(TEST_SPIEL_2, spiel2)
     }
 
     @Test
     fun `Test Rundreise yamlToSpielToYaml - Konvertierung von YAML zu Spiel und wieder zurueck`() {
         assertEquals(
-            TEST_SPIEL_1_YAML, yamlToSpiel(TEST_SPIEL_1_YAML, ALLE_TEST_KATEGORIEN).toYaml()
+            TEST_SPIEL_1_YAML, yamlToSpiele(TEST_SPIEL_1_YAML, ALLE_TEST_KATEGORIEN)[0].toYaml()
         )
         assertEquals(
-            TEST_SPIEL_2_YAML, yamlToSpiel(TEST_SPIEL_2_YAML, ALLE_TEST_KATEGORIEN).toYaml()
+            TEST_SPIEL_2_YAML, yamlToSpiele(TEST_SPIEL_2_YAML, ALLE_TEST_KATEGORIEN)[0].toYaml()
         )
     }
 

@@ -13,7 +13,7 @@ const val TEST_KATEGORIE_1_YAML: String = """  - ID: 1
 """
 val TEST_KATEGORIE_1: Kategorie = Kategorie(
     id = 1, localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to "", Sprachen.EN to TEST_KATEGORIE_1_EINGABE
         )
     ), urspruenglicheElemente = emptyList(), weitereElemente = listOf(TEST_KARTE_1)
@@ -29,7 +29,7 @@ const val TEST_KATEGORIE_2_YAML: String = """  - ID: 2
 """
 val TEST_KATEGORIE_2: Kategorie = Kategorie(
     id = 2, localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to TEST_KATEGORIE_2_EINGABE, Sprachen.EN to ""
         )
     ), urspruenglicheElemente = listOf(TEST_KARTE_1, TEST_KARTE_2), weitereElemente = emptyList()
@@ -73,20 +73,20 @@ class KategorieTest {
 
     @Test
     fun `Test yamlToKategorie() - Konvertierung von YAML zu Kategorie`() {
-        val kategorie1 = yamlToKategorie(TEST_KATEGORIE_1_YAML, ALLE_TEST_KARTEN)
+        val kategorie1 = yamlToKategorien(TEST_KATEGORIE_1_YAML, ALLE_TEST_KARTEN)[0]
         assertEquals(TEST_KATEGORIE_1, kategorie1)
 
-        val kategorie2 = yamlToKategorie(TEST_KATEGORIE_2_YAML, ALLE_TEST_KARTEN)
+        val kategorie2 = yamlToKategorien(TEST_KATEGORIE_2_YAML, ALLE_TEST_KARTEN)[0]
         assertEquals(TEST_KATEGORIE_2, kategorie2)
     }
 
     @Test
     fun `Test Rundreise yamlToKategorieToYaml - Konvertierung von YAML zu Kategorie und wieder zurueck`() {
         assertEquals(
-            TEST_KATEGORIE_1_YAML, yamlToKategorie(TEST_KATEGORIE_1_YAML, ALLE_TEST_KARTEN).toYaml()
+            TEST_KATEGORIE_1_YAML, yamlToKategorien(TEST_KATEGORIE_1_YAML, ALLE_TEST_KARTEN)[0].toYaml()
         )
         assertEquals(
-            TEST_KATEGORIE_2_YAML, yamlToKategorie(TEST_KATEGORIE_2_YAML, ALLE_TEST_KARTEN).toYaml()
+            TEST_KATEGORIE_2_YAML, yamlToKategorien(TEST_KATEGORIE_2_YAML, ALLE_TEST_KARTEN)[0].toYaml()
         )
     }
 

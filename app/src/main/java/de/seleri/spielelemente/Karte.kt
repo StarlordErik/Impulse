@@ -4,26 +4,20 @@ import org.yaml.snakeyaml.Yaml
 
 data class Karte(
     override val id: Int, override val localizations: Localizations
-) : LokalisierbaresSpielelement(id, localizations), ToYaml {
-
-    override fun toYaml(): String {
-        val output = StringBuilder()
-        output.append("$ID_$id")
-        output.append(TEXT__)
-        output.append(localizations.toYaml())
-        return output.toString()
-    }
-}
+) : LokalisierbaresSpielelement(id, localizations)
 
 fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
     return Karte(id, eingabeToLocalizations(sprache, text))
 }
 
+fun yamlToKarten(yamlInput: String): List<Karte> {
+    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+    return data.map { yamlToKarte(it) }
+}
+
 @Suppress("UNCHECKED_CAST")
-fun yamlToKarte(yamlInput: String): Karte {
-    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)[0]
+fun yamlToKarte(data: Map<String, Any>): Karte{
     val id = data[ID] as Int
-    val text = data[TEXT] as Map<String, String>
-    val localizations = Localizations(text.mapKeys { Sprachen.valueOf(it.key) })
+    val localizations = yamlToLocalization(data)
     return Karte(id, localizations)
 }

@@ -11,7 +11,7 @@ const val TEST_KARTE_1_YAML: String = """  - ID: 1
 """
 val TEST_KARTE_1: Karte = Karte(
     id = 1, localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to "", Sprachen.EN to TEST_KARTE_1_EINGABE
         )
     )
@@ -25,7 +25,7 @@ const val TEST_KARTE_2_YAML: String = """  - ID: 2
 """
 val TEST_KARTE_2: Karte = Karte(
     id = 2, localizations = Localizations(
-        mapOf(
+        mutableMapOf(
             Sprachen.DE to TEST_KARTE_2_EINGABE, Sprachen.EN to ""
         )
     )
@@ -62,16 +62,16 @@ class KartenTest {
 
     @Test
     fun `Test yamlToKarte() - Konvertierung von YAML zu Karte`() {
-        val karte1 = yamlToKarte(TEST_KARTE_1_YAML)
+        val karte1 = yamlToKarten(TEST_KARTE_1_YAML)[0]
         assertEquals(TEST_KARTE_1, karte1)
 
-        val karte2 = yamlToKarte(TEST_KARTE_2_YAML)
+        val karte2 = yamlToKarten(TEST_KARTE_2_YAML)[0]
         assertEquals(TEST_KARTE_2, karte2)
     }
 
     @Test
     fun `Test Rundreise yamlToKarteToYaml - Konvertierung von YAML zu Karte und wieder zurueck`() {
-        assertEquals(TEST_KARTE_1_YAML, yamlToKarte(TEST_KARTE_1_YAML).toYaml())
-        assertEquals(TEST_KARTE_2_YAML, yamlToKarte(TEST_KARTE_2_YAML).toYaml())
+        assertEquals(TEST_KARTE_1_YAML, yamlToKarten(TEST_KARTE_1_YAML)[0].toYaml())
+        assertEquals(TEST_KARTE_2_YAML, yamlToKarten(TEST_KARTE_2_YAML)[0].toYaml())
     }
 }

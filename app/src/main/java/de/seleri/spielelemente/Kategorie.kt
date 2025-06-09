@@ -11,12 +11,16 @@ data class Kategorie(
 
     override fun toYaml(): String {
         val output = StringBuilder()
-        output.append("$ID_$id")
-        output.append(NAME__)
-        output.append(localizations.toYaml())
-        sammlungToYaml(output, "$TAB_URSPRUENGLICHE$KARTEN", urspruenglicheElemente)
-        sammlungToYaml(output, "$TAB_WEITERE$KARTEN", weitereElemente)
+        output.append(super.toYaml())
+        output.insert(output.lastIndexOf(URSPRUENGLICHE) + URSPRUENGLICHE.length, KARTEN)
+        output.insert(output.lastIndexOf(WEITERE) + WEITERE.length, KARTEN)
         return output.toString()
+    }
+
+    fun getAlleKarten(): List<Karte> = getAlleElemente()
+
+    fun kartenHinzufuegen(karten: List<Karte>) {
+        weitereElemente = weitereElemente + karten
     }
 }
 
@@ -24,13 +28,15 @@ fun eingabeToKategorie(
     id: Int, sprache: Sprachen, name: String, urspruenglicheKarten: List<Karte>
 ): Kategorie = eingabeToSammlung(id, sprache, name, urspruenglicheKarten, ::Kategorie)
 
-@Suppress("UNCHECKED_CAST")
-fun yamlToKategorie(yamlInput: String, moeglicheKarten: List<Karte>): Kategorie {
-    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)[0]
-    val id = data[ID] as Int
-    val namen = data[NAME] as Map<String, String>
-    val localizations = Localizations(namen.mapKeys { Sprachen.valueOf(it.key) })
+fun yamlToKategorien(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {
+    val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+    return daten.map { yamlToKategorie(it, moeglicheKarten) }
+}
 
+@Suppress("UNCHECKED_CAST")
+fun yamlToKategorie(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kategorie {
+    val id = data[ID] as Int
+    val localizations = yamlToLocalization(data)
     val urspruenglicheIds = data["$URSPRUENGLICHE$KARTEN$IDS"] as List<Int>
     val weitereIds = data["$WEITERE$KARTEN$IDS"] as List<Int>
 

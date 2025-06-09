@@ -1,12 +1,22 @@
 package de.seleri.spielelemente
 
-abstract class SammlungAnSpielelementen<T>(
+abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     override val id: Int,
     override val localizations: Localizations,
     open val urspruenglicheElemente: List<T>,
     open var weitereElemente: List<T>
-) : LokalisierbaresSpielelement(id, localizations), ToYaml {
+) : LokalisierbaresSpielelement(id, localizations){
     fun getAlleElemente(): List<T> = urspruenglicheElemente + weitereElemente
+
+    override fun toYaml(): String {
+        val output = StringBuilder()
+        output.append(super.toYaml())
+        val woStehtText = output.indexOf(TEXT__)
+        output.replace(woStehtText, woStehtText + TEXT__.length, NAME__)
+        sammlungToYaml(output, TAB_URSPRUENGLICHE, urspruenglicheElemente)
+        sammlungToYaml(output, TAB_WEITERE, weitereElemente)
+        return output.toString()
+    }
 }
 
 fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> eingabeToSammlung(
@@ -16,12 +26,7 @@ fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> eingabeTo
     urspruenglicheElemente: List<E>,
     constructor: (Int, Localizations, List<E>, List<E>) -> T
 ): T {
-    // Hilfsklasse für temporären Dummy
-    class DummyElement(override val id: Int, override val localizations: Localizations) :
-        LokalisierbaresSpielelement(id, localizations)
-
-    // Erzeuge ein Dummy-Objekt, nur um id und Localizations zu extrahieren
-    val dummy = eingabeToLokalisierbaresElement(id, sprache, name, ::DummyElement)
+    val dummy = eingabeToLokalisierbaresElement(id, sprache, name, ::LokalisierbaresSpielelement)
 
     return constructor(dummy.id, dummy.localizations, urspruenglicheElemente, listOf())
 }
