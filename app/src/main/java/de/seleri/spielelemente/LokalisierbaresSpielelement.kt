@@ -49,6 +49,6 @@ fun <T : LokalisierbaresSpielelement> yamlToLokalisierbaresElement(
 fun <T : LokalisierbaresSpielelement> eingabeToLokalisierbaresElement(
     id: Int, sprache: Sprachen, text: String, constructor: (Int, MutableMap<Sprachen, String>) -> T
 ): T {
-    val map = Sprachen.entries.associateWith { if (it == sprache) text else "" }.toMutableMap()
+    val map = Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }.toMutableMap()
     return constructor(id, map)
 }

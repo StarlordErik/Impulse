@@ -8,6 +8,7 @@ val TEST_SPIEL_1_YAML: String = """
     |Spiele:
     |  - ID: 1
     |    Name:
+    |      OG: "$TEST_SPIEL_1_EINGABE"
     |      DE: ""
     |      EN: "$TEST_SPIEL_1_EINGABE"
     |    ursprüngliche_Kategorien-IDs: []
@@ -15,7 +16,7 @@ val TEST_SPIEL_1_YAML: String = """
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_SPIEL_1: Spiel = Spiel(
     id = 1, localizations = mutableMapOf(
-        Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
+        Sprachen.OG to TEST_SPIEL_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
     ), urspruenglicheElemente = emptyList(), weitereElemente = listOf(TEST_KATEGORIE_1)
 )
 
@@ -24,6 +25,7 @@ val TEST_SPIEL_2_YAML: String = """
     |Spiele:
     |  - ID: 2
     |    Name:
+    |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      EN: ""
     |    ursprüngliche_Kategorien-IDs: [1,2]
@@ -31,7 +33,9 @@ val TEST_SPIEL_2_YAML: String = """
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_SPIEL_2: Spiel = Spiel(
     id = 2,
-    localizations = mutableMapOf(Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""),
+    localizations = mutableMapOf(
+        Sprachen.OG to TEST_SPIEL_2_EINGABE, Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
+    ),
     urspruenglicheElemente = listOf(TEST_KATEGORIE_1, TEST_KATEGORIE_2),
     weitereElemente = emptyList()
 )

@@ -8,13 +8,14 @@ val TEST_KARTE_1_YAML: String = """
     |Karten:
     |  - ID: 1
     |    Text:
+    |      OG: "$TEST_KARTE_1_EINGABE"
     |      DE: ""
     |      EN: "$TEST_KARTE_1_EINGABE"
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 
 val TEST_KARTE_1: Karte = Karte(
     id = 1, localizations = mutableMapOf(
-        Sprachen.DE to "", Sprachen.EN to TEST_KARTE_1_EINGABE
+        Sprachen.OG to TEST_KARTE_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_KARTE_1_EINGABE
     )
 
 )
@@ -24,12 +25,13 @@ val TEST_KARTE_2_YAML: String = """
     |Karten:
     |  - ID: 2
     |    Text:
+    |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      EN: ""
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KARTE_2: Karte = Karte(
     id = 2, localizations = mutableMapOf(
-        Sprachen.DE to TEST_KARTE_2_EINGABE, Sprachen.EN to ""
+        Sprachen.OG to TEST_KARTE_2_EINGABE, Sprachen.DE to TEST_KARTE_2_EINGABE, Sprachen.EN to ""
     )
 
 )
