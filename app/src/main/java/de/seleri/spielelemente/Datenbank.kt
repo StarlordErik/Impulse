@@ -1,17 +1,41 @@
 package de.seleri.spielelemente
 
+import android.content.Context
+import de.seleri.impulse.R
 import java.io.File
 import org.yaml.snakeyaml.Yaml
 
-class Datenbank(private val dateiname: String) {
+/*
+Für eine zentrale Initialisierung in einer Application-Klasse speichern:
+
+class MyApp : Application() {
+    lateinit var datenbank: Datenbank
+
+    override fun onCreate() {
+        super.onCreate()
+        datenbank = Datenbank(this)
+    }
+}
+
+Dann in AndroidManifest.xml:
+<application
+    android:name=".MyApp"
+    ... >
+
+Und in Activities:
+val datenbank = (application as MyApp).datenbank
+
+ */
+class Datenbank(private val context: Context) {
 
     val karten: MutableList<Karte>
     val kategorien: MutableList<Kategorie>
     val spiele: MutableList<Spiel>
 
     init {
-        val inhalt = File(dateiname).readText()
-        val yaml = Yaml().load<Map<String, Any>>(inhalt)
+        // val input = File(dateiname).readText()
+        val input = context.resources.openRawResource(R.raw.datenbank)
+        val yaml = Yaml().load<Map<String, Any>>(input)
 
         @Suppress("UNCHECKED_CAST") val kartenYaml = yaml[KARTEN] as List<Map<String, Any>>
         karten = kartenYaml.map { yamlToKarte(it) }.toMutableList()
@@ -74,6 +98,6 @@ class Datenbank(private val dateiname: String) {
             builder.append(spiel.toYaml())
         }
 
-        File(dateiname).writeText(builder.toString())
+        //TODO File(dateiname).writeText(builder.toString())
     }
 }
