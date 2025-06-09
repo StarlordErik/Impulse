@@ -18,17 +18,13 @@ fun testKategorie1Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testKategorie1(): Kategorie = Kategorie(
-    id = 1,
-    localizations = mutableMapOf(
+    id = 1, localizations = mutableMapOf(
         Sprachen.OG to TEST_KATEGORIE_1_EINGABE,
         Sprachen.DE to "",
         Sprachen.EN to TEST_KATEGORIE_1_EINGABE
-    ),
-    originaleElemente = mutableMapOf(
-        IDS to listOf(testKarte1()),
-        DAVON_ENTFERNT to listOf(testKarte1())
-    ),
-    hinzugefuegteElemente = listOf(testKarte2())
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(testKarte1()), DAVON_ENTFERNT to listOf(testKarte1())
+    ), hinzugefuegteElemente = listOf(testKarte2())
 )
 
 const val TEST_KATEGORIE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -46,17 +42,13 @@ fun testKategorie2Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testKategorie2(): Kategorie = Kategorie(
-    id = 2,
-    localizations = mutableMapOf(
+    id = 2, localizations = mutableMapOf(
         Sprachen.OG to TEST_KATEGORIE_2_EINGABE,
         Sprachen.DE to TEST_KATEGORIE_2_EINGABE,
         Sprachen.EN to ""
-    ),
-    originaleElemente = mutableMapOf(
-        IDS to listOf(testKarte1(), testKarte2()),
-        DAVON_ENTFERNT to emptyList()
-    ),
-    hinzugefuegteElemente = emptyList()
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(testKarte1(), testKarte2()), DAVON_ENTFERNT to emptyList()
+    ), hinzugefuegteElemente = emptyList()
 )
 
 fun alleTestKategorien(): List<Kategorie> = listOf(testKategorie1(), testKategorie2())
@@ -64,7 +56,8 @@ fun alleTestKategorien(): List<Kategorie> = listOf(testKategorie1(), testKategor
 class KategorieTest {
     @Test
     fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
-        val kategorie1 = eingabeToKategorie(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
+        val kategorie1 =
+            eingabeToKategorie(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
         kategorie1.hinzugefuegteElemente = listOf(testKarte2())
         kategorie1.originaleElemente[DAVON_ENTFERNT] = listOf(testKarte1())
         assertEquals(testKategorie1().id, kategorie1.id)
@@ -101,8 +94,14 @@ class KategorieTest {
 
     @Test
     fun `Test Rundreise yamlToKategorieToYaml - Konvertierung von YAML zu Kategorie und wieder zurueck`() {
-        assertEquals(testKategorie1Yaml(), yamlToKategorien(testKategorie1Yaml(), alleTestKarten())[0].toYaml())
-        assertEquals(testKategorie2Yaml(), yamlToKategorien(testKategorie2Yaml(), alleTestKarten())[0].toYaml())
+        assertEquals(
+            testKategorie1Yaml(),
+            yamlToKategorien(testKategorie1Yaml(), alleTestKarten())[0].toYaml()
+        )
+        assertEquals(
+            testKategorie2Yaml(),
+            yamlToKategorien(testKategorie2Yaml(), alleTestKarten())[0].toYaml()
+        )
     }
 
     @Test

@@ -16,14 +16,9 @@ fun testKarte1Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testKarte1(): Karte = Karte(
-    id = 1,
-    localizations = mutableMapOf(
-        Sprachen.OG to TEST_KARTE_1_EINGABE,
-        Sprachen.DE to "",
-        Sprachen.EN to TEST_KARTE_1_EINGABE
-    ),
-    gesehen = false,
-    geloescht = true
+    id = 1, localizations = mutableMapOf(
+        Sprachen.OG to TEST_KARTE_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_KARTE_1_EINGABE
+    ), gesehen = false, geloescht = true
 )
 
 const val TEST_KARTE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -39,14 +34,9 @@ fun testKarte2Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testKarte2(): Karte = Karte(
-    id = 2,
-    localizations = mutableMapOf(
-        Sprachen.OG to TEST_KARTE_2_EINGABE,
-        Sprachen.DE to TEST_KARTE_2_EINGABE,
-        Sprachen.EN to ""
-    ),
-    gesehen = true,
-    geloescht = false
+    id = 2, localizations = mutableMapOf(
+        Sprachen.OG to TEST_KARTE_2_EINGABE, Sprachen.DE to TEST_KARTE_2_EINGABE, Sprachen.EN to ""
+    ), gesehen = true, geloescht = false
 )
 
 fun alleTestKarten() = listOf(testKarte1(), testKarte2())
@@ -54,11 +44,6 @@ fun alleTestKarten() = listOf(testKarte1(), testKarte2())
 const val OG_TEXT = "Original"
 const val DE_TEXT = "deutscher Text"
 const val EN_TEXT = "English Text"
-fun testLocalizations() = mutableMapOf(
-    Sprachen.OG to OG_TEXT,
-    Sprachen.DE to DE_TEXT,
-    Sprachen.EN to EN_TEXT
-)
 
 class KartenTest {
 

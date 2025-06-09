@@ -18,17 +18,11 @@ fun testSpiel1Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testSpiel1(): Spiel = Spiel(
-    id = 1,
-    localizations = mutableMapOf(
-        Sprachen.OG to TEST_SPIEL_1_EINGABE,
-        Sprachen.DE to "",
-        Sprachen.EN to TEST_SPIEL_1_EINGABE
-    ),
-    originaleElemente = mutableMapOf(
-        IDS to listOf(testKategorie1()),
-        DAVON_ENTFERNT to listOf(testKategorie1())
-    ),
-    hinzugefuegteElemente = listOf(testKategorie2())
+    id = 1, localizations = mutableMapOf(
+        Sprachen.OG to TEST_SPIEL_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(testKategorie1()), DAVON_ENTFERNT to listOf(testKategorie1())
+    ), hinzugefuegteElemente = listOf(testKategorie2())
 )
 
 const val TEST_SPIEL_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -36,8 +30,8 @@ fun testSpiel2Yaml(): String = """
     |Spiele:
     |  - ID: 2
     |    Name:
-    |      OG: "$TEST_SPIEL_2_EINGABE"
-    |      DE: "$TEST_SPIEL_2_EINGABE"
+    |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
+    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      EN: ""
     |    originale_Kategorien:
     |      IDs: [1,2]
@@ -46,17 +40,11 @@ fun testSpiel2Yaml(): String = """
     |""".trimMargin().lines().drop(1).joinToString("\n")
 
 fun testSpiel2(): Spiel = Spiel(
-    id = 2,
-    localizations = mutableMapOf(
-        Sprachen.OG to TEST_SPIEL_2_EINGABE,
-        Sprachen.DE to TEST_SPIEL_2_EINGABE,
-        Sprachen.EN to ""
-    ),
-    originaleElemente = mutableMapOf(
-        IDS to listOf(testKategorie1(), testKategorie2()),
-        DAVON_ENTFERNT to emptyList()
-    ),
-    hinzugefuegteElemente = emptyList()
+    id = 2, localizations = mutableMapOf(
+        Sprachen.OG to TEST_SPIEL_2_EINGABE, Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(testKategorie1(), testKategorie2()), DAVON_ENTFERNT to emptyList()
+    ), hinzugefuegteElemente = emptyList()
 )
 
 class SpielTest {
@@ -73,7 +61,9 @@ class SpielTest {
         assertEquals(testSpiel1().hinzugefuegteElemente, spiel1.hinzugefuegteElemente)
         assertEquals(testSpiel1(), spiel1)
 
-        val spiel2 = eingabeToSpiel(2, Sprachen.DE, TEST_SPIEL_2_EINGABE, listOf(testKategorie1(), testKategorie2()))
+        val spiel2 = eingabeToSpiel(
+            2, Sprachen.DE, TEST_SPIEL_2_EINGABE, listOf(testKategorie1(), testKategorie2())
+        )
         spiel2.hinzugefuegteElemente = emptyList()
 
         assertEquals(testSpiel2().id, spiel2.id)
@@ -100,8 +90,12 @@ class SpielTest {
 
     @Test
     fun `Test Rundreise yamlToSpielToYaml - Konvertierung von YAML zu Spiel und wieder zurueck`() {
-        assertEquals(testSpiel1Yaml(), yamlToSpiele(testSpiel1Yaml(), alleTestKategorien())[0].toYaml())
-        assertEquals(testSpiel2Yaml(), yamlToSpiele(testSpiel2Yaml(), alleTestKategorien())[0].toYaml())
+        assertEquals(
+            testSpiel1Yaml(), yamlToSpiele(testSpiel1Yaml(), alleTestKategorien())[0].toYaml()
+        )
+        assertEquals(
+            testSpiel2Yaml(), yamlToSpiele(testSpiel2Yaml(), alleTestKategorien())[0].toYaml()
+        )
     }
 
     @Test

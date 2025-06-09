@@ -19,7 +19,6 @@ data class Karte(
     }
 }
 
-
 fun yamlToKarten(yamlInput: String): List<Karte> {
     val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
     return data.map { yamlToKarte(it) }
