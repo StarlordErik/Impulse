@@ -40,7 +40,7 @@ fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> yamlToSam
     moeglicheKarten: List<E>,
     constructor: (Int, MutableMap<Sprachen, String>, List<E>, List<E>) -> T
 ): T {
-    val dummy = yamlToLokalisierbaresElement(data, ::Karte)
+    val dummy = yamlToLokalisierbaresElement(data, ::LokalisierbaresSpielelement)
 
     val urspruenglicheIds =
         (data["$URSPRUENGLICHE$KARTEN$IDS"] ?: data["$URSPRUENGLICHE$KATEGORIEN$IDS"]) as List<Int>

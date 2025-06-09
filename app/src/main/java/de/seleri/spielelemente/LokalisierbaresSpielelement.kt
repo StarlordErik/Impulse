@@ -2,7 +2,7 @@ package de.seleri.spielelemente
 
 import kotlin.collections.set
 
-abstract class LokalisierbaresSpielelement(
+open class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: MutableMap<Sprachen, String>
 ) {
     open fun toYaml(): String {

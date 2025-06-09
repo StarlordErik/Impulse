@@ -4,15 +4,15 @@ Karten:
       OG: "Do I look kind? Explain."
       DE: ""
       EN: "Do I look kind? Explain."
-    gesehen: 0
-    gelöscht: 0
+    gesehen: false
+    gelöscht: false
   - ID: 2
     Text:
       OG: "What is my body language telling you right now?"
       DE: ""
       EN: "What is my body language telling you right now?"
-    gesehen: 0
-    gelöscht: 0
+    gesehen: false
+    gelöscht: false
 
 Kategorien:
   - ID: 1
