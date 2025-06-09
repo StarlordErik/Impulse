@@ -16,7 +16,7 @@ open class LokalisierbaresSpielelement(
     }
 
     fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
-        localizations[sprache] = bezeichnung
+        if (sprache != Sprachen.OG) localizations[sprache] = bezeichnung
     }
 }
 
