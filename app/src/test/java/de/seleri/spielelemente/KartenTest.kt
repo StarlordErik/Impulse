@@ -4,11 +4,14 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 const val TEST_KARTE_1_EINGABE: String = "Are you happy?"
-const val TEST_KARTE_1_YAML: String = """  - ID: 1
-    Text:
-      DE: ""
-      EN: "$TEST_KARTE_1_EINGABE"
-"""
+val TEST_KARTE_1_YAML: String = """
+    |Karten:
+    |  - ID: 1
+    |    Text:
+    |      DE: ""
+    |      EN: "$TEST_KARTE_1_EINGABE"
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
+
 val TEST_KARTE_1: Karte = Karte(
     id = 1, localizations = mutableMapOf(
         Sprachen.DE to "", Sprachen.EN to TEST_KARTE_1_EINGABE
@@ -17,11 +20,13 @@ val TEST_KARTE_1: Karte = Karte(
 )
 
 const val TEST_KARTE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-const val TEST_KARTE_2_YAML: String = """  - ID: 2
-    Text:
-      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-      EN: ""
-"""
+val TEST_KARTE_2_YAML: String = """
+    |Karten:
+    |  - ID: 2
+    |    Text:
+    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
+    |      EN: ""
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KARTE_2: Karte = Karte(
     id = 2, localizations = mutableMapOf(
         Sprachen.DE to TEST_KARTE_2_EINGABE, Sprachen.EN to ""

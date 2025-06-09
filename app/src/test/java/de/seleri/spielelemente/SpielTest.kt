@@ -4,13 +4,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 const val TEST_SPIEL_1_EINGABE: String = "Impulse"
-const val TEST_SPIEL_1_YAML: String = """  - ID: 1
-    Name:
-      DE: ""
-      EN: "$TEST_SPIEL_1_EINGABE"
-    ursprüngliche_Kategorien-IDs: []
-    weitere_Kategorien-IDs: [1]
-"""
+val TEST_SPIEL_1_YAML: String = """
+    |Spiele:
+    |  - ID: 1
+    |    Name:
+    |      DE: ""
+    |      EN: "$TEST_SPIEL_1_EINGABE"
+    |    ursprüngliche_Kategorien-IDs: []
+    |    weitere_Kategorien-IDs: [1]
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_SPIEL_1: Spiel = Spiel(
     id = 1, localizations = mutableMapOf(
         Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
@@ -18,13 +20,15 @@ val TEST_SPIEL_1: Spiel = Spiel(
 )
 
 const val TEST_SPIEL_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-const val TEST_SPIEL_2_YAML: String = """  - ID: 2
-    Name:
-      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-      EN: ""
-    ursprüngliche_Kategorien-IDs: [1,2]
-    weitere_Kategorien-IDs: []
-"""
+val TEST_SPIEL_2_YAML: String = """
+    |Spiele:
+    |  - ID: 2
+    |    Name:
+    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
+    |      EN: ""
+    |    ursprüngliche_Kategorien-IDs: [1,2]
+    |    weitere_Kategorien-IDs: []
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_SPIEL_2: Spiel = Spiel(
     id = 2,
     localizations = mutableMapOf(Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""),

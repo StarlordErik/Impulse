@@ -4,13 +4,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 const val TEST_KATEGORIE_1_EINGABE: String = "Level 1"
-const val TEST_KATEGORIE_1_YAML: String = """  - ID: 1
-    Name:
-      DE: ""
-      EN: "$TEST_KATEGORIE_1_EINGABE"
-    ursprüngliche_Karten-IDs: []
-    weitere_Karten-IDs: [1]
-"""
+val TEST_KATEGORIE_1_YAML: String = """
+    |Kategorien:
+    |  - ID: 1
+    |    Name:
+    |      DE: ""
+    |      EN: "$TEST_KATEGORIE_1_EINGABE"
+    |    ursprüngliche_Karten-IDs: []
+    |    weitere_Karten-IDs: [1]
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KATEGORIE_1: Kategorie = Kategorie(
     id = 1, localizations = mutableMapOf(
         Sprachen.DE to "", Sprachen.EN to TEST_KATEGORIE_1_EINGABE
@@ -18,13 +20,15 @@ val TEST_KATEGORIE_1: Kategorie = Kategorie(
 )
 
 const val TEST_KATEGORIE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-const val TEST_KATEGORIE_2_YAML: String = """  - ID: 2
-    Name:
-      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-      EN: ""
-    ursprüngliche_Karten-IDs: [1,2]
-    weitere_Karten-IDs: []
-"""
+val TEST_KATEGORIE_2_YAML: String = """
+    |Kategorien:
+    |  - ID: 2
+    |    Name:
+    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
+    |      EN: ""
+    |    ursprüngliche_Karten-IDs: [1,2]
+    |    weitere_Karten-IDs: []
+    |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KATEGORIE_2: Kategorie = Kategorie(
     id = 2,
     localizations = mutableMapOf(Sprachen.DE to TEST_KATEGORIE_2_EINGABE, Sprachen.EN to ""),
