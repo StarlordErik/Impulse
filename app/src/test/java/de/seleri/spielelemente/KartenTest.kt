@@ -49,20 +49,17 @@ class KartenTest {
         assertEquals(
             TEST_KARTE_1.localizations, karte1.localizations
         )
-        val testKarte1 = TEST_KARTE_1.copy()
-        testKarte1.geloescht = false
-        testKarte1.gesehen = false
-        assertEquals(testKarte1, karte1)
+        karte1.geloescht = true
+        assertEquals(TEST_KARTE_1, karte1)
+
 
         val karte2 = eingabeToKarte(2, Sprachen.DE, TEST_KARTE_2_EINGABE)
         assertEquals(TEST_KARTE_2.id, karte2.id)
         assertEquals(
             TEST_KARTE_2.localizations, karte2.localizations
         )
-        val testKarte2 = TEST_KARTE_2.copy()
-        testKarte2.geloescht = false
-        testKarte2.gesehen = false
-        assertEquals(testKarte2, karte2)
+        karte2.gesehen = true
+        assertEquals(TEST_KARTE_2, karte2)
     }
 
     @Test

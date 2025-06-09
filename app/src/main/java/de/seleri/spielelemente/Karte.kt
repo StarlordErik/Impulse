@@ -12,12 +12,13 @@ data class Karte(
     override fun toYaml(): String {
         val output = StringBuilder()
         output.append(super.toYaml())
-        stringZwischenfuegen(output, "$id", TEXT__, true)
-        output.append("$GESEHEN_$gesehen")
-        output.append("$GELOESCHT_$geloescht\n")
+        output.append(localizationsToYaml(TEXT))
+        output.append(attributToYamlZeile(2, GESEHEN, gesehen))
+        output.append(attributToYamlZeile(2, GELOESCHT, geloescht))
         return output.toString()
     }
 }
+
 
 fun yamlToKarten(yamlInput: String): List<Karte> {
     val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)

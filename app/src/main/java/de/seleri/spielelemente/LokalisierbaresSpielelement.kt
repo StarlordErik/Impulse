@@ -7,16 +7,12 @@ open class LokalisierbaresSpielelement(
 ) {
     open fun toYaml(): String {
         val output = StringBuilder()
-        output.append("$ID_$id")
-        localizations.forEach { (sprache, uebersetzung) ->
-            val escapedUebersetzung = uebersetzung
-                .replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\n", "\\n")
-                .replace("\t", "\\t")
-            output.append("$DREI_TAB$sprache: \"$escapedUebersetzung\"\n")
-        }
+        output.append(attributToYamlZeile(1, "- $ID", id))
         return output.toString()
+    }
+
+    fun localizationsToYaml(bezeichnung: String): String {
+        return attributToYamlZeile(2, bezeichnung, localizations)
     }
 
     fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
@@ -24,15 +20,11 @@ open class LokalisierbaresSpielelement(
     }
 }
 
+
 fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
     return ids.map { id ->
         findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
     }
-}
-
-fun stringZwischenfuegen(output: StringBuilder, nach: String, einfuegen: String, vorLocalization: Boolean) {
-    if (vorLocalization) output.insert(output.indexOf(nach) + nach.length, einfuegen)
-    else output.insert(output.lastIndexOf(nach) + nach.length, einfuegen)
 }
 
 @Suppress("UNCHECKED_CAST")
@@ -49,6 +41,8 @@ fun <T : LokalisierbaresSpielelement> yamlToLokalisierbaresElement(
 fun <T : LokalisierbaresSpielelement> eingabeToLokalisierbaresElement(
     id: Int, sprache: Sprachen, text: String, constructor: (Int, MutableMap<Sprachen, String>) -> T
 ): T {
-    val map = Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }.toMutableMap()
+    val map =
+        Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }
+            .toMutableMap()
     return constructor(id, map)
 }

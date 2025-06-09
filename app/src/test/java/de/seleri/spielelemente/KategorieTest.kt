@@ -1,5 +1,6 @@
 package de.seleri.spielelemente
 
+import de.seleri.spielelemente.TEST_KARTE_1
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -11,15 +12,19 @@ val TEST_KATEGORIE_1_YAML: String = """
     |      OG: "$TEST_KATEGORIE_1_EINGABE"
     |      DE: ""
     |      EN: "$TEST_KATEGORIE_1_EINGABE"
-    |    ursprüngliche_Karten-IDs: []
-    |    weitere_Karten-IDs: [1]
+    |    originale_Karten:
+    |      IDs: [1]
+    |      davon_entfernt: [1]
+    |    hinzugefügte_Karten-IDs: [2]
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KATEGORIE_1: Kategorie = Kategorie(
     id = 1, localizations = mutableMapOf(
         Sprachen.OG to TEST_KATEGORIE_1_EINGABE,
         Sprachen.DE to "",
         Sprachen.EN to TEST_KATEGORIE_1_EINGABE
-    ), urspruenglicheElemente = emptyList(), weitereElemente = listOf(TEST_KARTE_1)
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(TEST_KARTE_1), DAVON_ENTFERNT to listOf(TEST_KARTE_1)
+    ), hinzugefuegteElemente = listOf(TEST_KARTE_2)
 )
 
 const val TEST_KATEGORIE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -30,15 +35,19 @@ val TEST_KATEGORIE_2_YAML: String = """
     |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
     |      EN: ""
-    |    ursprüngliche_Karten-IDs: [1,2]
-    |    weitere_Karten-IDs: []
+    |    originale_Karten:
+    |      IDs: [1,2]
+    |      davon_entfernt: []
+    |    hinzugefügte_Karten-IDs: []
     |""".trimMargin().lines().drop(1).joinToString("\n") // entfernt die erste Zeile
 val TEST_KATEGORIE_2: Kategorie = Kategorie(
     id = 2, localizations = mutableMapOf(
         Sprachen.OG to TEST_KATEGORIE_2_EINGABE,
         Sprachen.DE to TEST_KATEGORIE_2_EINGABE,
         Sprachen.EN to ""
-    ), urspruenglicheElemente = listOf(TEST_KARTE_1, TEST_KARTE_2), weitereElemente = emptyList()
+    ), originaleElemente = mutableMapOf(
+        IDS to listOf(TEST_KARTE_1, TEST_KARTE_2), DAVON_ENTFERNT to emptyList()
+    ), hinzugefuegteElemente = emptyList()
 )
 
 val ALLE_TEST_KATEGORIEN: List<Kategorie> = listOf(TEST_KATEGORIE_1, TEST_KATEGORIE_2)
@@ -46,26 +55,28 @@ val ALLE_TEST_KATEGORIEN: List<Kategorie> = listOf(TEST_KATEGORIE_1, TEST_KATEGO
 class KategorieTest {
     @Test
     fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
-        val kategorie1 = eingabeToKategorie(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, emptyList())
-        kategorie1.weitereElemente = listOf(TEST_KARTE_1)
+        val kategorie1 =
+            eingabeToKategorie(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(TEST_KARTE_1))
+        kategorie1.hinzugefuegteElemente = listOf(TEST_KARTE_2)
+        kategorie1.originaleElemente[DAVON_ENTFERNT] = listOf(TEST_KARTE_1)
         assertEquals(TEST_KATEGORIE_1.id, kategorie1.id)
         assertEquals(
             TEST_KATEGORIE_1.localizations, kategorie1.localizations
         )
-        assertEquals(TEST_KATEGORIE_1.urspruenglicheElemente, kategorie1.urspruenglicheElemente)
-        assertEquals(TEST_KATEGORIE_1.weitereElemente, kategorie1.weitereElemente)
+        assertEquals(TEST_KATEGORIE_1.originaleElemente, kategorie1.originaleElemente)
+        assertEquals(TEST_KATEGORIE_1.hinzugefuegteElemente, kategorie1.hinzugefuegteElemente)
         assertEquals(TEST_KATEGORIE_1, kategorie1)
 
         val kategorie2 = eingabeToKategorie(
             2, Sprachen.DE, TEST_KATEGORIE_2_EINGABE, listOf(TEST_KARTE_1, TEST_KARTE_2)
         )
-        kategorie2.weitereElemente = emptyList()
+        kategorie2.hinzugefuegteElemente = emptyList()
         assertEquals(TEST_KATEGORIE_2.id, kategorie2.id)
         assertEquals(
             TEST_KATEGORIE_2.localizations, kategorie2.localizations
         )
-        assertEquals(TEST_KATEGORIE_2.urspruenglicheElemente, kategorie2.urspruenglicheElemente)
-        assertEquals(TEST_KATEGORIE_2.weitereElemente, kategorie2.weitereElemente)
+        assertEquals(TEST_KATEGORIE_2.originaleElemente, kategorie2.originaleElemente)
+        assertEquals(TEST_KATEGORIE_2.hinzugefuegteElemente, kategorie2.hinzugefuegteElemente)
         assertEquals(TEST_KATEGORIE_2, kategorie2)
     }
 
@@ -98,7 +109,7 @@ class KategorieTest {
 
     @Test
     fun `Test getAlleKarten() - Ausgabe aller Karten einer Kategorie`() {
-        assertEquals(1, TEST_KATEGORIE_1.getAlleElemente().size)
+        assertEquals(2, TEST_KATEGORIE_1.getAlleElemente().size)
         assertEquals(2, TEST_KATEGORIE_2.getAlleElemente().size)
     }
 }

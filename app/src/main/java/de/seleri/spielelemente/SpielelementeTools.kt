@@ -4,69 +4,71 @@ const val KARTEN: String = "Karten"
 const val KATEGORIEN: String = "Kategorien"
 const val SPIELE: String = "Spiele"
 
-private const val EIN_TAB: String = "  "
-private const val ZWEI_TAB: String = "$EIN_TAB$EIN_TAB"
-const val DREI_TAB: String = "$ZWEI_TAB$EIN_TAB"
+const val EIN_TAB: String = "  "
 
 const val ID: String = "ID"
-const val ID_: String = "$EIN_TAB- $ID: "
 
 const val TEXT: String = "Text"
-const val TEXT__: String = "\n$ZWEI_TAB$TEXT:\n"
 const val NAME: String = "Name"
-const val NAME__: String = "\n$ZWEI_TAB$NAME:\n"
 
 const val GESEHEN: String = "gesehen"
-const val GESEHEN_: String = "$ZWEI_TAB$GESEHEN: "
 const val GELOESCHT: String = "gelöscht"
-const val GELOESCHT_: String = "\n$ZWEI_TAB$GELOESCHT: "
 
-const val URSPRUENGLICHE: String = "ursprüngliche_"
-const val TAB_URSPRUENGLICHE: String = "$ZWEI_TAB$URSPRUENGLICHE"
-const val WEITERE: String = "weitere_"
-const val TAB_WEITERE: String = "$ZWEI_TAB$WEITERE"
-const val IDS: String = "-${ID}s"
-const val IDS_: String = "$IDS: ["
-const val LISTENENDE: String = "]\n"
+const val ORIGINALE: String = "originale_"
+const val IDS = "${ID}s"
+const val DAVON_ENTFERNT: String = "davon_entfernt"
 
+const val HINZUGEFUEGTE: String = "hinzugefügte_"
+const val BINDESTRICH_IDS: String = "-$IDS"
 
-// So sieht die Struktur in der Datenbank aus:
+fun attributToYamlZeile(
+    anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?
+): String {
+    val zeile = StringBuilder()
+    zeile.append(EIN_TAB.repeat(anzahlEinrueckungen))
+    zeile.append(attributsname)
+    zeile.append(":")
 
-val KARTE = """
-    |$EIN_TAB- $ID: X
-    |$ZWEI_TAB$TEXT:
-    |${DREI_TAB}XX: "XXX"
-    |${DREI_TAB}XX: "XXX"
-    |$ZWEI_TAB$GESEHEN: X
-    |$ZWEI_TAB$GELOESCHT: X
-    |""".trimMargin()
+    if (attributswert != null && attributswert !is Map<*, *>) zeile.append(" ")
 
-val KATEGORIE = """
-    |$EIN_TAB- $ID: X
-    |$ZWEI_TAB$NAME:
-    |${DREI_TAB}XX: "XXX"
-    |${DREI_TAB}XX: "XXX"
-    |$TAB_URSPRUENGLICHE$KARTEN$IDS: [X,X,X]
-    |$TAB_WEITERE$KARTEN$IDS: [X,X,X]
-    |""".trimMargin()
+    when (attributswert) {
+        is String -> {
+            val escaped =
+                attributswert.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n")
+                    .replace("\t", "\\t")
+            zeile.append("\"$escaped\"")
+        }
 
-val SPIEL = """
-    |$EIN_TAB- $ID: X
-    |$ZWEI_TAB$NAME:
-    |${DREI_TAB}XX: "XXX"
-    |${DREI_TAB}XX: "XXX"
-    |$TAB_URSPRUENGLICHE$KATEGORIEN$IDS: [X,X,X]
-    |$TAB_WEITERE$KATEGORIEN$IDS: [X,X,X]
-    |""".trimMargin()
+        is List<*> -> {
+            zeile.append("[")
+            attributswert.forEachIndexed { index, item ->
+                zeile.append(
+                    when (item) {
+                        is LokalisierbaresSpielelement -> item.id
+                        else -> item.toString()
+                    }
+                )
+                if (index < attributswert.size - 1) zeile.append(",")
+            }
+            zeile.append("]")
+        }
 
-fun main() {
-    println("$KARTEN:")
-    print(KARTE)
-    print(KARTE)
-    println("\n$KATEGORIEN:")
-    print(KATEGORIE)
-    print(KATEGORIE)
-    println("\n$SPIELE:")
-    print(SPIEL)
-    print(SPIEL)
+        is Map<*, *> -> {
+            zeile.append("\n")
+            val mapContent = StringBuilder()
+            attributswert.forEach { (key, value) ->
+                mapContent.append(
+                    attributToYamlZeile(
+                        anzahlEinrueckungen + 1, key.toString(), value
+                    )
+                )
+            }
+            zeile.append(mapContent.toString().trimEnd())
+        }
+
+        else -> zeile.append(attributswert)
+    }
+
+    zeile.append("\n")
+    return zeile.toString()
 }

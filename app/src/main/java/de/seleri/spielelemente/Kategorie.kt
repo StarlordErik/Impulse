@@ -5,21 +5,22 @@ import org.yaml.snakeyaml.Yaml
 data class Kategorie(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
-    override val urspruenglicheElemente: List<Karte>,
-    override var weitereElemente: List<Karte>
-) : SammlungAnSpielelementen<Karte>(id, localizations, urspruenglicheElemente, weitereElemente) {
+    override val originaleElemente: MutableMap<String, List<Karte>>,
+    override var hinzugefuegteElemente: List<Karte>
+) : SammlungAnSpielelementen<Karte>(id, localizations, originaleElemente, hinzugefuegteElemente) {
 
     override fun toYaml(): String {
         val output = StringBuilder()
         output.append(super.toYaml())
-        stringZweiMalZwischenfuegen(output, URSPRUENGLICHE, WEITERE, KARTEN)
+        output.append(originaleUndHinzugefuegteElementeToYaml(KARTEN))
         return output.toString()
     }
 
     fun getAlleKarten(): List<Karte> = getAlleElemente()
+    fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
 
     fun kartenHinzufuegen(karten: List<Karte>) {
-        weitereElemente = weitereElemente + karten
+        hinzugefuegteElemente = hinzugefuegteElemente + karten
     }
 }
 
@@ -33,5 +34,5 @@ fun yamlToKategorie(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kateg
 }
 
 fun eingabeToKategorie(
-    id: Int, sprache: Sprachen, name: String, urspruenglicheKarten: List<Karte>
-): Kategorie = eingabeToSammlung(id, sprache, name, urspruenglicheKarten, ::Kategorie)
+    id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>
+): Kategorie = eingabeToSammlung(id, sprache, name, originaleKarten, ::Kategorie)
