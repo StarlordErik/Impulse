@@ -106,10 +106,13 @@ class Datenbanksystem(private val datenbank: File) {
     }
 }
 
-const val DATEINAME = "datenbank.yaml"
+const val DATENBANK_NAME = "datenbank"
+const val DATENBANK_DATEIFORMAT = ".yml"
+const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
+const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
 
 fun datenbanksystemGenerieren(context: Context) : Datenbanksystem {
-    val datei = File(context.filesDir, DATEINAME)
+    val datei = File(context.filesDir, DATENBANK_DATEI)
     if (!datei.exists()) {
         val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
         datei.writeBytes(datenkbankInResRaw.readBytes())
@@ -118,6 +121,6 @@ fun datenbanksystemGenerieren(context: Context) : Datenbanksystem {
 }
 
 fun datenbanksystemGenerieren(): Datenbanksystem{
-    val dateipfad = Paths.get("app/src/main/res/raw/$DATEINAME")
+    val dateipfad = Paths.get(DATENBANK_PFAD)
     return Datenbanksystem(dateipfad.toFile())
 }
