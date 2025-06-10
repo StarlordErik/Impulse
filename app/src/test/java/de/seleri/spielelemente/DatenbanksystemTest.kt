@@ -3,7 +3,7 @@ package de.seleri.spielelemente
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class DatenbankTest {
+class DatenbanksystemTest {
 
     @Test
     fun `Test funktion() - was sie kann`() {
