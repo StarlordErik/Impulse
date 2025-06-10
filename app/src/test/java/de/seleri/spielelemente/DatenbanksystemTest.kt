@@ -21,7 +21,7 @@ class DatenbanksystemTest {
     }
 
     @Test
-    fun `test datenbanksystemGenerieren() ohne Context`() {
+    fun `test datenbanksystem() - Objekt erstellen und laden`() {
         val tmpKopie = tmpKopieAnlegen()
         val dbs = Datenbanksystem(tmpKopieAnlegen())
 
