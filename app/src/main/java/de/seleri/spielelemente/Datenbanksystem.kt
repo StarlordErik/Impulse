@@ -2,8 +2,9 @@ package de.seleri.spielelemente
 
 import android.content.Context
 import de.seleri.impulse.R
-import java.io.File
 import org.yaml.snakeyaml.Yaml
+import java.io.File
+import java.nio.file.Paths
 
 /*
 Für eine zentrale Initialisierung in einer Application-Klasse speichern:
@@ -26,15 +27,14 @@ Und in Activities:
 val datenbank = (application as MyApp).datenbank
 
  */
-class Datenbank(private val context: Context) {
+class Datenbanksystem(private val datenbank: File) {
 
     val karten: MutableList<Karte>
     val kategorien: MutableList<Kategorie>
     val spiele: MutableList<Spiel>
 
     init {
-        // val input = File(dateiname).readText()
-        val input = context.resources.openRawResource(R.raw.datenbank)
+        val input = datenbank.inputStream()
         val yaml = Yaml().load<Map<String, Any>>(input)
 
         @Suppress("UNCHECKED_CAST") val kartenYaml = yaml[KARTEN] as List<Map<String, Any>>
@@ -83,21 +83,41 @@ class Datenbank(private val context: Context) {
     private fun speichereYaml() {
         val builder = StringBuilder()
 
-        builder.append("$KARTEN:\n")
+        builder.append(attributToYamlZeile(0, KARTEN, null))
         for (karte in karten) {
             builder.append(karte.toYaml())
         }
 
-        builder.append("\n$KATEGORIEN:\n")
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, KATEGORIEN, null))
         for (kategorie in kategorien) {
             builder.append(kategorie.toYaml())
         }
 
-        builder.append("\n$SPIELE:\n")
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, SPIELE, null))
         for (spiel in spiele) {
             builder.append(spiel.toYaml())
         }
 
-        //TODO File(dateiname).writeText(builder.toString())
+        datenbank.writeText(builder.toString())
     }
+}
+
+const val DATEINAME = "datenbank.yaml"
+
+fun datenbanksystemGenerieren(context: Context) : Datenbanksystem {
+    val datei = File(context.filesDir, DATEINAME)
+    if (!datei.exists()) {
+        val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
+        datei.writeBytes(datenkbankInResRaw.readBytes())
+    }
+    return Datenbanksystem(datei)
+}
+
+fun datenbanksystemGenerieren(): Datenbanksystem{
+    val dateipfad = Paths.get("app/src/main/res/raw/$DATEINAME")
+    return Datenbanksystem(dateipfad.toFile())
 }

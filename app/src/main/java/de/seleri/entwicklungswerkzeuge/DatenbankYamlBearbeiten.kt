@@ -1,6 +1,4 @@
-package de.seleri.skripte
-
-import de.seleri.spielelemente.Sprachen
+package de.seleri.entwicklungswerkzeuge
 
 fun main(){
 

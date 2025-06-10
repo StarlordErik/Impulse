@@ -66,6 +66,8 @@ fun attributToYamlZeile(
             zeile.append(mapContent.toString().trimEnd())
         }
 
+        null -> zeile.append("")
+
         else -> zeile.append(attributswert)
     }
 
