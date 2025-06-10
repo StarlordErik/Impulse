@@ -25,7 +25,7 @@ data class Spiel(
         getAlleKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
 
     fun kategorienHinzufuegen(kategorien: List<Kategorie>) {
-        hinzugefuegteElemente = hinzugefuegteElemente + kategorien
+        elementeHinzufuegen(kategorien)
     }
 }
 

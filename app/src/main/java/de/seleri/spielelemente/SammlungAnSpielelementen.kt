@@ -6,14 +6,22 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     open val originaleElemente: MutableMap<String, List<T>>,
     open var hinzugefuegteElemente: List<T>
 ) : LokalisierbaresSpielelement(id, localizations) {
-    fun getAlleElemente(): List<T> {
-        val aktuelleElemente = mutableListOf<T>()
-        originaleElemente[IDS]?.let { aktuelleElemente.addAll(it) }
-        aktuelleElemente.addAll(hinzugefuegteElemente)
-        return aktuelleElemente
+
+    internal fun elementeHinzufuegen(neueElemente: List<T>) {
+        val neuHinzugefuegt : MutableSet<T> = emptySet<T>().toMutableSet()
+        neuHinzugefuegt.addAll(hinzugefuegteElemente)
+        neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
+        hinzugefuegteElemente = neuHinzugefuegt.toList()
     }
 
-    fun getAlleAktuellenElemente(): List<T> {
+    internal fun getAlleElemente(): List<T> {
+        val alleElemente = mutableListOf<T>()
+        originaleElemente[IDS]?.let { alleElemente.addAll(it) }
+        alleElemente.addAll(hinzugefuegteElemente)
+        return alleElemente
+    }
+
+    internal fun getAlleAktuellenElemente(): List<T> {
         val aktuelleElemente = getAlleElemente().toMutableList()
         originaleElemente[DAVON_ENTFERNT]?.let { aktuelleElemente.removeAll(it) }
         return aktuelleElemente

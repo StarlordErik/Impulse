@@ -20,7 +20,7 @@ data class Kategorie(
     fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
 
     fun kartenHinzufuegen(karten: List<Karte>) {
-        hinzugefuegteElemente = hinzugefuegteElemente + karten
+        elementeHinzufuegen(karten)
     }
 }
 

@@ -48,35 +48,70 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
 
-    fun neueKarten(kartentexte: List<String>, sprache: Sprachen) {
-        kartentexte.forEach { text ->
-            val neueId = (karten.maxOfOrNull { it.id } ?: 0) + 1
+    fun neueKarten(kartentexte: List<String>, sprache: Sprachen): List<Karte> {
+        val neueKarten = mutableListOf<Karte>()
+        kartentexte.forEachIndexed { index, text ->
+            val neueId = (karten.maxOfOrNull { it.id } ?: 0) + index + 1
             val neueKarte = eingabeToKarte(neueId, sprache, text)
-            karten.add(neueKarte)
+            neueKarten.add(neueKarte)
+        }
+
+        karten.addAll(neueKarten)
+        speichereYaml()
+
+        return neueKarten
+    }
+
+    fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen): Kategorie {
+        val neueId = (kategorien.maxOfOrNull { it.id } ?: 0) + 1
+        val neueKategorie = eingabeToKategorie(neueId, sprache, name, karten)
+
+        kategorien.add(neueKategorie)
+        speichereYaml()
+
+        return neueKategorie
+    }
+
+    fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen): Spiel {
+        val neueId = (spiele.maxOfOrNull { it.id } ?: 0) + 1
+        val neuesSpiel = eingabeToSpiel(neueId, sprache, name, kategorien)
+
+        spiele.add(neuesSpiel)
+        speichereYaml()
+
+        return neuesSpiel
+    }
+
+    fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
+        spielOderKategorie: E,
+        neueElemente: List<T>
+    ) {
+        when (spielOderKategorie) {
+            is Kategorie -> kartenZuKategorieHinzufuegen(spielOderKategorie, neueElemente)
+            is Spiel -> kategorienZuSpielHinzufuegen(spielOderKategorie, neueElemente)
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
+        when (neueKarten[0]) {
+            is Karte -> kategorie.kartenHinzufuegen(neueKarten as List<Karte>)
+            is Int -> kategorie.kartenHinzufuegen(findeElemente(neueKarten as List<Int>, karten))
         }
         speichereYaml()
     }
 
-    fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen) {
-        val neueId = (kategorien.maxOfOrNull { it.id } ?: 0) + 1
-        kategorien.add(eingabeToKategorie(neueId, sprache, name, karten))
-        speichereYaml()
-    }
-
-    fun kartenZuKategorieHinzufuegen(kategorie: Kategorie, kartenIDs: List<Int>) {
-        kategorie.kartenHinzufuegen(findeElemente(kartenIDs, karten))
-        speichereYaml()
-    }
-
-
-    fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen) {
-        val neueId = (spiele.maxOfOrNull { it.id } ?: 0) + 1
-        spiele.add(eingabeToSpiel(neueId, sprache, name, kategorien))
-        speichereYaml()
-    }
-
-    fun kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<Int>) {
-        spiel.kategorienHinzufuegen(findeElemente(kategorienIDs, kategorien))
+    @Suppress("UNCHECKED_CAST")
+    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
+        when (kategorienIDs[0]) {
+            is Kategorie -> spiel.kategorienHinzufuegen(kategorienIDs as List<Kategorie>)
+            is Int -> spiel.kategorienHinzufuegen(
+                findeElemente(
+                    kategorienIDs as List<Int>,
+                    kategorien
+                )
+            )
+        }
         speichereYaml()
     }
 
@@ -111,7 +146,7 @@ const val DATENBANK_DATEIFORMAT = ".yml"
 const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
 const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
 
-fun datenbanksystemGenerieren(context: Context) : Datenbanksystem {
+fun datenbanksystemGenerieren(context: Context): Datenbanksystem {
     val datei = File(context.filesDir, DATENBANK_DATEI)
     if (!datei.exists()) {
         val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
@@ -120,7 +155,7 @@ fun datenbanksystemGenerieren(context: Context) : Datenbanksystem {
     return Datenbanksystem(datei)
 }
 
-fun datenbanksystemGenerieren(): Datenbanksystem{
+fun datenbanksystemGenerieren(): Datenbanksystem {
     val dateipfad = Paths.get(DATENBANK_PFAD)
     return Datenbanksystem(dateipfad.toFile())
 }
