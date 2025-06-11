@@ -2,6 +2,7 @@ package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+
 import java.io.File
 
 class DatenbanksystemTest {
@@ -21,7 +22,7 @@ class DatenbanksystemTest {
     }
 
     @Test
-    fun `test datenbanksystem() - Objekt erstellen und laden`() {
+    fun `test gereriereDatenbanksystem() - Objekt erstellen und laden`() {
         val tmpKopie = tmpKopieAnlegen()
         val dbs = Datenbanksystem(tmpKopieAnlegen())
 
