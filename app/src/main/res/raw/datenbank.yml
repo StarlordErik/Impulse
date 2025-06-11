@@ -13,6 +13,2358 @@ Karten:
       EN: "What is my body language telling you right now?"
     gesehen: false
     gelöscht: false
+  - ID: 3
+    Text:
+      OG: "Do I seem like a coffee or tea person? Sweetened or unsweetened?"
+      DE: ""
+      EN: "Do I seem like a coffee or tea person? Sweetened or unsweetened?"
+    gesehen: false
+    gelöscht: false
+  - ID: 4
+    Text:
+      OG: "Do you think I've ever been fired from a job? If so, what for?"
+      DE: ""
+      EN: "Do you think I've ever been fired from a job? If so, what for?"
+    gesehen: false
+    gelöscht: false
+  - ID: 5
+    Text:
+      OG: "Wildcard: Close your eyes. What color are my eyes?"
+      DE: ""
+      EN: "Wildcard: Close your eyes. What color are my eyes?"
+    gesehen: false
+    gelöscht: false
+  - ID: 6
+    Text:
+      OG: "What about me is most strange or unfamiliar to you?"
+      DE: ""
+      EN: "What about me is most strange or unfamiliar to you?"
+    gesehen: false
+    gelöscht: false
+  - ID: 7
+    Text:
+      OG: "Do I seem like a morning person or a night owl? Why?"
+      DE: ""
+      EN: "Do I seem like a morning person or a night owl? Why?"
+    gesehen: false
+    gelöscht: false
+  - ID: 8
+    Text:
+      OG: "Do you think I've ever checked an ex's phone for evidence?"
+      DE: ""
+      EN: "Do you think I've ever checked an ex's phone for evidence?"
+    gesehen: false
+    gelöscht: false
+  - ID: 9
+    Text:
+      OG: "Do I seem like more of creative or analytical type? Explain."
+      DE: ""
+      EN: "Do I seem like more of creative or analytical type? Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 10
+    Text:
+      OG: "How likely am I to go camping? How high maintenance is my set up?"
+      DE: ""
+      EN: "How likely am I to go camping? How high maintenance is my set up?"
+    gesehen: false
+    gelöscht: false
+  - ID: 11
+    Text:
+      OG: "Wildcard - both players: Write down something others would never guess about you just by looking at you. Compare."
+      DE: ""
+      EN: "Wildcard - both players: Write down something others would never guess about you just by looking at you. Compare."
+    gesehen: false
+    gelöscht: false
+  - ID: 12
+    Text:
+      OG: "Wildcard - both players: Make an assumption about me."
+      DE: ""
+      EN: "Wildcard - both players: Make an assumption about me."
+    gesehen: false
+    gelöscht: false
+  - ID: 13
+    Text:
+      OG: "How many speeding tickets do you think I've gotten in my life?"
+      DE: ""
+      EN: "How many speeding tickets do you think I've gotten in my life?"
+    gesehen: false
+    gelöscht: false
+  - ID: 14
+    Text:
+      OG: "Wildcard: Draw a portrait of each other to the best of your ability. After 1 Minute, exchange."
+      DE: ""
+      EN: "Wildcard: Draw a portrait of each other to the best of your ability. After 1 Minute, exchange."
+    gesehen: false
+    gelöscht: false
+  - ID: 15
+    Text:
+      OG: "What do you think is the hardest part of what I do for a living?"
+      DE: ""
+      EN: "What do you think is the hardest part of what I do for a living?"
+    gesehen: false
+    gelöscht: false
+  - ID: 16
+    Text:
+      OG: "As a child, what do you think I wanted to be?"
+      DE: ""
+      EN: "As a child, what do you think I wanted to be?"
+    gesehen: false
+    gelöscht: false
+  - ID: 17
+    Text:
+      OG: "On a scale of 1-10, how messy do you think my car is? 1 being cleanest, 10 a complete disaster. Explain."
+      DE: ""
+      EN: "On a scale of 1-10, how messy do you think my car is? 1 being cleanest, 10 a complete disaster. Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 18
+    Text:
+      OG: "What subject do you think I thrived in at school? Did I fail any?"
+      DE: ""
+      EN: "What subject do you think I thrived in at school? Did I fail any?"
+    gesehen: false
+    gelöscht: false
+  - ID: 19
+    Text:
+      OG: "If you were to buy me a present, knowing nothing about me other than what I look like, what would it be?"
+      DE: ""
+      EN: "If you were to buy me a present, knowing nothing about me other than what I look like, what would it be?"
+    gesehen: false
+    gelöscht: false
+  - ID: 20
+    Text:
+      OG: "What does my Instagram tell you about me?"
+      DE: ""
+      EN: "What does my Instagram tell you about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 21
+    Text:
+      OG: "Wildcard - both players: Think of your favorite brand of cereal. On the count of three, say your answers out loud!"
+      DE: ""
+      EN: "Wildcard - both players: Think of your favorite brand of cereal. On the count of three, say your answers out loud!"
+    gesehen: false
+    gelöscht: false
+  - ID: 22
+    Text:
+      OG: "Wildcard - both players: Think of your favorite childhood TV show of all time. On the count of three, say it out loud!"
+      DE: ""
+      EN: "Wildcard - both players: Think of your favorite childhood TV show of all time. On the count of three, say it out loud!"
+    gesehen: false
+    gelöscht: false
+  - ID: 23
+    Text:
+      OG: "Wildcard - both players: Ask and answer the next question in a different accent."
+      DE: ""
+      EN: "Wildcard - both players: Ask and answer the next question in a different accent."
+    gesehen: false
+    gelöscht: false
+  - ID: 24
+    Text:
+      OG: "Reminder: Let go of your attachment of the outcome."
+      DE: ""
+      EN: "Reminder: Let go of your attachment of the outcome."
+    gesehen: false
+    gelöscht: false
+  - ID: 25
+    Text:
+      OG: "Do I seem like a cat or dog person?"
+      DE: ""
+      EN: "Do I seem like a cat or dog person?"
+    gesehen: false
+    gelöscht: false
+  - ID: 26
+    Text:
+      OG: "Wildcard: Maintain eye contact for thirty seconds. What did you notice?"
+      DE: ""
+      EN: "Wildcard: Maintain eye contact for thirty seconds. What did you notice?"
+    gesehen: false
+    gelöscht: false
+  - ID: 27
+    Text:
+      OG: "What do my shoes tell you about me?"
+      DE: ""
+      EN: "What do my shoes tell you about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 28
+    Text:
+      OG: "Wildcard - both players: Rate your dancing skills on a scale of 1-10. On the count of three, say your answers out loud!"
+      DE: ""
+      EN: "Wildcard - both players: Rate your dancing skills on a scale of 1-10. On the count of three, say your answers out loud!"
+    gesehen: false
+    gelöscht: false
+  - ID: 29
+    Text:
+      OG: "Wildcard: Draw a picture together. (30 seconds)"
+      DE: ""
+      EN: "Wildcard: Draw a picture together. (30 seconds)"
+    gesehen: false
+    gelöscht: false
+  - ID: 30
+    Text:
+      OG: "What do you think my celebrity crush is?"
+      DE: ""
+      EN: "What do you think my celebrity crush is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 31
+    Text:
+      OG: "What fast food restaurant do you think I'm most likely to drive through? What's my order?"
+      DE: ""
+      EN: "What fast food restaurant do you think I'm most likely to drive through? What's my order?"
+    gesehen: false
+    gelöscht: false
+  - ID: 32
+    Text:
+      OG: "What do you think my go to karaoke song is?"
+      DE: ""
+      EN: "What do you think my go to karaoke song is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 33
+    Text:
+      OG: "Finish the sentence: just by looking at you I'd think ___."
+      DE: ""
+      EN: "Finish the sentence: just by looking at you I'd think ___."
+    gesehen: false
+    gelöscht: false
+  - ID: 34
+    Text:
+      OG: "What reality show do you think I'm most likely to binge watch? Explain?"
+      DE: ""
+      EN: "What reality show do you think I'm most likely to binge watch? Explain?"
+    gesehen: false
+    gelöscht: false
+  - ID: 35
+    Text:
+      OG: "Do you think plants thrive or die in my care. Explain."
+      DE: ""
+      EN: "Do you think plants thrive or die in my care. Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 36
+    Text:
+      OG: "What about me intrigues you?"
+      DE: ""
+      EN: "What about me intrigues you?"
+    gesehen: false
+    gelöscht: false
+  - ID: 37
+    Text:
+      OG: "Wildcard: Close your eyes. What color is my shirt?"
+      DE: ""
+      EN: "Wildcard: Close your eyes. What color is my shirt?"
+    gesehen: false
+    gelöscht: false
+  - ID: 38
+    Text:
+      OG: "What do you think I'm most likely to splurge on?"
+      DE: ""
+      EN: "What do you think I'm most likely to splurge on?"
+    gesehen: false
+    gelöscht: false
+  - ID: 39
+    Text:
+      OG: "Do you think I was popular in school? Explain."
+      DE: ""
+      EN: "Do you think I was popular in school? Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 40
+    Text:
+      OG: "What compliment do you think I hear the most?"
+      DE: ""
+      EN: "What compliment do you think I hear the most?"
+    gesehen: false
+    gelöscht: false
+  - ID: 41
+    Text:
+      OG: "What does my phone wallpaper tell about me?"
+      DE: ""
+      EN: "What does my phone wallpaper tell about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 42
+    Text:
+      OG: "Do you think I intimidate others? Why or why not?"
+      DE: ""
+      EN: "Do you think I intimidate others? Why or why not?"
+    gesehen: false
+    gelöscht: false
+  - ID: 43
+    Text:
+      OG: "If Myspace were still a thing; what would my profile song be?"
+      DE: ""
+      EN: "If Myspace were still a thing; what would my profile song be?"
+    gesehen: false
+    gelöscht: false
+  - ID: 44
+    Text:
+      OG: "What character would I play in a movie?"
+      DE: ""
+      EN: "What character would I play in a movie?"
+    gesehen: false
+    gelöscht: false
+  - ID: 45
+    Text:
+      OG: "Do you think I'm usually early, on time, or late to events? Explain."
+      DE: ""
+      EN: "Do you think I'm usually early, on time, or late to events? Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 46
+    Text:
+      OG: "Do I seem like someone who would get a name tattooed on myself? Why or why not?"
+      DE: ""
+      EN: "Do I seem like someone who would get a name tattooed on myself? Why or why not?"
+    gesehen: false
+    gelöscht: false
+  - ID: 47
+    Text:
+      OG: "What was your first impression of me?"
+      DE: ""
+      EN: "What was your first impression of me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 48
+    Text:
+      OG: "Do I remind you of anyone?"
+      DE: ""
+      EN: "Do I remind you of anyone?"
+    gesehen: false
+    gelöscht: false
+  - ID: 49
+    Text:
+      OG: "Do you think I fall in love easily? Why or why not?"
+      DE: ""
+      EN: "Do you think I fall in love easily? Why or why not?"
+    gesehen: false
+    gelöscht: false
+  - ID: 50
+    Text:
+      OG: "What's the first thing you noticed about me?"
+      DE: ""
+      EN: "What's the first thing you noticed about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 51
+    Text:
+      OG: "Describe your perfect day!"
+      DE: ""
+      EN: "Describe your perfect day!"
+    gesehen: false
+    gelöscht: false
+  - ID: 52
+    Text:
+      OG: "Reminder: Be more interested in understanding others than being understood."
+      DE: ""
+      EN: "Reminder: Be more interested in understanding others than being understood."
+    gesehen: false
+    gelöscht: false
+  - ID: 53
+    Text:
+      OG: "Are you lying to yourself about anything?"
+      DE: ""
+      EN: "Are you lying to yourself about anything?"
+    gesehen: false
+    gelöscht: false
+  - ID: 54
+    Text:
+      OG: "Is there a feeling you miss?"
+      DE: ""
+      EN: "Is there a feeling you miss?"
+    gesehen: false
+    gelöscht: false
+  - ID: 55
+    Text:
+      OG: "What is a dream you've let go off?"
+      DE: ""
+      EN: "What is a dream you've let go off?"
+    gesehen: false
+    gelöscht: false
+  - ID: 56
+    Text:
+      OG: "Wildcard: Admit something."
+      DE: ""
+      EN: "Wildcard: Admit something."
+    gesehen: false
+    gelöscht: false
+  - ID: 57
+    Text:
+      OG: "Wildcard: Create a secret handshake!"
+      DE: ""
+      EN: "Wildcard: Create a secret handshake!"
+    gesehen: false
+    gelöscht: false
+  - ID: 58
+    Text:
+      OG: "Have you ever told someone I love you but didn't mean it? If so, why?"
+      DE: ""
+      EN: "Have you ever told someone I love you but didn't mean it? If so, why?"
+    gesehen: false
+    gelöscht: false
+  - ID: 59
+    Text:
+      OG: "Are you missing anyone right now? Do you think they are missing you too?"
+      DE: ""
+      EN: "Are you missing anyone right now? Do you think they are missing you too?"
+    gesehen: false
+    gelöscht: false
+  - ID: 60
+    Text:
+      OG: "Wildcard: Staring contest. First to blink must reveal a personal problem and ask your partner for advice on how they might handle it."
+      DE: ""
+      EN: "Wildcard: Staring contest. First to blink must reveal a personal problem and ask your partner for advice on how they might handle it."
+    gesehen: false
+    gelöscht: false
+  - ID: 61
+    Text:
+      OG: "Wildcard: Both players write an embarrassing fun fact about yourselves. Play a game of rock, paper, scissors. Lost must reveal!"
+      DE: ""
+      EN: "Wildcard: Both players write an embarrassing fun fact about yourselves. Play a game of rock, paper, scissors. Lost must reveal!"
+    gesehen: false
+    gelöscht: false
+  - ID: 62
+    Text:
+      OG: "What's your mother's name? And the most beautiful thing about her?"
+      DE: ""
+      EN: "What's your mother's name? And the most beautiful thing about her?"
+    gesehen: false
+    gelöscht: false
+  - ID: 63
+    Text:
+      OG: "Do you think the image you have of yourself matches the image people see you as?"
+      DE: ""
+      EN: "Do you think the image you have of yourself matches the image people see you as?"
+    gesehen: false
+    gelöscht: false
+  - ID: 64
+    Text:
+      OG: "What´s your father´s name? And tell me one thing about him."
+      DE: ""
+      EN: "What´s your father´s name? And tell me one thing about him."
+    gesehen: false
+    gelöscht: false
+  - ID: 65
+    Text:
+      OG: "If you have, when was the moment you realized you weren't invincible?"
+      DE: ""
+      EN: "If you have, when was the moment you realized you weren't invincible?"
+    gesehen: false
+    gelöscht: false
+  - ID: 66
+    Text:
+      OG: "How can you become a better person?"
+      DE: ""
+      EN: "How can you become a better person?"
+    gesehen: false
+    gelöscht: false
+  - ID: 67
+    Text:
+      OG: "If you could get to know someone in your life on a deeper level, who would it be and why?"
+      DE: ""
+      EN: "If you could get to know someone in your life on a deeper level, who would it be and why?"
+    gesehen: false
+    gelöscht: false
+  - ID: 68
+    Text:
+      OG: "How would you describe the feeling of being in love in one word?"
+      DE: ""
+      EN: "How would you describe the feeling of being in love in one word?"
+    gesehen: false
+    gelöscht: false
+  - ID: 69
+    Text:
+      OG: "What's the most pain you've ever been in that wasn't physical?"
+      DE: ""
+      EN: "What's the most pain you've ever been in that wasn't physical?"
+    gesehen: false
+    gelöscht: false
+  - ID: 70
+    Text:
+      OG: "What´s been your happiest memory this past year?"
+      DE: ""
+      EN: "What´s been your happiest memory this past year?"
+    gesehen: false
+    gelöscht: false
+  - ID: 71
+    Text:
+      OG: "What is your 1st love's name and the reason you fell in love with him/her?"
+      DE: ""
+      EN: "What is your 1st love's name and the reason you fell in love with him/her?"
+    gesehen: false
+    gelöscht: false
+  - ID: 72
+    Text:
+      OG: "What do you crave more of?"
+      DE: ""
+      EN: "What do you crave more of?"
+    gesehen: false
+    gelöscht: false
+  - ID: 73
+    Text:
+      OG: "What would your younger self not believe about your life today?"
+      DE: ""
+      EN: "What would your younger self not believe about your life today?"
+    gesehen: false
+    gelöscht: false
+  - ID: 74
+    Text:
+      OG: "Wildcard - both players: Write the three most important things in life to you. After 30 seconds, compare."
+      DE: ""
+      EN: "Wildcard - both players: Write the three most important things in life to you. After 30 seconds, compare."
+    gesehen: false
+    gelöscht: false
+  - ID: 75
+    Text:
+      OG: "Wildcard - both players: Draw your current mood. Then compare."
+      DE: ""
+      EN: "Wildcard - both players: Draw your current mood. Then compare."
+    gesehen: false
+    gelöscht: false
+  - ID: 76
+    Text:
+      OG: "What is something you wouldn't want to change about yourself?"
+      DE: ""
+      EN: "What is something you wouldn't want to change about yourself?"
+    gesehen: false
+    gelöscht: false
+  - ID: 77
+    Text:
+      OG: "Wildcard: Questions are an art form. Create your own question."
+      DE: ""
+      EN: "Wildcard: Questions are an art form. Create your own question."
+    gesehen: false
+    gelöscht: false
+  - ID: 78
+    Text:
+      OG: "What was the last time you surprised yourself?"
+      DE: ""
+      EN: "What was the last time you surprised yourself?"
+    gesehen: false
+    gelöscht: false
+  - ID: 79
+    Text:
+      OG: "When you're asked how are you, hof often do you answer truthfully?"
+      DE: ""
+      EN: "When you're asked how are you, hof often do you answer truthfully?"
+    gesehen: false
+    gelöscht: false
+  - ID: 80
+    Text:
+      OG: "Have you changed your mind about anything recently?"
+      DE: ""
+      EN: "Have you changed your mind about anything recently?"
+    gesehen: false
+    gelöscht: false
+  - ID: 81
+    Text:
+      OG: "How are you, really?"
+      DE: ""
+      EN: "How are you, really?"
+    gesehen: false
+    gelöscht: false
+  - ID: 82
+    Text:
+      OG: "Has a stranger ever changed your life?"
+      DE: ""
+      EN: "Has a stranger ever changed your life?"
+    gesehen: false
+    gelöscht: false
+  - ID: 83
+    Text:
+      OG: "What's been the best compliment a stranger has ever given you?"
+      DE: ""
+      EN: "What's been the best compliment a stranger has ever given you?"
+    gesehen: false
+    gelöscht: false
+  - ID: 84
+    Text:
+      OG: "What is a compliment you wish you received more frequently?"
+      DE: ""
+      EN: "What is a compliment you wish you received more frequently?"
+    gesehen: false
+    gelöscht: false
+  - ID: 85
+    Text:
+      OG: "What title would you give this chapter in your life?"
+      DE: ""
+      EN: "What title would you give this chapter in your life?"
+    gesehen: false
+    gelöscht: false
+  - ID: 86
+    Text:
+      OG: "Wildcard: Press shuffle on your music library. Explain the first song that comes up."
+      DE: ""
+      EN: "Wildcard: Press shuffle on your music library. Explain the first song that comes up."
+    gesehen: false
+    gelöscht: false
+  - ID: 87
+    Text:
+      OG: "What part of your life works? What part of your life hurts?"
+      DE: ""
+      EN: "What part of your life works? What part of your life hurts?"
+    gesehen: false
+    gelöscht: false
+  - ID: 88
+    Text:
+      OG: "Wildcard: Call someone you admire and tell them why you appreciate them! (put on speaker phone)"
+      DE: ""
+      EN: "Wildcard: Call someone you admire and tell them why you appreciate them! (put on speaker phone)"
+    gesehen: false
+    gelöscht: false
+  - ID: 89
+    Text:
+      OG: "Wildcard: Show your first photo in your camera roll. Explain."
+      DE: ""
+      EN: "Wildcard: Show your first photo in your camera roll. Explain."
+    gesehen: false
+    gelöscht: false
+  - ID: 90
+    Text:
+      OG: "Wildcard: Swap seats with your partner."
+      DE: ""
+      EN: "Wildcard: Swap seats with your partner."
+    gesehen: false
+    gelöscht: false
+  - ID: 91
+    Text:
+      OG: "Wildcard: Sing the chorus of your favorite song of all time. Get into it!"
+      DE: ""
+      EN: "Wildcard: Sing the chorus of your favorite song of all time. Get into it!"
+    gesehen: false
+    gelöscht: false
+  - ID: 92
+    Text:
+      OG: "If you could have it your way: Who would you be with? Where would you be? & What would you be doing?"
+      DE: ""
+      EN: "If you could have it your way: Who would you be with? Where would you be? & What would you be doing?"
+    gesehen: false
+    gelöscht: false
+  - ID: 93
+    Text:
+      OG: "What lesson took you the longest to unlearn?"
+      DE: ""
+      EN: "What lesson took you the longest to unlearn?"
+    gesehen: false
+    gelöscht: false
+  - ID: 94
+    Text:
+      OG: "Finish the sentences: Strangers would describe me as ___. Only I know that I am ___."
+      DE: ""
+      EN: "Finish the sentences: Strangers would describe me as ___. Only I know that I am ___."
+    gesehen: false
+    gelöscht: false
+  - ID: 95
+    Text:
+      OG: "What is the most unexplainable thing that's ever happened to you?"
+      DE: ""
+      EN: "What is the most unexplainable thing that's ever happened to you?"
+    gesehen: false
+    gelöscht: false
+  - ID: 96
+    Text:
+      OG: "What is the last thing you lied to your mother about?"
+      DE: ""
+      EN: "What is the last thing you lied to your mother about?"
+    gesehen: false
+    gelöscht: false
+  - ID: 97
+    Text:
+      OG: "What are you still trying to prove to yourself?"
+      DE: ""
+      EN: "What are you still trying to prove to yourself?"
+    gesehen: false
+    gelöscht: false
+  - ID: 98
+    Text:
+      OG: "What are you more afraid of, failure or success? And why?"
+      DE: ""
+      EN: "What are you more afraid of, failure or success? And why?"
+    gesehen: false
+    gelöscht: false
+  - ID: 99
+    Text:
+      OG: "Wildcard - both players: Think of something you strongly dislike that most people love. On the count of three say it out loud!"
+      DE: ""
+      EN: "Wildcard - both players: Think of something you strongly dislike that most people love. On the count of three say it out loud!"
+    gesehen: false
+    gelöscht: false
+  - ID: 100
+    Text:
+      OG: "What questions are you trying to answer most in your life right now?"
+      DE: ""
+      EN: "What questions are you trying to answer most in your life right now?"
+    gesehen: false
+    gelöscht: false
+  - ID: 101
+    Text:
+      OG: "What has been your earliest recollection of happiness?"
+      DE: ""
+      EN: "What has been your earliest recollection of happiness?"
+    gesehen: false
+    gelöscht: false
+  - ID: 102
+    Text:
+      OG: "Wildcard: Ask a question you'd be too afraid to ask. Something you wouldn't dare to ask."
+      DE: ""
+      EN: "Wildcard: Ask a question you'd be too afraid to ask. Something you wouldn't dare to ask."
+    gesehen: false
+    gelöscht: false
+  - ID: 103
+    Text:
+      OG: "Final Card of the deck: Each player write a message to the other. Fold and exchange. Open only once you two have parted."
+      DE: ""
+      EN: "Final Card of the deck: Each player write a message to the other. Fold and exchange. Open only once you two have parted."
+    gesehen: false
+    gelöscht: false
+  - ID: 104
+    Text:
+      OG: "In one word, how would you describe our conversation?"
+      DE: ""
+      EN: "In one word, how would you describe our conversation?"
+    gesehen: false
+    gelöscht: false
+  - ID: 105
+    Text:
+      OG: "Wildcard: Give your partner a compliment you don't think the hear enough."
+      DE: ""
+      EN: "Wildcard: Give your partner a compliment you don't think the hear enough."
+    gesehen: false
+    gelöscht: false
+  - ID: 106
+    Text:
+      OG: "What do you recommend I let go of, if anything?"
+      DE: ""
+      EN: "What do you recommend I let go of, if anything?"
+    gesehen: false
+    gelöscht: false
+  - ID: 107
+    Text:
+      OG: "How does one earn your vulnerability? Have I earned it? How can I earn more?"
+      DE: ""
+      EN: "How does one earn your vulnerability? Have I earned it? How can I earn more?"
+    gesehen: false
+    gelöscht: false
+  - ID: 108
+    Text:
+      OG: "What do you think my weakness is?"
+      DE: ""
+      EN: "What do you think my weakness is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 109
+    Text:
+      OG: "What can I help you with?"
+      DE: ""
+      EN: "What can I help you with?"
+    gesehen: false
+    gelöscht: false
+  - ID: 110
+    Text:
+      OG: "What about me most surprised you?"
+      DE: ""
+      EN: "What about me most surprised you?"
+    gesehen: false
+    gelöscht: false
+  - ID: 111
+    Text:
+      OG: "Wildcard: Play a round of rock paper scissors. Winner can ask their partner anything. Loser must answer."
+      DE: ""
+      EN: "Wildcard: Play a round of rock paper scissors. Winner can ask their partner anything. Loser must answer."
+    gesehen: false
+    gelöscht: false
+  - ID: 112
+    Text:
+      OG: "Wildcard - both players: Write down one thing you want to let go of this year. Read out loud, then rip up together."
+      DE: ""
+      EN: "Wildcard - both players: Write down one thing you want to let go of this year. Read out loud, then rip up together."
+    gesehen: false
+    gelöscht: false
+  - ID: 113
+    Text:
+      OG: "Wildcard - both players: Write down a goal for this year. Fold & exchange. Hold each other accountable."
+      DE: ""
+      EN: "Wildcard - both players: Write down a goal for this year. Fold & exchange. Hold each other accountable."
+    gesehen: false
+    gelöscht: false
+  - ID: 114
+    Text:
+      OG: "If we were in a band, what would our name be?"
+      DE: ""
+      EN: "If we were in a band, what would our name be?"
+    gesehen: false
+    gelöscht: false
+  - ID: 115
+    Text:
+      OG: "What do you think our most important similarity is?"
+      DE: ""
+      EN: "What do you think our most important similarity is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 116
+    Text:
+      OG: "Wildcard: Give each other nicknames!"
+      DE: ""
+      EN: "Wildcard: Give each other nicknames!"
+    gesehen: false
+    gelöscht: false
+  - ID: 117
+    Text:
+      OG: "Do you believe everyone has a calling? If so, do you think I've found mine?"
+      DE: ""
+      EN: "Do you believe everyone has a calling? If so, do you think I've found mine?"
+    gesehen: false
+    gelöscht: false
+  - ID: 118
+    Text:
+      OG: "When this game is over, what will you remember about me?"
+      DE: ""
+      EN: "When this game is over, what will you remember about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 119
+    Text:
+      OG: "When in this game did you fell most connected to me?"
+      DE: ""
+      EN: "When in this game did you fell most connected to me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 120
+    Text:
+      OG: "Wildcard - both players: Dare your partner to do something outside of their comfort zone in the next week."
+      DE: ""
+      EN: "Wildcard - both players: Dare your partner to do something outside of their comfort zone in the next week."
+    gesehen: false
+    gelöscht: false
+  - ID: 121
+    Text:
+      OG: "What question were you most afraid of to answer?"
+      DE: ""
+      EN: "What question were you most afraid of to answer?"
+    gesehen: false
+    gelöscht: false
+  - ID: 122
+    Text:
+      OG: "Wildcard: Take a selfie together."
+      DE: ""
+      EN: "Wildcard: Take a selfie together."
+    gesehen: false
+    gelöscht: false
+  - ID: 123
+    Text:
+      OG: "Wildcard: Scroll through each other's Instagrams. Find the picture you feel best represents your partner's essence and comment why you chose that image."
+      DE: ""
+      EN: "Wildcard: Scroll through each other's Instagrams. Find the picture you feel best represents your partner's essence and comment why you chose that image."
+    gesehen: false
+    gelöscht: false
+  - ID: 124
+    Text:
+      OG: "Based on what you learned about me, what book would you recommend I read?"
+      DE: ""
+      EN: "Based on what you learned about me, what book would you recommend I read?"
+    gesehen: false
+    gelöscht: false
+  - ID: 125
+    Text:
+      OG: "How would you describe me to a stranger."
+      DE: ""
+      EN: "How would you describe me to a stranger."
+    gesehen: false
+    gelöscht: false
+  - ID: 126
+    Text:
+      OG: "What do you admire most about me?"
+      DE: ""
+      EN: "What do you admire most about me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 127
+    Text:
+      OG: "What do you think I should know about myself that perhaps I'm unaware of?"
+      DE: ""
+      EN: "What do you think I should know about myself that perhaps I'm unaware of?"
+    gesehen: false
+    gelöscht: false
+  - ID: 128
+    Text:
+      OG: "Why do you think we met?"
+      DE: ""
+      EN: "Why do you think we met?"
+    gesehen: false
+    gelöscht: false
+  - ID: 129
+    Text:
+      OG: "Wildcard - both players: Write a song about your partner in 30 seconds. Then sing it out loud. Get into it!"
+      DE: ""
+      EN: "Wildcard - both players: Write a song about your partner in 30 seconds. Then sing it out loud. Get into it!"
+    gesehen: false
+    gelöscht: false
+  - ID: 130
+    Text:
+      OG: "What answer of mine made you light up?"
+      DE: ""
+      EN: "What answer of mine made you light up?"
+    gesehen: false
+    gelöscht: false
+  - ID: 131
+    Text:
+      OG: "How do our personalities complement each other?"
+      DE: ""
+      EN: "How do our personalities complement each other?"
+    gesehen: false
+    gelöscht: false
+  - ID: 132
+    Text:
+      OG: "What do you think my superpower is?"
+      DE: ""
+      EN: "What do you think my superpower is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 133
+    Text:
+      OG: "What would be the perfect gift for me?"
+      DE: ""
+      EN: "What would be the perfect gift for me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 134
+    Text:
+      OG: "What has this conversation taught you about yourself?"
+      DE: ""
+      EN: "What has this conversation taught you about yourself?"
+    gesehen: false
+    gelöscht: false
+  - ID: 135
+    Text:
+      OG: "What parts of yourself do you see in me?"
+      DE: ""
+      EN: "What parts of yourself do you see in me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 136
+    Text:
+      OG: "What do I need to hear right now?"
+      DE: ""
+      EN: "What do I need to hear right now?"
+    gesehen: false
+    gelöscht: false
+  - ID: 137
+    Text:
+      OG: "Wildcard - both players: Swap a song suggestion your partner may enjoy."
+      DE: ""
+      EN: "Wildcard - both players: Swap a song suggestion your partner may enjoy."
+    gesehen: false
+    gelöscht: false
+  - ID: 138
+    Text:
+      OG: "Wildcard: Create your own question. Make it count."
+      DE: ""
+      EN: "Wildcard: Create your own question. Make it count."
+    gesehen: false
+    gelöscht: false
+  - ID: 139
+    Text:
+      OG: "Based on what you learned about me, does my social media accurately reflect who I am? Why or why not?"
+      DE: ""
+      EN: "Based on what you learned about me, does my social media accurately reflect who I am? Why or why not?"
+    gesehen: false
+    gelöscht: false
+  - ID: 140
+    Text:
+      OG: "Wildcard: Both players share something you're most grateful for in this current moment."
+      DE: ""
+      EN: "Wildcard: Both players share something you're most grateful for in this current moment."
+    gesehen: false
+    gelöscht: false
+  - ID: 141
+    Text:
+      OG: "In one word, describe how you feel right now."
+      DE: ""
+      EN: "In one word, describe how you feel right now."
+    gesehen: false
+    gelöscht: false
+  - ID: 142
+    Text:
+      OG: "Wildcard: Give your partner a hug. Not the crappy kind. A warm fluffy one."
+      DE: ""
+      EN: "Wildcard: Give your partner a hug. Not the crappy kind. A warm fluffy one."
+    gesehen: false
+    gelöscht: false
+  - ID: 143
+    Text:
+      OG: "What is a lesson you will take away form our conversation?"
+      DE: ""
+      EN: "What is a lesson you will take away form our conversation?"
+    gesehen: false
+    gelöscht: false
+  - ID: 144
+    Text:
+      OG: "Based on what you know about me, do you have any Netflix recommendations?"
+      DE: ""
+      EN: "Based on what you know about me, do you have any Netflix recommendations?"
+    gesehen: false
+    gelöscht: false
+  - ID: 145
+    Text:
+      OG: "What about me is hardest for you to understand?"
+      DE: ""
+      EN: "What about me is hardest for you to understand?"
+    gesehen: false
+    gelöscht: false
+  - ID: 146
+    Text:
+      OG: "What am I most qualified to give advice about?"
+      DE: ""
+      EN: "What am I most qualified to give advice about?"
+    gesehen: false
+    gelöscht: false
+  - ID: 147
+    Text:
+      OG: "If you could prescribe me one thing to do for the rest of this month, what would it be and why?"
+      DE: ""
+      EN: "If you could prescribe me one thing to do for the rest of this month, what would it be and why?"
+    gesehen: false
+    gelöscht: false
+  - ID: 148
+    Text:
+      OG: "Wildcard: Both players write a note to your younger selves in 1 minute. Option to compare."
+      DE: ""
+      EN: "Wildcard: Both players write a note to your younger selves in 1 minute. Option to compare."
+    gesehen: false
+    gelöscht: false
+  - ID: 149
+    Text:
+      OG: "What do you think my defining characteristic is?"
+      DE: ""
+      EN: "What do you think my defining characteristic is?"
+    gesehen: false
+    gelöscht: false
+  - ID: 150
+    Text:
+      OG: "What do you think I fear the most?"
+      DE: ""
+      EN: "What do you think I fear the most?"
+    gesehen: false
+    gelöscht: false
+  - ID: 151
+    Text:
+      OG: "What can we create together?"
+      DE: ""
+      EN: "What can we create together?"
+    gesehen: false
+    gelöscht: false
+  - ID: 152
+    Text:
+      OG: "What would make you feel closer to me?"
+      DE: ""
+      EN: "What would make you feel closer to me?"
+    gesehen: false
+    gelöscht: false
+  - ID: 153
+    Text:
+      OG: "Wie viel Eintritt würdest du höchstens für einen Freizeitpark mit echten, lebenden Dinosauriern bezahlen?"
+      DE: "Wie viel Eintritt würdest du höchstens für einen Freizeitpark mit echten, lebenden Dinosauriern bezahlen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 154
+    Text:
+      OG: "Wie viele Zimmer hat dein Zuhause?"
+      DE: "Wie viele Zimmer hat dein Zuhause?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 155
+    Text:
+      OG: "Wie viele Freunde hast du auf Facebook?"
+      DE: "Wie viele Freunde hast du auf Facebook?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 156
+    Text:
+      OG: "Wie groß wärst du, wenn du die Wahl hättest?"
+      DE: "Wie groß wärst du, wenn du die Wahl hättest?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 157
+    Text:
+      OG: "Wie teuer war das teuerste Objekt, dass du jemals kaputt gemacht hast?"
+      DE: "Wie teuer war das teuerste Objekt, dass du jemals kaputt gemacht hast?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 158
+    Text:
+      OG: "Wie viele Stunden schläfst du idealerweise nachts?"
+      DE: "Wie viele Stunden schläfst du idealerweise nachts?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 159
+    Text:
+      OG: "Wie viele Sportarten hast du schon mindestens ein Jahr lang betrieben?"
+      DE: "Wie viele Sportarten hast du schon mindestens ein Jahr lang betrieben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 160
+    Text:
+      OG: "Wie viele Vornamen hast du (also auch zweite, dritte ...)?"
+      DE: "Wie viele Vornamen hast du (also auch zweite, dritte ...)?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 161
+    Text:
+      OG: "Wann wachst du durchschnittlich am Wochenende auf?"
+      DE: "Wann wachst du durchschnittlich am Wochenende auf?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 162
+    Text:
+      OG: "Wie viele Flaschen mit hochprozentigen Spirituosen besitzt du zurzeit?"
+      DE: "Wie viele Flaschen mit hochprozentigen Spirituosen besitzt du zurzeit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 163
+    Text:
+      OG: "Wie viele Minuten nach dem ersten Klingeln des Weckers stehst du durchschnittlich endgültig auf?"
+      DE: "Wie viele Minuten nach dem ersten Klingeln des Weckers stehst du durchschnittlich endgültig auf?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 164
+    Text:
+      OG: "Wie alt fühlst du dich innerlich?"
+      DE: "Wie alt fühlst du dich innerlich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 165
+    Text:
+      OG: "Wie viele Gläser alkoholischer Getränke trinkst du durchschnittlich pro Woche?"
+      DE: "Wie viele Gläser alkoholischer Getränke trinkst du durchschnittlich pro Woche?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 166
+    Text:
+      OG: "Wie oft hast du den Film \"Titanic\" gesehen?"
+      DE: "Wie oft hast du den Film \"Titanic\" gesehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 167
+    Text:
+      OG: "Wie lange ist dein perfektes Nickerchen?"
+      DE: "Wie lange ist dein perfektes Nickerchen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 168
+    Text:
+      OG: "Wenn es keinerlei Einschränkungen gäbe, wie viele Haustiere hättest du dann gerne?"
+      DE: "Wenn es keinerlei Einschränkungen gäbe, wie viele Haustiere hättest du dann gerne?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 169
+    Text:
+      OG: "Wie oft hast du in deinem Leben schon Reifen gewechselt?"
+      DE: "Wie oft hast du in deinem Leben schon Reifen gewechselt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 170
+    Text:
+      OG: "Wie viele verschiedene Parfüms besitzt du?"
+      DE: "Wie viele verschiedene Parfüms besitzt du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 171
+    Text:
+      OG: "Wie viele der Personen hier am Tisch würdest du beim Armdrücken besiegen?"
+      DE: "Wie viele der Personen hier am Tisch würdest du beim Armdrücken besiegen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 172
+    Text:
+      OG: "Wie viel wärst du maximal bereit, in einem Restaurant der Extraklasse zu bezahlen?"
+      DE: "Wie viel wärst du maximal bereit, in einem Restaurant der Extraklasse zu bezahlen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 173
+    Text:
+      OG: "Wie viele Jahre deines Lebens würdest du hergeben, um dich ab sofort beliebig auf teleportieren zu können?"
+      DE: "Wie viele Jahre deines Lebens würdest du hergeben, um dich ab sofort beliebig auf teleportieren zu können?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 174
+    Text:
+      OG: "Wie lange dauert oder dauert deine längste Freundschaft?"
+      DE: "Wie lange dauert oder dauert deine längste Freundschaft?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 175
+    Text:
+      OG: "Wie viele Stunden verbringst du bei einem Tagesausflug an die Küste idealerweise direkt am Strand?"
+      DE: "Wie viele Stunden verbringst du bei einem Tagesausflug an die Küste idealerweise direkt am Strand?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 176
+    Text:
+      OG: "In wie vielen Sprachen kennst du Schimpfwörter?"
+      DE: "In wie vielen Sprachen kennst du Schimpfwörter?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 177
+    Text:
+      OG: "Wie viele Tattoos hast du?"
+      DE: "Wie viele Tattoos hast du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 178
+    Text:
+      OG: "Welche Schuhgröße hast du?"
+      DE: "Welche Schuhgröße hast du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 179
+    Text:
+      OG: "Was denkst du, wie alt du wirst?"
+      DE: "Was denkst du, wie alt du wirst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 180
+    Text:
+      OG: "Bei durchschnittlich wie vielen Mahlzeiten pro Woche isst du Fleisch?"
+      DE: "Bei durchschnittlich wie vielen Mahlzeiten pro Woche isst du Fleisch?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 181
+    Text:
+      OG: "Wie viele Apps hast du auf deinem Smartphone installiert?"
+      DE: "Wie viele Apps hast du auf deinem Smartphone installiert?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 182
+    Text:
+      OG: "Wie viele Paar Schuhe besitzt du?"
+      DE: "Wie viele Paar Schuhe besitzt du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 183
+    Text:
+      OG: "Wie viele deiner bisherigen romantischen Beziehungen haben länger als ein Jahr gedauert?"
+      DE: "Wie viele deiner bisherigen romantischen Beziehungen haben länger als ein Jahr gedauert?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 184
+    Text:
+      OG: "Wie viele Schlüssel hast du an deinem Schlüsselring?"
+      DE: "Wie viele Schlüssel hast du an deinem Schlüsselring?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 185
+    Text:
+      OG: "Um wie viel Uhr gehst du normalerweise unter der Woche ins Bett?"
+      DE: "Um wie viel Uhr gehst du normalerweise unter der Woche ins Bett?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 186
+    Text:
+      OG: "Wie viel würdest du höchstens für ein Konzert deiner Lieblingsband bei dir zu Hause bezahlen?"
+      DE: "Wie viel würdest du höchstens für ein Konzert deiner Lieblingsband bei dir zu Hause bezahlen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 187
+    Text:
+      OG: "Wie lange brauchst du, um zur Arbeit oder Schule zu gehen?"
+      DE: "Wie lange brauchst du, um zur Arbeit oder Schule zu gehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 188
+    Text:
+      OG: "Wie viele Jahre deines Lebens würdest du hergeben, um jetzt sofort zum Milliardär zu werden?"
+      DE: "Wie viele Jahre deines Lebens würdest du hergeben, um jetzt sofort zum Milliardär zu werden?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 189
+    Text:
+      OG: "Wie viele Quadratmeter hätte dein ideales Zuhause (ohne Garten)?"
+      DE: "Wie viele Quadratmeter hätte dein ideales Zuhause (ohne Garten)?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 190
+    Text:
+      OG: "Wie viele Jahre deines Lebens würdest du hergeben, um alle Sprachen der Welt perfekt zu sprechen?"
+      DE: "Wie viele Jahre deines Lebens würdest du hergeben, um alle Sprachen der Welt perfekt zu sprechen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 191
+    Text:
+      OG: "Wie viele Hüte, Kappen, Mützen etc. besitzt du?"
+      DE: "Wie viele Hüte, Kappen, Mützen etc. besitzt du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 192
+    Text:
+      OG: "Für wie viele Sekunden könntest du den Atem anhalten?"
+      DE: "Für wie viele Sekunden könntest du den Atem anhalten?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 193
+    Text:
+      OG: "Wann wachst du normalerweise unter der Woche morgens auf?"
+      DE: "Wann wachst du normalerweise unter der Woche morgens auf?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 194
+    Text:
+      OG: "Wie viele der Personen hier am Tisch könntest du bei Scrabble besiegen?"
+      DE: "Wie viele der Personen hier am Tisch könntest du bei Scrabble besiegen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 195
+    Text:
+      OG: "Wie oft im Jahr würdest du Disneyland Paris besuchen, wenn Reise und Eintritt umsonst wären?"
+      DE: "Wie oft im Jahr würdest du Disneyland Paris besuchen, wenn Reise und Eintritt umsonst wären?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 196
+    Text:
+      OG: "Wie viele Bücher liest du durchschnittlich in einem Jahr?"
+      DE: "Wie viele Bücher liest du durchschnittlich in einem Jahr?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 197
+    Text:
+      OG: "Du hast eine Reise zum Mond gewonnen. Wie lange soll sie dauern?"
+      DE: "Du hast eine Reise zum Mond gewonnen. Wie lange soll sie dauern?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 198
+    Text:
+      OG: "Welches Jahr in der Weltgeschichte findest du am faszinierendsten?"
+      DE: "Welches Jahr in der Weltgeschichte findest du am faszinierendsten?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 199
+    Text:
+      OG: "In wie vielen Sprachen kannst du \"Ich liebe dich\" sagen?"
+      DE: "In wie vielen Sprachen kannst du \"Ich liebe dich\" sagen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 200
+    Text:
+      OG: "Wie viele Liegestütze hintereinander könntest du schaffen?"
+      DE: "Wie viele Liegestütze hintereinander könntest du schaffen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 201
+    Text:
+      OG: "Wie viele der Personen hier am Tisch würdest du im 100-Meter-Lauf besiegen?"
+      DE: "Wie viele der Personen hier am Tisch würdest du im 100-Meter-Lauf besiegen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 202
+    Text:
+      OG: "Wie viele Nächte nacheinander hast du bisher maximal in einem Zelt übernachtet?"
+      DE: "Wie viele Nächte nacheinander hast du bisher maximal in einem Zelt übernachtet?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 203
+    Text:
+      OG: "Welches Jahr würdest du wählen, wenn du in der Zeit reisen und einen Tag in einem anderen Jahr verbringen könntest?"
+      DE: "Welches Jahr würdest du wählen, wenn du in der Zeit reisen und einen Tag in einem anderen Jahr verbringen könntest?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 204
+    Text:
+      OG: "Wie viele Cousins und Cousinen hast du?"
+      DE: "Wie viele Cousins und Cousinen hast du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 205
+    Text:
+      OG: "Wie viele Minuten wartest du maximal an einem Restaurant auf einem freien Tisch?"
+      DE: "Wie viele Minuten wartest du maximal an einem Restaurant auf einem freien Tisch?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 206
+    Text:
+      OG: "Wie viel Bargeld hast du normalerweise bei dir?"
+      DE: "Wie viel Bargeld hast du normalerweise bei dir?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 207
+    Text:
+      OG: "Wie viele Topfpflanzen stehen bei dir zu Hause?"
+      DE: "Wie viele Topfpflanzen stehen bei dir zu Hause?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 208
+    Text:
+      OG: "Wie viele Kontinente hast du schon betreten?"
+      DE: "Wie viele Kontinente hast du schon betreten?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 209
+    Text:
+      OG: "Wie viele Sekunden hältst du aus, ohne zu zwinkern?"
+      DE: "Wie viele Sekunden hältst du aus, ohne zu zwinkern?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 210
+    Text:
+      OG: "Wie oft isst du durchschnittlich im Monat Fastfood?"
+      DE: "Wie oft isst du durchschnittlich im Monat Fastfood?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 211
+    Text:
+      OG: "Wie oft gehst du durchschnittlich jeden Tag ins Bad?"
+      DE: "Wie oft gehst du durchschnittlich jeden Tag ins Bad?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 212
+    Text:
+      OG: "Wenn du bis zum Lebensende immer gleich alt sein müsstest und du das festlegen dürftest, wie alt wärst du dann gerne?"
+      DE: "Wenn du bis zum Lebensende immer gleich alt sein müsstest und du das festlegen dürftest, wie alt wärst du dann gerne?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 213
+    Text:
+      OG: "Wie viele M&M's Schokolinsen könntest du auf einmal in deinen Mund bekommen?"
+      DE: "Wie viele M&M's Schokolinsen könntest du auf einmal in deinen Mund bekommen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 214
+    Text:
+      OG: "Wie viele Minuten brauchst du durchschnittlich morgens für dein äußeres Erscheinungsbild?"
+      DE: "Wie viele Minuten brauchst du durchschnittlich morgens für dein äußeres Erscheinungsbild?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 215
+    Text:
+      OG: "Wie viele Minuten vorher erscheinst du normalerweise vor Ort zu einem wichtigen Termin?"
+      DE: "Wie viele Minuten vorher erscheinst du normalerweise vor Ort zu einem wichtigen Termin?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 216
+    Text:
+      OG: "Wie lange übst du schon dein liebstes Hobby aus?"
+      DE: "Wie lange übst du schon dein liebstes Hobby aus?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 217
+    Text:
+      OG: "Wie lange dauerte oder dauert deine längste romantische Beziehung?"
+      DE: "Wie lange dauerte oder dauert deine längste romantische Beziehung?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 218
+    Text:
+      OG: "Wie lange würde deine ideale Mittelmeerkreuzfahrt dauern?"
+      DE: "Wie lange würde deine ideale Mittelmeerkreuzfahrt dauern?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 219
+    Text:
+      OG: "Wie oft im Jahr gehst du normalerweise zum Friseur?"
+      DE: "Wie oft im Jahr gehst du normalerweise zum Friseur?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 220
+    Text:
+      OG: "Wie oft warst du schon Skifahren oder Snowboarden?"
+      DE: "Wie oft warst du schon Skifahren oder Snowboarden?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 221
+    Text:
+      OG: "Wie viele Jahre deines Lebens würdest du hergeben, um ein Musikinstrument deiner Wahl sofort perfekt spielen zu können?"
+      DE: "Wie viele Jahre deines Lebens würdest du hergeben, um ein Musikinstrument deiner Wahl sofort perfekt spielen zu können?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 222
+    Text:
+      OG: "Wie viele Sammlungen irgendwelcher Gegenstände hast du?"
+      DE: "Wie viele Sammlungen irgendwelcher Gegenstände hast du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 223
+    Text:
+      OG: "Wie viele Tage dauerte deine längste Reise bisher?"
+      DE: "Wie viele Tage dauerte deine längste Reise bisher?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 224
+    Text:
+      OG: "Welches Jahrzehnt des 20. Jahrhunderts ist dir musikalisch gesehen das liebste?"
+      DE: "Welches Jahrzehnt des 20. Jahrhunderts ist dir musikalisch gesehen das liebste?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 225
+    Text:
+      OG: "Von allen Einschränkungen, wie viele Kinder würdest du am liebsten irgendwann einmal haben?"
+      DE: "Von allen Einschränkungen, wie viele Kinder würdest du am liebsten irgendwann einmal haben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 226
+    Text:
+      OG: "Was wäre die ideale Anzahl von Urlaubstagen im Jahr für dich?"
+      DE: "Was wäre die ideale Anzahl von Urlaubstagen im Jahr für dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 227
+    Text:
+      OG: "Stell dir vor, du gewinnst ein All-Inclusive-Urlaub auf einer privaten Insel. Wie lange würdest du dort bleiben wollen?"
+      DE: "Stell dir vor, du gewinnst ein All-Inclusive-Urlaub auf einer privaten Insel. Wie lange würdest du dort bleiben wollen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 228
+    Text:
+      OG: "Wie viele Filme siehst du durchschnittlich im Monat?"
+      DE: "Wie viele Filme siehst du durchschnittlich im Monat?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 229
+    Text:
+      OG: "Wie oft gehst du normalerweise im Monat essen? In ein Restaurant, also kein Fastfood oder Lieferservice?"
+      DE: "Wie oft gehst du normalerweise im Monat essen? In ein Restaurant, also kein Fastfood oder Lieferservice?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 230
+    Text:
+      OG: "Wie lang könntest du die Balance halten, wenn du nur auf einem Bein stehst?"
+      DE: "Wie lang könntest du die Balance halten, wenn du nur auf einem Bein stehst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 231
+    Text:
+      OG: "In welchem Alter bist du in eine eigene Wohnung gezogen?"
+      DE: "In welchem Alter bist du in eine eigene Wohnung gezogen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 232
+    Text:
+      OG: "Wie oft gehst du durchschnittlich in der Woche Lebensmittel einkaufen?"
+      DE: "Wie oft gehst du durchschnittlich in der Woche Lebensmittel einkaufen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 233
+    Text:
+      OG: "Wie oft trainierst du durchschnittlich im Monat?"
+      DE: "Wie oft trainierst du durchschnittlich im Monat?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 234
+    Text:
+      OG: "Wie alt warst du in deiner frühesten Kindheitserinnerung?"
+      DE: "Wie alt warst du in deiner frühesten Kindheitserinnerung?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 235
+    Text:
+      OG: "Wie oft bist du in deinem Leben schon umgezogen?"
+      DE: "Wie oft bist du in deinem Leben schon umgezogen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 236
+    Text:
+      OG: "Wie alt warst du, als du deinen ersten regelmäßigen Job angefangen hast?"
+      DE: "Wie alt warst du, als du deinen ersten regelmäßigen Job angefangen hast?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 237
+    Text:
+      OG: "Wie oft kannst du fehlerfrei nacheinander \"Hans hackt Holz hinterm Haus\" sagen, ohne dich zu verhaspeln?"
+      DE: "Wie oft kannst du fehlerfrei nacheinander \"Hans hackt Holz hinterm Haus\" sagen, ohne dich zu verhaspeln?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 238
+    Text:
+      OG: "Wie viele Tage mit Schnee im Jahr gäbe es, wenn es nach dir ginge?"
+      DE: "Wie viele Tage mit Schnee im Jahr gäbe es, wenn es nach dir ginge?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 239
+    Text:
+      OG: "Wie viele Museen hast du in den letzten zwölf Monaten besucht?"
+      DE: "Wie viele Museen hast du in den letzten zwölf Monaten besucht?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 240
+    Text:
+      OG: "Wie lange lebst du schon in deinem jetzigen Zuhause?"
+      DE: "Wie lange lebst du schon in deinem jetzigen Zuhause?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 241
+    Text:
+      OG: "Wie viele Minuten duschst du durchschnittlich?"
+      DE: "Wie viele Minuten duschst du durchschnittlich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 242
+    Text:
+      OG: "Wie viele Tassen Kaffee und/oder Tee hast du heute schon getrunken?"
+      DE: "Wie viele Tassen Kaffee und/oder Tee hast du heute schon getrunken?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 243
+    Text:
+      OG: "Wenn du in dieser Sekunde 50.000 Euro in bar bekommen würdest, wie lange bräuchtest du, um alles auszugeben?"
+      DE: "Wenn du in dieser Sekunde 50.000 Euro in bar bekommen würdest, wie lange bräuchtest du, um alles auszugeben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 244
+    Text:
+      OG: "Wie viel würdest du maximal für einen einwöchigen Aufenthalt im Weltall ausgeben?"
+      DE: "Wie viel würdest du maximal für einen einwöchigen Aufenthalt im Weltall ausgeben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 245
+    Text:
+      OG: "Wie viele Gesellschaftsspiele besitzt du?"
+      DE: "Wie viele Gesellschaftsspiele besitzt du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 246
+    Text:
+      OG: "Wie hoch müsste dein Jahresgehalt sein, wenn du ein Jahr lang auf einer Forschungsstation in der Antarktis arbeiten solltest?"
+      DE: "Wie hoch müsste dein Jahresgehalt sein, wenn du ein Jahr lang auf einer Forschungsstation in der Antarktis arbeiten solltest?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 247
+    Text:
+      OG: "Wie schüchtern bist du?"
+      DE: "Wie schüchtern bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 248
+    Text:
+      OG: "Wie gerne würdest du Geheimagent werden wollen?"
+      DE: "Wie gerne würdest du Geheimagent werden wollen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 249
+    Text:
+      OG: "Wie gerne würdest du auf der ersten Marskolonie leben (für 5 Jahre, einschließlich der Reise)?"
+      DE: "Wie gerne würdest du auf der ersten Marskolonie leben (für 5 Jahre, einschließlich der Reise)?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 250
+    Text:
+      OG: "Wie gerne kochst du?"
+      DE: "Wie gerne kochst du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 251
+    Text:
+      OG: "Wie wichtig ist dir Familie?"
+      DE: "Wie wichtig ist dir Familie?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 252
+    Text:
+      OG: "Wie sehr magst du das Land, in dem du aktuell lebst?"
+      DE: "Wie sehr magst du das Land, in dem du aktuell lebst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 253
+    Text:
+      OG: "Wie gelenkig bist du?"
+      DE: "Wie gelenkig bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 254
+    Text:
+      OG: "Wie gut ist dein Gedächtnis?"
+      DE: "Wie gut ist dein Gedächtnis?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 255
+    Text:
+      OG: "Wie zufrieden bist du bis jetzt mit deinem heutigen Tag?"
+      DE: "Wie zufrieden bist du bis jetzt mit deinem heutigen Tag?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 256
+    Text:
+      OG: "Wie sehr bist du jemand, der Dinge überstürzt?"
+      DE: "Wie sehr bist du jemand, der Dinge überstürzt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 257
+    Text:
+      OG: "Wie gerne gehst du zu Konzerten oder Musikfestivals?"
+      DE: "Wie gerne gehst du zu Konzerten oder Musikfestivals?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 258
+    Text:
+      OG: "Wie sehr kümmert es dich, was andere Menschen über dich denken?"
+      DE: "Wie sehr kümmert es dich, was andere Menschen über dich denken?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 259
+    Text:
+      OG: "Wie sehr magst du Musicals?"
+      DE: "Wie sehr magst du Musicals?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 260
+    Text:
+      OG: "Wie wichtig ist dir Essen?"
+      DE: "Wie wichtig ist dir Essen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 261
+    Text:
+      OG: "Wie gerne liest du, während du auf der Toilette sitzt?"
+      DE: "Wie gerne liest du, während du auf der Toilette sitzt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 262
+    Text:
+      OG: "Wie groß ist dein Interesse, an einer Reality-Show im Fernsehen teilzunehmen?"
+      DE: "Wie groß ist dein Interesse, an einer Reality-Show im Fernsehen teilzunehmen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 263
+    Text:
+      OG: "Wie groß ist deine Höhenangst?"
+      DE: "Wie groß ist deine Höhenangst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 264
+    Text:
+      OG: "Wie groß ist dein Interesse, den Papst persönlich zu treffen?"
+      DE: "Wie groß ist dein Interesse, den Papst persönlich zu treffen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 265
+    Text:
+      OG: "Wie gerne würdest du einmal Bungee springen?"
+      DE: "Wie gerne würdest du einmal Bungee springen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 266
+    Text:
+      OG: "Wie gerne tanzt du?"
+      DE: "Wie gerne tanzt du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 267
+    Text:
+      OG: "Wie faul bist du?"
+      DE: "Wie faul bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 268
+    Text:
+      OG: "Wie erwachsen fühlst du dich?"
+      DE: "Wie erwachsen fühlst du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 269
+    Text:
+      OG: "Wie gerne feierst du deinen Geburtstag?"
+      DE: "Wie gerne feierst du deinen Geburtstag?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 270
+    Text:
+      OG: "Wie sehr magst du deine momentane Frisur?"
+      DE: "Wie sehr magst du deine momentane Frisur?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 271
+    Text:
+      OG: "Wie sehr magst du deinen Vornamen?"
+      DE: "Wie sehr magst du deinen Vornamen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 272
+    Text:
+      OG: "Wie schick bist du heute deiner Meinung nach angezogen?"
+      DE: "Wie schick bist du heute deiner Meinung nach angezogen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 273
+    Text:
+      OG: "Wie gerne trainierst du deine Fitness?"
+      DE: "Wie gerne trainierst du deine Fitness?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 274
+    Text:
+      OG: "Wie sehr hast du Angst vor der Dunkelheit?"
+      DE: "Wie sehr hast du Angst vor der Dunkelheit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 275
+    Text:
+      OG: "Wie gut kannst du ohne Rezept kochen?"
+      DE: "Wie gut kannst du ohne Rezept kochen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 276
+    Text:
+      OG: "Wie schlecht kannst du verlieren?"
+      DE: "Wie schlecht kannst du verlieren?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 277
+    Text:
+      OG: "Wie sehr magst du Familienzusammenkünfte?"
+      DE: "Wie sehr magst du Familienzusammenkünfte?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 278
+    Text:
+      OG: "Wie schnell fühlst du dich beleidigt, angegriffen, verletzt ...?"
+      DE: "Wie schnell fühlst du dich beleidigt, angegriffen, verletzt ...?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 279
+    Text:
+      OG: "Wie wichtig sind dir Traditionen?"
+      DE: "Wie wichtig sind dir Traditionen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 280
+    Text:
+      OG: "Wie sehr magst du Umarmungen?"
+      DE: "Wie sehr magst du Umarmungen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 281
+    Text:
+      OG: "Wie viel Fantasie hast du?"
+      DE: "Wie viel Fantasie hast du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 282
+    Text:
+      OG: "Wie sehr magst du Tiere?"
+      DE: "Wie sehr magst du Tiere?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 283
+    Text:
+      OG: "Wie gern würdest du einmal Fallschirmspringen?"
+      DE: "Wie gern würdest du einmal Fallschirmspringen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 284
+    Text:
+      OG: "Wie sehr bist du jemand, der Dinge kurz vor knapp in letzter Minute erledigt?"
+      DE: "Wie sehr bist du jemand, der Dinge kurz vor knapp in letzter Minute erledigt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 285
+    Text:
+      OG: "Wie sehr magst du Disney-Filme?"
+      DE: "Wie sehr magst du Disney-Filme?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 286
+    Text:
+      OG: "Wie gerne erstellst du Listen?"
+      DE: "Wie gerne erstellst du Listen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 287
+    Text:
+      OG: "Wie abergläubisch bist du?"
+      DE: "Wie abergläubisch bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 288
+    Text:
+      OG: "Wie groß ist deine Angst vor Spinnen?"
+      DE: "Wie groß ist deine Angst vor Spinnen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 289
+    Text:
+      OG: "Wie gern wärst du Bundeskanzler oder Bundeskanzlerin?"
+      DE: "Wie gern wärst du Bundeskanzler oder Bundeskanzlerin?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 290
+    Text:
+      OG: "Wie sorgfältig trennst du deinen Müll?"
+      DE: "Wie sorgfältig trennst du deinen Müll?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 291
+    Text:
+      OG: "Wie gerne würdest du in einem Hollywood-Film mitspielen?"
+      DE: "Wie gerne würdest du in einem Hollywood-Film mitspielen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 292
+    Text:
+      OG: "Wie sehr liegt dir Gartenarbeit?"
+      DE: "Wie sehr liegt dir Gartenarbeit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 293
+    Text:
+      OG: "Wie wohl fühlst du dich, wenn du vor größerem Publikum sprichst?"
+      DE: "Wie wohl fühlst du dich, wenn du vor größerem Publikum sprichst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 294
+    Text:
+      OG: "Wie gut kannst du mit Kindern umgehen?"
+      DE: "Wie gut kannst du mit Kindern umgehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 295
+    Text:
+      OG: "Wie gerne erzählst du Witze?"
+      DE: "Wie gerne erzählst du Witze?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 296
+    Text:
+      OG: "Wie gerne bist du unter Menschen?"
+      DE: "Wie gerne bist du unter Menschen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 297
+    Text:
+      OG: "Wie verführerisch bist du deiner Meinung nach?"
+      DE: "Wie verführerisch bist du deiner Meinung nach?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 298
+    Text:
+      OG: "Wie sehr beeinflusst das Wetter deine Stimmung?"
+      DE: "Wie sehr beeinflusst das Wetter deine Stimmung?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 299
+    Text:
+      OG: "Wie sehr magst du Comics?"
+      DE: "Wie sehr magst du Comics?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 300
+    Text:
+      OG: "Wie wohl fühlst du dich im allgemeinen Bezug auf Nacktheit?"
+      DE: "Wie wohl fühlst du dich im allgemeinen Bezug auf Nacktheit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 301
+    Text:
+      OG: "Wie oft bist du für neue Erfahrungen?"
+      DE: "Wie oft bist du für neue Erfahrungen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 302
+    Text:
+      OG: "Wie sehr magst du Dokumentarfilme?"
+      DE: "Wie sehr magst du Dokumentarfilme?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 303
+    Text:
+      OG: "Wie gerne sprichst du mit fremden Menschen?"
+      DE: "Wie gerne sprichst du mit fremden Menschen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 304
+    Text:
+      OG: "Wie feministisch bist du eingestellt?"
+      DE: "Wie feministisch bist du eingestellt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 305
+    Text:
+      OG: "Wie sehr magst du Karaoke?"
+      DE: "Wie sehr magst du Karaoke?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 306
+    Text:
+      OG: "Wie sehr musst du immer das letzte Wort haben?"
+      DE: "Wie sehr musst du immer das letzte Wort haben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 307
+    Text:
+      OG: "Du siehst ein niedliches, kleines Kätzchen. Wie entzückt rufst du \"ohhh\"?"
+      DE: "Du siehst ein niedliches, kleines Kätzchen. Wie entzückt rufst du \"ohhh\"?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 308
+    Text:
+      OG: "Wie viel Angst hast du vor dem Zahnarzt?"
+      DE: "Wie viel Angst hast du vor dem Zahnarzt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 309
+    Text:
+      OG: "Wie gesund ernährst du dich normalerweise?"
+      DE: "Wie gesund ernährst du dich normalerweise?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 310
+    Text:
+      OG: "Wie viel läge dir daran, berühmt zu sein?"
+      DE: "Wie viel läge dir daran, berühmt zu sein?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 311
+    Text:
+      OG: "Wie sehr bist du bereit, dein Essen mit anderen zu teilen?"
+      DE: "Wie sehr bist du bereit, dein Essen mit anderen zu teilen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 312
+    Text:
+      OG: "Wie sehr magst du Horrorfilme?"
+      DE: "Wie sehr magst du Horrorfilme?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 313
+    Text:
+      OG: "Wie gut wärst du darin, eine Zombie-Apokalypse zu überleben?"
+      DE: "Wie gut wärst du darin, eine Zombie-Apokalypse zu überleben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 314
+    Text:
+      OG: "Wie gerne spielst du Video- oder Computerspiele?"
+      DE: "Wie gerne spielst du Video- oder Computerspiele?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 315
+    Text:
+      OG: "Wie sehr fährst du auf die aktuell neuesten technischen Geräten ab?"
+      DE: "Wie sehr fährst du auf die aktuell neuesten technischen Geräten ab?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 316
+    Text:
+      OG: "Wie wichtig wäre es dir, ein Porträt von dir in einem Museum hängen zu haben?"
+      DE: "Wie wichtig wäre es dir, ein Porträt von dir in einem Museum hängen zu haben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 317
+    Text:
+      OG: "Wie gerne führst du Telefongespräche?"
+      DE: "Wie gerne führst du Telefongespräche?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 318
+    Text:
+      OG: "Wie mürrisch wirst du, wenn du viel zu wenig geschlafen hast?"
+      DE: "Wie mürrisch wirst du, wenn du viel zu wenig geschlafen hast?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 319
+    Text:
+      OG: "Wie sehr magst du abstrakte Kunst?"
+      DE: "Wie sehr magst du abstrakte Kunst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 320
+    Text:
+      OG: "Wie sehr magst du Kostümpartys?"
+      DE: "Wie sehr magst du Kostümpartys?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 321
+    Text:
+      OG: "Wie gerne bist du im Wasser?"
+      DE: "Wie gerne bist du im Wasser?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 322
+    Text:
+      OG: "Wie viel besser war alles deiner Meinung nach früher?"
+      DE: "Wie viel besser war alles deiner Meinung nach früher?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 323
+    Text:
+      OG: "Wie ungeschickt bist du?"
+      DE: "Wie ungeschickt bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 324
+    Text:
+      OG: "Was denkst du, wie mutig du bist?"
+      DE: "Was denkst du, wie mutig du bist?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 325
+    Text:
+      OG: "Wie gerne würdest du in eine Geheimgesellschaft eintreten?"
+      DE: "Wie gerne würdest du in eine Geheimgesellschaft eintreten?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 326
+    Text:
+      OG: "Wie wählerisch bist du beim Essen?"
+      DE: "Wie wählerisch bist du beim Essen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 327
+    Text:
+      OG: "Wie ehrgeizig bist du im Berufsleben?"
+      DE: "Wie ehrgeizig bist du im Berufsleben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 328
+    Text:
+      OG: "Wie mürrisch wirst du, wenn du Hunger hast?"
+      DE: "Wie mürrisch wirst du, wenn du Hunger hast?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 329
+    Text:
+      OG: "Wie gerne würdest du in Hogwarts zur Schule gehen?"
+      DE: "Wie gerne würdest du in Hogwarts zur Schule gehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 330
+    Text:
+      OG: "Wie gerne gehst du shoppen?"
+      DE: "Wie gerne gehst du shoppen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 331
+    Text:
+      OG: "Wie sehr befolgst du geltende Regeln?"
+      DE: "Wie sehr befolgst du geltende Regeln?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 332
+    Text:
+      OG: "Wie kreativ bist du?"
+      DE: "Wie kreativ bist du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 333
+    Text:
+      OG: "Wie gut kannst du mit alten Menschen umgehen?"
+      DE: "Wie gut kannst du mit alten Menschen umgehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 334
+    Text:
+      OG: "Wie sehr liegt dir Teamarbeit?"
+      DE: "Wie sehr liegt dir Teamarbeit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 335
+    Text:
+      OG: "Wie gerne gibst du Partys bei dir zu Hause?"
+      DE: "Wie gerne gibst du Partys bei dir zu Hause?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 336
+    Text:
+      OG: "Wie schwer fällt es dir, etwas wegzuwerfen, \"weil man es ja vielleicht noch brauchen kann\"?"
+      DE: "Wie schwer fällt es dir, etwas wegzuwerfen, \"weil man es ja vielleicht noch brauchen kann\"?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 337
+    Text:
+      OG: "Wie sehr macht es dir Spaß, Dinge selbst zu reparieren?"
+      DE: "Wie sehr macht es dir Spaß, Dinge selbst zu reparieren?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 338
+    Text:
+      OG: "Wie sehr stimmst du mit dem Spruch \"Glück kann man kaufen\" überein?"
+      DE: "Wie sehr stimmst du mit dem Spruch \"Glück kann man kaufen\" überein?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
 
 Kategorien:
   - ID: 1
@@ -21,7 +2373,7 @@ Kategorien:
       DE: ""
       EN: "Level 1: Perception"
     originale_Karten:
-      IDs: [1,2]
+      IDs: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]
       davon_entfernt: []
     hinzugefügte_Karten-IDs: []
   - ID: 2
@@ -30,7 +2382,34 @@ Kategorien:
       DE: ""
       EN: "Level 2: Connection"
     originale_Karten:
-      IDs: []
+      IDs: [51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
+  - ID: 3
+    Name:
+      OG: "Level 3: Reflection"
+      DE: ""
+      EN: "Level 3: Reflection"
+    originale_Karten:
+      IDs: [104,105,56,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
+  - ID: 4
+    Name:
+      OG: "Freitextfragen"
+      DE: "Freitextfragen"
+      EN: ""
+    originale_Karten:
+      IDs: [153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
+  - ID: 5
+    Name:
+      OG: "von 0 bis 100"
+      DE: "von 0 bis 100"
+      EN: ""
+    originale_Karten:
+      IDs: [247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338]
       davon_entfernt: []
     hinzugefügte_Karten-IDs: []
 
@@ -41,7 +2420,7 @@ Spiele:
       DE: "Wir sind nicht wirklich Fremde"
       EN: "We're not really strangers"
     originale_Kategorien:
-      IDs: [1,2]
+      IDs: [1,2,3]
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []
   - ID: 2
@@ -50,6 +2429,6 @@ Spiele:
       DE: "Fun Facts"
       EN: "Fun Facts"
     originale_Kategorien:
-      IDs: []
+      IDs: [4,5]
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []

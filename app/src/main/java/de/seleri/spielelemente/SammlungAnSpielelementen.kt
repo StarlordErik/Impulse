@@ -7,8 +7,17 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     open var hinzugefuegteElemente: List<T>
 ) : LokalisierbaresSpielelement(id, localizations) {
 
+    internal fun elementeEntfernen(entfernteElemente: List<T>) {
+        entfernteElemente.forEach {
+            originaleElemente[DAVON_ENTFERNT] = originaleElemente[DAVON_ENTFERNT]!!.plus(it)
+            hinzugefuegteElemente = hinzugefuegteElemente.minus(it)
+        }
+    }
+
     internal fun elementeHinzufuegen(neueElemente: List<T>) {
-        val neuHinzugefuegt : MutableSet<T> = emptySet<T>().toMutableSet()
+        neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
+
+        val neuHinzugefuegt: MutableSet<T> = emptySet<T>().toMutableSet()
         neuHinzugefuegt.addAll(hinzugefuegteElemente)
         neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
         hinzugefuegteElemente = neuHinzugefuegt.toList()
@@ -34,7 +43,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         return output.toString()
     }
 
-    fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
+    internal fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
         val output = StringBuilder()
         output.append(attributToYamlZeile(2, "$ORIGINALE$elemente", originaleElemente))
         output.append(

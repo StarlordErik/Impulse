@@ -5,6 +5,7 @@ import de.seleri.impulse.R
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.nio.file.Paths
+import kotlin.collections.set
 
 /*
 Für eine zentrale Initialisierung in einer Application-Klasse speichern:
@@ -50,41 +51,88 @@ class Datenbanksystem(private val datenbank: File) {
 
     fun neueKarten(kartentexte: List<String>, sprache: Sprachen): List<Karte> {
         val neueKarten = mutableListOf<Karte>()
-        kartentexte.forEachIndexed { index, text ->
-            val neueId = (karten.maxOfOrNull { it.id } ?: 0) + index + 1
-            val neueKarte = eingabeToKarte(neueId, sprache, text)
+        var neueId = neueID(karten)
+
+        kartentexte.forEach {
+            var neueKarte = findeElement(it, karten)
+            if (neueKarte == null) {
+                neueKarte = eingabeToKarte(neueId, sprache, it)
+            } else {
+                neueKarte.localizations[Sprachen.OG] = it
+                neueKarte.setUebersetzung(sprache, it)
+                neueId -= 1
+            }
+            neueId += 1
             neueKarten.add(neueKarte)
         }
 
-        karten.addAll(neueKarten)
-        speichereYaml()
+        val actuallyNeueKarten = neueKarten.filter { it !in karten }
+        karten.addAll(actuallyNeueKarten)
 
-        return neueKarten
+        speichereYaml()
+        return neueKarten.toList()
+
     }
 
     fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen): Kategorie {
-        val neueId = (kategorien.maxOfOrNull { it.id } ?: 0) + 1
-        val neueKategorie = eingabeToKategorie(neueId, sprache, name, karten)
+        val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)!!
 
-        kategorien.add(neueKategorie)
+        if (neueKategorie !in kategorien) {
+            kategorien.add(neueKategorie)
+        }
         speichereYaml()
-
         return neueKategorie
     }
 
     fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen): Spiel {
-        val neueId = (spiele.maxOfOrNull { it.id } ?: 0) + 1
-        val neuesSpiel = eingabeToSpiel(neueId, sprache, name, kategorien)
+        val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)!!
 
-        spiele.add(neuesSpiel)
+        if (neuesSpiel !in spiele) {
+            spiele.add(neuesSpiel)
+
+        }
         speichereYaml()
-
         return neuesSpiel
     }
 
+    @Suppress("UNCHECKED_CAST")
+    fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
+        name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
+    ): T? {
+        var neueSammlung = findeElement(name, findenIn)
+
+        if (neueSammlung == null) {
+            val neueID = neueID(findenIn)
+            when (findenIn[0]) {
+                is Kategorie -> neueSammlung =
+                    eingabeToKategorie(neueID, sprache, name, elemente as List<Karte>) as T
+
+                is Spiel -> neueSammlung =
+                    eingabeToSpiel(neueID, sprache, name, elemente as List<Kategorie>) as T
+            }
+        } else {
+            neueSammlung.localizations[Sprachen.OG] = name
+            neueSammlung.setUebersetzung(sprache, name)
+
+            elemente.forEach {
+                if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS] =
+                    neueSammlung.originaleElemente[IDS]!!.plus(it)
+            }
+
+            neueSammlung.originaleElemente[DAVON_ENTFERNT]!!.forEach {
+                if (elemente.contains(it)) neueSammlung.originaleElemente[DAVON_ENTFERNT] =
+                    neueSammlung.originaleElemente[DAVON_ENTFERNT]!!.minus(it)
+            }
+        }
+        return neueSammlung
+    }
+
+    private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
+        return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+    }
+
     fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
-        spielOderKategorie: E,
-        neueElemente: List<T>
+        spielOderKategorie: E, neueElemente: List<T>
     ) {
         when (spielOderKategorie) {
             is Kategorie -> kartenZuKategorieHinzufuegen(spielOderKategorie, neueElemente)
@@ -107,8 +155,7 @@ class Datenbanksystem(private val datenbank: File) {
             is Kategorie -> spiel.kategorienHinzufuegen(kategorienIDs as List<Kategorie>)
             is Int -> spiel.kategorienHinzufuegen(
                 findeElemente(
-                    kategorienIDs as List<Int>,
-                    kategorien
+                    kategorienIDs as List<Int>, kategorien
                 )
             )
         }

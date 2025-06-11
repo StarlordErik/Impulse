@@ -16,12 +16,10 @@ data class Kategorie(
         return output.toString()
     }
 
+    fun kartenEntfernen(karten: List<Karte>) = elementeEntfernen(karten)
+    fun kartenHinzufuegen(karten: List<Karte>) = elementeHinzufuegen(karten)
     fun getAlleKarten(): List<Karte> = getAlleElemente()
     fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
-
-    fun kartenHinzufuegen(karten: List<Karte>) {
-        elementeHinzufuegen(karten)
-    }
 }
 
 fun yamlToKategorien(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {

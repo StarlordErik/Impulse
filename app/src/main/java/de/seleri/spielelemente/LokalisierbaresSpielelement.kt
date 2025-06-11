@@ -20,6 +20,15 @@ open class LokalisierbaresSpielelement(
     }
 }
 
+fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
+    return findeIn.find { element ->
+        element.localizations.values.any { localization ->
+            localization.equals(bezeichnung)
+        }
+    }
+}
+
+
 fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
     findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
 

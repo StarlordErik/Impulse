@@ -18,15 +18,13 @@ data class Spiel(
         return output.toString()
     }
 
+    fun kategorienEntfernen(kategorien: List<Kategorie>) = elementeEntfernen(kategorien)
+    fun kategorienHinzufuegen(kategorien: List<Kategorie>) = elementeHinzufuegen(kategorien)
     fun getAlleKategorien(): List<Kategorie> = getAlleElemente()
     fun getAlleAktuellenKategorien(): List<Kategorie> = getAlleAktuellenElemente()
     fun getAlleKarten(): List<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.distinct()
     fun getAlleAktuellenKarten(): List<Karte> =
         getAlleKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
-
-    fun kategorienHinzufuegen(kategorien: List<Kategorie>) {
-        elementeHinzufuegen(kategorien)
-    }
 }
 
 fun yamlToSpiele(yamlInput: String, moeglicheKategorien: List<Kategorie>): List<Spiel> {
