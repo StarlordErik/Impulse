@@ -1,6 +1,8 @@
-package de.seleri.entwicklungswerkzeuge
+package de.seleri.tools
 
 fun main(){
+
+    println("Hallo Welt!")
 
     /*/ Hier die Daten eingeben:
 
