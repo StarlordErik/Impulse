@@ -2365,6 +2365,496 @@ Karten:
       EN: ""
     gesehen: false
     gelöscht: false
+  - ID: 339
+    Text:
+      OG: "Du kannst einem Menschen auf dieser Welt einen Herzenswunsch erfüllen.\n\nWem erfüllst du welchen Wunsch?"
+      DE: "Du kannst einem Menschen auf dieser Welt einen Herzenswunsch erfüllen.\n\nWem erfüllst du welchen Wunsch?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 340
+    Text:
+      OG: "Du kannst auf eine persönliche Hygieneroutine verzichten, ohne, dass es sich negativ auswirkt.\n\nWelche Routine wählst du aus?"
+      DE: "Du kannst auf eine persönliche Hygieneroutine verzichten, ohne, dass es sich negativ auswirkt.\n\nWelche Routine wählst du aus?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 341
+    Text:
+      OG: "Du kannst einen Tag in deinem Leben nochmal leben.\n\nWelchen Tag wählst du aus?"
+      DE: "Du kannst einen Tag in deinem Leben nochmal leben.\n\nWelchen Tag wählst du aus?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 342
+    Text:
+      OG: "Du bekommst die Möglichkeit, (noch) einmal zu studieren.\n\nFür welchen Studiengang entscheidest du dich?"
+      DE: "Du bekommst die Möglichkeit, (noch) einmal zu studieren.\n\nFür welchen Studiengang entscheidest du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 343
+    Text:
+      OG: "Du kannst für einen Tag die Darstellung des Google Logos bestimmen.\n\nWie würde es aussehen?"
+      DE: "Du kannst für einen Tag die Darstellung des Google Logos bestimmen.\n\nWie würde es aussehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 344
+    Text:
+      OG: "Die Biografie welches deiner Verwandten würdest du am liebsten lesen und warum?"
+      DE: "Die Biografie welches deiner Verwandten würdest du am liebsten lesen und warum?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 345
+    Text:
+      OG: "Du kannst der weltweit führende Experte in einer bestimmten Nische sein.\n\nWelche Nische wählst du?"
+      DE: "Du kannst der weltweit führende Experte in einer bestimmten Nische sein.\n\nWelche Nische wählst du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 346
+    Text:
+      OG: "Von all deinen Besitztümern darfst du lediglich fünf behalten.\n\nFür welche entscheidest du dich?"
+      DE: "Von all deinen Besitztümern darfst du lediglich fünf behalten.\n\nFür welche entscheidest du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 347
+    Text:
+      OG: "Du hast eine fünfminütige Audienz beim Papst.\n\nWorüber sprichst du mit ihm?"
+      DE: "Du hast eine fünfminütige Audienz beim Papst.\n\nWorüber sprichst du mit ihm?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 348
+    Text:
+      OG: "Du bist sowohl geografisch als auch finanziell unabhängig.\n\nWie und wo lebst du?"
+      DE: "Du bist sowohl geografisch als auch finanziell unabhängig.\n\nWie und wo lebst du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 349
+    Text:
+      OG: "Du findest heraus, dass dein gesamtes Leben ein einziger Traum ist. Du kannst jetzt entscheiden, ob du aufwachst oder in deinem Traum weiterlebst.\n\nWas tust du?"
+      DE: "Du findest heraus, dass dein gesamtes Leben ein einziger Traum ist. Du kannst jetzt entscheiden, ob du aufwachst oder in deinem Traum weiterlebst.\n\nWas tust du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 350
+    Text:
+      OG: "Du kannst genau einen Umstand an der Art, wie du aufgewachsen bist, ändern.\n\nWofür entscheidest du dich?"
+      DE: "Du kannst genau einen Umstand an der Art, wie du aufgewachsen bist, ändern.\n\nWofür entscheidest du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 351
+    Text:
+      OG: "Du kannst deine tägliche Schlafzeit problemlos halbieren.\n\nWofür nutzt du die neu gewonnene Zeit?"
+      DE: "Du kannst deine tägliche Schlafzeit problemlos halbieren.\n\nWofür nutzt du die neu gewonnene Zeit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 352
+    Text:
+      OG: "Du bist Bildungsminister und erarbeitest die Schulinhalte für die nächsten Jahre.\n\nWas muss zwingend auf die Lehrpläne?"
+      DE: "Du bist Bildungsminister und erarbeitest die Schulinhalte für die nächsten Jahre.\n\nWas muss zwingend auf die Lehrpläne?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 353
+    Text:
+      OG: "Du wirst für eine Woche lang mit einer Superkraft deiner Wahl ausgestattet.\n\nFür welche Superkraft entscheidest du dich?"
+      DE: "Du wirst für eine Woche lang mit einer Superkraft deiner Wahl ausgestattet.\n\nFür welche Superkraft entscheidest du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 354
+    Text:
+      OG: "Du bekommst 100.000€, um einen Raum in deinem bestehenden Zuhause nach deinen Wünschen umzugestalten.\n\nWelchen Raum wählst du und was änderst du?"
+      DE: "Du bekommst 100.000€, um einen Raum in deinem bestehenden Zuhause nach deinen Wünschen umzugestalten.\n\nWelchen Raum wählst du und was änderst du?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 355
+    Text:
+      OG: "Du bist mit einem seltenen Virus infiziert. Ärzte teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?"
+      DE: "Du bist mit einem seltenen Virus infiziert. Ärzte teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 356
+    Text:
+      OG: "Du reist in die Vergangenheit und hast ein fünfminütiges Gespräch mit deinem zehnjährigen Ich.\n\nWas erzählst du ihm?"
+      DE: "Du reist in die Vergangenheit und hast ein fünfminütiges Gespräch mit deinem zehnjährigen Ich.\n\nWas erzählst du ihm?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 357
+    Text:
+      OG: "Du hast einen Freifahrtschein in der Schönheitsklinik. Würdest du etwas ändern lassen?\n\nFalls ja, was?"
+      DE: "Du hast einen Freifahrtschein in der Schönheitsklinik. Würdest du etwas ändern lassen?\n\nFalls ja, was?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 358
+    Text:
+      OG: "Du wirst nach deinem Ableben einmalig wiedergeboren und kannst komplett frei bestimmen als was.\n\nWofür entscheidest du dich?"
+      DE: "Du wirst nach deinem Ableben einmalig wiedergeboren und kannst komplett frei bestimmen als was.\n\nWofür entscheidest du dich?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 359
+    Text:
+      OG: "Unter sämtlichen Menschen dieser Welt darfst du drei zum Abendessen einladen. Sie werden sicher erscheinen.\n\nWen lädst du ein?"
+      DE: "Unter sämtlichen Menschen dieser Welt darfst du drei zum Abendessen einladen. Sie werden sicher erscheinen.\n\nWen lädst du ein?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 360
+    Text:
+      OG: "Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?"
+      DE: "Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 361
+    Text:
+      OG: "Bevorzugst du ...\n\n ... Podcast oder Hörbuch hören?\n ... Online Shopping oder in Geschäfte gehen?\n ... Nachrichten schreiben oder telefonieren?\n ... Sport machen oder Sport gucken?"
+      DE: "Bevorzugst du ...\n\n ... Podcast oder Hörbuch hören?\n ... Online Shopping oder in Geschäfte gehen?\n ... Nachrichten schreiben oder telefonieren?\n ... Sport machen oder Sport gucken?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 362
+    Text:
+      OG: "Wie informierst du dich? Nenne jeweils 3 ...\n\n ... Websites\n ... Printerzeugnisse\n ... TV Formate\n ... Podcasts"
+      DE: "Wie informierst du dich? Nenne jeweils 3 ...\n\n ... Websites\n ... Printerzeugnisse\n ... TV Formate\n ... Podcasts"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 363
+    Text:
+      OG: "Teile je Stichwort eine Kindheitserinnerung:\n\n-Süßigkeit\n-TV Serie\n-Gesellschaftsspiel\n-beste(r) Freund(in)"
+      DE: "Teile je Stichwort eine Kindheitserinnerung:\n\n-Süßigkeit\n-TV Serie\n-Gesellschaftsspiel\n-beste(r) Freund(in)"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 364
+    Text:
+      OG: "Dein Lieblingsgetränk ...\n\n ... beim Frühstück?\n ... im Kino?\n ... im Club?\n ... auf der Arbeit?"
+      DE: "Dein Lieblingsgetränk ...\n\n ... beim Frühstück?\n ... im Kino?\n ... im Club?\n ... auf der Arbeit?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 365
+    Text:
+      OG: "Bist du eher ...\n\n ... ein Fluss,\n ... ein See,\n ... ein Meer oder\n ... ein Wasserfall?\n\nWarum?"
+      DE: "Bist du eher ...\n\n ... ein Fluss,\n ... ein See,\n ... ein Meer oder\n ... ein Wasserfall?\n\nWarum?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 366
+    Text:
+      OG: "Verzichtest du eher auf ...\n\n ... Kaffee oder Alkohol?\n ... Fleisch oder Fisch?\n ... die Fähigkeit zu schreiben oder die Fähigkeit zu lesen?\n ... 1,5 Monatsgehälter oder deinen Jahresurlaub?"
+      DE: "Verzichtest du eher auf ...\n\n ... Kaffee oder Alkohol?\n ... Fleisch oder Fisch?\n ... die Fähigkeit zu schreiben oder die Fähigkeit zu lesen?\n ... 1,5 Monatsgehälter oder deinen Jahresurlaub?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 367
+    Text:
+      OG: "Regnerischer Spielnachmittag, aber wie?\n\n-Karten oder Brettspiel?\n-Wii oder Playstation?\n-Fifa oder Mario Kart?\n-Heißer Kakao oder Bier?"
+      DE: "Regnerischer Spielnachmittag, aber wie?\n\n-Karten oder Brettspiel?\n-Wii oder Playstation?\n-Fifa oder Mario Kart?\n-Heißer Kakao oder Bier?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 368
+    Text:
+      OG: "Du hast eine eigene Minibar im Haus. Was darf nicht fehlen?\n\n-Wein oder Bier?\n-Klarer oder Kräuterschnaps?\n-Coca-Cola oder Red Bull?\n-Schokolade oder Erdnüsse?"
+      DE: "Du hast eine eigene Minibar im Haus. Was darf nicht fehlen?\n\n-Wein oder Bier?\n-Klarer oder Kräuterschnaps?\n-Coca-Cola oder Red Bull?\n-Schokolade oder Erdnüsse?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 369
+    Text:
+      OG: "Wieviel Bargeld hast du in diesem Moment bei dir?\n\nWas war deine letzte Anschaffung < 100€?\n\nWas war deine letzte Anschaffung > 100€?\n\nWofür sparst du gerade?"
+      DE: "Wieviel Bargeld hast du in diesem Moment bei dir?\n\nWas war deine letzte Anschaffung < 100€?\n\nWas war deine letzte Anschaffung > 100€?\n\nWofür sparst du gerade?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 370
+    Text:
+      OG: "Worauf freust du dich momentan ganz besonders?"
+      DE: "Worauf freust du dich momentan ganz besonders?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 371
+    Text:
+      OG: "Was war dein persönlich größter Erfolg in deinem Leben?"
+      DE: "Was war dein persönlich größter Erfolg in deinem Leben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 372
+    Text:
+      OG: "Wofür bewunderst du andere Menschen?"
+      DE: "Wofür bewunderst du andere Menschen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 373
+    Text:
+      OG: "Wo möchtest du im Leben stehen, wenn du deinen nächsten runden Geburtstag erreichst?"
+      DE: "Wo möchtest du im Leben stehen, wenn du deinen nächsten runden Geburtstag erreichst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 374
+    Text:
+      OG: "Was war dein Berufswunsch als Kind und wie denkst du heute darüber?"
+      DE: "Was war dein Berufswunsch als Kind und wie denkst du heute darüber?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 375
+    Text:
+      OG: "Gibt es etwas, woran du gerade voller Passion arbeitest?"
+      DE: "Gibt es etwas, woran du gerade voller Passion arbeitest?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 376
+    Text:
+      OG: "Was ist dein Lieblingsgeruch und was verbindest du mit ihm?"
+      DE: "Was ist dein Lieblingsgeruch und was verbindest du mit ihm?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 377
+    Text:
+      OG: "Was hast du irgendwann einmal getan, wofür du dich heute ernsthaft schämst?"
+      DE: "Was hast du irgendwann einmal getan, wofür du dich heute ernsthaft schämst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 378
+    Text:
+      OG: "Worüber hast du das letzte Mal so sehr gelacht, dass deine Augen anfingen zu tränen?"
+      DE: "Worüber hast du das letzte Mal so sehr gelacht, dass deine Augen anfingen zu tränen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 379
+    Text:
+      OG: "Was ist, deiner Meinung nach, der größte Unterschied zwischen uns beiden?"
+      DE: "Was ist, deiner Meinung nach, der größte Unterschied zwischen uns beiden?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 380
+    Text:
+      OG: "Welche Entscheidung, die du getroffen hast, hat dein Leben am stärksten beeinflusst?"
+      DE: "Welche Entscheidung, die du getroffen hast, hat dein Leben am stärksten beeinflusst?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 381
+    Text:
+      OG: "Welche Eigenschaft anderer Menschen macht dich wahnsinnig?"
+      DE: "Welche Eigenschaft anderer Menschen macht dich wahnsinnig?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 382
+    Text:
+      OG: "Wofür gibst du gerne Geld aus und schaust auch nicht zwingend auf das Preisschild?"
+      DE: "Wofür gibst du gerne Geld aus und schaust auch nicht zwingend auf das Preisschild?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 383
+    Text:
+      OG: "Wann und in welcher Situation hast du das letzte Mal jemanden oder etwas aufgegeben?"
+      DE: "Wann und in welcher Situation hast du das letzte Mal jemanden oder etwas aufgegeben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 384
+    Text:
+      OG: "Was tust du, um dich selbst glücklich zu machen?"
+      DE: "Was tust du, um dich selbst glücklich zu machen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 385
+    Text:
+      OG: "Was tust du regelmäßig und immer wieder, obwohl es dir absolut nicht gefällt?"
+      DE: "Was tust du regelmäßig und immer wieder, obwohl es dir absolut nicht gefällt?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 386
+    Text:
+      OG: "Was ist momentan deine größte Herausforderung?"
+      DE: "Was ist momentan deine größte Herausforderung?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 387
+    Text:
+      OG: "Welcher Mensch hat dich besonders inspiriert und warum?"
+      DE: "Welcher Mensch hat dich besonders inspiriert und warum?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 388
+    Text:
+      OG: "Was ist das Beste daran, du zu sein?"
+      DE: "Was ist das Beste daran, du zu sein?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 389
+    Text:
+      OG: "Was tust du, um andere Menschen glücklich zu machen?"
+      DE: "Was tust du, um andere Menschen glücklich zu machen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 390
+    Text:
+      OG: "Was ist dein wichtigstes Ziel für die nächsten 6 Monate?"
+      DE: "Was ist dein wichtigstes Ziel für die nächsten 6 Monate?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 391
+    Text:
+      OG: "Was haben wir deiner Meinung nach gemeinsam?"
+      DE: "Was haben wir deiner Meinung nach gemeinsam?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 392
+    Text:
+      OG: "Warst du jemals sehr beunruhigt oder ängstlich wegen einer Sache, die sich im Nachgang als halb so wild entpuppte?"
+      DE: "Warst du jemals sehr beunruhigt oder ängstlich wegen einer Sache, die sich im Nachgang als halb so wild entpuppte?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 393
+    Text:
+      OG: "Welches Kompliment ist dir besonders in Erinnerung geblieben?"
+      DE: "Welches Kompliment ist dir besonders in Erinnerung geblieben?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 394
+    Text:
+      OG: "Beschreibe, wie ein Buch und ein Film dich besonders beeinflusst haben."
+      DE: "Beschreibe, wie ein Buch und ein Film dich besonders beeinflusst haben."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 395
+    Text:
+      OG: "Wann hast du das letzte Mal in Gegenwart einer anderen Person geweint und warum?"
+      DE: "Wann hast du das letzte Mal in Gegenwart einer anderen Person geweint und warum?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 396
+    Text:
+      OG: "Welches Ereignis oder welche Person hat zuletzt deine Sichtweise auf ein bestimmtes Thema signifikant geändert?"
+      DE: "Welches Ereignis oder welche Person hat zuletzt deine Sichtweise auf ein bestimmtes Thema signifikant geändert?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 397
+    Text:
+      OG: "Was war das Hilfreichste, das du in letzter Zeit gelernt hast?"
+      DE: "Was war das Hilfreichste, das du in letzter Zeit gelernt hast?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 398
+    Text:
+      OG: "Wie sieht dein perfekter Sonntagabend aus?"
+      DE: "Wie sieht dein perfekter Sonntagabend aus?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 399
+    Text:
+      OG: "Was ist deine aktuell größte Sorge?"
+      DE: "Was ist deine aktuell größte Sorge?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 400
+    Text:
+      OG: "Was war dein stolzester Moment in den letzten 12 Monaten?"
+      DE: "Was war dein stolzester Moment in den letzten 12 Monaten?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 401
+    Text:
+      OG: "Was verbessert deine Laune schlagartig?"
+      DE: "Was verbessert deine Laune schlagartig?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 402
+    Text:
+      OG: "Beschreibe deine Morgenroutine."
+      DE: "Beschreibe deine Morgenroutine."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 403
+    Text:
+      OG: "Was bedeutet es für dich ein glückliches Leben zu führen?"
+      DE: "Was bedeutet es für dich ein glückliches Leben zu führen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 404
+    Text:
+      OG: "Was denken viele Leute über dich, ist deiner Meinung nach aber nicht zutreffend?"
+      DE: "Was denken viele Leute über dich, ist deiner Meinung nach aber nicht zutreffend?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 405
+    Text:
+      OG: "Erkläre den Einfluss deiner Kinderstube an der Art, wie du ...\n... Urlaub machst.\n... Weihnachten feierst.\n... in den Tag startest."
+      DE: "Erkläre den Einfluss deiner Kinderstube an der Art, wie du ...\n... Urlaub machst.\n... Weihnachten feierst.\n... in den Tag startest."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 406
+    Text:
+      OG: "Wann hast du dir das letzte Mal einen Rat oder eine Meinung eingeholt?\n\nZu wem gehst du in solchen Fällen?"
+      DE: "Wann hast du dir das letzte Mal einen Rat oder eine Meinung eingeholt?\n\nZu wem gehst du in solchen Fällen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 407
+    Text:
+      OG: "Wann war dein letzter richtig mieser Tag?\n\nWas ist geschehen?"
+      DE: "Wann war dein letzter richtig mieser Tag?\n\nWas ist geschehen?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 408
+    Text:
+      OG: "Gibt es etwas, von dem du schon lange träumst es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
+      DE: "Gibt es etwas, von dem du schon lange träumst es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
+      EN: ""
+    gesehen: false
+    gelöscht: false
 
 Kategorien:
   - ID: 1
@@ -2412,6 +2902,33 @@ Kategorien:
       IDs: [247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338]
       davon_entfernt: []
     hinzugefügte_Karten-IDs: []
+  - ID: 6
+    Name:
+      OG: "Gedankenspiel"
+      DE: "Gedankenspiel"
+      EN: ""
+    originale_Karten:
+      IDs: [339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
+  - ID: 7
+    Name:
+      OG: "Kreuzverhör"
+      DE: "Kreuzverhör"
+      EN: ""
+    originale_Karten:
+      IDs: [360,361,362,363,364,365,366,367,368,369]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
+  - ID: 8
+    Name:
+      OG: "Selbstreflexion"
+      DE: "Selbstreflexion"
+      EN: ""
+    originale_Karten:
+      IDs: [370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
 
 Spiele:
   - ID: 1
@@ -2430,5 +2947,14 @@ Spiele:
       EN: "Fun Facts"
     originale_Kategorien:
       IDs: [4,5]
+      davon_entfernt: []
+    hinzugefügte_Kategorien-IDs: []
+  - ID: 3
+    Name:
+      OG: "Erzählt euch mehr - Klassik"
+      DE: "Erzählt euch mehr - Klassik"
+      EN: ""
+    originale_Kategorien:
+      IDs: [6,7,8]
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []
