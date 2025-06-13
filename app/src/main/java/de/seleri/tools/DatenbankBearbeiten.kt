@@ -4,118 +4,65 @@ import de.seleri.spielelemente.Sprachen
 import de.seleri.spielelemente.datenbanksystemGenerieren
 
 @Suppress("LongMethod", "MaxLineLength")
-fun main(){
+fun main() {
 
     println("Hallo Welt!")
 
     // Hier die Daten eingeben:
 
     // val spielID : Int = 0 // 0 für ein neues Spiel
-    val spielName = "Fun Facts" // wird nur bei ID != 0 beachtet
+    val spielName = "Erzählt euch mehr - Klassik" // wird nur bei ID != 0 beachtet
 
     // val kategorieID: Int = 0 // 0 für eine neue Kategorie
-    val kategorieName = "von 0 bis 100" // wird nur bei ID != 0 beachtet
+    val kategorieName = "Selbstreflexion" // wird nur bei ID != 0 beachtet
 
+    val sprache = Sprachen.DE // Sprache der Karten
     /*
     var kartenIDs = listOf( // 0 für neue Karten
         0
     )
     */
     val kartenTexte = listOf( // wird nur bei ID != 0 beachtet
-        "Wie schüchtern bist du?",
-        "Wie gerne würdest du Geheimagent werden wollen?",
-        "Wie gerne würdest du auf der ersten Marskolonie leben (für 5 Jahre, einschließlich der Reise)?",
-        "Wie gerne kochst du?",
-        "Wie wichtig ist dir Familie?",
-        "Wie sehr magst du das Land, in dem du aktuell lebst?",
-        "Wie gelenkig bist du?",
-        "Wie gut ist dein Gedächtnis?",
-        "Wie zufrieden bist du bis jetzt mit deinem heutigen Tag?",
-        "Wie sehr bist du jemand, der Dinge überstürzt?",
-        "Wie gerne gehst du zu Konzerten oder Musikfestivals?",
-        "Wie sehr kümmert es dich, was andere Menschen über dich denken?",
-        "Wie sehr magst du Musicals?",
-        "Wie wichtig ist dir Essen?",
-        "Wie gerne liest du, während du auf der Toilette sitzt?",
-        "Wie groß ist dein Interesse, an einer Reality-Show im Fernsehen teilzunehmen?",
-        "Wie groß ist deine Höhenangst?",
-        "Wie groß ist dein Interesse, den Papst persönlich zu treffen?",
-        "Wie gerne würdest du einmal Bungee springen?",
-        "Wie gerne tanzt du?",
-        "Wie faul bist du?",
-        "Wie erwachsen fühlst du dich?",
-        "Wie gerne feierst du deinen Geburtstag?",
-        "Wie sehr magst du deine momentane Frisur?",
-        "Wie sehr magst du deinen Vornamen?",
-        "Wie schick bist du heute deiner Meinung nach angezogen?",
-        "Wie gerne trainierst du deine Fitness?",
-        "Wie sehr hast du Angst vor der Dunkelheit?",
-        "Wie gut kannst du ohne Rezept kochen?",
-        "Wie schlecht kannst du verlieren?",
-        "Wie sehr magst du Familienzusammenkünfte?",
-        "Wie schnell fühlst du dich beleidigt, angegriffen, verletzt ...?",
-        "Wie wichtig sind dir Traditionen?",
-        "Wie sehr magst du Umarmungen?",
-        "Wie viel Fantasie hast du?",
-        "Wie sehr magst du Tiere?",
-        "Wie gern würdest du einmal Fallschirmspringen?",
-        "Wie sehr bist du jemand, der Dinge kurz vor knapp in letzter Minute erledigt?",
-        "Wie sehr magst du Disney-Filme?",
-        "Wie gerne erstellst du Listen?",
-        "Wie abergläubisch bist du?",
-        "Wie groß ist deine Angst vor Spinnen?",
-        "Wie gern wärst du Bundeskanzler oder Bundeskanzlerin?",
-        "Wie sorgfältig trennst du deinen Müll?",
-        "Wie gerne würdest du in einem Hollywood-Film mitspielen?",
-        "Wie sehr liegt dir Gartenarbeit?",
-        "Wie wohl fühlst du dich, wenn du vor größerem Publikum sprichst?",
-        "Wie gut kannst du mit Kindern umgehen?",
-        "Wie gerne erzählst du Witze?",
-        "Wie gerne bist du unter Menschen?",
-        "Wie verführerisch bist du deiner Meinung nach?",
-        "Wie sehr beeinflusst das Wetter deine Stimmung?",
-        "Wie sehr magst du Comics?",
-        "Wie wohl fühlst du dich im allgemeinen Bezug auf Nacktheit?",
-        "Wie oft bist du für neue Erfahrungen?",
-        "Wie sehr magst du Dokumentarfilme?",
-        "Wie gerne sprichst du mit fremden Menschen?",
-        "Wie feministisch bist du eingestellt?",
-        "Wie sehr magst du Karaoke?",
-        "Wie sehr musst du immer das letzte Wort haben?",
-        "Du siehst ein niedliches, kleines Kätzchen. Wie entzückt rufst du \"ohhh\"?",
-        "Wie viel Angst hast du vor dem Zahnarzt?",
-        "Wie gesund ernährst du dich normalerweise?",
-        "Wie viel läge dir daran, berühmt zu sein?",
-        "Wie sehr bist du bereit, dein Essen mit anderen zu teilen?",
-        "Wie sehr magst du Horrorfilme?",
-        "Wie gut wärst du darin, eine Zombie-Apokalypse zu überleben?",
-        "Wie gerne spielst du Video- oder Computerspiele?",
-        "Wie sehr fährst du auf die aktuell neuesten technischen Geräten ab?",
-        "Wie wichtig wäre es dir, ein Porträt von dir in einem Museum hängen zu haben?",
-        "Wie gerne führst du Telefongespräche?",
-        "Wie mürrisch wirst du, wenn du viel zu wenig geschlafen hast?",
-        "Wie sehr magst du abstrakte Kunst?",
-        "Wie sehr magst du Kostümpartys?",
-        "Wie gerne bist du im Wasser?",
-        "Wie viel besser war alles deiner Meinung nach früher?",
-        "Wie ungeschickt bist du?",
-        "Was denkst du, wie mutig du bist?",
-        "Wie gerne würdest du in eine Geheimgesellschaft eintreten?",
-        "Wie wählerisch bist du beim Essen?",
-        "Wie ehrgeizig bist du im Berufsleben?",
-        "Wie mürrisch wirst du, wenn du Hunger hast?",
-        "Wie gerne würdest du in Hogwarts zur Schule gehen?",
-        "Wie gerne gehst du shoppen?",
-        "Wie sehr befolgst du geltende Regeln?",
-        "Wie kreativ bist du?",
-        "Wie gut kannst du mit alten Menschen umgehen?",
-        "Wie sehr liegt dir Teamarbeit?",
-        "Wie gerne gibst du Partys bei dir zu Hause?",
-        "Wie schwer fällt es dir, etwas wegzuwerfen, \"weil man es ja vielleicht noch brauchen kann\"?",
-        "Wie sehr macht es dir Spaß, Dinge selbst zu reparieren?",
-        "Wie sehr stimmst du mit dem Spruch \"Glück kann man kaufen\" überein?"
+        "Worauf freust du dich momentan ganz besonders?",
+        "Was war dein persönlich größter Erfolg in deinem Leben?",
+        "Wofür bewunderst du andere Menschen?",
+        "Wo möchtest du im Leben stehen, wenn du deinen nächsten runden Geburtstag erreichst?",
+        "Was war dein Berufswunsch als Kind und wie denkst du heute darüber?",
+        "Gibt es etwas, woran du gerade voller Passion arbeitest?",
+        "Was ist dein Lieblingsgeruch und was verbindest du mit ihm?",
+        "Was hast du irgendwann einmal getan, wofür du dich heute ernsthaft schämst?",
+        "Worüber hast du das letzte Mal so sehr gelacht, dass deine Augen anfingen zu tränen?",
+        "Was ist, deiner Meinung nach, der größte Unterschied zwischen uns beiden?",
+        "Welche Entscheidung, die du getroffen hast, hat dein Leben am stärksten beeinflusst?",
+        "Welche Eigenschaft anderer Menschen macht dich wahnsinnig?",
+        "Wofür gibst du gerne Geld aus und schaust auch nicht zwingend auf das Preisschild?",
+        "Wann und in welcher Situation hast du das letzte Mal jemanden oder etwas aufgegeben?",
+        "Was tust du, um dich selbst glücklich zu machen?",
+        "Was tust du regelmäßig und immer wieder, obwohl es dir absolut nicht gefällt?",
+        "Was ist momentan deine größte Herausforderung?",
+        "Welcher Mensch hat dich besonders inspiriert und warum?",
+        "Was ist das Beste daran, du zu sein?",
+        "Was tust du, um andere Menschen glücklich zu machen?",
+        "Was ist dein wichtigstes Ziel für die nächsten 6 Monate?",
+        "Was haben wir deiner Meinung nach gemeinsam?",
+        "Warst du jemals sehr beunruhigt oder ängstlich wegen einer Sache, die sich im Nachgang als halb so wild entpuppte?",
+        "Welches Kompliment ist dir besonders in Erinnerung geblieben?",
+        "Beschreibe, wie ein Buch und ein Film dich besonders beeinflusst haben.",
+        "Wann hast du das letzte Mal in Gegenwart einer anderen Person geweint und warum?",
+        "Welches Ereignis oder welche Person hat zuletzt deine Sichtweise auf ein bestimmtes Thema signifikant geändert?",
+        "Was war das Hilfreichste, das du in letzter Zeit gelernt hast?",
+        "Wie sieht dein perfekter Sonntagabend aus?",
+        "Was ist deine aktuell größte Sorge?",
+        "Was war dein stolzester Moment in den letzten 12 Monaten?",
+        "Was verbessert deine Laune schlagartig?",
+        "Beschreibe deine Morgenroutine.",
+        "Was bedeutet es für dich ein glückliches Leben zu führen?",
+        "Was denken viele Leute über dich, ist deiner Meinung nach aber nicht zutreffend?",
+        "Erkläre den Einfluss deiner Kinderstube an der Art, wie du ...\n... Urlaub machst.\n... Weihnachten feierst.\n... in den Tag startest.",
+        "Wann hast du dir das letzte Mal einen Rat oder eine Meinung eingeholt?\n\nZu wem gehst du in solchen Fällen?",
+        "Wann war dein letzter richtig mieser Tag?\n\nWas ist geschehen?",
+        "Gibt es etwas, von dem du schon lange träumst es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
     )
-    val sprache = Sprachen.DE // Sprache der Karten
 
     // oben die Daten eingeben
 
