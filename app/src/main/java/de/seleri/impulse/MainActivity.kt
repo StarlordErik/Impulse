@@ -4,29 +4,44 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import de.seleri.spielelemente.Sprachen
+import androidx.core.graphics.toColorInt
 
 const val EIN_DRITTEL = 1.0 / 3.0
+const val TEXTGROESSE = 24f
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportActionBar?.hide() // ActionBar ausblenden
-
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
-        val button1: Button = findViewById(R.id.button_screen1)
-        val button2: Button = findViewById(R.id.button_screen2)
+        val dbs = (application as Impulse).dbs
+        val buttonContainer = findViewById<LinearLayout>(R.id.button_container)
 
-        button1.setOnClickListener {
-            val intent = Intent(this, Spiel1Activity::class.java)
-            startActivity(intent)
-        }
-
-        button2.setOnClickListener {
-            val intent = Intent(this, Spiel2Activity::class.java)
-            startActivity(intent)
+        for (spiel in dbs.spiele) {
+            val button = Button(this).apply {
+                text = spiel.localizations[Sprachen.OG]
+                textSize = TEXTGROESSE
+                setTextColor(resources.getColor(android.R.color.white, null))
+                setBackgroundColor("#4E2A2A".toColorInt())
+                isAllCaps = false
+                setOnClickListener {
+                    val intent = Intent(this@MainActivity, SpielActivity::class.java)
+                    intent.putExtra("SPIEL_NAME", spiel.localizations[Sprachen.OG])
+                    startActivity(intent)
+                }
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.setMargins(0, 0, 0, PADDING)
+                layoutParams = params
+            }
+            buttonContainer.addView(button)
         }
 
         // Titelhöhe dynamisch setzen
@@ -37,5 +52,4 @@ class MainActivity : AppCompatActivity() {
         titleContainer.layoutParams.height = einDrittelBildschirmhoehe
         titleContainer.requestLayout()
     }
-
 }

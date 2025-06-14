@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
-    tools:context="de.seleri.impulse.MainActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,32 +29,13 @@
                 android:textColor="#FFFFFF" />
         </FrameLayout>
 
-        <!-- Button-Bereich -->
+        <!-- Dynamischer Button-Container -->
         <LinearLayout
+            android:id="@+id/button_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="24dp">
-
-            <Button
-                android:id="@+id/button_screen1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/we_re_not_really_strangers"
-                android:textSize="24sp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="#2C2C2C"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/button_screen2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/fun_facts"
-                android:textSize="24sp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="#2C2C2C"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>
