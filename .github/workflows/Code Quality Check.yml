@@ -6,19 +6,20 @@ on:
 jobs:
   code-quality-check:
     name: durch ${{ matrix.task }}
-    timeout-minutes: 4
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [detekt, testDebugUnitTest, lint]
+        task: [ detekt, testDebugUnitTest, lint ]
       fail-fast: false
 
     steps:
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
 
-      - name: Run ${{ matrix.task }}
+      - name: Run ${{ matrix.task }} with timeout
         run: ./gradlew ${{ matrix.task }}
