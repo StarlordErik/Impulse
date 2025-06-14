@@ -21,8 +21,11 @@ jobs:
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
 
+      # set +e: Dadurch wird der Code auch nach einem Fehler weiter ausgeführt.
+      # errorCode: Speichert den letzten Error Code, damit er manuell in meine eigene Fehlermeldung übersetzt wird.
       - name: Run ${{ matrix.task }}
         run: |
+          set +e
           case "${{ matrix.task }}" in
             lint)
               timeout 10s ./gradlew ${{ matrix.task }}
