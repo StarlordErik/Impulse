@@ -6,15 +6,15 @@ import de.seleri.spielelemente.datenbanksystemGenerieren
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
 
-    println("Hallo Welt!")
+    println("Hallo Welt!\n")
 
     // Hier die Daten eingeben:
 
     // val spielID : Int = 0 // 0 für ein neues Spiel
-    val spielName = "Erzählt euch mehr - Klassik" // wird nur bei ID != 0 beachtet
+    val spielName = "Erzählt euch mehr - für Paare" // wird nur bei ID != 0 beachtet
 
     // val kategorieID: Int = 0 // 0 für eine neue Kategorie
-    val kategorieName = "Selbstreflexion" // wird nur bei ID != 0 beachtet
+    val kategorieName = "Reflexion" // wird nur bei ID != 0 beachtet
 
     val sprache = Sprachen.DE // Sprache der Karten
     /*
@@ -23,45 +23,42 @@ fun main() {
     )
     */
     val kartenTexte = listOf( // wird nur bei ID != 0 beachtet
-        "Worauf freust du dich momentan ganz besonders?",
-        "Was war dein persönlich größter Erfolg in deinem Leben?",
-        "Wofür bewunderst du andere Menschen?",
-        "Wo möchtest du im Leben stehen, wenn du deinen nächsten runden Geburtstag erreichst?",
-        "Was war dein Berufswunsch als Kind und wie denkst du heute darüber?",
-        "Gibt es etwas, woran du gerade voller Passion arbeitest?",
-        "Was ist dein Lieblingsgeruch und was verbindest du mit ihm?",
-        "Was hast du irgendwann einmal getan, wofür du dich heute ernsthaft schämst?",
-        "Worüber hast du das letzte Mal so sehr gelacht, dass deine Augen anfingen zu tränen?",
-        "Was ist, deiner Meinung nach, der größte Unterschied zwischen uns beiden?",
-        "Welche Entscheidung, die du getroffen hast, hat dein Leben am stärksten beeinflusst?",
-        "Welche Eigenschaft anderer Menschen macht dich wahnsinnig?",
-        "Wofür gibst du gerne Geld aus und schaust auch nicht zwingend auf das Preisschild?",
-        "Wann und in welcher Situation hast du das letzte Mal jemanden oder etwas aufgegeben?",
-        "Was tust du, um dich selbst glücklich zu machen?",
-        "Was tust du regelmäßig und immer wieder, obwohl es dir absolut nicht gefällt?",
-        "Was ist momentan deine größte Herausforderung?",
-        "Welcher Mensch hat dich besonders inspiriert und warum?",
-        "Was ist das Beste daran, du zu sein?",
-        "Was tust du, um andere Menschen glücklich zu machen?",
-        "Was ist dein wichtigstes Ziel für die nächsten 6 Monate?",
-        "Was haben wir deiner Meinung nach gemeinsam?",
-        "Warst du jemals sehr beunruhigt oder ängstlich wegen einer Sache, die sich im Nachgang als halb so wild entpuppte?",
-        "Welches Kompliment ist dir besonders in Erinnerung geblieben?",
-        "Beschreibe, wie ein Buch und ein Film dich besonders beeinflusst haben.",
-        "Wann hast du das letzte Mal in Gegenwart einer anderen Person geweint und warum?",
-        "Welches Ereignis oder welche Person hat zuletzt deine Sichtweise auf ein bestimmtes Thema signifikant geändert?",
-        "Was war das Hilfreichste, das du in letzter Zeit gelernt hast?",
-        "Wie sieht dein perfekter Sonntagabend aus?",
-        "Was ist deine aktuell größte Sorge?",
-        "Was war dein stolzester Moment in den letzten 12 Monaten?",
-        "Was verbessert deine Laune schlagartig?",
-        "Beschreibe deine Morgenroutine.",
-        "Was bedeutet es für dich ein glückliches Leben zu führen?",
-        "Was denken viele Leute über dich, ist deiner Meinung nach aber nicht zutreffend?",
-        "Erkläre den Einfluss deiner Kinderstube an der Art, wie du ...\n... Urlaub machst.\n... Weihnachten feierst.\n... in den Tag startest.",
-        "Wann hast du dir das letzte Mal einen Rat oder eine Meinung eingeholt?\n\nZu wem gehst du in solchen Fällen?",
-        "Wann war dein letzter richtig mieser Tag?\n\nWas ist geschehen?",
-        "Gibt es etwas, von dem du schon lange träumst es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
+        "Welchen Aspekt unserer Beziehung möchtest du anderen Paaren gerne zur Nachahmung empfehlen?",
+        "Was möchtest du in unserer Beziehung gerne anders machen?",
+        "Wie habe ich mich, in deinen Augen, im Laufe unserer Beziehung verändert?",
+        "Findest du unseren Umgang mit Geld ausgeglichen oder muss einer öfter in die Tasche greifen?",
+        "Über welches Thema sprichst du nur ungern mit mir?",
+        "Was tust du ganz aktiv für diese Beziehung?",
+        "Was hast du getan, was sich als nicht gut für unsere Beziehung herausgestellt hat?",
+        "Was in unserer Beziehung macht dir ein ungutes Bauchgefühl?",
+        "Was glaubst du ist unsere größte gemeinsame Schwäche?",
+        "Was unterscheidet unsere Beziehung von deinen vorherigen?",
+        "Gibt es etwas in unserer gemeinamen Zeit, das du bereust?",
+        "Beschreibe, wie es ist, mit mir in einer Beziehung zu sein.",
+        "In welchen gemeinsamen Augenblicken bist du besonders glücklich?",
+        "Was ist deine Lieblingsbeschäftigung für uns beide?",
+        "Wieviele Tage ohne Sex sind zu viel für dich?",
+        "Welche Erwartungen hast du an unsere Beziehung?",
+        "Vertraust du mir immer deine innersten Gedanken an?",
+        "Hast du sexuelle Fantasien, denen wir bisher keine Aufmerksamkeit geschenkt haben?",
+        "Was glaubst du ist unsere größte gemeinsame Stärke?",
+        "Worin bin ich meiner Mutter und worin meinem Vater ähnlich?",
+        "Wie stellst du dir unser Leben in 5 Jahren vor?",
+        "Wie möchtest du, dass ich dir meine Liebe zeige?",
+        "Geben wir unserer Liebe im Alltag genug Ausdruck?",
+        "Wie gefällt dir der Kontakt zu unseren Familien?",
+        "Was macht uns als Paar kompatibel?",
+        "Was wünschst du dir von mir für unsere Zukunft?",
+        "Was wünschst du dir für unsere Kommunikation?",
+        "Wie sieht deine Vorstellung von einem perfekten Date aus?",
+        "Wieviel Raum brauchst du für dich allein?",
+        "Was tue ich, das dich verletzt?\n\nWarum verletzt es dich?",
+        "Gibt es etwas, das du von mir brauchst, aber derzeit nicht bekommst?",
+        "Wie zeigst du mir deine Liebe?",
+        "Welche Angewohnheiten von mir empfindest du als störend?\n\nAus welchen Gründen ist das so?",
+        "In welcher Situation war ich dir peinlich?\n\nWarum?",
+        "Wie hast du die Beziehung deiner Eltern wahrgenommen?\n\nHaben sie etwas besonders richtig oder falsch gemacht?",
+        "Was sollte ich niemals zu dir sagen? - egal, wie wütend ich bin."
     )
 
     // oben die Daten eingeben
@@ -73,12 +70,12 @@ fun main() {
     println("Folgende KartenIDs wurden eingegeben: ${neueKarten.map { it.id }}")
 
     val neueKategorie = dbs.neueKategorie(kategorieName, neueKarten, sprache)
-    println("Folgende KategorienID wurden eingegeben: ${neueKategorie.id}")
-    println("Sie besitzt folgende Karten: ${neueKategorie.getAlleKarten().map { it.id }}")
+    println("Folgende KategorienID wurden eingegeben: ${neueKategorie.id}:${neueKategorie.localizations[sprache]}")
+    println("Sie besitzt folgende Karten:          ${neueKategorie.getAlleKarten().map { it.id }}")
 
     val neuesSpiel = dbs.neuesSpiel(spielName, listOf(neueKategorie), sprache)
-    println("Folgende SpielID wurde eingegeben: ${neuesSpiel.id}")
-    println("Sie besitzt folgende Kategorien: ${neuesSpiel.getAlleKategorien().map { it.id }}")
+    println("Folgende SpielID wurde eingegeben: ${neuesSpiel.id}:${neuesSpiel.localizations[sprache]}")
+    println("Das Spiel besitzt folgende Kategorien: ${neuesSpiel.getAlleKategorien().map { it.localizations[sprache] }}")
 
 }
 
