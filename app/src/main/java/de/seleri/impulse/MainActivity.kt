@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 textSize = TEXTGROESSE
                 setTextColor(resources.getColor(android.R.color.white, null))
                 setBackgroundColor("#4E2A2A".toColorInt())
+                isAllCaps = false
                 setOnClickListener {
                     val intent = Intent(this@MainActivity, SpielActivity::class.java)
                     intent.putExtra("SPIEL_NAME", spiel.localizations[Sprachen.OG])

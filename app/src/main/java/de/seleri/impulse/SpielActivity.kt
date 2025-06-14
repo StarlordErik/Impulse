@@ -35,6 +35,7 @@ class SpielActivity : AppCompatActivity() {
                 textSize = KATEGORIE_TEXTGROESSE
                 setTextColor(Color.WHITE)
                 setBackgroundColor("#4E2A2A".toColorInt())
+                isAllCaps = false
                 setPadding(PADDING, PADDING, PADDING, PADDING) // links, oben, rechts, unten
 
                 setOnClickListener {
