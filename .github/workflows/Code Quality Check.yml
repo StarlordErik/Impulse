@@ -35,5 +35,7 @@ jobs:
               ;;
           esac
           errorCode=$?
-          [ $errorCode -eq 124 ] && echo -e "\n${RED}(~*-*)~ Eriks Fehlermeldung: Timeout dieses workflow-steps überschritten! ~(*-*~)${NC}\n"
+          RED='\033[0;31m'
+          NC='\033[0m'
+          [ $errorCode -eq 124 ] && echo -e "\n${RED}(~*-*)~ Eriks Fehlermeldung: Timeout dieses workflow-steps überschritten! ~(*-*~)${NC}"
           exit $errorCode
