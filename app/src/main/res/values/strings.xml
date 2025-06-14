@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">Impulse</string>
-    <string name="level_3_reflection">Level 3: Reflection</string>
-    <string name="level_2_connection">Level 2: Connection</string>
-    <string name="level_1_perception">Level 1: Perception</string>
-    <string name="we_re_not_really_strangers">We\'re not really strangers</string>
 </resources>
