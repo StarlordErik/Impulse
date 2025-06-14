@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/Setup Gradle
 
       # set +e: Dadurch wird der Code auch nach einem Fehler weiter ausgeführt.
-      # errorCode: Speichert den letzten Error Code, damit er manuell in meine eigene Fehlermeldung übersetzt wird.
+      # errorCode: Speichert den letzten Exit Code, damit er manuell in meine eigene Fehlermeldung übersetzt wird.
       - name: Run ${{ matrix.task }}
         run: |
           set +e
@@ -37,5 +37,5 @@ jobs:
           errorCode=$?
           RED='\033[0;31m'
           NC='\033[0m'
-          [ $errorCode -eq 124 ] && echo -e "\n${RED}(~*-*)~ Eriks Fehlermeldung: Timeout dieses workflow-steps überschritten! ~(*-*~)${NC}"
+          [ $errorCode -eq 124 ] && echo -e "\n${RED}(~*-*)~ ${NC}Eriks ${RED}Fehlermeldung${NC}: Timeout dieses workflow-steps überschritten! ${RED}~(*-*~)${NC}"
           exit $errorCode
