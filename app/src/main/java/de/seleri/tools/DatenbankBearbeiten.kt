@@ -6,7 +6,7 @@ import de.seleri.spielelemente.datenbanksystemGenerieren
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
 
-    println("Hallo Welt!")
+    println("Hallo Welt!\n")
 
     // Hier die Daten eingeben:
 
@@ -70,12 +70,12 @@ fun main() {
     println("Folgende KartenIDs wurden eingegeben: ${neueKarten.map { it.id }}")
 
     val neueKategorie = dbs.neueKategorie(kategorieName, neueKarten, sprache)
-    println("Folgende KategorienID wurden eingegeben: ${neueKategorie.id}")
-    println("Sie besitzt folgende Karten: ${neueKategorie.getAlleKarten().map { it.id }}")
+    println("Folgende KategorienID wurden eingegeben: ${neueKategorie.id}:${neueKategorie.localizations[sprache]}")
+    println("Sie besitzt folgende Karten:          ${neueKategorie.getAlleKarten().map { it.id }}")
 
     val neuesSpiel = dbs.neuesSpiel(spielName, listOf(neueKategorie), sprache)
-    println("Folgende SpielID wurde eingegeben: ${neuesSpiel.id}")
-    println("Sie besitzt folgende Kategorien: ${neuesSpiel.getAlleKategorien().map { it.id }}")
+    println("Folgende SpielID wurde eingegeben: ${neuesSpiel.id}:${neuesSpiel.localizations[sprache]}")
+    println("Das Spiel besitzt folgende Kategorien: ${neuesSpiel.getAlleKategorien().map { it.localizations[sprache] }}")
 
 }
 
