@@ -21,13 +21,18 @@ jobs:
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
 
-      - name: Run ${{ matrix.task }} with timeout
+      - name: Run ${{ matrix.task }}
         run: |
           case "${{ matrix.task }}" in
             lint)
-              timeout 60s ./gradlew ${{ matrix.task }}
+              timeout 10s ./gradlew ${{ matrix.task }}
               ;;
             *)
-              timeout 30s ./gradlew ${{ matrix.task }}
+              timeout 10s ./gradlew ${{ matrix.task }}
               ;;
           esac
+          status=$?
+          if [ $status -eq 124 ]; then
+            echo "(~*-*)~ Eriks Fehlermeldung: Timeout überschritten! ~(*-*~)"
+            exit 124
+          fi
