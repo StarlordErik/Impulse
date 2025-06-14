@@ -31,8 +31,6 @@ jobs:
               timeout 10s ./gradlew ${{ matrix.task }}
               ;;
           esac
-          status=$?
-          if [ $status -eq 124 ]; then
-            echo "(~*-*)~ Eriks Fehlermeldung: Timeout überschritten! ~(*-*~)"
-            exit 124
-          fi
+          errorCode=$?
+          [ $errorCode -eq 124 ] && echo "(~*-*)~ Eriks Fehlermeldung: Timeout überschritten! ~(*-*~)"
+          exit $errorCode
