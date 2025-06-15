@@ -17,17 +17,17 @@ on:
 jobs:
   code-quality-check:
     name: Code-Check
-    uses: ./.github/workflows/Code Quality Check.yml
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
+    uses: ./.github/workflows/Code Quality Check.yml
 
   emulator-test:
     name: Emulator-Test (nur API 33)
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Emulator-Tests.yml
     with:
       api-filter: "33"
-    if: "!startsWith(github.event.head_commit.message, 'Merge')"
 
   build:
     name: Build
-    uses: ./.github/workflows/Build.yml
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
+    uses: ./.github/workflows/Build.yml

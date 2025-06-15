@@ -17,5 +17,5 @@ on:
 jobs:
   code-quality-check:
     name: Code-Check
-    uses: ./.github/workflows/Code Quality Check.yml
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
+    uses: ./.github/workflows/Code Quality Check.yml
