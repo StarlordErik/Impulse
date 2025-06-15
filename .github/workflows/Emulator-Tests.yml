@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        api-level: ${{ split(replace(inputs['api-filter'], ' ', ''), ',') }}
+        api-level: ${{ split(inputs['api-filter'], ',') }}
 
     steps:
       - name: Checkout Code
