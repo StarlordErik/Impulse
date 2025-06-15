@@ -39,7 +39,7 @@ class Datenbanksystem(private val datenbank: File) {
         val yaml = Yaml().load<Map<String, Any>>(input)
 
         @Suppress("UNCHECKED_CAST") val kartenYaml = yaml[KARTEN] as List<Map<String, Any>>
-        karten = kartenYaml.map { yamlToKarte(it) }.toMutableList()
+        karten = kartenYaml.map { Karte.fromYaml(it) }.toMutableList()
 
         @Suppress("UNCHECKED_CAST") val kategorienYaml = yaml[KATEGORIEN] as List<Map<String, Any>>
         kategorien = kategorienYaml.map { yamlToKategorie(it, karten) }.toMutableList()
