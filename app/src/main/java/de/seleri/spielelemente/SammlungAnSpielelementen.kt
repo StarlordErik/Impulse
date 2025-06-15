@@ -53,40 +53,42 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         )
         return output.toString()
     }
-}
 
-@Suppress("UNCHECKED_CAST")
-fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> yamlToSammlung(
-    data: Map<String, Any>,
-    moeglicheKarten: List<E>,
-    constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
-): T {
-    val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromYaml(
+            data: Map<String, Any>,
+            moeglicheKarten: List<E>,
+            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
+        ): T {
+            val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
 
-    val originaleElementeIDs =
-        ((data["$ORIGINALE$KARTEN"] ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
-    val originaleIDs = findeElemente(originaleElementeIDs[IDS]!!, moeglicheKarten)
-    val entfernteIDs = findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheKarten)
-    val originaleElemente =
-        mutableMapOf<String, List<E>>(IDS to originaleIDs, DAVON_ENTFERNT to entfernteIDs)
+            val originaleElementeIDs =
+                ((data["$ORIGINALE$KARTEN"] ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
+            val originaleIDs = findeElemente(originaleElementeIDs[IDS]!!, moeglicheKarten)
+            val entfernteIDs = findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheKarten)
+            val originaleElemente =
+                mutableMapOf<String, List<E>>(IDS to originaleIDs, DAVON_ENTFERNT to entfernteIDs)
 
-    val weitereIds = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-        ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
+            val weitereIds = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
+                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
-    return constructor(
-        id, localizations, originaleElemente, findeElemente(weitereIds, moeglicheKarten)
-    )
-}
+            return constructor(
+                id, localizations, originaleElemente, findeElemente(weitereIds, moeglicheKarten)
+            )
+        }
 
-fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> eingabeToSammlung(
-    id: Int,
-    sprache: Sprachen,
-    name: String,
-    originaleElemente: List<E>,
-    constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
-): T {
-    val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, name)
-    val originaleElementeMitNullEntfernten =
-        mutableMapOf<String, List<E>>(IDS to originaleElemente, DAVON_ENTFERNT to emptyList())
-    return constructor(id, localizations, originaleElementeMitNullEntfernten, listOf())
+        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromEingabe(
+            id: Int,
+            sprache: Sprachen,
+            name: String,
+            originaleElemente: List<E>,
+            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
+        ): T {
+            val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, name)
+            val originaleElementeMitNullEntfernten =
+                mutableMapOf<String, List<E>>(IDS to originaleElemente, DAVON_ENTFERNT to emptyList())
+            return constructor(id, localizations, originaleElementeMitNullEntfernten, listOf())
+        }
+    }
 }

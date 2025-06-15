@@ -24,10 +24,10 @@ data class Kategorie(
     companion object {
         fun fromEingabe(
             id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>
-        ): Kategorie = eingabeToSammlung(id, sprache, name, originaleKarten, ::Kategorie)
+        ): Kategorie = SammlungAnSpielelementen.fromEingabe(id, sprache, name, originaleKarten, ::Kategorie)
 
         fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kategorie {
-            return yamlToSammlung(data, moeglicheKarten, ::Kategorie)
+            return SammlungAnSpielelementen.fromYaml(data, moeglicheKarten, ::Kategorie)
         }
 
         fun fromYaml(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {

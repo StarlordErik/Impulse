@@ -29,10 +29,10 @@ data class Spiel(
     companion object {
         fun fromEingabe(
             id: Int, sprache: Sprachen, name: String, originaleKategorien: List<Kategorie>
-        ): Spiel = eingabeToSammlung(id, sprache, name, originaleKategorien, ::Spiel)
+        ): Spiel = fromEingabe(id, sprache, name, originaleKategorien, ::Spiel)
 
         fun fromYaml(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): Spiel {
-            return yamlToSammlung(data, moeglicheKategorien, ::Spiel)
+            return fromYaml(data, moeglicheKategorien, ::Spiel)
         }
 
         fun fromYaml(yamlInput: String, moeglicheKategorien: List<Kategorie>): List<Spiel> {
