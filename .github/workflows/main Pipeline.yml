@@ -29,5 +29,6 @@ jobs:
 
   build:
     name: Build
+    needs: [ code-quality-check ]
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Build.yml
