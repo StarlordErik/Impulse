@@ -2,6 +2,11 @@ name: Emulator-Tests
 
 on:
   workflow_call:
+    inputs:
+      api-filter:
+        required: false
+        type: string
+        default: "29,30,31,32,33,34"
 
 jobs:
   emulator-tests:
@@ -10,7 +15,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        api-level: [29, 30, 31, 32, 33, 34]
+        api-level: [ 29,30,31,32,33,34 ]
 
     steps:
       - name: Checkout Code
@@ -24,6 +29,10 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
+
+      - name: Skip APIs not in filter
+        if: "!contains(inputs.api-filter, format('{0}', matrix.api-level))"
+        run: echo "Skipping API ${{ matrix.api-level }}" && exit 0
 
       - name: AVD cache
         uses: actions/cache@v4
