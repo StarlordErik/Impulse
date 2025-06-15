@@ -33,8 +33,8 @@ jobs:
         if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: ./.github/actions/Setup Gradle
 
-      - name: AVD cache
-        if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
+      - name: AVD cache (API 30+) # Das Caching für API <= 29 gerät manchmal in eine Endlosschleife
+        if: matrix.api-level < 30 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: actions/cache@v4
         id: avd-cache
         with:
@@ -49,7 +49,7 @@ jobs:
         with:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
-          arch: x86
+          arch: x86 # benötigt für API <= 29
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -61,7 +61,7 @@ jobs:
         with:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
-          arch: x86_64
+          arch: x86_64 # benötigt für API 30+
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -73,8 +73,8 @@ jobs:
         with:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
-          arch: x86
-          force-avd-creation: false
+          arch: x86 # benötigt für API <= 29
+          force-avd-creation: ${{ matrix.api-level }} # kein Caching
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: ./gradlew connectedCheck
@@ -85,7 +85,7 @@ jobs:
         with:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
-          arch: x86_64
+          arch: x86_64 # benötigt für API 30+
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
