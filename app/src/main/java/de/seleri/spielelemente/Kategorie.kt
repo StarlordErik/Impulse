@@ -20,17 +20,20 @@ data class Kategorie(
     fun kartenHinzufuegen(karten: List<Karte>) = elementeHinzufuegen(karten)
     fun getAlleKarten(): List<Karte> = getAlleElemente()
     fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
+
+    companion object {
+        fun fromEingabe(
+            id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>
+        ): Kategorie = eingabeToSammlung(id, sprache, name, originaleKarten, ::Kategorie)
+
+        fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kategorie {
+            return yamlToSammlung(data, moeglicheKarten, ::Kategorie)
+        }
+
+        fun fromYaml(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {
+            val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+            return daten.map { fromYaml(it, moeglicheKarten) }
+        }
+    }
 }
 
-fun yamlToKategorien(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {
-    val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-    return daten.map { yamlToKategorie(it, moeglicheKarten) }
-}
-
-fun yamlToKategorie(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kategorie {
-    return yamlToSammlung(data, moeglicheKarten, ::Kategorie)
-}
-
-fun eingabeToKategorie(
-    id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>
-): Kategorie = eingabeToSammlung(id, sprache, name, originaleKarten, ::Kategorie)

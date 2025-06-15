@@ -23,12 +23,14 @@ data class Karte(
             val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
             return Karte(id, localizations, false, false)
         }
+
         fun fromYaml(data: Map<String, Any>): Karte {
             val (id, localizations) = yamlToLokalisierbaresElement(data)
             return Karte(
                 id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
             )
         }
+
         fun fromYaml(yamlInput: String): List<Karte> {
             val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
             return data.map { fromYaml(it) }

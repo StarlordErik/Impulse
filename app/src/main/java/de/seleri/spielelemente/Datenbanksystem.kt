@@ -42,7 +42,7 @@ class Datenbanksystem(private val datenbank: File) {
         karten = kartenYaml.map { Karte.fromYaml(it) }.toMutableList()
 
         @Suppress("UNCHECKED_CAST") val kategorienYaml = yaml[KATEGORIEN] as List<Map<String, Any>>
-        kategorien = kategorienYaml.map { yamlToKategorie(it, karten) }.toMutableList()
+        kategorien = kategorienYaml.map { Kategorie.fromYaml(it, karten) }.toMutableList()
 
         @Suppress("UNCHECKED_CAST") val spieleYaml = yaml[SPIELE] as List<Map<String, Any>>
         spiele = spieleYaml.map { yamlToSpiel(it, kategorien) }.toMutableList()
@@ -105,7 +105,7 @@ class Datenbanksystem(private val datenbank: File) {
             val neueID = neueID(findenIn)
             when (findenIn[0]) {
                 is Kategorie -> neueSammlung =
-                    eingabeToKategorie(neueID, sprache, name, elemente as List<Karte>) as T
+                    Kategorie.fromEingabe(neueID, sprache, name, elemente as List<Karte>) as T
 
                 is Spiel -> neueSammlung =
                     eingabeToSpiel(neueID, sprache, name, elemente as List<Kategorie>) as T
