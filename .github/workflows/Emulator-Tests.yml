@@ -43,25 +43,13 @@ jobs:
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
-      - name: create AVD and generate snapshot for caching (API <= 29)
-        if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level < 30 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          emulator-boot-timeout: 600
-          api-level: ${{ matrix.api-level }}
-          arch: x86 # benötigt für API <= 29
-          force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
-          script: echo "Generated AVD snapshot for caching."
-
       - name: create AVD and generate snapshot for caching (API 30+)
         if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level > 29 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: reactivecircus/android-emulator-runner@v2
         with:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
-          arch: x86_64 # benötigt für API 30+
+          arch: x86_64
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -74,7 +62,7 @@ jobs:
           emulator-boot-timeout: 600
           api-level: ${{ matrix.api-level }}
           arch: x86 # benötigt für API <= 29
-          force-avd-creation: ${{ matrix.api-level }} # kein Caching
+          force-avd-creation: ${{ matrix.api-level < 30}} # kein Caching
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: ./gradlew connectedCheck
