@@ -9,12 +9,15 @@ on:
 jobs:
   code-quality-check:
     name: Code-Check
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Code Quality Check.yml
 
   build:
     name: Build
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Build.yml
 
   emulator-tests:
     name: Emulator-Tests
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Emulator-Tests.yml
