@@ -25,13 +25,13 @@ fun yamlToKarten(yamlInput: String): List<Karte> {
 }
 
 fun yamlToKarte(data: Map<String, Any>): Karte {
-    val dummy = yamlToLokalisierbaresElement(data, ::LokalisierbaresSpielelement)
+    val (id, localizations) = yamlToLokalisierbaresElement(data)
     return Karte(
-        dummy.id, dummy.localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
+        id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
     )
 }
 
 fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
-    val dummy = eingabeToLokalisierbaresElement(id, sprache, text, ::LokalisierbaresSpielelement)
-    return Karte(dummy.id, dummy.localizations, false, false)
+    val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
+    return Karte(id, localizations, false, false)
 }

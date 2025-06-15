@@ -2,7 +2,7 @@ package de.seleri.spielelemente
 
 import kotlin.collections.set
 
-open class LokalisierbaresSpielelement(
+abstract class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: MutableMap<Sprachen, String>
 ) {
     open fun toYaml(): String {
@@ -11,11 +11,11 @@ open class LokalisierbaresSpielelement(
         return output.toString()
     }
 
-    fun localizationsToYaml(bezeichnung: String): String {
+    open fun localizationsToYaml(bezeichnung: String): String {
         return attributToYamlZeile(2, bezeichnung, localizations)
     }
 
-    fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
+    open fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
         if (sprache != Sprachen.OG) localizations[sprache] = bezeichnung
     }
 }
@@ -40,21 +40,19 @@ fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: Lis
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T : LokalisierbaresSpielelement> yamlToLokalisierbaresElement(
-    data: Map<String, Any>, constructor: (Int, MutableMap<Sprachen, String>) -> T
-): T {
+fun yamlToLokalisierbaresElement(
+    data: Map<String, Any>): Pair<Int, MutableMap<Sprachen, String>> {
     val id = data[ID] as Int
     val localizations =
         ((data[TEXT] ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
             .toMutableMap()
-    return constructor(id, localizations)
+    return id to localizations
 }
 
-fun <T : LokalisierbaresSpielelement> eingabeToLokalisierbaresElement(
-    id: Int, sprache: Sprachen, text: String, constructor: (Int, MutableMap<Sprachen, String>) -> T
-): T {
-    val map =
+fun eingabeToLokalisierbaresElement(
+    id: Int, sprache: Sprachen, text: String): Pair<Int, MutableMap<Sprachen, String>> {
+    val localizations =
         Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }
             .toMutableMap()
-    return constructor(id, map)
+    return id to localizations
 }
