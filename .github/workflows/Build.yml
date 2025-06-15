@@ -16,11 +16,19 @@ jobs:
         uses: ./.github/actions/Setup Gradle
 
       - name: Build APK
+        env:
+          BRANCH_REF: ${{ github.ref }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref || '' }}
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          echo "GitHub ref: $BRANCH_REF"
+          echo "PR base ref: $PR_BASE_REF"
+
+          if [[ "$BRANCH_REF" == "refs/heads/main" || "$PR_BASE_REF" == "main" ]]; then
+            echo "Building Release APK"
             ./gradlew --no-daemon assembleRelease
             mv app/build/outputs/apk/release/app-release.apk Impulse.apk
           else
+            echo "Building Debug APK"
             ./gradlew --no-daemon assembleDebug
             mv app/build/outputs/apk/debug/app-debug.apk Impulse.apk
           fi
