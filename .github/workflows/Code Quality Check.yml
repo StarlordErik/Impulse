@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [ detekt, testDebugUnitTest, lint ]
+        task: [ detekt, lint, testDebugUnitTest, testReleaseUnitTest ]
       fail-fast: false
 
     steps:
