@@ -17,6 +17,13 @@ data class Karte(
         output.append(attributToYamlZeile(2, GELOESCHT, geloescht))
         return output.toString()
     }
+
+    companion object {
+        fun fromEingabe(id: Int, sprache: Sprachen, text: String): Karte {
+            val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
+            return Karte(id, localizations, false, false)
+        }
+    }
 }
 
 fun yamlToKarten(yamlInput: String): List<Karte> {
@@ -31,7 +38,3 @@ fun yamlToKarte(data: Map<String, Any>): Karte {
     )
 }
 
-fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
-    val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
-    return Karte(id, localizations, false, false)
-}

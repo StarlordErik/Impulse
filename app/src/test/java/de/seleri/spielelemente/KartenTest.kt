@@ -49,13 +49,13 @@ class KartenTest {
 
     @Test
     fun `Test eingabeToKarte() - Konvertierung von Kartentext zu Karte`() {
-        val karte1 = eingabeToKarte(1, Sprachen.EN, TEST_KARTE_1_EINGABE)
+        val karte1 = Karte.fromEingabe(1, Sprachen.EN, TEST_KARTE_1_EINGABE)
         assertEquals(testKarte1().id, karte1.id)
         assertEquals(testKarte1().localizations, karte1.localizations)
         karte1.geloescht = true
         assertEquals(testKarte1(), karte1)
 
-        val karte2 = eingabeToKarte(2, Sprachen.DE, TEST_KARTE_2_EINGABE)
+        val karte2 = Karte.fromEingabe(2, Sprachen.DE, TEST_KARTE_2_EINGABE)
         assertEquals(testKarte2().id, karte2.id)
         assertEquals(testKarte2().localizations, karte2.localizations)
         karte2.gesehen = true

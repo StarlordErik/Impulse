@@ -56,7 +56,7 @@ class Datenbanksystem(private val datenbank: File) {
         kartentexte.forEach {
             var neueKarte = findeElement(it, karten)
             if (neueKarte == null) {
-                neueKarte = eingabeToKarte(neueId, sprache, it)
+                neueKarte = Karte.fromEingabe(neueId, sprache, it)
             } else {
                 neueKarte.localizations[Sprachen.OG] = it
                 neueKarte.setUebersetzung(sprache, it)
