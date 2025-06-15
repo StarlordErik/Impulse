@@ -20,14 +20,15 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Code Quality Check.yml
 
+  build:
+    name: Build
+    needs: [ code-quality-check ]
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
+    uses: ./.github/workflows/Build.yml
+
   emulator-test:
     name: Emulator-Test (nur API 33)
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Emulator-Tests.yml
     with:
       api-filter: "33"
-
-  build:
-    name: Build
-    if: "!startsWith(github.event.head_commit.message, 'Merge')"
-    uses: ./.github/workflows/Build.yml
