@@ -38,9 +38,7 @@ jobs:
         uses: actions/cache@v4
         id: avd-cache
         with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
+          path: ~/.android/avd
           key: avd-${{ matrix.api-level }}
 
       - name: create AVD and generate snapshot for caching (API 30+)
