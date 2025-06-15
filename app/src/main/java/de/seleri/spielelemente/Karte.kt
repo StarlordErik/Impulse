@@ -29,12 +29,11 @@ data class Karte(
                 id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
             )
         }
+        fun fromYaml(yamlInput: String): List<Karte> {
+            val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+            return data.map { fromYaml(it) }
+        }
     }
-}
-
-fun yamlToKarten(yamlInput: String): List<Karte> {
-    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-    return data.map { Karte.fromYaml(it) }
 }
 
 

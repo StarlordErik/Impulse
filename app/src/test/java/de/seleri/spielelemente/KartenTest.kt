@@ -70,17 +70,17 @@ class KartenTest {
 
     @Test
     fun `Test yamlToKarte() - Konvertierung von YAML zu Karte`() {
-        val karte1 = yamlToKarten(testKarte1Yaml())[0]
+        val karte1 = Karte.fromYaml(testKarte1Yaml())[0]
         assertEquals(testKarte1(), karte1)
 
-        val karte2 = yamlToKarten(testKarte2Yaml())[0]
+        val karte2 = Karte.fromYaml(testKarte2Yaml())[0]
         assertEquals(testKarte2(), karte2)
     }
 
     @Test
     fun `Test Rundreise yamlToKarteToYaml - Konvertierung von YAML zu Karte und wieder zurueck`() {
-        assertEquals(testKarte1Yaml(), yamlToKarten(testKarte1Yaml())[0].toYaml())
-        assertEquals(testKarte2Yaml(), yamlToKarten(testKarte2Yaml())[0].toYaml())
+        assertEquals(testKarte1Yaml(), Karte.fromYaml(testKarte1Yaml())[0].toYaml())
+        assertEquals(testKarte2Yaml(), Karte.fromYaml(testKarte2Yaml())[0].toYaml())
     }
 
     @Test
