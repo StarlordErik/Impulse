@@ -61,7 +61,7 @@ fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> yamlToSam
     moeglicheKarten: List<E>,
     constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
 ): T {
-    val (id, localizations) = yamlToLokalisierbaresElement(data)
+    val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
 
     val originaleElementeIDs =
         ((data["$ORIGINALE$KARTEN"] ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
@@ -85,7 +85,7 @@ fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> eingabeTo
     originaleElemente: List<E>,
     constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
 ): T {
-    val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, name)
+    val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, name)
     val originaleElementeMitNullEntfernten =
         mutableMapOf<String, List<E>>(IDS to originaleElemente, DAVON_ENTFERNT to emptyList())
     return constructor(id, localizations, originaleElementeMitNullEntfernten, listOf())

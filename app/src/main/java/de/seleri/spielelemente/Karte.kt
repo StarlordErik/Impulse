@@ -20,12 +20,12 @@ data class Karte(
 
     companion object {
         fun fromEingabe(id: Int, sprache: Sprachen, text: String): Karte {
-            val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
+            val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, text)
             return Karte(id, localizations, false, false)
         }
 
         fun fromYaml(data: Map<String, Any>): Karte {
-            val (id, localizations) = yamlToLokalisierbaresElement(data)
+            val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
             return Karte(
                 id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
             )
