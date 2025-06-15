@@ -6,11 +6,13 @@ on:
     paths-ignore:
       - 'app/src/main/java/de/seleri/tools/Daten/**'
       - 'tools/**'
+      - 'README.md'
   pull_request:
     branches: [ feature/** ]
     paths-ignore:
       - 'app/src/main/java/de/seleri/tools/Daten/**'
       - 'tools/**'
+      - 'README.md'
 
 jobs:
   code-quality-check:
