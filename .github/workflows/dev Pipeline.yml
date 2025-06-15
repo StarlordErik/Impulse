@@ -3,8 +3,14 @@ name: dev Pipeline
 on:
   push:
     branches: [ dev ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
   pull_request:
     branches: [ dev ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
 
 jobs:
   code-quality-check:
