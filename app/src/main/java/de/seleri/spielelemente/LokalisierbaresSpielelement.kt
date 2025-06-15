@@ -21,7 +21,8 @@ abstract class LokalisierbaresSpielelement(
 
     companion object {
         fun fromEingabe(
-            id: Int, sprache: Sprachen, text: String): Pair<Int, MutableMap<Sprachen, String>> {
+            id: Int, sprache: Sprachen, text: String
+        ): Pair<Int, MutableMap<Sprachen, String>> {
             val localizations =
                 Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }
                     .toMutableMap()
@@ -30,11 +31,12 @@ abstract class LokalisierbaresSpielelement(
 
         @Suppress("UNCHECKED_CAST")
         fun fromYaml(
-            data: Map<String, Any>): Pair<Int, MutableMap<Sprachen, String>> {
+            data: Map<String, Any>
+        ): Pair<Int, MutableMap<Sprachen, String>> {
             val id = data[ID] as Int
-            val localizations =
-                ((data[TEXT] ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
-                    .toMutableMap()
+            val localizations = ((data[TEXT]
+                ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
+                .toMutableMap()
             return id to localizations
         }
     }

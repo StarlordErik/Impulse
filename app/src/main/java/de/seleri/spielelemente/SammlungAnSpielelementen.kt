@@ -63,10 +63,11 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         ): T {
             val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
 
-            val originaleElementeIDs =
-                ((data["$ORIGINALE$KARTEN"] ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
+            val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
+                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
             val originaleIDs = findeElemente(originaleElementeIDs[IDS]!!, moeglicheKarten)
-            val entfernteIDs = findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheKarten)
+            val entfernteIDs =
+                findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheKarten)
             val originaleElemente =
                 mutableMapOf<String, List<E>>(IDS to originaleIDs, DAVON_ENTFERNT to entfernteIDs)
 
@@ -85,9 +86,10 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
             originaleElemente: List<E>,
             constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
         ): T {
-            val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, name)
-            val originaleElementeMitNullEntfernten =
-                mutableMapOf<String, List<E>>(IDS to originaleElemente, DAVON_ENTFERNT to emptyList())
+            val (id, localizations) = fromEingabe(id, sprache, name)
+            val originaleElementeMitNullEntfernten = mutableMapOf<String, List<E>>(
+                IDS to originaleElemente, DAVON_ENTFERNT to emptyList()
+            )
             return constructor(id, localizations, originaleElementeMitNullEntfernten, listOf())
         }
     }
