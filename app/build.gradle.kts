@@ -21,6 +21,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+
+            // das hier muss ersetzt werden, falls die App je in den Playstore soll:
+            signingConfig = signingConfigs.getByName("debug")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
