@@ -21,7 +21,7 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, 'Merge')"
 
   emulator-test:
-    name: Emulator-Test API 33
+    name: Emulator-Test (nur API 33)
     uses: ./.github/workflows/Emulator-Tests.yml
     with:
       api-filter: "33"
