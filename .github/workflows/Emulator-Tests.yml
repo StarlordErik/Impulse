@@ -34,7 +34,7 @@ jobs:
         uses: ./.github/actions/Setup Gradle
 
       - name: AVD cache (API 30+) # Das Caching für API <= 29 gerät manchmal in eine Endlosschleife
-        if: matrix.api-level < 30 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
+        if: matrix.api-level > 29 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: actions/cache@v4
         id: avd-cache
         with:
