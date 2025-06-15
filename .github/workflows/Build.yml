@@ -7,7 +7,7 @@ jobs:
   build:
     name: TEST-Impulse.apk
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 10
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

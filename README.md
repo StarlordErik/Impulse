@@ -1,12 +1,21 @@
-# Impulse Wiki
-Was ist für dieses Projekt wichtig zu beachten?
+# SUPERWICHTIG
 
 ## Feature Branches
-Jeder Feature Branch muss folgende Namenskonvention einhalten: 
+Jeder Feature-Branch muss folgende Namenskonvention einhalten:
 ```
 feature/name
 ```
 Der Grund ist das Erkennen durch die CI/CD-Pipeline - im Umkehrschluss wird jeder Branch abseits feature/*, dev, main nicht getestet.
+
+## Merge bzw. Pull-Requests 
+Jeder Merge-Commit muss mit `Merge` anfangen!
+
+So können redundante Workflows durch den Merge-Commit gestichen werden, welche bereits beim Pull-Request ausgeführt wurden. Man erkennt die Funktion an automatisch geskippten Jobs in GitHub Actions.
+
+---
+
+# Impulse Wiki
+Was ist für dieses Projekt wichtig zu beachten?
 
 ## CI/CD-Pipeline
 Die Pipeline ist vorerst voll funktionsfähig, führt diverse Tests aus und baut auch eine herunterladbare APK zum Debuggen. ABER github stellt nur begrenzt viele Github-Action-Minuten zur Verfügung. Das führte dazu, dass auf Feature-Branches beim Push nur Code-Quality-Tests durchgeführt werden. Auf dem dev-Branch wird zusätzlich noch die APK gebaut und auf dem Main-Branch werden für allen relevanten Android APIs Emulatoren erstellt und Integration-Tests durchgeführt. Vor allem die Emulatoren-Durchläufe sind extrem teuer, vor allem bei jedem kleinen Push! Das Ganze funktioniert also nur, wenn wir hauptsächlich auf den Feature-Branches arbeiten - ebenso zur Dokumentation in bspw. dieser wunderschönen ReadMe hier.

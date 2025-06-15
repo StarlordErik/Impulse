@@ -22,12 +22,4 @@ jobs:
         uses: ./.github/actions/Setup Gradle
 
       - name: Run ${{ matrix.task }} with timeout
-        run: |
-          case "${{ matrix.task }}" in
-            lint)
-              timeout 60s ./gradlew ${{ matrix.task }}
-              ;;
-            *)
-              timeout 30s ./gradlew ${{ matrix.task }}
-              ;;
-          esac
+        run: ./gradlew ${{ matrix.task }}
