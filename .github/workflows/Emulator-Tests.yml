@@ -2,6 +2,11 @@ name: Emulator-Tests
 
 on:
   workflow_call:
+    inputs:
+      api-filter:
+        required: false
+        type: string
+        default: "29,30,31,32,33,34"
 
 jobs:
   emulator-tests:
@@ -15,15 +20,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
 
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
+        if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
 
       - name: Setup Gradle
         uses: ./.github/actions/Setup Gradle
+        if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
 
       - name: AVD cache
         uses: actions/cache@v4
@@ -33,9 +41,10 @@ jobs:
             ~/.android/avd/*
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
+        if: contains(inputs['api-filter'], format('{0}', matrix.api-level))
 
       - name: create AVD and generate snapshot for caching (API <= 29)
-        if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level < 30
+        if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level < 30 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: reactivecircus/android-emulator-runner@v2
         with:
           emulator-boot-timeout: 600
@@ -47,7 +56,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       - name: create AVD and generate snapshot for caching (API 30+)
-        if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level > 29
+        if: steps.avd-cache.outputs.cache-hit != 'true' && matrix.api-level > 29 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: reactivecircus/android-emulator-runner@v2
         with:
           emulator-boot-timeout: 600
@@ -59,7 +68,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
       - name: run tests (API <= 29)
-        if: matrix.api-level < 30
+        if: matrix.api-level < 30 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: reactivecircus/android-emulator-runner@v2
         with:
           emulator-boot-timeout: 600
@@ -71,7 +80,7 @@ jobs:
           script: ./gradlew connectedCheck
 
       - name: run tests (API 30+)
-        if: matrix.api-level > 29
+        if: matrix.api-level > 29 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
         uses: reactivecircus/android-emulator-runner@v2
         with:
           emulator-boot-timeout: 600

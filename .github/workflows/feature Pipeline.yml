@@ -2,11 +2,20 @@ name: feature Pipeline
 
 on:
   push:
-    branches: [feature/**]
+    branches: [ feature/** ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
+      - 'README.md'
   pull_request:
-    branches: [feature/**]
+    branches: [ feature/** ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
+      - 'README.md'
 
 jobs:
   code-quality-check:
     name: Code-Check
     uses: ./.github/workflows/Code Quality Check.yml
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"

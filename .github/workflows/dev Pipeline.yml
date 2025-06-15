@@ -3,16 +3,31 @@ name: dev Pipeline
 on:
   push:
     branches: [ dev ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
+      - 'README.md'
   pull_request:
     branches: [ dev ]
+    paths-ignore:
+      - 'app/src/main/java/de/seleri/tools/Daten/**'
+      - 'tools/**'
+      - 'README.md'
 
 jobs:
   code-quality-check:
     name: Code-Check
-    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Code Quality Check.yml
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
+
+  emulator-test:
+    name: Emulator-Test API 33
+    uses: ./.github/workflows/Emulator-Tests.yml
+    with:
+      api-filter: "33"
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
 
   build:
     name: Build
-    if: "!startsWith(github.event.head_commit.message, 'Merge')"
     uses: ./.github/workflows/Build.yml
+    if: "!startsWith(github.event.head_commit.message, 'Merge')"
