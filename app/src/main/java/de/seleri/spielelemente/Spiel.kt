@@ -25,17 +25,19 @@ data class Spiel(
     fun getAlleKarten(): List<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.distinct()
     fun getAlleAktuellenKarten(): List<Karte> =
         getAlleKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
-}
 
-fun yamlToSpiele(yamlInput: String, moeglicheKategorien: List<Kategorie>): List<Spiel> {
-    val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-    return daten.map { yamlToSpiel(it, moeglicheKategorien) }
-}
+    companion object {
+        fun fromEingabe(
+            id: Int, sprache: Sprachen, name: String, originaleKategorien: List<Kategorie>
+        ): Spiel = fromEingabe(id, sprache, name, originaleKategorien, ::Spiel)
 
-fun yamlToSpiel(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): Spiel {
-    return yamlToSammlung(data, moeglicheKategorien, ::Spiel)
-}
+        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): Spiel {
+            return fromYaml(data, moeglicheKategorien, ::Spiel)
+        }
 
-fun eingabeToSpiel(
-    id: Int, sprache: Sprachen, name: String, originaleKategorien: List<Kategorie>
-): Spiel = eingabeToSammlung(id, sprache, name, originaleKategorien, ::Spiel)
+        fun fromYaml(yamlInput: String, moeglicheKategorien: List<Kategorie>): List<Spiel> {
+            val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+            return daten.map { fromYaml(it, moeglicheKategorien) }
+        }
+    }
+}

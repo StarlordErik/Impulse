@@ -51,7 +51,7 @@ class SpielTest {
 
     @Test
     fun `Test eingabeToSpiel() - Konvertierung von Spielname und zugehoerigen Kategorien zu Spiel`() {
-        val spiel1 = eingabeToSpiel(1, Sprachen.EN, TEST_SPIEL_1_EINGABE, listOf(testKategorie1()))
+        val spiel1 = Spiel.fromEingabe(1, Sprachen.EN, TEST_SPIEL_1_EINGABE, listOf(testKategorie1()))
         spiel1.originaleElemente[DAVON_ENTFERNT] = listOf(testKategorie1())
         spiel1.hinzugefuegteElemente = listOf(testKategorie2())
 
@@ -61,7 +61,7 @@ class SpielTest {
         assertEquals(testSpiel1().hinzugefuegteElemente, spiel1.hinzugefuegteElemente)
         assertEquals(testSpiel1(), spiel1)
 
-        val spiel2 = eingabeToSpiel(
+        val spiel2 = Spiel.fromEingabe(
             2, Sprachen.DE, TEST_SPIEL_2_EINGABE, listOf(testKategorie1(), testKategorie2())
         )
         spiel2.hinzugefuegteElemente = emptyList()
@@ -81,20 +81,20 @@ class SpielTest {
 
     @Test
     fun `Test yamlToSpiel() - Konvertierung von YAML zu Spiel`() {
-        val spiel1 = yamlToSpiele(testSpiel1Yaml(), alleTestKategorien())[0]
+        val spiel1 = Spiel.fromYaml(testSpiel1Yaml(), alleTestKategorien())[0]
         assertEquals(testSpiel1(), spiel1)
 
-        val spiel2 = yamlToSpiele(testSpiel2Yaml(), alleTestKategorien())[0]
+        val spiel2 = Spiel.fromYaml(testSpiel2Yaml(), alleTestKategorien())[0]
         assertEquals(testSpiel2(), spiel2)
     }
 
     @Test
     fun `Test Rundreise yamlToSpielToYaml - Konvertierung von YAML zu Spiel und wieder zurueck`() {
         assertEquals(
-            testSpiel1Yaml(), yamlToSpiele(testSpiel1Yaml(), alleTestKategorien())[0].toYaml()
+            testSpiel1Yaml(), Spiel.fromYaml(testSpiel1Yaml(), alleTestKategorien())[0].toYaml()
         )
         assertEquals(
-            testSpiel2Yaml(), yamlToSpiele(testSpiel2Yaml(), alleTestKategorien())[0].toYaml()
+            testSpiel2Yaml(), Spiel.fromYaml(testSpiel2Yaml(), alleTestKategorien())[0].toYaml()
         )
     }
 

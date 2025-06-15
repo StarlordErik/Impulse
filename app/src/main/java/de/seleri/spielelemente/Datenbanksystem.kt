@@ -39,13 +39,13 @@ class Datenbanksystem(private val datenbank: File) {
         val yaml = Yaml().load<Map<String, Any>>(input)
 
         @Suppress("UNCHECKED_CAST") val kartenYaml = yaml[KARTEN] as List<Map<String, Any>>
-        karten = kartenYaml.map { yamlToKarte(it) }.toMutableList()
+        karten = kartenYaml.map { Karte.fromYaml(it) }.toMutableList()
 
         @Suppress("UNCHECKED_CAST") val kategorienYaml = yaml[KATEGORIEN] as List<Map<String, Any>>
-        kategorien = kategorienYaml.map { yamlToKategorie(it, karten) }.toMutableList()
+        kategorien = kategorienYaml.map { Kategorie.fromYaml(it, karten) }.toMutableList()
 
         @Suppress("UNCHECKED_CAST") val spieleYaml = yaml[SPIELE] as List<Map<String, Any>>
-        spiele = spieleYaml.map { yamlToSpiel(it, kategorien) }.toMutableList()
+        spiele = spieleYaml.map { Spiel.fromYaml(it, kategorien) }.toMutableList()
     }
 
 
@@ -56,7 +56,7 @@ class Datenbanksystem(private val datenbank: File) {
         kartentexte.forEach {
             var neueKarte = findeElement(it, karten)
             if (neueKarte == null) {
-                neueKarte = eingabeToKarte(neueId, sprache, it)
+                neueKarte = Karte.fromEingabe(neueId, sprache, it)
             } else {
                 neueKarte.localizations[Sprachen.OG] = it
                 neueKarte.setUebersetzung(sprache, it)
@@ -105,10 +105,10 @@ class Datenbanksystem(private val datenbank: File) {
             val neueID = neueID(findenIn)
             when (findenIn[0]) {
                 is Kategorie -> neueSammlung =
-                    eingabeToKategorie(neueID, sprache, name, elemente as List<Karte>) as T
+                    Kategorie.fromEingabe(neueID, sprache, name, elemente as List<Karte>) as T
 
                 is Spiel -> neueSammlung =
-                    eingabeToSpiel(neueID, sprache, name, elemente as List<Kategorie>) as T
+                    Spiel.fromEingabe(neueID, sprache, name, elemente as List<Kategorie>) as T
             }
         } else {
             neueSammlung.localizations[Sprachen.OG] = name

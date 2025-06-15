@@ -18,41 +18,26 @@ abstract class LokalisierbaresSpielelement(
     open fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
         if (sprache != Sprachen.OG) localizations[sprache] = bezeichnung
     }
-}
 
-fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
-    return findeIn.find { element ->
-        element.localizations.values.any { localization ->
-            localization.equals(bezeichnung)
+    companion object {
+        fun fromEingabe(
+            id: Int, sprache: Sprachen, text: String
+        ): Pair<Int, MutableMap<Sprachen, String>> {
+            val localizations =
+                Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }
+                    .toMutableMap()
+            return id to localizations
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        fun fromYaml(
+            data: Map<String, Any>
+        ): Pair<Int, MutableMap<Sprachen, String>> {
+            val id = data[ID] as Int
+            val localizations = ((data[TEXT]
+                ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
+                .toMutableMap()
+            return id to localizations
         }
     }
-}
-
-
-fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
-    findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
-
-
-fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
-    return ids.map { id ->
-        findeElement(id, findeIn)
-    }
-}
-
-@Suppress("UNCHECKED_CAST")
-fun yamlToLokalisierbaresElement(
-    data: Map<String, Any>): Pair<Int, MutableMap<Sprachen, String>> {
-    val id = data[ID] as Int
-    val localizations =
-        ((data[TEXT] ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
-            .toMutableMap()
-    return id to localizations
-}
-
-fun eingabeToLokalisierbaresElement(
-    id: Int, sprache: Sprachen, text: String): Pair<Int, MutableMap<Sprachen, String>> {
-    val localizations =
-        Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) text else "" }
-            .toMutableMap()
-    return id to localizations
 }

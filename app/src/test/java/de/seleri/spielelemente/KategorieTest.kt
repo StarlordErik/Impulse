@@ -57,7 +57,7 @@ class KategorieTest {
     @Test
     fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
         val kategorie1 =
-            eingabeToKategorie(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
+            Kategorie.fromEingabe(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
         kategorie1.hinzugefuegteElemente = listOf(testKarte2())
         kategorie1.originaleElemente[DAVON_ENTFERNT] = listOf(testKarte1())
         assertEquals(testKategorie1().id, kategorie1.id)
@@ -66,7 +66,7 @@ class KategorieTest {
         assertEquals(testKategorie1().hinzugefuegteElemente, kategorie1.hinzugefuegteElemente)
         assertEquals(testKategorie1(), kategorie1)
 
-        val kategorie2 = eingabeToKategorie(
+        val kategorie2 = Kategorie.fromEingabe(
             2, Sprachen.DE, TEST_KATEGORIE_2_EINGABE, listOf(testKarte1(), testKarte2())
         )
         kategorie2.hinzugefuegteElemente = emptyList()
@@ -85,10 +85,10 @@ class KategorieTest {
 
     @Test
     fun `Test yamlToKategorie() - Konvertierung von YAML zu Kategorie`() {
-        val kategorie1 = yamlToKategorien(testKategorie1Yaml(), alleTestKarten())[0]
+        val kategorie1 = Kategorie.fromYaml(testKategorie1Yaml(), alleTestKarten())[0]
         assertEquals(testKategorie1(), kategorie1)
 
-        val kategorie2 = yamlToKategorien(testKategorie2Yaml(), alleTestKarten())[0]
+        val kategorie2 = Kategorie.fromYaml(testKategorie2Yaml(), alleTestKarten())[0]
         assertEquals(testKategorie2(), kategorie2)
     }
 
@@ -96,11 +96,11 @@ class KategorieTest {
     fun `Test Rundreise yamlToKategorieToYaml - Konvertierung von YAML zu Kategorie und wieder zurueck`() {
         assertEquals(
             testKategorie1Yaml(),
-            yamlToKategorien(testKategorie1Yaml(), alleTestKarten())[0].toYaml()
+            Kategorie.fromYaml(testKategorie1Yaml(), alleTestKarten())[0].toYaml()
         )
         assertEquals(
             testKategorie2Yaml(),
-            yamlToKategorien(testKategorie2Yaml(), alleTestKarten())[0].toYaml()
+            Kategorie.fromYaml(testKategorie2Yaml(), alleTestKarten())[0].toYaml()
         )
     }
 

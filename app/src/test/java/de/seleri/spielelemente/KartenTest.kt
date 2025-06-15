@@ -49,13 +49,13 @@ class KartenTest {
 
     @Test
     fun `Test eingabeToKarte() - Konvertierung von Kartentext zu Karte`() {
-        val karte1 = eingabeToKarte(1, Sprachen.EN, TEST_KARTE_1_EINGABE)
+        val karte1 = Karte.fromEingabe(1, Sprachen.EN, TEST_KARTE_1_EINGABE)
         assertEquals(testKarte1().id, karte1.id)
         assertEquals(testKarte1().localizations, karte1.localizations)
         karte1.geloescht = true
         assertEquals(testKarte1(), karte1)
 
-        val karte2 = eingabeToKarte(2, Sprachen.DE, TEST_KARTE_2_EINGABE)
+        val karte2 = Karte.fromEingabe(2, Sprachen.DE, TEST_KARTE_2_EINGABE)
         assertEquals(testKarte2().id, karte2.id)
         assertEquals(testKarte2().localizations, karte2.localizations)
         karte2.gesehen = true
@@ -70,17 +70,17 @@ class KartenTest {
 
     @Test
     fun `Test yamlToKarte() - Konvertierung von YAML zu Karte`() {
-        val karte1 = yamlToKarten(testKarte1Yaml())[0]
+        val karte1 = Karte.fromYaml(testKarte1Yaml())[0]
         assertEquals(testKarte1(), karte1)
 
-        val karte2 = yamlToKarten(testKarte2Yaml())[0]
+        val karte2 = Karte.fromYaml(testKarte2Yaml())[0]
         assertEquals(testKarte2(), karte2)
     }
 
     @Test
     fun `Test Rundreise yamlToKarteToYaml - Konvertierung von YAML zu Karte und wieder zurueck`() {
-        assertEquals(testKarte1Yaml(), yamlToKarten(testKarte1Yaml())[0].toYaml())
-        assertEquals(testKarte2Yaml(), yamlToKarten(testKarte2Yaml())[0].toYaml())
+        assertEquals(testKarte1Yaml(), Karte.fromYaml(testKarte1Yaml())[0].toYaml())
+        assertEquals(testKarte2Yaml(), Karte.fromYaml(testKarte2Yaml())[0].toYaml())
     }
 
     @Test

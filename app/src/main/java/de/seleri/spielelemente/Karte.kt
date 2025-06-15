@@ -17,21 +17,23 @@ data class Karte(
         output.append(attributToYamlZeile(2, GELOESCHT, geloescht))
         return output.toString()
     }
-}
 
-fun yamlToKarten(yamlInput: String): List<Karte> {
-    val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-    return data.map { yamlToKarte(it) }
-}
+    companion object {
+        fun fromEingabe(id: Int, sprache: Sprachen, text: String): Karte {
+            val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(id, sprache, text)
+            return Karte(id, localizations, false, false)
+        }
 
-fun yamlToKarte(data: Map<String, Any>): Karte {
-    val (id, localizations) = yamlToLokalisierbaresElement(data)
-    return Karte(
-        id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
-    )
-}
+        fun fromYaml(data: Map<String, Any>): Karte {
+            val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
+            return Karte(
+                id, localizations, data[GESEHEN] as Boolean, data[GELOESCHT] as Boolean
+            )
+        }
 
-fun eingabeToKarte(id: Int, sprache: Sprachen, text: String): Karte {
-    val (id, localizations) = eingabeToLokalisierbaresElement(id, sprache, text)
-    return Karte(id, localizations, false, false)
+        fun fromYaml(yamlInput: String): List<Karte> {
+            val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
+            return data.map { fromYaml(it) }
+        }
+    }
 }
