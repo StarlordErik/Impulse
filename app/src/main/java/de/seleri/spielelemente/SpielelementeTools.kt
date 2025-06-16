@@ -23,7 +23,7 @@ const val HINZUGEFUEGTE: String = "hinzugefügte_"
 const val BINDESTRICH_IDS: String = "-$IDS"
 
 /**
- * Konvertiert ein Attribut zu einer YAML-Zeile.
+ * Konvertiert ein Attribut zu einer Zeile im YAML-Format
  *
  * @param anzahlEinrueckungen Anzahl an Tabs zur Einrückung der Zeile
  * @param attributsname Name des Attributs, welcher angezeigt werden soll
