@@ -6,13 +6,13 @@ import kotlin.collections.set
  * Abstrakte Basisklasse für alle Spielelemente mit ID und den localized Kartentexten/Namen
  *
  * @property id eindeutige ID des Elements
- * @property localizations enthält zu allen Sprachen-Enum-Einträgen den jeweiligen Kartentext/Namen
+ * @property localizations Map mit den Übersetzungen des Kartentextes/Namens für verschiedene Sprachen
  */
 abstract class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: MutableMap<Sprachen, String>
 ) {
     /**
-     * Konvertiert die ID ins YAML-Format und beginnt damit den YAML-Abschnitt eines Elements.
+     * Konvertiert die ID ins YAML-Format und beginnt damit den YAML-Datensatz eines Elements.
      *
      * @return nur die ID als YAML-String
      */
@@ -45,10 +45,10 @@ abstract class LokalisierbaresSpielelement(
     companion object {
 
         /**
-         * Erstellt ein Spielelement aus Eingabedaten von der Konsole bzw. eines Skripts.
+         * Erstellt ein neues Spielelement anhand von Benutzereingaben oder Skriptdaten.
          *
          * @param id neue, noch nicht vergebene ID
-         * @param sprache Sprache des Textes
+         * @param sprache Sprache der Bezeichnung
          * @param bezeichnung Kartentext / Name
          *
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
@@ -56,8 +56,6 @@ abstract class LokalisierbaresSpielelement(
         fun fromEingabe(
             id: Int, sprache: Sprachen, bezeichnung: String
         ): Pair<Int, MutableMap<Sprachen, String>> {
-
-
             /*
             für alle Sprachen: Speichert die Bezeichnung sowohl
                 in der entsprechenden Sprache als auch in OG, oder setzt "".
@@ -72,9 +70,9 @@ abstract class LokalisierbaresSpielelement(
         }
 
         /**
-         * Erstellt ein Spielelement aus einem YAML-Abschnitt.
+         * Erstellt ein Spielelement aus einem YAML-Datensatz.
          *
-         * @param data YAML-Abschnitt eines Elements
+         * @param data YAML-Datensatz eines Elements
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
         @Suppress("UNCHECKED_CAST")
