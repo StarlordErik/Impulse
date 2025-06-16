@@ -4,12 +4,12 @@ import kotlin.collections.set
 
 /**
  * Abstrakte Basisklasse für alle Spielelemente mit ID und den localized Kartentexten/Namen
+ *
+ * @property id eindeutige ID des Elements
+ * @property localizations enthält zu allen Sprachen-Enum-Einträgen den jeweiligen Kartentext/Namen
  */
 abstract class LokalisierbaresSpielelement(
-    open val id: Int,
-
-    // enthält zu allen Sprachen-Enum-Einträgen den jeweiligen Kartentext/Namen
-    open val localizations: MutableMap<Sprachen, String>
+    open val id: Int, open val localizations: MutableMap<Sprachen, String>
 ) {
     /**
      * Konvertiert die ID ins YAML-Format und beginnt damit den YAML-Abschnitt eines Elements.
