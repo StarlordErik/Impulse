@@ -1,4 +1,4 @@
-"Wie schüchtern bist du?",
+git "Wie schüchtern bist du?",
 "Wie gerne würdest du Geheimagent werden wollen?",
 "Wie gerne würdest du auf der ersten Marskolonie leben (für 5 Jahre, einschließlich der Reise)?",
 "Wie gerne kochst du?",

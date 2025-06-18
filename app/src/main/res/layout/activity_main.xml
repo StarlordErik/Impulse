@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="#181f1c"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -26,12 +26,15 @@
                 android:textSize="64sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="#FFFFFF" />
+                android:textColor="#D36135"
+                android:shadowColor="#A24936"/>
         </FrameLayout>
 
         <!-- Dynamischer Button-Container -->
         <LinearLayout
             android:id="@+id/button_container"
+            android:background="@drawable/rounded_corner"
+            android:textColor="#F8F8FF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
