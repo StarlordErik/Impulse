@@ -3,13 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#121212">
-
+    android:background="#181f1c">
     <LinearLayout
-        android:id="@+id/container_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp" />
+        android:gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Titel-Container -->
+        <FrameLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <ImageView
+                android:id="@+id/settings_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:contentDescription="@string/settings_for_game_mechanics"
+                android:layout_gravity="end|top"
+                android:clickable="true"
+                android:onClick="klickEinstellungen"
+                android:src="@drawable/ic_action_name" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/container_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp" />
+    </LinearLayout>
 </ScrollView>
