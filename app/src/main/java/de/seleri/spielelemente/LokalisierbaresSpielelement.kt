@@ -11,6 +11,7 @@ import kotlin.collections.set
 abstract class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: MutableMap<Sprachen, String>
 ) {
+
     /**
      * Konvertiert die ID ins YAML-Format und beginnt damit den YAML-Datensatz eines Elements.
      *
