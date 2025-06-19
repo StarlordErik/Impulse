@@ -1,11 +1,31 @@
 package de.seleri.spielelemente
 
+/**
+ * Abstrakte Basisklasse für alle Spielelemente, die eine Sammlung von anderen Elementen beeinhalten
+ *
+ * @property id eindeutige ID des Elements
+ * @property localizations Map mit den Übersetzungen des Namens für verschiedene Sprachen
+ * @property originaleElemente zwei Listen mit IDs der originalen Elementen und derer, die vom Nutzer entfernt wurden
+ * @property hinzugefuegteElemente Liste der vom Nutzer hinzugefügten Elemente zur Sammlung
+ */
 abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
     open val originaleElemente: MutableMap<String, List<T>>,
     open var hinzugefuegteElemente: List<T>
 ) : LokalisierbaresSpielelement(id, localizations) {
+
+    /**
+     * Konvertiert die ID mit Namen ins YAML-Format und beginnt damit den YAML-Datensatz einer Sammlung.
+     *
+     * @return nur ID und Name als YAML-String
+     */
+    override fun toYaml(): String {
+        val output = StringBuilder()
+        output.append(super.toYaml())
+        output.append(localizationsToYaml(NAME))
+        return output.toString()
+    }
 
     internal fun elementeEntfernen(entfernteElemente: List<T>) {
         entfernteElemente.forEach {
@@ -36,13 +56,6 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         return aktuelleElemente
     }
 
-    override fun toYaml(): String {
-        val output = StringBuilder()
-        output.append(super.toYaml())
-        output.append(localizationsToYaml(NAME))
-        return output.toString()
-    }
-
     internal fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
         val output = StringBuilder()
         output.append(attributToYamlZeile(2, "$ORIGINALE$elemente", originaleElemente))
@@ -55,30 +68,16 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     }
 
     companion object {
-        @Suppress("UNCHECKED_CAST")
-        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromYaml(
-            data: Map<String, Any>,
-            moeglicheKarten: List<E>,
-            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
-        ): T {
-            val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
-
-            val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
-                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
-            val originaleIDs = findeElemente(originaleElementeIDs[IDS]!!, moeglicheKarten)
-            val entfernteIDs =
-                findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheKarten)
-            val originaleElemente =
-                mutableMapOf<String, List<E>>(IDS to originaleIDs, DAVON_ENTFERNT to entfernteIDs)
-
-            val weitereIds = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
-
-            return constructor(
-                id, localizations, originaleElemente, findeElemente(weitereIds, moeglicheKarten)
-            )
-        }
-
+        /**
+         * Erstellt eine Sammlung anhand von Benutzereingaben oder Skriptdaten.
+         *
+         * @param id neue, noch nicht vergebene ID
+         * @param sprache Sprache des Namens
+         * @param name Name
+         * @param originaleElemente Liste der original enthaltenen Elemente
+         * @param constructor Konstruktor der Sammlung vom Typ T
+         * @return neue Sammlung vom Typ T: ohne entfernte oder hinzugefügte Elemente
+         */
         fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromEingabe(
             id: Int,
             sprache: Sprachen,
@@ -86,11 +85,54 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
             originaleElemente: List<E>,
             constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
         ): T {
+
+            // lässt id, sprache und name in der Superklasse verarbeiten
             val (id, localizations) = fromEingabe(id, sprache, name)
+
             val originaleElementeMitNullEntfernten = mutableMapOf<String, List<E>>(
                 IDS to originaleElemente, DAVON_ENTFERNT to emptyList()
             )
-            return constructor(id, localizations, originaleElementeMitNullEntfernten, listOf())
+            return constructor(id, localizations, originaleElementeMitNullEntfernten, emptyList())
+        }
+
+        /**
+         * Erstellt eine Sammlung aus einem YAML-Datensatz.
+         *
+         * @param data YAML-Datensatz einer Sammlung
+         * @param moeglicheElemente Liste aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -
+         * im Zweifel einfach alle möglichen Elemente
+         * @param constructor Konstruktor der Sammlung vom Typ T
+         * @return neue Sammlung vom Typ T mit ausgelesenen Attributswerten
+         */
+        @Suppress("UNCHECKED_CAST")
+        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromYaml(
+            data: Map<String, Any>,
+            moeglicheElemente: List<E>,
+            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
+        ): T {
+
+            // lässt id und localizations in der Superklasse verarbeiten
+            val (id, localizations) = fromYaml(data)
+
+
+            val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
+                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
+            val hinzugefuegteIDs = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
+                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
+
+            // findet alle Elemente per ID aus der Liste aller möglichen Elemente
+            val originaleElemente = findeElemente(originaleElementeIDs[IDS]!!, moeglicheElemente)
+            val entfernteElemente =
+                findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheElemente)
+            val hinzugefuegteElemente = findeElemente(hinzugefuegteIDs, moeglicheElemente)
+
+            val originaleUndDavonEntfernteElemente = mutableMapOf<String, List<E>>(
+                IDS to originaleElemente, DAVON_ENTFERNT to entfernteElemente
+            )
+
+            return constructor(
+                id, localizations, originaleUndDavonEntfernteElemente, hinzugefuegteElemente
+            )
         }
     }
 }
