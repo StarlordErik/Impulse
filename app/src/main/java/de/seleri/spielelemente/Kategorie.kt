@@ -70,7 +70,7 @@ data class Kategorie(
          * @param sprache Sprache des Namens
          * @param name Name
          * @param originaleKarten Liste der original enthaltenen Karten
-         * @return neue Kategorie: ohne entfernte oder hinzugefügte Karten
+         * @return neue Kategorie ohne entfernte oder hinzugefügte Karten
          */
         fun fromEingabe(
             id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>

@@ -111,7 +111,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
          * @param name Name
          * @param originaleElemente Liste der original enthaltenen Elemente
          * @param constructor Konstruktor der Sammlung vom Typ T
-         * @return neue Sammlung vom Typ T: ohne entfernte oder hinzugefügte Elemente
+         * @return neue Sammlung vom Typ T ohne entfernte oder hinzugefügte Elemente
          */
         fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromEingabe(
             id: Int,

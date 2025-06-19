@@ -88,7 +88,7 @@ data class Spiel(
          * @param sprache Sprache des Spielnamens
          * @param name Name
          * @param originaleKategorien Liste der ursprünglichen Kategorien
-         * @return neues Spiel: ohne entfernte oder hinzugefügte Kategorien
+         * @return neues Spiel ohne entfernte oder hinzugefügte Kategorien
          */
         fun fromEingabe(
             id: Int, sprache: Sprachen, name: String, originaleKategorien: List<Kategorie>
