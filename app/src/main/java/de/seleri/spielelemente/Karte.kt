@@ -18,7 +18,7 @@ data class Karte(
 ) : LokalisierbaresSpielelement(id, localizations) {
 
     /**
-     * Wandelt die Karte in einen YAML-kompatiblen String um.
+     * Konvertiert die Karte ins YAML-Format.
      *
      * @return String mit allen Eigenschaften der Karte im YAML-Format
      */
