@@ -51,7 +51,6 @@ abstract class LokalisierbaresSpielelement(
          * @param id neue, noch nicht vergebene ID
          * @param sprache Sprache der Bezeichnung
          * @param bezeichnung Kartentext / Name
-         *
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
         fun fromEingabe(
