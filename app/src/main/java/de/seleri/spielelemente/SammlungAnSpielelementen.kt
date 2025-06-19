@@ -27,37 +27,15 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         return output.toString()
     }
 
-    internal fun elementeEntfernen(entfernteElemente: List<T>) {
-        entfernteElemente.forEach {
-            originaleElemente[DAVON_ENTFERNT] = originaleElemente[DAVON_ENTFERNT]!!.plus(it)
-            hinzugefuegteElemente = hinzugefuegteElemente.minus(it)
-        }
-    }
-
-    internal fun elementeHinzufuegen(neueElemente: List<T>) {
-        neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
-
-        val neuHinzugefuegt: MutableSet<T> = emptySet<T>().toMutableSet()
-        neuHinzugefuegt.addAll(hinzugefuegteElemente)
-        neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
-        hinzugefuegteElemente = neuHinzugefuegt.toList()
-    }
-
-    internal fun getAlleElemente(): List<T> {
-        val alleElemente = mutableListOf<T>()
-        originaleElemente[IDS]?.let { alleElemente.addAll(it) }
-        alleElemente.addAll(hinzugefuegteElemente)
-        return alleElemente
-    }
-
-    internal fun getAlleAktuellenElemente(): List<T> {
-        val aktuelleElemente = getAlleElemente().toMutableList()
-        originaleElemente[DAVON_ENTFERNT]?.let { aktuelleElemente.removeAll(it) }
-        return aktuelleElemente
-    }
-
+    /**
+     * Konvertiert die originalen, davon entfernten und hinzugefügten Elemente ins YAML-Format.
+     *
+     * @param elemente Bezeichnung der Elemente (/Bestandteile) der Sammlung
+     * @return "originale-T: IDS: [.,.,.] davon_entfernt: [.,.,.] \n hinzugefuegte-T: [.,.,.]" als YAML-String
+     */
     internal fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
         val output = StringBuilder()
+
         output.append(attributToYamlZeile(2, "$ORIGINALE$elemente", originaleElemente))
         output.append(
             attributToYamlZeile(
@@ -65,6 +43,63 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
             )
         )
         return output.toString()
+    }
+
+    /**
+     * Gibt alle Elemente der Sammlung zurück und ignoriert die davon entfernten.
+     *
+     * @return originale Elemente + hinzugefügte Elemente
+     */
+    internal fun getAlleElemente(): List<T> {
+        val alleElemente = mutableListOf<T>()
+        originaleElemente[IDS]!!.let { alleElemente.addAll(it) }
+        alleElemente.addAll(hinzugefuegteElemente)
+        return alleElemente
+    }
+
+    /**
+     * Gibt alle Elemente der Sammlung zurück ohne die "davon entfernten" Elemente.
+     *
+     * @return (originale Elemente - davon entfernte Elemente) + hinzugefügte Elemente
+     */
+    internal fun getAlleAktuellenElemente(): List<T> {
+        val aktuelleElemente = getAlleElemente().toMutableList()
+        originaleElemente[DAVON_ENTFERNT]!!.let { aktuelleElemente.removeAll(it) }
+        return aktuelleElemente
+    }
+
+    /**
+     * Fügt neue Elemente zur Sammlung hinzu.
+     * Dafür werden sie der der Liste der hinzugefügten Elemente einfach hinzugefügt und für den Fall,
+     * dass es schon in den originalen Elementen enthalten war und entfernt wurde, wird es rehabilitiert.
+     *
+     * @param neueElemente Elemente, die zur Sammlung hinzugefügt werden sollen
+     */
+    internal fun elementeHinzufuegen(neueElemente: List<T>) {
+
+        // rehabilitert die Elemente, die vorher entfernt wurden
+        neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
+
+        val neuHinzugefuegt: MutableSet<T> = hinzugefuegteElemente.toMutableSet() // keine Duplikate!
+
+        // fügt es nur hinzu, wenn es nicht auch Teil der originalen (und hinzugefügten) Elemente ist
+        neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
+
+        hinzugefuegteElemente = neuHinzugefuegt.toList()
+    }
+
+    /**
+     * Entfernt Elemente aus der Sammlung.
+     * Dafür werden sie der Liste der davon entfernten Elemente einfach hinzugefügt
+     * und/oder aus den hinzugefügten Elementen gelöscht.
+     *
+     * @param entfernteElemente Elemente, die aus der Sammlung entfernt werden sollen
+     */
+    internal fun elementeEntfernen(entfernteElemente: List<T>) {
+        entfernteElemente.forEach {
+            originaleElemente[DAVON_ENTFERNT] = originaleElemente[DAVON_ENTFERNT]!!.plus(it)
+            hinzugefuegteElemente = hinzugefuegteElemente.minus(it)
+        }
     }
 
     companion object {
