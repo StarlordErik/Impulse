@@ -7,27 +7,6 @@ import java.io.File
 import java.nio.file.Paths
 import kotlin.collections.set
 
-/*
-Für eine zentrale Initialisierung in einer Application-Klasse speichern:
-
-class MyApp : Application() {
-    lateinit var datenbank: Datenbank
-
-    override fun onCreate() {
-        super.onCreate()
-        datenbank = Datenbank(this)
-    }
-}
-
-Dann in AndroidManifest.xml:
-<application
-    android:name=".MyApp"
-    ... >
-
-Und in Activities:
-val datenbank = (application as MyApp).datenbank
-
- */
 class Datenbanksystem(private val datenbank: File) {
 
     val karten: MutableList<Karte>
