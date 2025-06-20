@@ -57,6 +57,14 @@ class Datenbanksystem(private val datenbank: File) {
         datenbank.writeText(builder.toString())
     }
 
+    fun getRandomKartentext(kategorie: Kategorie) : String {
+        val kartentexte = kategorie.getAlleAktuellenKarten().map {
+            it.localizations[Sprachen.OG]
+        }
+
+        return kartentexte.random()!!
+    }
+
     private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
         return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
     }
