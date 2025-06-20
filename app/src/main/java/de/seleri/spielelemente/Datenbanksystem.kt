@@ -58,13 +58,27 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>) : String {
-        val kartentexte = when (sammlung) {
-            is Kategorie -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
-            is Spiel -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+        val karten = when (sammlung) {
+            is Kategorie -> sammlung.getAlleUngesehenenKarten()
+            is Spiel -> sammlung.getAlleUngesehenenKarten()
             else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
         }
 
-        return kartentexte.random()!!
+        // Wenn es keine ungesehenen Karten gibt, dann sind wohl schon alle durch und
+        // man kann die Sammlung von vorne durchgehen.
+        if (karten.isEmpty()) {
+            when (sammlung) {
+                is Kategorie -> sammlung.setKartenUngesehen()
+                is Spiel -> sammlung.setKartenUngesehen()
+            }
+            return getRandomKartentext(sammlung)
+        }
+
+        val randomKarte = karten.random()
+        randomKarte.gesehen = true
+        speichereYaml()
+
+        return randomKarte.localizations[Sprachen.OG]!!
     }
 
     private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {

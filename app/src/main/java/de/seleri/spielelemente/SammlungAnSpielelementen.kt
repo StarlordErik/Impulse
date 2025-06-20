@@ -79,6 +79,15 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     }
 
     /**
+     * Setzt alle Karten der Sammlung auf "ungesehen".
+     *
+     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
+     */
+    internal fun setKartenUngesehen(aktuelleKarten: List<Karte>) {
+        aktuelleKarten.forEach { it.gesehen = false }
+    }
+
+    /**
      * Fügt neue Elemente zur Sammlung hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Elemente einfach hinzugefügt und für den Fall,
      * dass es schon in den originalen Elementen enthalten war und entfernt wurde, wird es rehabilitiert.

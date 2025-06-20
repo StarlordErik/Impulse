@@ -71,6 +71,13 @@ data class Spiel(
     }
 
     /**
+     * Setzt alle Karten des Spiels auf "ungesehen".
+     */
+    fun setKartenUngesehen() {
+        setKartenUngesehen(getAlleAktuellenKarten())
+    }
+
+    /**
      * Fügt neue Kategorien zum Spiel hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Kategorien einfach hinzugefügt und für den Fall,
      * dass sie schon in den originalen Kategorien enthalten waren und entfernt wurden, werden sie rehabilitiert.

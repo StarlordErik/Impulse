@@ -53,6 +53,13 @@ data class Kategorie(
     }
 
     /**
+     * Setzt alle Karten der Kategorie auf "ungesehen".
+     */
+    fun setKartenUngesehen() {
+        setKartenUngesehen(getAlleAktuellenKarten())
+    }
+
+    /**
      * Fügt neue Karten zur Kategorie hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Karten einfach hinzugefügt und für den Fall,
      * dass sie schon in den originalen Karten enthalten waren und entfernt wurden, werden sie rehabilitiert.
@@ -60,7 +67,6 @@ data class Kategorie(
      * @param karten Karten, die zur Kategorie hinzugefügt werden sollen
      */
     fun kartenHinzufuegen(karten: List<Karte>) = elementeHinzufuegen(karten)
-
     /**
      * Entfernt Karten aus der Kategorie.
      * Dafür werden sie der Liste der davon entfernten Karten einfach hinzugefügt
