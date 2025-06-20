@@ -7,6 +7,11 @@ import java.io.File
 import java.nio.file.Paths
 import kotlin.collections.set
 
+const val DATENBANK_NAME = "datenbank"
+const val DATENBANK_DATEIFORMAT = ".yml"
+const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
+const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
+
 class Datenbanksystem(private val datenbank: File) {
 
     val karten: MutableList<Karte>
@@ -27,6 +32,44 @@ class Datenbanksystem(private val datenbank: File) {
         spiele = spieleYaml.map { Spiel.fromYaml(it, kategorien) }.toMutableList()
     }
 
+    private fun speichereYaml() {
+        val builder = StringBuilder()
+
+        builder.append(attributToYamlZeile(0, KARTEN, null))
+        for (karte in karten) {
+            builder.append(karte.toYaml())
+        }
+
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, KATEGORIEN, null))
+        for (kategorie in kategorien) {
+            builder.append(kategorie.toYaml())
+        }
+
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, SPIELE, null))
+        for (spiel in spiele) {
+            builder.append(spiel.toYaml())
+        }
+
+        datenbank.writeText(builder.toString())
+    }
+
+    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>) : String {
+        val kartentexte = when (sammlung) {
+            is Kategorie -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+            is Spiel -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+            else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
+        }
+
+        return kartentexte.random()!!
+    }
+
+    private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
+        return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+    }
 
     fun neueKarten(kartentexte: List<String>, sprache: Sprachen): List<Karte> {
         val neueKarten = mutableListOf<Karte>()
@@ -51,27 +94,6 @@ class Datenbanksystem(private val datenbank: File) {
         speichereYaml()
         return neueKarten.toList()
 
-    }
-
-    fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen): Kategorie {
-        val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)!!
-
-        if (neueKategorie !in kategorien) {
-            kategorien.add(neueKategorie)
-        }
-        speichereYaml()
-        return neueKategorie
-    }
-
-    fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen): Spiel {
-        val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)!!
-
-        if (neuesSpiel !in spiele) {
-            spiele.add(neuesSpiel)
-
-        }
-        speichereYaml()
-        return neuesSpiel
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -106,8 +128,25 @@ class Datenbanksystem(private val datenbank: File) {
         return neueSammlung
     }
 
-    private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
-        return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+    fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen): Kategorie {
+        val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)!!
+
+        if (neueKategorie !in kategorien) {
+            kategorien.add(neueKategorie)
+        }
+        speichereYaml()
+        return neueKategorie
+    }
+
+    fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen): Spiel {
+        val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)!!
+
+        if (neuesSpiel !in spiele) {
+            spiele.add(neuesSpiel)
+
+        }
+        speichereYaml()
+        return neuesSpiel
     }
 
     fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
@@ -141,47 +180,19 @@ class Datenbanksystem(private val datenbank: File) {
         speichereYaml()
     }
 
-    private fun speichereYaml() {
-        val builder = StringBuilder()
-
-        builder.append(attributToYamlZeile(0, KARTEN, null))
-        for (karte in karten) {
-            builder.append(karte.toYaml())
+    companion object {
+        fun generieren(context: Context): Datenbanksystem {
+            val datei = File(context.filesDir, DATENBANK_DATEI)
+            if (!datei.exists()) {
+                val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
+                datei.writeBytes(datenkbankInResRaw.readBytes())
+            }
+            return Datenbanksystem(datei)
         }
 
-        builder.append("\n")
-
-        builder.append(attributToYamlZeile(0, KATEGORIEN, null))
-        for (kategorie in kategorien) {
-            builder.append(kategorie.toYaml())
+        fun generieren(): Datenbanksystem {
+            val dateipfad = Paths.get(DATENBANK_PFAD)
+            return Datenbanksystem(dateipfad.toFile())
         }
-
-        builder.append("\n")
-
-        builder.append(attributToYamlZeile(0, SPIELE, null))
-        for (spiel in spiele) {
-            builder.append(spiel.toYaml())
-        }
-
-        datenbank.writeText(builder.toString())
     }
-}
-
-const val DATENBANK_NAME = "datenbank"
-const val DATENBANK_DATEIFORMAT = ".yml"
-const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
-const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
-
-fun datenbanksystemGenerieren(context: Context): Datenbanksystem {
-    val datei = File(context.filesDir, DATENBANK_DATEI)
-    if (!datei.exists()) {
-        val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
-        datei.writeBytes(datenkbankInResRaw.readBytes())
-    }
-    return Datenbanksystem(datei)
-}
-
-fun datenbanksystemGenerieren(): Datenbanksystem {
-    val dateipfad = Paths.get(DATENBANK_PFAD)
-    return Datenbanksystem(dateipfad.toFile())
 }
