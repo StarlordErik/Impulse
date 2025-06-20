@@ -52,7 +52,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
      */
     internal fun getAlleElemente(): List<T> {
         val alleElemente = mutableListOf<T>()
-        originaleElemente[IDS]!!.let { alleElemente.addAll(it) }
+        alleElemente.addAll(originaleElemente[IDS]!!)
         alleElemente.addAll(hinzugefuegteElemente)
         return alleElemente
     }
@@ -64,7 +64,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
      */
     internal fun getAlleAktuellenElemente(): List<T> {
         val aktuelleElemente = getAlleElemente().toMutableList()
-        originaleElemente[DAVON_ENTFERNT]!!.let { aktuelleElemente.removeAll(it) }
+        aktuelleElemente.removeAll(originaleElemente[DAVON_ENTFERNT]!!)
         return aktuelleElemente
     }
 
