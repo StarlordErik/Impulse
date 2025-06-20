@@ -68,13 +68,13 @@ data class Kategorie(
      */
     fun kartenHinzufuegen(karten: List<Karte>) = elementeHinzufuegen(karten)
     /**
-     * Entfernt Karten aus der Kategorie.
-     * Dafür werden sie der Liste der davon entfernten Karten einfach hinzugefügt
+     * Entfernt eine Karte aus der Kategorie.
+     * Dafür wird sie der Liste der davon entfernten Karten einfach hinzugefügt
      * und/oder aus den hinzugefügten Karten gelöscht.
      *
-     * @param karten Karten, die aus der Kategorie entfernt werden sollen
+     * @param zuEntfernendeKarte Karte, die aus der Kategorie entfernt werden soll
      */
-    fun kartenEntfernen(karten: List<Karte>) = elementeEntfernen(karten)
+    fun karteEntfernen(zuEntfernendeKarte: Karte) = elementEntfernen(zuEntfernendeKarte)
 
     companion object {
 

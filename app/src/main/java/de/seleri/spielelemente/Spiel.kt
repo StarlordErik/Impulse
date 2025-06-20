@@ -87,13 +87,13 @@ data class Spiel(
     fun kategorienHinzufuegen(kategorien: List<Kategorie>) = elementeHinzufuegen(kategorien)
 
     /**
-     * Entfernt Kategorien aus dem Spiel.
-     * Dafür werden sie der Liste der davon entfernten Kategorien einfach hinzugefügt
+     * Entfernt eine Kategorie aus dem Spiel.
+     * Dafür wird sie der Liste der davon entfernten Kategorien einfach hinzugefügt
      * und/oder aus den hinzugefügten Kategorien gelöscht.
      *
-     * @param kategorien Kategorien, die aus dem Spiel entfernt werden sollen
+     * @param zuEntfernendeKategorie Kategorie, die aus dem Spiel entfernt werden soll
      */
-    fun kategorienEntfernen(kategorien: List<Kategorie>) = elementeEntfernen(kategorien)
+    fun kategorieEntfernen(zuEntfernendeKategorie: Kategorie) = elementEntfernen(zuEntfernendeKategorie)
 
     companion object {
 

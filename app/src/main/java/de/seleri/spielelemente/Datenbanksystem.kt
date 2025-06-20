@@ -57,7 +57,7 @@ class Datenbanksystem(private val datenbank: File) {
         datenbank.writeText(builder.toString())
     }
 
-    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>) : String {
+    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>): String {
         val karten = when (sammlung) {
             is Kategorie -> sammlung.getAlleUngesehenenKarten()
             is Spiel -> sammlung.getAlleUngesehenenKarten()
@@ -111,7 +111,7 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
+    fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
     ): T? {
         var neueSammlung = findeElement(name, findenIn)
@@ -163,7 +163,18 @@ class Datenbanksystem(private val datenbank: File) {
         return neuesSpiel
     }
 
-    fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
+    fun karteLoeschen(zuLoeschendeKarte: Karte) {
+        zuLoeschendeKarte.geloescht = true
+        val kategorienMitZuLoeschenderKarte = kategorien.filter {
+            it.getAlleAktuellenKarten().contains(zuLoeschendeKarte)
+        }
+        kategorienMitZuLoeschenderKarte.forEach {
+            it.karteEntfernen(zuLoeschendeKarte)
+        }
+        speichereYaml()
+    }
+
+    fun <T: Any, E: SammlungAnSpielelementen<F>, F: LokalisierbaresSpielelement> hinzufuegen(
         spielOderKategorie: E, neueElemente: List<T>
     ) {
         when (spielOderKategorie) {
@@ -173,7 +184,7 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
+    private fun <T: Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
         when (neueKarten[0]) {
             is Karte -> kategorie.kartenHinzufuegen(neueKarten as List<Karte>)
             is Int -> kategorie.kartenHinzufuegen(findeElemente(neueKarten as List<Int>, karten))
@@ -181,8 +192,13 @@ class Datenbanksystem(private val datenbank: File) {
         speichereYaml()
     }
 
+    fun karteAusKategorieEntfernen(zuEntfernendeKarte: Karte, ausKategorie: Kategorie) {
+        ausKategorie.karteEntfernen(zuEntfernendeKarte)
+        speichereYaml()
+    }
+
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
+    private fun <T: Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
         when (kategorienIDs[0]) {
             is Kategorie -> spiel.kategorienHinzufuegen(kategorienIDs as List<Kategorie>)
             is Int -> spiel.kategorienHinzufuegen(
@@ -191,6 +207,11 @@ class Datenbanksystem(private val datenbank: File) {
                 )
             )
         }
+        speichereYaml()
+    }
+
+    fun kategorieAusSpielEntfernen(zuEntfernendeKategorie: Kategorie, ausSpiel: Spiel) {
+        ausSpiel.kategorieEntfernen(zuEntfernendeKategorie)
         speichereYaml()
     }
 
