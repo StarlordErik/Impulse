@@ -62,6 +62,22 @@ data class Spiel(
         getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
 
     /**
+     * Gibt alle noch nicht gesehenen Karten des Spiels zurück.
+     *
+     * @return noch nicht gesehene Karten
+     */
+    fun getAlleUngesehenenKarten(): List<Karte> {
+        return geseheneKartenRausfiltern(getAlleAktuellenKarten())
+    }
+
+    /**
+     * Setzt alle Karten des Spiels auf "ungesehen".
+     */
+    fun setKartenUngesehen() {
+        setKartenUngesehen(getAlleAktuellenKarten())
+    }
+
+    /**
      * Fügt neue Kategorien zum Spiel hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Kategorien einfach hinzugefügt und für den Fall,
      * dass sie schon in den originalen Kategorien enthalten waren und entfernt wurden, werden sie rehabilitiert.
@@ -71,13 +87,13 @@ data class Spiel(
     fun kategorienHinzufuegen(kategorien: List<Kategorie>) = elementeHinzufuegen(kategorien)
 
     /**
-     * Entfernt Kategorien aus dem Spiel.
-     * Dafür werden sie der Liste der davon entfernten Kategorien einfach hinzugefügt
+     * Entfernt eine Kategorie aus dem Spiel.
+     * Dafür wird sie der Liste der davon entfernten Kategorien einfach hinzugefügt
      * und/oder aus den hinzugefügten Kategorien gelöscht.
      *
-     * @param kategorien Kategorien, die aus dem Spiel entfernt werden sollen
+     * @param zuEntfernendeKategorie Kategorie, die aus dem Spiel entfernt werden soll
      */
-    fun kategorienEntfernen(kategorien: List<Kategorie>) = elementeEntfernen(kategorien)
+    fun kategorieEntfernen(zuEntfernendeKategorie: Kategorie) = elementEntfernen(zuEntfernendeKategorie)
 
     companion object {
 

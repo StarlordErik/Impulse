@@ -8,12 +8,12 @@ package de.seleri.spielelemente
  * @property originaleElemente zwei Listen mit IDs der originalen Elementen und derer, die vom Nutzer entfernt wurden
  * @property hinzugefuegteElemente Liste der vom Nutzer hinzugefügten Elemente zur Sammlung
  */
-abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
+abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
     open val originaleElemente: MutableMap<String, List<T>>,
     open var hinzugefuegteElemente: List<T>
-) : LokalisierbaresSpielelement(id, localizations) {
+): LokalisierbaresSpielelement(id, localizations) {
 
     /**
      * Konvertiert die ID mit Namen ins YAML-Format und beginnt damit den YAML-Datensatz einer Sammlung.
@@ -52,7 +52,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
      */
     internal fun getAlleElemente(): List<T> {
         val alleElemente = mutableListOf<T>()
-        originaleElemente[IDS]!!.let { alleElemente.addAll(it) }
+        alleElemente.addAll(originaleElemente[IDS]!!)
         alleElemente.addAll(hinzugefuegteElemente)
         return alleElemente
     }
@@ -64,8 +64,27 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
      */
     internal fun getAlleAktuellenElemente(): List<T> {
         val aktuelleElemente = getAlleElemente().toMutableList()
-        originaleElemente[DAVON_ENTFERNT]!!.let { aktuelleElemente.removeAll(it) }
+        aktuelleElemente.removeAll(originaleElemente[DAVON_ENTFERNT]!!)
         return aktuelleElemente
+    }
+
+    /**
+     * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
+     *
+     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
+     * @return Liste an Karten, die noch nicht gesehen wurdenq
+     */
+    internal fun geseheneKartenRausfiltern(aktuelleKarten: List<Karte>): List<Karte> {
+        return aktuelleKarten.filter { !it.gesehen }
+    }
+
+    /**
+     * Setzt alle Karten der Sammlung auf "ungesehen".
+     *
+     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
+     */
+    internal fun setKartenUngesehen(aktuelleKarten: List<Karte>) {
+        aktuelleKarten.forEach { it.gesehen = false }
     }
 
     /**
@@ -80,7 +99,8 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
         // rehabilitert die Elemente, die vorher entfernt wurden
         neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
 
-        val neuHinzugefuegt: MutableSet<T> = hinzugefuegteElemente.toMutableSet() // keine Duplikate!
+        val neuHinzugefuegt: MutableSet<T> =
+            hinzugefuegteElemente.toMutableSet() // keine Duplikate!
 
         // fügt es nur hinzu, wenn es nicht auch Teil der originalen (und hinzugefügten) Elemente ist
         neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
@@ -89,17 +109,16 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     }
 
     /**
-     * Entfernt Elemente aus der Sammlung.
-     * Dafür werden sie der Liste der davon entfernten Elemente einfach hinzugefügt
+     * Entfernt ein Element aus der Sammlung.
+     * Dafür wird es der Liste der davon entfernten Elemente einfach hinzugefügt
      * und/oder aus den hinzugefügten Elementen gelöscht.
      *
-     * @param entfernteElemente Elemente, die aus der Sammlung entfernt werden sollen
+     * @param zuEntfernendesElement Element, das aus der Sammlung entfernt werden soll
      */
-    internal fun elementeEntfernen(entfernteElemente: List<T>) {
-        entfernteElemente.forEach {
-            originaleElemente[DAVON_ENTFERNT] = originaleElemente[DAVON_ENTFERNT]!!.plus(it)
-            hinzugefuegteElemente = hinzugefuegteElemente.minus(it)
-        }
+    internal fun elementEntfernen(zuEntfernendesElement: T) {
+        originaleElemente[DAVON_ENTFERNT] =
+            originaleElemente[DAVON_ENTFERNT]!!.plus(zuEntfernendesElement)
+        hinzugefuegteElemente = hinzugefuegteElemente.minus(zuEntfernendesElement)
     }
 
     companion object {
@@ -113,7 +132,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
          * @param constructor Konstruktor der Sammlung vom Typ T
          * @return neue Sammlung vom Typ T ohne entfernte oder hinzugefügte Elemente
          */
-        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromEingabe(
+        fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromEingabe(
             id: Int,
             sprache: Sprachen,
             name: String,
@@ -140,7 +159,7 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
          * @return neue Sammlung vom Typ T mit ausgelesenen Attributswerten
          */
         @Suppress("UNCHECKED_CAST")
-        fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> fromYaml(
+        fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
             data: Map<String, Any>,
             moeglicheElemente: List<E>,
             constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T

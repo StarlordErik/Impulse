@@ -57,14 +57,28 @@ class Datenbanksystem(private val datenbank: File) {
         datenbank.writeText(builder.toString())
     }
 
-    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>) : String {
-        val kartentexte = when (sammlung) {
-            is Kategorie -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
-            is Spiel -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>): String {
+        val karten = when (sammlung) {
+            is Kategorie -> sammlung.getAlleUngesehenenKarten()
+            is Spiel -> sammlung.getAlleUngesehenenKarten()
             else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
         }
 
-        return kartentexte.random()!!
+        // Wenn es keine ungesehenen Karten gibt, dann sind wohl schon alle durch und
+        // man kann die Sammlung von vorne durchgehen.
+        if (karten.isEmpty()) {
+            when (sammlung) {
+                is Kategorie -> sammlung.setKartenUngesehen()
+                is Spiel -> sammlung.setKartenUngesehen()
+            }
+            return getRandomKartentext(sammlung)
+        }
+
+        val randomKarte = karten.random()
+        randomKarte.gesehen = true
+        speichereYaml()
+
+        return randomKarte.localizations[Sprachen.OG]!!
     }
 
     private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
@@ -97,7 +111,7 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
+    fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
     ): T? {
         var neueSammlung = findeElement(name, findenIn)
@@ -149,7 +163,18 @@ class Datenbanksystem(private val datenbank: File) {
         return neuesSpiel
     }
 
-    fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
+    fun karteLoeschen(zuLoeschendeKarte: Karte) {
+        zuLoeschendeKarte.geloescht = true
+        val kategorienMitZuLoeschenderKarte = kategorien.filter {
+            it.getAlleAktuellenKarten().contains(zuLoeschendeKarte)
+        }
+        kategorienMitZuLoeschenderKarte.forEach {
+            it.karteEntfernen(zuLoeschendeKarte)
+        }
+        speichereYaml()
+    }
+
+    fun <T: Any, E: SammlungAnSpielelementen<F>, F: LokalisierbaresSpielelement> hinzufuegen(
         spielOderKategorie: E, neueElemente: List<T>
     ) {
         when (spielOderKategorie) {
@@ -159,7 +184,7 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
+    private fun <T: Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
         when (neueKarten[0]) {
             is Karte -> kategorie.kartenHinzufuegen(neueKarten as List<Karte>)
             is Int -> kategorie.kartenHinzufuegen(findeElemente(neueKarten as List<Int>, karten))
@@ -167,8 +192,13 @@ class Datenbanksystem(private val datenbank: File) {
         speichereYaml()
     }
 
+    fun karteAusKategorieEntfernen(zuEntfernendeKarte: Karte, ausKategorie: Kategorie) {
+        ausKategorie.karteEntfernen(zuEntfernendeKarte)
+        speichereYaml()
+    }
+
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
+    private fun <T: Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
         when (kategorienIDs[0]) {
             is Kategorie -> spiel.kategorienHinzufuegen(kategorienIDs as List<Kategorie>)
             is Int -> spiel.kategorienHinzufuegen(
@@ -177,6 +207,11 @@ class Datenbanksystem(private val datenbank: File) {
                 )
             )
         }
+        speichereYaml()
+    }
+
+    fun kategorieAusSpielEntfernen(zuEntfernendeKategorie: Kategorie, ausSpiel: Spiel) {
+        ausSpiel.kategorieEntfernen(zuEntfernendeKategorie)
         speichereYaml()
     }
 
