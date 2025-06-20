@@ -26,10 +26,6 @@ class SpielActivity : AppCompatActivity() {
         val container = findViewById<LinearLayout>(R.id.container_buttons)
 
         for (kategorie in spiel.getAlleAktuellenKategorien()) {
-            val karten = kategorie.getAlleAktuellenKarten().map {
-                it.localizations[Sprachen.OG]
-            }
-
             val button = Button(this).apply {
                 text = kategorie.localizations[Sprachen.OG]
                 textSize = KATEGORIE_TEXTGROESSE
@@ -39,10 +35,7 @@ class SpielActivity : AppCompatActivity() {
                 setPadding(PADDING, PADDING, PADDING, PADDING) // links, oben, rechts, unten
 
                 setOnClickListener {
-                    val randomText = karten.randomOrNull()
-                    if (randomText != null) {
-                        text = randomText
-                    }
+                    text = dbs.getRandomKartentext(kategorie)
                 }
 
                 val params = LinearLayout.LayoutParams(
