@@ -112,10 +112,10 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
      * Dafür werden sie der Liste der davon entfernten Elemente einfach hinzugefügt
      * und/oder aus den hinzugefügten Elementen gelöscht.
      *
-     * @param entfernteElemente Elemente, die aus der Sammlung entfernt werden sollen
+     * @param zuEntfernendeElemente Elemente, die aus der Sammlung entfernt werden sollen
      */
-    internal fun elementeEntfernen(entfernteElemente: List<T>) {
-        entfernteElemente.forEach {
+    internal fun elementeEntfernen(zuEntfernendeElemente: List<T>) {
+        zuEntfernendeElemente.forEach {
             originaleElemente[DAVON_ENTFERNT] = originaleElemente[DAVON_ENTFERNT]!!.plus(it)
             hinzugefuegteElemente = hinzugefuegteElemente.minus(it)
         }
