@@ -7,6 +7,11 @@ import java.io.File
 import java.nio.file.Paths
 import kotlin.collections.set
 
+const val DATENBANK_NAME = "datenbank"
+const val DATENBANK_DATEIFORMAT = ".yml"
+const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
+const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
+
 class Datenbanksystem(private val datenbank: File) {
 
     val karten: MutableList<Karte>
@@ -166,11 +171,6 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     companion object {
-        const val DATENBANK_NAME = "datenbank"
-        const val DATENBANK_DATEIFORMAT = ".yml"
-        const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
-        const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
-
         fun generieren(context: Context): Datenbanksystem {
             val datei = File(context.filesDir, DATENBANK_DATEI)
             if (!datei.exists()) {
