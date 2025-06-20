@@ -1,7 +1,7 @@
 package de.seleri.tools
 
+import de.seleri.spielelemente.Datenbanksystem
 import de.seleri.spielelemente.Sprachen
-import de.seleri.spielelemente.datenbanksystemGenerieren
 
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
@@ -64,7 +64,7 @@ fun main() {
     // oben die Daten eingeben
 
 
-    val dbs = datenbanksystemGenerieren()
+    val dbs = Datenbanksystem.generieren()
 
     val neueKarten = dbs.neueKarten(kartenTexte, sprache)
     println("Folgende KartenIDs wurden eingegeben: ${neueKarten.map { it.id }}")
