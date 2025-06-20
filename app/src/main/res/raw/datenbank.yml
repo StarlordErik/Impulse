@@ -2532,7 +2532,7 @@ Karten:
       DE: "Wie informierst du dich? Nenne jeweils 3 ...\n\n ... Websites\n ... Printerzeugnisse\n ... TV Formate\n ... Podcasts"
       EN: ""
     gesehen: false
-    gelöscht: false
+    gelöscht: true
   - ID: 363
     Text:
       OG: "Teile je Stichwort eine Kindheitserinnerung:\n\n-Süßigkeit\n-TV Serie\n-Gesellschaftsspiel\n-beste(r) Freund(in)"
@@ -3408,7 +3408,7 @@ Kategorien:
       EN: ""
     originale_Karten:
       IDs: [360,361,362,363,364,365,366,367,368,369]
-      davon_entfernt: []
+      davon_entfernt: [362]
     hinzugefügte_Karten-IDs: []
   - ID: 8
     Name:
