@@ -69,6 +69,16 @@ abstract class SammlungAnSpielelementen<T : LokalisierbaresSpielelement>(
     }
 
     /**
+     * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
+     *
+     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
+     * @return Liste an Karten, die noch nicht gesehen wurdenq
+     */
+    internal fun geseheneKartenRausfiltern(aktuelleKarten: List<Karte>): List<Karte>{
+        return aktuelleKarten.filter {!it.gesehen}
+    }
+
+    /**
      * Fügt neue Elemente zur Sammlung hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Elemente einfach hinzugefügt und für den Fall,
      * dass es schon in den originalen Elementen enthalten war und entfernt wurde, wird es rehabilitiert.

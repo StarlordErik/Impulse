@@ -44,6 +44,15 @@ data class Kategorie(
     fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
 
     /**
+     * Gibt alle noch nicht gesehenen Karten der Kategorie zurück.
+     *
+     * @return noch nicht gesehene Karten
+     */
+    fun getAlleUngesehenenKarten(): List<Karte> {
+        return geseheneKartenRausfiltern(getAlleAktuellenKarten())
+    }
+
+    /**
      * Fügt neue Karten zur Kategorie hinzu.
      * Dafür werden sie der der Liste der hinzugefügten Karten einfach hinzugefügt und für den Fall,
      * dass sie schon in den originalen Karten enthalten waren und entfernt wurden, werden sie rehabilitiert.
