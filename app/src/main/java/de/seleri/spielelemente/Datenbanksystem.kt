@@ -57,9 +57,11 @@ class Datenbanksystem(private val datenbank: File) {
         datenbank.writeText(builder.toString())
     }
 
-    fun getRandomKartentext(kategorie: Kategorie) : String {
-        val kartentexte = kategorie.getAlleAktuellenKarten().map {
-            it.localizations[Sprachen.OG]
+    fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>) : String {
+        val kartentexte = when (sammlung) {
+            is Kategorie -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+            is Spiel -> sammlung.getAlleAktuellenKarten().map { it.localizations[Sprachen.OG] }
+            else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
         }
 
         return kartentexte.random()!!
