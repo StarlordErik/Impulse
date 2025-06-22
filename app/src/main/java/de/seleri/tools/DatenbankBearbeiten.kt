@@ -8,20 +8,11 @@ fun main() {
 
     println("Hallo Welt!\n")
 
-    // Hier die Daten eingeben:
+    // Hier die Daten eingeben - für bestehende Sammlungen die Namen aus der Datenbank kopieren:
 
-    // val spielID : Int = 0 // 0 für ein neues Spiel
-    val spielName = "Erzählt euch mehr - für Paare" // wird nur bei ID != 0 beachtet
-
-    // val kategorieID: Int = 0 // 0 für eine neue Kategorie
-    val kategorieName = "Reflexion" // wird nur bei ID != 0 beachtet
-
-    val sprache = Sprachen.DE // Sprache der Karten
-    /*
-    var kartenIDs = listOf( // 0 für neue Karten
-        0
-    )
-    */
+    val spielName = "Erzählt euch mehr - für Paare"
+    val kategorieName = "Reflexion"
+    val sprache = Sprachen.DE
     val kartenTexte = listOf( // wird nur bei ID != 0 beachtet
         "Welchen Aspekt unserer Beziehung möchtest du anderen Paaren gerne zur Nachahmung empfehlen?",
         "Was möchtest du in unserer Beziehung gerne anders machen?",
