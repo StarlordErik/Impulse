@@ -87,9 +87,10 @@ class Datenbanksystem(private val datenbank: File) {
 
     fun neueKarten(kartentexte: List<String>, sprache: Sprachen): List<Karte> {
         val neueKarten = mutableListOf<Karte>()
-        var neueId = neueID(karten)
+        var neueId = neueID(karten) - 1 // das ist die höchste ID
 
         kartentexte.forEach {
+            neueId += 1 // für jeden Schleifendurchlauf ist die ID höher
             var neueKarte = findeElement(it, karten)
             if (neueKarte == null) {
                 neueKarte = Karte.fromEingabe(neueId, sprache, it)
