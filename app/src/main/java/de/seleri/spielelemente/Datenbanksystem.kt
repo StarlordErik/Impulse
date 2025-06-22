@@ -111,7 +111,7 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
+    private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
     ): T? {
         var neueSammlung = findeElement(name, findenIn)
