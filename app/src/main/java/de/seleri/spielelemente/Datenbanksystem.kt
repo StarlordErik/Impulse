@@ -148,6 +148,17 @@ class Datenbanksystem(private val datenbank: File) {
         return neueKarten.toList()
     }
 
+    /**
+     * Findet eine bestehende Sammlung (`Kategorie` oder `Spiel`) anhand des Namens oder erstellt eine neue.
+     *
+     * Wenn bereits eine Sammlung mit dem gegebenen Namen existiert, werden neue Elemente den OG-Elemente hinzugefügt.
+     *
+     * @param name Name der gesuchten oder zu erstellenden Sammlung
+     * @param elemente Liste der Elemente, die in der Sammlung enthalten sein sollen
+     * @param sprache Sprache des übergebenen Namens
+     * @param findenIn Liste, in der nach einer bestehenden Sammlung gesucht wird
+     * @return die gefundene oder neu erstellte Sammlung
+     */
     @Suppress("UNCHECKED_CAST")
     private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
@@ -156,7 +167,7 @@ class Datenbanksystem(private val datenbank: File) {
 
         if (neueSammlung == null) {
             val neueID = neueID(findenIn)
-            when (findenIn[0]) {
+            when (findenIn[0]) { // findenIn ist eine Liste an unserem gewollten Ausgaben-Objekt-Typ
                 is Kategorie -> neueSammlung =
                     Kategorie.fromEingabe(neueID, sprache, name, elemente as List<Karte>) as T
 
@@ -164,17 +175,10 @@ class Datenbanksystem(private val datenbank: File) {
                     Spiel.fromEingabe(neueID, sprache, name, elemente as List<Kategorie>) as T
             }
         } else {
-            neueSammlung.localizations[Sprachen.OG] = name
-            neueSammlung.setUebersetzung(sprache, name)
-
+            // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
             elemente.forEach {
                 if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS] =
                     neueSammlung.originaleElemente[IDS]!!.plus(it)
-            }
-
-            neueSammlung.originaleElemente[DAVON_ENTFERNT]!!.forEach {
-                if (elemente.contains(it)) neueSammlung.originaleElemente[DAVON_ENTFERNT] =
-                    neueSammlung.originaleElemente[DAVON_ENTFERNT]!!.minus(it)
             }
         }
         return neueSammlung
@@ -248,6 +252,12 @@ class Datenbanksystem(private val datenbank: File) {
         }
     }
 
+    /**
+     * Fügt neue `Karte`n zu einer `Kategorie` hinzu.
+     *
+     * @param kategorie Kategorie, zu der die Karten hinzugefügt werden sollen
+     * @param neueKarten Liste von `Karte`n-Objekten oder IDs
+     */
     @Suppress("UNCHECKED_CAST")
     private fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
         when (neueKarten[0]) {
@@ -257,39 +267,71 @@ class Datenbanksystem(private val datenbank: File) {
         speichereYaml()
     }
 
+    /**
+     * Entfernt eine bestimmte `Karte` aus einer `Kategorie`.
+     *
+     * @param zuEntfernendeKarte Karte, die entfernt werden soll
+     * @param ausKategorie Kategorie, aus der die Karte entfernt werden soll
+     */
     fun karteAusKategorieEntfernen(zuEntfernendeKarte: Karte, ausKategorie: Kategorie) {
         ausKategorie.karteEntfernen(zuEntfernendeKarte)
         speichereYaml()
     }
 
+    /**
+     * Fügt neue `Kategorie`n zu einem `Spiel` hinzu.
+     *
+     * @param spiel Spiel, zu dem die Kategorien hinzugefügt werden sollen
+     * @param neueKategorien Liste von `Kategorie`-Objekten oder IDs
+     */
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, kategorienIDs: List<T>) {
-        when (kategorienIDs[0]) {
-            is Kategorie -> spiel.kategorienHinzufuegen(kategorienIDs as List<Kategorie>)
+    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: List<T>) {
+        when (neueKategorien[0]) {
+            is Kategorie -> spiel.kategorienHinzufuegen(neueKategorien as List<Kategorie>)
             is Int -> spiel.kategorienHinzufuegen(
                 findeElemente(
-                    kategorienIDs as List<Int>, kategorien
+                    neueKategorien as List<Int>, kategorien
                 )
             )
         }
         speichereYaml()
     }
 
+    /**
+     * Entfernt eine bestimmte `Kategorie` aus einem `Spiel`.
+     *
+     * @param zuEntfernendeKategorie Kategorie, die entfernt werden soll
+     * @param ausSpiel Spiel, aus der die Kategorie entfernt werden soll
+     */
     fun kategorieAusSpielEntfernen(zuEntfernendeKategorie: Kategorie, ausSpiel: Spiel) {
         ausSpiel.kategorieEntfernen(zuEntfernendeKategorie)
         speichereYaml()
     }
 
     companion object {
+
+        /**
+         * Erstellt ein `Datenbanksystem` aus einer lokalen Datei im App-Dateisystem,
+         * oder falls die Datei noch nicht existiert, wird sie aus den Ressourcen kopiert.
+         *
+         * @param context Android-Context von der Activity, die das Datenbanksystem erzeugt
+         * @return Instanz des Datenbanksystems mit geladenen Daten
+         */
         fun generieren(context: Context): Datenbanksystem {
-            val datei = File(context.filesDir, DATENBANK_DATEI)
+            val datei = File(context.filesDir, DATENBANK_DATEI) // Nutzer-spezifische Datei
             if (!datei.exists()) {
-                val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank)
+                val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank) // Standard-Daten
                 datei.writeBytes(datenkbankInResRaw.readBytes())
             }
             return Datenbanksystem(datei)
         }
 
+        /**
+         * Erstellt ein neues `Datenbanksystem` auf Basis der Datei im Ressourcenverzeichnis.
+         * **Funktioniert nur zur Entwicklungszeit!**
+         *
+         * @return Instanz des Datenbanksystems mit geladenen Daten
+         */
         fun generieren(): Datenbanksystem {
             val dateipfad = Paths.get(DATENBANK_PFAD)
             return Datenbanksystem(dateipfad.toFile())
