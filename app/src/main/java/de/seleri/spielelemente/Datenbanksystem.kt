@@ -95,9 +95,7 @@ class Datenbanksystem(private val datenbank: File) {
             if (neueKarte == null) {
                 neueKarte = Karte.fromEingabe(neueId, sprache, it)
             } else {
-                neueKarte.localizations[Sprachen.OG] = it
-                neueKarte.setUebersetzung(sprache, it)
-                neueId -= 1
+                neueId -= 1 // neutralisiert die ID-Erhöhung der Schleife
             }
             neueId += 1
             neueKarten.add(neueKarte)
