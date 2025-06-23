@@ -232,28 +232,13 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     /**
-     * Fügt Elemente (`Karte`n / `Kategorie`n) zu einer Sammlung (`Kategorie` oder `Spiel`) hinzu.
-     *
-     * @param spielOderKategorie Sammlung, der Elemente hinzugefügt werden sollen
-     * @param neueElemente neue Elemente (IDs oder Objekte)
-     */
-    fun <T : Any, E : SammlungAnSpielelementen<F>, F : LokalisierbaresSpielelement> hinzufuegen(
-        spielOderKategorie: E, neueElemente: List<T>
-    ) {
-        when (spielOderKategorie) {
-            is Kategorie -> kartenZuKategorieHinzufuegen(spielOderKategorie, neueElemente)
-            is Spiel -> kategorienZuSpielHinzufuegen(spielOderKategorie, neueElemente)
-        }
-    }
-
-    /**
      * Fügt neue `Karte`n zu einer `Kategorie` hinzu.
      *
      * @param kategorie Kategorie, zu der die Karten hinzugefügt werden sollen
      * @param neueKarten Liste von `Karte`n-Objekten oder IDs
      */
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
+    fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
         when (neueKarten[0]) {
             is Karte -> kategorie.kartenHinzufuegen(neueKarten as List<Karte>)
             is Int -> kategorie.kartenHinzufuegen(findeElemente(neueKarten as List<Int>, karten))
@@ -279,7 +264,7 @@ class Datenbanksystem(private val datenbank: File) {
      * @param neueKategorien Liste von `Kategorie`-Objekten oder IDs
      */
     @Suppress("UNCHECKED_CAST")
-    private fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: List<T>) {
+    fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: List<T>) {
         when (neueKategorien[0]) {
             is Kategorie -> spiel.kategorienHinzufuegen(neueKategorien as List<Kategorie>)
             is Int -> spiel.kategorienHinzufuegen(
