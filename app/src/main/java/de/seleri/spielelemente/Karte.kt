@@ -82,7 +82,7 @@ data class Karte(
                 }
 
                 // Fall 2: einzelne Karte
-                ID in data && TEXT in data && GESEHEN in data && GELOESCHT in data -> {
+                GESEHEN in data && GELOESCHT in data -> {
                     val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
                     val gesehen = data[GESEHEN] as Boolean
                     val geloescht = data[GELOESCHT] as Boolean

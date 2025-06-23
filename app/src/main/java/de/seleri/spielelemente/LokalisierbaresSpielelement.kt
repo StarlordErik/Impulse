@@ -56,8 +56,7 @@ abstract class LokalisierbaresSpielelement(
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromEingabe(
             id: Int, sprache: Sprachen, bezeichnung: String
-        ): Pair<Int, MutableMap<Sprachen, String>> {
-            /*
+        ): Pair<Int, MutableMap<Sprachen, String>> {/*
             für alle Sprachen: Speichert die Bezeichnung sowohl
                 in der entsprechenden Sprache als auch in OG, oder setzt "".
 
@@ -81,6 +80,11 @@ abstract class LokalisierbaresSpielelement(
         protected fun fromYaml(
             data: Map<String, Any>
         ): Pair<Int, MutableMap<Sprachen, String>> {
+
+            require(ID in data && (TEXT in data || NAME in data)) {
+                "Ungültige Elementstruktur."
+            }
+
             val id = data[ID] as Int
 
             /*
@@ -93,6 +97,7 @@ abstract class LokalisierbaresSpielelement(
                 ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
                 .toMutableMap()
             return id to localizations
+
         }
     }
 }
