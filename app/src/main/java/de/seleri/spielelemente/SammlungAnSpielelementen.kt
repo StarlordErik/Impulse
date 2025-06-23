@@ -130,13 +130,14 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      * @param neueElemente Elemente, die zur Sammlung hinzugefügt werden sollen
      */
     protected fun elementeHinzufuegen(neueElemente: Collection<T>) {
+        val alleElemente = getAlleElemente() // Caching
         neueElemente.forEach { neuesElement ->
 
             // rehabilitert die Elemente, die vorher entfernt wurden
             originaleElemente[DAVON_ENTFERNT]!!.remove(neuesElement)
 
             // fügt es nur hinzu, wenn es nicht bereits Teil der originalen (und hinzugefügten) Elemente ist
-            if (!getAlleElemente().contains(neuesElement)) {
+            if (!alleElemente.contains(neuesElement)) {
                 hinzugefuegteElemente.add(neuesElement)
             }
         }
