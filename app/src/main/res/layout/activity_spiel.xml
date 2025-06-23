@@ -31,9 +31,41 @@
         <LinearLayout
             android:id="@+id/container_buttons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="start"
+                android:clickable="true"
+                android:contentDescription="@string/back_arrow"
+                android:onClick="letzteKarte"
+                android:src="@drawable/arrow_back" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/remove_cards"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:clickable="true"
+                android:contentDescription="@string/remove_card"
+                android:onClick="entferneKarte"
+                android:src="@drawable/remove_card" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
