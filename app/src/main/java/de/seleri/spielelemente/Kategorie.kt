@@ -1,5 +1,7 @@
 package de.seleri.spielelemente
 
+const val KATEGORIEN: String = "Kategorien"
+
 /**
  * Kategorie mit Namen und dazugehärigen Karten
  *

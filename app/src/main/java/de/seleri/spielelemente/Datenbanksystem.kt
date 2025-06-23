@@ -7,6 +7,7 @@ import java.io.File
 import java.nio.file.Paths
 import kotlin.collections.set
 
+// Datenbank-Pfade
 const val DATENBANK_NAME = "datenbank"
 const val DATENBANK_DATEIFORMAT = ".yml"
 const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"

@@ -1,5 +1,10 @@
 package de.seleri.spielelemente
 
+const val KARTEN: String = "Karten"
+const val TEXT: String = "Text"
+const val GESEHEN: String = "gesehen"
+const val GELOESCHT: String = "gelöscht"
+
 /**
  * Karten mit Text und Statusinformationen
  *
