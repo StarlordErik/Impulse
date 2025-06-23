@@ -2,6 +2,7 @@ package de.seleri.impulse
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -48,5 +49,18 @@ class SpielActivity : AppCompatActivity() {
 
             container.addView(button)
         }
+    }
+
+    fun klickEinstellungen(view: View)  {
+        println(view)
+        TODO()
+    }
+    fun letzteKarte(view: View) {
+        println(view)
+        TODO()
+    }
+    fun entferneKarte(view: View) : Void? {
+        println(view)
+        TODO()
     }
 }

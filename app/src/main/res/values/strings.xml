@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Impulse</string>
+    <string name="settings_for_game_mechanics">Einstellungen für Spielmechaniken</string>
+    <string name="back_arrow">Lädt die zuletzt gesehene Karte.</string>
+    <string name="remove_card">Entfernt jetzige Karte aus dem Deck</string>
+
 </resources>
