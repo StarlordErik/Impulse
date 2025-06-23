@@ -50,7 +50,7 @@ data class Spiel(
      *
      * @return alleKarten(originale Kategorien) + alleKarten(hinzugefügte Kategorien)
      */
-    fun getAlleKarten(): List<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.distinct()
+    override fun getAlleKarten(): List<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.distinct()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
@@ -58,7 +58,7 @@ data class Spiel(
      * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien)
      * + aktuelleKarten(hinzugefügte Kategorien)
      */
-    fun getAlleAktuellenKarten(): List<Karte> =
+    override fun getAlleAktuellenKarten(): List<Karte> =
         getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
 
     /**
@@ -66,14 +66,14 @@ data class Spiel(
      *
      * @return noch nicht gesehene Karten
      */
-    fun getAlleUngesehenenKarten(): List<Karte> {
+    override fun getAlleUngesehenenKarten(): List<Karte> {
         return geseheneKartenRausfiltern(getAlleAktuellenKarten())
     }
 
     /**
      * Setzt alle Karten des Spiels auf "ungesehen".
      */
-    fun setKartenUngesehen() {
+    override fun setKartenUngesehen() {
         setKartenUngesehen(getAlleAktuellenKarten())
     }
 

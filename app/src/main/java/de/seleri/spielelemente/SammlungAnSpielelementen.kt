@@ -33,7 +33,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      * @param elemente Bezeichnung der Elemente (/Bestandteile) der Sammlung
      * @return "originale-T: IDS: [.,.,.] davon_entfernt: [.,.,.] \n hinzugefuegte-T: [.,.,.]" als YAML-String
      */
-    internal fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
+    protected fun originaleUndHinzugefuegteElementeToYaml(elemente: String): String {
         val output = StringBuilder()
 
         output.append(attributToYamlZeile(2, "$ORIGINALE$elemente", originaleElemente))
@@ -50,7 +50,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return originale Elemente + hinzugefügte Elemente
      */
-    internal fun getAlleElemente(): List<T> {
+    protected fun getAlleElemente(): List<T> {
         val alleElemente = mutableListOf<T>()
         alleElemente.addAll(originaleElemente[IDS]!!)
         alleElemente.addAll(hinzugefuegteElemente)
@@ -58,15 +58,29 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     }
 
     /**
+     * Gibt alle Karten der Sammlung zurück und ignoriert die davon entfernten.
+     *
+     * @return originale Karten + hinzugefügte Kartem
+     */
+    abstract fun getAlleKarten() : List<Karte>
+
+    /**
      * Gibt alle Elemente der Sammlung zurück ohne die "davon entfernten" Elemente.
      *
      * @return (originale Elemente - davon entfernte Elemente) + hinzugefügte Elemente
      */
-    internal fun getAlleAktuellenElemente(): List<T> {
+    protected fun getAlleAktuellenElemente(): List<T> {
         val aktuelleElemente = getAlleElemente().toMutableList()
         aktuelleElemente.removeAll(originaleElemente[DAVON_ENTFERNT]!!)
         return aktuelleElemente
     }
+
+    /**
+     * Gibt alle Karten der Sammlung zurück ohne die "davon entfernten" Karten.
+     *
+     * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
+     */
+    abstract fun getAlleAktuellenKarten() : List<Karte>
 
     /**
      * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
@@ -74,18 +88,30 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
      * @return Liste an Karten, die noch nicht gesehen wurdenq
      */
-    internal fun geseheneKartenRausfiltern(aktuelleKarten: List<Karte>): List<Karte> {
+    protected fun geseheneKartenRausfiltern(aktuelleKarten: List<Karte>): List<Karte> {
         return aktuelleKarten.filter { !it.gesehen }
     }
+
+    /**
+     * Gibt alle noch nicht gesehenen Karten der Sammlung zurück.
+     *
+     * @return noch nicht gesehene Karten
+     */
+    abstract fun getAlleUngesehenenKarten(): List<Karte>
 
     /**
      * Setzt alle Karten der Sammlung auf "ungesehen".
      *
      * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
      */
-    internal fun setKartenUngesehen(aktuelleKarten: List<Karte>) {
+    protected fun setKartenUngesehen(aktuelleKarten: List<Karte>) {
         aktuelleKarten.forEach { it.gesehen = false }
     }
+
+    /**
+     * Setzt alle Karten der Sammlung auf "ungesehen".
+     */
+    abstract fun setKartenUngesehen()
 
     /**
      * Fügt neue Elemente zur Sammlung hinzu.
@@ -94,7 +120,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @param neueElemente Elemente, die zur Sammlung hinzugefügt werden sollen
      */
-    internal fun elementeHinzufuegen(neueElemente: List<T>) {
+    protected fun elementeHinzufuegen(neueElemente: List<T>) {
 
         // rehabilitert die Elemente, die vorher entfernt wurden
         neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
@@ -115,7 +141,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @param zuEntfernendesElement Element, das aus der Sammlung entfernt werden soll
      */
-    internal fun elementEntfernen(zuEntfernendesElement: T) {
+    protected fun elementEntfernen(zuEntfernendesElement: T) {
         originaleElemente[DAVON_ENTFERNT] =
             originaleElemente[DAVON_ENTFERNT]!!.plus(zuEntfernendesElement)
         hinzugefuegteElemente = hinzugefuegteElemente.minus(zuEntfernendesElement)
@@ -132,7 +158,8 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
          * @param constructor Konstruktor der Sammlung vom Typ T
          * @return neue Sammlung vom Typ T ohne entfernte oder hinzugefügte Elemente
          */
-        fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromEingabe(
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromEingabe(
             id: Int,
             sprache: Sprachen,
             name: String,
@@ -159,7 +186,8 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
          * @return neue Sammlung vom Typ T mit ausgelesenen Attributswerten
          */
         @Suppress("UNCHECKED_CAST")
-        fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
             data: Map<String, Any>,
             moeglicheElemente: List<E>,
             constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
