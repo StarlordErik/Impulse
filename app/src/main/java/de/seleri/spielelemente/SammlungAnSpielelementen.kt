@@ -62,7 +62,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return originale Karten + hinzugefügte Kartem
      */
-    abstract fun getAlleKarten() : List<Karte>
+    abstract fun getAlleKarten(): List<Karte>
 
     /**
      * Gibt alle Elemente der Sammlung zurück ohne die "davon entfernten" Elemente.
@@ -80,7 +80,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
      */
-    abstract fun getAlleAktuellenKarten() : List<Karte>
+    abstract fun getAlleAktuellenKarten(): List<Karte>
 
     /**
      * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
@@ -196,6 +196,13 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             // lässt id und localizations in der Superklasse verarbeiten
             val (id, localizations) = fromYaml(data)
 
+            require(
+                ("$ORIGINALE$KARTEN" in data || "$ORIGINALE$KATEGORIEN" in data)
+                        && ("$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data
+                            || "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data)
+            ) {
+                "Ungültige Sammlungsstruktur."
+            }
 
             val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
                 ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)

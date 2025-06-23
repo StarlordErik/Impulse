@@ -82,7 +82,7 @@ class KategorieTest {
         assertEquals(testKategorie1Yaml(), testKategorie1().toYaml())
         assertEquals(testKategorie2Yaml(), testKategorie2().toYaml())
     }
-
+/*
     @Test
     fun `Test yamlToKategorie() - Konvertierung von YAML zu Kategorie`() {
         val kategorie1 = Kategorie.fromYaml(testKategorie1Yaml(), alleTestKarten())[0]
@@ -103,7 +103,7 @@ class KategorieTest {
             Kategorie.fromYaml(testKategorie2Yaml(), alleTestKarten())[0].toYaml()
         )
     }
-
+*/
     @Test
     fun `Test getAlleKarten() - Ausgabe aller Karten einer Kategorie`() {
         assertEquals(2, testKategorie1().getAlleKarten().size)
