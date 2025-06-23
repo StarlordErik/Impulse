@@ -7,15 +7,15 @@ const val KATEGORIEN: String = "Kategorien"
  *
  * @property id eindeutige ID der Karte
  * @property localizations Map mit den Übersetzungen des Kategorienamens für verschiedene Sprachen
- * @property originaleElemente zwei Listen mit IDs der originalen Karten und derer, die vom Nutzer entfernt wurden
- * @property hinzugefuegteElemente Liste der vom Nutzer hinzugefügten Karten zur Kategorie
+ * @property originaleElemente zwei Mengen mit den originalen Karten und denen, die vom Nutzer entfernt wurden
+ * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Karten zur Kategorie
  */
 data class Kategorie(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
-    override val originaleElemente: MutableMap<String, List<Karte>>,
-    override var hinzugefuegteElemente: List<Karte>
-) : SammlungAnSpielelementen<Karte>(id, localizations, originaleElemente, hinzugefuegteElemente) {
+    override val originaleElemente: Map<String, MutableSet<Karte>>,
+    override val hinzugefuegteElemente: MutableSet<Karte>
+): SammlungAnSpielelementen<Karte>(id, localizations, originaleElemente, hinzugefuegteElemente) {
 
     /**
      * Konvertiert die Kategorie ins YAML-Format.
@@ -34,21 +34,21 @@ data class Kategorie(
      *
      * @return originale Karten + hinzugefügte Kartem
      */
-    override fun getAlleKarten(): List<Karte> = getAlleElemente()
+    override fun getAlleKarten(): Set<Karte> = getAlleElemente()
 
     /**
      * Gibt alle Karten der Kategorie zurück ohne die "davon entfernten" Karten.
      *
      * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
      */
-    override fun getAlleAktuellenKarten(): List<Karte> = getAlleAktuellenElemente()
+    override fun getAlleAktuellenKarten(): Set<Karte> = getAlleAktuellenElemente()
 
     /**
      * Gibt alle noch nicht gesehenen Karten der Kategorie zurück.
      *
      * @return noch nicht gesehene Karten
      */
-    override fun getAlleUngesehenenKarten(): List<Karte> {
+    override fun getAlleUngesehenenKarten(): Set<Karte> {
         return geseheneKartenRausfiltern(getAlleAktuellenKarten())
     }
 
@@ -61,20 +61,22 @@ data class Kategorie(
 
     /**
      * Fügt neue Karten zur Kategorie hinzu.
-     * Dafür werden sie der der Liste der hinzugefügten Karten einfach hinzugefügt und für den Fall,
+     * Dafür werden sie der der Menge der hinzugefügten Karten hinzugefügt und für den Fall,
      * dass sie schon in den originalen Karten enthalten waren und entfernt wurden, werden sie rehabilitiert.
      *
      * @param karten Karten, die zur Kategorie hinzugefügt werden sollen
      */
-    fun kartenHinzufuegen(karten: List<Karte>) = elementeHinzufuegen(karten)
+    fun kartenHinzufuegen(karten: Collection<Karte>) = elementeHinzufuegen(karten)
+
     /**
      * Entfernt eine Karte aus der Kategorie.
-     * Dafür wird sie der Liste der davon entfernten Karten einfach hinzugefügt
+     * Dafür wird sie der Menge der davon entfernten Karten hinzugefügt
      * und/oder aus den hinzugefügten Karten gelöscht.
      *
      * @param zuEntfernendeKarte Karte, die aus der Kategorie entfernt werden soll
      */
     fun karteEntfernen(zuEntfernendeKarte: Karte) = elementEntfernen(zuEntfernendeKarte)
+
 
     companion object {
 
@@ -84,22 +86,22 @@ data class Kategorie(
          * @param id neue, noch nicht vergebene ID
          * @param sprache Sprache des Namens
          * @param name Name
-         * @param originaleKarten Liste der original enthaltenen Karten
+         * @param originaleKarten Collection der original enthaltenen Karten
          * @return neue Kategorie ohne entfernte oder hinzugefügte Karten
          */
         fun fromEingabe(
-            id: Int, sprache: Sprachen, name: String, originaleKarten: List<Karte>
+            id: Int, sprache: Sprachen, name: String, originaleKarten: Collection<Karte>
         ): Kategorie = fromEingabe(id, sprache, name, originaleKarten, ::Kategorie)
 
         /**
-         * Erstellt eine Liste von Kategorien aus einer von SnakeYaml deserialisierten YAML-Datei.
+         * Erstellt eine Menge von Kategorien aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Daten einer Kategorie oder einer Liste von Kategorien
-         * @param moeglicheKarten Liste aller Karten, aus denen die Kategorie bestehen **könnte** -
+         * @param data YAML-Daten einer Kategorie oder mehrerer Kategorien
+         * @param moeglicheKarten Collection aller Karten, aus denen die Kategorie bestehen **könnte** -
          * im Zweifel einfach alle möglichen Karten
-         * @return Liste von Kategorien mit ausgelesenen Attributwerten
+         * @return Menge von Kategorien mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): List<Kategorie> {
+        fun fromYaml(data: Map<String, Any>, moeglicheKarten: Collection<Karte>): Set<Kategorie> {
             return when {
 
                 // Fall 1: mehrere Kategorien
@@ -109,7 +111,7 @@ data class Kategorie(
 
                 // Fall 2: einzelne Kategorie
                 "$ORIGINALE$KARTEN" in data && "$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data -> {
-                    listOf(fromYaml(data, moeglicheKarten, ::Kategorie))
+                    setOf(fromYaml(data, moeglicheKarten, ::Kategorie))
                 }
 
                 // Fall 3: ungültige Struktur
