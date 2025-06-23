@@ -31,16 +31,14 @@ class Datenbanksystem(private val datenbank: File) {
     val spiele: MutableList<Spiel>
 
     init {
-        val input = datenbank.inputStream()
-        val yaml = Yaml().load<Map<String, Any>>(input)
+        val yamlInput = Yaml().load<Map<String, Any>>(datenbank.inputStream())
 
-        @Suppress("UNCHECKED_CAST") val kartenYaml = yaml[KARTEN] as List<Map<String, Any>>
-        karten = kartenYaml.map { Karte.fromYaml(it) }.toMutableList()
+        karten = Karte.fromYaml(yamlInput).toMutableList()
 
-        @Suppress("UNCHECKED_CAST") val kategorienYaml = yaml[KATEGORIEN] as List<Map<String, Any>>
+        @Suppress("UNCHECKED_CAST") val kategorienYaml = yamlInput[KATEGORIEN] as List<Map<String, Any>>
         kategorien = kategorienYaml.map { Kategorie.fromYaml(it, karten) }.toMutableList()
 
-        @Suppress("UNCHECKED_CAST") val spieleYaml = yaml[SPIELE] as List<Map<String, Any>>
+        @Suppress("UNCHECKED_CAST") val spieleYaml = yamlInput[SPIELE] as List<Map<String, Any>>
         spiele = spieleYaml.map { Spiel.fromYaml(it, kategorien) }.toMutableList()
     }
 
