@@ -29,7 +29,7 @@ abstract class LokalisierbaresSpielelement(
      * @param bezeichnung Kartentext oder Name einer Sammlung (Kategorie, Spiel)
      * @return "Bezeichnung: localizedTexts" als YAML-String
      */
-    open fun localizationsToYaml(bezeichnung: String): String {
+    protected fun localizationsToYaml(bezeichnung: String): String {
         return attributToYamlZeile(2, bezeichnung, localizations)
     }
 
@@ -39,7 +39,7 @@ abstract class LokalisierbaresSpielelement(
      * @param sprache Sprache, in der die Übersetzung gespeichert werden soll
      * @param bezeichnung Übersetzung des Textes / der Name
      */
-    open fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
+    fun setUebersetzung(sprache: Sprachen, bezeichnung: String) {
         if (sprache != Sprachen.OG) localizations[sprache] = bezeichnung
     }
 
@@ -53,7 +53,8 @@ abstract class LokalisierbaresSpielelement(
          * @param bezeichnung Kartentext / Name
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
-        fun fromEingabe(
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun fromEingabe(
             id: Int, sprache: Sprachen, bezeichnung: String
         ): Pair<Int, MutableMap<Sprachen, String>> {
             /*
@@ -76,7 +77,8 @@ abstract class LokalisierbaresSpielelement(
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
         @Suppress("UNCHECKED_CAST")
-        fun fromYaml(
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun fromYaml(
             data: Map<String, Any>
         ): Pair<Int, MutableMap<Sprachen, String>> {
             val id = data[ID] as Int
