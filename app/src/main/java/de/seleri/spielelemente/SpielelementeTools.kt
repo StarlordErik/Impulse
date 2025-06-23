@@ -30,7 +30,7 @@ const val BINDESTRICH_IDS: String = "-$IDS"
  * @param attributswert Wert des Attributs (beliebiger Typ)
  * @return YAML-Zeile als String
  */
-fun attributToYamlZeile(
+internal fun attributToYamlZeile(
     anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?
 ): String {
     val zeile = StringBuilder()
@@ -111,7 +111,7 @@ fun attributToYamlZeile(
  * @param findeIn Liste der zu durchsuchenden Elemente
  * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
  */
-fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
+internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
     return findeIn.find { element ->
         element.localizations.values.any { localization ->
             localization == bezeichnung
@@ -126,7 +126,7 @@ fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn:
  * @param findeIn Liste der zu durchsuchenden Elemente
  * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
  */
-fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
+internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
     findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
 
 /**
@@ -136,7 +136,7 @@ fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T
  * @param findeIn Liste der zu durchsuchenden Elemente
  * @return Liste gefundener Elemente
  */
-fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
+internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
     return ids.map { id ->
         findeElement(id, findeIn)
     }
