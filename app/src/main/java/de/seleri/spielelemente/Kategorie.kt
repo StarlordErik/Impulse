@@ -98,28 +98,16 @@ data class Kategorie(
          * @return Liste von Kategorien mit ausgelesenen Attributwerten
          */
         fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): List<Kategorie> {
-            when {
+            return when {
 
                 // Fall 1: mehrere Kategorien
                 KATEGORIEN in data -> {
-
-                    // extrahiert die Liste möglicher Kategorie-Daten aus der YAML-Struktur
-                    val yamlKategorienliste = data[KATEGORIEN] as List<*>
-
-                    // macht aus List<*> --> List<Map<String, Any>>
-                    val yamlKategorienlisteAlsMapliste =
-                        yamlKategorienliste.filterIsInstance<Map<String, Any>>()
-
-                    // wandelt jede Kategorie-Map in ein Kategorienobjekt um
-                    val kategorienListe = yamlKategorienlisteAlsMapliste.map { einzelneKategorienYamlMap ->
-                        fromYaml(einzelneKategorienYamlMap, moeglicheKarten).first() // zu Fall 2
-                    }
-                    return kategorienListe
+                    fromYamlListe(KATEGORIEN, data) { fromYaml(it, moeglicheKarten) }
                 }
 
                 // Fall 2: einzelne Kategorie
                 "$ORIGINALE$KARTEN" in data && "$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data -> {
-                    return listOf(fromYaml(data, moeglicheKarten, ::Kategorie))
+                    listOf(fromYaml(data, moeglicheKarten, ::Kategorie))
                 }
 
                 // Fall 3: ungültige Struktur

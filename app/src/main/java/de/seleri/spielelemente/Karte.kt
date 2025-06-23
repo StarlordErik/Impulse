@@ -66,19 +66,7 @@ data class Karte(
 
                 // Fall 1: mehrere Karten
                 KARTEN in data -> {
-
-                    // extrahiert die Liste möglicher Karten-Daten aus der YAML-Struktur
-                    val yamlKartenliste = data[KARTEN] as List<*>
-
-                    // macht aus List<*> --> List<Map<String, Any>>
-                    val yamlKartenlisteAlsMapliste =
-                        yamlKartenliste.filterIsInstance<Map<String, Any>>()
-
-                    // wandelt jede Karten-Map in ein Kartenobjekt um
-                    val kartenListe = yamlKartenlisteAlsMapliste.map { einzelneKartenYamlMap ->
-                        fromYaml(einzelneKartenYamlMap).first() // zu Fall 2
-                    }
-                    return kartenListe
+                    return fromYamlListe(KARTEN, data) { fromYaml(it) }
                 }
 
                 // Fall 2: einzelne Karte

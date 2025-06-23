@@ -1,5 +1,6 @@
 package de.seleri.spielelemente
 
+import kotlin.collections.first
 import kotlin.collections.set
 
 /**
@@ -99,5 +100,35 @@ abstract class LokalisierbaresSpielelement(
             return id to localizations
 
         }
+
+        /**
+         * Verarbeitet eine Liste von Element-Daten in einer YAML-Struktur.
+         *
+         * @param T jede Art von Element (Karte, Kategorie, Spiel)
+         * @param element Element-Bezeichnung in der YAML-Datenstruktur
+         * @param data YAML-Datenstruktur
+         * @param converter rekursiver Aufruf für das einzelne Element
+         * @return Eine Liste von [T].
+         */
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun <T> fromYamlListe(
+            element: String, data: Map<String, Any>, converter: (Map<String, Any>) -> List<T>
+        ): List<T> {
+            // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
+            val listeAnElementenImYamlformat = data[element] as List<*>
+
+            // macht aus List<*> --> List<Map<String, Any>>
+            val listeAnMapsVonElementenImYamlformat =
+                listeAnElementenImYamlformat.filterIsInstance<Map<String, Any>>()
+
+            // wandelt jede Element-Map in ein Element-Objekt um
+            val elementListe = listeAnMapsVonElementenImYamlformat.map {
+                converter(it) // zu Fall 2
+                    .first() // es wird nur ein Objekt ausgegeben, aber als Liste
+            }
+
+            return elementListe
+        }
+
     }
 }
