@@ -1,26 +1,42 @@
 package de.seleri.spielelemente
 
-// YAML-Bezeichnungen der Attribute
-const val KARTEN: String = "Karten"
-const val KATEGORIEN: String = "Kategorien"
-const val SPIELE: String = "Spiele"
+/**
+ * Findet ein Spielelement anhand einer Texteingabe.
+ *
+ * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
+ * @param findeIn Liste der zu durchsuchenden Elemente
+ * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
+ */
+internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
+    return findeIn.find { element ->
+        element.localizations.values.any { localization ->
+            localization == bezeichnung
+        }
+    }
+}
 
-const val EIN_TAB: String = "  "
+/**
+ * Findet ein Spielelement anhand seiner ID.
+ *
+ * @param id gesuchte ID
+ * @param findeIn Liste der zu durchsuchenden Elemente
+ * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
+ */
+internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
+    findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
 
-const val ID: String = "ID"
-
-const val TEXT: String = "Text"
-const val NAME: String = "Name"
-
-const val GESEHEN: String = "gesehen"
-const val GELOESCHT: String = "gelöscht"
-
-const val ORIGINALE: String = "originale_"
-const val IDS = "${ID}s"
-const val DAVON_ENTFERNT: String = "davon_entfernt"
-
-const val HINZUGEFUEGTE: String = "hinzugefügte_"
-const val BINDESTRICH_IDS: String = "-$IDS"
+/**
+ * Findet mehrere Spielelemente anhand einer Liste von IDs.
+ *
+ * @param ids Liste gesuchter IDs
+ * @param findeIn Liste der zu durchsuchenden Elemente
+ * @return Liste gefundener Elemente
+ */
+internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
+    return ids.map { id ->
+        findeElement(id, findeIn)
+    }
+}
 
 /**
  * Konvertiert ein Attribut zu einer Zeile im YAML-Format
@@ -36,7 +52,7 @@ internal fun attributToYamlZeile(
     val zeile = StringBuilder()
 
     // TabsAttributsname:
-    zeile.append(EIN_TAB.repeat(anzahlEinrueckungen))
+    zeile.append("  ".repeat(anzahlEinrueckungen))
     zeile.append(attributsname)
     zeile.append(":")
 
@@ -102,42 +118,4 @@ internal fun attributToYamlZeile(
 
     zeile.append("\n")
     return zeile.toString()
-}
-
-/**
- * Findet ein Spielelement anhand einer Texteingabe.
- *
- * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
- * @param findeIn Liste der zu durchsuchenden Elemente
- * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
- */
-internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
-    return findeIn.find { element ->
-        element.localizations.values.any { localization ->
-            localization == bezeichnung
-        }
-    }
-}
-
-/**
- * Findet ein Spielelement anhand seiner ID.
- *
- * @param id gesuchte ID
- * @param findeIn Liste der zu durchsuchenden Elemente
- * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
- */
-internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
-    findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
-
-/**
- * Findet mehrere Spielelemente anhand einer Liste von IDs.
- *
- * @param ids Liste gesuchter IDs
- * @param findeIn Liste der zu durchsuchenden Elemente
- * @return Liste gefundener Elemente
- */
-internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
-    return ids.map { id ->
-        findeElement(id, findeIn)
-    }
 }

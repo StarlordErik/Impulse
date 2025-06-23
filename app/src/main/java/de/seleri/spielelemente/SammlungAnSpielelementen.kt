@@ -1,5 +1,14 @@
 package de.seleri.spielelemente
 
+const val NAME: String = "Name"
+
+const val ORIGINALE: String = "originale_"
+const val IDS = "${ID}s"
+const val DAVON_ENTFERNT: String = "davon_entfernt"
+
+const val HINZUGEFUEGTE: String = "hinzugefügte_"
+const val BINDESTRICH_IDS: String = "-$IDS"
+
 /**
  * Abstrakte Basisklasse für alle Spielelemente, die eine Sammlung von anderen Elementen beeinhalten
  *

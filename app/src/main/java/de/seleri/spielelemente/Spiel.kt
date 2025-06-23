@@ -1,5 +1,7 @@
 package de.seleri.spielelemente
 
+const val SPIELE: String = "Spiele"
+
 /**
  * Spiel mit Namen und dazugehörigen Kategorien
  *

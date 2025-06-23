@@ -3,6 +3,8 @@ package de.seleri.spielelemente
 import kotlin.collections.first
 import kotlin.collections.set
 
+const val ID: String = "ID"
+
 /**
  * Abstrakte Basisklasse für alle Spielelemente mit ID und den localized Kartentexten/Namen
  *
