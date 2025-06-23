@@ -4,14 +4,14 @@ package de.seleri.spielelemente
  * Findet ein Spielelement anhand einer Texteingabe.
  *
  * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
- * @param findeIn Liste der zu durchsuchenden Elemente
+ * @param findeIn Collection der zu durchsuchenden Elemente
  * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
  */
-internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: List<T>): T? {
+internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: Collection<T>): T? {
     return findeIn.find { element ->
-        element.localizations.values.any { localization ->
-            localization == bezeichnung
-        }
+        element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
+            .any { localization -> localization == bezeichnung }
+            // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
     }
 }
 
@@ -19,23 +19,21 @@ internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String,
  * Findet ein Spielelement anhand seiner ID.
  *
  * @param id gesuchte ID
- * @param findeIn Liste der zu durchsuchenden Elemente
+ * @param findeIn Collection der zu durchsuchenden Elemente
  * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
  */
-internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: List<T>): T =
+internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: Collection<T>): T =
     findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
 
 /**
- * Findet mehrere Spielelemente anhand einer Liste von IDs.
+ * Findet mehrere Spielelemente anhand einer Collection von IDs.
  *
- * @param ids Liste gesuchter IDs
- * @param findeIn Liste der zu durchsuchenden Elemente
- * @return Liste gefundener Elemente
+ * @param ids Collection gesuchter IDs
+ * @param findeIn Collection der zu durchsuchenden Elemente
+ * @return Menge gefundener Elemente
  */
-internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: List<Int>, findeIn: List<T>): List<T> {
-    return ids.map { id ->
-        findeElement(id, findeIn)
-    }
+internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: Collection<Int>, findeIn: Collection<T>): Set<T> {
+    return ids.mapTo(mutableSetOf()) { id -> findeElement(id, findeIn) }
 }
 
 /**
@@ -71,18 +69,15 @@ internal fun attributToYamlZeile(
         }
 
         // [Element1,Element2,Element3]
-        is List<*> -> {
+        is Collection<*> -> {
             zeile.append("[")
-            attributswert.forEachIndexed { index, item ->
-                zeile.append(
-                    when (item) {
 
-                        // bei Spielelementen wird nur die eindeutige ID gespeichert
-                        is LokalisierbaresSpielelement -> item.id
+            // sicheres Casten und Sortieren nach ID
+            val sortierteAttributswertListe = (attributswert.filterIsInstance<LokalisierbaresSpielelement>())
+                .sortedBy { it.id }
 
-                        else -> item.toString()
-                    }
-                )
+            sortierteAttributswertListe.forEachIndexed { index, item ->
+                zeile.append(item.id)
 
                 // nur Kommata zwischen den Elementen (nicht hinter dem letzten)
                 if (index < attributswert.size - 1) zeile.append(",")
