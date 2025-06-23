@@ -63,10 +63,10 @@ data class Karte(
         /**
          * Erstellt eine Liste von Karten aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Daten einer Karte oder einer Liste von Karten
-         * @return Liste von Karten mit ausgelesenen Attributwerten
+         * @param data YAML-Daten einer oder mehrerer Karten
+         * @return Menge von Karten mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>): List<Karte> {
+        fun fromYaml(data: Map<String, Any>): Set<Karte> {
             when {
 
                 // Fall 1: mehrere Karten
@@ -80,7 +80,7 @@ data class Karte(
                     val gesehen = data[GESEHEN] as Boolean
                     val geloescht = data[GELOESCHT] as Boolean
 
-                    return listOf(Karte(id, localizations, gesehen, geloescht))
+                    return setOf(Karte(id, localizations, gesehen, geloescht))
                 }
 
                 // Fall 3: ungültige Struktur
