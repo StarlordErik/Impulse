@@ -33,7 +33,6 @@
         <!-- Dynamischer Button-Container -->
         <LinearLayout
             android:id="@+id/button_container"
-            android:background="@drawable/rounded_corner"
             android:textColor="#F8F8FF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

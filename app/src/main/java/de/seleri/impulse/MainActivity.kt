@@ -1,5 +1,6 @@
 package de.seleri.impulse
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -13,6 +14,7 @@ const val EIN_DRITTEL = 1.0 / 3.0
 const val TEXTGROESSE = 24f
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 text = spiel.localizations[Sprachen.OG]
                 textSize = TEXTGROESSE
                 setTextColor(resources.getColor(android.R.color.white, null))
-                setBackgroundColor("#4E2A2A".toColorInt())
+                background = resources.getDrawable(R.drawable.rounded_corner, null)
                 isAllCaps = false
                 setOnClickListener {
                     val intent = Intent(this@MainActivity, SpielActivity::class.java)
