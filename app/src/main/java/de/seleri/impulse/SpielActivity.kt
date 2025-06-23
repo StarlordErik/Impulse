@@ -58,13 +58,13 @@ class SpielActivity : AppCompatActivity() {
         }
     }
 
-    fun klickEinstellungen(view: View) {
+    fun klickEinstellungen() {
         TODO()
     }
-    fun letzteKarte(view: View){
+    fun letzteKarte(){
         TODO()
     }
-    fun entferneKarte(view: View) {
-
+    fun entferneKarte() {
+        TODO()
     }
 }
