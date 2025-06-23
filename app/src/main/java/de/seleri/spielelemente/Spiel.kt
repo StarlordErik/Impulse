@@ -1,7 +1,5 @@
 package de.seleri.spielelemente
 
-import org.yaml.snakeyaml.Yaml
-
 /**
  * Spiel mit Namen und dazugehörigen Kategorien
  *
@@ -111,26 +109,29 @@ data class Spiel(
         ): Spiel = fromEingabe(id, sprache, name, originaleKategorien, ::Spiel)
 
         /**
-         * Erstellt **ein** Spiel aus einem YAML-Datensatz.
+         * Erstellt eine Liste von Spielen aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Datensatz **eines** Spiels
+         * @param data YAML-Daten eines Spiels oder einer Liste von Spielen
          * @param moeglicheKategorien Liste aller Kategorien, aus denen das Spiel bestehen **könnte** -
          * im Zweifel einfach alle möglichen Kategorien
-         * @return neues Spiel mit ausgelesenen Attributswerten
+         * @return Liste von Spielen mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): Spiel {
-            return fromYaml(data, moeglicheKategorien, ::Spiel)
-        }
+        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): List<Spiel> {
+            return when {
 
-        /**
-         * Erstellt **eine Liste mehrerer** Spiele aus einem Spiel-Abschnitt von YAML-Datensätzen.
-         *
-         * @param yamlInput Spiel-Abschnitt von YAML-Datensätzen **mehrerer** Spiele
-         * @return Liste an neuen Spielen mit ausgelesenen Attributswerten
-         */
-        fun fromYaml(yamlInput: String, moeglicheKategorien: List<Kategorie>): List<Spiel> {
-            val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-            return daten.map { fromYaml(it, moeglicheKategorien) }
+                // Fall 1: mehrere Spiele
+                SPIELE in data -> {
+                    fromYamlListe(SPIELE, data) { fromYaml(it, moeglicheKategorien) }
+                }
+
+                // Fall 2: einzelnes Spiel
+                "$ORIGINALE$KATEGORIEN" in data && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data -> {
+                    listOf(fromYaml(data, moeglicheKategorien, ::Spiel))
+                }
+
+                // Fall 3: ungültige Struktur
+                else -> throw IllegalArgumentException("Ungültige Spielstruktur.")
+            }
         }
     }
 }

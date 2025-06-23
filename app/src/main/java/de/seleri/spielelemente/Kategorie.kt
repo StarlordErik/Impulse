@@ -1,7 +1,5 @@
 package de.seleri.spielelemente
 
-import org.yaml.snakeyaml.Yaml
-
 /**
  * Kategorie mit Namen und dazugehärigen Karten
  *
@@ -92,26 +90,29 @@ data class Kategorie(
         ): Kategorie = fromEingabe(id, sprache, name, originaleKarten, ::Kategorie)
 
         /**
-         * Erstellt **eine** Kategorie aus einem YAML-Datensatz.
+         * Erstellt eine Liste von Kategorien aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Datensatz **einer** Kategorie
+         * @param data YAML-Daten einer Kategorie oder einer Liste von Kategorien
          * @param moeglicheKarten Liste aller Karten, aus denen die Kategorie bestehen **könnte** -
          * im Zweifel einfach alle möglichen Karten
-         * @return neue Kategorie mit ausgelesenen Attributswerten
+         * @return Liste von Kategorien mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): Kategorie {
-            return fromYaml(data, moeglicheKarten, ::Kategorie)
-        }
+        fun fromYaml(data: Map<String, Any>, moeglicheKarten: List<Karte>): List<Kategorie> {
+            return when {
 
-        /**
-         * Erstellt **eine Liste mehrerer** Kategorien aus einem Kategorien-Abschnitt von YAML-Datensätzen.
-         *
-         * @param yamlInput Kategorien-Abschnitt von YAML-Datensätzen **mehrerer** Kategorien
-         * @return Liste an neuen Kategorien mit ausgelesenen Attributswerten
-         */
-        fun fromYaml(yamlInput: String, moeglicheKarten: List<Karte>): List<Kategorie> {
-            val daten = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-            return daten.map { fromYaml(it, moeglicheKarten) }
+                // Fall 1: mehrere Kategorien
+                KATEGORIEN in data -> {
+                    fromYamlListe(KATEGORIEN, data) { fromYaml(it, moeglicheKarten) }
+                }
+
+                // Fall 2: einzelne Kategorie
+                "$ORIGINALE$KARTEN" in data && "$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data -> {
+                    listOf(fromYaml(data, moeglicheKarten, ::Kategorie))
+                }
+
+                // Fall 3: ungültige Struktur
+                else -> throw IllegalArgumentException("Ungültige Kategoriestruktur.")
+            }
         }
     }
 }

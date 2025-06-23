@@ -1,7 +1,5 @@
 package de.seleri.spielelemente
 
-import org.yaml.snakeyaml.Yaml
-
 /**
  * Karten mit Text und Statusinformationen
  *
@@ -15,7 +13,7 @@ data class Karte(
     override val localizations: MutableMap<Sprachen, String>,
     var gesehen: Boolean,
     var geloescht: Boolean
-) : LokalisierbaresSpielelement(id, localizations) {
+): LokalisierbaresSpielelement(id, localizations) {
 
     /**
      * Konvertiert die Karte ins YAML-Format.
@@ -58,33 +56,32 @@ data class Karte(
         }
 
         /**
-         * Erstellt **eine** Karte aus einem YAML-Datensatz.
+         * Erstellt eine Liste von Karten aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Datensatz **einer** Karte
-         * @return neue Karte mit ausgelesenen Attributswerten
+         * @param data YAML-Daten einer Karte oder einer Liste von Karten
+         * @return Liste von Karten mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>): Karte {
+        fun fromYaml(data: Map<String, Any>): List<Karte> {
+            when {
 
-            // lässt id und localizations in der Superklasse verarbeiten
-            val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
+                // Fall 1: mehrere Karten
+                KARTEN in data -> {
+                    return fromYamlListe(KARTEN, data) { fromYaml(it) }
+                }
 
-            val gesehen = data[GESEHEN] as Boolean
-            val geloescht = data[GELOESCHT] as Boolean
-            return Karte(id, localizations, gesehen, geloescht)
-        }
+                // Fall 2: einzelne Karte
+                GESEHEN in data && GELOESCHT in data -> {
+                    val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
+                    val gesehen = data[GESEHEN] as Boolean
+                    val geloescht = data[GELOESCHT] as Boolean
 
-        /**
-         * Erstellt **eine Liste mehrerer** Karten aus einem Karten-Abschnitt von YAML-Datensätzen.
-         *
-         * @param yamlInput Karten-Abschnitt von YAML-Datensätzen **mehrerer** Karte
-         * @return Liste an neuen Karten mit ausgelesenen Attributswerten
-         */
-        fun fromYaml(yamlInput: String): List<Karte> {
+                    return listOf(Karte(id, localizations, gesehen, geloescht))
+                }
 
-            // Struktur wird mithilfe der SnakeYaml-Library geparset
-            val data = (Yaml().load(yamlInput) as List<Map<String, Any>>)
-
-            return data.map { fromYaml(it) }
+                // Fall 3: ungültige Struktur
+                else -> throw IllegalArgumentException("Ungültige Kartenstruktur.")
+            }
         }
     }
 }
+

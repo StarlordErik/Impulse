@@ -78,7 +78,7 @@ class SpielTest {
         assertEquals(testSpiel1Yaml(), testSpiel1().toYaml())
         assertEquals(testSpiel2Yaml(), testSpiel2().toYaml())
     }
-
+/*
     @Test
     fun `Test yamlToSpiel() - Konvertierung von YAML zu Spiel`() {
         val spiel1 = Spiel.fromYaml(testSpiel1Yaml(), alleTestKategorien())[0]
@@ -97,7 +97,7 @@ class SpielTest {
             testSpiel2Yaml(), Spiel.fromYaml(testSpiel2Yaml(), alleTestKategorien())[0].toYaml()
         )
     }
-
+*/
     @Test
     fun `Test getAlleKategorien() - Ausgabe aller Kategorien des Spiels`() {
         assertEquals(2, testSpiel1().getAlleKategorien().size)

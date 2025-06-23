@@ -109,11 +109,11 @@ class DatenbanksystemTest {
         assertEquals(0, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         // Wir finden die neue Kategorie im DBS und prüfen dann, ob sie die neuen Karten hinzugefügt hat
-        dbs.hinzufuegen(neueKategorie, neueKarten)
+        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKarten)
         assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         // Wenn wir dieselben Karten zur derselben Kategorie nochmal hinzufügen, sollte nichts passieren
-        dbs.hinzufuegen(neueKategorie, neueKarten)
+        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKarten)
         assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         tmpKopie.delete()
@@ -134,11 +134,11 @@ class DatenbanksystemTest {
         assertEquals(0, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         // Wir finden das neues Spiel im DBS und prüfen dann, ob es die neuen Kategorien hinzugefügt hat
-        dbs.hinzufuegen(neuesSpiel, neueKategorien)
+        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorien)
         assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         // Wenn wir dieselben Kategorien zum selben Spiel nochmal hinzufügen, sollte nichts passieren
-        dbs.hinzufuegen(neuesSpiel, neueKategorien)
+        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorien)
         assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         tmpKopie.delete()
@@ -159,11 +159,11 @@ class DatenbanksystemTest {
         assertEquals(0, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         // Wir finden die neue Kategorie im DBS und prüfen dann, ob sie die neuen Karten hinzugefügt hat
-        dbs.hinzufuegen(neueKategorie, neueKartenIDs)
+        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKartenIDs)
         assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         // Wenn wir dieselben Karten zur derselben Kategorie nochmal hinzufügen, sollte nichts passieren
-        dbs.hinzufuegen(neueKategorie, neueKartenIDs)
+        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKartenIDs)
         assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
 
         tmpKopie.delete()
@@ -186,11 +186,11 @@ class DatenbanksystemTest {
         assertEquals(0, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         // Wir finden das neues Spiel im DBS und prüfen dann, ob es die neuen Kategorien hinzugefügt hat
-        dbs.hinzufuegen(neuesSpiel, neueKategorienIDs)
+        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorienIDs)
         assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         // Wenn wir dieselben Kategorien zum selben Spiel nochmal hinzufügen, sollte nichts passieren
-        dbs.hinzufuegen(neuesSpiel, neueKategorienIDs)
+        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorienIDs)
         assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
 
         tmpKopie.delete()
