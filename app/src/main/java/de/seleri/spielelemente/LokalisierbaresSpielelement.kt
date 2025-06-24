@@ -59,12 +59,11 @@ abstract class LokalisierbaresSpielelement(
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromEingabe(
             id: Int, sprache: Sprachen, bezeichnung: String
-        ): Pair<Int, MutableMap<Sprachen, String>> {/*
-            für alle Sprachen: Speichert die Bezeichnung sowohl
-                in der entsprechenden Sprache als auch in OG, oder setzt "".
+        ): Pair<Int, MutableMap<Sprachen, String>> {
 
-            Unterschied zu fromYaml(): die Map enthält Strings zu allen Sprachen, ggf. leere Strings
-            */
+
+            // für alle Sprachen:
+            // speichert die Bezeichnung sowohl in der entsprechenden Sprache als auch in OG, oder setzt ""
             val localizations =
                 Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) bezeichnung else "" }
                     .toMutableMap()
@@ -78,7 +77,6 @@ abstract class LokalisierbaresSpielelement(
          * @param data YAML-Datensatz eines Elements
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
-        @Suppress("UNCHECKED_CAST")
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromYaml(
             data: Map<String, Any>
@@ -90,17 +88,16 @@ abstract class LokalisierbaresSpielelement(
 
             val id = data[ID] as Int
 
-            /*
-            für alle ausgelesenen Sprachen: Speichert die entsprechende Übersetzung.
+            @Suppress("UNCHECKED_CAST")
+            val yamlLocalizations = ((data[TEXT] ?: data[NAME]) as Map<String, String>)
+                .mapKeys { Sprachen.valueOf(it.key) }
 
-            Unterschied zu fromEingabe():
-                die Map enthält nur die ausgelesenen Sprachen, auch wenn es mehr Enum-Einträge gibt.
-            */
-            val localizations = ((data[TEXT]
-                ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
-                .toMutableMap()
+            // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt ""
+            val localizations =
+                Sprachen.entries.associateWith { if (it in yamlLocalizations) yamlLocalizations[it]!! else ""}
+                    .toMutableMap()
+
             return id to localizations
-
         }
 
         /**
