@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         for (spiel in dbs.spiele) {
 
-            // der Release veröffentlicht nur bestimmte Spiele
+            // der Release veröffentlicht nur bestimmte Spiele, 
+            // damit sich unsere Freunde auf mehr Spiele freuen können, 
+            // wenn sie uns beim Transkribieren geholfen haben :D
             if (spiel.id != 3 && spiel.id != 2) continue
 
             val button = Button(this).apply {
