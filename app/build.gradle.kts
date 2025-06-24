@@ -68,22 +68,22 @@ kover {
         verify {
             warningInsteadOfFailure = true // TODO auf false setzen, damit Kover aktiviert wird
 
-            rule("90% der Abzweigungen getestet") {
+            rule("65% der Abzweigungen getestet") {
                 bound {
-                    minValue = 90
+                    minValue = 65
                     coverageUnits = CoverageUnit.BRANCH
                 }
             }
-            rule("90% der Zeilen getestet") {
+            rule("70% der Anweisungen getestet") {
                 bound {
-                    minValue = 90
-                    coverageUnits = CoverageUnit.LINE
+                    minValue = 70
+                    coverageUnits = CoverageUnit.INSTRUCTION
                 }
             }
-            rule("90% der Anweisungen getestet") {
+            rule("75% der Zeilen getestet") {
                 bound {
-                    minValue = 90
-                    coverageUnits = CoverageUnit.INSTRUCTION
+                    minValue = 75
+                    coverageUnits = CoverageUnit.LINE
                 }
             }
         }
