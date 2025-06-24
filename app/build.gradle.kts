@@ -92,10 +92,10 @@ kover {
 tasks.register("alleTests") {
     dependsOn(
         "detekt",
-        "lintDebug",
-        "koverCachedVerifyDebug",
+        "lintDebug", // "lintRelease" für Release
+        "koverCachedVerifyDebug", // "koverCachedVerifyRelease" für Release
         "koverHtmlReportDebug", // nicht in der Pipeline, da es kein Test ist, erzeugt jedoch den Report
-        "testDebugUnitTest",
-        "connectedDebugAndroidTest"
+        "testDebugUnitTest", // "testReleaseUnitTest" für Release
+        "connectedDebugAndroidTest" // "connectedCheck" für Release
     )
 }
