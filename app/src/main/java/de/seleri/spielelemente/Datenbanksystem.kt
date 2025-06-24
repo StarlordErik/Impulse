@@ -150,7 +150,6 @@ class Datenbanksystem(private val datenbank: File) {
      * @param findenIn Collection, in der nach einer bestehenden Sammlung gesucht wird
      * @return die gefundene oder neu erstellte Sammlung
      */
-    @Suppress("UNCHECKED_CAST")
     private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: Collection<E>, sprache: Sprachen, findenIn: Collection<T>
     ): T {
@@ -159,9 +158,13 @@ class Datenbanksystem(private val datenbank: File) {
         if (neueSammlung == null) {
             val neueID = neueID(findenIn)
             neueSammlung = when (findenIn.first()) { // when (T)
-                is Kategorie -> Kategorie.fromEingabe(neueID, sprache, name, elemente as Collection<Karte>) as T
+                is Kategorie ->
+                    @Suppress("UNCHECKED_CAST")
+                    Kategorie.fromEingabe(neueID, sprache, name, elemente as Collection<Karte>) as T
 
-                is Spiel -> Spiel.fromEingabe(neueID, sprache, name, elemente as Collection<Kategorie>) as T
+                is Spiel ->
+                    @Suppress("UNCHECKED_CAST")
+                    Spiel.fromEingabe(neueID, sprache, name, elemente as Collection<Kategorie>) as T
 
                 else -> error("Unbekannter Typ: ${findenIn.first()::class.simpleName}")
             }
@@ -228,15 +231,19 @@ class Datenbanksystem(private val datenbank: File) {
      * @param dataclassFunktionElementHinzufuegen Funktion aus der Data-Klasse,
      * welche die Elemente der Sammlung hinzufügt
      */
-    @Suppress("UNCHECKED_CAST")
     private fun <T : Any, E : LokalisierbaresSpielelement> elementHinzufuegen(
         neueElemente: Collection<T>,
         findenIn: Collection<E>,
         dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
     ) {
         when (neueElemente.first()) {
-            is LokalisierbaresSpielelement -> dataclassFunktionElementHinzufuegen(neueElemente as Collection<E>)
-            is Int -> dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as List<Int>, findenIn))
+            is LokalisierbaresSpielelement ->
+                @Suppress("UNCHECKED_CAST")
+                dataclassFunktionElementHinzufuegen(neueElemente as Collection<E>)
+
+            is Int ->
+                @Suppress("UNCHECKED_CAST")
+                dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as List<Int>, findenIn))
         }
         speichereYaml()
     }
