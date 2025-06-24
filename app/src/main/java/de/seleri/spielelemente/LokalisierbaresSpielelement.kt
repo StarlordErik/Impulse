@@ -77,7 +77,6 @@ abstract class LokalisierbaresSpielelement(
          * @param data YAML-Datensatz eines Elements
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
-        @Suppress("UNCHECKED_CAST")
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromYaml(
             data: Map<String, Any>
@@ -89,6 +88,7 @@ abstract class LokalisierbaresSpielelement(
 
             val id = data[ID] as Int
 
+            @Suppress("UNCHECKED_CAST")
             val yamlLocalizations = ((data[TEXT] ?: data[NAME]) as Map<String, String>)
                 .mapKeys { Sprachen.valueOf(it.key) }
 
