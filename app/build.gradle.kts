@@ -75,5 +75,5 @@ kover {
 }
 
 tasks.register("alleTests") {
-    dependsOn("detekt", "lint", "testDebugUnitTest", "testReleaseUnitTest", "connectedAndroidTest")
+    dependsOn("detekt", "lint", "koverVerify", "testDebugUnitTest", "testReleaseUnitTest", "connectedAndroidTest")
 }
