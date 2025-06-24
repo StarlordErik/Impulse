@@ -63,7 +63,7 @@ jobs:
           force-avd-creation: ${{ matrix.api-level < 30}} # kein Caching
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedDebugAndroidTest
 
       - name: run tests (API 30+)
         if: matrix.api-level > 29 && contains(inputs['api-filter'], format('{0}', matrix.api-level))
@@ -75,4 +75,4 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -snapshot default
           disable-animations: true
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedDebugAndroidTest

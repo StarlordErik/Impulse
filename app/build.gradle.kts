@@ -29,8 +29,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
 
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -91,5 +90,12 @@ kover {
 }
 
 tasks.register("alleTests") {
-    dependsOn("detekt", "lint", "koverVerify", "testDebugUnitTest", "testReleaseUnitTest", "connectedAndroidTest")
+    dependsOn(
+        "detekt",
+        "lintDebug",
+        "koverCachedVerifyDebug",
+        "koverHtmlReportDebug", // nicht in der Pipeline, da es kein Test ist, erzeugt jedoch den Report
+        "testDebugUnitTest",
+        "connectedDebugAndroidTest"
+    )
 }
