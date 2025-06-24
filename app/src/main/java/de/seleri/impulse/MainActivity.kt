@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         val buttonContainer = findViewById<LinearLayout>(R.id.button_container)
 
         for (spiel in dbs.spiele) {
+
+            // der Release veröffentlicht nur bestimmte Spiele
+            if (spiel.id != 3 && spiel.id != 2) continue
+
             val button = Button(this).apply {
                 text = spiel.localizations[Sprachen.OG]
                 textSize = TEXTGROESSE
