@@ -1,3 +1,5 @@
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -65,9 +67,23 @@ kover {
         }
         verify {
             warningInsteadOfFailure = false
-            rule("Code-Coverage über 90%") {
+
+            rule("90% der Abzweigungen getestet") {
                 bound {
                     minValue = 90
+                    coverageUnits = CoverageUnit.BRANCH
+                }
+            }
+            rule("90% der Zeilen getestet") {
+                bound {
+                    minValue = 90
+                    coverageUnits = CoverageUnit.LINE
+                }
+            }
+            rule("90% der Anweisungen getestet") {
+                bound {
+                    minValue = 90
+                    coverageUnits = CoverageUnit.INSTRUCTION
                 }
             }
         }
