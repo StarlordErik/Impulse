@@ -56,6 +56,16 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
+kover {
+    reports {
+        filters {
+            excludes {
+                classes("de.seleri.tools.*")
+            }
+        }
+    }
+}
+
 tasks.register("alleTests") {
     dependsOn("detekt", "lint", "testDebugUnitTest", "testReleaseUnitTest", "connectedAndroidTest")
 }
