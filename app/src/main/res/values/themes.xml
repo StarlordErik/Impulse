@@ -4,6 +4,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">#181f1c</item>
     </style>
     <style name="ImpulseText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#F8F8FF</item>
