@@ -214,9 +214,9 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             }
 
             val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
-                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, Set<Int>>)
+                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
             val hinzugefuegteIDs = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as Set<Int>
+                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
             // findet alle Elemente per ID aus der Liste aller möglichen Elemente
             val originaleElemente = findeElemente(originaleElementeIDs[IDS]!!, moeglicheElemente)

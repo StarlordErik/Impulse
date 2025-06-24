@@ -232,11 +232,11 @@ class Datenbanksystem(private val datenbank: File) {
     private fun <T : Any, E : LokalisierbaresSpielelement> elementHinzufuegen(
         neueElemente: Collection<T>,
         findenIn: Collection<E>,
-        dataclassFunktionElementHinzufuegen: (Set<E>) -> Unit
+        dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
     ) {
         when (neueElemente.first()) {
-            is LokalisierbaresSpielelement -> dataclassFunktionElementHinzufuegen(neueElemente as Set<E>)
-            is Int -> dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as Set<Int>, findenIn))
+            is LokalisierbaresSpielelement -> dataclassFunktionElementHinzufuegen(neueElemente as Collection<E>)
+            is Int -> dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as List<Int>, findenIn))
         }
         speichereYaml()
     }
