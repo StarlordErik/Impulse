@@ -63,6 +63,14 @@ kover {
                 classes("de.seleri.tools.*")
             }
         }
+        verify {
+            warningInsteadOfFailure = false
+            rule("Code-Coverage über 90%") {
+                bound {
+                    minValue = 90
+                }
+            }
+        }
     }
 }
 
