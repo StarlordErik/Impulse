@@ -5,7 +5,6 @@ import de.seleri.impulse.R
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.nio.file.Paths
-import kotlin.collections.set
 
 // Datenbank-Pfade
 const val DATENBANK_NAME = "datenbank"
@@ -19,52 +18,52 @@ const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
  * Änderungen an den Objekten werden in die YAML-Datei zurückgeschrieben.
  *
  * @param datenbank Die YAML-Datei, die als Datenbank dient.
- * @property karten Liste aller ausgelesenen Karten.
- * @property kategorien Liste aller ausgelesenen Kategorien.
- * @property spiele Liste aller ausgelesenen Spiele.
+ * @property karten Menge aller ausgelesenen Karten.
+ * @property kategorien Menge aller ausgelesenen Kategorien.
+ * @property spiele Menge aller ausgelesenen Spiele.
  * @constructor Initialisiert das Datenbanksystem mit der gegebenen YAML-Datei,
  * indem es die Inhalte einliest und sie in Objekte deserialisiert.
  */
 class Datenbanksystem(private val datenbank: File) {
 
-    val karten: MutableList<Karte>
-    val kategorien: MutableList<Kategorie>
-    val spiele: MutableList<Spiel>
+    val karten: MutableSet<Karte>
+    val kategorien: MutableSet<Kategorie>
+    val spiele: MutableSet<Spiel>
 
     init {
         val yamlInput = Yaml().load<Map<String, Any>>(datenbank.inputStream())
 
-        karten = Karte.fromYaml(yamlInput).toMutableList()
-        kategorien = Kategorie.fromYaml(yamlInput, karten).toMutableList()
-        spiele = Spiel.fromYaml(yamlInput, kategorien).toMutableList()
+        karten = Karte.fromYaml(yamlInput).toMutableSet()
+        kategorien = Kategorie.fromYaml(yamlInput, karten).toMutableSet()
+        spiele = Spiel.fromYaml(yamlInput, kategorien).toMutableSet()
     }
 
     /**
      * Speichert den aktuellen Zustand der Datenbankobjekte (`karten`, `kategorien`, `spiele`)
      * als YAML-Datei in das Dateisystem.
      *
-     * Die Daten werden serialisiert und in der gleichen Reihenfolge
-     * wie beim Laden (Karten -> Kategorien -> Spiele) zurückgeschrieben.
+     * Die Daten werden serialisiert und in der Reihenfolge
+     * wie beim Laden (Karten -> Kategorien -> Spiele), jedoch nach ihrer ID sortiert, zurückgeschrieben.
      */
     private fun speichereYaml() {
         val builder = StringBuilder()
 
         builder.append(attributToYamlZeile(0, KARTEN, null))
-        for (karte in karten) {
+        for (karte in karten.sortedBy { it.id }) {
             builder.append(karte.toYaml())
         }
 
         builder.append("\n")
 
         builder.append(attributToYamlZeile(0, KATEGORIEN, null))
-        for (kategorie in kategorien) {
+        for (kategorie in kategorien.sortedBy { it.id }) {
             builder.append(kategorie.toYaml())
         }
 
         builder.append("\n")
 
         builder.append(attributToYamlZeile(0, SPIELE, null))
-        for (spiel in spiele) {
+        for (spiel in spiele.sortedBy { it.id }) {
             builder.append(spiel.toYaml())
         }
 
@@ -103,25 +102,25 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     /**
-     * Ermittelt eine neue, eindeutige ID, die um 1 höher ist als jede ID in der gegebenen Liste.
+     * Ermittelt eine neue, eindeutige ID, die um 1 höher ist als jede ID in der gegebenen Collection.
      * Lücken werden also nicht aufgefüllt!
      *
      * @param hoeherAlsIn Liste von Spielelementen, deren höchste ID bestimmt wird
      * @return neue, eindeutige ID
      */
-    private fun neueID(hoeherAlsIn: List<LokalisierbaresSpielelement>): Int {
+    private fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
         return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
     }
 
     /**
-     * Erstellt neue `Karte`n aus den gegebenen Kartentexten oder findet bestehende anhand der Namen.
+     * Erstellt neue [Karte]n aus den gegebenen Kartentexten oder findet bestehende anhand der Namen.
      *
-     * @param kartentexte Liste an (wahrscheinlich) neuen Kartentexten
+     * @param kartentexte Collection an (wahrscheinlich) neuen Kartentexten
      * @param sprache Sprache der Texte
-     * @return Liste der neu erstellten oder gefundenen Karten
+     * @return Menge der neu erstellten oder gefundenen Karten
      */
-    fun neueKarten(kartentexte: List<String>, sprache: Sprachen): List<Karte> {
-        val neueKarten = mutableListOf<Karte>()
+    fun neueKarten(kartentexte: Collection<String>, sprache: Sprachen): Set<Karte> {
+        val neueKarten = mutableSetOf<Karte>()
         var neueId = neueID(karten) - 1 // das ist die höchste ID
 
         kartentexte.forEach {
@@ -135,83 +134,72 @@ class Datenbanksystem(private val datenbank: File) {
             neueKarten.add(neueKarte)
         }
 
-        // nur die actually neuen Karten zum DBS hinzufügen
-        val actuallyNeueKarten = neueKarten.filter { it !in karten }
-        karten.addAll(actuallyNeueKarten)
-
+        karten.addAll(neueKarten)
         speichereYaml()
-        return neueKarten.toList()
+        return neueKarten.toSet()
     }
 
     /**
-     * Findet eine bestehende Sammlung (`Kategorie` oder `Spiel`) anhand des Namens oder erstellt eine neue.
+     * Findet eine bestehende Sammlung ([Kategorie] oder [Spiel]) anhand des Namens oder erstellt eine neue.
      *
      * Wenn bereits eine Sammlung mit dem gegebenen Namen existiert, werden neue Elemente den OG-Elemente hinzugefügt.
      *
      * @param name Name der gesuchten oder zu erstellenden Sammlung
-     * @param elemente Liste der Elemente, die in der Sammlung enthalten sein sollen
+     * @param elemente Collection der Elemente, die in der Sammlung enthalten sein sollen
      * @param sprache Sprache des übergebenen Namens
-     * @param findenIn Liste, in der nach einer bestehenden Sammlung gesucht wird
+     * @param findenIn Collection, in der nach einer bestehenden Sammlung gesucht wird
      * @return die gefundene oder neu erstellte Sammlung
      */
     @Suppress("UNCHECKED_CAST")
     private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
-        name: String, elemente: List<E>, sprache: Sprachen, findenIn: List<T>
-    ): T? {
+        name: String, elemente: Collection<E>, sprache: Sprachen, findenIn: Collection<T>
+    ): T {
         var neueSammlung = findeElement(name, findenIn)
 
         if (neueSammlung == null) {
             val neueID = neueID(findenIn)
-            when (findenIn[0]) { // findenIn ist eine Liste an unserem gewollten Ausgaben-Objekt-Typ
-                is Kategorie -> neueSammlung =
-                    Kategorie.fromEingabe(neueID, sprache, name, elemente as List<Karte>) as T
+            neueSammlung = when (findenIn.first()) { // when (T)
+                is Kategorie -> Kategorie.fromEingabe(neueID, sprache, name, elemente as Collection<Karte>) as T
 
-                is Spiel -> neueSammlung =
-                    Spiel.fromEingabe(neueID, sprache, name, elemente as List<Kategorie>) as T
+                is Spiel -> Spiel.fromEingabe(neueID, sprache, name, elemente as Collection<Kategorie>) as T
+
+                else -> error("Unbekannter Typ: ${findenIn.first()::class.simpleName}")
             }
         } else {
             // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
             elemente.forEach {
-                if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS] =
-                    neueSammlung.originaleElemente[IDS]!!.plus(it)
+                if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS]!!.add(it)
             }
         }
         return neueSammlung
     }
 
     /**
-     * Erstellt eine neue `Kategorie` oder findet eine bestehende anhand des Namens.
+     * Erstellt eine neue [Kategorie] oder findet eine bestehende anhand des Namens.
      *
      * @param name Name der Kategorie
-     * @param karten Liste an Karten, die in die Kategorie aufgenommen werden sollen
+     * @param karten Collection an Karten, die in die Kategorie aufgenommen werden sollen
      * @param sprache Sprache des Namens
      * @return die erstellte oder gefundene Kategorie
      */
-    fun neueKategorie(name: String, karten: List<Karte>, sprache: Sprachen): Kategorie {
-        val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)!!
-
-        if (neueKategorie !in kategorien) {
-            kategorien.add(neueKategorie)
-        }
+    fun neueKategorie(name: String, karten: Collection<Karte>, sprache: Sprachen): Kategorie {
+        val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)
+        kategorien.add(neueKategorie)
         speichereYaml()
         return neueKategorie
     }
 
     /**
-     * Erstellt ein neues `Spiel` oder findet ein bestehendes anhand des Namens.
+     * Erstellt ein neues [Spiel] oder findet ein bestehendes anhand des Namens.
      *
      * @param name Name des Spiels
-     * @param kategorien Liste an Kategorien, die in die Kategorie aufgenommen werden sollen
+     * @param kategorien Collection an Kategorien, die in die Kategorie aufgenommen werden sollen
      * @param sprache Sprache des Namens
      * @return das erstellte oder gefundene Spiel
      */
-    fun neuesSpiel(name: String, kategorien: List<Kategorie>, sprache: Sprachen): Spiel {
-        val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)!!
-
-        if (neuesSpiel !in spiele) {
-            spiele.add(neuesSpiel)
-
-        }
+    fun neuesSpiel(name: String, kategorien: Collection<Kategorie>, sprache: Sprachen): Spiel {
+        val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)
+        spiele.add(neuesSpiel)
         speichereYaml()
         return neuesSpiel
     }
@@ -233,18 +221,45 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     /**
+     * Fügt neue Elemente zu einer Sammlung hinzu.
+     *
+     * @param neueElemente Collection von Element-Objekten oder IDs
+     * @param findenIn Collection, zu der die Sammlung hinzugefügt werden sollen
+     * @param dataclassFunktionElementHinzufuegen Funktion aus der Data-Klasse,
+     * welche die Elemente der Sammlung hinzufügt
+     */
+    @Suppress("UNCHECKED_CAST")
+    private fun <T : Any, E : LokalisierbaresSpielelement> elementHinzufuegen(
+        neueElemente: Collection<T>,
+        findenIn: Collection<E>,
+        dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
+    ) {
+        when (neueElemente.first()) {
+            is LokalisierbaresSpielelement -> dataclassFunktionElementHinzufuegen(neueElemente as Collection<E>)
+            is Int -> dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as List<Int>, findenIn))
+        }
+        speichereYaml()
+    }
+
+
+    /**
      * Fügt neue `Karte`n zu einer `Kategorie` hinzu.
      *
      * @param kategorie Kategorie, zu der die Karten hinzugefügt werden sollen
-     * @param neueKarten Liste von `Karte`n-Objekten oder IDs
+     * @param neueKarten Collection von `Karte`n-Objekten oder IDs
      */
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: List<T>) {
-        when (neueKarten[0]) {
-            is Karte -> kategorie.kartenHinzufuegen(neueKarten as List<Karte>)
-            is Int -> kategorie.kartenHinzufuegen(findeElemente(neueKarten as List<Int>, karten))
-        }
-        speichereYaml()
+    fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: Collection<T>) {
+        elementHinzufuegen(neueKarten, karten, kategorie::kartenHinzufuegen)
+    }
+
+    /**
+     * Fügt neue `Kategorie`n zu einem `Spiel` hinzu.
+     *
+     * @param spiel Spiel, zu dem die Kategorien hinzugefügt werden sollen
+     * @param neueKategorien Collection von `Kategorie`-Objekten oder IDs
+     */
+    fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: Collection<T>) {
+        elementHinzufuegen(neueKategorien, kategorien, spiel::kategorienHinzufuegen)
     }
 
     /**
@@ -255,25 +270,6 @@ class Datenbanksystem(private val datenbank: File) {
      */
     fun karteAusKategorieEntfernen(zuEntfernendeKarte: Karte, ausKategorie: Kategorie) {
         ausKategorie.karteEntfernen(zuEntfernendeKarte)
-        speichereYaml()
-    }
-
-    /**
-     * Fügt neue `Kategorie`n zu einem `Spiel` hinzu.
-     *
-     * @param spiel Spiel, zu dem die Kategorien hinzugefügt werden sollen
-     * @param neueKategorien Liste von `Kategorie`-Objekten oder IDs
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: List<T>) {
-        when (neueKategorien[0]) {
-            is Kategorie -> spiel.kategorienHinzufuegen(neueKategorien as List<Kategorie>)
-            is Int -> spiel.kategorienHinzufuegen(
-                findeElemente(
-                    neueKategorien as List<Int>, kategorien
-                )
-            )
-        }
         speichereYaml()
     }
 

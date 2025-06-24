@@ -14,14 +14,14 @@ const val BINDESTRICH_IDS: String = "-$IDS"
  *
  * @property id eindeutige ID des Elements
  * @property localizations Map mit den Übersetzungen des Namens für verschiedene Sprachen
- * @property originaleElemente zwei Listen mit IDs der originalen Elementen und derer, die vom Nutzer entfernt wurden
- * @property hinzugefuegteElemente Liste der vom Nutzer hinzugefügten Elemente zur Sammlung
+ * @property originaleElemente zwei Mengen mit den originalen Elementen und denen, die vom Nutzer entfernt wurden
+ * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Elemente zur Sammlung
  */
 abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
-    open val originaleElemente: MutableMap<String, List<T>>,
-    open var hinzugefuegteElemente: List<T>
+    open val originaleElemente: Map<String, MutableSet<T>>,
+    open val hinzugefuegteElemente: MutableSet<T>
 ): LokalisierbaresSpielelement(id, localizations) {
 
     /**
@@ -59,11 +59,11 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return originale Elemente + hinzugefügte Elemente
      */
-    protected fun getAlleElemente(): List<T> {
-        val alleElemente = mutableListOf<T>()
+    protected fun getAlleElemente(): Set<T> {
+        val alleElemente = mutableSetOf<T>()
         alleElemente.addAll(originaleElemente[IDS]!!)
         alleElemente.addAll(hinzugefuegteElemente)
-        return alleElemente
+        return alleElemente.toSet()
     }
 
     /**
@@ -71,17 +71,17 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return originale Karten + hinzugefügte Kartem
      */
-    abstract fun getAlleKarten(): List<Karte>
+    abstract fun getAlleKarten(): Set<Karte>
 
     /**
      * Gibt alle Elemente der Sammlung zurück ohne die "davon entfernten" Elemente.
      *
      * @return (originale Elemente - davon entfernte Elemente) + hinzugefügte Elemente
      */
-    protected fun getAlleAktuellenElemente(): List<T> {
-        val aktuelleElemente = getAlleElemente().toMutableList()
+    protected fun getAlleAktuellenElemente(): Set<T> {
+        val aktuelleElemente = getAlleElemente().toMutableSet()
         aktuelleElemente.removeAll(originaleElemente[DAVON_ENTFERNT]!!)
-        return aktuelleElemente
+        return aktuelleElemente.toSet()
     }
 
     /**
@@ -89,16 +89,16 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
      */
-    abstract fun getAlleAktuellenKarten(): List<Karte>
+    abstract fun getAlleAktuellenKarten(): Set<Karte>
 
     /**
      * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
      *
-     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
-     * @return Liste an Karten, die noch nicht gesehen wurdenq
+     * @param aktuelleKarten Collection aller aktuellen Karten der Sammlung
+     * @return Menge an Karten, die noch nicht gesehen wurden
      */
-    protected fun geseheneKartenRausfiltern(aktuelleKarten: List<Karte>): List<Karte> {
-        return aktuelleKarten.filter { !it.gesehen }
+    protected fun geseheneKartenRausfiltern(aktuelleKarten: Collection<Karte>): Set<Karte> {
+        return aktuelleKarten.filter { !it.gesehen }.toSet()
     }
 
     /**
@@ -106,14 +106,14 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return noch nicht gesehene Karten
      */
-    abstract fun getAlleUngesehenenKarten(): List<Karte>
+    abstract fun getAlleUngesehenenKarten(): Set<Karte>
 
     /**
      * Setzt alle Karten der Sammlung auf "ungesehen".
      *
-     * @param aktuelleKarten Liste aller aktuellen Karten der Sammlung
+     * @param aktuelleKarten Collection aller aktuellen Karten der Sammlung
      */
-    protected fun setKartenUngesehen(aktuelleKarten: List<Karte>) {
+    protected fun setKartenUngesehen(aktuelleKarten: Collection<Karte>) {
         aktuelleKarten.forEach { it.gesehen = false }
     }
 
@@ -124,36 +124,36 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
 
     /**
      * Fügt neue Elemente zur Sammlung hinzu.
-     * Dafür werden sie der der Liste der hinzugefügten Elemente einfach hinzugefügt und für den Fall,
+     * Dafür werden sie der der Menge der hinzugefügten Elemente hinzugefügt und für den Fall,
      * dass es schon in den originalen Elementen enthalten war und entfernt wurde, wird es rehabilitiert.
      *
      * @param neueElemente Elemente, die zur Sammlung hinzugefügt werden sollen
      */
-    protected fun elementeHinzufuegen(neueElemente: List<T>) {
+    protected fun elementeHinzufuegen(neueElemente: Collection<T>) {
+        val alleElemente = getAlleElemente() // Caching
+        neueElemente.forEach { neuesElement ->
 
-        // rehabilitert die Elemente, die vorher entfernt wurden
-        neueElemente.forEach { originaleElemente[DAVON_ENTFERNT]!!.minus(it) }
+            // rehabilitert die Elemente, die vorher entfernt wurden
+            originaleElemente[DAVON_ENTFERNT]!!.remove(neuesElement)
 
-        val neuHinzugefuegt: MutableSet<T> =
-            hinzugefuegteElemente.toMutableSet() // keine Duplikate!
+            // fügt es nur hinzu, wenn es nicht bereits Teil der originalen (und hinzugefügten) Elemente ist
+            if (!alleElemente.contains(neuesElement)) {
+                hinzugefuegteElemente.add(neuesElement)
+            }
+        }
 
-        // fügt es nur hinzu, wenn es nicht auch Teil der originalen (und hinzugefügten) Elemente ist
-        neuHinzugefuegt.addAll(neueElemente.filter { !getAlleElemente().contains(it) })
-
-        hinzugefuegteElemente = neuHinzugefuegt.toList()
     }
 
     /**
      * Entfernt ein Element aus der Sammlung.
-     * Dafür wird es der Liste der davon entfernten Elemente einfach hinzugefügt
+     * Dafür wird es der Menge der davon entfernten Elemente hinzugefügt
      * und/oder aus den hinzugefügten Elementen gelöscht.
      *
      * @param zuEntfernendesElement Element, das aus der Sammlung entfernt werden soll
      */
     protected fun elementEntfernen(zuEntfernendesElement: T) {
-        originaleElemente[DAVON_ENTFERNT] =
-            originaleElemente[DAVON_ENTFERNT]!!.plus(zuEntfernendesElement)
-        hinzugefuegteElemente = hinzugefuegteElemente.minus(zuEntfernendesElement)
+        originaleElemente[DAVON_ENTFERNT]!!.add(zuEntfernendesElement)
+        hinzugefuegteElemente.remove(zuEntfernendesElement)
     }
 
     companion object {
@@ -163,7 +163,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
          * @param id neue, noch nicht vergebene ID
          * @param sprache Sprache des Namens
          * @param name Name
-         * @param originaleElemente Liste der original enthaltenen Elemente
+         * @param originaleElemente Collection der original enthaltenen Elemente
          * @param constructor Konstruktor der Sammlung vom Typ T
          * @return neue Sammlung vom Typ T ohne entfernte oder hinzugefügte Elemente
          */
@@ -172,24 +172,24 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             id: Int,
             sprache: Sprachen,
             name: String,
-            originaleElemente: List<E>,
-            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
+            originaleElemente: Collection<E>,
+            constructor: (Int, MutableMap<Sprachen, String>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
             // lässt id, sprache und name in der Superklasse verarbeiten
             val (id, localizations) = fromEingabe(id, sprache, name)
 
-            val originaleElementeMitNullEntfernten = mutableMapOf<String, List<E>>(
-                IDS to originaleElemente, DAVON_ENTFERNT to emptyList()
+            val originaleElementeMitNullEntfernten = mapOf<String, MutableSet<E>>(
+                IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to mutableSetOf<E>()
             )
-            return constructor(id, localizations, originaleElementeMitNullEntfernten, emptyList())
+            return constructor(id, localizations, originaleElementeMitNullEntfernten, mutableSetOf<E>())
         }
 
         /**
          * Erstellt eine Sammlung aus einem YAML-Datensatz.
          *
          * @param data YAML-Datensatz einer Sammlung
-         * @param moeglicheElemente Liste aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -
+         * @param moeglicheElemente Collection aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -
          * im Zweifel einfach alle möglichen Elemente
          * @param constructor Konstruktor der Sammlung vom Typ T
          * @return neue Sammlung vom Typ T mit ausgelesenen Attributswerten
@@ -198,8 +198,8 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
         @JvmStatic // damit die Methode protected sein kann
         protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
             data: Map<String, Any>,
-            moeglicheElemente: List<E>,
-            constructor: (Int, MutableMap<Sprachen, String>, MutableMap<String, List<E>>, List<E>) -> T
+            moeglicheElemente: Collection<E>,
+            constructor: (Int, MutableMap<Sprachen, String>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
             // lässt id und localizations in der Superklasse verarbeiten
@@ -224,12 +224,12 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
                 findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheElemente)
             val hinzugefuegteElemente = findeElemente(hinzugefuegteIDs, moeglicheElemente)
 
-            val originaleUndDavonEntfernteElemente = mutableMapOf<String, List<E>>(
-                IDS to originaleElemente, DAVON_ENTFERNT to entfernteElemente
+            val originaleUndDavonEntfernteElemente = mapOf<String, MutableSet<E>>(
+                IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to entfernteElemente.toMutableSet()
             )
 
             return constructor(
-                id, localizations, originaleUndDavonEntfernteElemente, hinzugefuegteElemente
+                id, localizations, originaleUndDavonEntfernteElemente, hinzugefuegteElemente.toMutableSet()
             )
         }
     }

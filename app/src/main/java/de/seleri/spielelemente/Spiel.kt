@@ -7,14 +7,14 @@ const val SPIELE: String = "Spiele"
  *
  * @property id eindeutige ID des Spiels
  * @property localizations Map mit den Übersetzungen des Spielnamens für verschiedene Sprachen
- * @property originaleElemente zwei Listen mit IDs der originalen Kategorien und derer, die vom Nutzer entfernt wurden
- * @property hinzugefuegteElemente Liste der vom Nutzer hinzugefügten Kategorien zum Spiel
+ * @property originaleElemente zwei Mengen mit den originalen Kategorien und denen, die vom Nutzer entfernt wurden
+ * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Kategorien zum Spiel
  */
 data class Spiel(
     override val id: Int,
     override val localizations: MutableMap<Sprachen, String>,
-    override val originaleElemente: MutableMap<String, List<Kategorie>>,
-    override var hinzugefuegteElemente: List<Kategorie>
+    override val originaleElemente: Map<String, MutableSet<Kategorie>>,
+    override val hinzugefuegteElemente: MutableSet<Kategorie>
 ) : SammlungAnSpielelementen<Kategorie>(
     id, localizations, originaleElemente, hinzugefuegteElemente
 ) {
@@ -36,37 +36,37 @@ data class Spiel(
      *
      * @return originale Kategorien + hinzugefügte Kategorien
      */
-    fun getAlleKategorien(): List<Kategorie> = getAlleElemente()
+    fun getAlleKategorien(): Set<Kategorie> = getAlleElemente()
 
     /**
      * Gibt alle Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
      *
      * @return (originale Kategorien - davon entfernten Kategorien) + hinzugefügte Kategorien
      */
-    fun getAlleAktuellenKategorien(): List<Kategorie> = getAlleAktuellenElemente()
+    fun getAlleAktuellenKategorien(): Set<Kategorie> = getAlleAktuellenElemente()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück und ignoriert die davon entfernten.
      *
      * @return alleKarten(originale Kategorien) + alleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleKarten(): List<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.distinct()
+    override fun getAlleKarten(): Set<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.toSet()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
      *
-     * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien)
-     * + aktuelleKarten(hinzugefügte Kategorien)
+     * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien) +
+     * aktuelleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleAktuellenKarten(): List<Karte> =
-        getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.distinct()
+    override fun getAlleAktuellenKarten(): Set<Karte> =
+        getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.toSet()
 
     /**
      * Gibt alle noch nicht gesehenen Karten des Spiels zurück.
      *
      * @return noch nicht gesehene Karten
      */
-    override fun getAlleUngesehenenKarten(): List<Karte> {
+    override fun getAlleUngesehenenKarten(): Set<Karte> {
         return geseheneKartenRausfiltern(getAlleAktuellenKarten())
     }
 
@@ -79,16 +79,16 @@ data class Spiel(
 
     /**
      * Fügt neue Kategorien zum Spiel hinzu.
-     * Dafür werden sie der der Liste der hinzugefügten Kategorien einfach hinzugefügt und für den Fall,
+     * Dafür werden sie der der Menge der hinzugefügten Kategorien hinzugefügt und für den Fall,
      * dass sie schon in den originalen Kategorien enthalten waren und entfernt wurden, werden sie rehabilitiert.
      *
      * @param kategorien Kategorien, die zum Spiel hinzugefügt werden sollen
      */
-    fun kategorienHinzufuegen(kategorien: List<Kategorie>) = elementeHinzufuegen(kategorien)
+    fun kategorienHinzufuegen(kategorien: Collection<Kategorie>) = elementeHinzufuegen(kategorien)
 
     /**
      * Entfernt eine Kategorie aus dem Spiel.
-     * Dafür wird sie der Liste der davon entfernten Kategorien einfach hinzugefügt
+     * Dafür wird sie der Menge der davon entfernten Kategorien hinzugefügt
      * und/oder aus den hinzugefügten Kategorien gelöscht.
      *
      * @param zuEntfernendeKategorie Kategorie, die aus dem Spiel entfernt werden soll
@@ -103,22 +103,22 @@ data class Spiel(
          * @param id neue, noch nicht vergebene ID
          * @param sprache Sprache des Spielnamens
          * @param name Name
-         * @param originaleKategorien Liste der ursprünglichen Kategorien
+         * @param originaleKategorien Collection der ursprünglichen Kategorien
          * @return neues Spiel ohne entfernte oder hinzugefügte Kategorien
          */
         fun fromEingabe(
-            id: Int, sprache: Sprachen, name: String, originaleKategorien: List<Kategorie>
+            id: Int, sprache: Sprachen, name: String, originaleKategorien: Collection<Kategorie>
         ): Spiel = fromEingabe(id, sprache, name, originaleKategorien, ::Spiel)
 
         /**
-         * Erstellt eine Liste von Spielen aus einer von SnakeYaml deserialisierten YAML-Datei.
+         * Erstellt eine Menge von Spielen aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Daten eines Spiels oder einer Liste von Spielen
-         * @param moeglicheKategorien Liste aller Kategorien, aus denen das Spiel bestehen **könnte** -
+         * @param data YAML-Daten eines oder mehrerer Spiele
+         * @param moeglicheKategorien Collection aller Kategorien, aus denen das Spiel bestehen **könnte** -
          * im Zweifel einfach alle möglichen Kategorien
-         * @return Liste von Spielen mit ausgelesenen Attributwerten
+         * @return Menge von Spielen mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: List<Kategorie>): List<Spiel> {
+        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: Collection<Kategorie>): Set<Spiel> {
             return when {
 
                 // Fall 1: mehrere Spiele
@@ -128,7 +128,7 @@ data class Spiel(
 
                 // Fall 2: einzelnes Spiel
                 "$ORIGINALE$KATEGORIEN" in data && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data -> {
-                    listOf(fromYaml(data, moeglicheKategorien, ::Spiel))
+                    setOf(fromYaml(data, moeglicheKategorien, ::Spiel))
                 }
 
                 // Fall 3: ungültige Struktur

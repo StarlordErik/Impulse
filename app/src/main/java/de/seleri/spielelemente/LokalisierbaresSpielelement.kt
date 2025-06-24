@@ -113,9 +113,9 @@ abstract class LokalisierbaresSpielelement(
          * @return Eine Liste von [T].
          */
         @JvmStatic // damit die Methode protected sein kann
-        protected fun <T> fromYamlListe(
-            element: String, data: Map<String, Any>, converter: (Map<String, Any>) -> List<T>
-        ): List<T> {
+        protected fun <T : LokalisierbaresSpielelement> fromYamlListe(
+            element: String, data: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
+        ): Set<T> {
             // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
             val listeAnElementenImYamlformat = data[element] as List<*>
 
@@ -129,7 +129,7 @@ abstract class LokalisierbaresSpielelement(
                     .first() // es wird nur ein Objekt ausgegeben, aber als Liste
             }
 
-            return elementListe
+            return elementListe.toSet()
         }
 
     }

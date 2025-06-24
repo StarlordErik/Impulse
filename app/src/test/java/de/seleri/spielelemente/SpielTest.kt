@@ -20,9 +20,9 @@ fun testSpiel1Yaml(): String = """
 fun testSpiel1(): Spiel = Spiel(
     id = 1, localizations = mutableMapOf(
         Sprachen.OG to TEST_SPIEL_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
-    ), originaleElemente = mutableMapOf(
-        IDS to listOf(testKategorie1()), DAVON_ENTFERNT to listOf(testKategorie1())
-    ), hinzugefuegteElemente = listOf(testKategorie2())
+    ), originaleElemente = mapOf(
+        IDS to mutableSetOf(testKategorie1()), DAVON_ENTFERNT to mutableSetOf(testKategorie1())
+    ), hinzugefuegteElemente = mutableSetOf(testKategorie2())
 )
 
 const val TEST_SPIEL_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -42,9 +42,9 @@ fun testSpiel2Yaml(): String = """
 fun testSpiel2(): Spiel = Spiel(
     id = 2, localizations = mutableMapOf(
         Sprachen.OG to TEST_SPIEL_2_EINGABE, Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
-    ), originaleElemente = mutableMapOf(
-        IDS to listOf(testKategorie1(), testKategorie2()), DAVON_ENTFERNT to emptyList()
-    ), hinzugefuegteElemente = emptyList()
+    ), originaleElemente = mapOf(
+        IDS to mutableSetOf(testKategorie1(), testKategorie2()), DAVON_ENTFERNT to mutableSetOf()
+    ), hinzugefuegteElemente = mutableSetOf()
 )
 
 class SpielTest {
@@ -52,8 +52,10 @@ class SpielTest {
     @Test
     fun `Test eingabeToSpiel() - Konvertierung von Spielname und zugehoerigen Kategorien zu Spiel`() {
         val spiel1 = Spiel.fromEingabe(1, Sprachen.EN, TEST_SPIEL_1_EINGABE, listOf(testKategorie1()))
-        spiel1.originaleElemente[DAVON_ENTFERNT] = listOf(testKategorie1())
-        spiel1.hinzugefuegteElemente = listOf(testKategorie2())
+        spiel1.originaleElemente[DAVON_ENTFERNT]!!.clear()
+        spiel1.originaleElemente[DAVON_ENTFERNT]!!.add(testKategorie1())
+        spiel1.hinzugefuegteElemente.clear()
+        spiel1.hinzugefuegteElemente.add(testKategorie2())
 
         assertEquals(testSpiel1().id, spiel1.id)
         assertEquals(testSpiel1().localizations, spiel1.localizations)
@@ -64,7 +66,7 @@ class SpielTest {
         val spiel2 = Spiel.fromEingabe(
             2, Sprachen.DE, TEST_SPIEL_2_EINGABE, listOf(testKategorie1(), testKategorie2())
         )
-        spiel2.hinzugefuegteElemente = emptyList()
+        spiel2.hinzugefuegteElemente.clear()
 
         assertEquals(testSpiel2().id, spiel2.id)
         assertEquals(testSpiel2().localizations, spiel2.localizations)
