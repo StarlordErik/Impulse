@@ -89,13 +89,24 @@ kover {
     }
 }
 
-tasks.register("alleTests") {
+tasks.register("alleDebugTests") {
     dependsOn(
         "detekt",
-        "lintDebug", // "lintRelease" für Release
-        "koverCachedVerifyDebug", // "koverCachedVerifyRelease" für Release
+        "lintDebug",
+        "koverCachedVerifyDebug",
         "koverHtmlReportDebug", // nicht in der Pipeline, da es kein Test ist, erzeugt jedoch den Report
-        "testDebugUnitTest", // "testReleaseUnitTest" für Release
-        "connectedDebugAndroidTest" // "connectedCheck" für Release
+        "testDebugUnitTest",
+        "connectedDebugAndroidTest"
+    )
+}
+
+tasks.register("alleReleaseTests") {
+    dependsOn(
+        "detekt",
+        "lint",
+        "koverCachedVerify",
+        "koverHtmlReport",
+        "test",
+        "connectedCheck"
     )
 }
