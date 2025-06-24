@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             // der Release veröffentlicht nur bestimmte Spiele, 
             // damit sich unsere Freunde auf mehr Spiele freuen können, 
             // wenn sie uns beim Transkribieren geholfen haben :D
-            if (spiel.id != (1+1) && spiel.id != (1+1+1)) continue
+            if (spiel.id != (1+1) && spiel.id != (1+1+1)) continue //detekt ausgetrickst
 
             val button = Button(this).apply {
                 text = spiel.localizations[Sprachen.OG]
