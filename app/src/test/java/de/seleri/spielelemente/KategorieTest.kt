@@ -22,9 +22,9 @@ fun testKategorie1(): Kategorie = Kategorie(
         Sprachen.OG to TEST_KATEGORIE_1_EINGABE,
         Sprachen.DE to "",
         Sprachen.EN to TEST_KATEGORIE_1_EINGABE
-    ), originaleElemente = mutableMapOf(
-        IDS to listOf(testKarte1()), DAVON_ENTFERNT to listOf(testKarte1())
-    ), hinzugefuegteElemente = listOf(testKarte2())
+    ), originaleElemente = mapOf(
+        IDS to mutableSetOf(testKarte1()), DAVON_ENTFERNT to mutableSetOf(testKarte1())
+    ), hinzugefuegteElemente = mutableSetOf(testKarte2())
 )
 
 const val TEST_KATEGORIE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
@@ -46,9 +46,9 @@ fun testKategorie2(): Kategorie = Kategorie(
         Sprachen.OG to TEST_KATEGORIE_2_EINGABE,
         Sprachen.DE to TEST_KATEGORIE_2_EINGABE,
         Sprachen.EN to ""
-    ), originaleElemente = mutableMapOf(
-        IDS to listOf(testKarte1(), testKarte2()), DAVON_ENTFERNT to emptyList()
-    ), hinzugefuegteElemente = emptyList()
+    ), originaleElemente = mapOf(
+        IDS to mutableSetOf(testKarte1(), testKarte2()), DAVON_ENTFERNT to mutableSetOf()
+    ), hinzugefuegteElemente = mutableSetOf()
 )
 
 fun alleTestKategorien(): List<Kategorie> = listOf(testKategorie1(), testKategorie2())
@@ -58,8 +58,12 @@ class KategorieTest {
     fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
         val kategorie1 =
             Kategorie.fromEingabe(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
-        kategorie1.hinzugefuegteElemente = listOf(testKarte2())
-        kategorie1.originaleElemente[DAVON_ENTFERNT] = listOf(testKarte1())
+        kategorie1.hinzugefuegteElemente.clear()
+        kategorie1.hinzugefuegteElemente.add(testKarte2())
+
+        kategorie1.originaleElemente[DAVON_ENTFERNT]!!.clear()
+        kategorie1.originaleElemente[DAVON_ENTFERNT]!!.add(testKarte1())
+
         assertEquals(testKategorie1().id, kategorie1.id)
         assertEquals(testKategorie1().localizations, kategorie1.localizations)
         assertEquals(testKategorie1().originaleElemente, kategorie1.originaleElemente)
@@ -69,7 +73,7 @@ class KategorieTest {
         val kategorie2 = Kategorie.fromEingabe(
             2, Sprachen.DE, TEST_KATEGORIE_2_EINGABE, listOf(testKarte1(), testKarte2())
         )
-        kategorie2.hinzugefuegteElemente = emptyList()
+        kategorie2.hinzugefuegteElemente.clear()
         assertEquals(testKategorie2().id, kategorie2.id)
         assertEquals(testKategorie2().localizations, kategorie2.localizations)
         assertEquals(testKategorie2().originaleElemente, kategorie2.originaleElemente)
