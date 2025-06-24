@@ -1,7 +1,7 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.0"
 core = "1.6.1"
-kotlin = "2.1.21"
+kotlin = "2.2.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -12,8 +12,9 @@ activity = "1.10.1"
 constraintlayout = "2.2.1"
 detekt = "1.23.8"
 snakeyaml = "2.4"
-mokk = "1.14.2"
-robolectric = "4.14"
+mokk = "1.14.4"
+robolectric = "4.15.1"
+kover = "0.9.1"
 
 
 [libraries]
@@ -26,7 +27,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-snakeyaml = {group = "org.yaml", name = "snakeyaml", version.ref = "snakeyaml"}
+snakeyaml = { group = "org.yaml", name = "snakeyaml", version.ref = "snakeyaml" }
 mokk = { group = "io.mockk", name = "mockk", version.ref = "mokk" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 
@@ -35,3 +36,4 @@ robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

@@ -1,7 +1,10 @@
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.kover)
 }
 
 android {
@@ -26,8 +29,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
 
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -55,6 +57,56 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
-tasks.register("alleTests") {
-    dependsOn("detekt", "lint", "testDebugUnitTest", "testReleaseUnitTest", "connectedAndroidTest")
+kover {
+    reports {
+        filters {
+            excludes {
+                classes("de.seleri.tools.*")
+            }
+        }
+        verify {
+            warningInsteadOfFailure = true // TODO auf false setzen, damit Kover aktiviert wird
+
+            rule("65% der Abzweigungen getestet") {
+                bound {
+                    minValue = 65
+                    coverageUnits = CoverageUnit.BRANCH
+                }
+            }
+            rule("70% der Anweisungen getestet") {
+                bound {
+                    minValue = 70
+                    coverageUnits = CoverageUnit.INSTRUCTION
+                }
+            }
+            rule("75% der Zeilen getestet") {
+                bound {
+                    minValue = 75
+                    coverageUnits = CoverageUnit.LINE
+                }
+            }
+        }
+    }
+}
+
+tasks.register("alleDebugTests") {
+    dependsOn(
+        "detekt",
+        "lintDebug",
+        "koverCachedVerifyDebug",
+        "koverHtmlReportDebug", // nicht in der Pipeline, da es kein Test ist, erzeugt jedoch den Report
+        "testDebugUnitTest",
+        "connectedDebugAndroidTest"
+    )
+}
+
+tasks.register("alleReleaseTests") {
+    dependsOn(
+        "detekt",
+        "lint",
+        "koverCachedVerify",
+        "koverHtmlReport",
+        "test",
+        "connectedCheck"
+    )
 }

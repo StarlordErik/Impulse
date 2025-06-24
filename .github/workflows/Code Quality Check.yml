@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: [ detekt, lint, testDebugUnitTest, testReleaseUnitTest ]
+        task: [ detekt, lintDebug, koverCachedVerifyDebug, testDebugUnitTest ]
       fail-fast: false
 
     steps:
