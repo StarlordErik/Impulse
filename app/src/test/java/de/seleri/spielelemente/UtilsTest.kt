@@ -7,6 +7,12 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
+/**
+ * Einlesen von YAML-Dateien mit SnakeYAML in der Testumgebung.
+ *
+ * @param pfad Der Pfad zur YAML-Datei, relativ zum Klassenpfad.
+ * @return Eine Map mit den eingelesenen Daten.
+ */
 fun ladeYamlDaten(pfad: String): Map<String, Any> {
     val inputStream = object{}.javaClass.classLoader?.getResourceAsStream(pfad)
         ?: throw IllegalArgumentException("Datei nicht gefunden: $pfad")
