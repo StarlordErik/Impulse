@@ -23,6 +23,20 @@ fun ladeYamlDaten(pfad: String): Map<String, Any> {
 fun atyz(anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?) =
     attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
 
+fun testAttribute() : Map<String, Any?>{
+    val collectionAnSpielelementen = setOf<LokalisierbaresSpielelement>(
+ // TODO dummy Objekte (in LokalisierbaresSpielementTest.kt erstellen)
+    ) as Collection<LokalisierbaresSpielelement>
+
+    // keys sind die Klassentypen der Attributstypen
+    return mapOf(
+        "String" to "String",
+        "Collection<Int>" to listOf(1, 2, 3) as Collection<Int>,
+        "Collection<LokalisierbaresSpielelement>" to collectionAnSpielelementen,
+        "null" to null
+    )
+}
+
 class UtilsTest {
 
     @Test
