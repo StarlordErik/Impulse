@@ -1,5 +1,5 @@
 package de.seleri.spielelemente
-
+/*
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -197,3 +197,4 @@ class DatenbanksystemTest {
     }
 
 }
+*/
