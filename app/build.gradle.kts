@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "de.seleri.impulse"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "de.seleri.impulse"
         minSdk = 29
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -37,8 +37,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    lint {
+        warningsAsErrors = true
     }
 }
 
@@ -55,6 +56,12 @@ dependencies {
     testImplementation(libs.androidx.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
 }
 
 kover {
