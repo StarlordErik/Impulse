@@ -72,7 +72,7 @@ kover {
             }
         }
         verify {
-            warningInsteadOfFailure = true // TODO auf false setzen, damit Kover aktiviert wird
+            warningInsteadOfFailure = false
 
             rule("65% der Abzweigungen getestet") {
                 bound {
