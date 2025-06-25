@@ -13,7 +13,26 @@ const val ID: String = "ID"
  */
 abstract class LokalisierbaresSpielelement(
     open val id: Int, open val localizations: MutableMap<Sprachen, String>
-) {
+) : Comparable<LokalisierbaresSpielelement> {
+
+    /**
+     * Vergleicht dieses Objekt mit dem angegebenen [other] Objekt zur Bestimmung einer Reihenfolge.
+     * Gibt einen negativen Wert zurück, wenn dieses Objekt kleiner ist als [other],
+     * einen positiven Wert, wenn es größer ist, oder 0 bei Gleichheit.
+     */
+    override fun compareTo(other: LokalisierbaresSpielelement): Int {
+        // 1. nach Klassenname (abgeleiteter Typ) sortieren
+        return this::class.simpleName!!.compareTo(other::class.simpleName!!)
+            .takeIf { it != 0 }
+        // 2. nach ID sortieren
+            ?: this.id.compareTo(other.id)
+                .takeIf { it != 0 }
+        // 3. nach Bezeichnung sortieren
+            ?: this.localizations[Sprachen.OG]!!
+                .compareTo(other.localizations[Sprachen.OG]!!)
+    }
+
+
 
     /**
      * Konvertiert die ID ins YAML-Format und beginnt damit den YAML-Datensatz eines Elements.

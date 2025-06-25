@@ -36,9 +36,9 @@ internal fun attributToYamlZeile(
         is Collection<*> -> {
             zeile.append("[")
 
-            // sicheres Casten und Sortieren nach ID
+            // sicheres Casten und Sortieren
             val sortierteAttributswertListe = (attributswert.filterIsInstance<LokalisierbaresSpielelement>())
-                .sortedBy { it.id }
+                .sorted()
 
             sortierteAttributswertListe.forEachIndexed { index, item ->
                 zeile.append(item.id)
