@@ -3,8 +3,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">#181f1c</item>
-        <item name="android:textColor">#F8F8FF</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/Hintergrund</item>
+        <item name="android:textColor">@color/Textfarbe</item>
+        <item name="android:navigationBarColor">@color/Hintergrund</item>
     </style>
 </resources>
