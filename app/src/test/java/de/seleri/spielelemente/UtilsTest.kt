@@ -19,14 +19,21 @@ fun ladeYamlDaten(pfad: String): Map<String, Any> {
     return Yaml().load(inputStream)
 }
 
+/** kürzere Schreibeweise von attributToYamlZeile() */
+fun atyz(anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?) =
+    attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
+
 class UtilsTest {
 
     @Test
-    fun `ladeYamlDaten() Test-Dateien problemlos auslesen`() {
+    fun `ladeYamlDaten() ungueltiger Dateipfad wirft Exception`() {
         assertThrows(IllegalArgumentException::class.java)  {
             ladeYamlDaten("nicht_existierend.yml")
         }
+    }
 
+    @Test
+    fun `ladeYamlDaten() Test-Dateien problemlos auslesen`() {
         val daten = ladeYamlDaten("UtilsTest.yml")
         assertTrue(daten.isNotEmpty())
         assertTrue(daten["Test"] as Boolean)
