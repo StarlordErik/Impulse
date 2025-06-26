@@ -79,6 +79,8 @@ internal fun attributToYamlZeile(
     return zeile.toString()
 }
 
+
+// TODO Finde Funktionen als inline-Extension schreiben
 /**
  * Findet ein Spielelement anhand einer Texteingabe.
  *
