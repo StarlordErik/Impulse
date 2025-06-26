@@ -100,7 +100,7 @@ tasks.register("alleDebugTests") {
     dependsOn(
         "detekt",
         "lintDebug",
-        "koverCachedVerifyDebug",
+        "koverVerifyDebug",
         "koverHtmlReportDebug", // nicht in der Pipeline, da es kein Test ist, erzeugt jedoch den Report
         "testDebugUnitTest",
         "connectedDebugAndroidTest"
@@ -111,7 +111,7 @@ tasks.register("alleReleaseTests") {
     dependsOn(
         "detekt",
         "lint",
-        "koverCachedVerify",
+        "koverVerify",
         "koverHtmlReport",
         "test",
         "connectedCheck"
