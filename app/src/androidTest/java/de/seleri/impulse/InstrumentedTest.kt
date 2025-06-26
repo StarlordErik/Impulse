@@ -30,13 +30,13 @@ class InstrumentedTest {
         assertNotNull(dbs)
 
         assert(dbs.karten.isNotEmpty())
-        assertNotNull(finde("Do I look kind? Explain.", dbs.karten))
+        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
 
         assert(dbs.kategorien.isNotEmpty())
-        assertNotNull(finde("Level 1: Perception", dbs.kategorien))
+        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
 
         assert(dbs.spiele.isNotEmpty())
-        assertNotNull(finde("We're not really strangers", dbs.spiele))
+        assertNotNull(dbs.spiele.finde("We're not really strangers"))
     }
 
     @get:Rule

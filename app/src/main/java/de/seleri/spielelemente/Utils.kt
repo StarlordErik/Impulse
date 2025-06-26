@@ -79,19 +79,16 @@ internal fun attributToYamlZeile(
     return zeile.toString()
 }
 
-
-// TODO Finde Funktionen als inline-Extension schreiben
 /**
- * Findet ein Spielelement anhand einer Texteingabe.
+ * Findet ein Spielelement anhand einer Texteingabe in der Collection<T>.
  *
  * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
- * @param findeIn Collection der zu durchsuchenden Elemente
  * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
  */
-internal fun <T: LokalisierbaresSpielelement> finde(
-    bezeichnung: String, findeIn: Collection<T>
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    bezeichnung: String
 ): T? {
-    return findeIn.find { element ->
+    return find { element ->
         element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
             .any { localization -> localization == bezeichnung }
         // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
@@ -99,25 +96,23 @@ internal fun <T: LokalisierbaresSpielelement> finde(
 }
 
 /**
- * Findet ein Spielelement anhand seiner ID.
+ * Findet ein Spielelement anhand seiner ID in der Collection<T>.
  *
  * @param id gesuchte ID
- * @param findeIn Collection der zu durchsuchenden Elemente
  * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
  */
-internal fun <T: LokalisierbaresSpielelement> finde(
-    id: Int, findeIn: Collection<T>
-): T = findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    id: Int
+): T = find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
 
 /**
- * Findet mehrere Spielelemente anhand einer Collection von IDs.
+ * Findet mehrere Spielelemente anhand einer Collection von IDs in der Collection<T>.
  *
  * @param ids Collection gesuchter IDs
- * @param findeIn Collection der zu durchsuchenden Elemente
  * @return Menge gefundener Elemente
  */
-internal fun <T: LokalisierbaresSpielelement> finde(
-    ids: Collection<Int>, findeIn: Collection<T>
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    ids: Collection<Int>
 ): Set<T> {
-    return ids.mapTo(mutableSetOf()) { id -> finde(id, findeIn) }
+    return ids.mapTo(mutableSetOf()) { id -> finde(id) }
 }

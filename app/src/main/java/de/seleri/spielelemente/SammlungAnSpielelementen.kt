@@ -215,10 +215,10 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
                 ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
             // findet alle Elemente per ID aus der Liste aller möglichen Elemente
-            val originaleElemente = finde(originaleElementeIDs[IDS]!!, moeglicheElemente)
+            val originaleElemente = moeglicheElemente.finde(originaleElementeIDs[IDS]!!)
             val entfernteElemente =
-                finde(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheElemente)
-            val hinzugefuegteElemente = finde(hinzugefuegteIDs, moeglicheElemente)
+                moeglicheElemente.finde(originaleElementeIDs[DAVON_ENTFERNT]!!)
+            val hinzugefuegteElemente = moeglicheElemente.finde(hinzugefuegteIDs)
 
             val originaleUndDavonEntfernteElemente = mapOf(
                 IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to entfernteElemente.toMutableSet()

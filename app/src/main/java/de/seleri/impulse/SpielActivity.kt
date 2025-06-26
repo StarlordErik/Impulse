@@ -22,7 +22,7 @@ class SpielActivity : AppCompatActivity() {
         val dbs = (application as Impulse).dbs
 
         val spielName = intent.getStringExtra("SPIEL_NAME") ?: return
-        val spiel = finde(spielName, dbs.spiele) ?: return
+        val spiel = dbs.spiele.finde(spielName) ?: return
 
         val container = findViewById<LinearLayout>(R.id.container_buttons)
 
