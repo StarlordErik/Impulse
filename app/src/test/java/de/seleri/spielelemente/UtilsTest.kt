@@ -31,8 +31,8 @@ fun testAttribute() : Map<String, Any?>{
     // keys sind die Klassentypen der Attributstypen
     return mapOf(
         "String" to "String",
-        "Collection<Int>" to listOf(1, 2, 3) as Collection<Int>,
         "Collection<LokalisierbaresSpielelement>" to collectionAnSpielelementen,
+        "Map<Sprache, String>" to mapOf(Sprachen.OG to "Test"),
         "null" to null
     )
 }
