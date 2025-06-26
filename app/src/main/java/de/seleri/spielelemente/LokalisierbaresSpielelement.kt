@@ -153,6 +153,8 @@ abstract class LokalisierbaresSpielelement(
     }
 }
 
+//TODO finde(ID, in) [in allen Varianten] für alle Unterklassen einrichten
+
 /**
  * Findet ein Spielelement anhand einer Texteingabe.
  *
