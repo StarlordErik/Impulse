@@ -113,6 +113,10 @@ data class Spiel(
         /**
          * Erstellt eine Menge von Spielen aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Beides würde nur
+         * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
+         * die man reintut - so differenziert das die Funktion ganz von allein.
+         *
          * @param data YAML-Daten eines oder mehrerer Spiele
          * @param moeglicheKategorien Collection aller Kategorien, aus denen das Spiel bestehen **könnte** -
          * im Zweifel einfach alle möglichen Kategorien

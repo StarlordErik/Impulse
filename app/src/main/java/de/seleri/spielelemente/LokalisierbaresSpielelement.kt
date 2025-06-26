@@ -91,7 +91,9 @@ abstract class LokalisierbaresSpielelement(
         }
 
         /**
-         * Erstellt ein Spielelement aus einem YAML-Datensatz.
+         * Erstellt ein Spielelement aus einem **einzigen** YAML-Datensatz.
+         *
+         * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um ein einziges Element handelt.
          *
          * @param data YAML-Datensatz eines Elements
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
@@ -119,7 +121,9 @@ abstract class LokalisierbaresSpielelement(
         }
 
         /**
-         * Verarbeitet eine Liste von Element-Daten in einer YAML-Struktur.
+         * Verarbeitet **eine Liste** von Element-Daten in einer YAML-Struktur.
+         *
+         * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um eine Liste von Elementen handelt.
          *
          * @param T jede Art von Element (Karte, Kategorie, Spiel)
          * @param element Element-Bezeichnung in der YAML-Datenstruktur

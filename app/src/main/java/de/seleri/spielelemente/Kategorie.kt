@@ -96,6 +96,10 @@ data class Kategorie(
         /**
          * Erstellt eine Menge von Kategorien aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Beides würde nur
+         * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
+         * die man reintut - so differenziert das die Funktion ganz von allein.
+         *
          * @param data YAML-Daten einer Kategorie oder mehrerer Kategorien
          * @param moeglicheKarten Collection aller Karten, aus denen die Kategorie bestehen **könnte** -
          * im Zweifel einfach alle möglichen Karten

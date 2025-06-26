@@ -186,7 +186,9 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
         }
 
         /**
-         * Erstellt eine Sammlung aus einem YAML-Datensatz.
+         * Erstellt eine Sammlung aus einem **einzigen** YAML-Datensatz.
+         *
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Die super-Funktion reicht völlig.
          *
          * @param data YAML-Datensatz einer Sammlung
          * @param moeglicheElemente Collection aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -

@@ -63,6 +63,10 @@ data class Karte(
         /**
          * Erstellt eine Liste von Karten aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Beides würde nur
+         * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
+         * die man reintut - so differenziert das die Funktion ganz von allein.
+         *
          * @param data YAML-Daten einer oder mehrerer Karten
          * @return Menge von Karten mit ausgelesenen Attributwerten
          */
