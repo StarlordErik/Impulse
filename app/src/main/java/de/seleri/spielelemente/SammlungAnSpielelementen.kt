@@ -204,14 +204,6 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             // lässt id und localizations in der Superklasse verarbeiten
             val (id, localizations) = fromYaml(data)
 
-            require(
-                ("$ORIGINALE$KARTEN" in data || "$ORIGINALE$KATEGORIEN" in data)
-                        && ("$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data
-                            || "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data)
-            ) {
-                "Ungültige Sammlungsstruktur."
-            }
-
             @Suppress("UNCHECKED_CAST")
             val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
                 ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
@@ -226,7 +218,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
                 findeElemente(originaleElementeIDs[DAVON_ENTFERNT]!!, moeglicheElemente)
             val hinzugefuegteElemente = findeElemente(hinzugefuegteIDs, moeglicheElemente)
 
-            val originaleUndDavonEntfernteElemente = mapOf<String, MutableSet<E>>(
+            val originaleUndDavonEntfernteElemente = mapOf(
                 IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to entfernteElemente.toMutableSet()
             )
 
