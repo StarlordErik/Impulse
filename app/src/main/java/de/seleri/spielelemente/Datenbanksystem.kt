@@ -147,17 +147,17 @@ class Datenbanksystem(private val datenbank: File) {
      * @param name Name der gesuchten oder zu erstellenden Sammlung
      * @param elemente Collection der Elemente, die in der Sammlung enthalten sein sollen
      * @param sprache Sprache des übergebenen Namens
-     * @param findenIn Collection, in der nach einer bestehenden Sammlung gesucht wird
+     * @param daten Collection, in der nach einer bestehenden Sammlung gesucht wird
      * @return die gefundene oder neu erstellte Sammlung
      */
     private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
-        name: String, elemente: Collection<E>, sprache: Sprachen, findenIn: Collection<T>
+        name: String, elemente: Collection<E>, sprache: Sprachen, daten: Collection<T>
     ): T {
-        var neueSammlung = findenIn.finde(name)
+        var neueSammlung = daten.finde(name)
 
         if (neueSammlung == null) {
-            val neueID = neueID(findenIn)
-            neueSammlung = when (findenIn.first()) { // when (T)
+            val neueID = neueID(daten)
+            neueSammlung = when (daten.first()) { // when (T)
                 is Kategorie ->
                     @Suppress("UNCHECKED_CAST")
                     Kategorie.fromEingabe(neueID, sprache, name, elemente as Collection<Karte>) as T
@@ -166,7 +166,7 @@ class Datenbanksystem(private val datenbank: File) {
                     @Suppress("UNCHECKED_CAST")
                     Spiel.fromEingabe(neueID, sprache, name, elemente as Collection<Kategorie>) as T
 
-                else -> error("Unbekannter Typ: ${findenIn.first()::class.simpleName}")
+                else -> error("Unbekannter Typ: ${daten.first()::class.simpleName}")
             }
         } else {
             // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
@@ -227,13 +227,13 @@ class Datenbanksystem(private val datenbank: File) {
      * Fügt neue Elemente zu einer Sammlung hinzu.
      *
      * @param neueElemente Collection von Element-Objekten oder IDs
-     * @param findenIn Collection, zu der die Sammlung hinzugefügt werden sollen
+     * @param daten Collection, zu der die Sammlung hinzugefügt werden sollen
      * @param dataclassFunktionElementHinzufuegen Funktion aus der Data-Klasse,
      * welche die Elemente der Sammlung hinzufügt
      */
     private fun <T : Any, E : LokalisierbaresSpielelement> elementHinzufuegen(
         neueElemente: Collection<T>,
-        findenIn: Collection<E>,
+        daten: Collection<E>,
         dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
     ) {
         when (neueElemente.first()) {
@@ -243,7 +243,7 @@ class Datenbanksystem(private val datenbank: File) {
 
             is Int ->
                 @Suppress("UNCHECKED_CAST")
-                dataclassFunktionElementHinzufuegen(findenIn.finde(neueElemente as List<Int>))
+                dataclassFunktionElementHinzufuegen(daten.finde(neueElemente as List<Int>))
         }
         speichereYaml()
     }

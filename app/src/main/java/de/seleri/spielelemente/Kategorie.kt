@@ -100,22 +100,22 @@ data class Kategorie(
          * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
          * die man reintut - so differenziert das die Funktion ganz von allein.
          *
-         * @param data YAML-Daten einer Kategorie oder mehrerer Kategorien
+         * @param yamlDaten YAML-Daten einer Kategorie oder mehrerer Kategorien
          * @param moeglicheKarten Collection aller Karten, aus denen die Kategorie bestehen **könnte** -
          * im Zweifel einfach alle möglichen Karten
          * @return Menge von Kategorien mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKarten: Collection<Karte>): Set<Kategorie> {
+        fun fromYaml(yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>): Set<Kategorie> {
             return when {
 
                 // Fall 1: mehrere Kategorien
-                KATEGORIEN in data -> {
-                    fromYamlListe(KATEGORIEN, data) { fromYaml(it, moeglicheKarten) }
+                KATEGORIEN in yamlDaten -> {
+                    fromYamlListe(KATEGORIEN, yamlDaten) { fromYaml(it, moeglicheKarten) }
                 }
 
                 // Fall 2: einzelne Kategorie
-                "$ORIGINALE$KARTEN" in data && "$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in data -> {
-                    setOf(fromYaml(data, moeglicheKarten, ::Kategorie))
+                "$ORIGINALE$KARTEN" in yamlDaten && "$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in yamlDaten -> {
+                    setOf(fromYaml(yamlDaten, moeglicheKarten, ::Kategorie))
                 }
 
                 // Fall 3: ungültige Struktur

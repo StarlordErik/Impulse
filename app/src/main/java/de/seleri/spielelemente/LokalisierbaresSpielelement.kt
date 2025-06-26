@@ -95,22 +95,22 @@ abstract class LokalisierbaresSpielelement(
          *
          * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um ein einziges Element handelt.
          *
-         * @param data YAML-Datensatz eines Elements
+         * @param yamlDatensatz YAML-Datensatz eines Elements
          * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
          */
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromYaml(
-            data: Map<String, Any>
+            yamlDatensatz: Map<String, Any>
         ): Pair<Int, MutableMap<Sprachen, String>> {
 
-            require(ID in data && (TEXT in data || NAME in data)) {
+            require(ID in yamlDatensatz && (TEXT in yamlDatensatz || NAME in yamlDatensatz)) {
                 "Ungültige Elementstruktur."
             }
 
-            val id = data[ID] as Int
+            val id = yamlDatensatz[ID] as Int
 
-            @Suppress("UNCHECKED_CAST") val yamlLocalizations = ((data[TEXT]
-                ?: data[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
+            @Suppress("UNCHECKED_CAST") val yamlLocalizations = ((yamlDatensatz[TEXT]
+                ?: yamlDatensatz[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
 
             // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt ""
             val localizations =
@@ -127,16 +127,16 @@ abstract class LokalisierbaresSpielelement(
          *
          * @param T jede Art von Element (Karte, Kategorie, Spiel)
          * @param element Element-Bezeichnung in der YAML-Datenstruktur
-         * @param data YAML-Datenstruktur
+         * @param yamlDaten YAML-Datenstruktur
          * @param converter rekursiver Aufruf für das einzelne Element
          * @return Eine Liste von [T].
          */
         @JvmStatic // damit die Methode protected sein kann
         protected fun <T: LokalisierbaresSpielelement> fromYamlListe(
-            element: String, data: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
+            element: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
         ): Set<T> {
             // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
-            val listeAnElementenImYamlformat = data[element] as List<*>
+            val listeAnElementenImYamlformat = yamlDaten[element] as List<*>
 
             // macht aus List<*> --> List<Map<String, Any>>
             val listeAnMapsVonElementenImYamlformat =

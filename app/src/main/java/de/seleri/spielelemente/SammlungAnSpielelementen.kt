@@ -190,7 +190,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
          *
          * Wieso gibt es nur fromYaml und nicht fromYamlListe? Die super-Funktion reicht völlig.
          *
-         * @param data YAML-Datensatz einer Sammlung
+         * @param yamlDaten YAML-Datensatz einer Sammlung
          * @param moeglicheElemente Collection aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -
          * im Zweifel einfach alle möglichen Elemente
          * @param constructor Konstruktor der Sammlung vom Typ T
@@ -198,21 +198,21 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
          */
         @JvmStatic // damit die Methode protected sein kann
         protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
-            data: Map<String, Any>,
+            yamlDaten: Map<String, Any>,
             moeglicheElemente: Collection<E>,
             constructor: (Int, MutableMap<Sprachen, String>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
             // lässt id und localizations in der Superklasse verarbeiten
-            val (id, localizations) = fromYaml(data)
+            val (id, localizations) = fromYaml(yamlDaten)
 
             @Suppress("UNCHECKED_CAST")
-            val originaleElementeIDs = ((data["$ORIGINALE$KARTEN"]
-                ?: data["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
+            val originaleElementeIDs = ((yamlDaten["$ORIGINALE$KARTEN"]
+                ?: yamlDaten["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
 
             @Suppress("UNCHECKED_CAST")
-            val hinzugefuegteIDs = (data["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-                ?: data["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
+            val hinzugefuegteIDs = (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
+                ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
             // findet alle Elemente per ID aus der Liste aller möglichen Elemente
             val originaleElemente = moeglicheElemente.finde(originaleElementeIDs[IDS]!!)

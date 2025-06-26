@@ -117,22 +117,22 @@ data class Spiel(
          * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
          * die man reintut - so differenziert das die Funktion ganz von allein.
          *
-         * @param data YAML-Daten eines oder mehrerer Spiele
+         * @param yamlDaten YAML-Daten eines oder mehrerer Spiele
          * @param moeglicheKategorien Collection aller Kategorien, aus denen das Spiel bestehen **könnte** -
          * im Zweifel einfach alle möglichen Kategorien
          * @return Menge von Spielen mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: Collection<Kategorie>): Set<Spiel> {
+        fun fromYaml(yamlDaten: Map<String, Any>, moeglicheKategorien: Collection<Kategorie>): Set<Spiel> {
             return when {
 
                 // Fall 1: mehrere Spiele
-                SPIELE in data -> {
-                    fromYamlListe(SPIELE, data) { fromYaml(it, moeglicheKategorien) }
+                SPIELE in yamlDaten -> {
+                    fromYamlListe(SPIELE, yamlDaten) { fromYaml(it, moeglicheKategorien) }
                 }
 
                 // Fall 2: einzelnes Spiel
-                "$ORIGINALE$KATEGORIEN" in data && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data -> {
-                    setOf(fromYaml(data, moeglicheKategorien, ::Spiel))
+                "$ORIGINALE$KATEGORIEN" in yamlDaten && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in yamlDaten -> {
+                    setOf(fromYaml(yamlDaten, moeglicheKategorien, ::Spiel))
                 }
 
                 // Fall 3: ungültige Struktur
