@@ -110,11 +110,12 @@ abstract class LokalisierbaresSpielelement(
             val id = yamlDatensatz[ID] as Int
 
             @Suppress("UNCHECKED_CAST") val yamlLocalizations = ((yamlDatensatz[TEXT]
-                ?: yamlDatensatz[NAME]) as Map<String, String>).mapKeys { Sprachen.valueOf(it.key) }
+                ?: yamlDatensatz[NAME]) as Map<String, String?>).mapKeys { Sprachen.valueOf(it.key) }
 
-            // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt ""
+            // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt null
             val localizations =
-                Sprachen.entries.associateWith { if (it in yamlLocalizations) yamlLocalizations[it]!! else null }
+                Sprachen.entries.associateWith {
+                    if (it in yamlLocalizations && yamlLocalizations[it] != null) yamlLocalizations[it] else null }
                     .toMutableMap()
 
             return id to localizations
