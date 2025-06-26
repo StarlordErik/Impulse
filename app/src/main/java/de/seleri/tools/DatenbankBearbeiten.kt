@@ -62,11 +62,11 @@ fun main() {
 
     val neueKategorie = dbs.neueKategorie(kategorieName, neueKarten, sprache)
     println("Folgende KategorienID wurden eingegeben: ${neueKategorie.id}:${neueKategorie.localizations[sprache]}")
-    println("Sie besitzt folgende Karten:          ${neueKategorie.getAlleKarten().map { it.id }}")
+    println("Sie besitzt folgende Karten:          ${neueKategorie.getKarten().map { it.id }}")
 
     val neuesSpiel = dbs.neuesSpiel(spielName, listOf(neueKategorie), sprache)
     println("Folgende SpielID wurde eingegeben: ${neuesSpiel.id}:${neuesSpiel.localizations[sprache]}")
-    println("Das Spiel besitzt folgende Kategorien: ${neuesSpiel.getAlleKategorien().map { it.localizations[sprache] }}")
+    println("Das Spiel besitzt folgende Kategorien: ${neuesSpiel.getKategorien().map { it.localizations[sprache] }}")
 
 }
 

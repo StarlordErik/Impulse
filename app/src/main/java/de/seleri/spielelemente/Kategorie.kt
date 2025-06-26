@@ -34,29 +34,29 @@ data class Kategorie(
      *
      * @return originale Karten + hinzugefügte Kartem
      */
-    override fun getAlleKarten(): Set<Karte> = getAlleElemente()
+    override fun getKarten(): Set<Karte> = getAlleElemente()
 
     /**
      * Gibt alle Karten der Kategorie zurück ohne die "davon entfernten" Karten.
      *
      * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
      */
-    override fun getAlleAktuellenKarten(): Set<Karte> = getAlleAktuellenElemente()
+    override fun getAktuelleKarten(): Set<Karte> = getAlleAktuellenElemente()
 
     /**
      * Gibt alle noch nicht gesehenen Karten der Kategorie zurück.
      *
      * @return noch nicht gesehene Karten
      */
-    override fun getAlleUngesehenenKarten(): Set<Karte> {
-        return geseheneKartenRausfiltern(getAlleAktuellenKarten())
+    override fun getUngeseheneKarten(): Set<Karte> {
+        return geseheneKartenRausfiltern(getAktuelleKarten())
     }
 
     /**
      * Setzt alle Karten der Kategorie auf "ungesehen".
      */
     override fun setKartenUngesehen() {
-        setKartenUngesehen(getAlleAktuellenKarten())
+        setKartenUngesehen(getAktuelleKarten())
     }
 
     /**

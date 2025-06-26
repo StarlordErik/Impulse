@@ -26,7 +26,7 @@ class SpielActivity : AppCompatActivity() {
 
         val container = findViewById<LinearLayout>(R.id.container_buttons)
 
-        for (kategorie in spiel.getAlleAktuellenKategorien()) {
+        for (kategorie in spiel.getAktuelleKategorien()) {
             val button = Button(this).apply {
                 text = kategorie.localizations[Sprachen.OG]
                 textSize = KATEGORIE_TEXTGROESSE

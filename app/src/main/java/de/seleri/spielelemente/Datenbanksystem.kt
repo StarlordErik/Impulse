@@ -79,8 +79,8 @@ class Datenbanksystem(private val datenbank: File) {
      */
     fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>): String {
         val karten = when (sammlung) {
-            is Kategorie -> sammlung.getAlleUngesehenenKarten()
-            is Spiel -> sammlung.getAlleUngesehenenKarten()
+            is Kategorie -> sammlung.getUngeseheneKarten()
+            is Spiel -> sammlung.getUngeseheneKarten()
             else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
         }
 
@@ -215,7 +215,7 @@ class Datenbanksystem(private val datenbank: File) {
     fun karteLoeschen(zuLoeschendeKarte: Karte) {
         zuLoeschendeKarte.geloescht = true
         val kategorienMitZuLoeschenderKarte = kategorien.filter {
-            it.getAlleAktuellenKarten().contains(zuLoeschendeKarte)
+            it.getAktuelleKarten().contains(zuLoeschendeKarte)
         }
         kategorienMitZuLoeschenderKarte.forEach {
             it.karteEntfernen(zuLoeschendeKarte)

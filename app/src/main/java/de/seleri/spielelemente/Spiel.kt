@@ -36,21 +36,21 @@ data class Spiel(
      *
      * @return originale Kategorien + hinzugefügte Kategorien
      */
-    fun getAlleKategorien(): Set<Kategorie> = getAlleElemente()
+    fun getKategorien(): Set<Kategorie> = getAlleElemente()
 
     /**
      * Gibt alle Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
      *
      * @return (originale Kategorien - davon entfernten Kategorien) + hinzugefügte Kategorien
      */
-    fun getAlleAktuellenKategorien(): Set<Kategorie> = getAlleAktuellenElemente()
+    fun getAktuelleKategorien(): Set<Kategorie> = getAlleAktuellenElemente()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück und ignoriert die davon entfernten.
      *
      * @return alleKarten(originale Kategorien) + alleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleKarten(): Set<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.toSet()
+    override fun getKarten(): Set<Karte> = getKategorien().flatMap { it.getKarten() }.toSet()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
@@ -58,23 +58,23 @@ data class Spiel(
      * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien) +
      * aktuelleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleAktuellenKarten(): Set<Karte> =
-        getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.toSet()
+    override fun getAktuelleKarten(): Set<Karte> =
+        getAktuelleKategorien().flatMap { it.getAktuelleKarten() }.toSet()
 
     /**
      * Gibt alle noch nicht gesehenen Karten des Spiels zurück.
      *
      * @return noch nicht gesehene Karten
      */
-    override fun getAlleUngesehenenKarten(): Set<Karte> {
-        return geseheneKartenRausfiltern(getAlleAktuellenKarten())
+    override fun getUngeseheneKarten(): Set<Karte> {
+        return geseheneKartenRausfiltern(getAktuelleKarten())
     }
 
     /**
      * Setzt alle Karten des Spiels auf "ungesehen".
      */
     override fun setKartenUngesehen() {
-        setKartenUngesehen(getAlleAktuellenKarten())
+        setKartenUngesehen(getAktuelleKarten())
     }
 
     /**

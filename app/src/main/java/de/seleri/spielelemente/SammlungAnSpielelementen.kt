@@ -71,7 +71,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return originale Karten + hinzugefügte Kartem
      */
-    abstract fun getAlleKarten(): Set<Karte>
+    abstract fun getKarten(): Set<Karte>
 
     /**
      * Gibt alle Elemente der Sammlung zurück ohne die "davon entfernten" Elemente.
@@ -89,7 +89,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return (originale Karten - davon entfernten Karten) + hinzugefügte Karten
      */
-    abstract fun getAlleAktuellenKarten(): Set<Karte>
+    abstract fun getAktuelleKarten(): Set<Karte>
 
     /**
      * Gibt alle Karten der Sammlung zurück, die noch nicht gesehen wurden.
@@ -106,7 +106,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * @return noch nicht gesehene Karten
      */
-    abstract fun getAlleUngesehenenKarten(): Set<Karte>
+    abstract fun getUngeseheneKarten(): Set<Karte>
 
     /**
      * Setzt alle Karten der Sammlung auf "ungesehen".
