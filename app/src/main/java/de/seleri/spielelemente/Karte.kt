@@ -15,7 +15,7 @@ const val GELOESCHT: String = "gelöscht"
  */
 data class Karte(
     override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+    override val localizations: MutableMap<Sprachen, String?>,
     var gesehen: Boolean,
     var geloescht: Boolean
 ): LokalisierbaresSpielelement(id, localizations) {
@@ -56,8 +56,10 @@ data class Karte(
             val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(
                 id, sprache, kartentext
             )
+            val gesehen = false
+            val geloescht = false
 
-            return Karte(id, localizations, false, false)
+            return Karte(id, localizations, gesehen, geloescht)
         }
 
         /**

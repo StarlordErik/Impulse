@@ -12,7 +12,7 @@ const val ID: String = "ID"
  * @property localizations Map mit den Übersetzungen des Kartentextes/Namens für verschiedene Sprachen
  */
 abstract class LokalisierbaresSpielelement(
-    open val id: Int, open val localizations: MutableMap<Sprachen, String>
+    open val id: Int, open val localizations: MutableMap<Sprachen, String?>
 ) : Comparable<LokalisierbaresSpielelement> {
 
     /**
@@ -78,13 +78,13 @@ abstract class LokalisierbaresSpielelement(
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromEingabe(
             id: Int, sprache: Sprachen, bezeichnung: String
-        ): Pair<Int, MutableMap<Sprachen, String>> {
+        ): Pair<Int, MutableMap<Sprachen, String?>> {
 
 
             // für alle Sprachen:
-            // speichert die Bezeichnung sowohl in der entsprechenden Sprache als auch in OG, oder setzt ""
+            // speichert die Bezeichnung sowohl in der entsprechenden Sprache als auch in OG, oder setzt null
             val localizations =
-                Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) bezeichnung else "" }
+                Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) bezeichnung else null }
                     .toMutableMap()
 
             return id to localizations
@@ -101,7 +101,7 @@ abstract class LokalisierbaresSpielelement(
         @JvmStatic // damit die Methode protected sein kann
         protected fun fromYaml(
             yamlDatensatz: Map<String, Any>
-        ): Pair<Int, MutableMap<Sprachen, String>> {
+        ): Pair<Int, MutableMap<Sprachen, String?>> {
 
             require(ID in yamlDatensatz && (TEXT in yamlDatensatz || NAME in yamlDatensatz)) {
                 "Ungültige Elementstruktur."
@@ -114,7 +114,7 @@ abstract class LokalisierbaresSpielelement(
 
             // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt ""
             val localizations =
-                Sprachen.entries.associateWith { if (it in yamlLocalizations) yamlLocalizations[it]!! else "" }
+                Sprachen.entries.associateWith { if (it in yamlLocalizations) yamlLocalizations[it]!! else null }
                     .toMutableMap()
 
             return id to localizations

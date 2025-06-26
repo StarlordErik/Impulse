@@ -12,7 +12,7 @@ const val KATEGORIEN: String = "Kategorien"
  */
 data class Kategorie(
     override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+    override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Karte>>,
     override val hinzugefuegteElemente: MutableSet<Karte>
 ): SammlungAnSpielelementen<Karte>(id, localizations, originaleElemente, hinzugefuegteElemente) {

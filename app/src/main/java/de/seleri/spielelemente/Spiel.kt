@@ -12,7 +12,7 @@ const val SPIELE: String = "Spiele"
  */
 data class Spiel(
     override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+    override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Kategorie>>,
     override val hinzugefuegteElemente: MutableSet<Kategorie>
 ) : SammlungAnSpielelementen<Kategorie>(

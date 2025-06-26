@@ -19,7 +19,7 @@ const val BINDESTRICH_IDS: String = "-$IDS"
  */
 abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+    override val localizations: MutableMap<Sprachen, String?>,
     open val originaleElemente: Map<String, MutableSet<T>>,
     open val hinzugefuegteElemente: MutableSet<T>
 ): LokalisierbaresSpielelement(id, localizations) {
@@ -173,16 +173,16 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             sprache: Sprachen,
             name: String,
             originaleElemente: Collection<E>,
-            constructor: (Int, MutableMap<Sprachen, String>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
+            constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
             // lässt id, sprache und name in der Superklasse verarbeiten
             val (id, localizations) = fromEingabe(id, sprache, name)
 
-            val originaleElementeMitNullEntfernten = mapOf<String, MutableSet<E>>(
-                IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to mutableSetOf<E>()
+            val originaleElementeMitNullEntfernten = mapOf(
+                IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to mutableSetOf()
             )
-            return constructor(id, localizations, originaleElementeMitNullEntfernten, mutableSetOf<E>())
+            return constructor(id, localizations, originaleElementeMitNullEntfernten, mutableSetOf())
         }
 
         /**
@@ -200,7 +200,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
         protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
             yamlDaten: Map<String, Any>,
             moeglicheElemente: Collection<E>,
-            constructor: (Int, MutableMap<Sprachen, String>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
+            constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
             // lässt id und localizations in der Superklasse verarbeiten
