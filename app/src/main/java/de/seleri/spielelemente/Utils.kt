@@ -78,3 +78,44 @@ internal fun attributToYamlZeile(
     zeile.append("\n")
     return zeile.toString()
 }
+
+/**
+ * Findet ein Spielelement anhand einer Texteingabe.
+ *
+ * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
+ * @param findeIn Collection der zu durchsuchenden Elemente
+ * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
+ */
+internal fun <T: LokalisierbaresSpielelement> finde(
+    bezeichnung: String, findeIn: Collection<T>
+): T? {
+    return findeIn.find { element ->
+        element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
+            .any { localization -> localization == bezeichnung }
+        // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
+    }
+}
+
+/**
+ * Findet ein Spielelement anhand seiner ID.
+ *
+ * @param id gesuchte ID
+ * @param findeIn Collection der zu durchsuchenden Elemente
+ * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
+ */
+internal fun <T: LokalisierbaresSpielelement> finde(
+    id: Int, findeIn: Collection<T>
+): T = findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
+
+/**
+ * Findet mehrere Spielelemente anhand einer Collection von IDs.
+ *
+ * @param ids Collection gesuchter IDs
+ * @param findeIn Collection der zu durchsuchenden Elemente
+ * @return Menge gefundener Elemente
+ */
+internal fun <T: LokalisierbaresSpielelement> finde(
+    ids: Collection<Int>, findeIn: Collection<T>
+): Set<T> {
+    return ids.mapTo(mutableSetOf()) { id -> finde(id, findeIn) }
+}

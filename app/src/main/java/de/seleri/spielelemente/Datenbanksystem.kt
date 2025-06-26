@@ -125,7 +125,7 @@ class Datenbanksystem(private val datenbank: File) {
 
         kartentexte.forEach {
             neueId += 1 // für jeden Schleifendurchlauf ist die ID höher
-            var neueKarte = findeElement(it, karten)
+            var neueKarte = finde(it, karten)
             if (neueKarte == null) {
                 neueKarte = Karte.fromEingabe(neueId, sprache, it)
             } else {
@@ -153,7 +153,7 @@ class Datenbanksystem(private val datenbank: File) {
     private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: Collection<E>, sprache: Sprachen, findenIn: Collection<T>
     ): T {
-        var neueSammlung = findeElement(name, findenIn)
+        var neueSammlung = finde(name, findenIn)
 
         if (neueSammlung == null) {
             val neueID = neueID(findenIn)
@@ -243,7 +243,7 @@ class Datenbanksystem(private val datenbank: File) {
 
             is Int ->
                 @Suppress("UNCHECKED_CAST")
-                dataclassFunktionElementHinzufuegen(findeElemente(neueElemente as List<Int>, findenIn))
+                dataclassFunktionElementHinzufuegen(finde(neueElemente as List<Int>, findenIn))
         }
         speichereYaml()
     }
