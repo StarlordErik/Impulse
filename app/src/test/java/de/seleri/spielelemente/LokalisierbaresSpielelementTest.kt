@@ -44,9 +44,6 @@ fun dummyLocalizations() =
 fun dummyLokalisierbaresSpielelement() =
     DummyLokalisierbaresSpielelement(DUMMY_ID, dummyLocalizations())
 
-fun dummyDatenVonLokalisierbaresSpielelement() =
-    ladeYamlDaten("DummyLokalisierbaresSpielelement.yml")
-
 class LokalisierbaresSpielelementTest {
 
     /*
@@ -64,12 +61,6 @@ class LokalisierbaresSpielelementTest {
     3: expected instanzieeren & Test ausführen
     ------------------------------------------------------------------------------------------------
     */
-
-    @Test
-    fun `dummyDatenVonLokalisierbaresSpielelement() Test-Datei problemlos ausgelesen`() {
-        val dummyDaten = dummyDatenVonLokalisierbaresSpielelement()
-        assertTrue(dummyDaten.isNotEmpty())
-    }
 
     @Test
     fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
@@ -196,10 +187,30 @@ class LokalisierbaresSpielelementTest {
         )
     }
 
+    private fun getSaemtlicheDummyDaten() : Map<String, Any> {
+        val dummyDaten = ladeYamlDaten("DummyLokalisierbaresSpielelement.yml")
+        assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
+        return dummyDaten
+    }
+
+    private fun getDummyDaten(titel: String) : Set<DummyLokalisierbaresSpielelement>{
+        val dummyElement = titel
+        val dummyDaten = getSaemtlicheDummyDaten()
+
+        assertTrue(dummyElement in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
+
+        return DummyLokalisierbaresSpielelement.fromYamlListe(
+            dummyElement, dummyDaten
+        ) { DummyLokalisierbaresSpielelement.fromYaml(it) }
+    }
+
     @Test
     fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
         assertThrows(IllegalArgumentException::class.java) {
-            throw IllegalArgumentException()
+            getDummyDaten("fehlendeID")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyDaten("fehlenderTextOderName")
         }
     }
 
@@ -229,11 +240,7 @@ class LokalisierbaresSpielelementTest {
 
     @Test
     fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
-        val dummyElement = "DummyLokalisierbaresSpielelement"
-        val dummyDaten = dummyDatenVonLokalisierbaresSpielelement()
-        val dummys = DummyLokalisierbaresSpielelement.fromYamlListe(
-            dummyElement, dummyDaten
-        ) { DummyLokalisierbaresSpielelement.fromYaml(it) }
+        val dummys = getDummyDaten("DummyLokalisierbaresSpielelement")
 
         assertEquals(2, dummys.size)
 
