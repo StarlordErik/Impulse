@@ -5,11 +5,16 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** Dummy-Implementierung, da LokalisierbaresSpielelement abstrakt ist */
+/** Dummy-Implementierung, da Klasse abstrakt ist und manche Methoden protected */
 class DummyLokalisierbaresSpielelement(
     override val id: Int, override val localizations: MutableMap<Sprachen, String?>
 ): LokalisierbaresSpielelement(id, localizations) {
-    fun protectedLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
+    fun dummyLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
+
+    companion object {
+        fun fromEingabe(id: Int, sprache: Sprachen, bezeichnung: String) =
+            LokalisierbaresSpielelement.fromEingabe(id, sprache, bezeichnung)
+    }
 }
 
 const val DUMMY_ID = 42
@@ -54,7 +59,7 @@ class LokalisierbaresSpielelementTest {
         val dummy = dummyLokalisierbaresSpielelement()
         val bezeichnung = "Bezeichnung"
 
-        val actual = dummy.protectedLocalizationsToYaml(bezeichnung)
+        val actual = dummy.dummyLocalizationsToYaml(bezeichnung)
 
         val expected = """
             |    $bezeichnung:
@@ -129,4 +134,23 @@ class LokalisierbaresSpielelementTest {
         assertTrue(condition)
     }
 
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = 42
+        val eingabeSprache = Sprachen.DE
+        val eingabeBezeichnung = "Bezeichnung"
+        val (dummyID, dummyLocalizations) = DummyLokalisierbaresSpielelement.fromEingabe(
+            eingabeID, eingabeSprache, eingabeBezeichnung
+        )
+
+        assertEquals(eingabeID, dummyID)
+        for (sprache in Sprachen.entries) {
+            val actual = dummyLocalizations[sprache]
+            if (sprache == eingabeSprache || sprache == Sprachen.OG) {
+                assertEquals(eingabeBezeichnung, actual)
+            } else {
+                assertEquals(null, actual)
+            }
+        }
+    }
 }
