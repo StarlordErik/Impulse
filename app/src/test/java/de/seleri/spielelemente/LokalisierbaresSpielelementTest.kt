@@ -221,13 +221,13 @@ class LokalisierbaresSpielelementTest {
         val dummyIDs = (dummys.map { it.id }).toSet()
         val actual = dummyIDs.size
 
-        val unexpected = 1
-        assertNotEquals(unexpected, actual)
+        val expected = 2
+        assertEquals(expected, actual)
     }
 
     @Test
     fun `fromYaml() Duplikate werden geloescht`(){
-        val dummys = getDummyDaten("DuplikateLöschen")
+        val dummys = getDummyDaten("Duplikate")
 
         val actual = dummys.size
 
