@@ -214,6 +214,27 @@ class LokalisierbaresSpielelementTest {
         }
     }
 
+    @Test
+    fun `fromYaml() doppelt belegte IDs werden neu belegt`(){
+        val dummys = getDummyDaten("doppelteIDs")
+
+        val dummyIDs = (dummys.map { it.id }).toSet()
+        val actual = dummyIDs.size
+
+        val unexpected = 1
+        assertNotEquals(unexpected, actual)
+    }
+
+    @Test
+    fun `fromYaml() Duplikate werden geloescht`(){
+        val dummys = getDummyDaten("DuplikateLöschen")
+
+        val actual = dummys.size
+
+        val expected = 2
+        assertEquals(expected, actual)
+    }
+
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
         dummy: DummyLokalisierbaresSpielelement
     ) {

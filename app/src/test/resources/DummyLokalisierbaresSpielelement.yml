@@ -39,16 +39,21 @@ doppelteIDs:
 Duplikate:
   - ID: 4
     Name:
-      OG: "Duplikat"
+      OG: "Duplikat 1"
       DE:
       EN:
-  - ID: 4
+  - ID: 5
     Name:
-      OG: "Duplikat"
+      OG: "Duplikat 1"
       DE:
       EN:
-  - ID: 4
+  - ID: 6
     Name:
-      OG: "Dubbliekaht voller Rechtschreibfehler"
-      DE: "Duplikat"
-      EN:
+      OG: "Duplikat 2"
+      DE: "Duplikat 2"
+      EN: "Duplikat 2"
+  - ID: 7
+    Name:
+      OG: "Duplikat 2"
+      DE: "Duplikat 2"
+      EN: "Duplikat 2"
