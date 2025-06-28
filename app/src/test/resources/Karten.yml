@@ -1,0 +1,14 @@
+Karten:
+  - ID: 42
+    Text:
+      OG: "OG"
+      DE:
+    gesehen: false
+    gelöscht: true
+  - ID: 7
+    Text:
+      OG: "OG"
+      DE: "DE"
+      EN: "EN"
+    gesehen: true
+    gelöscht: false
