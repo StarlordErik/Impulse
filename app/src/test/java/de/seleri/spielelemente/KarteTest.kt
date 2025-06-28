@@ -1,7 +1,7 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
@@ -85,5 +85,22 @@ class KarteTest {
         val erwartetesGeloescht = false
         testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
     }
+
+    private fun getAlleDummyDaten() : Map<String, Any> {
+        val dummyDaten = ladeYamlDaten("Karten.yml")
+        assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
+        return dummyDaten
+    }
+
+    private fun getDummyDaten(titel: String) : Set<Karte>{
+        val dummyKartenart = titel
+        val dummyDaten = getAlleDummyDaten()
+
+        assertTrue(dummyKartenart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
+
+        return Karte.fromYaml(dummyDaten)
+    }
+
+
 
 }

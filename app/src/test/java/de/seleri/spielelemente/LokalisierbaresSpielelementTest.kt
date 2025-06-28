@@ -208,20 +208,20 @@ class LokalisierbaresSpielelementTest {
         )
     }
 
-    private fun getSaemtlicheDummyDaten() : Map<String, Any> {
+    private fun getAlleDummyDaten() : Map<String, Any> {
         val dummyDaten = ladeYamlDaten("LokalisierbaresSpielelement.yml")
         assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
         return dummyDaten
     }
 
     private fun getDummyDaten(titel: String) : Set<DummyLokalisierbaresSpielelement>{
-        val dummyElement = titel
-        val dummyDaten = getSaemtlicheDummyDaten()
+        val dummyElementart = titel
+        val dummyDaten = getAlleDummyDaten()
 
-        assertTrue(dummyElement in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
+        assertTrue(dummyElementart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
 
         return DummyLokalisierbaresSpielelement.fromYamlListe(
-            dummyElement, dummyDaten
+            dummyElementart, dummyDaten
         ) { DummyLokalisierbaresSpielelement.fromYaml(it) }
     }
 
