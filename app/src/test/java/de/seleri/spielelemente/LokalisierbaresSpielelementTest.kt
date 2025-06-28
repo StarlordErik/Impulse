@@ -194,9 +194,9 @@ class LokalisierbaresSpielelementTest {
 
     @Test
     fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
-        val eingabeID = 42
+        val eingabeID = DUMMY_ID
         val eingabeSprache = Sprachen.DE
-        val eingabeBezeichnung = "Bezeichnung"
+        val eingabeBezeichnung = DUMMY_BEZEICHNUNG
 
         val (dummyID, dummyLocalizations) = DummyLokalisierbaresSpielelement.fromEingabe(
             eingabeID, eingabeSprache, eingabeBezeichnung
