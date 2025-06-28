@@ -12,7 +12,7 @@ const val ID: String = "ID"
  * @property localizations Map mit den Übersetzungen des Kartentextes/Namens für verschiedene Sprachen
  */
 abstract class LokalisierbaresSpielelement(
-    open val id: Int, open val localizations: MutableMap<Sprachen, String?>
+    open var id: Int, open val localizations: MutableMap<Sprachen, String?>
 ) : Comparable<LokalisierbaresSpielelement> {
 
     /**
@@ -145,9 +145,57 @@ abstract class LokalisierbaresSpielelement(
             val elementListe = listeAnMapsVonElementenImYamlformat.map {
                 converter(it) // zu Fall 2
                     .first() // es wird nur ein Objekt ausgegeben, aber als Liste
+            }.toMutableList()
+
+            duplikateLoeschen(elementListe)
+            doppelteIDsErsetzen(elementListe)
+
+            return elementListe.sorted().toSet()
+        }
+
+        /**
+         * Entfernt Duplikate aus der gegebenen Collection von lokalisierbaren Spielelementen.
+         * Ein Duplikat liegt vor, wenn zwei Elemente für alle Sprachen identische `localizations` besitzen.
+         *
+         * @param elemente Menge von Spielelementen, aus der Duplikate entfernt werden sollen
+         */
+        private fun <T: LokalisierbaresSpielelement> duplikateLoeschen(elemente: MutableCollection<T>) {
+            val localizationUnikate = mutableSetOf<Map<Sprachen, String?>>()
+
+            // Man kann mit forEach nicht direkt aus der iterierten Liste entfernen.
+            val zuEntfernen = mutableListOf<T>()
+
+            elemente.forEach { element ->
+                val localization = element.localizations
+                if (localization in localizationUnikate) {
+                    // Maps in Kotlin werden standardmäßig nicht per Referenz verglichen
+                    zuEntfernen.add(element)
+                } else {
+                    localizationUnikate.add(localization)
+                }
             }
 
-            return elementListe.toSet()
+            elemente.removeAll(zuEntfernen)
+        }
+
+        /**
+         * Ersetzt doppelt vorkommende IDs in der gegebenen Collection von Spielelementen durch neue eindeutige IDs.
+         *
+         * @param elemente Menge von Spielelementen, deren IDs auf Eindeutigkeit geprüft werden sollen
+         */
+        private fun <T: LokalisierbaresSpielelement> doppelteIDsErsetzen(elemente: Collection<T>) {
+            val idUnikate = mutableSetOf<Int>()
+
+            var anzahlNeuerIDs = 0
+            elemente.forEach { element ->
+                val aktuelleID = element.id
+                if (aktuelleID in idUnikate) {
+                    element.id = neueID(elemente) + anzahlNeuerIDs
+                    anzahlNeuerIDs++
+                } else {
+                    idUnikate.add(aktuelleID)
+                }
+            }
         }
     }
 }

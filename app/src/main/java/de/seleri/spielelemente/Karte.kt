@@ -14,7 +14,7 @@ const val GELOESCHT: String = "gelöscht"
  * @property geloescht gibt an, ob die Karte gelöscht wurde
  */
 data class Karte(
-    override val id: Int,
+    override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     var gesehen: Boolean,
     var geloescht: Boolean

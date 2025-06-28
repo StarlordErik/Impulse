@@ -26,6 +26,9 @@ doppelteIDs:
   - ID: 3
     Text:
       OG: "doppelte ID Nr. 2"
+  - ID: 8
+    Text:
+      OG: "doppelte ID Nr. 3"
 
 Duplikate:
   - ID: 4
@@ -43,4 +46,14 @@ Duplikate:
     Name:
       OG: "Duplikat 2"
       DE: "Duplikat 2"
+      EN: "Duplikat 2"
+  - ID: 9
+    Name:
+      OG: "kein Duplikat"
+      DE: "Duplikat 2"
+      EN: "Duplikat 2"
+  - ID: 10
+    Name:
+      OG: "Duplikat 2"
+      DE: "kein Duplikat"
       EN: "Duplikat 2"

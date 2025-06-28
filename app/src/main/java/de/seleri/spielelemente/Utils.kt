@@ -82,6 +82,17 @@ internal fun attributToYamlZeile(
 }
 
 /**
+ * Ermittelt eine neue, eindeutige ID, die um 1 höher ist als jede ID in der gegebenen Collection.
+ * Lücken werden also nicht aufgefüllt!
+ *
+ * @param hoeherAlsIn Liste von Spielelementen, deren höchste ID bestimmt wird
+ * @return neue, eindeutige ID
+ */
+internal fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
+    return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+}
+
+/**
  * Findet ein Spielelement anhand einer Texteingabe in der Collection<T>.
  *
  * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache

@@ -11,7 +11,7 @@ const val KATEGORIEN: String = "Kategorien"
  * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Karten zur Kategorie
  */
 data class Kategorie(
-    override val id: Int,
+    override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Karte>>,
     override val hinzugefuegteElemente: MutableSet<Karte>

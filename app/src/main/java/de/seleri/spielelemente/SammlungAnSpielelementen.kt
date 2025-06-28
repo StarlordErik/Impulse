@@ -18,7 +18,7 @@ const val BINDESTRICH_IDS: String = "-$IDS"
  * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Elemente zur Sammlung
  */
 abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
-    override val id: Int,
+    override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     open val originaleElemente: Map<String, MutableSet<T>>,
     open val hinzugefuegteElemente: MutableSet<T>

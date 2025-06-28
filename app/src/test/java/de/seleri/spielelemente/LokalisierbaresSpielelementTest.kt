@@ -8,7 +8,7 @@ import org.junit.Test
 
 /** Dummy-Implementierung, da Klasse abstrakt ist und manche Methoden protected */
 class DummyLokalisierbaresSpielelement(
-    override val id: Int, override val localizations: MutableMap<Sprachen, String?>
+    override var id: Int, override val localizations: MutableMap<Sprachen, String?>
 ): LokalisierbaresSpielelement(id, localizations) {
     fun dummyLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
 
@@ -120,7 +120,7 @@ class LokalisierbaresSpielelementTest {
         val dummy1 = dummyLokalisierbaresSpielelement()
 
         class Dummy2LokalisierbaresSpielelement(
-            override val id: Int, override val localizations: MutableMap<Sprachen, String?>
+            override var id: Int, override val localizations: MutableMap<Sprachen, String?>
         ): LokalisierbaresSpielelement(id, localizations)
 
         val dummy2 = Dummy2LokalisierbaresSpielelement(DUMMY_ID, dummyLocalizations())
@@ -213,7 +213,6 @@ class LokalisierbaresSpielelementTest {
         }
     }
 
-    /*
     @Test
     fun `fromYaml() doppelt belegte IDs werden neu belegt`(){
         val dummys = getDummyDaten("doppelteIDs")
@@ -221,7 +220,7 @@ class LokalisierbaresSpielelementTest {
         val dummyIDs = (dummys.map { it.id }).toSet()
         val actual = dummyIDs.size
 
-        val expected = 2
+        val expected = 3
         assertEquals(expected, actual)
     }
 
@@ -231,10 +230,9 @@ class LokalisierbaresSpielelementTest {
 
         val actual = dummys.size
 
-        val expected = 2
+        val expected = 4
         assertEquals(expected, actual)
     }
-    */
 
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
         dummy: DummyLokalisierbaresSpielelement

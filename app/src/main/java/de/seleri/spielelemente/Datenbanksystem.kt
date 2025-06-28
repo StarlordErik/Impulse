@@ -109,17 +109,6 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     /**
-     * Ermittelt eine neue, eindeutige ID, die um 1 höher ist als jede ID in der gegebenen Collection.
-     * Lücken werden also nicht aufgefüllt!
-     *
-     * @param hoeherAlsIn Liste von Spielelementen, deren höchste ID bestimmt wird
-     * @return neue, eindeutige ID
-     */
-    private fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
-        return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
-    }
-
-    /**
      * Erstellt neue [Karte]n aus den gegebenen Kartentexten oder findet bestehende anhand der Namen.
      *
      * @param kartentexte Collection an (wahrscheinlich) neuen Kartentexten
