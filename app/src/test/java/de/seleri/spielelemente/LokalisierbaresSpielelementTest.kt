@@ -12,6 +12,12 @@ data class DummyLokalisierbaresSpielelement(
     override var id: Int, override val localizations: MutableMap<Sprachen, String?>
 ): LokalisierbaresSpielelement(id, localizations) {
     fun dummyLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
+    fun dummyToYaml(): String {
+        val dummyStringBuilder = StringBuilder()
+        dummyStringBuilder.append(this.toYaml())
+        dummyStringBuilder.append(this.dummyLocalizationsToYaml(DUMMY_BEZEICHNUNG))
+        return dummyStringBuilder.toString()
+    }
 
     companion object {
         fun fromEingabe(id: Int, sprache: Sprachen, bezeichnung: String) =
@@ -92,7 +98,7 @@ class LokalisierbaresSpielelementTest {
     @Test
     fun `Rundreise Objekt zu Yaml zu Objekt zu Yaml`() {
         val dummy1 = dummyLokalisierbaresSpielelement()
-        val yamlDummy1 = dummyToYaml(dummy1)
+        val yamlDummy1 = dummy1.dummyToYaml()
 
         val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
         val dummy2 = DummyLokalisierbaresSpielelement.fromYaml(dummyDaten).first()
@@ -109,13 +115,6 @@ class LokalisierbaresSpielelementTest {
         """.trimMargin()
 
         assertEquals(yamlDummy2, yamlDummy1) // Yaml --> Objekt --> Yaml
-    }
-
-    private fun dummyToYaml(dummy: DummyLokalisierbaresSpielelement) : String {
-        val dummyStringBuilder = StringBuilder()
-        dummyStringBuilder.append(dummy.toYaml())
-        dummyStringBuilder.append(dummy.dummyLocalizationsToYaml(DUMMY_BEZEICHNUNG))
-        return dummyStringBuilder.toString()
     }
 
     @Test
