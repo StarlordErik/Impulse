@@ -71,6 +71,13 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     /**
+     * public Funktion, damit die initialisierte Datenbank sich aktualisiert wieder in die YAML-Datei schreibt
+     */
+    fun aktualisieren(){
+        speichereYaml()
+    }
+
+    /**
      * Gibt einen zufälligen Kartentext aus einer Sammlung (`Kategorie` / `Spiel`) zurück.
      * Wenn alle Karten bereits gesehen wurden, wird der Status `gesehen` von allen zurückgesetzt.
      *

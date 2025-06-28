@@ -58,11 +58,13 @@ internal fun attributToYamlZeile(
             zeile.append("\n")
             val mapInhalt = StringBuilder()
             attributswert.forEach { (key, value) ->
-                mapInhalt.append(
-                    attributToYamlZeile(
-                        anzahlEinrueckungen + 1, key.toString(), value
+                if (value != null) {
+                    mapInhalt.append(
+                        attributToYamlZeile(
+                            anzahlEinrueckungen + 1, key.toString(), value
+                        )
                     )
-                )
+                }
             }
             // entfernt den letzten Zeilenumbruch und fügt es zu der "Zeile" hinzu
             zeile.append(mapInhalt.toString().trimEnd())

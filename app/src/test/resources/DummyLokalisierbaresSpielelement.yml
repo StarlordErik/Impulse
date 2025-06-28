@@ -3,7 +3,6 @@ DummyLokalisierbaresSpielelement:
     Text:
       OG: "nur OG"
       DE:
-      EN:
   - ID: 7
     Name:
       OG: "OG"
@@ -14,39 +13,27 @@ fehlendeID:
   - fehlendeID: 1
     Name:
       OG: "fehlende ID"
-      DE:
-      EN:
 
 fehlenderTextOderName:
   - ID: 2
     fehlenderTextOderName:
       OG: "fehlender Text oder Name"
-      DE:
-      EN:
 
 doppelteIDs:
   - ID: 3
     Text:
       OG: "doppelte ID Nr. 1"
-      DE:
-      EN:
   - ID: 3
     Text:
       OG: "doppelte ID Nr. 2"
-      DE:
-      EN:
 
 Duplikate:
   - ID: 4
     Name:
       OG: "Duplikat 1"
-      DE:
-      EN:
   - ID: 5
     Name:
       OG: "Duplikat 1"
-      DE:
-      EN:
   - ID: 6
     Name:
       OG: "Duplikat 2"
