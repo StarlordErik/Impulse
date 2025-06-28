@@ -5,9 +5,10 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
 /** Dummy-Implementierung, da Klasse abstrakt ist und manche Methoden protected */
-class DummyLokalisierbaresSpielelement(
+data class DummyLokalisierbaresSpielelement(
     override var id: Int, override val localizations: MutableMap<Sprachen, String?>
 ): LokalisierbaresSpielelement(id, localizations) {
     fun dummyLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
@@ -36,6 +37,7 @@ class DummyLokalisierbaresSpielelement(
 }
 
 const val DUMMY_ID = 42
+const val DUMMY_BEZEICHNUNG = "Text"
 const val DUMMY_OG = "Original"
 const val DUMMY_DE = "Deutsch"
 fun dummyLocalizations() =
@@ -75,12 +77,11 @@ class LokalisierbaresSpielelementTest {
     @Test
     fun `localizationsToYaml() wandelt die Localization-Map korrekt in Yaml-Text um`() {
         val dummy = dummyLokalisierbaresSpielelement()
-        val bezeichnung = "Bezeichnung"
 
-        val actual = dummy.dummyLocalizationsToYaml(bezeichnung)
+        val actual = dummy.dummyLocalizationsToYaml(DUMMY_BEZEICHNUNG)
 
         val expected = """
-            |    $bezeichnung:
+            |    $DUMMY_BEZEICHNUNG:
             |      ${Sprachen.OG}: "$DUMMY_OG"
             |      ${Sprachen.DE}: "$DUMMY_DE"
             |
@@ -89,15 +90,43 @@ class LokalisierbaresSpielelementTest {
     }
 
     @Test
+    fun `Rundreise Objekt zu Yaml zu Objekt zu Yaml`() {
+        val dummy1 = dummyLokalisierbaresSpielelement()
+        val yamlDummy1 = dummyToYaml(dummy1)
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy2 = DummyLokalisierbaresSpielelement.fromYaml(dummyDaten).first()
+
+        assertEquals(dummy1, dummy2) // Objekt --> Yaml --> Objekt
+
+
+        val yamlDummy2 = """
+            |  - $ID: $DUMMY_ID
+            |    $DUMMY_BEZEICHNUNG:
+            |      ${Sprachen.OG}: "$DUMMY_OG"
+            |      ${Sprachen.DE}: "$DUMMY_DE"
+            |
+        """.trimMargin()
+
+        assertEquals(yamlDummy2, yamlDummy1) // Yaml --> Objekt --> Yaml
+    }
+
+    private fun dummyToYaml(dummy: DummyLokalisierbaresSpielelement) : String {
+        val dummyStringBuilder = StringBuilder()
+        dummyStringBuilder.append(dummy.toYaml())
+        dummyStringBuilder.append(dummy.dummyLocalizationsToYaml(DUMMY_BEZEICHNUNG))
+        return dummyStringBuilder.toString()
+    }
+
+    @Test
     fun `setUebersetzung() aendert die Uebersetzung, WENN sprache != Sprachen_OG`() {
         val dummy = dummyLokalisierbaresSpielelement()
         val sprache = Sprachen.EN
-        val bezeichnung = "Temporär"
 
-        dummy.setUebersetzung(sprache, bezeichnung)
+        dummy.setUebersetzung(sprache, DUMMY_BEZEICHNUNG)
         val actual = dummy.localizations[sprache]
 
-        val expected = bezeichnung
+        val expected = DUMMY_BEZEICHNUNG
         assertEquals(expected, actual)
     }
 
@@ -105,11 +134,10 @@ class LokalisierbaresSpielelementTest {
     fun `setUebersetzung() aendert die Uebersetzung NICHT, WENN sprache == Sprachen_OG`() {
         val dummy = dummyLokalisierbaresSpielelement()
         val sprache = Sprachen.OG
-        val bezeichnung = "Temporär"
 
         val expected = dummy.localizations[sprache]
 
-        dummy.setUebersetzung(sprache, bezeichnung)
+        dummy.setUebersetzung(sprache, DUMMY_BEZEICHNUNG)
         val actual = dummy.localizations[sprache]
 
         assertEquals(expected, actual)
