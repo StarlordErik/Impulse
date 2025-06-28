@@ -2,6 +2,7 @@ package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -15,8 +16,16 @@ class DummyLokalisierbaresSpielelement(
         fun fromEingabe(id: Int, sprache: Sprachen, bezeichnung: String) =
             LokalisierbaresSpielelement.fromEingabe(id, sprache, bezeichnung)
 
-        fun fromYaml(yamlDatensatz: Map<String, Any>) =
-            LokalisierbaresSpielelement.fromYaml(yamlDatensatz)
+        fun fromYaml(yamlDatensatz: Map<String, Any>): Set<DummyLokalisierbaresSpielelement> =
+            setOf(
+                // erst kommt die normale Konvertierungsfunktion - Problem; es gibt statt einem Objekt ein Tupel aus
+                LokalisierbaresSpielelement.fromYaml(yamlDatensatz)
+                    // also wird jedes Tupel in ein Objekt umgewandelt
+                    .let { (id, localizations) ->
+                        DummyLokalisierbaresSpielelement(
+                            id, localizations
+                        )
+                    }) // und diese Tupel werden dann in ein Set umgewandelt
 
         fun fromYamlListe(
             element: String,
@@ -187,6 +196,13 @@ class LokalisierbaresSpielelementTest {
         )
     }
 
+    @Test
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            throw IllegalArgumentException()
+        }
+    }
+
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
         dummy: DummyLokalisierbaresSpielelement
     ) {
@@ -215,21 +231,9 @@ class LokalisierbaresSpielelementTest {
     fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
         val dummyElement = "DummyLokalisierbaresSpielelement"
         val dummyDaten = dummyDatenVonLokalisierbaresSpielelement()
-
         val dummys = DummyLokalisierbaresSpielelement.fromYamlListe(
             dummyElement, dummyDaten
-        ) {
-            setOf(
-
-                // erst kommt die normale Konvertierungsfunktion - Problem; es statt einem Objekt ein Tupel aus
-                DummyLokalisierbaresSpielelement.fromYaml(it)
-                    // also wird jedes Tupel in ein Objekt umgewandelt
-                    .let { (id, localizations) ->
-                        DummyLokalisierbaresSpielelement(
-                            id, localizations
-                        )
-                    }) // und diese Tupel werden dann in ein Set umgewandelt
-        }
+        ) { DummyLokalisierbaresSpielelement.fromYaml(it) }
 
         assertEquals(2, dummys.size)
 
