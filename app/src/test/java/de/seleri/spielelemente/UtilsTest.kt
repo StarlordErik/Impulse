@@ -1,7 +1,5 @@
 package de.seleri.spielelemente
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -48,7 +46,7 @@ class UtilsTest {
 
     @Test
     fun `ladeYamlDaten() Test-Dateien problemlos auslesen`() {
-        val daten = ladeYamlDaten("UtilsTest.yml")
+        val daten = ladeYamlDaten("Utils.yml")
         assertTrue(daten.isNotEmpty())
         assertTrue(daten["Test"] as Boolean)
     }

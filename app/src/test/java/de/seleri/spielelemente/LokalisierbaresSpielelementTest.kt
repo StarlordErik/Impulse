@@ -187,7 +187,7 @@ class LokalisierbaresSpielelementTest {
     }
 
     private fun getSaemtlicheDummyDaten() : Map<String, Any> {
-        val dummyDaten = ladeYamlDaten("DummyLokalisierbaresSpielelement.yml")
+        val dummyDaten = ladeYamlDaten("LokalisierbaresSpielelement.yml")
         assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
         return dummyDaten
     }
@@ -214,23 +214,23 @@ class LokalisierbaresSpielelementTest {
     }
 
     @Test
-    fun `fromYaml() doppelt belegte IDs werden neu belegt`(){
+    fun `duplikateLoeschen() Duplikate werden geloescht`(){
+        val dummys = getDummyDaten("Duplikate")
+
+        val actual = dummys.size
+
+        val expected = 4
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `doppelteIDsErsetzen() doppelt belegte IDs werden neu belegt`(){
         val dummys = getDummyDaten("doppelteIDs")
 
         val dummyIDs = (dummys.map { it.id }).toSet()
         val actual = dummyIDs.size
 
         val expected = 3
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `fromYaml() Duplikate werden geloescht`(){
-        val dummys = getDummyDaten("Duplikate")
-
-        val actual = dummys.size
-
-        val expected = 4
         assertEquals(expected, actual)
     }
 
