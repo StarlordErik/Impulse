@@ -78,7 +78,6 @@ abstract class LokalisierbaresSpielelement(
             id: Int, sprache: Sprachen, bezeichnung: String
         ): Pair<Int, MutableMap<Sprachen, String?>> {
 
-
             // für alle Sprachen:
             // speichert die Bezeichnung sowohl in der entsprechenden Sprache als auch in OG, oder setzt null
             val localizations =
