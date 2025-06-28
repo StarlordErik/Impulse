@@ -183,11 +183,31 @@ class LokalisierbaresSpielelementTest {
         val dummyFromEingabe = DummyLokalisierbaresSpielelement(dummyID, dummyLocalizations)
 
         testKorrekteInstanziierung(
-            eingabeID,
-            eingabeBezeichnung,
-            eingabeBezeichnung,
-            null,
-            dummyFromEingabe
+            eingabeID, eingabeBezeichnung, eingabeBezeichnung, null, dummyFromEingabe
+        )
+    }
+
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: DummyLokalisierbaresSpielelement
+    ) {
+        testKorrekteInstanziierung(
+            erwarteteID = 7,
+            erwarteteOGBezeichnung = "OG",
+            erwarteteDEBezeichnung = "DE",
+            erwarteteENBezeichnung = "EN",
+            dummy
+        )
+    }
+
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: DummyLokalisierbaresSpielelement
+    ) {
+        testKorrekteInstanziierung(
+            erwarteteID = 42,
+            erwarteteOGBezeichnung = "nur OG",
+            erwarteteDEBezeichnung = null,
+            erwarteteENBezeichnung = null,
+            dummy
         )
     }
 
@@ -197,8 +217,7 @@ class LokalisierbaresSpielelementTest {
         val dummyDaten = dummyDatenVonLokalisierbaresSpielelement()
 
         val dummys = DummyLokalisierbaresSpielelement.fromYamlListe(
-            dummyElement,
-            dummyDaten
+            dummyElement, dummyDaten
         ) {
             setOf(
 
@@ -207,27 +226,15 @@ class LokalisierbaresSpielelementTest {
                     // also wird jedes Tupel in ein Objekt umgewandelt
                     .let { (id, localizations) ->
                         DummyLokalisierbaresSpielelement(
-                            id,
-                            localizations
+                            id, localizations
                         )
-                    }
-            ) // und diese Tupel werden dann in ein Set umgewandelt
+                    }) // und diese Tupel werden dann in ein Set umgewandelt
         }
 
-        assertEquals(4, dummys.size)
+        assertEquals(2, dummys.size)
 
         val sortedDummys = dummys.sorted()
-        checkFromYamlDummy1(sortedDummys[0])
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
     }
-
-    private fun checkFromYamlDummy1(dummy: DummyLokalisierbaresSpielelement) {
-        testKorrekteInstanziierung(
-            erwarteteID = 1,
-            erwarteteOGBezeichnung = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|",
-            erwarteteDEBezeichnung = null,
-            erwarteteENBezeichnung = null,
-            dummy
-        )
-    }
-
 }

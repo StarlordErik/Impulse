@@ -1,21 +1,11 @@
 DummyLokalisierbaresSpielelement:
-  - ID: 1
+  - ID: 42
     Text:
-      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
+      OG: "nur OG"
       DE:
       EN:
-  - ID: 332
-    Text:
-      OG: "Wie kreativ bist du?"
-      DE: "Wie kreativ bist du?"
-      EN:
-  - ID: 3
+  - ID: 7
     Name:
-      OG: "Level 3: Reflection"
-      DE:
-      EN: "Level 3: Reflection"
-  - ID: 2
-    Name:
-      OG: "Fun Facts"
-      DE: "Fun Facts"
-      EN: "Fun Facts"
+      OG: "OG"
+      DE: "DE"
+      EN: "EN"
