@@ -11,7 +11,7 @@ fun main() {
     val content = file.readText()
 
     // Ersetze alle Vorkommen von "" durch null
-    val updatedContent = content.replace(": \"\"", ": null")
+    val updatedContent = content.replace(": \"\"", ":")
 
     // Schreibe den neuen Inhalt zurück in die Datei
     file.writeText(updatedContent)
