@@ -133,6 +133,7 @@ abstract class LokalisierbaresSpielelement(
         protected fun <T: LokalisierbaresSpielelement> fromYamlListe(
             element: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
         ): Set<T> {
+
             // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
             val listeAnElementenImYamlformat = yamlDaten[element] as List<*>
 
