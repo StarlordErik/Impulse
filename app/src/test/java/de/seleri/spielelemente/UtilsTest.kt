@@ -40,7 +40,7 @@ fun testAttribute() : Map<String, Any?>{
 class UtilsTest {
 
     @Test
-    fun `ladeYamlDaten() ungueltiger Dateipfad wirft Exception`() {
+    fun `ladeYamlDaten() Exception bei einem ungueltigen Dateipfad`() {
         assertThrows(IllegalArgumentException::class.java)  {
             ladeYamlDaten("nicht_existierend.yml")
         }
