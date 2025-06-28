@@ -23,6 +23,12 @@ data class DummyLokalisierbaresSpielelement(
         fun fromEingabe(id: Int, sprache: Sprachen, bezeichnung: String) =
             LokalisierbaresSpielelement.fromEingabe(id, sprache, bezeichnung)
 
+        fun fromYamlListe(
+            element: String,
+            yamlDaten: Map<String, Any>,
+            converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>
+        ) = LokalisierbaresSpielelement.fromYamlListe(element, yamlDaten, converter)
+
         fun fromYaml(yamlDatensatz: Map<String, Any>): Set<DummyLokalisierbaresSpielelement> =
             setOf(
                 // erst kommt die normale Konvertierungsfunktion - Problem; es gibt statt einem Objekt ein Tupel aus
@@ -33,12 +39,6 @@ data class DummyLokalisierbaresSpielelement(
                             id, localizations
                         )
                     }) // und diese Tupel werden dann in ein Set umgewandelt
-
-        fun fromYamlListe(
-            element: String,
-            yamlDaten: Map<String, Any>,
-            converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>
-        ) = LokalisierbaresSpielelement.fromYamlListe(element, yamlDaten, converter)
     }
 }
 
@@ -250,6 +250,17 @@ class LokalisierbaresSpielelementTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummyElemente("DummyLokalisierbaresSpielelement")
+
+        assertEquals(2, dummys.size)
+
+        val sortedDummys = dummys.sorted()
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
+    }
+
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
         dummy: DummyLokalisierbaresSpielelement
     ) {
@@ -272,16 +283,5 @@ class LokalisierbaresSpielelementTest {
             erwarteteENBezeichnung = null,
             dummy
         )
-    }
-
-    @Test
-    fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
-        val dummys = getDummyElemente("DummyLokalisierbaresSpielelement")
-
-        assertEquals(2, dummys.size)
-
-        val sortedDummys = dummys.sorted()
-        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
-        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
     }
 }

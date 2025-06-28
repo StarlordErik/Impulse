@@ -88,37 +88,6 @@ abstract class LokalisierbaresSpielelement(
         }
 
         /**
-         * Erstellt ein Spielelement aus einem **einzigen** YAML-Datensatz.
-         *
-         * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um ein einziges Element handelt.
-         *
-         * @param yamlDatensatz YAML-Datensatz eines Elements
-         * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
-         */
-        @JvmStatic // damit die Methode protected sein kann
-        protected fun fromYaml(
-            yamlDatensatz: Map<String, Any>
-        ): Pair<Int, MutableMap<Sprachen, String?>> {
-
-            require(ID in yamlDatensatz && (TEXT in yamlDatensatz || NAME in yamlDatensatz)) {
-                "Ungültige Elementstruktur."
-            }
-
-            val id = yamlDatensatz[ID] as Int
-
-            @Suppress("UNCHECKED_CAST") val yamlLocalizations = ((yamlDatensatz[TEXT]
-                ?: yamlDatensatz[NAME]) as Map<String, String?>).mapKeys { Sprachen.valueOf(it.key) }
-
-            // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt null
-            val localizations =
-                Sprachen.entries.associateWith {
-                    if (it in yamlLocalizations && yamlLocalizations[it] != null) yamlLocalizations[it] else null }
-                    .toMutableMap()
-
-            return id to localizations
-        }
-
-        /**
          * Verarbeitet **eine Liste** von Element-Daten in einer YAML-Struktur.
          *
          * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um eine Liste von Elementen handelt.
@@ -196,6 +165,37 @@ abstract class LokalisierbaresSpielelement(
                     idUnikate.add(aktuelleID)
                 }
             }
+        }
+
+        /**
+         * Erstellt ein Spielelement aus einem **einzigen** YAML-Datensatz.
+         *
+         * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um ein einziges Element handelt.
+         *
+         * @param yamlDatensatz YAML-Datensatz eines Elements
+         * @return Tupel (id, localizations) aka abstraktes Objekt von LokalisierbaresElement
+         */
+        @JvmStatic // damit die Methode protected sein kann
+        protected fun fromYaml(
+            yamlDatensatz: Map<String, Any>
+        ): Pair<Int, MutableMap<Sprachen, String?>> {
+
+            require(ID in yamlDatensatz && (TEXT in yamlDatensatz || NAME in yamlDatensatz)) {
+                "Ungültige Elementstruktur."
+            }
+
+            val id = yamlDatensatz[ID] as Int
+
+            @Suppress("UNCHECKED_CAST") val yamlLocalizations = ((yamlDatensatz[TEXT]
+                ?: yamlDatensatz[NAME]) as Map<String, String?>).mapKeys { Sprachen.valueOf(it.key) }
+
+            // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt null
+            val localizations =
+                Sprachen.entries.associateWith {
+                    if (it in yamlLocalizations && yamlLocalizations[it] != null) yamlLocalizations[it] else null }
+                    .toMutableMap()
+
+            return id to localizations
         }
     }
 }
