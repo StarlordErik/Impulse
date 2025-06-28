@@ -96,17 +96,8 @@ class LokalisierbaresSpielelementTest {
     }
 
     @Test
-    fun `Rundreise Objekt zu Yaml zu Objekt zu Yaml`() {
-        val dummy1 = dummyLokalisierbaresSpielelement()
-        val yamlDummy1 = dummy1.dummyToYaml()
-
-        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
-        val dummy2 = DummyLokalisierbaresSpielelement.fromYaml(dummyDaten).first()
-
-        assertEquals(dummy1, dummy2) // Objekt --> Yaml --> Objekt
-
-
-        val yamlDummy2 = """
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        val yamlDummy1 = """
             |  - $ID: $DUMMY_ID
             |    $DUMMY_BEZEICHNUNG:
             |      ${Sprachen.OG}: "$DUMMY_OG"
@@ -114,7 +105,11 @@ class LokalisierbaresSpielelementTest {
             |
         """.trimMargin()
 
-        assertEquals(yamlDummy2, yamlDummy1) // Yaml --> Objekt --> Yaml
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = DummyLokalisierbaresSpielelement.fromYaml(dummyDaten).first()
+
+        val yamlDummy2 = dummy.dummyToYaml()
+        assertEquals(yamlDummy2, yamlDummy1)
     }
 
     @Test

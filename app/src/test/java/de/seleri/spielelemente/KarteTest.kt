@@ -1,11 +1,22 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
 const val DUMMY_GESEHEN = false
 const val DUMMY_GELOESCHT = false
 fun dummyKarte() = Karte(DUMMY_ID, dummyLocalizations(), DUMMY_GESEHEN, DUMMY_GELOESCHT)
+fun yamlDummy() = """
+        |  - $ID: $DUMMY_ID
+        |    $DUMMY_BEZEICHNUNG:
+        |      ${Sprachen.OG}: "$DUMMY_OG"
+        |      ${Sprachen.DE}: "$DUMMY_DE"
+        |    $GESEHEN: $DUMMY_GESEHEN
+        |    $GELOESCHT: $DUMMY_GELOESCHT
+        |
+        """.trimMargin()
 
 class KarteTest {
 
@@ -31,15 +42,18 @@ class KarteTest {
 
         val actual = dummy.toYaml()
 
-        val expected = """
-        |  - $ID: $DUMMY_ID
-        |    $DUMMY_BEZEICHNUNG:
-        |      ${Sprachen.OG}: "$DUMMY_OG"
-        |      ${Sprachen.DE}: "$DUMMY_DE"
-        |    $GESEHEN: $DUMMY_GESEHEN
-        |    $GELOESCHT: $DUMMY_GELOESCHT
-        |
-        """.trimMargin()
+        val expected = yamlDummy()
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        val yamlDummy1 = yamlDummy()
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = Karte.fromYaml(dummyDaten).first()
+
+        val yamlDummy2 = dummy.toYaml()
+        assertEquals(yamlDummy1, yamlDummy2)
     }
 }
