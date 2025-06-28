@@ -67,7 +67,7 @@ class KarteTest {
         dummy: Karte
     ) {
         val actualGesehen = dummy.gesehen
-        val actualGeloescht = dummy. geloescht
+        val actualGeloescht = dummy.geloescht
 
         assertEquals(erwartetesGesehen, actualGesehen)
         assertEquals(erwartetesGeloescht, actualGeloescht)
@@ -86,21 +86,8 @@ class KarteTest {
         testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
     }
 
-    private fun getAlleDummyDaten() : Map<String, Any> {
-        val dummyDaten = ladeYamlDaten("Karten.yml")
-        assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
-        return dummyDaten
-    }
-
-    private fun getDummyDaten(titel: String) : Set<Karte>{
-        val dummyKartenart = titel
-        val dummyDaten = getAlleDummyDaten()
-
-        assertTrue(dummyKartenart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
-
-        return Karte.fromYaml(dummyDaten)
-    }
-
+    private fun getDummyKarten(dummyElementart: String) =
+        getDummyDaten("Karten.yml", dummyElementart, Karte.Companion::fromYaml)
 
 
 }

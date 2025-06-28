@@ -12,7 +12,7 @@ import org.yaml.snakeyaml.Yaml
  * @return Eine Map mit den eingelesenen Daten.
  */
 fun ladeYamlDaten(pfad: String): Map<String, Any> {
-    val inputStream = object{}.javaClass.classLoader?.getResourceAsStream(pfad)
+    val inputStream = object {}.javaClass.classLoader?.getResourceAsStream(pfad)
         ?: throw IllegalArgumentException("Datei nicht gefunden: $pfad")
     return Yaml().load(inputStream)
 }
@@ -21,9 +21,9 @@ fun ladeYamlDaten(pfad: String): Map<String, Any> {
 fun atyz(anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?) =
     attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
 
-fun testAttribute() : Map<String, Any?>{
+fun testAttribute(): Map<String, Any?> {
     val collectionAnSpielelementen = setOf<LokalisierbaresSpielelement>(
- // TODO dummy Objekte (in LokalisierbaresSpielementTest.kt erstellen)
+        // TODO dummy Objekte (in LokalisierbaresSpielementTest.kt erstellen)
     ) as Collection<LokalisierbaresSpielelement>
 
     // keys sind die Klassentypen der Attributstypen
@@ -35,11 +35,24 @@ fun testAttribute() : Map<String, Any?>{
     )
 }
 
+fun <T> getDummyDaten(
+    dateiname: String,
+    dummyElementart: String,
+    factory: (Map<String, Any>) -> Set<T>
+): Set<T> {
+    val dummyDaten = ladeYamlDaten(dateiname)
+    assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
+
+    assertTrue(dummyElementart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
+
+    return factory(dummyDaten)
+}
+
 class UtilsTest {
 
     @Test
     fun `ladeYamlDaten() Exception bei einem ungueltigen Dateipfad`() {
-        assertThrows(IllegalArgumentException::class.java)  {
+        assertThrows(IllegalArgumentException::class.java) {
             ladeYamlDaten("nicht_existierend.yml")
         }
     }
