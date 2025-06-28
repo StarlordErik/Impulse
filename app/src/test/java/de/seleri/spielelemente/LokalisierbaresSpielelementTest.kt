@@ -14,6 +14,15 @@ class DummyLokalisierbaresSpielelement(
     companion object {
         fun fromEingabe(id: Int, sprache: Sprachen, bezeichnung: String) =
             LokalisierbaresSpielelement.fromEingabe(id, sprache, bezeichnung)
+
+        fun fromYaml(yamlDatensatz: Map<String, Any>) =
+            LokalisierbaresSpielelement.fromYaml(yamlDatensatz)
+
+        fun fromYamlListe(
+            element: String,
+            yamlDaten: Map<String, Any>,
+            converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>
+        ) = LokalisierbaresSpielelement.fromYamlListe(element, yamlDaten, converter)
     }
 }
 
@@ -134,23 +143,38 @@ class LokalisierbaresSpielelementTest {
         assertTrue(condition)
     }
 
-    @Test
-    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
-        val eingabeID = 42
-        val eingabeSprache = Sprachen.DE
-        val eingabeBezeichnung = "Bezeichnung"
-        val (dummyID, dummyLocalizations) = DummyLokalisierbaresSpielelement.fromEingabe(
-            eingabeID, eingabeSprache, eingabeBezeichnung
-        )
+    private fun testKorrekteInstanziierung(
+        instanziierteID: Int,
+        instanziierteSprache: Sprachen,
+        instanziierteBezeichnung: String,
+        dummy: DummyLokalisierbaresSpielelement
+    ) {
+        val dummyID = dummy.id
+        val dummyLocalizations = dummy.localizations
 
-        assertEquals(eingabeID, dummyID)
+        assertEquals(instanziierteID, dummyID)
         for (sprache in Sprachen.entries) {
             val actual = dummyLocalizations[sprache]
-            if (sprache == eingabeSprache || sprache == Sprachen.OG) {
-                assertEquals(eingabeBezeichnung, actual)
+            if (sprache == instanziierteSprache || sprache == Sprachen.OG) {
+                assertEquals(instanziierteBezeichnung, actual)
             } else {
                 assertEquals(null, actual)
             }
         }
     }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = 42
+        val eingabeSprache = Sprachen.DE
+        val eingabeBezeichnung = "Bezeichnung"
+
+        val (dummyID, dummyLocalizations) = DummyLokalisierbaresSpielelement.fromEingabe(
+            eingabeID, eingabeSprache, eingabeBezeichnung
+        )
+        val dummyFromEingabe = DummyLokalisierbaresSpielelement(dummyID, dummyLocalizations)
+
+        testKorrekteInstanziierung(eingabeID, eingabeSprache, eingabeBezeichnung, dummyFromEingabe)
+    }
+
 }
