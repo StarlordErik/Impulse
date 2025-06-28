@@ -35,6 +35,9 @@ fun dummyLocalizations() =
 fun dummyLokalisierbaresSpielelement() =
     DummyLokalisierbaresSpielelement(DUMMY_ID, dummyLocalizations())
 
+fun dummyDatenVonLokalisierbaresSpielelement() =
+    ladeYamlDaten("DummyLokalisierbaresSpielelement.yml")
+
 class LokalisierbaresSpielelementTest {
 
     /*
@@ -52,6 +55,12 @@ class LokalisierbaresSpielelementTest {
     3: expected instanzieeren & Test ausführen
     ------------------------------------------------------------------------------------------------
     */
+
+    @Test
+    fun `dummyDatenVonLokalisierbaresSpielelement() Test-Datei problemlos ausgelesen`() {
+        val dummyDaten = dummyDatenVonLokalisierbaresSpielelement()
+        assertTrue(dummyDaten.isNotEmpty())
+    }
 
     @Test
     fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
