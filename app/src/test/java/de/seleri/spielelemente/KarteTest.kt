@@ -92,11 +92,10 @@ class KarteTest {
     fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
         val dummys = getDummyKarten("gültigeKarten")
 
-        assertEquals(2, dummys.size)
+        assertEquals(6, dummys.size)
 
-        val sortedDummys = dummys.sorted()
-        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
-        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(dummys.finde(7))
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(dummys.finde(42))
     }
 
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
