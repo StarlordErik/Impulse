@@ -93,18 +93,18 @@ abstract class LokalisierbaresSpielelement(
          * Wird nur protected aufgerufen und wenn der Code weiß, dass es sich um eine Liste von Elementen handelt.
          *
          * @param T jede Art von Element (Karte, Kategorie, Spiel)
-         * @param element Element-Bezeichnung in der YAML-Datenstruktur
+         * @param elementart Element-Bezeichnung in der YAML-Datenstruktur
          * @param yamlDaten YAML-Datenstruktur
          * @param converter rekursiver Aufruf für das einzelne Element
          * @return Eine Liste von [T].
          */
         @JvmStatic // damit die Methode protected sein kann
         protected fun <T: LokalisierbaresSpielelement> fromYamlListe(
-            element: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
+            elementart: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
         ): Set<T> {
 
             // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
-            val listeAnElementenImYamlformat = yamlDaten[element] as List<*>
+            val listeAnElementenImYamlformat = yamlDaten[elementart] as Collection<*>
 
             // macht aus List<*> --> List<Map<String, Any>>
             val listeAnMapsVonElementenImYamlformat =

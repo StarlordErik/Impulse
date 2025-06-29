@@ -1,7 +1,8 @@
 package de.seleri.spielelemente
 
+import de.seleri.spielelemente.LokalisierbaresSpielelement.Companion.fromYamlListe
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertThrows
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
@@ -86,8 +87,55 @@ class KarteTest {
         testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
     }
 
-    private fun getDummyKarten(dummyElementart: String) =
-        getDummyDaten("Karten.yml", dummyElementart, Karte.Companion::fromYaml)
+    private fun getDummyKarten(elementart: String) =
+        getDummyDaten("Karten.yml", elementart)
+        { yamlDaten ->
+            fromYamlListe(
+                elementart,
+                yamlDaten
+            ) { Karte.fromYaml(it) }
+        }
 
+
+    @Test
+    fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummyKarten("gültigeKarten")
+
+        assertEquals(2, dummys.size)
+
+        val sortedDummys = dummys.sorted()
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
+    }
+
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: Karte
+    ) {
+        testKorrekteInstanziierung(
+            erwartetesGesehen = true,
+            erwartetesGeloescht = false,
+            dummy
+        )
+    }
+
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: Karte
+    ) {
+        testKorrekteInstanziierung(
+            erwartetesGesehen = false,
+            erwartetesGeloescht = true,
+            dummy
+        )
+    }
+
+    @Test
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKarten("fehlendesGesehen")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKarten("fehlendesGelöscht")
+        }
+    }
 
 }

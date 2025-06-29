@@ -24,10 +24,10 @@ data class DummyLokalisierbaresSpielelement(
             LokalisierbaresSpielelement.fromEingabe(id, sprache, bezeichnung)
 
         fun fromYamlListe(
-            element: String,
+            elementart: String,
             yamlDaten: Map<String, Any>,
             converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>
-        ) = LokalisierbaresSpielelement.fromYamlListe(element, yamlDaten, converter)
+        ) = LokalisierbaresSpielelement.fromYamlListe(elementart, yamlDaten, converter)
 
         fun fromYaml(yamlDatensatz: Map<String, Any>): Set<DummyLokalisierbaresSpielelement> =
             setOf(
@@ -220,13 +220,14 @@ class LokalisierbaresSpielelementTest {
         }
 
     @Test
-    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
-        assertThrows(IllegalArgumentException::class.java) {
-            getDummyElemente("fehlendeID")
-        }
-        assertThrows(IllegalArgumentException::class.java) {
-            getDummyElemente("fehlenderTextOderName")
-        }
+    fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummyElemente("DummyLokalisierbaresSpielelement")
+
+        assertEquals(2, dummys.size)
+
+        val sortedDummys = dummys.sorted()
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
     }
 
     @Test
@@ -248,17 +249,6 @@ class LokalisierbaresSpielelementTest {
 
         val expected = 3
         assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `fromYamlListe() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
-        val dummys = getDummyElemente("DummyLokalisierbaresSpielelement")
-
-        assertEquals(2, dummys.size)
-
-        val sortedDummys = dummys.sorted()
-        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(sortedDummys[0])
-        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(sortedDummys[1])
     }
 
     private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
@@ -283,5 +273,15 @@ class LokalisierbaresSpielelementTest {
             erwarteteENBezeichnung = null,
             dummy
         )
+    }
+
+    @Test
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyElemente("fehlendeID")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyElemente("fehlenderTextOderName")
+        }
     }
 }
