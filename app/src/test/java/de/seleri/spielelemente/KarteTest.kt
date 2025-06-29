@@ -19,6 +19,9 @@ fun yamlDummy() = """
         |
         """.trimMargin()
 
+fun getDummyKarten(elementart: String): Set<Karte> =
+    getDummyDaten("Karten.yml", elementart,Karte::fromYaml)
+
 class KarteTest {
 
     /*
@@ -83,9 +86,6 @@ class KarteTest {
         val erwartetesGeloescht = false
         testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
     }
-
-    private fun getDummyKarten(elementart: String): Set<Karte> =
-        getDummyDaten("Karten.yml", elementart,Karte::fromYaml)
 
 
     @Test
