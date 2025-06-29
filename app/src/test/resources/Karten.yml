@@ -12,3 +12,28 @@ Karten:
       EN: "EN"
     gesehen: true
     gelöscht: false
+
+
+fehlendeKarten:
+  fehlendeKarten:
+    - ID: 1
+      Text:
+        OG: "fehlende Karten"
+      gesehen: true
+      gelöscht: true
+
+fehlendesGesehen:
+  Karten:
+    - ID: 2
+      Text:
+        OG: "fehlendes gesehen"
+      fehlendesGesehen: false
+      gelöscht: true
+
+fehlendesGelöscht:
+  Karten:
+    - ID: 3
+      Text:
+        OG: "fehlendes gelöscht"
+      gesehen: true
+      fehlendesGelöscht: false
