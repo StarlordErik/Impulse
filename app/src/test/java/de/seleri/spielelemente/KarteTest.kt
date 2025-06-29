@@ -1,6 +1,5 @@
 package de.seleri.spielelemente
 
-import de.seleri.spielelemente.LokalisierbaresSpielelement.Companion.fromYamlListe
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -88,18 +87,12 @@ class KarteTest {
     }
 
     private fun getDummyKarten(elementart: String) =
-        getDummyDaten("Karten.yml", elementart)
-        { yamlDaten ->
-            fromYamlListe(
-                elementart,
-                yamlDaten
-            ) { Karte.fromYaml(it) }
-        }
+        getDummyDaten("Karten.yml", elementart, Karte.Companion::fromYaml)
 
 
     @Test
     fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
-        val dummys = getDummyKarten("gültigeKarten")
+        val dummys = getDummyKarten("Karten")
 
         assertEquals(2, dummys.size)
 
