@@ -62,9 +62,7 @@ class KarteTest {
      * prüft nur die Instanziierung der neuen Attribute von Karte im Vergleich zur Superklasse
      */
     private fun testKorrekteInstanziierung(
-        erwartetesGesehen: Boolean,
-        erwartetesGeloescht: Boolean,
-        dummy: Karte
+        erwartetesGesehen: Boolean, erwartetesGeloescht: Boolean, dummy: Karte
     ) {
         val actualGesehen = dummy.gesehen
         val actualGeloescht = dummy.geloescht
@@ -86,13 +84,15 @@ class KarteTest {
         testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
     }
 
-    private fun getDummyKarten(elementart: String) =
-        getDummyDaten("Karten.yml", elementart, Karte.Companion::fromYaml)
+    private fun getDummyKarten(elementart: String): Set<Karte> =
+        getDummyDaten("Karten.yml", elementart) { yamlDaten ->
+            @Suppress("UNCHECKED_CAST") Karte.fromYaml(yamlDaten[elementart] as Map<String, Any>)
+        }
 
 
     @Test
     fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
-        val dummys = getDummyKarten("Karten")
+        val dummys = getDummyKarten("gültigeKarten")
 
         assertEquals(2, dummys.size)
 
@@ -105,9 +105,7 @@ class KarteTest {
         dummy: Karte
     ) {
         testKorrekteInstanziierung(
-            erwartetesGesehen = true,
-            erwartetesGeloescht = false,
-            dummy
+            erwartetesGesehen = true, erwartetesGeloescht = false, dummy
         )
     }
 
@@ -115,14 +113,15 @@ class KarteTest {
         dummy: Karte
     ) {
         testKorrekteInstanziierung(
-            erwartetesGesehen = false,
-            erwartetesGeloescht = true,
-            dummy
+            erwartetesGesehen = false, erwartetesGeloescht = true, dummy
         )
     }
 
     @Test
     fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKarten("fehlendeKarten")
+        }
         assertThrows(IllegalArgumentException::class.java) {
             getDummyKarten("fehlendesGesehen")
         }
@@ -130,5 +129,4 @@ class KarteTest {
             getDummyKarten("fehlendesGelöscht")
         }
     }
-
 }
