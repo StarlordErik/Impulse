@@ -17,6 +17,19 @@ fun ladeYamlDaten(pfad: String): Map<String, Any> {
     return Yaml().load(inputStream)
 }
 
+fun <T> getDummyDaten(
+    dateiname: String,
+    dummyElementart: String,
+    factory: (Map<String, Any>) -> Set<T>
+): Set<T> {
+    val dummyDaten = ladeYamlDaten(dateiname)
+    assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
+
+    assertTrue(dummyElementart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
+
+    return factory(dummyDaten)
+}
+
 /** kürzere Schreibeweise von attributToYamlZeile() */
 fun atyz(anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?) =
     attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
@@ -33,19 +46,6 @@ fun testAttribute(): Map<String, Any?> {
         "Map<Sprache, String>" to mapOf(Sprachen.OG to "Test"),
         "null" to null
     )
-}
-
-fun <T> getDummyDaten(
-    dateiname: String,
-    dummyElementart: String,
-    factory: (Map<String, Any>) -> Set<T>
-): Set<T> {
-    val dummyDaten = ladeYamlDaten(dateiname)
-    assertTrue(dummyDaten.isNotEmpty()) // Test, ob die Yaml-Datei nicht leer ist
-
-    assertTrue(dummyElementart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
-
-    return factory(dummyDaten)
 }
 
 class UtilsTest {
