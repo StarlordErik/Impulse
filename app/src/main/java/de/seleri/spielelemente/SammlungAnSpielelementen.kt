@@ -156,7 +156,9 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
         hinzugefuegteElemente.remove(zuEntfernendesElement)
     }
 
+
     companion object {
+
         /**
          * Erstellt eine Sammlung anhand von Benutzereingaben oder Skriptdaten.
          *
