@@ -85,9 +85,7 @@ class KarteTest {
     }
 
     private fun getDummyKarten(elementart: String): Set<Karte> =
-        getDummyDaten("Karten.yml", elementart) { yamlDaten ->
-            @Suppress("UNCHECKED_CAST") Karte.fromYaml(yamlDaten[elementart] as Map<String, Any>)
-        }
+        getDummyDaten("Karten.yml", elementart,Karte::fromYaml)
 
 
     @Test

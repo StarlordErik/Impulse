@@ -1,59 +1,66 @@
+# aufgrund der Struktur von fromYamlListe() & getDummyDaten() muss der Titel zwei Mal dort stehen
+
 DummyLokalisierbaresSpielelement:
-  - ID: 42
-    Text:
-      OG: "nur OG"
-      DE:
-  - ID: 7
-    Name:
-      OG: "OG"
-      DE: "DE"
-      EN: "EN"
+  DummyLokalisierbaresSpielelement:
+    - ID: 42
+      Text:
+        OG: "nur OG"
+        DE:
+    - ID: 7
+      Name:
+        OG: "OG"
+        DE: "DE"
+        EN: "EN"
 
 fehlendeID:
-  - fehlendeID: 1
-    Name:
-      OG: "fehlende ID"
+  fehlendeID:
+    - fehlendeID: 1
+      Name:
+        OG: "fehlende ID"
 
 fehlenderTextOderName:
-  - ID: 2
-    fehlenderTextOderName:
-      OG: "fehlender Text oder Name"
+  fehlenderTextOderName:
+    - ID: 2
+      fehlenderTextOderName:
+        OG: "fehlender Text oder Name"
 
 doppelteIDs:
-  - ID: 3
-    Text:
-      OG: "doppelte ID Nr. 1"
-  - ID: 3
-    Text:
-      OG: "doppelte ID Nr. 2"
-  - ID: 8
-    Text:
-      OG: "doppelte ID Nr. 3"
+  doppelteIDs:
+    - ID: 3
+      Text:
+        OG: "doppelte ID Nr. 1"
+    - ID: 3
+      Text:
+        OG: "doppelte ID Nr. 2"
+    - ID: 8
+      Text:
+        OG: "doppelte ID Nr. 3"
 
 Duplikate:
-  - ID: 4
-    Name:
-      OG: "Duplikat 1"
-  - ID: 5
-    Name:
-      OG: "Duplikat 1"
-  - ID: 6
-    Name:
-      OG: "Duplikat 2"
-      DE: "Duplikat 2"
-      EN: "Duplikat 2"
-  - ID: 7
-    Name:
-      OG: "Duplikat 2"
-      DE: "Duplikat 2"
-      EN: "Duplikat 2"
-  - ID: 9
-    Name:
-      OG: "kein Duplikat"
-      DE: "Duplikat 2"
-      EN: "Duplikat 2"
-  - ID: 10
-    Name:
-      OG: "Duplikat 2"
-      DE: "kein Duplikat"
-      EN: "Duplikat 2"
+  Duplikate:
+    - ID: 4
+      Name:
+        OG: "Duplikat 1"
+    - ID: 5
+      Name:
+        OG: "Duplikat 1"
+    - ID: 6
+      Name:
+        OG: "Duplikat 2"
+        DE: "Duplikat 2"
+        EN: "Duplikat 2"
+    - ID: 7
+      Name:
+        OG: "Duplikat 2"
+        DE: "Duplikat 2"
+        EN: "Duplikat 2"
+    - ID: 9
+      Name:
+        OG: "kein Duplikat"
+        DE: "Duplikat 2"
+        EN: "Duplikat 2"
+    - ID: 10
+      Name:
+        OG: "Duplikat 2"
+        DE: "kein Duplikat"
+        EN: "Duplikat 2"

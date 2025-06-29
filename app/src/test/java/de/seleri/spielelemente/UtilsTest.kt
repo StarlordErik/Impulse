@@ -27,7 +27,10 @@ fun <T> getDummyDaten(
 
     assertTrue(dummyElementart in dummyDaten) // Test, ob die gesuchte Daten auffindbar sind
 
-    return factory(dummyDaten)
+    @Suppress("UNCHECKED_CAST")
+    val daten = dummyDaten[dummyElementart] as Map<String, Any>
+
+    return factory(daten)
 }
 
 /** kürzere Schreibeweise von attributToYamlZeile() */
