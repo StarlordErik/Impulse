@@ -1,5 +1,7 @@
 package de.seleri.spielelemente
 
+import org.junit.Assert.assertEquals
+
 data class DummySammlungAnSpielelementen(
     override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
@@ -32,6 +34,14 @@ data class DummySammlungAnSpielelementen(
     }
 }
 
+fun alleDummyKarten() : Set<Karte> {
+    val dummyKarten = getDummyKarten("dummyKarten")
+    val actual = dummyKarten.size
 
+    val expected = 5
+    assertEquals(expected, actual)
+
+    return dummyKarten
+}
 
 class SammlungAnSpielelementenTest

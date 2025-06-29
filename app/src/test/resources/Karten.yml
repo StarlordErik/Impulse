@@ -13,28 +13,6 @@ gültigeKarten:
         EN: "EN"
       gesehen: true
       gelöscht: false
-    - ID: 1
-      Text:
-        OG: "Dummy 1"
-      gesehen: false
-      gelöscht: false
-    - ID: 2
-      Text:
-        OG: "Dummy 2"
-      gesehen: true
-      gelöscht: true
-    - ID: 3
-      Text:
-        OG: "Dummy 3"
-      gesehen: true
-      gelöscht: false
-    - ID: 4
-      Text:
-        OG: "Dummy 4"
-      gesehen: false
-      gelöscht: true
-
-
 
 fehlendeKarten:
   fehlendeKarten:
@@ -59,3 +37,31 @@ fehlendesGelöscht:
         OG: "fehlendes gelöscht"
       gesehen: true
       fehlendesGelöscht: false
+
+dummyKarten:
+  Karten:
+    - ID: 1
+      Text:
+        OG: "Dummy 1"
+      gesehen: false
+      gelöscht: false
+    - ID: 2
+      Text:
+        OG: "Dummy 2"
+      gesehen: true
+      gelöscht: true
+    - ID: 3
+      Text:
+        OG: "Dummy 3"
+      gesehen: true
+      gelöscht: false
+    - ID: 4
+      Text:
+        OG: "Dummy 4"
+      gesehen: false
+      gelöscht: true
+    - ID: 5
+      Text:
+        OG: "Dummy 5"
+      gesehen: false
+      gelöscht: false
