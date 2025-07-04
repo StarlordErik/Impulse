@@ -122,4 +122,14 @@ class SammlungAnSpielelementenTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `getAlleAktuellenElemente() gibt alle Elemente der Sammlung zurueck, die nicht entfernt worden sind`() {
+        val dummy = dummySammlung()
+
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(karte2(), karte3())
+        assertEquals(expected, actual)
+    }
+
 }
