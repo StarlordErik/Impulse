@@ -112,4 +112,14 @@ class SammlungAnSpielelementenTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `getAlleElemente() gibt alle Elemente der Sammlung zurueck`() {
+        val dummy = dummySammlung()
+
+        val actual = dummy.getKarten()
+
+        val expected = setOf(karte1(), karte2(), karte3())
+        assertEquals(expected, actual)
+    }
+
 }
