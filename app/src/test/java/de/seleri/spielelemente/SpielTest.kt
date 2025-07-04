@@ -1,6 +1,8 @@
 package de.seleri.spielelemente;
 
 import org.junit.Assert.assertEquals
+import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
 fun alleDummyKategorien(): Set<Kategorie> {
     val dummyKategorien = getDummyKategorien("dummyKategorien")
@@ -12,11 +14,11 @@ fun alleDummyKategorien(): Set<Kategorie> {
     return dummyKategorien
 }
 
-fun dummyKategorien1(): Kategorie = alleDummyKategorien().finde(1)
-fun dummyKategorien2(): Kategorie = alleDummyKategorien().finde(2)
-fun dummyKategorien3(): Kategorie = alleDummyKategorien().finde(3)
-fun dummyKategorien4(): Kategorie = alleDummyKategorien().finde(4)
-fun dummyKategorien5(): Kategorie = alleDummyKategorien().finde(5)
+fun dummyKategorie1(): Kategorie = alleDummyKategorien().finde(1)
+fun dummyKategorie2(): Kategorie = alleDummyKategorien().finde(2)
+fun dummyKategorie3(): Kategorie = alleDummyKategorien().finde(3)
+fun dummyKategorie4(): Kategorie = alleDummyKategorien().finde(4)
+fun dummyKategorie5(): Kategorie = alleDummyKategorien().finde(5)
 
 fun yamlDummySpiel(): String = """
         |  - $ID: $DUMMY_ID
@@ -33,6 +35,18 @@ fun yamlDummySpiel(): String = """
 fun getDummySpiele(elementart: String): Set<Spiel> =
     getDummyDaten("Spiel.yml", elementart) { Spiel.fromYaml(it, alleDummyKategorien()) }
 
+
+fun dummyOriginaleKategorienIDs(): MutableSet<Kategorie> =
+    mutableSetOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+
+fun dummyDavonEntfernteKategorien(): MutableSet<Kategorie> = mutableSetOf(dummyKategorie2(), dummyKategorie4())
+fun dummyOriginaleKategorien(): Map<String, MutableSet<Kategorie>> =
+    mapOf(IDS to dummyOriginaleKategorienIDs(), DAVON_ENTFERNT to dummyDavonEntfernteKategorien())
+
+fun dummyHinzugefuegteKategorien(): MutableSet<Kategorie> = mutableSetOf()
+fun dummySpiel() = Spiel(
+    DUMMY_ID, dummyLocalizations(), dummyOriginaleKategorien(), dummyHinzugefuegteKategorien()
+)
 
 class SpielTest {
 
@@ -51,5 +65,47 @@ class SpielTest {
     3: expected instanzieeren & Test ausführen
     ------------------------------------------------------------------------------------------------
     */
+
+    @Test
+    fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.toYaml()
+
+        val expected = yamlDummySpiel()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        val yamlDummy1 = yamlDummySpiel()
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = Spiel.fromYaml(dummyDaten, alleDummyKategorien()).first()
+
+        val yamlDummy2 = dummy.toYaml()
+        assertEquals(yamlDummy1, yamlDummy2)
+    }
+
+    @Test
+    fun `getKategorien() gibt alle Kategorien des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getKategorien()
+
+        val expected = setOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getAktuelleKategorien() gibt alle Kategorien zurueck, die nicht entfernt wurden`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getAktuelleKategorien()
+
+        val expected = setOf(dummyKategorie1(), dummyKategorie3())
+        assertEquals(expected, actual)
+    }
+
 
 }
