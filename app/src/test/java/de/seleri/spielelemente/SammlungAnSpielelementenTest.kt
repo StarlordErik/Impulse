@@ -96,4 +96,20 @@ class SammlungAnSpielelementenTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `originaleUndHinzugefuegteElementeToYaml() wandelt die Elemente-Map korrekt in Yaml-Text um`() {
+        val dummy = dummySammlung()
+
+        val actual = dummy.dummyOriginaleUndHinzugefuegteElementeToYaml(KARTEN)
+
+        val expected = """
+            |    $ORIGINALE$KARTEN:
+            |      $IDS: [1,2]
+            |      $DAVON_ENTFERNT: [1]
+            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: [3]
+            |
+        """.trimMargin()
+        assertEquals(expected, actual)
+    }
+
 }
