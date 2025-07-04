@@ -19,23 +19,23 @@ fehlendeKarten:
     - ID: 1
       Text:
         OG: "fehlende Karten"
-      gesehen: true
-      gelöscht: true
+      gesehen: false
+      gelöscht: false
 
 fehlendesGesehen:
   Karten:
-    - ID: 2
+    - ID: 1
       Text:
         OG: "fehlendes gesehen"
       fehlendesGesehen: false
-      gelöscht: true
+      gelöscht: false
 
 fehlendesGelöscht:
   Karten:
-    - ID: 3
+    - ID: 1
       Text:
         OG: "fehlendes gelöscht"
-      gesehen: true
+      gesehen: false
       fehlendesGelöscht: false
 
 dummyKarten: # wird für die Klassen SammlungAnSpielelementenTest und KategorieTest benötigt
