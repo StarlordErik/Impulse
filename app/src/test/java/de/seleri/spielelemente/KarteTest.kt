@@ -20,7 +20,7 @@ fun yamlDummyKarte() = """
         """.trimMargin()
 
 fun getDummyKarten(elementart: String): Set<Karte> =
-    getDummyDaten("Karten.yml", elementart,Karte::fromYaml)
+    getDummyDaten("Karte.yml", elementart,Karte::fromYaml)
 
 class KarteTest {
 

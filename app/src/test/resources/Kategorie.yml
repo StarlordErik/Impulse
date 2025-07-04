@@ -1,0 +1,49 @@
+gültigeKategorien:
+  Kategorien:
+    - ID: 42
+      Text:
+        OG: "nur OG"
+        DE:
+      originale_Karten:
+        IDs: [1,2,3,4]
+        davon_entfernt: [2,4]
+      hinzugefügte_Karten-IDs: []
+    - ID: 7
+      Name:
+        OG: "OG"
+        DE: "DE"
+        EN: "EN"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: [5]
+
+fehlende_Kategorie:
+  fehlende_Kategorie:
+    - ID: 1
+      Name:
+        OG: "fehlende_Kategorie"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+
+fehlende_originale_Karten:
+  Kategorien:
+    - ID: 1
+      Name:
+        OG: "fehlende_originale_Karten"
+      fehlende_originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+
+fehlende_hinzugefuegte_Karten-IDs:
+  Kategorien:
+    - ID: 1
+      Name:
+        OG: "fehlende_hinzugefuegte_Karten-IDs"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      fehlende_hinzugefuegte_Karten-IDs: []
