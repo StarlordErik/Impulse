@@ -1,6 +1,7 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Test
 
 data class DummySammlungAnSpielelementen(
     override var id: Int,
@@ -29,12 +30,14 @@ data class DummySammlungAnSpielelementen(
         ): DummySammlungAnSpielelementen =
             fromEingabe(id, sprache, name, originaleKarten, ::DummySammlungAnSpielelementen)
 
-        fun fromYaml(yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>): DummySammlungAnSpielelementen =
+        fun fromYaml(
+            yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>
+        ): DummySammlungAnSpielelementen =
             fromYaml(yamlDaten, moeglicheKarten, ::DummySammlungAnSpielelementen)
     }
 }
 
-fun alleDummyKarten() : Set<Karte> {
+fun alleDummyKarten(): Set<Karte> {
     val dummyKarten = getDummyKarten("dummyKarten")
     val actual = dummyKarten.size
 
@@ -44,4 +47,53 @@ fun alleDummyKarten() : Set<Karte> {
     return dummyKarten
 }
 
-class SammlungAnSpielelementenTest
+fun karte1(): Karte = alleDummyKarten().finde(1)
+fun karte2(): Karte = alleDummyKarten().finde(2)
+fun karte3(): Karte = alleDummyKarten().finde(3)
+
+const val DUMMY_NAME = "Name"
+fun dummyOriginaleKartenIDs(): MutableSet<Karte> = mutableSetOf(karte1(), karte2())
+fun dummyDavonEntfernteKarten(): MutableSet<Karte> = mutableSetOf(karte1())
+fun dummyOriginaleKarten(): Map<String, MutableSet<Karte>> =
+    mapOf(IDS to dummyOriginaleKartenIDs(), DAVON_ENTFERNT to dummyDavonEntfernteKarten())
+
+fun dummyHinzugefuegteKarten(): MutableSet<Karte> = mutableSetOf(karte3())
+fun dummySammlung() = DummySammlungAnSpielelementen(
+    DUMMY_ID, dummyLocalizations(), dummyOriginaleKarten(), dummyHinzugefuegteKarten()
+)
+
+class SammlungAnSpielelementenTest {
+
+    /*
+    ------------------------------------------------------------------------------------------------
+    WICHTIG: Wie ist jeder Test aufgebaut?
+
+    1: benötigte Variablen & Konstanten instantiieren
+
+        (1.5: ggf. wird hier expected instanziiert, falls sich nichts ändern soll)
+
+    2: actual = Ausführung des zu testenden Codes
+
+        (2.5: bei AssertTrue wird 2 & 3 ersetzt durch condition = Ausführung des zu testenden Codes)
+
+    3: expected instanzieeren & Test ausführen
+    ------------------------------------------------------------------------------------------------
+    */
+
+    @Test
+    fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
+        val dummy = dummySammlung()
+
+        val actual = dummy.toYaml()
+
+        val expected = """
+        |  - $ID: $DUMMY_ID
+        |    $DUMMY_NAME:
+        |      ${Sprachen.OG}: "$DUMMY_OG"
+        |      ${Sprachen.DE}: "$DUMMY_DE"
+        |
+        """.trimMargin()
+        assertEquals(expected, actual)
+    }
+
+}
