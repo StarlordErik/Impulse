@@ -85,11 +85,11 @@ fun yaml1DummySammlung() = """
         """.trimMargin()
 
 fun yaml2DummySammlung() = """
-            |    $ORIGINALE$KARTEN:
-            |      $IDS: [1,2,3,4]
-            |      $DAVON_ENTFERNT: [2,4]
-            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
-            |
+        |    $ORIGINALE$KARTEN:
+        |      $IDS: [1,2,3,4]
+        |      $DAVON_ENTFERNT: [2,4]
+        |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
+        |
         """.trimMargin()
 
 fun yamlDummySammlung() = yaml1DummySammlung() + yaml2DummySammlung()
