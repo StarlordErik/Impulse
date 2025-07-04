@@ -1,1 +1,19 @@
 gültigeDummySammlungAnSpielelementen:
+  gültigeDummySammlungAnSpielelementen:
+    - ID: 42
+      Text:
+        OG: "nur OG"
+        DE:
+      originale_Karten:
+        IDs: [1,2,3,4]
+        davon_entfernt: [2,4]
+      hinzugefügte_Karten-IDs: []
+    - ID: 7
+      Name:
+        OG: "OG"
+        DE: "DE"
+        EN: "EN"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: [5]

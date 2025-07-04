@@ -32,6 +32,12 @@ data class DummySammlungAnSpielelementen(
         ): DummySammlungAnSpielelementen =
             fromEingabe(id, sprache, name, originaleKarten, ::DummySammlungAnSpielelementen)
 
+        fun fromYamlListe(
+            elementart: String,
+            yamlDaten: Map<String, Any>,
+            converter: (Map<String, Any>) -> Collection<DummySammlungAnSpielelementen>
+        ) = LokalisierbaresSpielelement.fromYamlListe(elementart, yamlDaten, converter)
+
         fun fromYaml(
             yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>
         ): Set<DummySammlungAnSpielelementen> =
@@ -275,8 +281,47 @@ class SammlungAnSpielelementenTest {
 
     private fun getDummySammlungen(elementart: String): Set<DummySammlungAnSpielelementen> =
         getDummyDaten("SammlungAnSpielelementen.yml", elementart) { yamlDaten ->
-            DummySammlungAnSpielelementen.fromYaml(yamlDaten, alleDummyKarten())
+            DummySammlungAnSpielelementen.fromYamlListe(
+                elementart, yamlDaten
+            ) {
+                DummySammlungAnSpielelementen.fromYaml(it, alleDummyKarten())
+            }
         }
+
+    @Test
+    fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummySammlungen("gültigeDummySammlungAnSpielelementen")
+
+        val actual = dummys.size
+
+        val expected = 2
+        assertEquals(expected, actual)
+
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(dummys.finde(7))
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(dummys.finde(42))
+    }
+
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: DummySammlungAnSpielelementen
+    ) {
+        val originaleKartenIDs = setOf(dummyKarte1())
+        val davonEntfernte = emptySet<Karte>()
+
+        val erwarteteOriginale = mapOf(IDS to originaleKartenIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = setOf(dummyKarte5())
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
+
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: DummySammlungAnSpielelementen
+    ) {
+        val originaleKartenIDs = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        val davonEntfernte = setOf(dummyKarte2(), dummyKarte4())
+
+        val erwarteteOriginale = mapOf(IDS to originaleKartenIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = emptySet<Karte>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
 
 
 }
