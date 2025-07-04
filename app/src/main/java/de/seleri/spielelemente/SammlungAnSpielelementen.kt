@@ -1,5 +1,7 @@
 package de.seleri.spielelemente
 
+import kotlin.collections.contains
+
 const val NAME: String = "Name"
 
 const val ORIGINALE: String = "originale_"
@@ -184,7 +186,9 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             val originaleElementeMitNullEntfernten = mapOf(
                 IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to mutableSetOf()
             )
-            return constructor(id, localizations, originaleElementeMitNullEntfernten, mutableSetOf())
+            return constructor(
+                id, localizations, originaleElementeMitNullEntfernten, mutableSetOf()
+            )
         }
 
         /**
@@ -205,29 +209,39 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
         ): T {
 
+            require(
+                ("$ORIGINALE$KARTEN" in yamlDaten || "$ORIGINALE$KATEGORIEN" in yamlDaten) && //.
+                        ("$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS" in yamlDaten || //.
+                                "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in yamlDaten)
+            ) {
+                "Ungültige Sammlungsstruktur."
+            }
+
             // lässt id und localizations in der Superklasse verarbeiten
             val (id, localizations) = fromYaml(yamlDaten)
 
-            @Suppress("UNCHECKED_CAST")
-            val originaleElementeIDs = ((yamlDaten["$ORIGINALE$KARTEN"]
+            @Suppress("UNCHECKED_CAST") val originaleElementeIDs = ((yamlDaten["$ORIGINALE$KARTEN"]
                 ?: yamlDaten["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
 
-            @Suppress("UNCHECKED_CAST")
-            val hinzugefuegteIDs = (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-                ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
+            @Suppress("UNCHECKED_CAST") val hinzugefuegteIDs =
+                (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
+                    ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
             // findet alle Elemente per ID aus der Liste aller möglichen Elemente
             val originaleElemente = moeglicheElemente.finde(originaleElementeIDs[IDS]!!)
-            val entfernteElemente =
-                moeglicheElemente.finde(originaleElementeIDs[DAVON_ENTFERNT]!!)
+            val entfernteElemente = moeglicheElemente.finde(originaleElementeIDs[DAVON_ENTFERNT]!!)
             val hinzugefuegteElemente = moeglicheElemente.finde(hinzugefuegteIDs)
 
             val originaleUndDavonEntfernteElemente = mapOf(
-                IDS to originaleElemente.toMutableSet(), DAVON_ENTFERNT to entfernteElemente.toMutableSet()
+                IDS to originaleElemente.toMutableSet(),
+                DAVON_ENTFERNT to entfernteElemente.toMutableSet()
             )
 
             return constructor(
-                id, localizations, originaleUndDavonEntfernteElemente, hinzugefuegteElemente.toMutableSet()
+                id,
+                localizations,
+                originaleUndDavonEntfernteElemente,
+                hinzugefuegteElemente.toMutableSet()
             )
         }
     }
