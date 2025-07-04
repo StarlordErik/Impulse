@@ -125,6 +125,11 @@ class SammlungAnSpielelementenTest {
     }
 
     @Test
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        // TODO
+    }
+
+    @Test
     fun `getAlleElemente() gibt alle Elemente der Sammlung zurueck`() {
         val dummy = dummySammlung()
 
@@ -250,6 +255,20 @@ class SammlungAnSpielelementenTest {
 
         assertEquals(erwarteteOriginale, actualOriginale)
         assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
+    }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = DUMMY_ID
+        val eingabeSprache = Sprachen.DE
+        val eingabeName = DUMMY_NAME
+        val eingabeKarten = alleDummyKarten()
+
+        val dummy = DummySammlungAnSpielelementen.fromEingabe(eingabeID, eingabeSprache, eingabeName, eingabeKarten)
+
+        val erwarteteOriginale = mapOf(IDS to eingabeKarten, DAVON_ENTFERNT to emptySet())
+        val erwarteteHinzugefuegte = emptySet<Karte>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
 }
