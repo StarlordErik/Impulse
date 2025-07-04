@@ -68,6 +68,24 @@ fun dummySammlung() = DummySammlungAnSpielelementen(
     DUMMY_ID, dummyLocalizations(), dummyOriginaleKarten(), dummyHinzugefuegteKarten()
 )
 
+fun yaml1DummySammlung() = """
+        |  - $ID: $DUMMY_ID
+        |    $DUMMY_NAME:
+        |      ${Sprachen.OG}: "$DUMMY_OG"
+        |      ${Sprachen.DE}: "$DUMMY_DE"
+        |
+        """.trimMargin()
+
+fun yaml2DummySammlung() = """
+            |    $ORIGINALE$KARTEN:
+            |      $IDS: [1,2,3,4]
+            |      $DAVON_ENTFERNT: [2,4]
+            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
+            |
+        """.trimMargin()
+
+fun yamlDummySammlung() = yaml1DummySammlung() + yaml2DummySammlung()
+
 class SammlungAnSpielelementenTest {
 
     /*
@@ -92,13 +110,7 @@ class SammlungAnSpielelementenTest {
 
         val actual = dummy.toYaml()
 
-        val expected = """
-        |  - $ID: $DUMMY_ID
-        |    $DUMMY_NAME:
-        |      ${Sprachen.OG}: "$DUMMY_OG"
-        |      ${Sprachen.DE}: "$DUMMY_DE"
-        |
-        """.trimMargin()
+        val expected = yaml1DummySammlung()
         assertEquals(expected, actual)
     }
 
@@ -108,13 +120,7 @@ class SammlungAnSpielelementenTest {
 
         val actual = dummy.dummyOriginaleUndHinzugefuegteElementeToYaml(KARTEN)
 
-        val expected = """
-            |    $ORIGINALE$KARTEN:
-            |      $IDS: [1,2,3,4]
-            |      $DAVON_ENTFERNT: [2,4]
-            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
-            |
-        """.trimMargin()
+        val expected = yaml2DummySammlung()
         assertEquals(expected, actual)
     }
 
@@ -124,8 +130,7 @@ class SammlungAnSpielelementenTest {
 
         val actual = dummy.getKarten()
 
-        val expected =
-            setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
         assertEquals(expected, actual)
     }
 
@@ -230,6 +235,21 @@ class SammlungAnSpielelementenTest {
         val actual = dummy.getAktuelleKarten()
 
         assertEquals(expected, actual)
+    }
+
+    /**
+     * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
+     */
+    private fun testKorrekteInstanziierung(
+        erwarteteOriginale: Map<String, Collection<Karte>>,
+        erwarteteHinzugefuegte: Collection<Karte>,
+        dummy: DummySammlungAnSpielelementen
+    ) {
+        val actualOriginale = dummy.originaleElemente
+        val actualHinzugefuegte = dummy.hinzugefuegteElemente
+
+        assertEquals(erwarteteOriginale, actualOriginale)
+        assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
     }
 
 }
