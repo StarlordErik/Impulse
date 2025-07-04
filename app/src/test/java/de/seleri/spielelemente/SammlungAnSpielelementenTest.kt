@@ -1,6 +1,8 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 data class DummySammlungAnSpielelementen(
@@ -167,6 +169,66 @@ class SammlungAnSpielelementenTest {
         val actual = dummy.getAktuelleKarten()
 
         val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `elementEntfernen() entfernt ein originales Element, was noch nicht entfernt wurde`() {
+        val dummy = dummySammlung()
+        val zuEntfernendesElement = dummyKarte1()
+        assertTrue(dummy.getAktuelleKarten().contains(zuEntfernendesElement))
+
+        val expected = dummy.getAktuelleKarten() - zuEntfernendesElement
+
+        dummy.dummyElementeEntfernen(zuEntfernendesElement)
+        val actual = dummy.getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `elementEntfernen() entfernt ein originales Element, was bereits entfernt wurde`() {
+        val dummy = dummySammlung()
+        val zuEntfernendesElement = dummyKarte2()
+        assertTrue(dummy.getKarten().contains(zuEntfernendesElement))
+        assertFalse(dummy.getAktuelleKarten().contains(zuEntfernendesElement))
+
+        val expected = dummy.getAktuelleKarten()
+
+        dummy.dummyElementeEntfernen(zuEntfernendesElement)
+        val actual = dummy.getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `elementEntfernen() entfernt ein hinzugefuegtes Element`() {
+        val dummy = dummySammlung()
+        val zuEntfernendesElement = dummyKarte5()
+
+        assertFalse(dummy.getKarten().contains(zuEntfernendesElement))
+        val expected = dummy.getAktuelleKarten()
+
+        dummy.dummyElementeHinzufuegen(setOf(zuEntfernendesElement))
+        assertTrue(dummy.getAktuelleKarten().contains(zuEntfernendesElement))
+
+        dummy.dummyElementeEntfernen(zuEntfernendesElement)
+        val actual = dummy.getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `elementEntfernen() entfernt ein der Sammlung unbekanntes Element`() {
+        val dummy = dummySammlung()
+        val zuEntfernendesElement = dummyKarte5()
+
+        assertFalse(dummy.getKarten().contains(zuEntfernendesElement))
+        val expected = dummy.getAktuelleKarten()
+
+        dummy.dummyElementeEntfernen(zuEntfernendesElement)
+        val actual = dummy.getAktuelleKarten()
+
         assertEquals(expected, actual)
     }
 
