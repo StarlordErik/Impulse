@@ -128,4 +128,35 @@ class KategorieTest {
         assertEquals(expected, actual)
     }
 
+    /**
+     * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
+     */
+    private fun testKorrekteInstanziierung(
+        erwarteteOriginale: Map<String, Collection<Karte>>,
+        erwarteteHinzugefuegte: Collection<Karte>,
+        dummy: Kategorie
+    ) {
+        val actualOriginale = dummy.originaleElemente
+        val actualHinzugefuegte = dummy.hinzugefuegteElemente
+
+        assertEquals(erwarteteOriginale, actualOriginale)
+        assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
+    }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = DUMMY_ID
+        val eingabeSprache = Sprachen.DE
+        val eingabeName = DUMMY_NAME
+        val eingabeKarten = alleDummyKarten()
+
+        val dummy = Kategorie.fromEingabe(
+            eingabeID, eingabeSprache, eingabeName, eingabeKarten
+        )
+
+        val erwarteteOriginale = mapOf(IDS to eingabeKarten, DAVON_ENTFERNT to emptySet())
+        val erwarteteHinzugefuegte = emptySet<Karte>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
+
 }
