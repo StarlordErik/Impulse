@@ -2,6 +2,7 @@ package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -323,5 +324,19 @@ class SammlungAnSpielelementenTest {
         testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
-
+    @Test
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySammlungen("fehlendesOriginale_")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySammlungen("fehlendeOriginaleIDs")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySammlungen("fehlendeDavonEntfernte")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySammlungen("fehlendesHinzugefuegte_IDs")
+        }
+    }
 }

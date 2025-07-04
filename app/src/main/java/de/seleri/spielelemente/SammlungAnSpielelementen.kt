@@ -223,6 +223,10 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
             @Suppress("UNCHECKED_CAST") val originaleElementeIDs = ((yamlDaten["$ORIGINALE$KARTEN"]
                 ?: yamlDaten["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
 
+            require (IDS in originaleElementeIDs && DAVON_ENTFERNT in originaleElementeIDs) {
+                "Ungültige originale Elemente."
+            }
+
             @Suppress("UNCHECKED_CAST") val hinzugefuegteIDs =
                 (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
                     ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
