@@ -158,4 +158,16 @@ class SammlungAnSpielelementenTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `elementeHinzufuegen() fuegt neue Elemente zur Sammlung hinzu`() {
+        val dummy = dummySammlung()
+        val neueElemente = setOf(dummyKarte2(), dummyKarte5())
+
+        dummy.dummyElementeHinzufuegen(neueElemente)
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
+
 }
