@@ -5,6 +5,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
 data class DummySammlungAnSpielelementen(
     override var id: Int,
@@ -133,7 +134,15 @@ class SammlungAnSpielelementenTest {
 
     @Test
     fun `Rundreise Yaml zu Objekt zu Yaml`() {
-        // TODO
+        val yamlDummy1 = yamlDummySammlung()
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = DummySammlungAnSpielelementen.fromYaml(dummyDaten, alleDummyKarten()).first()
+
+        val yamlDummy2a = dummy.toYaml()
+        val yamlDummy2b = dummy.dummyOriginaleUndHinzugefuegteElementeToYaml(KARTEN)
+        val yamlDummy2 = yamlDummy2a + yamlDummy2b
+        assertEquals(yamlDummy1, yamlDummy2)
     }
 
     @Test
