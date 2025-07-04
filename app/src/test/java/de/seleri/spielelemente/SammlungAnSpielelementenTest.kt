@@ -61,7 +61,7 @@ fun dummyDavonEntfernteKarten(): MutableSet<Karte> = mutableSetOf(dummyKarte2(),
 fun dummyOriginaleKarten(): Map<String, MutableSet<Karte>> =
     mapOf(IDS to dummyOriginaleKartenIDs(), DAVON_ENTFERNT to dummyDavonEntfernteKarten())
 
-fun dummyHinzugefuegteKarten(): MutableSet<Karte> = mutableSetOf(dummyKarte5())
+fun dummyHinzugefuegteKarten(): MutableSet<Karte> = mutableSetOf()
 fun dummySammlung() = DummySammlungAnSpielelementen(
     DUMMY_ID, dummyLocalizations(), dummyOriginaleKarten(), dummyHinzugefuegteKarten()
 )
@@ -110,7 +110,7 @@ class SammlungAnSpielelementenTest {
             |    $ORIGINALE$KARTEN:
             |      $IDS: [1,2,3,4]
             |      $DAVON_ENTFERNT: [2,4]
-            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: [5]
+            |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
             |
         """.trimMargin()
         assertEquals(expected, actual)
@@ -123,7 +123,7 @@ class SammlungAnSpielelementenTest {
         val actual = dummy.getKarten()
 
         val expected =
-            setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4(), dummyKarte5())
+            setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
         assertEquals(expected, actual)
     }
 
@@ -133,7 +133,7 @@ class SammlungAnSpielelementenTest {
 
         val actual = dummy.getAktuelleKarten()
 
-        val expected = setOf(dummyKarte1(), dummyKarte3(), dummyKarte5())
+        val expected = setOf(dummyKarte1(), dummyKarte3())
         assertEquals(expected, actual)
     }
 
@@ -143,7 +143,7 @@ class SammlungAnSpielelementenTest {
 
         val actual = dummy.getUngeseheneKarten()
 
-        val expected = setOf(dummyKarte1(), dummyKarte5())
+        val expected = setOf(dummyKarte1())
         assertEquals(expected, actual)
     }
 
