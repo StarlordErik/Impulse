@@ -38,7 +38,7 @@ fehlendesGelöscht:
       gesehen: true
       fehlendesGelöscht: false
 
-dummyKarten:
+dummyKarten: # wird für die Klassen SammlungAnSpielelementenTest und KategorieTest benötigt
   Karten:
     - ID: 1
       Text:
