@@ -34,8 +34,8 @@ data class DummySammlungAnSpielelementen(
 
         fun fromYaml(
             yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>
-        ): DummySammlungAnSpielelementen =
-            fromYaml(yamlDaten, moeglicheKarten, ::DummySammlungAnSpielelementen)
+        ): Set<DummySammlungAnSpielelementen> =
+            setOf(fromYaml(yamlDaten, moeglicheKarten, ::DummySammlungAnSpielelementen))
     }
 }
 
@@ -264,11 +264,19 @@ class SammlungAnSpielelementenTest {
         val eingabeName = DUMMY_NAME
         val eingabeKarten = alleDummyKarten()
 
-        val dummy = DummySammlungAnSpielelementen.fromEingabe(eingabeID, eingabeSprache, eingabeName, eingabeKarten)
+        val dummy = DummySammlungAnSpielelementen.fromEingabe(
+            eingabeID, eingabeSprache, eingabeName, eingabeKarten
+        )
 
         val erwarteteOriginale = mapOf(IDS to eingabeKarten, DAVON_ENTFERNT to emptySet())
         val erwarteteHinzugefuegte = emptySet<Karte>()
         testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
+
+    private fun getDummySammlungen(elementart: String): Set<DummySammlungAnSpielelementen> =
+        getDummyDaten("SammlungAnSpielelementen.yml", elementart) { yamlDaten ->
+            DummySammlungAnSpielelementen.fromYaml(yamlDaten, alleDummyKarten())
+        }
+
 
 }
