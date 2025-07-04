@@ -43,7 +43,7 @@ data class DummyLokalisierbaresSpielelement(
 }
 
 const val DUMMY_ID = 42
-const val DUMMY_BEZEICHNUNG = "Text"
+const val DUMMY_BEZEICHNUNG = "Name"
 const val DUMMY_OG = "Original"
 const val DUMMY_DE = "Deutsch"
 fun dummyLocalizations() =

@@ -9,9 +9,9 @@ const val DUMMY_TEXT = "Text"
 const val DUMMY_GESEHEN = false
 const val DUMMY_GELOESCHT = false
 fun dummyKarte() = Karte(DUMMY_ID, dummyLocalizations(), DUMMY_GESEHEN, DUMMY_GELOESCHT)
-fun yamlDummy() = """
+fun yamlDummyKarte() = """
         |  - $ID: $DUMMY_ID
-        |    $DUMMY_BEZEICHNUNG:
+        |    $DUMMY_TEXT:
         |      ${Sprachen.OG}: "$DUMMY_OG"
         |      ${Sprachen.DE}: "$DUMMY_DE"
         |    $GESEHEN: $DUMMY_GESEHEN
@@ -46,13 +46,13 @@ class KarteTest {
 
         val actual = dummy.toYaml()
 
-        val expected = yamlDummy()
+        val expected = yamlDummyKarte()
         assertEquals(expected, actual)
     }
 
     @Test
     fun `Rundreise Yaml zu Objekt zu Yaml`() {
-        val yamlDummy1 = yamlDummy()
+        val yamlDummy1 = yamlDummyKarte()
 
         val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
         val dummy = Karte.fromYaml(dummyDaten).first()
