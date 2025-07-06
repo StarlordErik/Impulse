@@ -3345,6 +3345,622 @@ Karten:
       EN: ""
     gesehen: false
     gelöscht: false
+  - ID: 479
+    Text:
+      OG: "Ich habe im Restaurant schon mal Essen zurückgehen lassen."
+      DE: "Ich habe im Restaurant schon mal Essen zurückgehen lassen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 480
+    Text:
+      OG: "Ich bin mit meiner Figur unzufrieden."
+      DE: "Ich bin mit meiner Figur unzufrieden."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 481
+    Text:
+      OG: "Ich habe im Internet in den letzten 14 Tagen eine Sex-Seite besucht."
+      DE: "Ich habe im Internet in den letzten 14 Tagen eine Sex-Seite besucht."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 482
+    Text:
+      OG: "Ich habe schon mal freiwillig einen Aids-Test gemacht."
+      DE: "Ich habe schon mal freiwillig einen Aids-Test gemacht."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 483
+    Text:
+      OG: "Ich könnte heute problemlos die Nacht durchmachen."
+      DE: "Ich könnte heute problemlos die Nacht durchmachen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 484
+    Text:
+      OG: "Ich bin in der Schule mal sitzen geblieben bzw. zurückgestuft worden."
+      DE: "Ich bin in der Schule mal sitzen geblieben bzw. zurückgestuft worden."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 485
+    Text:
+      OG: "Ich habe schon mal einem Menschen in Not geholfen."
+      DE: "Ich habe schon mal einem Menschen in Not geholfen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 486
+    Text:
+      OG: "Ich habe Schwierigkeiten, mit meinem Geld auszukommen."
+      DE: "Ich habe Schwierigkeiten, mit meinem Geld auszukommen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 487
+    Text:
+      OG: "Ich habe schon mal einen Toten gesehen."
+      DE: "Ich habe schon mal einen Toten gesehen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 488
+    Text:
+      OG: "Ich habe schon mal Drogen genommen."
+      DE: "Ich habe schon mal Drogen genommen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 489
+    Text:
+      OG: "Ich finde unrasierte Beine sehr unattraktiv."
+      DE: "Ich finde unrasierte Beine sehr unattraktiv."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 490
+    Text:
+      OG: "Ich habe schon mal jemanden auf den Mund geküsst, den ich eklig fand."
+      DE: "Ich habe schon mal jemanden auf den Mund geküsst, den ich eklig fand."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 491
+    Text:
+      OG: "Ich treibe zu wenig Sport."
+      DE: "Ich treibe zu wenig Sport."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 492
+    Text:
+      OG: "Ich war schon mal heimlich in einen Kollegen/eine Kollegin oder jemanden aus dem Freundeskreis verliebt."
+      DE: "Ich war schon mal heimlich in einen Kollegen/eine Kollegin oder jemanden aus dem Freundeskreis verliebt."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 493
+    Text:
+      OG: "Ich glaube nicht, dass ich bis zu meinem Lebensende treu sein kann."
+      DE: "Ich glaube nicht, dass ich bis zu meinem Lebensende treu sein kann."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 494
+    Text:
+      OG: "Ich wurde in den letzten 6 Monaten wegen zu schnellem Fahren geblitzt."
+      DE: "Ich wurde in den letzten 6 Monaten wegen zu schnellem Fahren geblitzt."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 495
+    Text:
+      OG: "Ich hatte schon mal eine echte Lebenskrise."
+      DE: "Ich hatte schon mal eine echte Lebenskrise."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 496
+    Text:
+      OG: "Ich habe heute schon über jemanden gelästert."
+      DE: "Ich habe heute schon über jemanden gelästert."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 497
+    Text:
+      OG: "Ich habe regelmäßig Verstopfung."
+      DE: "Ich habe regelmäßig Verstopfung."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 498
+    Text:
+      OG: "Ich habe schon mal eine beendete Beziehung neu begonnen."
+      DE: "Ich habe schon mal eine beendete Beziehung neu begonnen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 499
+    Text:
+      OG: "Ich war schon mal im Bordell."
+      DE: "Ich war schon mal im Bordell."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 500
+    Text:
+      OG: "Ich bin charmant."
+      DE: "Ich bin charmant."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 501
+    Text:
+      OG: "Aus meinem engsten Familienkreis hat schon mal jemand im Knast gesessen."
+      DE: "Aus meinem engsten Familienkreis hat schon mal jemand im Knast gesessen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 502
+    Text:
+      OG: "Ich habe schon mal etwas in einem Sexshop gekauft."
+      DE: "Ich habe schon mal etwas in einem Sexshop gekauft."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 503
+    Text:
+      OG: "Mir hat schon mal jemand gesagt, dass ich Mundgeruch habe."
+      DE: "Mir hat schon mal jemand gesagt, dass ich Mundgeruch habe."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 504
+    Text:
+      OG: "Ich habe schon mal jemanden, der nicht mein Partner/meine Partnerin war, meine Liebe online gestanden."
+      DE: "Ich habe schon mal jemanden, der nicht mein Partner/meine Partnerin war, meine Liebe online gestanden."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 505
+    Text:
+      OG: "Ich wünsche mir mehr Oralsex."
+      DE: "Ich wünsche mir mehr Oralsex."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 506
+    Text:
+      OG: "Ich trage hin und wieder keine Unterwäsche."
+      DE: "Ich trage hin und wieder keine Unterwäsche."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 507
+    Text:
+      OG: "Ich hatte schon mal Sex im Zug."
+      DE: "Ich hatte schon mal Sex im Zug."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 508
+    Text:
+      OG: "Ich habe heute schon gelogen."
+      DE: "Ich habe heute schon gelogen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 509
+    Text:
+      OG: "Ich bin stolz auf meine Nationalität."
+      DE: "Ich bin stolz auf meine Nationalität."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 510
+    Text:
+      OG: "Ich habe als Erwachsener schon mal einen Popel unter den Tisch/Stuhl geschmiert."
+      DE: "Ich habe als Erwachsener schon mal einen Popel unter den Tisch/Stuhl geschmiert."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 511
+    Text:
+      OG: "Ich wäre oft lieber woanders."
+      DE: "Ich wäre oft lieber woanders."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 512
+    Text:
+      OG: "Ich bin mindestens einmal durch die Führerscheinprüfung gefallen."
+      DE: "Ich bin mindestens einmal durch die Führerscheinprüfung gefallen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 513
+    Text:
+      OG: "Ich hatte schon mal ein gleichgeschlechtliches erotisches Erlebnis."
+      DE: "Ich hatte schon mal ein gleichgeschlechtliches erotisches Erlebnis."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 514
+    Text:
+      OG: "Ich habe schon mal absichtlich fremde Post geöffnet."
+      DE: "Ich habe schon mal absichtlich fremde Post geöffnet."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 515
+    Text:
+      OG: "Ich habe mich schon mal von jemandem nackt fotografieren lassen."
+      DE: "Ich habe mich schon mal von jemandem nackt fotografieren lassen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 516
+    Text:
+      OG: "Ich habe schon mal jemandem heimlich in sein Essen/Trinken gespuckt."
+      DE: "Ich habe schon mal jemandem heimlich in sein Essen/Trinken gespuckt."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 517
+    Text:
+      OG: "Von mir gibt es professionelle Aktfotos."
+      DE: "Von mir gibt es professionelle Aktfotos."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 518
+    Text:
+      OG: "Ich hatte schon mal ein Verhältnis mit einer verheirateten Person."
+      DE: "Ich hatte schon mal ein Verhältnis mit einer verheirateten Person."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 519
+    Text:
+      OG: "Sex mit Kondom ist abturnend."
+      DE: "Sex mit Kondom ist abturnend."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 520
+    Text:
+      OG: "Ich bin schon mal von einer Zecke gebissen worden."
+      DE: "Ich bin schon mal von einer Zecke gebissen worden."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 521
+    Text:
+      OG: "Ich habe schon mal meinen Hochzeitstag oder einen Geburtstag vergessen."
+      DE: "Ich habe schon mal meinen Hochzeitstag oder einen Geburtstag vergessen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 522
+    Text:
+      OG: "Ich spiele zu viel am Computer."
+      DE: "Ich spiele zu viel am Computer."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 523
+    Text:
+      OG: "Ich war schon mal im Fernsehen zu sehen."
+      DE: "Ich war schon mal im Fernsehen zu sehen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 524
+    Text:
+      OG: "Ich sage in einer neuen Partnerschaft die Wahrheit über die Anzahl früherer Sexpartner."
+      DE: "Ich sage in einer neuen Partnerschaft die Wahrheit über die Anzahl früherer Sexpartner."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 525
+    Text:
+      OG: "Ich habe schon mal Sex-Stellungen aus einem Buch/Film gezielt nachgemacht."
+      DE: "Ich habe schon mal Sex-Stellungen aus einem Buch/Film gezielt nachgemacht."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 526
+    Text:
+      OG: "Ich war schon mal in psychotherapeutischer Behandlung."
+      DE: "Ich war schon mal in psychotherapeutischer Behandlung."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 527
+    Text:
+      OG: "Auf einer Party habe ich mal etwas getan, das mir danach sehr peinlich war."
+      DE: "Auf einer Party habe ich mal etwas getan, das mir danach sehr peinlich war."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 528
+    Text:
+      OG: "Ich habe schon mal sexy Bilder oder Videos von mir im Netz hochgeladen."
+      DE: "Ich habe schon mal sexy Bilder oder Videos von mir im Netz hochgeladen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 529
+    Text:
+      OG: "Ich bin im Intimbereich rasiert."
+      DE: "Ich bin im Intimbereich rasiert."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 530
+    Text:
+      OG: "Ich wüsste gern meinen Todestag."
+      DE: "Ich wüsste gern meinen Todestag."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 531
+    Text:
+      OG: "Influencer finde ich gut."
+      DE: "Influencer finde ich gut."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 532
+    Text:
+      OG: "Ich habe mich schon mal beim Liebesspiel gefilmt."
+      DE: "Ich habe mich schon mal beim Liebesspiel gefilmt."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 533
+    Text:
+      OG: "Ich bin schon mal betrunken Auto gefahren."
+      DE: "Ich bin schon mal betrunken Auto gefahren."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 534
+    Text:
+      OG: "Bei der Wahl des Partners ist mir Aussehen zweitrangig."
+      DE: "Bei der Wahl des Partners ist mir Aussehen zweitrangig."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 535
+    Text:
+      OG: "Kinderschänder und Vergewaltiger sollten kastriert werden."
+      DE: "Kinderschänder und Vergewaltiger sollten kastriert werden."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 536
+    Text:
+      OG: "Ich war schon mal auf einer Erotikmesse."
+      DE: "Ich war schon mal auf einer Erotikmesse."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 537
+    Text:
+      OG: "Ich hatte schon mal ein Treffen über eine Dating-App."
+      DE: "Ich hatte schon mal ein Treffen über eine Dating-App."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 538
+    Text:
+      OG: "Ich habe mich schon mal beim Sex fesseln lassen."
+      DE: "Ich habe mich schon mal beim Sex fesseln lassen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 539
+    Text:
+      OG: "Die Wiedervereinigung Deutschlands war richtig."
+      DE: "Die Wiedervereinigung Deutschlands war richtig."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 540
+    Text:
+      OG: "Ich musste mich schon mal unangenehm im Analbereich behandeln lassen."
+      DE: "Ich musste mich schon mal unangenehm im Analbereich behandeln lassen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 541
+    Text:
+      OG: "Ich besitze noch einen Liebesbrief aus einer früheren Beziehung."
+      DE: "Ich besitze noch einen Liebesbrief aus einer früheren Beziehung."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 542
+    Text:
+      OG: "Ich hatte an einem Tag mehr als dreimal Sex."
+      DE: "Ich hatte an einem Tag mehr als dreimal Sex."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 543
+    Text:
+      OG: "Ich hatte schon mal Sex im Freien."
+      DE: "Ich hatte schon mal Sex im Freien."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 544
+    Text:
+      OG: "Ich habe mir schon mal mit einem Partner/einer Partnerin einen Porno angesehen."
+      DE: "Ich habe mir schon mal mit einem Partner/einer Partnerin einen Porno angesehen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 545
+    Text:
+      OG: "Ich hatte außerhalb einer Beziehung schon ungeschützten Sex."
+      DE: "Ich hatte außerhalb einer Beziehung schon ungeschützten Sex."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 546
+    Text:
+      OG: "Auch Menschen über 50 können sehr attraktiv sein."
+      DE: "Auch Menschen über 50 können sehr attraktiv sein."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 547
+    Text:
+      OG: "Ich bin morgens sehr schnell im Bad."
+      DE: "Ich bin morgens sehr schnell im Bad."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 548
+    Text:
+      OG: "Ich wurde heute schon intim berührt."
+      DE: "Ich wurde heute schon intim berührt."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 549
+    Text:
+      OG: "Ich wäre gerne ein berühmter Star."
+      DE: "Ich wäre gerne ein berühmter Star."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 550
+    Text:
+      OG: "Das Leben ist toll."
+      DE: "Das Leben ist toll."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 551
+    Text:
+      OG: "Ich habe ein psychologisches Problem, das möglicherweise therapiebedürftig ist."
+      DE: "Ich habe ein psychologisches Problem, das möglicherweise therapiebedürftig ist."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 552
+    Text:
+      OG: "Ich hatte beim Sex schon mal einen Partnertausch."
+      DE: "Ich hatte beim Sex schon mal einen Partnertausch."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 553
+    Text:
+      OG: "Ich hatte schon mal Sex auf einem Konzert."
+      DE: "Ich hatte schon mal Sex auf einem Konzert."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 554
+    Text:
+      OG: "Ich habe schon mal in der Badewanne gepupst und mich über die Bläschen gefreut."
+      DE: "Ich habe schon mal in der Badewanne gepupst und mich über die Bläschen gefreut."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 555
+    Text:
+      OG: "Ich hatte schon mal einen lustigen oder schmerzhaften Sex-Unfall."
+      DE: "Ich hatte schon mal einen lustigen oder schmerzhaften Sex-Unfall."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 556
+    Text:
+      OG: "Ich hatte schon mal Sex im Aufzug."
+      DE: "Ich hatte schon mal Sex im Aufzug."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 557
+    Text:
+      OG: "Mein linker Nachbar sieht gut aus."
+      DE: "Mein linker Nachbar sieht gut aus."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 558
+    Text:
+      OG: "Ich benutze beim Sex gerne schweinische Wörter."
+      DE: "Ich benutze beim Sex gerne schweinische Wörter."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 559
+    Text:
+      OG: "Ich habe schon mal meinen Führerschein abgeben müssen."
+      DE: "Ich habe schon mal meinen Führerschein abgeben müssen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 560
+    Text:
+      OG: "Ich habe als Erwachsener schon mal FKK gemacht."
+      DE: "Ich habe als Erwachsener schon mal FKK gemacht."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 561
+    Text:
+      OG: "Mir wurde schon mal von einer fremden Person an den Hintern gefasst."
+      DE: "Mir wurde schon mal von einer fremden Person an den Hintern gefasst."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 562
+    Text:
+      OG: "Es gibt etwas, das ich meinen Eltern vorwerfe."
+      DE: "Es gibt etwas, das ich meinen Eltern vorwerfe."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 563
+    Text:
+      OG: "Ich fahre gerne sehr schnell Auto."
+      DE: "Ich fahre gerne sehr schnell Auto."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 564
+    Text:
+      OG: "Ich habe Angst vor der Arbeitslosigkeit."
+      DE: "Ich habe Angst vor der Arbeitslosigkeit."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 565
+    Text:
+      OG: "Ich kann mir vorstellen, ein Kind zu adoptieren."
+      DE: "Ich kann mir vorstellen, ein Kind zu adoptieren."
+      EN: ""
+    gesehen: false
+    gelöscht: false
+  - ID: 566
+    Text:
+      OG: "Ich habe schon mal Geld gestohlen."
+      DE: "Ich habe schon mal Geld gestohlen."
+      EN: ""
+    gesehen: false
+    gelöscht: false
 
 Kategorien:
   - ID: 1
@@ -3371,7 +3987,7 @@ Kategorien:
       DE: ""
       EN: "Level 3: Reflection"
     originale_Karten:
-      IDs: [104,105,56,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152]
+      IDs: [56,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152]
       davon_entfernt: []
     hinzugefügte_Karten-IDs: []
   - ID: 4
@@ -3446,6 +4062,15 @@ Kategorien:
       IDs: [443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478]
       davon_entfernt: []
     hinzugefügte_Karten-IDs: []
+  - ID: 12
+    Name:
+      OG: "1"
+      DE: "1"
+      EN: ""
+    originale_Karten:
+      IDs: [479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566]
+      davon_entfernt: []
+    hinzugefügte_Karten-IDs: []
 
 Spiele:
   - ID: 1
@@ -3482,5 +4107,14 @@ Spiele:
       EN: ""
     originale_Kategorien:
       IDs: [9,10,11]
+      davon_entfernt: []
+    hinzugefügte_Kategorien-IDs: []
+  - ID: 5
+    Name:
+      OG: "Privacy"
+      DE: "Privacy"
+      EN: ""
+    originale_Kategorien:
+      IDs: [12]
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []
