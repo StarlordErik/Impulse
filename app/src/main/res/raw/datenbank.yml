@@ -5371,22 +5371,13 @@ Spiele:
     hinzugefügte_Kategorien-IDs: []
   - ID: 3
     Name:
-      OG: "Erzählt euch mehr - Klassik"
-      DE: "Erzählt euch mehr - Klassik"
+      OG: "Erzählt euch mehr"
+      DE: "Erzählt euch mehr"
       EN: ""
     originale_Kategorien:
       IDs: [6,7,8]
       davon_entfernt: []
-    hinzugefügte_Kategorien-IDs: []
-  - ID: 4
-    Name:
-      OG: "Erzählt euch mehr - für Paare"
-      DE: "Erzählt euch mehr - für Paare"
-      EN: ""
-    originale_Kategorien:
-      IDs: [9,10,11]
-      davon_entfernt: []
-    hinzugefügte_Kategorien-IDs: []
+    hinzugefügte_Kategorien-IDs: [9,10,11]
   - ID: 5
     Name:
       OG: "Privacy"
