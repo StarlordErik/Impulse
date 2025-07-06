@@ -4743,12 +4743,3 @@ Spiele:
       IDs: [12,13]
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []
-  - ID: 5
-    Name:
-      OG: "Privacy"
-      DE: "Privacy"
-      EN: ""
-    originale_Kategorien:
-      IDs: [12,13]
-      davon_entfernt: []
-    hinzugefügte_Kategorien-IDs: []
