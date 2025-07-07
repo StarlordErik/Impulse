@@ -76,7 +76,7 @@ class KategorieTest {
 
 
     @Test
-    fun `getAktuelleKarten() gibt alle Karten der Sammlung zurueck, die nicht entfernt worden sind`() {
+    fun `getAktuelleKarten() gibt alle Karten der Kategorie zurueck, die nicht entfernt worden sind`() {
         val dummy = dummyKategorie()
 
         val actual = dummy.getAktuelleKarten()
@@ -86,7 +86,7 @@ class KategorieTest {
     }
 
     @Test
-    fun `getUngeseheneKarten() gibt alle noch nicht gesehenen Karten der Sammlung zurueck`() {
+    fun `getUngeseheneKarten() gibt alle noch nicht gesehenen Karten der Kategorie zurueck`() {
         val dummy = dummyKategorie()
 
         val actual = dummy.getUngeseheneKarten()
@@ -107,7 +107,7 @@ class KategorieTest {
     }
 
     @Test
-    fun `kartenHinzufuegen() fuegt neue Karten zur Sammlung hinzu`() {
+    fun `kartenHinzufuegen() fuegt neue Karten zur Kategorie hinzu`() {
         val dummy = dummyKategorie()
         val neueKarten = setOf(dummyKarte2(), dummyKarte5())
 
