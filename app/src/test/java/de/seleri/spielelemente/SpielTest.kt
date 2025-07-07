@@ -137,4 +137,15 @@ class SpielTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `setKartenUngesehen() setzt alle Karten auf ungesehen`() {
+        val dummy = dummySpiel()
+
+        dummy.setKartenUngesehen()
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = dummy.getAktuelleKarten()
+        assertEquals(expected, actual)
+    }
+
 }
