@@ -1,6 +1,7 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
@@ -157,6 +158,20 @@ class SpielTest {
         val actual = dummy.getAktuelleKarten()
 
         val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kategorieEntfernen() entfernt eine Kategorie, die bislang Teil des Spiels war`() {
+        val dummy = dummySpiel()
+        val zuEntfernendeKategorie = dummyKategorie1()
+        assertTrue(dummy.getAktuelleKategorien().contains(zuEntfernendeKategorie))
+
+        val expected = dummy.getAktuelleKategorien() - zuEntfernendeKategorie
+
+        dummy.kategorieEntfernen(zuEntfernendeKategorie)
+        val actual = dummy.getAktuelleKategorien()
+
         assertEquals(expected, actual)
     }
 
