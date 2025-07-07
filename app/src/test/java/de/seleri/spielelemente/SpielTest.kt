@@ -1,4 +1,4 @@
-package de.seleri.spielelemente;
+package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -145,6 +145,18 @@ class SpielTest {
         val actual = dummy.getUngeseheneKarten()
 
         val expected = dummy.getAktuelleKarten()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kategorienHinzufuegen() fuegt neue Kategorien zum Spiel hinzu`() {
+        val dummy = dummySpiel()
+        val neueKategorien = setOf(dummyKategorie2(), dummyKategorie5())
+
+        dummy.kategorienHinzufuegen(neueKategorien)
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
         assertEquals(expected, actual)
     }
 
