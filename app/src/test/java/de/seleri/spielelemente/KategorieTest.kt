@@ -119,7 +119,7 @@ class KategorieTest {
     }
 
     @Test
-    fun `karteEntfernen() entfernt eine Karten, die bislang Teil der Kategorie ist`() {
+    fun `karteEntfernen() entfernt eine Karte, die bislang Teil der Kategorie war`() {
         val dummy = dummyKategorie()
         val zuEntfernendeKarte = dummyKarte1()
         assertTrue(dummy.getAktuelleKarten().contains(zuEntfernendeKarte))
