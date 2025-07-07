@@ -107,5 +107,15 @@ class SpielTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `getKarten() gibt alle Karten des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        assertEquals(expected, actual)
+    }
+
 
 }
