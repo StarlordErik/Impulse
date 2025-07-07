@@ -117,5 +117,14 @@ class SpielTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `getAktuelleKarten() gibt alle Karten des Spiels zurueck, die nicht entfernt worden sind`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte3())
+        assertEquals(expected, actual)
+    }
 
 }
