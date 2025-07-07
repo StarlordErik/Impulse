@@ -127,4 +127,14 @@ class SpielTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `getUngeseheneKarten() gibt alle noch nicht gesehenen Karten des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = setOf(dummyKarte1())
+        assertEquals(expected, actual)
+    }
+
 }
