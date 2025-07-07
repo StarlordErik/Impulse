@@ -47,3 +47,41 @@ fehlende_hinzugefuegte_Karten-IDs:
         IDs: [1]
         davon_entfernt: []
       fehlende_hinzugefuegte_Karten-IDs: []
+
+dummyKategorien:
+  Kategorien:
+    - ID: 1
+      Name:
+        OG: "dummyKategorie1"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+    - ID: 2
+      Name:
+        OG: "dummyKategorie2"
+      originale_Karten:
+        IDs: [2,3]
+        davon_entfernt: [3]
+      hinzugefügte_Karten-IDs: []
+    - ID: 3
+      Name:
+        OG: "dummyKategorie3"
+      originale_Karten:
+        IDs: [4]
+        davon_entfernt: [4]
+      hinzugefügte_Karten-IDs: [3]
+    - ID: 4
+      Name:
+        OG: "dummyKategorie4"
+      originale_Karten:
+        IDs: [4]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+    - ID: 5
+      Name:
+        OG: "dummyKategorie5"
+      originale_Karten:
+        IDs: [5]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
