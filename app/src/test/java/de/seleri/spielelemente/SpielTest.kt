@@ -175,4 +175,35 @@ class SpielTest {
         assertEquals(expected, actual)
     }
 
+    /**
+     * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
+     */
+    private fun testKorrekteInstanziierung(
+        erwarteteOriginale: Map<String, Collection<Kategorie>>,
+        erwarteteHinzugefuegte: Collection<Kategorie>,
+        dummy: Spiel
+    ) {
+        val actualOriginale = dummy.originaleElemente
+        val actualHinzugefuegte = dummy.hinzugefuegteElemente
+
+        assertEquals(erwarteteOriginale, actualOriginale)
+        assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
+    }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = DUMMY_ID
+        val eingabeSprache = Sprachen.DE
+        val eingabeName = DUMMY_NAME
+        val eingabeKategorien = alleDummyKategorien()
+
+        val dummy = Spiel.fromEingabe(
+            eingabeID, eingabeSprache, eingabeName, eingabeKategorien
+        )
+
+        val erwarteteOriginale = mapOf(IDS to eingabeKategorien, DAVON_ENTFERNT to emptySet())
+        val erwarteteHinzugefuegte = emptySet<Kategorie>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
+
 }
