@@ -10,7 +10,7 @@ const val SPIELE: String = "Spiele"
  * @property originaleElemente zwei Mengen mit den originalen Kategorien und denen, die vom Nutzer entfernt wurden
  * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Kategorien zum Spiel
  */
-data class Spiel(
+class Spiel(
     override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Kategorie>>,

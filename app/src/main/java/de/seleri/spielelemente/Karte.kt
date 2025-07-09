@@ -13,7 +13,7 @@ const val GELOESCHT: String = "gelöscht"
  * @property gesehen gibt an, ob die Karte bereits angezeigt wurde
  * @property geloescht gibt an, ob die Karte gelöscht wurde
  */
-data class Karte(
+class Karte(
     override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     var gesehen: Boolean,

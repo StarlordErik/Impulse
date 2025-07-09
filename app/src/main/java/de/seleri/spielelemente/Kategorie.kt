@@ -10,7 +10,7 @@ const val KATEGORIEN: String = "Kategorien"
  * @property originaleElemente zwei Mengen mit den originalen Karten und denen, die vom Nutzer entfernt wurden
  * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Karten zur Kategorie
  */
-data class Kategorie(
+class Kategorie(
     override var id: Int,
     override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Karte>>,
@@ -76,7 +76,6 @@ data class Kategorie(
      * @param zuEntfernendeKarte Karte, die aus der Kategorie entfernt werden soll
      */
     fun karteEntfernen(zuEntfernendeKarte: Karte) = elementEntfernen(zuEntfernendeKarte)
-
 
     companion object {
 

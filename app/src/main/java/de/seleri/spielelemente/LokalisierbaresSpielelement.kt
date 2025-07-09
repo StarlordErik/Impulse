@@ -63,6 +63,9 @@ abstract class LokalisierbaresSpielelement(
                 .compareTo(other.localizations[Sprachen.OG]!!)
     }
 
+    override fun equals(other: Any?) = other is LokalisierbaresSpielelement && id == other.id
+    override fun hashCode() = id.hashCode()
+
     companion object {
 
         /**
