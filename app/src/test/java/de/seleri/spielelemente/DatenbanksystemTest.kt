@@ -138,7 +138,6 @@ class DatenbanksystemTest {
     @Test
     fun `neueKategorie() eine neue Kategorie erstellen`() {
         val dbs = Datenbanksystem(tmpDatenbankDatei())
-        val bekannteKarten = listOf(dummyKarte1())
         val neueKarten = alleDummyKarten()
 
         // Test 1: die Kategorie ist in der Datenbank
@@ -196,5 +195,5 @@ class DatenbanksystemTest {
     }
 
 
-    
+
 }
