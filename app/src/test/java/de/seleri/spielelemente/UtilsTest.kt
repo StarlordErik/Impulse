@@ -1,6 +1,7 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 class UtilsTest {
@@ -115,4 +116,33 @@ class UtilsTest {
         val expected = dummyKarte3()
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `finde(String) Element wird anhand seiner Bezeichnung NICHT gefunden`() {
+        val dummys = alleDummyKarten()
+
+        val actual = dummys.finde("nicht existierender Dummy")
+
+        val expected = null
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `finde(id als Integer) Element wird anhand seiner ID gefunden`() {
+        val dummys = alleDummyKarten()
+
+        val actual = dummys.finde(3)
+
+        val expected = dummyKarte3()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `finde(id als Integer) Element wird anhand seiner ID NICHT gefunden`() {
+        assertThrows(IllegalStateException::class.java) {
+            val dummys = alleDummyKarten()
+            dummys.finde(666)
+        }
+    }
+
 }
