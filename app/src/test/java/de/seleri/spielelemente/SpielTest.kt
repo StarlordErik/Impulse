@@ -6,22 +6,15 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
-fun alleDummyKategorien(): Set<Kategorie> {
-    val dummyKategorien = getDummyKategorien("dummyKategorien")
-    val actual = dummyKategorien.size
+fun alleDummySpiele(): Set<Spiel> {
+    val dummySpiele = getDummySpiele("dummySpiele")
+    val actual = dummySpiele.size
 
     val expected = 5
     assertEquals(expected, actual)
 
-    return dummyKategorien
+    return dummySpiele
 }
-
-fun dummyKategorie1(): Kategorie = alleDummyKategorien().finde(1)
-fun dummyKategorie2(): Kategorie = alleDummyKategorien().finde(2)
-fun dummyKategorie3(): Kategorie = alleDummyKategorien().finde(3)
-fun dummyKategorie4(): Kategorie = alleDummyKategorien().finde(4)
-fun dummyKategorie5(): Kategorie = alleDummyKategorien().finde(5)
-
 fun yamlDummySpiel(): String = """
         |  - $ID: $DUMMY_ID
         |    $DUMMY_NAME:

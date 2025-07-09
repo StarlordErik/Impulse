@@ -47,3 +47,41 @@ fehlende_hinzugefuegte_Kategorien-IDs:
         IDs: [1]
         davon_entfernt: []
       fehlende_hinzugefuegte_Kategorien-IDs: []
+
+dummySpiele:
+  Spiele:
+    - ID: 1
+      Name:
+        OG: "dummySpiel1"
+      originale_Kategorien:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Kategorien-IDs: []
+    - ID: 2
+      Name:
+        OG: "dummySpiel2"
+      originale_Kategorien:
+        IDs: [2,3]
+        davon_entfernt: [3]
+      hinzugefügte_Kategorien-IDs: []
+    - ID: 3
+      Name:
+        OG: "dummySpiel3"
+      originale_Kategorien:
+        IDs: [4]
+        davon_entfernt: [4]
+      hinzugefügte_Kategorien-IDs: [3]
+    - ID: 4
+      Name:
+        OG: "dummySpiel4"
+      originale_Kategorien:
+        IDs: [4]
+        davon_entfernt: []
+      hinzugefügte_Kategorien-IDs: [1]
+    - ID: 5
+      Name:
+        OG: "dummySpiel5"
+      originale_Kategorien:
+        IDs: [1,5]
+        davon_entfernt: []
+      hinzugefügte_Kategorien-IDs: []

@@ -6,6 +6,22 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 
+fun alleDummyKategorien(): Set<Kategorie> {
+    val dummyKategorien = getDummyKategorien("dummyKategorien")
+    val actual = dummyKategorien.size
+
+    val expected = 5
+    assertEquals(expected, actual)
+
+    return dummyKategorien
+}
+
+fun dummyKategorie1(): Kategorie = alleDummyKategorien().finde(1)
+fun dummyKategorie2(): Kategorie = alleDummyKategorien().finde(2)
+fun dummyKategorie3(): Kategorie = alleDummyKategorien().finde(3)
+fun dummyKategorie4(): Kategorie = alleDummyKategorien().finde(4)
+fun dummyKategorie5(): Kategorie = alleDummyKategorien().finde(5)
+
 fun dummyKategorie() = Kategorie(
     DUMMY_ID, dummyLocalizations(), dummyOriginaleKarten(), dummyHinzugefuegteKarten()
 )
