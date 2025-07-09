@@ -143,9 +143,9 @@ class DatenbanksystemTest {
 
         // Test 1: die Kategorien sind in der Datenbank
         val neueKategorie = dbs.neueKategorie("neue Kategorie", neueKarten, Sprachen.OG)
-        assertTrue(dbs.kategorien.contains(neueKategorie))
-
         val bekannteKategorieMitBekanntenKarten = dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
+
+        assertTrue(dbs.kategorien.contains(neueKategorie))
         assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
 
         // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
