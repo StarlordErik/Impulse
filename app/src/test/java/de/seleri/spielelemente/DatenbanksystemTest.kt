@@ -91,6 +91,24 @@ class DatenbanksystemTest {
         assertTrue(kartentexte2.contains(randomKartentext))
     }
 
+    @Test
+    fun `getRandomKartentext() zufaelliger Kartentext eines Spiels ausgeben`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dummySpiel = dbs.spiele.finde("dummySpiel5")!!
+        val kartentexte1 = dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+        val kartentexte2 = kartentexte1.toList()
 
+        // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
+        kartentexte2.forEach { _ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
+            val randomKartentext = dbs.getRandomKartentext(dummySpiel)
+            assertTrue(kartentexte1.contains(randomKartentext))
+            kartentexte1.remove(randomKartentext)
+        }
+        assertEquals(0, kartentexte1.size)
+
+        // Test 2: nachdem alle Karten bereits gesehen wurden, kann jede wieder gesehen werden
+        val randomKartentext = dbs.getRandomKartentext(dummySpiel)
+        assertTrue(kartentexte2.contains(randomKartentext))
+    }
 
 }
