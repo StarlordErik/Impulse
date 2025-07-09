@@ -59,7 +59,7 @@ internal fun attributToYamlZeile(
             zeile.append("\n")
             val mapInhalt = StringBuilder()
             attributswert.forEach { (key, value) ->
-                if (value != null) {
+                if (value != null) { // Einträge ohne Wert werden übersprungen
                     mapInhalt.append(
                         attributToYamlZeile(
                             anzahlEinrueckungen + 1, key.toString(), value
