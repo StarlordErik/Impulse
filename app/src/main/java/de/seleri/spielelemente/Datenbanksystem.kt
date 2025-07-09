@@ -49,21 +49,21 @@ class Datenbanksystem(private val datenbank: File) {
         val builder = StringBuilder()
 
         builder.append(attributToYamlZeile(0, KARTEN, null))
-        for (karte in karten.sortedBy { it.id }) {
+        for (karte in karten.sorted()) {
             builder.append(karte.toYaml())
         }
 
         builder.append("\n")
 
         builder.append(attributToYamlZeile(0, KATEGORIEN, null))
-        for (kategorie in kategorien.sortedBy { it.id }) {
+        for (kategorie in kategorien.sorted()) {
             builder.append(kategorie.toYaml())
         }
 
         builder.append("\n")
 
         builder.append(attributToYamlZeile(0, SPIELE, null))
-        for (spiel in spiele.sortedBy { it.id }) {
+        for (spiel in spiele.sorted()) {
             builder.append(spiel.toYaml())
         }
 
@@ -73,7 +73,7 @@ class Datenbanksystem(private val datenbank: File) {
     /**
      * public Funktion, damit die initialisierte Datenbank sich aktualisiert wieder in die YAML-Datei schreibt
      */
-    fun aktualisieren(){
+    fun aktualisieren() {
         speichereYaml()
     }
 
@@ -146,7 +146,7 @@ class Datenbanksystem(private val datenbank: File) {
      * @param daten Collection, in der nach einer bestehenden Sammlung gesucht wird
      * @return die gefundene oder neu erstellte Sammlung
      */
-    private fun <T : SammlungAnSpielelementen<E>, E : LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
+    private fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
         name: String, elemente: Collection<E>, sprache: Sprachen, daten: Collection<T>
     ): T {
         var neueSammlung = daten.finde(name)
@@ -154,20 +154,28 @@ class Datenbanksystem(private val datenbank: File) {
         if (neueSammlung == null) {
             val neueID = neueID(daten)
             neueSammlung = when (daten.first()) { // when (T)
-                is Kategorie ->
-                    @Suppress("UNCHECKED_CAST")
-                    Kategorie.fromEingabe(neueID, sprache, name, elemente as Collection<Karte>) as T
+                is Kategorie -> @Suppress("UNCHECKED_CAST") Kategorie.fromEingabe(
+                    neueID,
+                    sprache,
+                    name,
+                    elemente as Collection<Karte>
+                ) as T
 
-                is Spiel ->
-                    @Suppress("UNCHECKED_CAST")
-                    Spiel.fromEingabe(neueID, sprache, name, elemente as Collection<Kategorie>) as T
+                is Spiel -> @Suppress("UNCHECKED_CAST") Spiel.fromEingabe(
+                    neueID,
+                    sprache,
+                    name,
+                    elemente as Collection<Kategorie>
+                ) as T
 
                 else -> error("Unbekannter Typ: ${daten.first()::class.simpleName}")
             }
         } else {
             // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
             elemente.forEach {
-                if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS]!!.add(it)
+                if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS]!!.add(
+                    it
+                )
             }
         }
         return neueSammlung
@@ -227,19 +235,21 @@ class Datenbanksystem(private val datenbank: File) {
      * @param dataclassFunktionElementHinzufuegen Funktion aus der Data-Klasse,
      * welche die Elemente der Sammlung hinzufügt
      */
-    private fun <T : Any, E : LokalisierbaresSpielelement> elementHinzufuegen(
+    private fun <T: Any, E: LokalisierbaresSpielelement> elementHinzufuegen(
         neueElemente: Collection<T>,
         daten: Collection<E>,
         dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
     ) {
         when (neueElemente.first()) {
-            is LokalisierbaresSpielelement ->
-                @Suppress("UNCHECKED_CAST")
-                dataclassFunktionElementHinzufuegen(neueElemente as Collection<E>)
+            is LokalisierbaresSpielelement -> @Suppress("UNCHECKED_CAST") dataclassFunktionElementHinzufuegen(
+                neueElemente as Collection<E>
+            )
 
-            is Int ->
-                @Suppress("UNCHECKED_CAST")
-                dataclassFunktionElementHinzufuegen(daten.finde(neueElemente as List<Int>))
+            is Int -> @Suppress("UNCHECKED_CAST") dataclassFunktionElementHinzufuegen(
+                daten.finde(
+                    neueElemente as List<Int>
+                )
+            )
         }
         speichereYaml()
     }
@@ -251,7 +261,7 @@ class Datenbanksystem(private val datenbank: File) {
      * @param kategorie Kategorie, zu der die Karten hinzugefügt werden sollen
      * @param neueKarten Collection von `Karte`n-Objekten oder IDs
      */
-    fun <T : Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: Collection<T>) {
+    fun <T: Any> kartenZuKategorieHinzufuegen(kategorie: Kategorie, neueKarten: Collection<T>) {
         elementHinzufuegen(neueKarten, karten, kategorie::kartenHinzufuegen)
     }
 
@@ -261,7 +271,7 @@ class Datenbanksystem(private val datenbank: File) {
      * @param spiel Spiel, zu dem die Kategorien hinzugefügt werden sollen
      * @param neueKategorien Collection von `Kategorie`-Objekten oder IDs
      */
-    fun <T : Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: Collection<T>) {
+    fun <T: Any> kategorienZuSpielHinzufuegen(spiel: Spiel, neueKategorien: Collection<T>) {
         elementHinzufuegen(neueKategorien, kategorien, spiel::kategorienHinzufuegen)
     }
 
@@ -299,7 +309,8 @@ class Datenbanksystem(private val datenbank: File) {
         fun generieren(context: Context): Datenbanksystem {
             val datei = File(context.filesDir, DATENBANK_DATEI) // Nutzer-spezifische Datei
             if (!datei.exists()) {
-                val datenkbankInResRaw = context.resources.openRawResource(R.raw.datenbank) // Standard-Daten
+                val datenkbankInResRaw =
+                    context.resources.openRawResource(R.raw.datenbank) // Standard-Daten
                 datei.writeBytes(datenkbankInResRaw.readBytes())
             }
             return Datenbanksystem(datei)
