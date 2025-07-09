@@ -146,19 +146,15 @@ class Datenbanksystem(private val datenbank: File) {
 
         if (neueSammlung == null) {
             val neueID = neueID(daten)
+
+            @Suppress("UNCHECKED_CAST")
             neueSammlung = when (daten.first()) { // when (T)
-                is Kategorie -> @Suppress("UNCHECKED_CAST") Kategorie.fromEingabe(
-                    neueID,
-                    sprache,
-                    name,
-                    elemente as Collection<Karte>
+                is Kategorie ->  Kategorie.fromEingabe(
+                    neueID, sprache, name, elemente as Collection<Karte>
                 ) as T
 
-                is Spiel -> @Suppress("UNCHECKED_CAST") Spiel.fromEingabe(
-                    neueID,
-                    sprache,
-                    name,
-                    elemente as Collection<Kategorie>
+                is Spiel -> Spiel.fromEingabe(
+                    neueID, sprache, name, elemente as Collection<Kategorie>
                 ) as T
 
                 else -> error("Unbekannter Typ: ${daten.first()::class.simpleName}")
