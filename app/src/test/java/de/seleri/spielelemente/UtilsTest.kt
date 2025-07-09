@@ -68,4 +68,21 @@ class UtilsTest {
         val expected = "  $attributsname: [1,2,3,4,5]\n"
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `attributToYamlZeile() Map`() {
+        val anzahlEinrueckungen = 1
+        val attributsname = "Map"
+        val attributswert = dummyLocalizations()
+
+        val actual = attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
+
+        // EN wird übersprungen, weil null
+        val expected = """
+            |  $attributsname:
+            |    ${Sprachen.OG}: "$DUMMY_OG"
+            |    ${Sprachen.DE}: "$DUMMY_DE"
+            |""".trimMargin()
+        assertEquals(expected, actual)
+    }
 }
