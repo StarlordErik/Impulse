@@ -145,4 +145,14 @@ class UtilsTest {
         }
     }
 
+    @Test
+    fun `finde(ids als Collection von Integer) Elemente werden anhand ihrer IDs gefunden`() {
+        val dummys = alleDummyKarten()
+
+        val findeDieseIDs = listOf(1, 3, 5)
+        val actual = dummys.finde(findeDieseIDs)
+
+        val expected = setOf(dummyKarte1(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
 }
