@@ -212,5 +212,26 @@ class DatenbanksystemTest {
         }
     }
 
+    @Test
+    fun `kartenZuKategorieHinzufuegen() Karten per Objekt zu einer Kategorie hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKarten = alleDummyKarten()
+        val zuAenderndeKategorie = dbs.kategorien.finde("dummyKategorie1")!!
+
+        dbs.kartenZuKategorieHinzufuegen(zuAenderndeKategorie, neueKarten)
+
+        assertTrue(zuAenderndeKategorie.getKarten().containsAll(alleDummyKarten()))
+    }
+
+    @Test
+    fun `kategorienZuSpielHinzufuegen() Kategorien per ID zu einem Spiel hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKategorien = listOf(1,2,3,4,5)
+        val zuAenderndesSpiel = dbs.spiele.finde("dummySpiel1")!!
+
+        dbs.kategorienZuSpielHinzufuegen(zuAenderndesSpiel, neueKategorien)
+
+        assertTrue(zuAenderndesSpiel.getKategorien().containsAll(alleDummyKategorien()))
+    }
 
 }
