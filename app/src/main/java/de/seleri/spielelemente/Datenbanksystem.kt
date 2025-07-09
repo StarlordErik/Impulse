@@ -214,20 +214,19 @@ class Datenbanksystem(private val datenbank: File) {
      *
      * @param neueElemente Collection von Element-Objekten oder IDs
      * @param daten Collection, zu der die Sammlung hinzugefügt werden sollen
-     * @param dataclassFunktionElementHinzufuegen Funktion aus der Data-Klasse,
-     * welche die Elemente der Sammlung hinzufügt
+     * @param elementFunktionZumElementHinzufuegen Funktion aus der Klasse, welche die Elemente der Sammlung hinzufügt
      */
     private fun <T: Any, E: LokalisierbaresSpielelement> elementHinzufuegen(
         neueElemente: Collection<T>,
         daten: Collection<E>,
-        dataclassFunktionElementHinzufuegen: (Collection<E>) -> Unit
+        elementFunktionZumElementHinzufuegen: (Collection<E>) -> Unit
     ) {
         when (neueElemente.first()) {
-            is LokalisierbaresSpielelement -> @Suppress("UNCHECKED_CAST") dataclassFunktionElementHinzufuegen(
+            is LokalisierbaresSpielelement -> @Suppress("UNCHECKED_CAST") elementFunktionZumElementHinzufuegen(
                 neueElemente as Collection<E>
             )
 
-            is Int -> @Suppress("UNCHECKED_CAST") dataclassFunktionElementHinzufuegen(
+            is Int -> @Suppress("UNCHECKED_CAST") elementFunktionZumElementHinzufuegen(
                 daten.finde(
                     neueElemente as List<Int>
                 )
