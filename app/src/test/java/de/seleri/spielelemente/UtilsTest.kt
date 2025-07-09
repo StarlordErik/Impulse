@@ -88,9 +88,9 @@ class UtilsTest {
 
     @Test
     fun `neueID() ID wird korrekt initialisiert, wenn Collection leer`() {
-        val dummyElemente = emptySet<DummyLokalisierbaresSpielelement>()
+        val dummys = emptySet<DummyLokalisierbaresSpielelement>()
 
-        val actual = neueID(dummyElemente)
+        val actual = neueID(dummys)
 
         val expected = 1
         assertEquals(expected, actual)
@@ -98,11 +98,21 @@ class UtilsTest {
 
     @Test
     fun `neueID() ID wird hoeher als die aktuellen IDs ausgegeben`() {
-        val dummyElemente = alleDummyKarten()
+        val dummys = alleDummyKarten()
 
-        val actual = neueID(dummyElemente)
+        val actual = neueID(dummys)
 
         val expected = 6
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `finde(String) Element wird anhand seiner Bezeichnung gefunden`() {
+        val dummys = alleDummyKarten()
+
+        val actual = dummys.finde("Dummy 3")
+
+        val expected = dummyKarte3()
         assertEquals(expected, actual)
     }
 }
