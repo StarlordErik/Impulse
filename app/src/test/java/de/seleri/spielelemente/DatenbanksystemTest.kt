@@ -141,24 +141,31 @@ class DatenbanksystemTest {
         val bekannteKarten = listOf(dummyKarte1())
         val neueKarten = alleDummyKarten()
 
-        // Test 1: die Kategorien sind in der Datenbank
+        // Test 1: die Kategorie ist in der Datenbank
         val neueKategorie = dbs.neueKategorie("neue Kategorie", neueKarten, Sprachen.OG)
-        val bekannteKategorieMitBekanntenKarten = dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
-
         assertTrue(dbs.kategorien.contains(neueKategorie))
-        assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
 
-        // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
-        assertEquals(6, dbs.kategorien.size)
-
-        // Test 3: die Kategorien haben die korrekten IDs
-        val actual = listOf(neueKategorie.id, bekannteKategorieMitBekanntenKarten.id).sorted()
-        val expected = listOf(1, 6)
+        // Test 2: die Kategorie hat die korrekte ID
+        val actual = neueKategorie.id
+        val expected = 6
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `neueKategorie() eine alte Kategorie neu beschreiben`() {
+    fun `neueKategorie() eine bekannte Kategorie hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val bekannteKarten = listOf(dummyKarte1())
+
+        // Test 1: die Kategorie ist in der Datenbank
+        val bekannteKategorieMitBekanntenKarten = dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
+
+        // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
+        assertEquals(5, dbs.kategorien.size)
+    }
+
+    @Test
+    fun `neueKategorie() eine bekannte Kategorie neu beschreiben`() {
         val dbs = Datenbanksystem(tmpDatenbankDatei())
         val neueKarten = alleDummyKarten()
 
@@ -173,4 +180,21 @@ class DatenbanksystemTest {
         assertTrue(bekannteKategorieMitNeuenKarten.originaleElemente[IDS]!!.containsAll(neueKarten))
     }
 
+    @Test
+    fun `neuesSpiel() ein neues Spiel erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKategorien = alleDummyKategorien()
+
+        // Test 1: das Spiel ist in der Datenbank
+        val neuesSpiel = dbs.neuesSpiel("neues Spiel", neueKategorien, Sprachen.OG)
+        assertTrue(dbs.spiele.contains(neuesSpiel))
+
+        // Test 2: das Spiel hat die korrekte ID
+        val actual = neuesSpiel.id
+        val expected = 6
+        assertEquals(expected, actual)
+    }
+
+
+    
 }
