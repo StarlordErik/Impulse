@@ -5,7 +5,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 import java.io.File
-import kotlin.math.exp
 
 class DatenbanksystemTest {
 
@@ -134,6 +133,44 @@ class DatenbanksystemTest {
         val actual = eingegebeneKarten.map {it.id}.sorted()
         val expected = listOf(1, 6)
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `neueKategorie() eine neue Kategorie erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val bekannteKarten = listOf(dummyKarte1())
+        val neueKarten = alleDummyKarten()
+
+        // Test 1: die Kategorien sind in der Datenbank
+        val neueKategorie = dbs.neueKategorie("neue Kategorie", neueKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(neueKategorie))
+
+        val bekannteKategorieMitBekanntenKarten = dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
+
+        // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
+        assertEquals(6, dbs.kategorien.size)
+
+        // Test 3: die Kategorien haben die korrekten IDs
+        val actual = listOf(neueKategorie.id, bekannteKategorieMitBekanntenKarten.id).sorted()
+        val expected = listOf(1, 6)
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `neueKategorie() eine alte Kategorie neu beschreiben`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKarten = alleDummyKarten()
+
+        // Test 1: die Kategorie ist in der Datenbank
+        val bekannteKategorieMitNeuenKarten = dbs.neueKategorie("dummyKategorie1", neueKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(bekannteKategorieMitNeuenKarten))
+
+        // Test 2: die doppelte Kategorie ist der Datenbank nicht hinzugefügt worden
+        assertEquals(5, dbs.kategorien.size)
+
+        // Test 3: die bekannte Kategorie hat nun alle neuen Karten gespeichert
+        assertTrue(bekannteKategorieMitNeuenKarten.originaleElemente[IDS]!!.containsAll(neueKarten))
     }
 
 }
