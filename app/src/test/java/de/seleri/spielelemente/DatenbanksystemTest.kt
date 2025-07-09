@@ -46,4 +46,15 @@ class DatenbanksystemTest {
         assertTrue(daten.containsKey(SPIELE))
     }
 
+    @Test
+    fun `init() Datenbanksystem initialisieren`(){
+        val datenbank = tmpDatenbankDatei()
+
+        val dbs = Datenbanksystem(datenbank)
+
+        assertTrue(dbs.karten.isNotEmpty())
+        assertTrue(dbs.kategorien.isNotEmpty())
+        assertTrue(dbs.spiele.isNotEmpty())
+    }
+
 }
