@@ -25,7 +25,8 @@ internal fun attributToYamlZeile(
 
         // der String wird escaped
         is String -> {
-            val escaped = attributswert.replace("\\", "\\\\") // \
+            val escaped = attributswert //.
+                .replace("\\", "\\\\") // \
                 .replace("\"", "\\\"") // "
                 .replace("\n", "\\n")  // Zeilenumbruch
                 .replace("\t", "\\t")  // Tab
@@ -37,8 +38,8 @@ internal fun attributToYamlZeile(
             zeile.append("[")
 
             // sicheres Casten und Sortieren
-            val sortierteAttributswertListe = (attributswert.filterIsInstance<LokalisierbaresSpielelement>())
-                .sorted()
+            val sortierteAttributswertListe =
+                (attributswert.filterIsInstance<LokalisierbaresSpielelement>()).sorted()
 
             sortierteAttributswertListe.forEachIndexed { index, item ->
                 zeile.append(item.id)
