@@ -1,5 +1,6 @@
 package de.seleri.spielelemente
 
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
@@ -55,6 +56,19 @@ class DatenbanksystemTest {
         assertTrue(dbs.karten.isNotEmpty())
         assertTrue(dbs.kategorien.isNotEmpty())
         assertTrue(dbs.spiele.isNotEmpty())
+    }
+
+    @Test
+    fun `aktualisieren() Datenbank aktualisieren`(){
+        val datenbank = tmpDatenbankDatei()
+        val dbs = Datenbanksystem(datenbank)
+
+        val expected = datenbank.readText()
+
+        dbs.aktualisieren()
+        val actual = datenbank.readText()
+
+        assertEquals(expected, actual)
     }
 
 }

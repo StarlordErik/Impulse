@@ -45,7 +45,7 @@ class Datenbanksystem(private val datenbank: File) {
      * Die Daten werden serialisiert und in der Reihenfolge
      * wie beim Laden (Karten -> Kategorien -> Spiele), jedoch nach ihrer ID sortiert, zurückgeschrieben.
      */
-    private fun speichereYaml() {
+    internal fun aktualisieren() {
         val builder = StringBuilder()
 
         builder.append(attributToYamlZeile(0, KARTEN, null))
@@ -68,13 +68,6 @@ class Datenbanksystem(private val datenbank: File) {
         }
 
         datenbank.writeText(builder.toString())
-    }
-
-    /**
-     * public Funktion, damit die initialisierte Datenbank sich aktualisiert wieder in die YAML-Datei schreibt
-     */
-    fun aktualisieren() {
-        speichereYaml()
     }
 
     /**
@@ -103,7 +96,7 @@ class Datenbanksystem(private val datenbank: File) {
 
         val randomKarte = karten.random()
         randomKarte.gesehen = true // wird die Karte ausgegeben, ist sie ebenfalls gesehen
-        speichereYaml()
+        aktualisieren()
 
         return randomKarte.localizations[Sprachen.OG]!!
     }
@@ -131,7 +124,7 @@ class Datenbanksystem(private val datenbank: File) {
         }
 
         karten.addAll(neueKarten)
-        speichereYaml()
+        aktualisieren()
         return neueKarten.toSet()
     }
 
@@ -192,7 +185,7 @@ class Datenbanksystem(private val datenbank: File) {
     fun neueKategorie(name: String, karten: Collection<Karte>, sprache: Sprachen): Kategorie {
         val neueKategorie = alteSammlungFindenOderNeueErstellen(name, karten, sprache, kategorien)
         kategorien.add(neueKategorie)
-        speichereYaml()
+        aktualisieren()
         return neueKategorie
     }
 
@@ -207,7 +200,7 @@ class Datenbanksystem(private val datenbank: File) {
     fun neuesSpiel(name: String, kategorien: Collection<Kategorie>, sprache: Sprachen): Spiel {
         val neuesSpiel = alteSammlungFindenOderNeueErstellen(name, kategorien, sprache, spiele)
         spiele.add(neuesSpiel)
-        speichereYaml()
+        aktualisieren()
         return neuesSpiel
     }
 
@@ -224,7 +217,7 @@ class Datenbanksystem(private val datenbank: File) {
         kategorienMitZuLoeschenderKarte.forEach {
             it.karteEntfernen(zuLoeschendeKarte)
         }
-        speichereYaml()
+        aktualisieren()
     }
 
     /**
@@ -251,7 +244,7 @@ class Datenbanksystem(private val datenbank: File) {
                 )
             )
         }
-        speichereYaml()
+        aktualisieren()
     }
 
 
@@ -283,7 +276,7 @@ class Datenbanksystem(private val datenbank: File) {
      */
     fun karteAusKategorieEntfernen(zuEntfernendeKarte: Karte, ausKategorie: Kategorie) {
         ausKategorie.karteEntfernen(zuEntfernendeKarte)
-        speichereYaml()
+        aktualisieren()
     }
 
     /**
@@ -294,7 +287,7 @@ class Datenbanksystem(private val datenbank: File) {
      */
     fun kategorieAusSpielEntfernen(zuEntfernendeKategorie: Kategorie, ausSpiel: Spiel) {
         ausSpiel.kategorieEntfernen(zuEntfernendeKategorie)
-        speichereYaml()
+        aktualisieren()
     }
 
     companion object {
