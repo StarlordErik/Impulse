@@ -33,7 +33,7 @@ fun <T> getDummyDaten(
     return factory(daten)
 }
 
-class Utils {
+class UtilsForTests {
 
     @Test
     fun `ladeYamlDaten() Exception bei einem ungueltigen Dateipfad`() {
