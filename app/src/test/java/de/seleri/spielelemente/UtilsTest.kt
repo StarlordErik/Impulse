@@ -57,4 +57,15 @@ class UtilsTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `attributToYamlZeile() Collection von Spielelementen`() {
+        val anzahlEinrueckungen = 1
+        val attributsname = "Collection von Spielelementen"
+        val attributswert = alleDummyKarten()
+
+        val actual = attributToYamlZeile(anzahlEinrueckungen, attributsname, attributswert)
+
+        val expected = "  $attributsname: [1,2,3,4,5]\n"
+        assertEquals(expected, actual)
+    }
 }
