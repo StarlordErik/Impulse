@@ -1,6 +1,7 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
@@ -206,4 +207,51 @@ class SpielTest {
         testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
+    @Test
+    fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummySpiele("gültigeSpiele")
+
+        val actual = dummys.size
+
+        val expected = 2
+        assertEquals(expected, actual)
+
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(dummys.finde(7))
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(dummys.finde(42))
+    }
+
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: Spiel
+    ) {
+        val originaleKategorienIDs = setOf(dummyKategorie1())
+        val davonEntfernte = emptySet<Kategorie>()
+
+        val erwarteteOriginale = mapOf(IDS to originaleKategorienIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = setOf(dummyKategorie5())
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
+
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: Spiel
+    ) {
+        val originaleKategorienIDs = setOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+        val davonEntfernte = setOf(dummyKategorie2(), dummyKategorie4())
+
+        val erwarteteOriginale = mapOf(IDS to originaleKategorienIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = emptySet<Kategorie>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
+    }
+
+    @Test
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_Spiele")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_originale_Kategorien")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_hinzugefuegte_Kategorien-IDs")
+        }
+    }
 }
