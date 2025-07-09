@@ -130,7 +130,7 @@ class DatenbanksystemTest {
         assertEquals(6, dbs.karten.size)
 
         // Test 3: wurden die neue ID richtig gewählt?
-        val actual = eingegebeneKarten.map {it.id}.sorted()
+        val actual = eingegebeneKarten.map { it.id }.sorted()
         val expected = listOf(1, 6)
         assertEquals(expected, actual)
     }
@@ -156,7 +156,8 @@ class DatenbanksystemTest {
         val bekannteKarten = listOf(dummyKarte1())
 
         // Test 1: die Kategorie ist in der Datenbank
-        val bekannteKategorieMitBekanntenKarten = dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
+        val bekannteKategorieMitBekanntenKarten =
+            dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
         assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
 
         // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
@@ -169,7 +170,8 @@ class DatenbanksystemTest {
         val neueKarten = alleDummyKarten()
 
         // Test 1: die Kategorie ist in der Datenbank
-        val bekannteKategorieMitNeuenKarten = dbs.neueKategorie("dummyKategorie1", neueKarten, Sprachen.OG)
+        val bekannteKategorieMitNeuenKarten =
+            dbs.neueKategorie("dummyKategorie1", neueKarten, Sprachen.OG)
         assertTrue(dbs.kategorien.contains(bekannteKategorieMitNeuenKarten))
 
         // Test 2: die doppelte Kategorie ist der Datenbank nicht hinzugefügt worden
@@ -194,6 +196,21 @@ class DatenbanksystemTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `karteLoeschen() eine Karte loeschen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val zuLoeschendeKarte = dummyKarte1()
+
+        dbs.karteLoeschen(zuLoeschendeKarte)
+
+        // Test 1: die Karte ist als gelöscht markiert worden
+        assertTrue(zuLoeschendeKarte.geloescht)
+
+        // Test 2: die Karte ist in keinen aktuellen Karten einer Kategorie mehr enthalten
+        dbs.kategorien.forEach {
+            assertTrue(!it.getAktuelleKarten().contains(zuLoeschendeKarte))
+        }
+    }
 
 
 }
