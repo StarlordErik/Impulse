@@ -6,7 +6,7 @@ import org.junit.Test
 class UtilsTest {
 
     @Test
-    fun `attributToYamlZeile() null`() {
+    fun `attributToYamlZeile() null wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 0
         val attributsname = "null"
         val attributswert = null
@@ -18,7 +18,7 @@ class UtilsTest {
     }
 
     @Test
-    fun `attributToYamlZeile() Integer`() {
+    fun `attributToYamlZeile() Integer wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 1
         val attributsname = "Integer"
         val attributswert = 0
@@ -30,7 +30,7 @@ class UtilsTest {
     }
 
     @Test
-    fun `attributToYamlZeile() Boolean`() {
+    fun `attributToYamlZeile() Boolean wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 2
         val attributsname = "Boolean"
         val attributswert = true
@@ -42,7 +42,7 @@ class UtilsTest {
     }
 
     @Test
-    fun `attributToYamlZeile() String`() {
+    fun `attributToYamlZeile() String wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 1
         val attributsname = "String"
         val attributswert =
@@ -58,7 +58,7 @@ class UtilsTest {
     }
 
     @Test
-    fun `attributToYamlZeile() Collection von Spielelementen`() {
+    fun `attributToYamlZeile() Collection von Spielelementen wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 1
         val attributsname = "Collection von Spielelementen"
         val attributswert = alleDummyKarten()
@@ -70,7 +70,7 @@ class UtilsTest {
     }
 
     @Test
-    fun `attributToYamlZeile() Map`() {
+    fun `attributToYamlZeile() Map wird als eine Yaml-Zeile ausgegeben`() {
         val anzahlEinrueckungen = 1
         val attributsname = "Map"
         val attributswert = dummyLocalizations()
@@ -83,6 +83,26 @@ class UtilsTest {
             |    ${Sprachen.OG}: "$DUMMY_OG"
             |    ${Sprachen.DE}: "$DUMMY_DE"
             |""".trimMargin()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `neueID() ID wird korrekt initialisiert, wenn Collection leer`() {
+        val dummyElemente = emptySet<DummyLokalisierbaresSpielelement>()
+
+        val actual = neueID(dummyElemente)
+
+        val expected = 1
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `neueID() ID wird hoeher als die aktuellen IDs ausgegeben`() {
+        val dummyElemente = alleDummyKarten()
+
+        val actual = neueID(dummyElemente)
+
+        val expected = 6
         assertEquals(expected, actual)
     }
 }
