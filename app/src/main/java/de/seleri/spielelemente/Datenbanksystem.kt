@@ -78,19 +78,12 @@ class Datenbanksystem(private val datenbank: File) {
      * @return Kartentext in der Originalsprache
      */
     fun getRandomKartentext(sammlung: SammlungAnSpielelementen<*>): String {
-        val karten = when (sammlung) {
-            is Kategorie -> sammlung.getUngeseheneKarten()
-            is Spiel -> sammlung.getUngeseheneKarten()
-            else -> error("Unbekannter Sammlungstyp: ${sammlung::class.simpleName}")
-        }
+        val karten = sammlung.getUngeseheneKarten()
 
         // Wenn es keine ungesehenen Karten gibt, dann sind wohl schon alle durch und
         // man kann die Sammlung von vorne durchgehen.
         if (karten.isEmpty()) {
-            when (sammlung) {
-                is Kategorie -> sammlung.setKartenUngesehen()
-                is Spiel -> sammlung.setKartenUngesehen()
-            }
+            sammlung.setKartenUngesehen()
             return getRandomKartentext(sammlung)
         }
 
