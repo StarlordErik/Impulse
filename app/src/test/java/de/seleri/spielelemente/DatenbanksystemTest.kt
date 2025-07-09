@@ -5,10 +5,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 import java.io.File
+import kotlin.math.exp
 
 class DatenbanksystemTest {
 
-    fun tmpDatenbankDatei() : File {
+    fun tmpDatenbankDatei(): File {
         val builder = StringBuilder()
 
         builder.append(attributToYamlZeile(0, KARTEN, null))
@@ -48,7 +49,7 @@ class DatenbanksystemTest {
     }
 
     @Test
-    fun `init() Datenbanksystem initialisieren`(){
+    fun `init() Datenbanksystem initialisieren`() {
         val datenbank = tmpDatenbankDatei()
 
         val dbs = Datenbanksystem(datenbank)
@@ -59,7 +60,7 @@ class DatenbanksystemTest {
     }
 
     @Test
-    fun `aktualisieren() Datenbank aktualisieren`(){
+    fun `aktualisieren() Datenbank aktualisieren`() {
         val datenbank = tmpDatenbankDatei()
         val dbs = Datenbanksystem(datenbank)
 
@@ -75,7 +76,9 @@ class DatenbanksystemTest {
     fun `getRandomKartentext() zufaelliger Kartentext einer Kategorie ausgeben`() {
         val dbs = Datenbanksystem(tmpDatenbankDatei())
         val dummyKategorie = dbs.kategorien.finde("dummyKategorie5")!!
-        val kartentexte1 = dummyKategorie.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+        val kartentexte1 =
+            dummyKategorie.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }
+                .toMutableSet()
         val kartentexte2 = kartentexte1.toList()
 
         // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
@@ -95,7 +98,8 @@ class DatenbanksystemTest {
     fun `getRandomKartentext() zufaelliger Kartentext eines Spiels ausgeben`() {
         val dbs = Datenbanksystem(tmpDatenbankDatei())
         val dummySpiel = dbs.spiele.finde("dummySpiel5")!!
-        val kartentexte1 = dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+        val kartentexte1 =
+            dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
         val kartentexte2 = kartentexte1.toList()
 
         // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
@@ -109,6 +113,27 @@ class DatenbanksystemTest {
         // Test 2: nachdem alle Karten bereits gesehen wurden, kann jede wieder gesehen werden
         val randomKartentext = dbs.getRandomKartentext(dummySpiel)
         assertTrue(kartentexte2.contains(randomKartentext))
+    }
+
+    @Test
+    fun `neueKarten() eine Menge neue Karten erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKartentexte = setOf(
+            "Dummy 1", "neue Karte", "neue Karte"
+        )
+
+        val eingegebeneKarten = dbs.neueKarten(neueKartentexte, Sprachen.OG)
+
+        // Test 1: die neuen Karten sind in der Datenbank
+        assertTrue(dbs.karten.containsAll(eingegebeneKarten))
+
+        // Test 2: doppelte Karten sind der Datenbank nicht hinzugefügt worden
+        assertEquals(6, dbs.karten.size)
+
+        // Test 3: wurden die neue ID richtig gewählt?
+        val actual = eingegebeneKarten.map {it.id}.sorted()
+        val expected = listOf(1, 6)
+        assertEquals(expected, actual)
     }
 
 }
