@@ -236,7 +236,6 @@ class Datenbanksystem(private val datenbank: File) {
         aktualisieren()
     }
 
-
     /**
      * Fügt neue `Karte`n zu einer `Kategorie` hinzu.
      *
