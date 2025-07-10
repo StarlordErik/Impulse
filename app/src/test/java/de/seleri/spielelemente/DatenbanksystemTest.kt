@@ -234,4 +234,19 @@ class DatenbanksystemTest {
         assertTrue(zuAenderndesSpiel.getKategorien().containsAll(alleDummyKategorien()))
     }
 
+    @Test
+    fun `karteAusKategorieEntfernen() Karte aus Kategorie entfernen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val kategorie = dbs.kategorien.finde(1)
+        val zuEntfernendeKarte = dbs.karten.finde(1)
+        assertTrue(kategorie.getAktuelleKarten().contains(zuEntfernendeKarte))
+
+        val expected = kategorie.getAktuelleKarten() - zuEntfernendeKarte
+
+        dbs.karteAusKategorieEntfernen(zuEntfernendeKarte, kategorie)
+        val actual = dbs.kategorien.finde(1).getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
 }
