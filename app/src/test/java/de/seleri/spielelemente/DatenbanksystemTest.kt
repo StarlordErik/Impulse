@@ -249,4 +249,18 @@ class DatenbanksystemTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun `kategorieAusSpielEntfernen() Kategorie aus Spiel entfernen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val spiel = dbs.spiele.finde(1)
+        val zuEntfernendeKategorie = dbs.kategorien.finde(1)
+        assertTrue(spiel.getAktuelleKategorien().contains(zuEntfernendeKategorie))
+
+        val expected = spiel.getAktuelleKategorien() - zuEntfernendeKategorie
+
+        dbs.kategorieAusSpielEntfernen(zuEntfernendeKategorie, spiel)
+        val actual = dbs.spiele.finde(1).getAktuelleKategorien()
+
+        assertEquals(expected, actual)
+    }
 }
