@@ -1,0 +1,59 @@
+gültigeDummySammlungAnSpielelementen:
+  gültigeDummySammlungAnSpielelementen:
+    - ID: 42
+      Text:
+        OG: "nur OG"
+        DE:
+      originale_Karten:
+        IDs: [1,2,3,4]
+        davon_entfernt: [2,4]
+      hinzugefügte_Karten-IDs: []
+    - ID: 7
+      Name:
+        OG: "OG"
+        DE: "DE"
+        EN: "EN"
+      originale_Kategorien: # "Kategorien" ist ggf. erst in den abgeleiteten Klassen illegal
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Kategorien-IDs: [5]
+
+fehlendesOriginale_:
+  fehlendesOriginale_:
+    - ID: 1
+      Name:
+        OG: "fehlendesOriginale_"
+      fehlendesOriginale_:
+        IDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+
+fehlendeOriginaleIDs:
+  fehlendeOriginaleIDs:
+    - ID: 1
+      Name:
+        OG: "fehlendeOriginaleIDs"
+      originale_Karten:
+        fehlendeOriginaleIDs: [1]
+        davon_entfernt: []
+      hinzugefügte_Karten-IDs: []
+
+fehlendeDavonEntfernte:
+  fehlendeDavonEntfernte:
+    - ID: 1
+      Name:
+        OG: "fehlendeDavonEntfernte"
+      originale_Karten:
+        IDs: [1]
+        fehlendeDavonEntfernte: []
+      hinzugefügte_Karten-IDs: []
+
+fehlendesHinzugefuegte_IDs:
+  fehlendesHinzugefuegte_IDs:
+    - ID: 1
+      Name:
+        OG: "fehlendesHinzugefuegte_IDs"
+      originale_Karten:
+        IDs: [1]
+        davon_entfernt: []
+      fehlendesHinzugefuegte_IDs: []

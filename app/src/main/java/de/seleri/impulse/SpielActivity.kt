@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import de.seleri.spielelemente.Sprachen
-import de.seleri.spielelemente.findeElement
+import de.seleri.spielelemente.finde
 import androidx.core.graphics.toColorInt
 
 const val KATEGORIE_TEXTGROESSE = 22f
@@ -22,11 +22,11 @@ class SpielActivity : AppCompatActivity() {
         val dbs = (application as Impulse).dbs
 
         val spielName = intent.getStringExtra("SPIEL_NAME") ?: return
-        val spiel = findeElement(spielName, dbs.spiele) ?: return
+        val spiel = dbs.spiele.finde(spielName) ?: return
 
         val container = findViewById<LinearLayout>(R.id.container_buttons)
 
-        for (kategorie in spiel.getAlleAktuellenKategorien()) {
+        for (kategorie in spiel.getAktuelleKategorien()) {
             val button = Button(this).apply {
                 text = kategorie.localizations[Sprachen.OG]
                 textSize = KATEGORIE_TEXTGROESSE

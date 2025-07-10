@@ -13,9 +13,9 @@ const val GELOESCHT: String = "gelöscht"
  * @property gesehen gibt an, ob die Karte bereits angezeigt wurde
  * @property geloescht gibt an, ob die Karte gelöscht wurde
  */
-data class Karte(
-    override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+class Karte(
+    override var id: Int,
+    override val localizations: MutableMap<Sprachen, String?>,
     var gesehen: Boolean,
     var geloescht: Boolean
 ): LokalisierbaresSpielelement(id, localizations) {
@@ -56,29 +56,35 @@ data class Karte(
             val (id, localizations) = LokalisierbaresSpielelement.fromEingabe(
                 id, sprache, kartentext
             )
+            val gesehen = false
+            val geloescht = false
 
-            return Karte(id, localizations, false, false)
+            return Karte(id, localizations, gesehen, geloescht)
         }
 
         /**
          * Erstellt eine Liste von Karten aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Daten einer oder mehrerer Karten
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Beides würde nur
+         * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
+         * die man reintut - so differenziert das die Funktion ganz von allein.
+         *
+         * @param yamlDaten YAML-Daten einer oder mehrerer Karten
          * @return Menge von Karten mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>): Set<Karte> {
+        fun fromYaml(yamlDaten: Map<String, Any>): Set<Karte> {
             when {
 
                 // Fall 1: mehrere Karten
-                KARTEN in data -> {
-                    return fromYamlListe(KARTEN, data) { fromYaml(it) }
+                KARTEN in yamlDaten -> {
+                    return fromYamlListe(KARTEN, yamlDaten) { fromYaml(it) }
                 }
 
                 // Fall 2: einzelne Karte
-                GESEHEN in data && GELOESCHT in data -> {
-                    val (id, localizations) = LokalisierbaresSpielelement.fromYaml(data)
-                    val gesehen = data[GESEHEN] as Boolean
-                    val geloescht = data[GELOESCHT] as Boolean
+                GESEHEN in yamlDaten && GELOESCHT in yamlDaten -> {
+                    val (id, localizations) = LokalisierbaresSpielelement.fromYaml(yamlDaten)
+                    val gesehen = yamlDaten[GESEHEN] as Boolean
+                    val geloescht = yamlDaten[GELOESCHT] as Boolean
 
                     return setOf(Karte(id, localizations, gesehen, geloescht))
                 }

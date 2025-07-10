@@ -1,0 +1,67 @@
+gültigeKarten:
+  Karten:
+    - ID: 42
+      Text:
+        OG: "OG"
+        DE:
+      gesehen: false
+      gelöscht: true
+    - ID: 7
+      Text:
+        OG: "OG"
+        DE: "DE"
+        EN: "EN"
+      gesehen: true
+      gelöscht: false
+
+fehlendeKarten:
+  fehlendeKarten:
+    - ID: 1
+      Text:
+        OG: "fehlende Karten"
+      gesehen: false
+      gelöscht: false
+
+fehlendesGesehen:
+  Karten:
+    - ID: 1
+      Text:
+        OG: "fehlendes gesehen"
+      fehlendesGesehen: false
+      gelöscht: false
+
+fehlendesGelöscht:
+  Karten:
+    - ID: 1
+      Text:
+        OG: "fehlendes gelöscht"
+      gesehen: false
+      fehlendesGelöscht: false
+
+dummyKarten: # wird für die Klassen SammlungAnSpielelementenTest und KategorieTest benötigt
+  Karten:
+    - ID: 1
+      Text:
+        OG: "Dummy 1"
+      gesehen: false
+      gelöscht: false
+    - ID: 2
+      Text:
+        OG: "Dummy 2"
+      gesehen: true
+      gelöscht: true
+    - ID: 3
+      Text:
+        OG: "Dummy 3"
+      gesehen: true
+      gelöscht: false
+    - ID: 4
+      Text:
+        OG: "Dummy 4"
+      gesehen: false
+      gelöscht: true
+    - ID: 5
+      Text:
+        OG: "Dummy 5"
+      gesehen: false
+      gelöscht: false

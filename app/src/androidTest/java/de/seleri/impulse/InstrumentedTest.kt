@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import de.seleri.spielelemente.findeElement
+import de.seleri.spielelemente.finde
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.assertEquals
@@ -30,13 +30,13 @@ class InstrumentedTest {
         assertNotNull(dbs)
 
         assert(dbs.karten.isNotEmpty())
-        assertNotNull(findeElement("Do I look kind? Explain.", dbs.karten))
+        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
 
         assert(dbs.kategorien.isNotEmpty())
-        assertNotNull(findeElement("Level 1: Perception", dbs.kategorien))
+        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
 
         assert(dbs.spiele.isNotEmpty())
-        assertNotNull(findeElement("We're not really strangers", dbs.spiele))
+        assertNotNull(dbs.spiele.finde("We're not really strangers"))
     }
 
     @get:Rule

@@ -1,42 +1,6 @@
 package de.seleri.spielelemente
 
 /**
- * Findet ein Spielelement anhand einer Texteingabe.
- *
- * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
- * @param findeIn Collection der zu durchsuchenden Elemente
- * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
- */
-internal fun <T : LokalisierbaresSpielelement> findeElement(bezeichnung: String, findeIn: Collection<T>): T? {
-    return findeIn.find { element ->
-        element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
-            .any { localization -> localization == bezeichnung }
-            // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
-    }
-}
-
-/**
- * Findet ein Spielelement anhand seiner ID.
- *
- * @param id gesuchte ID
- * @param findeIn Collection der zu durchsuchenden Elemente
- * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
- */
-internal fun <T : LokalisierbaresSpielelement> findeElement(id: Int, findeIn: Collection<T>): T =
-    findeIn.find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
-
-/**
- * Findet mehrere Spielelemente anhand einer Collection von IDs.
- *
- * @param ids Collection gesuchter IDs
- * @param findeIn Collection der zu durchsuchenden Elemente
- * @return Menge gefundener Elemente
- */
-internal fun <T : LokalisierbaresSpielelement> findeElemente(ids: Collection<Int>, findeIn: Collection<T>): Set<T> {
-    return ids.mapTo(mutableSetOf()) { id -> findeElement(id, findeIn) }
-}
-
-/**
  * Konvertiert ein Attribut zu einer Zeile im YAML-Format
  *
  * @param anzahlEinrueckungen Anzahl an Tabs zur Einrückung der Zeile
@@ -61,7 +25,8 @@ internal fun attributToYamlZeile(
 
         // der String wird escaped
         is String -> {
-            val escaped = attributswert.replace("\\", "\\\\") // \
+            val escaped = attributswert //.
+                .replace("\\", "\\\\") // \
                 .replace("\"", "\\\"") // "
                 .replace("\n", "\\n")  // Zeilenumbruch
                 .replace("\t", "\\t")  // Tab
@@ -72,9 +37,9 @@ internal fun attributToYamlZeile(
         is Collection<*> -> {
             zeile.append("[")
 
-            // sicheres Casten und Sortieren nach ID
-            val sortierteAttributswertListe = (attributswert.filterIsInstance<LokalisierbaresSpielelement>())
-                .sortedBy { it.id }
+            // sicheres Casten und Sortieren
+            val sortierteAttributswertListe =
+                (attributswert.filterIsInstance<LokalisierbaresSpielelement>()).sorted()
 
             sortierteAttributswertListe.forEachIndexed { index, item ->
                 zeile.append(item.id)
@@ -94,11 +59,13 @@ internal fun attributToYamlZeile(
             zeile.append("\n")
             val mapInhalt = StringBuilder()
             attributswert.forEach { (key, value) ->
-                mapInhalt.append(
-                    attributToYamlZeile(
-                        anzahlEinrueckungen + 1, key.toString(), value
+                if (value != null) { // Einträge ohne Wert werden übersprungen
+                    mapInhalt.append(
+                        attributToYamlZeile(
+                            anzahlEinrueckungen + 1, key.toString(), value
+                        )
                     )
-                )
+                }
             }
             // entfernt den letzten Zeilenumbruch und fügt es zu der "Zeile" hinzu
             zeile.append(mapInhalt.toString().trimEnd())
@@ -113,4 +80,53 @@ internal fun attributToYamlZeile(
 
     zeile.append("\n")
     return zeile.toString()
+}
+
+/**
+ * Ermittelt eine neue, eindeutige ID, die um 1 höher ist als jede ID in der gegebenen Collection.
+ * Lücken werden also nicht aufgefüllt!
+ *
+ * @param hoeherAlsIn Liste von Spielelementen, deren höchste ID bestimmt wird
+ * @return neue, eindeutige ID
+ */
+internal fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
+    return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+}
+
+/**
+ * Findet ein Spielelement anhand einer Texteingabe in der Collection<T>.
+ *
+ * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
+ * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
+ */
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    bezeichnung: String
+): T? {
+    return find { element ->
+        element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
+            .any { localization -> localization == bezeichnung }
+        // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
+    }
+}
+
+/**
+ * Findet ein Spielelement anhand seiner ID in der Collection<T>.
+ *
+ * @param id gesuchte ID
+ * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
+ */
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    id: Int
+): T = find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
+
+/**
+ * Findet mehrere Spielelemente anhand einer Collection von IDs in der Collection<T>.
+ *
+ * @param ids Collection gesuchter IDs
+ * @return Menge gefundener Elemente
+ */
+internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
+    ids: Collection<Int>
+): Set<T> {
+    return ids.mapTo(mutableSetOf()) { id -> finde(id) }
 }

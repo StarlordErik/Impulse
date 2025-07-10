@@ -10,9 +10,9 @@ const val SPIELE: String = "Spiele"
  * @property originaleElemente zwei Mengen mit den originalen Kategorien und denen, die vom Nutzer entfernt wurden
  * @property hinzugefuegteElemente Menge der vom Nutzer hinzugefügten Kategorien zum Spiel
  */
-data class Spiel(
-    override val id: Int,
-    override val localizations: MutableMap<Sprachen, String>,
+class Spiel(
+    override var id: Int,
+    override val localizations: MutableMap<Sprachen, String?>,
     override val originaleElemente: Map<String, MutableSet<Kategorie>>,
     override val hinzugefuegteElemente: MutableSet<Kategorie>
 ) : SammlungAnSpielelementen<Kategorie>(
@@ -36,21 +36,21 @@ data class Spiel(
      *
      * @return originale Kategorien + hinzugefügte Kategorien
      */
-    fun getAlleKategorien(): Set<Kategorie> = getAlleElemente()
+    fun getKategorien(): Set<Kategorie> = getAlleElemente()
 
     /**
      * Gibt alle Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
      *
      * @return (originale Kategorien - davon entfernten Kategorien) + hinzugefügte Kategorien
      */
-    fun getAlleAktuellenKategorien(): Set<Kategorie> = getAlleAktuellenElemente()
+    fun getAktuelleKategorien(): Set<Kategorie> = getAlleAktuellenElemente()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück und ignoriert die davon entfernten.
      *
      * @return alleKarten(originale Kategorien) + alleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleKarten(): Set<Karte> = getAlleKategorien().flatMap { it.getAlleKarten() }.toSet()
+    override fun getKarten(): Set<Karte> = getKategorien().flatMap { it.getKarten() }.toSet()
 
     /**
      * Gibt alle Karten aller Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
@@ -58,23 +58,23 @@ data class Spiel(
      * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien) +
      * aktuelleKarten(hinzugefügte Kategorien)
      */
-    override fun getAlleAktuellenKarten(): Set<Karte> =
-        getAlleAktuellenKategorien().flatMap { it.getAlleAktuellenKarten() }.toSet()
+    override fun getAktuelleKarten(): Set<Karte> =
+        getAktuelleKategorien().flatMap { it.getAktuelleKarten() }.toSet()
 
     /**
      * Gibt alle noch nicht gesehenen Karten des Spiels zurück.
      *
      * @return noch nicht gesehene Karten
      */
-    override fun getAlleUngesehenenKarten(): Set<Karte> {
-        return geseheneKartenRausfiltern(getAlleAktuellenKarten())
+    override fun getUngeseheneKarten(): Set<Karte> {
+        return geseheneKartenRausfiltern(getAktuelleKarten())
     }
 
     /**
      * Setzt alle Karten des Spiels auf "ungesehen".
      */
     override fun setKartenUngesehen() {
-        setKartenUngesehen(getAlleAktuellenKarten())
+        setKartenUngesehen(getAktuelleKarten())
     }
 
     /**
@@ -113,22 +113,26 @@ data class Spiel(
         /**
          * Erstellt eine Menge von Spielen aus einer von SnakeYaml deserialisierten YAML-Datei.
          *
-         * @param data YAML-Daten eines oder mehrerer Spiele
+         * Wieso gibt es nur fromYaml und nicht fromYamlListe? Beides würde nur
+         * den Parameter Map<String, Any> bekommen; Man müsste also definitiv die Daten kennen,
+         * die man reintut - so differenziert das die Funktion ganz von allein.
+         *
+         * @param yamlDaten YAML-Daten eines oder mehrerer Spiele
          * @param moeglicheKategorien Collection aller Kategorien, aus denen das Spiel bestehen **könnte** -
          * im Zweifel einfach alle möglichen Kategorien
          * @return Menge von Spielen mit ausgelesenen Attributwerten
          */
-        fun fromYaml(data: Map<String, Any>, moeglicheKategorien: Collection<Kategorie>): Set<Spiel> {
+        fun fromYaml(yamlDaten: Map<String, Any>, moeglicheKategorien: Collection<Kategorie>): Set<Spiel> {
             return when {
 
                 // Fall 1: mehrere Spiele
-                SPIELE in data -> {
-                    fromYamlListe(SPIELE, data) { fromYaml(it, moeglicheKategorien) }
+                SPIELE in yamlDaten -> {
+                    fromYamlListe(SPIELE, yamlDaten) { fromYaml(it, moeglicheKategorien) }
                 }
 
                 // Fall 2: einzelnes Spiel
-                "$ORIGINALE$KATEGORIEN" in data && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in data -> {
-                    setOf(fromYaml(data, moeglicheKategorien, ::Spiel))
+                "$ORIGINALE$KATEGORIEN" in yamlDaten && "$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS" in yamlDaten -> {
+                    setOf(fromYaml(yamlDaten, moeglicheKategorien, ::Spiel))
                 }
 
                 // Fall 3: ungültige Struktur

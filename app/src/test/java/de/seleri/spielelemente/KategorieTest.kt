@@ -1,122 +1,229 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
-const val TEST_KATEGORIE_1_EINGABE: String = "Level 1"
-fun testKategorie1Yaml(): String = """
-    |Kategorien:
-    |  - ID: 1
-    |    Name:
-    |      OG: "$TEST_KATEGORIE_1_EINGABE"
-    |      DE: ""
-    |      EN: "$TEST_KATEGORIE_1_EINGABE"
-    |    originale_Karten:
-    |      IDs: [1]
-    |      davon_entfernt: [1]
-    |    hinzugefügte_Karten-IDs: [2]
-    |""".trimMargin().lines().drop(1).joinToString("\n")
+fun alleDummyKategorien(): Set<Kategorie> {
+    val dummyKategorien = getDummyKategorien("dummyKategorien")
+    val actual = dummyKategorien.size
 
-fun testKategorie1(): Kategorie = Kategorie(
-    id = 1, localizations = mutableMapOf(
-        Sprachen.OG to TEST_KATEGORIE_1_EINGABE,
-        Sprachen.DE to "",
-        Sprachen.EN to TEST_KATEGORIE_1_EINGABE
-    ), originaleElemente = mapOf(
-        IDS to mutableSetOf(testKarte1()), DAVON_ENTFERNT to mutableSetOf(testKarte1())
-    ), hinzugefuegteElemente = mutableSetOf(testKarte2())
+    val expected = 5
+    assertEquals(expected, actual)
+
+    return dummyKategorien
+}
+
+fun dummyKategorie1(): Kategorie = alleDummyKategorien().finde(1)
+fun dummyKategorie2(): Kategorie = alleDummyKategorien().finde(2)
+fun dummyKategorie3(): Kategorie = alleDummyKategorien().finde(3)
+fun dummyKategorie4(): Kategorie = alleDummyKategorien().finde(4)
+fun dummyKategorie5(): Kategorie = alleDummyKategorien().finde(5)
+
+fun dummyKategorie() = Kategorie(
+    DUMMY_ID, dummyLocalizations(), dummyOriginaleKarten(), dummyHinzugefuegteKarten()
 )
 
-const val TEST_KATEGORIE_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-fun testKategorie2Yaml(): String = """
-    |Kategorien:
-    |  - ID: 2
-    |    Name:
-    |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-    |      EN: ""
-    |    originale_Karten:
-    |      IDs: [1,2]
-    |      davon_entfernt: []
-    |    hinzugefügte_Karten-IDs: []
-    |""".trimMargin().lines().drop(1).joinToString("\n")
+fun yamlDummyKategorie() = """
+        |  - $ID: $DUMMY_ID
+        |    $DUMMY_NAME:
+        |      ${Sprachen.OG}: "$DUMMY_OG"
+        |      ${Sprachen.DE}: "$DUMMY_DE"
+        |    $ORIGINALE$KARTEN:
+        |      $IDS: [1,2,3,4]
+        |      $DAVON_ENTFERNT: [2,4]
+        |    $HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS: []
+        |
+        """.trimMargin()
 
-fun testKategorie2(): Kategorie = Kategorie(
-    id = 2, localizations = mutableMapOf(
-        Sprachen.OG to TEST_KATEGORIE_2_EINGABE,
-        Sprachen.DE to TEST_KATEGORIE_2_EINGABE,
-        Sprachen.EN to ""
-    ), originaleElemente = mapOf(
-        IDS to mutableSetOf(testKarte1(), testKarte2()), DAVON_ENTFERNT to mutableSetOf()
-    ), hinzugefuegteElemente = mutableSetOf()
-)
-
-fun alleTestKategorien(): List<Kategorie> = listOf(testKategorie1(), testKategorie2())
+fun getDummyKategorien(elementart: String): Set<Kategorie> =
+    getDummyDaten("Kategorie.yml", elementart) { Kategorie.fromYaml(it, alleDummyKarten()) }
 
 class KategorieTest {
+
+    /*
+    ------------------------------------------------------------------------------------------------
+    WICHTIG: Wie ist jeder Test aufgebaut?
+
+    1: benötigte Variablen & Konstanten instantiieren
+
+        (1.5: ggf. wird hier expected instanziiert, falls sich nichts ändern soll)
+
+    2: actual = Ausführung des zu testenden Codes
+
+        (2.5: bei AssertTrue wird 2 & 3 ersetzt durch condition = Ausführung des zu testenden Codes)
+
+    3: expected instanzieeren & Test ausführen
+    ------------------------------------------------------------------------------------------------
+    */
+
     @Test
-    fun `Test eingabeToKategorie() - Konvertierung von Kategorienname und zugehoerigen Karten zu Kategorie`() {
-        val kategorie1 =
-            Kategorie.fromEingabe(1, Sprachen.EN, TEST_KATEGORIE_1_EINGABE, listOf(testKarte1()))
-        kategorie1.hinzugefuegteElemente.clear()
-        kategorie1.hinzugefuegteElemente.add(testKarte2())
+    fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
+        val dummy = dummyKategorie()
 
-        kategorie1.originaleElemente[DAVON_ENTFERNT]!!.clear()
-        kategorie1.originaleElemente[DAVON_ENTFERNT]!!.add(testKarte1())
+        val actual = dummy.toYaml()
 
-        assertEquals(testKategorie1().id, kategorie1.id)
-        assertEquals(testKategorie1().localizations, kategorie1.localizations)
-        assertEquals(testKategorie1().originaleElemente, kategorie1.originaleElemente)
-        assertEquals(testKategorie1().hinzugefuegteElemente, kategorie1.hinzugefuegteElemente)
-        assertEquals(testKategorie1(), kategorie1)
+        val expected = yamlDummyKategorie()
+        assertEquals(expected, actual)
+    }
 
-        val kategorie2 = Kategorie.fromEingabe(
-            2, Sprachen.DE, TEST_KATEGORIE_2_EINGABE, listOf(testKarte1(), testKarte2())
+    @Test
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        val yamlDummy1 = yamlDummyKategorie()
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = Kategorie.fromYaml(dummyDaten, alleDummyKarten()).first()
+
+        val yamlDummy2 = dummy.toYaml()
+        assertEquals(yamlDummy1, yamlDummy2)
+    }
+
+    @Test
+    fun `getKarten() gibt alle Karten der Kategorie zurueck`() {
+        val dummy = dummyKategorie()
+
+        val actual = dummy.getKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        assertEquals(expected, actual)
+    }
+
+
+    @Test
+    fun `getAktuelleKarten() gibt alle Karten der Kategorie zurueck, die nicht entfernt worden sind`() {
+        val dummy = dummyKategorie()
+
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte3())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getUngeseheneKarten() gibt alle noch nicht gesehenen Karten der Kategorie zurueck`() {
+        val dummy = dummyKategorie()
+
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = setOf(dummyKarte1())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `setKartenUngesehen() setzt alle Karten auf ungesehen`() {
+        val dummy = dummyKategorie()
+
+        dummy.setKartenUngesehen()
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = dummy.getAktuelleKarten()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kartenHinzufuegen() fuegt neue Karten zur Kategorie hinzu`() {
+        val dummy = dummyKategorie()
+        val neueKarten = setOf(dummyKarte2(), dummyKarte5())
+
+        dummy.kartenHinzufuegen(neueKarten)
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `karteEntfernen() entfernt eine Karte, die bislang Teil der Kategorie war`() {
+        val dummy = dummyKategorie()
+        val zuEntfernendeKarte = dummyKarte1()
+        assertTrue(dummy.getAktuelleKarten().contains(zuEntfernendeKarte))
+
+        val expected = dummy.getAktuelleKarten() - zuEntfernendeKarte
+
+        dummy.karteEntfernen(zuEntfernendeKarte)
+        val actual = dummy.getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
+    /**
+     * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
+     */
+    private fun testKorrekteInstanziierung(
+        erwarteteOriginale: Map<String, Collection<Karte>>,
+        erwarteteHinzugefuegte: Collection<Karte>,
+        dummy: Kategorie
+    ) {
+        val actualOriginale = dummy.originaleElemente
+        val actualHinzugefuegte = dummy.hinzugefuegteElemente
+
+        assertEquals(erwarteteOriginale, actualOriginale)
+        assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
+    }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = DUMMY_ID
+        val eingabeSprache = Sprachen.DE
+        val eingabeName = DUMMY_NAME
+        val eingabeKarten = alleDummyKarten()
+
+        val dummy = Kategorie.fromEingabe(
+            eingabeID, eingabeSprache, eingabeName, eingabeKarten
         )
-        kategorie2.hinzugefuegteElemente.clear()
-        assertEquals(testKategorie2().id, kategorie2.id)
-        assertEquals(testKategorie2().localizations, kategorie2.localizations)
-        assertEquals(testKategorie2().originaleElemente, kategorie2.originaleElemente)
-        assertEquals(testKategorie2().hinzugefuegteElemente, kategorie2.hinzugefuegteElemente)
-        assertEquals(testKategorie2(), kategorie2)
+
+        val erwarteteOriginale = mapOf(IDS to eingabeKarten, DAVON_ENTFERNT to emptySet())
+        val erwarteteHinzugefuegte = emptySet<Karte>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
     @Test
-    fun `Test kategorieToYaml() - Konvertierung von Kategorie zu YAML`() {
-        assertEquals(testKategorie1Yaml(), testKategorie1().toYaml())
-        assertEquals(testKategorie2Yaml(), testKategorie2().toYaml())
-    }
-/*
-    @Test
-    fun `Test yamlToKategorie() - Konvertierung von YAML zu Kategorie`() {
-        val kategorie1 = Kategorie.fromYaml(testKategorie1Yaml(), alleTestKarten())[0]
-        assertEquals(testKategorie1(), kategorie1)
+    fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummyKategorien("gültigeKategorien")
 
-        val kategorie2 = Kategorie.fromYaml(testKategorie2Yaml(), alleTestKarten())[0]
-        assertEquals(testKategorie2(), kategorie2)
+        val actual = dummys.size
+
+        val expected = 2
+        assertEquals(expected, actual)
+
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(dummys.finde(7))
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(dummys.finde(42))
     }
 
-    @Test
-    fun `Test Rundreise yamlToKategorieToYaml - Konvertierung von YAML zu Kategorie und wieder zurueck`() {
-        assertEquals(
-            testKategorie1Yaml(),
-            Kategorie.fromYaml(testKategorie1Yaml(), alleTestKarten())[0].toYaml()
-        )
-        assertEquals(
-            testKategorie2Yaml(),
-            Kategorie.fromYaml(testKategorie2Yaml(), alleTestKarten())[0].toYaml()
-        )
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: Kategorie
+    ) {
+        val originaleKartenIDs = setOf(dummyKarte1())
+        val davonEntfernte = emptySet<Karte>()
+
+        val erwarteteOriginale = mapOf(IDS to originaleKartenIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = setOf(dummyKarte5())
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
-*/
-    @Test
-    fun `Test getAlleKarten() - Ausgabe aller Karten einer Kategorie`() {
-        assertEquals(2, testKategorie1().getAlleKarten().size)
-        assertEquals(2, testKategorie2().getAlleKarten().size)
+
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: Kategorie
+    ) {
+        val originaleKartenIDs = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        val davonEntfernte = setOf(dummyKarte2(), dummyKarte4())
+
+        val erwarteteOriginale = mapOf(IDS to originaleKartenIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = emptySet<Karte>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
     @Test
-    fun `Test getAlleAktuellenKarten() - Ausgabe aller aktuellen Karten einer Kategorie`() {
-        assertEquals(1, testKategorie1().getAlleAktuellenKarten().size)
-        assertEquals(2, testKategorie2().getAlleAktuellenKarten().size)
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKategorien("fehlende_Kategorie")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKategorien("fehlende_originale_Karten")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummyKategorien("fehlende_hinzugefuegte_Karten-IDs")
+        }
     }
 }

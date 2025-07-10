@@ -1,199 +1,267 @@
 package de.seleri.spielelemente
 
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-
+import org.yaml.snakeyaml.Yaml
 import java.io.File
 
 class DatenbanksystemTest {
 
-    fun tmpKopieAnlegen(): File {
-        val inputStream = this::class.java.classLoader!!.getResourceAsStream(DATENBANK_DATEI)
+    fun tmpDatenbankDatei(): File {
+        val builder = StringBuilder()
 
-        // erstellt jedes Mal eine einzigartige Datei
-        val tmpKopie = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-
-        inputStream.use { input ->
-            tmpKopie.outputStream().use { output ->
-                input.copyTo(output)
-            }
+        builder.append(attributToYamlZeile(0, KARTEN, null))
+        for (karte in alleDummyKarten().sorted()) {
+            builder.append(karte.toYaml())
         }
-        return tmpKopie
+
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, KATEGORIEN, null))
+        for (kategorie in alleDummyKategorien().sorted()) {
+            builder.append(kategorie.toYaml())
+        }
+
+        builder.append("\n")
+
+        builder.append(attributToYamlZeile(0, SPIELE, null))
+        for (spiel in alleDummySpiele().sorted()) {
+            builder.append(spiel.toYaml())
+        }
+
+        val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+        datenbank.writeText(builder.toString())
+        return datenbank
     }
 
     @Test
-    fun `test gereriereDatenbanksystem() - Objekt erstellen und laden`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `tmpDatenbankDatei() Testdatenbank aus den Dummys erzeugen`() {
+        val datenbank = tmpDatenbankDatei()
 
-        assert(dbs.karten.isNotEmpty())
-        assertEquals(2, dbs.karten.size)
+        val daten = Yaml().load<Map<String, Any>>(datenbank.inputStream())
 
-        assert(dbs.kategorien.isNotEmpty())
-        assertEquals(2, dbs.kategorien.size)
-
-        assert(dbs.spiele.isNotEmpty())
-        assertEquals(2, dbs.spiele.size)
-
-        tmpKopie.delete()
+        assertTrue(daten.isNotEmpty())
+        assertTrue(daten.containsKey(KARTEN))
+        assertTrue(daten.containsKey(KATEGORIEN))
+        assertTrue(daten.containsKey(SPIELE))
     }
 
     @Test
-    fun `test neueKarten() - Karten hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `init() Datenbanksystem initialisieren`() {
+        val datenbank = tmpDatenbankDatei()
 
-        assertEquals(listOf(1, 2), dbs.karten.map { it.id })
+        val dbs = Datenbanksystem(datenbank)
 
-        val neueKarten = dbs.neueKarten(listOf("neue Karte 1", "neue Karte 2"), Sprachen.DE)
-        val neueKartenIDs = neueKarten.map { it.id }
-
-        assertEquals(listOf(3, 4), neueKartenIDs)
-
-        assertEquals(2, neueKarten.size)
-        assertEquals(4, dbs.karten.size)
-
-        assertEquals(2, neueKarten.toSet().size)
-        assertEquals(4, dbs.karten.toSet().size)
-
-        assertEquals(2, neueKartenIDs.toSet().size)
-        assertEquals(4, dbs.karten.map{it.id}.toSet().size)
-
-        tmpKopie.delete()
+        assertTrue(dbs.karten.isNotEmpty())
+        assertTrue(dbs.kategorien.isNotEmpty())
+        assertTrue(dbs.spiele.isNotEmpty())
     }
 
     @Test
-    fun `test neueKategorie() - Kategorie hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `aktualisieren() Datenbank aktualisieren`() {
+        val datenbank = tmpDatenbankDatei()
+        val dbs = Datenbanksystem(datenbank)
 
-        assertEquals(listOf(1, 2), dbs.kategorien.map { it.id })
+        val expected = datenbank.readText()
 
-        val neueKategorie = dbs.neueKategorie("neue Kategorie", dbs.karten, Sprachen.DE)
+        dbs.aktualisieren()
+        val actual = datenbank.readText()
 
-        assertEquals(3, neueKategorie.id)
-        assertEquals(3, dbs.kategorien.size)
-        assertEquals(3, dbs.kategorien.toSet().size)
-        assertEquals(3, dbs.kategorien.map { it.id }.toSet().size)
-
-        tmpKopie.delete()
+        assertEquals(expected, actual)
     }
 
     @Test
-    fun `test neuesSpiel() - Spiel hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `getRandomKartentext() zufaelliger Kartentext einer Kategorie ausgeben`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dummyKategorie = dbs.kategorien.finde("dummyKategorie5")!!
+        val kartentexte1 =
+            dummyKategorie.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }
+                .toMutableSet()
+        val kartentexte2 = kartentexte1.toList()
 
-        assertEquals(listOf(1, 2), dbs.spiele.map { it.id })
+        // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
+        kartentexte2.forEach { _ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
+            val randomKartentext = dbs.getRandomKartentext(dummyKategorie)
+            assertTrue(kartentexte1.contains(randomKartentext))
+            kartentexte1.remove(randomKartentext)
+        }
+        assertEquals(0, kartentexte1.size)
 
-        val neuesSpiel = dbs.neuesSpiel("neues Spiel", dbs.kategorien, Sprachen.DE)
-
-        assertEquals(3, neuesSpiel.id)
-        assertEquals(3, dbs.spiele.size)
-        assertEquals(3, dbs.spiele.toSet().size)
-        assertEquals(3, dbs.spiele.map { it.id }.toSet().size)
-
-        tmpKopie.delete()
+        // Test 2: nachdem alle Karten bereits gesehen wurden, kann jede wieder gesehen werden
+        val randomKartentext = dbs.getRandomKartentext(dummyKategorie)
+        assertTrue(kartentexte2.contains(randomKartentext))
     }
 
     @Test
-    fun `test hinzufuegen() - Karten direkt zu Kategorie hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `getRandomKartentext() zufaelliger Kartentext eines Spiels ausgeben`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dummySpiel = dbs.spiele.finde("dummySpiel5")!!
+        val kartentexte1 =
+            dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+        val kartentexte2 = kartentexte1.toList()
 
-        val neueKarten =
-            dbs.neueKarten(listOf("neue Karte 1", "neue Karte 2"), Sprachen.DE)
-        val neueKategorie =
-            dbs.neueKategorie("neue Kategorie", emptyList(), Sprachen.DE)
+        // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
+        kartentexte2.forEach { _ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
+            val randomKartentext = dbs.getRandomKartentext(dummySpiel)
+            assertTrue(kartentexte1.contains(randomKartentext))
+            kartentexte1.remove(randomKartentext)
+        }
+        assertEquals(0, kartentexte1.size)
 
-        assertEquals(0, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        // Wir finden die neue Kategorie im DBS und prüfen dann, ob sie die neuen Karten hinzugefügt hat
-        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKarten)
-        assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        // Wenn wir dieselben Karten zur derselben Kategorie nochmal hinzufügen, sollte nichts passieren
-        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKarten)
-        assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        tmpKopie.delete()
+        // Test 2: nachdem alle Karten bereits gesehen wurden, kann jede wieder gesehen werden
+        val randomKartentext = dbs.getRandomKartentext(dummySpiel)
+        assertTrue(kartentexte2.contains(randomKartentext))
     }
 
     @Test
-    fun `test hinzufuegen() - Kategorien direkt zu Spiel hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `neueKarten() eine Menge neue Karten erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKartentexte = setOf(
+            "Dummy 1", "neue Karte", "neue Karte"
+        )
 
-        val neueKategorie1 = dbs.neueKategorie("neue Kategorie 1", emptyList(), Sprachen.DE)
-        val neueKategorie2 = dbs.neueKategorie("neue Kategorie 2", emptyList(), Sprachen.DE)
-        val neueKategorie3 = dbs.neueKategorie("neue Kategorie 3", emptyList(), Sprachen.DE)
+        val eingegebeneKarten = dbs.neueKarten(neueKartentexte, Sprachen.OG)
 
-        val neueKategorien = listOf(neueKategorie1, neueKategorie2, neueKategorie3)
-        val neuesSpiel = dbs.neuesSpiel("neues Spiel", emptyList(), Sprachen.DE)
+        // Test 1: die neuen Karten sind in der Datenbank
+        assertTrue(dbs.karten.containsAll(eingegebeneKarten))
 
-        assertEquals(0, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
+        // Test 2: doppelte Karten sind der Datenbank nicht hinzugefügt worden
+        assertEquals(6, dbs.karten.size)
 
-        // Wir finden das neues Spiel im DBS und prüfen dann, ob es die neuen Kategorien hinzugefügt hat
-        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorien)
-        assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
-
-        // Wenn wir dieselben Kategorien zum selben Spiel nochmal hinzufügen, sollte nichts passieren
-        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorien)
-        assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
-
-        tmpKopie.delete()
+        // Test 3: wurden die neue ID richtig gewählt?
+        val actual = eingegebeneKarten.map { it.id }.sorted()
+        val expected = listOf(1, 6)
+        assertEquals(expected, actual)
     }
 
     @Test
-    fun `test hinzufuegen() - Karten per ID zu Kategorie hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `neueKategorie() eine neue Kategorie erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKarten = alleDummyKarten()
 
-        val neueKarten =
-            dbs.neueKarten(listOf("neue Karte 1", "neue Karte 2"), Sprachen.DE)
-        val neueKartenIDs = neueKarten.map { it.id }
+        // Test 1: die Kategorie ist in der Datenbank
+        val neueKategorie = dbs.neueKategorie("neue Kategorie", neueKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(neueKategorie))
 
-        val neueKategorie =
-            dbs.neueKategorie("neue Kategorie", emptyList(), Sprachen.DE)
-
-        assertEquals(0, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        // Wir finden die neue Kategorie im DBS und prüfen dann, ob sie die neuen Karten hinzugefügt hat
-        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKartenIDs)
-        assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        // Wenn wir dieselben Karten zur derselben Kategorie nochmal hinzufügen, sollte nichts passieren
-        dbs.kartenZuKategorieHinzufuegen(neueKategorie, neueKartenIDs)
-        assertEquals(2, findeElement(neueKategorie.id, dbs.kategorien).getAlleKarten().size)
-
-        tmpKopie.delete()
+        // Test 2: die Kategorie hat die korrekte ID
+        val actual = neueKategorie.id
+        val expected = 6
+        assertEquals(expected, actual)
     }
 
     @Test
-    fun `test hinzufuegen() - Kategorien per ID zu Spiel hinzufuegen`() {
-        val tmpKopie = tmpKopieAnlegen()
-        val dbs = Datenbanksystem(tmpKopieAnlegen())
+    fun `neueKategorie() eine bekannte Kategorie hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val bekannteKarten = listOf(dummyKarte1())
 
-        val neueKategorie1 = dbs.neueKategorie("neue Kategorie 1", emptyList(), Sprachen.DE)
-        val neueKategorie2 = dbs.neueKategorie("neue Kategorie 2", emptyList(), Sprachen.DE)
-        val neueKategorie3 = dbs.neueKategorie("neue Kategorie 3", emptyList(), Sprachen.DE)
+        // Test 1: die Kategorie ist in der Datenbank
+        val bekannteKategorieMitBekanntenKarten =
+            dbs.neueKategorie("dummyKategorie1", bekannteKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(bekannteKategorieMitBekanntenKarten))
 
-        val neueKategorien = listOf(neueKategorie1, neueKategorie2, neueKategorie3)
-        val neueKategorienIDs = neueKategorien.map { it.id }
-
-        val neuesSpiel = dbs.neuesSpiel("neues Spiel", emptyList(), Sprachen.DE)
-
-        assertEquals(0, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
-
-        // Wir finden das neues Spiel im DBS und prüfen dann, ob es die neuen Kategorien hinzugefügt hat
-        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorienIDs)
-        assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
-
-        // Wenn wir dieselben Kategorien zum selben Spiel nochmal hinzufügen, sollte nichts passieren
-        dbs.kategorienZuSpielHinzufuegen(neuesSpiel, neueKategorienIDs)
-        assertEquals(3, findeElement(neuesSpiel.id, dbs.spiele).getAlleKategorien().size)
-
-        tmpKopie.delete()
+        // Test 2: doppelte Kategorien sind der Datenbank nicht hinzugefügt worden
+        assertEquals(5, dbs.kategorien.size)
     }
 
+    @Test
+    fun `neueKategorie() eine bekannte Kategorie neu beschreiben`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKarten = alleDummyKarten()
+
+        // Test 1: die Kategorie ist in der Datenbank
+        val bekannteKategorieMitNeuenKarten =
+            dbs.neueKategorie("dummyKategorie1", neueKarten, Sprachen.OG)
+        assertTrue(dbs.kategorien.contains(bekannteKategorieMitNeuenKarten))
+
+        // Test 2: die doppelte Kategorie ist der Datenbank nicht hinzugefügt worden
+        assertEquals(5, dbs.kategorien.size)
+
+        // Test 3: die bekannte Kategorie hat nun alle neuen Karten gespeichert
+        assertTrue(bekannteKategorieMitNeuenKarten.originaleElemente[IDS]!!.containsAll(neueKarten))
+    }
+
+    @Test
+    fun `neuesSpiel() ein neues Spiel erstellen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKategorien = alleDummyKategorien()
+
+        // Test 1: das Spiel ist in der Datenbank
+        val neuesSpiel = dbs.neuesSpiel("neues Spiel", neueKategorien, Sprachen.OG)
+        assertTrue(dbs.spiele.contains(neuesSpiel))
+
+        // Test 2: das Spiel hat die korrekte ID
+        val actual = neuesSpiel.id
+        val expected = 6
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `karteLoeschen() eine Karte loeschen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val zuLoeschendeKarte = dummyKarte1()
+
+        dbs.karteLoeschen(zuLoeschendeKarte)
+
+        // Test 1: die Karte ist als gelöscht markiert worden
+        assertTrue(zuLoeschendeKarte.geloescht)
+
+        // Test 2: die Karte ist in keinen aktuellen Karten einer Kategorie mehr enthalten
+        dbs.kategorien.forEach {
+            assertTrue(!it.getAktuelleKarten().contains(zuLoeschendeKarte))
+        }
+    }
+
+    @Test
+    fun `kartenZuKategorieHinzufuegen() Karten per Objekt zu einer Kategorie hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKarten = alleDummyKarten()
+        val zuAenderndeKategorie = dbs.kategorien.finde("dummyKategorie1")!!
+
+        dbs.kartenZuKategorieHinzufuegen(zuAenderndeKategorie, neueKarten)
+
+        assertTrue(zuAenderndeKategorie.getKarten().containsAll(alleDummyKarten()))
+    }
+
+    @Test
+    fun `kategorienZuSpielHinzufuegen() Kategorien per ID zu einem Spiel hinzufuegen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val neueKategorien = listOf(1,2,3,4,5)
+        val zuAenderndesSpiel = dbs.spiele.finde("dummySpiel1")!!
+
+        dbs.kategorienZuSpielHinzufuegen(zuAenderndesSpiel, neueKategorien)
+
+        assertTrue(zuAenderndesSpiel.getKategorien().containsAll(alleDummyKategorien()))
+    }
+
+    @Test
+    fun `karteAusKategorieEntfernen() Karte aus Kategorie entfernen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val kategorie = dbs.kategorien.finde(1)
+        val zuEntfernendeKarte = dbs.karten.finde(1)
+        assertTrue(kategorie.getAktuelleKarten().contains(zuEntfernendeKarte))
+
+        val expected = kategorie.getAktuelleKarten() - zuEntfernendeKarte
+
+        dbs.karteAusKategorieEntfernen(zuEntfernendeKarte, kategorie)
+        val actual = dbs.kategorien.finde(1).getAktuelleKarten()
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kategorieAusSpielEntfernen() Kategorie aus Spiel entfernen`() {
+        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val spiel = dbs.spiele.finde(1)
+        val zuEntfernendeKategorie = dbs.kategorien.finde(1)
+        assertTrue(spiel.getAktuelleKategorien().contains(zuEntfernendeKategorie))
+
+        val expected = spiel.getAktuelleKategorien() - zuEntfernendeKategorie
+
+        dbs.kategorieAusSpielEntfernen(zuEntfernendeKategorie, spiel)
+        val actual = dbs.spiele.finde(1).getAktuelleKategorien()
+
+        assertEquals(expected, actual)
+    }
 }

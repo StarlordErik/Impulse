@@ -1,126 +1,250 @@
 package de.seleri.spielelemente
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.yaml.snakeyaml.Yaml
 
-const val TEST_SPIEL_1_EINGABE: String = "Impulse"
-fun testSpiel1Yaml(): String = """
-    |Spiele:
-    |  - ID: 1
-    |    Name:
-    |      OG: "$TEST_SPIEL_1_EINGABE"
-    |      DE: ""
-    |      EN: "$TEST_SPIEL_1_EINGABE"
-    |    originale_Kategorien:
-    |      IDs: [1]
-    |      davon_entfernt: [1]
-    |    hinzugefügte_Kategorien-IDs: [2]
-    |""".trimMargin().lines().drop(1).joinToString("\n")
+fun alleDummySpiele(): Set<Spiel> {
+    val dummySpiele = getDummySpiele("dummySpiele")
+    val actual = dummySpiele.size
 
-fun testSpiel1(): Spiel = Spiel(
-    id = 1, localizations = mutableMapOf(
-        Sprachen.OG to TEST_SPIEL_1_EINGABE, Sprachen.DE to "", Sprachen.EN to TEST_SPIEL_1_EINGABE
-    ), originaleElemente = mapOf(
-        IDS to mutableSetOf(testKategorie1()), DAVON_ENTFERNT to mutableSetOf(testKategorie1())
-    ), hinzugefuegteElemente = mutableSetOf(testKategorie2())
-)
+    val expected = 5
+    assertEquals(expected, actual)
 
-const val TEST_SPIEL_2_EINGABE: String = "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-fun testSpiel2Yaml(): String = """
-    |Spiele:
-    |  - ID: 2
-    |    Name:
-    |      OG: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-    |      DE: "^ß´\tü+\nöä#<,.-°!\"§$ %&/()=?`Ü*ÖÄ'>;:_²³{[]}\\@€~|"
-    |      EN: ""
-    |    originale_Kategorien:
-    |      IDs: [1,2]
-    |      davon_entfernt: []
-    |    hinzugefügte_Kategorien-IDs: []
-    |""".trimMargin().lines().drop(1).joinToString("\n")
+    return dummySpiele
+}
+fun yamlDummySpiel(): String = """
+        |  - $ID: $DUMMY_ID
+        |    $DUMMY_NAME:
+        |      ${Sprachen.OG}: "$DUMMY_OG"
+        |      ${Sprachen.DE}: "$DUMMY_DE"
+        |    $ORIGINALE$KATEGORIEN:
+        |      $IDS: [1,2,3,4]
+        |      $DAVON_ENTFERNT: [2,4]
+        |    $HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS: []
+        |
+        """.trimMargin()
 
-fun testSpiel2(): Spiel = Spiel(
-    id = 2, localizations = mutableMapOf(
-        Sprachen.OG to TEST_SPIEL_2_EINGABE, Sprachen.DE to TEST_SPIEL_2_EINGABE, Sprachen.EN to ""
-    ), originaleElemente = mapOf(
-        IDS to mutableSetOf(testKategorie1(), testKategorie2()), DAVON_ENTFERNT to mutableSetOf()
-    ), hinzugefuegteElemente = mutableSetOf()
+fun getDummySpiele(elementart: String): Set<Spiel> =
+    getDummyDaten("Spiel.yml", elementart) { Spiel.fromYaml(it, alleDummyKategorien()) }
+
+
+fun dummyOriginaleKategorienIDs(): MutableSet<Kategorie> =
+    mutableSetOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+
+fun dummyDavonEntfernteKategorien(): MutableSet<Kategorie> = mutableSetOf(dummyKategorie2(), dummyKategorie4())
+fun dummyOriginaleKategorien(): Map<String, MutableSet<Kategorie>> =
+    mapOf(IDS to dummyOriginaleKategorienIDs(), DAVON_ENTFERNT to dummyDavonEntfernteKategorien())
+
+fun dummyHinzugefuegteKategorien(): MutableSet<Kategorie> = mutableSetOf()
+fun dummySpiel() = Spiel(
+    DUMMY_ID, dummyLocalizations(), dummyOriginaleKategorien(), dummyHinzugefuegteKategorien()
 )
 
 class SpielTest {
 
+    /*
+    ------------------------------------------------------------------------------------------------
+    WICHTIG: Wie ist jeder Test aufgebaut?
+
+    1: benötigte Variablen & Konstanten instantiieren
+
+        (1.5: ggf. wird hier expected instanziiert, falls sich nichts ändern soll)
+
+    2: actual = Ausführung des zu testenden Codes
+
+        (2.5: bei AssertTrue wird 2 & 3 ersetzt durch condition = Ausführung des zu testenden Codes)
+
+    3: expected instanzieeren & Test ausführen
+    ------------------------------------------------------------------------------------------------
+    */
+
     @Test
-    fun `Test eingabeToSpiel() - Konvertierung von Spielname und zugehoerigen Kategorien zu Spiel`() {
-        val spiel1 = Spiel.fromEingabe(1, Sprachen.EN, TEST_SPIEL_1_EINGABE, listOf(testKategorie1()))
-        spiel1.originaleElemente[DAVON_ENTFERNT]!!.clear()
-        spiel1.originaleElemente[DAVON_ENTFERNT]!!.add(testKategorie1())
-        spiel1.hinzugefuegteElemente.clear()
-        spiel1.hinzugefuegteElemente.add(testKategorie2())
+    fun `toYaml() wandelt das Objekt korrekt in Yaml-Text um`() {
+        val dummy = dummySpiel()
 
-        assertEquals(testSpiel1().id, spiel1.id)
-        assertEquals(testSpiel1().localizations, spiel1.localizations)
-        assertEquals(testSpiel1().originaleElemente, spiel1.originaleElemente)
-        assertEquals(testSpiel1().hinzugefuegteElemente, spiel1.hinzugefuegteElemente)
-        assertEquals(testSpiel1(), spiel1)
+        val actual = dummy.toYaml()
 
-        val spiel2 = Spiel.fromEingabe(
-            2, Sprachen.DE, TEST_SPIEL_2_EINGABE, listOf(testKategorie1(), testKategorie2())
+        val expected = yamlDummySpiel()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `Rundreise Yaml zu Objekt zu Yaml`() {
+        val yamlDummy1 = yamlDummySpiel()
+
+        val dummyDaten = (Yaml().load(yamlDummy1) as List<Map<String, Any>>).first()
+        val dummy = Spiel.fromYaml(dummyDaten, alleDummyKategorien()).first()
+
+        val yamlDummy2 = dummy.toYaml()
+        assertEquals(yamlDummy1, yamlDummy2)
+    }
+
+    @Test
+    fun `getKategorien() gibt alle Kategorien des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getKategorien()
+
+        val expected = setOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getAktuelleKategorien() gibt alle Kategorien zurueck, die nicht entfernt wurden`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getAktuelleKategorien()
+
+        val expected = setOf(dummyKategorie1(), dummyKategorie3())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getKarten() gibt alle Karten des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getAktuelleKarten() gibt alle Karten des Spiels zurueck, die nicht entfernt worden sind`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte3())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `getUngeseheneKarten() gibt alle noch nicht gesehenen Karten des Spiels zurueck`() {
+        val dummy = dummySpiel()
+
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = setOf(dummyKarte1())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `setKartenUngesehen() setzt alle Karten auf ungesehen`() {
+        val dummy = dummySpiel()
+
+        dummy.setKartenUngesehen()
+        val actual = dummy.getUngeseheneKarten()
+
+        val expected = dummy.getAktuelleKarten()
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kategorienHinzufuegen() fuegt neue Kategorien zum Spiel hinzu`() {
+        val dummy = dummySpiel()
+        val neueKategorien = setOf(dummyKategorie2(), dummyKategorie5())
+
+        dummy.kategorienHinzufuegen(neueKategorien)
+        val actual = dummy.getAktuelleKarten()
+
+        val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte5())
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `kategorieEntfernen() entfernt eine Kategorie, die bislang Teil des Spiels war`() {
+        val dummy = dummySpiel()
+        val zuEntfernendeKategorie = dummyKategorie1()
+        assertTrue(dummy.getAktuelleKategorien().contains(zuEntfernendeKategorie))
+
+        val expected = dummy.getAktuelleKategorien() - zuEntfernendeKategorie
+
+        dummy.kategorieEntfernen(zuEntfernendeKategorie)
+        val actual = dummy.getAktuelleKategorien()
+
+        assertEquals(expected, actual)
+    }
+
+    /**
+     * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
+     */
+    private fun testKorrekteInstanziierung(
+        erwarteteOriginale: Map<String, Collection<Kategorie>>,
+        erwarteteHinzugefuegte: Collection<Kategorie>,
+        dummy: Spiel
+    ) {
+        val actualOriginale = dummy.originaleElemente
+        val actualHinzugefuegte = dummy.hinzugefuegteElemente
+
+        assertEquals(erwarteteOriginale, actualOriginale)
+        assertEquals(erwarteteHinzugefuegte, actualHinzugefuegte)
+    }
+
+    @Test
+    fun `fromEingabe() korrekte Instanziierung durch Eingabe`() {
+        val eingabeID = DUMMY_ID
+        val eingabeSprache = Sprachen.DE
+        val eingabeName = DUMMY_NAME
+        val eingabeKategorien = alleDummyKategorien()
+
+        val dummy = Spiel.fromEingabe(
+            eingabeID, eingabeSprache, eingabeName, eingabeKategorien
         )
-        spiel2.hinzugefuegteElemente.clear()
 
-        assertEquals(testSpiel2().id, spiel2.id)
-        assertEquals(testSpiel2().localizations, spiel2.localizations)
-        assertEquals(testSpiel2().originaleElemente, spiel2.originaleElemente)
-        assertEquals(testSpiel2().hinzugefuegteElemente, spiel2.hinzugefuegteElemente)
-        assertEquals(testSpiel2(), spiel2)
+        val erwarteteOriginale = mapOf(IDS to eingabeKategorien, DAVON_ENTFERNT to emptySet())
+        val erwarteteHinzugefuegte = emptySet<Kategorie>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
     @Test
-    fun `Test spielToYaml() - Konvertierung von Spiel zu YAML`() {
-        assertEquals(testSpiel1Yaml(), testSpiel1().toYaml())
-        assertEquals(testSpiel2Yaml(), testSpiel2().toYaml())
-    }
-/*
-    @Test
-    fun `Test yamlToSpiel() - Konvertierung von YAML zu Spiel`() {
-        val spiel1 = Spiel.fromYaml(testSpiel1Yaml(), alleTestKategorien())[0]
-        assertEquals(testSpiel1(), spiel1)
+    fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
+        val dummys = getDummySpiele("gültigeSpiele")
 
-        val spiel2 = Spiel.fromYaml(testSpiel2Yaml(), alleTestKategorien())[0]
-        assertEquals(testSpiel2(), spiel2)
+        val actual = dummys.size
+
+        val expected = 2
+        assertEquals(expected, actual)
+
+        `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(dummys.finde(7))
+        `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(dummys.finde(42))
     }
 
-    @Test
-    fun `Test Rundreise yamlToSpielToYaml - Konvertierung von YAML zu Spiel und wieder zurueck`() {
-        assertEquals(
-            testSpiel1Yaml(), Spiel.fromYaml(testSpiel1Yaml(), alleTestKategorien())[0].toYaml()
-        )
-        assertEquals(
-            testSpiel2Yaml(), Spiel.fromYaml(testSpiel2Yaml(), alleTestKategorien())[0].toYaml()
-        )
-    }
-*/
-    @Test
-    fun `Test getAlleKategorien() - Ausgabe aller Kategorien des Spiels`() {
-        assertEquals(2, testSpiel1().getAlleKategorien().size)
-        assertEquals(2, testSpiel2().getAlleKategorien().size)
+    private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
+        dummy: Spiel
+    ) {
+        val originaleKategorienIDs = setOf(dummyKategorie1())
+        val davonEntfernte = emptySet<Kategorie>()
+
+        val erwarteteOriginale = mapOf(IDS to originaleKategorienIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = setOf(dummyKategorie5())
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
-    @Test
-    fun `Test getAlleAktuellenKategorien() - Ausgabe aller aktuellen Kategorien des Spiels`() {
-        assertEquals(1, testSpiel1().getAlleAktuellenKategorien().size)
-        assertEquals(2, testSpiel2().getAlleAktuellenKategorien().size)
+    private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
+        dummy: Spiel
+    ) {
+        val originaleKategorienIDs = setOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
+        val davonEntfernte = setOf(dummyKategorie2(), dummyKategorie4())
+
+        val erwarteteOriginale = mapOf(IDS to originaleKategorienIDs, DAVON_ENTFERNT to davonEntfernte)
+        val erwarteteHinzugefuegte = emptySet<Kategorie>()
+        testKorrekteInstanziierung(erwarteteOriginale, erwarteteHinzugefuegte, dummy)
     }
 
     @Test
-    fun `Test getAlleKarten() - Ausgabe aller Karten des Spiels`() {
-        assertEquals(2, testSpiel1().getAlleKarten().size)
-        assertEquals(2, testSpiel2().getAlleKarten().size)
-    }
-
-    @Test
-    fun `Test getAlleAktuellenKarten() - Ausgabe aller aktuellen Karten des Spiels`() {
-        assertEquals(2, testSpiel1().getAlleAktuellenKarten().size)
-        assertEquals(2, testSpiel2().getAlleAktuellenKarten().size)
+    fun `fromYaml() Exception bei fehlenden Yaml-Attributen`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_Spiele")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_originale_Kategorien")
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            getDummySpiele("fehlende_hinzugefuegte_Kategorien-IDs")
+        }
     }
 }
