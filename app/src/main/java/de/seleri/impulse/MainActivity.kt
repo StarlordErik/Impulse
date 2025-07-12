@@ -3,6 +3,10 @@ package de.seleri.impulse
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import de.seleri.spielelemente.Datenbanksystem
 
 class MainActivity: ComponentActivity() {
@@ -10,7 +14,45 @@ class MainActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         val dbs = Datenbanksystem.generieren(this)
         setContent {
-            Navigation(dbs)
+            ImpulseTheme{
+                Navigation(dbs)
+            }
         }
     }
+}
+
+@Composable
+fun ImpulseTheme(content: @Composable () -> Unit) {
+    val farbpalette = darkColorScheme(
+        primary = Color(color = 0xFFD36135),
+        onPrimary = Color.White,
+        primaryContainer = Color(color = 0xFFA24936),
+        onPrimaryContainer = Color.White,
+
+        secondary = Color(color = 0xFF478347),
+        onSecondary = Color.White,
+        secondaryContainer = Color(color = 0xFF3E5641),
+        onSecondaryContainer = Color.White,
+
+        tertiary = Color(color = 0xFF2196F3),
+        onTertiary = Color.White,
+        tertiaryContainer = Color(color = 0xFF3F51B5),
+        onTertiaryContainer = Color.White,
+
+        background = Color(color = 0xFF181F1C),
+        onBackground = Color.White,
+
+        surface = Color(color = 0xFF3E5641),
+        onSurface = Color.White,
+        surfaceVariant = Color(color = 0xFF324433),
+        onSurfaceVariant = Color.White,
+
+        outline = Color(color = 0xFF83BCA9)
+    )
+
+
+    MaterialTheme(
+        colorScheme = farbpalette,
+        content = content
+    )
 }
