@@ -1,6 +1,8 @@
 package de.seleri.impulse
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,7 +27,11 @@ import de.seleri.spielelemente.Sprachen
 
 @Composable
 fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
         item {
             Titel()
         }
