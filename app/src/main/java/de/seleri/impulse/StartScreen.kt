@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import de.seleri.spielelemente.Datenbanksystem
-import de.seleri.spielelemente.Spiel
 import de.seleri.spielelemente.Sprachen
 
 @Composable
@@ -36,7 +35,7 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
             Titel()
         }
         items(dbs.spiele.toList(), key = { it.id }) { spiel ->
-            SpielButton(spiel = spiel) {
+            SammlungsButton(spiel.localizations[Sprachen.OG]!!) {
                 navController.navigate(Screen.Spiel.mitDerID(spiel.id))
             }
         }
@@ -70,7 +69,7 @@ fun Titel() {
 }
 
 @Composable
-fun SpielButton(spiel: Spiel, onClick: () -> Unit) {
+fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         colors = CardDefaults.cardColors(
@@ -83,15 +82,20 @@ fun SpielButton(spiel: Spiel, onClick: () -> Unit) {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
         ) {
             Text(
-                text = spiel.localizations[Sprachen.OG]!!,
+                text = buttonText,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(15.dp)
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun SammlungsButtonPreview() {
+    SammlungsButton("Kartentext") {}
 }
