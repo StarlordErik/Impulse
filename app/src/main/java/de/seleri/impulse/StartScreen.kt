@@ -98,7 +98,8 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            contentColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f)
         ),
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
