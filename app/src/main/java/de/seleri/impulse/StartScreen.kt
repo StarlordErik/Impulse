@@ -35,7 +35,7 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
         item {
             Titel()
         }
-        items(dbs.spiele.toList(), key = { spiel -> spiel.id }) { spiel ->
+        items(dbs.spiele.toList(), key = { it.id }) { spiel ->
             SpielButton(navController, spiel)
         }
     }
