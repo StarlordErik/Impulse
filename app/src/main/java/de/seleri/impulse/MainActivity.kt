@@ -59,11 +59,11 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
     val formatierung = Typography(
         displayLarge = TextStyle(
             fontWeight = FontWeight.Bold,
-            fontSize = 48.sp,
+            fontSize = 60.sp,
             shadow = Shadow(
                 color = Color.Black.copy(alpha = 0.3f),
                 offset = Offset(2f, 2f),
-                blurRadius = 4f
+                blurRadius = 6f
             )
         )
     )
