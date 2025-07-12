@@ -3,11 +3,14 @@ package de.seleri.impulse
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Typography
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.colorResource
@@ -80,7 +83,12 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
 
     MaterialTheme(
         colorScheme = farbpalette,
-        typography = formatierung,
-        content = content
-    )
+        typography = formatierung){
+        Surface (
+            modifier = Modifier.fillMaxSize(),
+            color = farbpalette.background
+        ){
+            content()
+        }
+    }
 }
