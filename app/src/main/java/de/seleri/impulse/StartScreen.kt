@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import de.seleri.spielelemente.Datenbanksystem
+import de.seleri.spielelemente.Spiel
 import de.seleri.spielelemente.Sprachen
 
 @Composable
@@ -23,13 +24,7 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
         Titel()
 
         dbs.spiele.forEach { spiel ->
-            Card(
-                onClick = {
-                    navController.navigate(Screen.Spiel.mitDerID(spiel.id))
-                }
-            ) {
-                Text(text = spiel.localizations[Sprachen.OG]!!)
-            }
+            SpielButton(navController, spiel)
         }
     }
 }
@@ -60,3 +55,13 @@ fun Titel() {
     }
 }
 
+@Composable
+fun SpielButton(navController: NavHostController, spiel: Spiel){
+    Card(
+        onClick = {
+            navController.navigate(Screen.Spiel.mitDerID(spiel.id))
+        }
+    ) {
+        Text(text = spiel.localizations[Sprachen.OG]!!)
+    }
+}
