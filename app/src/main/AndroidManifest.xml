@@ -10,7 +10,6 @@
         android:icon="@mipmap/icon_prototyp"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Impulse"
         tools:targetApi="36">
 
         <!-- Der Portrait-Modus wird nicht gern von Android gesehen, deswegen steht dort "tools:ignore="DiscouragedApi,LockedOrientationActivity"" -->
@@ -25,12 +24,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="de.seleri.impulse.SpielActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity"
-            >
         </activity>
     </application>
 
