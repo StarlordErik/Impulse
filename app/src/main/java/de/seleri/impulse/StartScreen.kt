@@ -2,6 +2,7 @@ package de.seleri.impulse
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -14,10 +15,11 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
         Text(text = "Impulse")
 
         dbs.spiele.forEach { spiel ->
-            Button(
+            Card(
                 onClick = {
                     navController.navigate(Screen.Spiel.mitDerID(spiel.id))
-                }) {
+                }
+            ) {
                 Text(text = spiel.localizations[Sprachen.OG]!!)
             }
         }

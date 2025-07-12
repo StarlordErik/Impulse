@@ -2,6 +2,7 @@ package de.seleri.impulse
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,7 +18,7 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
     Column {
         spiel.getAktuelleKategorien().forEach { kategorie ->
             var kartentext by remember { mutableStateOf(kategorie.localizations[Sprachen.OG]!!) }
-            Button(
+            Card (
                 onClick = {
                     kartentext = dbs.getRandomKartentext(kategorie)
                 }) {
