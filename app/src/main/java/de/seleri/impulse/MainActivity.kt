@@ -32,7 +32,7 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
     val farbpalette = darkColorScheme(
         primary = Color(color = 0xFFD36135),
         onPrimary = Color.White,
-        primaryContainer = Color(color = 0xFFA24936),
+        primaryContainer = Color(color = 0xFFB15634),
         onPrimaryContainer = Color.White,
 
         secondary = Color(color = 0xFF478347),
