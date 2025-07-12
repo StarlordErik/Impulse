@@ -78,3 +78,12 @@ fun KategorieButton(
         }
     }
 }
+
+@Preview
+@Composable
+fun KategorieButtonPreview() {
+    KategorieButton(
+        kartentext = "Kartentext",
+        onCardClick = {}
+    )
+}
