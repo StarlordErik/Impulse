@@ -4,6 +4,7 @@
 
     <application
         android:icon="@mipmap/icon_prototyp"
+        android:label="@string/app_name"
         tools:targetApi="36">
 
         <!-- Der Portrait-Modus wird nicht gern von Android gesehen, deswegen steht dort "tools:ignore="DiscouragedApi,LockedOrientationActivity"" -->
