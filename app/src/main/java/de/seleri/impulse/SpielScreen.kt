@@ -28,6 +28,7 @@ import de.seleri.spielelemente.Sprachen
 import kotlin.collections.set
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.RowScope
 
 @Composable
 fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
@@ -36,8 +37,12 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        val kartentexte = remember { mutableStateMapOf<Int, String>() }
+        SpielScreenRow{
+            SpielTitel(spiel.localizations[Sprachen.OG]!!)
+            SpielScreenIcon(SpielIcon.Einstellungsrad)
+        }
 
+        val kartentexte = remember { mutableStateMapOf<Int, String>() }
         LazyColumn(
             modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center
         ) {
@@ -49,6 +54,11 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
                     kartentexte[kategorie.id] = dbs.getRandomKartentext(kategorie)
                 }
             }
+        }
+
+        SpielScreenRow{
+            SpielScreenIcon(SpielIcon.PfeilFuerLetzteKarte)
+            SpielScreenIcon(SpielIcon.KarteLoeschen)
         }
     }
 }
@@ -73,16 +83,11 @@ fun SpielScreenPreview() {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            SpielScreenRow{
                 SpielTitel("Erzählt euch mehr")
                 SpielScreenIcon(SpielIcon.Einstellungsrad)
             }
+
             LazyColumn(
                 modifier = Modifier
                     .weight(1f)
@@ -94,17 +99,25 @@ fun SpielScreenPreview() {
                     SammlungsButton(spielname) {}
                 }
             }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+
+            SpielScreenRow{
                 SpielScreenIcon(SpielIcon.PfeilFuerLetzteKarte)
                 SpielScreenIcon(SpielIcon.KarteLoeschen)
             }
         }
+    }
+}
+
+@Composable
+fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        content()
     }
 }
 
@@ -117,21 +130,9 @@ fun SpielTitel(name: String){
     )
 }
 
-@Composable
-fun SpielScreenIcon(icon: SpielIcon) {
-    Icon(
-        painter = painterResource(icon.iconRes),
-        contentDescription = stringResource(icon.contentDescriptionRes),
-        tint = MaterialTheme.colorScheme.primaryContainer,
-        modifier = Modifier.size(55.dp)
-    )
-}
-
-
-
 sealed class SpielIcon(
-    @param:DrawableRes val iconRes: Int,
-    @param:StringRes val contentDescriptionRes: Int
+    @param:DrawableRes val ressource: Int,
+    @param:StringRes val beschreibung: Int
 ) {
     object Einstellungsrad : SpielIcon(
         R.drawable.settings_for_game_mechanics,
@@ -146,5 +147,15 @@ sealed class SpielIcon(
     object KarteLoeschen : SpielIcon(
         R.drawable.remove_card,
         R.string.remove_card
+    )
+}
+
+@Composable
+fun SpielScreenIcon(icon: SpielIcon) {
+    Icon(
+        painter = painterResource(icon.ressource),
+        contentDescription = stringResource(icon.beschreibung),
+        tint = MaterialTheme.colorScheme.primaryContainer,
+        modifier = Modifier.size(55.dp)
     )
 }
