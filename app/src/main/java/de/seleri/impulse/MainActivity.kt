@@ -7,6 +7,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.Typography
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import de.seleri.spielelemente.Datenbanksystem
 
 class MainActivity: ComponentActivity() {
@@ -50,9 +54,16 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
         outline = Color(color = 0xFF83BCA9)
     )
 
+    val formatierung = Typography(
+        displayLarge = TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 48.sp
+        )
+    )
 
     MaterialTheme(
         colorScheme = farbpalette,
+        typography = formatierung,
         content = content
     )
 }
