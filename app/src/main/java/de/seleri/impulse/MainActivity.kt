@@ -65,6 +65,15 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
                 offset = Offset(2f, 2f),
                 blurRadius = 6f
             )
+        ),
+        displayMedium = TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp,
+            shadow = Shadow(
+                color = Color.Black.copy(alpha = 0.3f),
+                offset = Offset(1f, 1f),
+                blurRadius = 4f
+            )
         )
     )
 
