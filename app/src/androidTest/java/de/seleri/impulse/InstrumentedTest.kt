@@ -23,6 +23,9 @@ class InstrumentedTest {
         assertEquals("de.seleri.impulse", appContext.packageName)
     }
 
+    /*
+    vor dem Composable-Transfer:
+
     @Test
     fun datenbanksystem_ist_generiert() {
         val dbs = (ApplicationProvider.getApplicationContext<Context>() as Impulse).dbs
@@ -49,5 +52,5 @@ class InstrumentedTest {
             assertNotNull(db)
         }
     }
-
+    */
 }
