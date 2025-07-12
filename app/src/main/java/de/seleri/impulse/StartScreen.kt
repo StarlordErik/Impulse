@@ -44,6 +44,31 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
 
 @Preview
 @Composable
+fun StartScreenPreview() {
+    val buttons = listOf(
+        "We're not really strangers",
+        "Fun Facts",
+        "Erzählt euch mehr",
+        "Privacy"
+    )
+
+    ImpulseTheme {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            item {
+                Titel()
+            }
+            items(buttons) { spielname ->
+                SammlungsButton(spielname) {}
+            }
+        }
+    }
+}
+
+@Composable
 fun Titel() {
     val windowInfo = LocalWindowInfo.current
     val density = LocalDensity.current
@@ -92,10 +117,4 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun SammlungsButtonPreview() {
-    SammlungsButton("Kartentext") {}
 }
