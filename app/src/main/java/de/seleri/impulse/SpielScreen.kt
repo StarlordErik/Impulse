@@ -65,6 +65,54 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
     }
 }
 
+@Composable
+fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 5.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        content()
+    }
+}
+
+@Composable
+fun SpielTitel(name: String) {
+    Text(
+        text = name,
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.displayMedium
+    )
+}
+
+sealed class SpielIcon(
+    @param:DrawableRes val ressource: Int, @param:StringRes val beschreibung: Int
+) {
+    object Einstellungsrad: SpielIcon(
+        R.drawable.settings_for_game_mechanics, R.string.settings_for_game_mechanics
+    )
+    object PfeilFuerLetzteKarte: SpielIcon(
+        R.drawable.arrow_back, R.string.arrow_back
+    )
+
+    object KarteLoeschen: SpielIcon(
+        R.drawable.remove_card, R.string.remove_card
+    )
+
+}
+
+@Composable
+fun SpielScreenIcon(icon: SpielIcon) {
+    Icon(
+        painter = painterResource(icon.ressource),
+        contentDescription = stringResource(icon.beschreibung),
+        tint = MaterialTheme.colorScheme.primaryContainer,
+        modifier = Modifier.size(50.dp)
+    )
+}
+
 @Preview
 @Composable
 fun SpielScreenPreview() {
@@ -107,52 +155,4 @@ fun SpielScreenPreview() {
             }
         }
     }
-}
-
-@Composable
-fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 5.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        content()
-    }
-}
-
-@Composable
-fun SpielTitel(name: String) {
-    Text(
-        text = name,
-        color = MaterialTheme.colorScheme.primary,
-        style = MaterialTheme.typography.displayMedium
-    )
-}
-
-sealed class SpielIcon(
-    @param:DrawableRes val ressource: Int, @param:StringRes val beschreibung: Int
-) {
-    object Einstellungsrad: SpielIcon(
-        R.drawable.settings_for_game_mechanics, R.string.settings_for_game_mechanics
-    )
-
-    object PfeilFuerLetzteKarte: SpielIcon(
-        R.drawable.arrow_back, R.string.arrow_back
-    )
-
-    object KarteLoeschen: SpielIcon(
-        R.drawable.remove_card, R.string.remove_card
-    )
-}
-
-@Composable
-fun SpielScreenIcon(icon: SpielIcon) {
-    Icon(
-        painter = painterResource(icon.ressource),
-        contentDescription = stringResource(icon.beschreibung),
-        tint = MaterialTheme.colorScheme.primaryContainer,
-        modifier = Modifier.size(50.dp)
-    )
 }
