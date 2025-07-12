@@ -42,7 +42,7 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
     }
 }
 
-@Preview
+@Preview(apiLevel = 33)
 @Composable
 fun StartScreenPreview() {
     val buttons = listOf(
