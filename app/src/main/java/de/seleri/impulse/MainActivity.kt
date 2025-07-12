@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Typography
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
@@ -45,7 +46,7 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
         tertiaryContainer = Color(color = 0xFF3F51B5),
         onTertiaryContainer = Color.White,
 
-        background = Color(color = 0xFF181F1C),
+        background = colorResource(id = R.color.Hintergrund),
         onBackground = Color.White,
 
         surface = Color(color = 0xFF3E5641),
