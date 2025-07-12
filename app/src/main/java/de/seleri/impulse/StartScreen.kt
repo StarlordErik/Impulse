@@ -36,7 +36,9 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
             Titel()
         }
         items(dbs.spiele.toList(), key = { it.id }) { spiel ->
-            SpielButton(navController, spiel)
+            SpielButton(spiel = spiel) {
+                navController.navigate(Screen.Spiel.mitDerID(spiel.id))
+            }
         }
     }
 }
@@ -68,11 +70,9 @@ fun Titel() {
 }
 
 @Composable
-fun SpielButton(navController: NavHostController, spiel: Spiel) {
+fun SpielButton(spiel: Spiel, onClick: () -> Unit) {
     Card(
-        onClick = {
-            navController.navigate(Screen.Spiel.mitDerID(spiel.id))
-        },
+        onClick = onClick,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),
@@ -83,7 +83,8 @@ fun SpielButton(navController: NavHostController, spiel: Spiel) {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
         ) {
             Text(
                 text = spiel.localizations[Sprachen.OG]!!,
