@@ -19,33 +19,28 @@ fun Navigation(dbs: Datenbanksystem) {
         }
 
         composable(
-            route = Screen.Spiel.route + "/{spielID}",
-            arguments = listOf(
+            route = Screen.Spiel.route + "/{spielID}", arguments = listOf(
                 navArgument("spielID") {
                     type = NavType.IntType
                     nullable = false
-                }
-            )
+                })
         ) { eingabe ->
             val id = eingabe.arguments!!.getInt("spielID")
             SpielScreen(
-                dbs = dbs,
-                spiel = dbs.spiele.finde(id)
+                dbs = dbs, spiel = dbs.spiele.finde(id)
             )
         }
     }
 }
 
-sealed class Screen(val route : String) {
-    object Start : Screen("start")
-    object Spiel : Screen("spiel")
+sealed class Screen(val route: String) {
+    object Start: Screen("start")
+    object Spiel: Screen("spiel")
 
-    fun mitArgumenten(vararg args : Any) : String {
+    fun mitDerID(id: Int): String {
         return buildString {
             append(route)
-            args.forEach { arg ->
-                append("/$arg")
-            }
+            append("/$id")
         }
     }
 }

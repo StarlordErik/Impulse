@@ -16,7 +16,7 @@ import de.seleri.spielelemente.Datenbanksystem
 import de.seleri.spielelemente.Spiel
 import de.seleri.spielelemente.Sprachen
 
-class MainActivity : ComponentActivity() {
+class MainActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dbs = Datenbanksystem.generieren(this)
@@ -28,15 +28,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
-    Column{
+    Column {
         Text(text = "Impulse")
 
         dbs.spiele.forEach { spiel ->
             Button(
                 onClick = {
-                    navController.navigate(Screen.Spiel.mitArgumenten(spiel.id))
-                }
-            ) {
+                    navController.navigate(Screen.Spiel.mitDerID(spiel.id))
+                }) {
                 Text(text = spiel.localizations[Sprachen.OG]!!)
             }
         }
@@ -45,14 +44,13 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
 
 @Composable
 fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
-    Column{
+    Column {
         spiel.getAktuelleKategorien().forEach { kategorie ->
             var kartentext by remember { mutableStateOf(kategorie.localizations[Sprachen.OG]!!) }
             Button(
                 onClick = {
                     kartentext = dbs.getRandomKartentext(kategorie)
-                }
-            ) {
+                }) {
                 Text(text = kartentext)
             }
         }
