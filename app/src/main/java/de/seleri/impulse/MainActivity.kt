@@ -24,9 +24,6 @@ import javax.inject.Singleton
 
 @AndroidEntryPoint
 class MainActivity: ComponentActivity() {
-    @Inject
-    lateinit var dbs: Datenbanksystem
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
