@@ -1,48 +1,31 @@
 package de.seleri.frontend
 
-/*
+import de.seleri.spielelemente.dummyDatenbanksystem
+import de.seleri.spielelemente.dummySpiel1
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+fun dummyImpulseViewModel() = ImpulseViewModel(dummyDatenbanksystem())
+
 class ImpulseViewModelTest {
 
-    private lateinit var datenbanksystem: Datenbanksystem
-    private lateinit var viewModel: ImpulseViewModel
+    @Test
+    fun `dummyImpulseViewModel() ViewModel initialisieren`() {
+        val viewModel = dummyImpulseViewModel()
 
-    @Before
-    fun setup() {
-        datenbanksystem = mockk()
-
-        every { datenbanksystem.spiele } returns alleDummySpiele().toMutableSet()
-
-        every { datenbanksystem.getRandomKartentext(any()) } returns "Testkarte"
-
-        viewModel = ImpulseViewModel(Datenbanksystem(tmpDatenbankDatei()))
+        assertTrue(viewModel.spiele.isNotEmpty())
     }
 
     @Test
-    fun `getSpiel returns correct Spiel`() {
-        val id = 1
-        every { datenbanksystem.spiele.finde(id) } returns Spiel(id)
+    fun `getSpiel() Spiel wird gefunden`() {
+        val viewModel = dummyImpulseViewModel()
 
-        val result = viewModel.getSpiel(id)
-        assertEquals(id, result.id)
-    }
+        val actual = viewModel.getSpiel(1)
 
-    @Test
-    fun `getName returns OG localization`() {
-        val sammlung = SammlungAnSpielelementen<Kategorie>().apply {
-            localizations = mapOf(Sprachen.OG to "Originalname")
-        }
-
-        val result = viewModel.getName(sammlung)
-        assertEquals("Originalname", result)
-    }
-
-    @Test
-    fun `getRandomKartentext returns expected value`() {
-        val kategorie = mockk<Kategorie>()
-        val result = viewModel.getRandomKartentext(kategorie)
-        assertEquals("Testkarte", result)
+        val expected = dummySpiel1()
+        assertEquals(expected, actual)
     }
 }
 
 
- */
