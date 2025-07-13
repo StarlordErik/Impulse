@@ -29,7 +29,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.seleri.spielelemente.Spiel
-import de.seleri.spielelemente.Sprachen
 
 @Composable
 fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
@@ -41,7 +40,7 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
         Spacer(modifier = Modifier.height(10.dp))
 
         SpielScreenRow {
-            SpielTitel(spiel.localizations[Sprachen.OG]!!, Modifier.weight(1f))
+            SpielTitel(viewModel.getName(spiel), Modifier.weight(1f))
             SpielScreenIcon(SpielIcon.Einstellungsrad)
         }
 
@@ -52,7 +51,7 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
                 .fillMaxWidth(), verticalArrangement = Arrangement.Center
         ) {
             items(spiel.getAktuelleKategorien().toList(), key = { it.id }) { kategorie ->
-                val initialText = kategorie.localizations[Sprachen.OG]!!
+                val initialText = viewModel.getName(kategorie)
                 val kartentext = kartentexte[kategorie.id] ?: initialText
 
                 SammlungsButton(kartentext) {

@@ -21,7 +21,6 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import de.seleri.spielelemente.Sprachen
 
 @Composable
 fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
@@ -36,7 +35,7 @@ fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
             Titel()
         }
         items(spiele, key = { it.id }) { spiel ->
-            SammlungsButton(spiel.localizations[Sprachen.OG]!!) {
+            SammlungsButton(viewModel.getName(spiel)) {
                 navController.navigate(Screen.Spiel.mitDerID(spiel.id))
             }
         }
