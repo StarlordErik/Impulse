@@ -12,7 +12,7 @@
         <!-- Der Portrait-Modus wird nicht gern von Android gesehen, deswegen steht dort "tools:ignore="DiscouragedApi,LockedOrientationActivity"" -->
 
         <activity
-            android:name="de.seleri.impulse.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity"
             android:exported="true"
