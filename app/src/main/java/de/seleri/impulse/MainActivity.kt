@@ -1,13 +1,20 @@
 package de.seleri.impulse
 
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import de.seleri.spielelemente.Datenbanksystem
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 @AndroidEntryPoint
@@ -29,3 +36,13 @@ class MainActivity: ComponentActivity() {
 @HiltAndroidApp
 class Impulse: Application()
 
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideDatenbanksystem(@ApplicationContext context: Context): Datenbanksystem {
+        return Datenbanksystem.generieren(context)
+    }
+}
