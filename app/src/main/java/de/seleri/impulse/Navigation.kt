@@ -1,5 +1,7 @@
 package de.seleri.impulse
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -9,12 +11,50 @@ import androidx.navigation.navArgument
 import de.seleri.spielelemente.Datenbanksystem
 import de.seleri.spielelemente.finde
 
+const val TRANSITION_DAUER = 300
+
 @Composable
 fun Navigation(dbs: Datenbanksystem) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = Screen.Start.route) {
 
-        composable(Screen.Start.route) {
+        composable(Screen.Start.route, enterTransition = {
+            when (initialState.destination.route) {
+                Screen.Spiel.route + "/{spielID}" -> slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(TRANSITION_DAUER)
+                )
+
+                else -> null
+            }
+        }, exitTransition = {
+            when (targetState.destination.route) {
+                Screen.Spiel.route + "/{spielID}" -> slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(TRANSITION_DAUER)
+                )
+
+                else -> null
+            }
+        }, popEnterTransition = {
+            when (initialState.destination.route) {
+                Screen.Spiel.route + "/{spielID}" -> slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(TRANSITION_DAUER)
+                )
+
+                else -> null
+            }
+        }, popExitTransition = {
+            when (targetState.destination.route) {
+                Screen.Spiel.route + "/{spielID}" -> slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(TRANSITION_DAUER)
+                )
+
+                else -> null
+            }
+        }) {
             StartScreen(navController, dbs)
         }
 
