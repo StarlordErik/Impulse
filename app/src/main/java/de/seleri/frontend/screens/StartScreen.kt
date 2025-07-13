@@ -1,4 +1,4 @@
-package de.seleri.impulse
+package de.seleri.frontend.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,9 +21,10 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import de.seleri.frontend.ImpulseTheme
 
 @Composable
-fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
+fun StartScreen(navController: NavHostController, viewModel: de.seleri.frontend.ImpulseViewModel) {
     val spiele = viewModel.spiele
 
     LazyColumn(
@@ -36,7 +37,7 @@ fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
         }
         items(spiele, key = { it.id }) { spiel ->
             SammlungsButton(viewModel.getName(spiel)) {
-                navController.navigate(Screen.Spiel.mitDerID(spiel.id))
+                navController.navigate(Screens.Spiel.mitDerID(spiel.id))
             }
         }
     }

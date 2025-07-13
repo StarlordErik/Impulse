@@ -1,7 +1,5 @@
-package de.seleri.impulse
+package de.seleri.frontend.screens
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,10 +26,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import de.seleri.frontend.ImpulseTheme
 import de.seleri.spielelemente.Spiel
 
 @Composable
-fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
+fun SpielScreen(viewModel: de.seleri.frontend.ImpulseViewModel, spiel: Spiel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +40,7 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
 
         SpielScreenRow {
             SpielTitel(viewModel.getName(spiel), Modifier.weight(1f))
-            SpielScreenIcon(SpielIcon.Einstellungsrad)
+            SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
         }
 
         val kartentexte = remember { mutableStateMapOf<Int, String>() }
@@ -61,8 +60,8 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
         }
 
         SpielScreenRow {
-            SpielScreenIcon(SpielIcon.PfeilFuerLetzteKarte)
-            SpielScreenIcon(SpielIcon.KarteLoeschen)
+            SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
+            SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
         }
     }
 }
@@ -92,24 +91,8 @@ fun SpielTitel(name: String, modifier: Modifier) {
     )
 }
 
-sealed class SpielIcon(
-    @param:DrawableRes val ressource: Int, @param:StringRes val beschreibung: Int
-) {
-    object Einstellungsrad: SpielIcon(
-        R.drawable.settings_for_game_mechanics, R.string.settings_for_game_mechanics
-    )
-    object PfeilFuerLetzteKarte: SpielIcon(
-        R.drawable.arrow_back, R.string.arrow_back
-    )
-
-    object KarteLoeschen: SpielIcon(
-        R.drawable.remove_card, R.string.remove_card
-    )
-
-}
-
 @Composable
-fun SpielScreenIcon(icon: SpielIcon) {
+fun SpielScreenIcon(icon: SpielScreenIcons) {
     Icon(
         painter = painterResource(icon.ressource),
         contentDescription = stringResource(icon.beschreibung),
@@ -142,7 +125,7 @@ fun SpielScreenPreview() {
 
             SpielScreenRow {
                 SpielTitel("We're not really strangers", Modifier.weight(1f))
-                SpielScreenIcon(SpielIcon.Einstellungsrad)
+                SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
             }
 
             LazyColumn(
@@ -157,8 +140,8 @@ fun SpielScreenPreview() {
             }
 
             SpielScreenRow {
-                SpielScreenIcon(SpielIcon.PfeilFuerLetzteKarte)
-                SpielScreenIcon(SpielIcon.KarteLoeschen)
+                SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
+                SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
             }
         }
     }

@@ -1,7 +1,7 @@
 package de.seleri.spielelemente
 
 import android.content.Context
-import de.seleri.impulse.R
+import de.seleri.frontend.R
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.nio.file.Paths

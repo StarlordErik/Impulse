@@ -1,4 +1,4 @@
-package de.seleri.impulse
+package de.seleri.frontend
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme

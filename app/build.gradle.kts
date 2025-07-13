@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-    namespace = "de.seleri.impulse"
+    namespace = "de.seleri.frontend"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "de.seleri.impulse"
+        applicationId = "de.seleri.frontend"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
@@ -100,13 +100,13 @@ kover {
         filters {
             excludes {
                 classes(
-                    "de.seleri.impulse.AppModule*",
-                    "de.seleri.impulse.ComposableSingletons*",
-                    "de.seleri.impulse.*MainActivity*",
-                    "de.seleri.impulse.Impulse",
-                    "de.seleri.impulse.ImpulseViewModel_*",
-                    "de.seleri.impulse.NavigationKt",
-                    "de.seleri.impulse.ThemeKt",
+                    "*ComposableSingletons*",
+                    "*AppModule*",
+                    "*MainActivity*",
+                    "*NavigationKt",
+                    "*Theme*",
+                    "*ImpulseViewModel_*",
+                    "de.seleri.frontend.Impulse",
 
                     )
                 packages(

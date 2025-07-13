@@ -1,16 +1,10 @@
-package de.seleri.impulse
+package de.seleri.frontend
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import de.seleri.spielelemente.finde
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Rule
 
 
 @RunWith(AndroidJUnit4::class)
@@ -20,7 +14,7 @@ class InstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("de.seleri.impulse", appContext.packageName)
+        assertEquals("de.seleri.frontend", appContext.packageName)
     }
 
     /*

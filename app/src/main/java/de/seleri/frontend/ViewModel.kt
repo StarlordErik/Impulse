@@ -1,4 +1,4 @@
-package de.seleri.impulse
+package de.seleri.frontend
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
