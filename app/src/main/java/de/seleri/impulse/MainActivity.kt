@@ -15,6 +15,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.seleri.spielelemente.Datenbanksystem
+import de.seleri.spielelemente.Kategorie
+import de.seleri.spielelemente.Spiel
+import de.seleri.spielelemente.finde
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,7 +31,7 @@ class MainActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ImpulseTheme {
-                Navigation(dbs)
+                Navigation()
             }
         }
     }
@@ -51,6 +54,15 @@ object AppModule {
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val dbs: Datenbanksystem
-): ViewModel()
+    private val dbs: Datenbanksystem
+): ViewModel() {
+    val spiele = dbs.spiele
+
+    fun getSpiel(id: Int): Spiel = dbs.spiele.finde(id)
+
+    fun getRandomKartentext(kategorie: Kategorie): String {
+        return dbs.getRandomKartentext(kategorie)
+    }
+}
+
 
