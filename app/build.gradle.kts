@@ -6,8 +6,8 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.kover)
     alias(libs.plugins.androidxComposeCompiler)
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -72,7 +72,7 @@ dependencies {
     implementation(libs.material)
 
     implementation(libs.hilt.android)
-    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
