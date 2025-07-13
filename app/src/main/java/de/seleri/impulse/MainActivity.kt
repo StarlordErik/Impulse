@@ -56,7 +56,7 @@ object AppModule {
 class MainViewModel @Inject constructor(
     private val dbs: Datenbanksystem
 ): ViewModel() {
-    val spiele = dbs.spiele
+    val spiele = dbs.spiele.toList()
 
     fun getSpiel(id: Int): Spiel = dbs.spiele.finde(id)
 

@@ -9,14 +9,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import de.seleri.spielelemente.finde
 
 const val TRANSITION_DAUER = 300
 
 @Composable
 fun Navigation(viewModel: MainViewModel = hiltViewModel()) {
-    val dbs = viewModel.dbs
     val navController = rememberNavController()
+
     NavHost(navController, startDestination = Screen.Start.route) {
 
         composable(Screen.Start.route, enterTransition = {
@@ -56,7 +55,7 @@ fun Navigation(viewModel: MainViewModel = hiltViewModel()) {
                 else -> null
             }
         }) {
-            StartScreen(navController, dbs)
+            StartScreen(navController, viewModel)
         }
 
         composable(
@@ -67,9 +66,8 @@ fun Navigation(viewModel: MainViewModel = hiltViewModel()) {
                 })
         ) { eingabe ->
             val id = eingabe.arguments!!.getInt("spielID")
-            SpielScreen(
-                dbs = dbs, spiel = dbs.spiele.finde(id)
-            )
+            val spiel = viewModel.getSpiel(id)
+            SpielScreen(viewModel, spiel)
         }
     }
 }

@@ -21,11 +21,12 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import de.seleri.spielelemente.Datenbanksystem
 import de.seleri.spielelemente.Sprachen
 
 @Composable
-fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
+fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
+    val spiele = viewModel.spiele
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +35,7 @@ fun StartScreen(navController: NavHostController, dbs: Datenbanksystem) {
         item {
             Titel()
         }
-        items(dbs.spiele.toList(), key = { it.id }) { spiel ->
+        items(spiele, key = { it.id }) { spiel ->
             SammlungsButton(spiel.localizations[Sprachen.OG]!!) {
                 navController.navigate(Screen.Spiel.mitDerID(spiel.id))
             }

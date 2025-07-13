@@ -1,11 +1,16 @@
 package de.seleri.impulse
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,21 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import de.seleri.spielelemente.Datenbanksystem
 import de.seleri.spielelemente.Spiel
 import de.seleri.spielelemente.Sprachen
-import kotlin.collections.set
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
-fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
+fun SpielScreen(viewModel: MainViewModel, spiel: Spiel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +56,7 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
                 val kartentext = kartentexte[kategorie.id] ?: initialText
 
                 SammlungsButton(kartentext) {
-                    kartentexte[kategorie.id] = dbs.getRandomKartentext(kategorie)
+                    kartentexte[kategorie.id] = viewModel.getRandomKartentext(kategorie)
                 }
             }
         }
