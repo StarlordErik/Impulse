@@ -99,7 +99,21 @@ kover {
     reports {
         filters {
             excludes {
-                classes("de.seleri.tools.*")
+                classes(
+                    "de.seleri.impulse.AppModule*",
+                    "de.seleri.impulse.ComposableSingletons*",
+                    "de.seleri.impulse.*MainActivity*",
+                    "de.seleri.impulse.Impulse",
+                    "de.seleri.impulse.ImpulseViewModel_*",
+                    "de.seleri.impulse.NavigationKt",
+                    "de.seleri.impulse.ThemeKt",
+
+                    )
+                packages(
+                    "de.seleri.tools",
+                    "dagger.hilt.internal.aggregatedroot.codegen",
+                    "hilt_aggregated_deps"
+                )
             }
         }
         verify {
