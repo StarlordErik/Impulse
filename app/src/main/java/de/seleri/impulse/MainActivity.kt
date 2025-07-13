@@ -37,21 +37,6 @@ class MainActivity: ComponentActivity() {
     }
 }
 
-
-@HiltAndroidApp
-class Impulse: Application()
-
-@Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
-
-    @Provides
-    @Singleton
-    fun provideDatenbanksystem(@ApplicationContext context: Context): Datenbanksystem {
-        return Datenbanksystem.generieren(context)
-    }
-}
-
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val dbs: Datenbanksystem
@@ -65,4 +50,16 @@ class MainViewModel @Inject constructor(
     }
 }
 
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    @Provides
+    @Singleton
+    fun provideDatenbanksystem(@ApplicationContext context: Context): Datenbanksystem {
+        return Datenbanksystem.generieren(context)
+    }
 
+}
+
+@HiltAndroidApp
+class Impulse: Application()
