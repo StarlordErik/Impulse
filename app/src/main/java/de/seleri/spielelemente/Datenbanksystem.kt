@@ -35,7 +35,8 @@ class Datenbanksystem(private val datenbank: File) {
 
         karten = Karte.fromYaml(yamlInput).toMutableSet()
         kategorien = Kategorie.fromYaml(yamlInput, karten).toMutableSet()
-        spiele = Spiel.fromYaml(yamlInput, kategorien).toMutableSet()
+        spiele = Spiel.fromYaml(yamlInput, kategorien).sortedBy { it.localizations[Sprachen.OG]!! }
+            .toMutableSet()
     }
 
     /**
@@ -140,9 +141,9 @@ class Datenbanksystem(private val datenbank: File) {
         if (neueSammlung == null) {
             val neueID = neueID(daten)
 
-            @Suppress("UNCHECKED_CAST")
+            @Suppress("UNCHECKED_CAST") //.
             neueSammlung = when (daten.first()) { // when (T)
-                is Kategorie ->  Kategorie.fromEingabe(
+                is Kategorie -> Kategorie.fromEingabe(
                     neueID, sprache, name, elemente as Collection<Karte>
                 ) as T
 
