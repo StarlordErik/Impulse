@@ -29,6 +29,9 @@ import kotlin.collections.set
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
 fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
@@ -37,8 +40,10 @@ fun SpielScreen(dbs: Datenbanksystem, spiel: Spiel) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
+        Spacer(modifier = Modifier.height(10.dp))
+
         SpielScreenRow {
-            SpielTitel(spiel.localizations[Sprachen.OG]!!)
+            SpielTitel(spiel.localizations[Sprachen.OG]!!, Modifier.weight(1f))
             SpielScreenIcon(SpielIcon.Einstellungsrad)
         }
 
@@ -70,7 +75,7 @@ fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 5.dp),
+            .padding(horizontal = 16.dp, vertical = 0.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -79,11 +84,14 @@ fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
 }
 
 @Composable
-fun SpielTitel(name: String) {
+fun SpielTitel(name: String, modifier: Modifier) {
     Text(
         text = name,
         color = MaterialTheme.colorScheme.primary,
-        style = MaterialTheme.typography.displayMedium
+        style = MaterialTheme.typography.displayMedium,
+        maxLines = 2,
+        overflow = TextOverflow.Ellipsis,
+        modifier = modifier
     )
 }
 
@@ -133,8 +141,10 @@ fun SpielScreenPreview() {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
+            Spacer(modifier = Modifier.height(10.dp))
+
             SpielScreenRow {
-                SpielTitel("Erzählt euch mehr")
+                SpielTitel("We're not really strangers", Modifier.weight(1f))
                 SpielScreenIcon(SpielIcon.Einstellungsrad)
             }
 
