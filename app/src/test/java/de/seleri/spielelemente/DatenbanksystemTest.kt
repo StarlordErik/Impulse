@@ -6,38 +6,40 @@ import org.junit.Test
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 
-class DatenbanksystemTest {
+fun dummyDatenbankDatei(): File {
+    val builder = StringBuilder()
 
-    fun tmpDatenbankDatei(): File {
-        val builder = StringBuilder()
-
-        builder.append(attributToYamlZeile(0, KARTEN, null))
-        for (karte in alleDummyKarten().sorted()) {
-            builder.append(karte.toYaml())
-        }
-
-        builder.append("\n")
-
-        builder.append(attributToYamlZeile(0, KATEGORIEN, null))
-        for (kategorie in alleDummyKategorien().sorted()) {
-            builder.append(kategorie.toYaml())
-        }
-
-        builder.append("\n")
-
-        builder.append(attributToYamlZeile(0, SPIELE, null))
-        for (spiel in alleDummySpiele().sorted()) {
-            builder.append(spiel.toYaml())
-        }
-
-        val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-        datenbank.writeText(builder.toString())
-        return datenbank
+    builder.append(attributToYamlZeile(0, KARTEN, null))
+    for (karte in alleDummyKarten().sorted()) {
+        builder.append(karte.toYaml())
     }
+
+    builder.append("\n")
+
+    builder.append(attributToYamlZeile(0, KATEGORIEN, null))
+    for (kategorie in alleDummyKategorien().sorted()) {
+        builder.append(kategorie.toYaml())
+    }
+
+    builder.append("\n")
+
+    builder.append(attributToYamlZeile(0, SPIELE, null))
+    for (spiel in alleDummySpiele().sorted()) {
+        builder.append(spiel.toYaml())
+    }
+
+    val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+    datenbank.writeText(builder.toString())
+    return datenbank
+}
+
+fun dummyDatenbanksystem() = Datenbanksystem(dummyDatenbankDatei())
+
+class DatenbanksystemTest {
 
     @Test
     fun `tmpDatenbankDatei() Testdatenbank aus den Dummys erzeugen`() {
-        val datenbank = tmpDatenbankDatei()
+        val datenbank = dummyDatenbankDatei()
 
         val daten = Yaml().load<Map<String, Any>>(datenbank.inputStream())
 
@@ -48,10 +50,8 @@ class DatenbanksystemTest {
     }
 
     @Test
-    fun `init() Datenbanksystem initialisieren`() {
-        val datenbank = tmpDatenbankDatei()
-
-        val dbs = Datenbanksystem(datenbank)
+    fun `dummyDatenbanksystem() Datenbanksystem initialisieren`() {
+        val dbs = dummyDatenbanksystem()
 
         assertTrue(dbs.karten.isNotEmpty())
         assertTrue(dbs.kategorien.isNotEmpty())
@@ -60,7 +60,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `aktualisieren() Datenbank aktualisieren`() {
-        val datenbank = tmpDatenbankDatei()
+        val datenbank = dummyDatenbankDatei()
         val dbs = Datenbanksystem(datenbank)
 
         val expected = datenbank.readText()
@@ -73,7 +73,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `getRandomKartentext() zufaelliger Kartentext einer Kategorie ausgeben`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val dummyKategorie = dbs.kategorien.finde("dummyKategorie5")!!
         val kartentexte1 =
             dummyKategorie.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }
@@ -95,7 +95,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `getRandomKartentext() zufaelliger Kartentext eines Spiels ausgeben`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val dummySpiel = dbs.spiele.finde("dummySpiel5")!!
         val kartentexte1 =
             dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
@@ -116,7 +116,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `neueKarten() eine Menge neue Karten erstellen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKartentexte = setOf(
             "Dummy 1", "neue Karte", "neue Karte"
         )
@@ -137,7 +137,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `neueKategorie() eine neue Kategorie erstellen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKarten = alleDummyKarten()
 
         // Test 1: die Kategorie ist in der Datenbank
@@ -152,7 +152,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `neueKategorie() eine bekannte Kategorie hinzufuegen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val bekannteKarten = listOf(dummyKarte1())
 
         // Test 1: die Kategorie ist in der Datenbank
@@ -166,7 +166,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `neueKategorie() eine bekannte Kategorie neu beschreiben`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKarten = alleDummyKarten()
 
         // Test 1: die Kategorie ist in der Datenbank
@@ -183,7 +183,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `neuesSpiel() ein neues Spiel erstellen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKategorien = alleDummyKategorien()
 
         // Test 1: das Spiel ist in der Datenbank
@@ -198,7 +198,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `karteLoeschen() eine Karte loeschen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val zuLoeschendeKarte = dummyKarte1()
 
         dbs.karteLoeschen(zuLoeschendeKarte)
@@ -214,7 +214,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `kartenZuKategorieHinzufuegen() Karten per Objekt zu einer Kategorie hinzufuegen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKarten = alleDummyKarten()
         val zuAenderndeKategorie = dbs.kategorien.finde("dummyKategorie1")!!
 
@@ -225,7 +225,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `kategorienZuSpielHinzufuegen() Kategorien per ID zu einem Spiel hinzufuegen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val neueKategorien = listOf(1,2,3,4,5)
         val zuAenderndesSpiel = dbs.spiele.finde("dummySpiel1")!!
 
@@ -236,7 +236,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `karteAusKategorieEntfernen() Karte aus Kategorie entfernen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val kategorie = dbs.kategorien.finde(1)
         val zuEntfernendeKarte = dbs.karten.finde(1)
         assertTrue(kategorie.getAktuelleKarten().contains(zuEntfernendeKarte))
@@ -251,7 +251,7 @@ class DatenbanksystemTest {
 
     @Test
     fun `kategorieAusSpielEntfernen() Kategorie aus Spiel entfernen`() {
-        val dbs = Datenbanksystem(tmpDatenbankDatei())
+        val dbs = dummyDatenbanksystem()
         val spiel = dbs.spiele.finde(1)
         val zuEntfernendeKategorie = dbs.kategorien.finde(1)
         assertTrue(spiel.getAktuelleKategorien().contains(zuEntfernendeKategorie))
