@@ -5,11 +5,13 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.seleri.spielelemente.Datenbanksystem
@@ -46,3 +48,9 @@ object AppModule {
         return Datenbanksystem.generieren(context)
     }
 }
+
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    val dbs: Datenbanksystem
+): ViewModel()
+
