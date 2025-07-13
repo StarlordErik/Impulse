@@ -15,6 +15,13 @@ fun alleDummySpiele(): Set<Spiel> {
 
     return dummySpiele
 }
+
+fun dummySpiel1(): Spiel = alleDummySpiele().finde(1)
+fun dummySpiel2(): Spiel = alleDummySpiele().finde(2)
+fun dummySpiel3(): Spiel = alleDummySpiele().finde(3)
+fun dummySpiel4(): Spiel = alleDummySpiele().finde(4)
+fun dummySpiel5(): Spiel = alleDummySpiele().finde(5)
+
 fun yamlDummySpiel(): String = """
         |  - $ID: $DUMMY_ID
         |    $DUMMY_NAME:
