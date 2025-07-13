@@ -24,7 +24,7 @@ import androidx.navigation.NavHostController
 import de.seleri.spielelemente.Sprachen
 
 @Composable
-fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
+fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
     val spiele = viewModel.spiele
 
     LazyColumn(

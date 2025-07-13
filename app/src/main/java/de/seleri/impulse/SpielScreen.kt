@@ -32,7 +32,7 @@ import de.seleri.spielelemente.Spiel
 import de.seleri.spielelemente.Sprachen
 
 @Composable
-fun SpielScreen(viewModel: MainViewModel, spiel: Spiel) {
+fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
     Column(
         modifier = Modifier
             .fillMaxSize()

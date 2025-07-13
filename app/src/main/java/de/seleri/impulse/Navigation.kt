@@ -13,7 +13,7 @@ import androidx.navigation.navArgument
 const val TRANSITION_DAUER = 300
 
 @Composable
-fun Navigation(viewModel: MainViewModel = hiltViewModel()) {
+fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = Screen.Start.route) {

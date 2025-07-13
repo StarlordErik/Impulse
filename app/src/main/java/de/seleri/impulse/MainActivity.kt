@@ -35,7 +35,7 @@ class MainActivity: ComponentActivity() {
 }
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class ImpulseViewModel @Inject constructor(
     private val dbs: Datenbanksystem
 ): ViewModel() {
     val spiele = dbs.spiele.toList()
