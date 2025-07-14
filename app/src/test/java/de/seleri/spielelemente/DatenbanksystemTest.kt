@@ -38,21 +38,6 @@ fun dummyDatenbanksystem() = Datenbanksystem(dummyDatenbankDatei())
 class DatenbanksystemTest {
 
     @Test
-    fun `generieren() Check der Raw-Datei`() {
-        val file = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-            .apply {
-                writeBytes(
-                    this::class.java.classLoader!!.getResourceAsStream(DATENBANK_DATEI)!!
-                        .readBytes()
-                )
-            }
-        val dbs = Datenbanksystem(file)
-
-        println(dbs.spiele.map { it.id })
-        assertTrue(false)
-    }
-
-    @Test
     fun `tmpDatenbankDatei() Testdatenbank aus den Dummys erzeugen`() {
         val datenbank = dummyDatenbankDatei()
 

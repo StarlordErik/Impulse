@@ -4,7 +4,6 @@ import android.content.Context
 import de.seleri.frontend.R
 import org.yaml.snakeyaml.Yaml
 import java.io.File
-import java.nio.file.Paths
 
 // Datenbank-Pfade
 const val DATENBANK_NAME = "datenbank"
@@ -279,7 +278,6 @@ class Datenbanksystem(private val datenbank: File) {
     }
 
     companion object {
-
         /**
          * Erstellt ein `Datenbanksystem` aus einer lokalen Datei im App-Dateisystem,
          * oder falls die Datei noch nicht existiert, wird sie aus den Ressourcen kopiert.
@@ -295,17 +293,6 @@ class Datenbanksystem(private val datenbank: File) {
                 datei.writeBytes(datenkbankInResRaw.readBytes())
             }
             return Datenbanksystem(datei)
-        }
-
-        /**
-         * Erstellt ein neues `Datenbanksystem` auf Basis der Datei im Ressourcenverzeichnis.
-         * **Funktioniert nur zur Entwicklungszeit!**
-         *
-         * @return Instanz des Datenbanksystems mit geladenen Daten
-         */
-        fun generieren(): Datenbanksystem {
-            val dateipfad = Paths.get(DATENBANK_PFAD)
-            return Datenbanksystem(dateipfad.toFile())
         }
     }
 }

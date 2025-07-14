@@ -2,49 +2,47 @@ package de.seleri.frontend
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.Assert.assertEquals
+import de.seleri.spielelemente.DATENBANK_DATEIFORMAT
+import de.seleri.spielelemente.DATENBANK_NAME
+import de.seleri.spielelemente.Datenbanksystem
+import de.seleri.spielelemente.finde
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.File
 
 
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTest {
 
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("de.seleri.frontend", appContext.packageName)
-    }
+    fun rawDatenbankKorrektAusgelesen() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val rawDatenbank = context.resources.openRawResource(R.raw.datenbank)
 
-    /*
-    vor dem Composable-Transfer:
-
-    @Test
-    fun datenbanksystem_ist_generiert() {
-        val dbs = (ApplicationProvider.getApplicationContext<Context>() as Impulse).dbs
-
-        assertNotNull(dbs)
-
-        assert(dbs.karten.isNotEmpty())
-        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
-
-        assert(dbs.kategorien.isNotEmpty())
-        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
-
-        assert(dbs.spiele.isNotEmpty())
-        assertNotNull(dbs.spiele.finde("We're not really strangers"))
-    }
-
-    @get:Rule
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
-
-    @Test
-    fun activity_kann_auf_das_datenbanksystem_zugreifen() {
-        activityRule.scenario.onActivity { activity ->
-            val db = (activity.application as Impulse).dbs
-            assertNotNull(db)
+        val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+        rawDatenbank.use { input ->
+            datenbank.outputStream().use { output ->
+                input.copyTo(output)
+            }
         }
+
+        val dbs = Datenbanksystem(datenbank)
+
+        assertNotNull(dbs.spiele.finde("We're not really strangers"))
+        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
+        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
     }
-    */
+
+    @Test
+    fun datenbanksystemKorrektGeneriert() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val dbs = Datenbanksystem.generieren(context)
+
+        assertNotNull(dbs.spiele.finde("We're not really strangers"))
+        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
+        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
+    }
+
 }
