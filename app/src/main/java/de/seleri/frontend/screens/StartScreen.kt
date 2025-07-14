@@ -21,7 +21,9 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import de.seleri.frontend.ImpulseTheme
+import de.seleri.tools.dummyViewModel
 
 @Composable
 fun StartScreen(navController: NavHostController, viewModel: de.seleri.frontend.ImpulseViewModel) {
@@ -98,25 +100,10 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
 @Preview
 @Composable
 fun StartScreenPreview() {
-    val buttons = listOf(
-        "We're not really strangers",
-        "Fun Facts",
-        "Erzählt euch mehr",
-        "Privacy"
-    )
+    val dummyViewModel = dummyViewModel()
+    val dummyNavController = rememberNavController()
 
     ImpulseTheme {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            item {
-                Titel()
-            }
-            items(buttons) { spielname ->
-                SammlungsButton(spielname) {}
-            }
-        }
+        StartScreen(dummyNavController, dummyViewModel)
     }
 }

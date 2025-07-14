@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.seleri.frontend.ImpulseTheme
 import de.seleri.spielelemente.Spiel
+import de.seleri.tools.dummyViewModel
 
 @Composable
 fun SpielScreen(viewModel: de.seleri.frontend.ImpulseViewModel, spiel: Spiel) {
@@ -104,45 +105,10 @@ fun SpielScreenIcon(icon: SpielScreenIcons) {
 @Preview
 @Composable
 fun SpielScreenPreview() {
-    val kategorien = listOf(
-        "Gedankenspiel",
-        "Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder " + //.
-                "Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?",
-        "Selbstreflexion",
-        "Mit welcher gemeinsamen Reise oder welchem Ort, den wir zusammen besucht haben, verbindest du besondere " + //.
-                "Erinnerungen?",
-        "Kompliment",
-        "Wie hast du die Beziehung deiner Eltern wahrgenommen?\n\nHaben sie etwas besonders richtig oder falsch " + //.
-                "gemacht?"
-    )
+    val dummyViewModel = dummyViewModel()
+    val dummySpiel = dummyViewModel.getSpiel(1)
+
     ImpulseTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            Spacer(modifier = Modifier.height(10.dp))
-
-            SpielScreenRow {
-                SpielTitel("We're not really strangers", Modifier.weight(1f))
-                SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
-            }
-
-            LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.Center
-            ) {
-                items(kategorien) { spielname ->
-                    SammlungsButton(spielname) {}
-                }
-            }
-
-            SpielScreenRow {
-                SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
-                SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
-            }
-        }
+        SpielScreen(dummyViewModel, dummySpiel)
     }
 }
