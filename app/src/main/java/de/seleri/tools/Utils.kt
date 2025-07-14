@@ -43,14 +43,14 @@ Karten:
     gelöscht: false
   - ID: 4
     Text:
-      OG: "Do you think I've ever been fired from a job? If so, what for?"
-      EN: "Do you think I've ever been fired from a job? If so, what for?"
+      OG: "Du bist mit einem seltenen Virus infiziert. Ärzte teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?"
+      DE: "Du bist mit einem seltenen Virus infiziert. Ärzte teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?"
     gesehen: false
     gelöscht: false
   - ID: 5
     Text:
-      OG: "Wildcard: Close your eyes. What color are my eyes?"
-      EN: "Wildcard: Close your eyes. What color are my eyes?"
+      OG: "Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?"
+      DE: "Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?"
     gesehen: false
     gelöscht: false
 
@@ -70,7 +70,7 @@ Kategorien:
     originale_Karten:
       IDs: []
       davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
+    hinzugefügte_Karten-IDs: [1,2,3,4,5]
   - ID: 3
     Name:
       OG: "Level 3: Reflection"
@@ -78,7 +78,7 @@ Kategorien:
     originale_Karten:
       IDs: []
       davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
+    hinzugefügte_Karten-IDs: [1,2,3,4,5]
   - ID: 4
     Name:
       OG: "Freitextfragen"
@@ -86,7 +86,7 @@ Kategorien:
     originale_Karten:
       IDs: []
       davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
+    hinzugefügte_Karten-IDs: [1,2,3,4,5]
   - ID: 5
     Name:
       OG: "von 0 bis 100"
@@ -94,47 +94,7 @@ Kategorien:
     originale_Karten:
       IDs: []
       davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
-  - ID: 6
-    Name:
-      OG: "Gedankenspiel"
-      DE: "Gedankenspiel"
-    originale_Karten:
-      IDs: []
-      davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
-  - ID: 7
-    Name:
-      OG: "Kreuzverhör"
-      DE: "Kreuzverhör"
-    originale_Karten:
-      IDs: []
-      davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
-  - ID: 8
-    Name:
-      OG: "Selbstreflexion"
-      DE: "Selbstreflexion"
-    originale_Karten:
-      IDs: []
-      davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
-  - ID: 9
-    Name:
-      OG: "Erinnerung"
-      DE: "Erinnerung"
-    originale_Karten:
-      IDs: []
-      davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
-  - ID: 10
-    Name:
-      OG: "Kompliment"
-      DE: "Kompliment"
-    originale_Karten:
-      IDs: []
-      davon_entfernt: []
-    hinzugefügte_Karten-IDs: []
+    hinzugefügte_Karten-IDs: [1,2,3,4,5]
 
 Spiele:
   - ID: 1
@@ -145,7 +105,7 @@ Spiele:
     originale_Kategorien:
       IDs: [1,2,3]
       davon_entfernt: []
-    hinzugefügte_Kategorien-IDs: [4,5,6,7,8,9,10]
+    hinzugefügte_Kategorien-IDs: [4,5]
   - ID: 2
     Name:
       OG: "Fun Facts"
