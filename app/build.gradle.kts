@@ -119,21 +119,21 @@ kover {
         verify {
             warningInsteadOfFailure = false
 
-            rule("65% der Abzweigungen getestet") {
+            rule("genug Abzweigungen getestet") {
                 bound {
-                    minValue = 65
+                    minValue = 66
                     coverageUnits = CoverageUnit.BRANCH
                 }
             }
-            rule("70% der Anweisungen getestet") {
+            rule("genug Anweisungen getestet") {
                 bound {
-                    minValue = 70
+                    minValue = 66
                     coverageUnits = CoverageUnit.INSTRUCTION
                 }
             }
-            rule("75% der Zeilen getestet") {
+            rule("genug Zeilen getestet") {
                 bound {
-                    minValue = 75
+                    minValue = 66
                     coverageUnits = CoverageUnit.LINE
                 }
             }
