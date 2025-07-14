@@ -100,8 +100,8 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
 @Preview
 @Composable
 fun StartScreenPreview() {
-    val dummyViewModel = dummyViewModel()
     val dummyNavController = rememberNavController()
+    val dummyViewModel = dummyViewModel()
 
     ImpulseTheme {
         StartScreen(dummyNavController, dummyViewModel)
