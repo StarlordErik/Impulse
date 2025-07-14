@@ -38,6 +38,21 @@ fun dummyDatenbanksystem() = Datenbanksystem(dummyDatenbankDatei())
 class DatenbanksystemTest {
 
     @Test
+    fun `generieren() Check der Raw-Datei`() {
+        val file = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+            .apply {
+                writeBytes(
+                    this::class.java.classLoader!!.getResourceAsStream(DATENBANK_DATEI)!!
+                        .readBytes()
+                )
+            }
+        val dbs = Datenbanksystem(file)
+
+        println(dbs.spiele.map { it.id })
+        assertTrue(false)
+    }
+
+    @Test
     fun `tmpDatenbankDatei() Testdatenbank aus den Dummys erzeugen`() {
         val datenbank = dummyDatenbankDatei()
 
@@ -226,7 +241,7 @@ class DatenbanksystemTest {
     @Test
     fun `kategorienZuSpielHinzufuegen() Kategorien per ID zu einem Spiel hinzufuegen`() {
         val dbs = dummyDatenbanksystem()
-        val neueKategorien = listOf(1,2,3,4,5)
+        val neueKategorien = listOf(1, 2, 3, 4, 5)
         val zuAenderndesSpiel = dbs.spiele.finde("dummySpiel1")!!
 
         dbs.kategorienZuSpielHinzufuegen(zuAenderndesSpiel, neueKategorien)
