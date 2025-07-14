@@ -107,7 +107,7 @@ kover {
                     "*Theme*",
                     "*ImpulseViewModel_*",
                     "de.seleri.frontend.Impulse",
-
+                    "*Datenbanksystem\$Companion",
                     )
                 packages(
                     "de.seleri.tools",
