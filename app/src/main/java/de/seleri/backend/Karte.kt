@@ -17,7 +17,7 @@ class Karte(
   override var id: Int,
   override val localizations: MutableMap<Sprachen, String?>,
   var gesehen: Boolean,
-  var geloescht: Boolean
+  var geloescht: Boolean,
 ): LokalisierbaresSpielelement(id, localizations) {
 
   /**
@@ -77,7 +77,7 @@ class Karte(
 
         // Fall 1: mehrere Karten
         KARTEN in yamlDaten -> {
-          return fromYamlListe(KARTEN, yamlDaten) { fromYaml(it) }
+          return fromYamlListe(KARTEN, yamlDaten) {fromYaml(it)}
         }
 
         // Fall 2: einzelne Karte

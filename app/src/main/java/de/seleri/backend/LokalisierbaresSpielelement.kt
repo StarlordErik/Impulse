@@ -9,7 +9,7 @@ const val ID: String = "ID"
  * @property localizations Map mit den Übersetzungen des Kartentextes/Namens für verschiedene Sprachen
  */
 abstract class LokalisierbaresSpielelement(
-  open var id: Int, open val localizations: MutableMap<Sprachen, String?>
+  open var id: Int, open val localizations: MutableMap<Sprachen, String?>,
 ): Comparable<LokalisierbaresSpielelement> {
 
   /**
@@ -49,15 +49,18 @@ abstract class LokalisierbaresSpielelement(
    * einen positiven Wert, wenn es größer ist, oder 0 bei Gleichheit.
    */
   override fun compareTo(other: LokalisierbaresSpielelement): Int {
+
     // 1. nach Klassenname (abgeleiteter Typ) sortieren
-    return this::class.simpleName!!.compareTo(other::class.simpleName!!).takeIf { it != 0 }
+    return this::class.simpleName!!.compareTo(other::class.simpleName!!).takeIf {it != 0}
+
     // 2. nach ID sortieren
-      ?: this.id.compareTo(other.id).takeIf { it != 0 }
+      ?: this.id.compareTo(other.id).takeIf {it != 0}
+
       // 3. nach Bezeichnung sortieren
       ?: this.localizations[Sprachen.OG]!!.compareTo(other.localizations[Sprachen.OG]!!)
   }
 
-  override fun equals(other: Any?) = this::class == other?.let { it::class } && //.
+  override fun equals(other: Any?) = this::class == other?.let {it::class} && //.
     other is LokalisierbaresSpielelement && // benötigt, da sonst eine ClassCastException geworfen wird
     this.id == other.id
 
@@ -75,14 +78,13 @@ abstract class LokalisierbaresSpielelement(
      */
     @JvmStatic // damit die Methode protected sein kann
     protected fun fromEingabe(
-      id: Int, sprache: Sprachen, bezeichnung: String
+      id: Int, sprache: Sprachen, bezeichnung: String,
     ): Pair<Int, MutableMap<Sprachen, String?>> {
 
       // für alle Sprachen:
       // speichert die Bezeichnung sowohl in der entsprechenden Sprache als auch in OG, oder setzt null
       val localizations =
-        Sprachen.entries.associateWith { if (it == sprache || it == Sprachen.OG) bezeichnung else null }
-          .toMutableMap()
+        Sprachen.entries.associateWith {if (it == sprache || it == Sprachen.OG) bezeichnung else null}.toMutableMap()
 
       return id to localizations
     }
@@ -100,7 +102,7 @@ abstract class LokalisierbaresSpielelement(
      */
     @JvmStatic // damit die Methode protected sein kann
     protected fun <T: LokalisierbaresSpielelement> fromYamlListe(
-      elementart: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>
+      elementart: String, yamlDaten: Map<String, Any>, converter: (Map<String, Any>) -> Collection<T>,
     ): Set<T> {
 
       // extrahiert die Liste möglicher Element-Daten aus der YAML-Struktur
@@ -133,11 +135,10 @@ abstract class LokalisierbaresSpielelement(
       // Man kann mit forEach nicht direkt aus der iterierten Liste entfernen.
       val zuEntfernen = mutableListOf<T>()
 
-      elemente.forEach { element ->
+      elemente.forEach {element ->
         val localization = element.localizations
         if (localization in localizationUnikate) {
-          // Maps in Kotlin werden standardmäßig nicht per Referenz verglichen
-          zuEntfernen.add(element)
+          zuEntfernen.add(element) // Maps in Kotlin werden standardmäßig nicht per Referenz verglichen
         } else {
           localizationUnikate.add(localization)
         }
@@ -155,7 +156,7 @@ abstract class LokalisierbaresSpielelement(
       val idUnikate = mutableSetOf<Int>()
 
       var anzahlNeuerIDs = 0
-      elemente.forEach { element ->
+      elemente.forEach {element ->
         val aktuelleID = element.id
         if (aktuelleID in idUnikate) {
           element.id = neueID(elemente) + anzahlNeuerIDs
@@ -176,7 +177,7 @@ abstract class LokalisierbaresSpielelement(
      */
     @JvmStatic // damit die Methode protected sein kann
     protected fun fromYaml(
-      yamlDatensatz: Map<String, Any>
+      yamlDatensatz: Map<String, Any>,
     ): Pair<Int, MutableMap<Sprachen, String?>> {
 
       require(ID in yamlDatensatz && (TEXT in yamlDatensatz || NAME in yamlDatensatz)) {
@@ -186,7 +187,8 @@ abstract class LokalisierbaresSpielelement(
       val id = yamlDatensatz[ID] as Int
 
       @Suppress("UNCHECKED_CAST") val yamlLocalizations =
-        ((yamlDatensatz[TEXT] ?: yamlDatensatz[NAME]) as Map<String, String?>).mapKeys { Sprachen.valueOf(it.key) }
+        ((yamlDatensatz[TEXT]
+          ?: yamlDatensatz[NAME]) as Map<String, String?>).mapKeys {Sprachen.valueOf(it.key)}
 
       // für alle Sprachen: speichert die ausgelesene Übersetzung oder setzt null
       val localizations = Sprachen.entries.associateWith {

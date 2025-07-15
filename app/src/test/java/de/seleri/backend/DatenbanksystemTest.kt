@@ -75,11 +75,11 @@ class DatenbanksystemTest {
   fun `getRandomKartentext() zufaelliger Kartentext einer Kategorie ausgeben`() {
     val dbs = dummyDatenbanksystem()
     val dummyKategorie = dbs.kategorien.finde("dummyKategorie5")!!
-    val kartentexte1 = dummyKategorie.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+    val kartentexte1 = dummyKategorie.getUngeseheneKarten().map {it.localizations[Sprachen.OG]!!}.toMutableSet()
     val kartentexte2 = kartentexte1.toList()
 
     // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
-    kartentexte2.forEach { _ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
+    kartentexte2.forEach {_ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
       val randomKartentext = dbs.getRandomKartentext(dummyKategorie)
       assertTrue(kartentexte1.contains(randomKartentext))
       kartentexte1.remove(randomKartentext)
@@ -95,11 +95,11 @@ class DatenbanksystemTest {
   fun `getRandomKartentext() zufaelliger Kartentext eines Spiels ausgeben`() {
     val dbs = dummyDatenbanksystem()
     val dummySpiel = dbs.spiele.finde("dummySpiel5")!!
-    val kartentexte1 = dummySpiel.getUngeseheneKarten().map { it.localizations[Sprachen.OG]!! }.toMutableSet()
+    val kartentexte1 = dummySpiel.getUngeseheneKarten().map {it.localizations[Sprachen.OG]!!}.toMutableSet()
     val kartentexte2 = kartentexte1.toList()
 
     // Test 1: alle ungesehenen Karten werden ohne Duplikate ausgegeben
-    kartentexte2.forEach { _ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
+    kartentexte2.forEach {_ -> // wir iterieren über eine Kopie, die in der Schleife nicht verändert wird
       val randomKartentext = dbs.getRandomKartentext(dummySpiel)
       assertTrue(kartentexte1.contains(randomKartentext))
       kartentexte1.remove(randomKartentext)
@@ -127,7 +127,7 @@ class DatenbanksystemTest {
     assertEquals(6, dbs.karten.size)
 
     // Test 3: wurden die neue ID richtig gewählt?
-    val actual = eingegebeneKarten.map { it.id }.sorted()
+    val actual = eingegebeneKarten.map {it.id}.sorted()
     val expected = listOf(1, 6)
     assertEquals(expected, actual)
   }

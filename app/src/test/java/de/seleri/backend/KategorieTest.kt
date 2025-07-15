@@ -39,7 +39,7 @@ fun yamlDummyKategorie() = """
         """.trimMargin()
 
 fun getDummyKategorien(elementart: String): Set<Kategorie> =
-  getDummyDaten("Kategorie.yml", elementart) { Kategorie.fromYaml(it, alleDummyKarten()) }
+  getDummyDaten("Kategorie.yml", elementart) {Kategorie.fromYaml(it, alleDummyKarten())}
 
 class KategorieTest {
 
@@ -89,7 +89,6 @@ class KategorieTest {
     val expected = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
     assertEquals(expected, actual)
   }
-
 
   @Test
   fun `getAktuelleKarten() gibt alle Karten der Kategorie zurueck, die nicht entfernt worden sind`() {
@@ -152,7 +151,7 @@ class KategorieTest {
    * prüft nur die Instanziierung der neuen Attribute von der Sammlung im Vergleich zur Superklasse
    */
   private fun testKorrekteInstanziierung(
-    erwarteteOriginale: Map<String, Collection<Karte>>, erwarteteHinzugefuegte: Collection<Karte>, dummy: Kategorie
+    erwarteteOriginale: Map<String, Collection<Karte>>, erwarteteHinzugefuegte: Collection<Karte>, dummy: Kategorie,
   ) {
     val actualOriginale = dummy.originaleElemente
     val actualHinzugefuegte = dummy.hinzugefuegteElemente
@@ -191,7 +190,7 @@ class KategorieTest {
   }
 
   private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
-    dummy: Kategorie
+    dummy: Kategorie,
   ) {
     val originaleKartenIDs = setOf(dummyKarte1())
     val davonEntfernte = emptySet<Karte>()
@@ -202,7 +201,7 @@ class KategorieTest {
   }
 
   private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
-    dummy: Kategorie
+    dummy: Kategorie,
   ) {
     val originaleKartenIDs = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
     val davonEntfernte = setOf(dummyKarte2(), dummyKarte4())

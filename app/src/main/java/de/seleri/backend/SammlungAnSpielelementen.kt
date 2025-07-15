@@ -21,7 +21,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
   override var id: Int,
   override val localizations: MutableMap<Sprachen, String?>,
   open val originaleElemente: Map<String, MutableSet<T>>,
-  open val hinzugefuegteElemente: MutableSet<T>
+  open val hinzugefuegteElemente: MutableSet<T>,
 ): LokalisierbaresSpielelement(id, localizations) {
 
   /**
@@ -98,7 +98,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
    * @return Menge an Karten, die noch nicht gesehen wurden
    */
   protected fun geseheneKartenRausfiltern(aktuelleKarten: Collection<Karte>): Set<Karte> {
-    return aktuelleKarten.filter { !it.gesehen }.toSet()
+    return aktuelleKarten.filter {!it.gesehen}.toSet()
   }
 
   /**
@@ -114,7 +114,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
    * @param aktuelleKarten Collection aller aktuellen Karten der Sammlung
    */
   protected fun setKartenUngesehen(aktuelleKarten: Collection<Karte>) {
-    aktuelleKarten.forEach { it.gesehen = false }
+    aktuelleKarten.forEach {it.gesehen = false}
   }
 
   /**
@@ -131,7 +131,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
    */
   protected fun elementeHinzufuegen(neueElemente: Collection<T>) {
     val alleElemente = getAlleElemente() // Caching
-    neueElemente.forEach { neuesElement ->
+    neueElemente.forEach {neuesElement ->
 
       // rehabilitert die Elemente, die vorher entfernt wurden
       originaleElemente[DAVON_ENTFERNT]!!.remove(neuesElement)
@@ -141,7 +141,6 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
         hinzugefuegteElemente.add(neuesElement)
       }
     }
-
   }
 
   /**
@@ -155,7 +154,6 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     originaleElemente[DAVON_ENTFERNT]!!.add(zuEntfernendesElement)
     hinzugefuegteElemente.remove(zuEntfernendesElement)
   }
-
 
   companion object {
 
@@ -175,7 +173,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
       sprache: Sprachen,
       name: String,
       originaleElemente: Collection<E>,
-      constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
+      constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T,
     ): T {
 
       // lässt id, sprache und name in der Superklasse verarbeiten
@@ -204,7 +202,7 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     protected fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> fromYaml(
       yamlDaten: Map<String, Any>,
       moeglicheElemente: Collection<E>,
-      constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T
+      constructor: (Int, MutableMap<Sprachen, String?>, Map<String, MutableSet<E>>, MutableSet<E>) -> T,
     ): T {
 
       require(
@@ -219,14 +217,16 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
       val (id, localizations) = fromYaml(yamlDaten)
 
       @Suppress("UNCHECKED_CAST") val originaleElementeIDs =
-        ((yamlDaten["$ORIGINALE$KARTEN"] ?: yamlDaten["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
+        ((yamlDaten["$ORIGINALE$KARTEN"]
+          ?: yamlDaten["$ORIGINALE$KATEGORIEN"]) as Map<String, List<Int>>)
 
       require(IDS in originaleElementeIDs && DAVON_ENTFERNT in originaleElementeIDs) {
         "Ungültige originale Elemente."
       }
 
-      @Suppress("UNCHECKED_CAST") val hinzugefuegteIDs = (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
-        ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
+      @Suppress("UNCHECKED_CAST") val hinzugefuegteIDs =
+        (yamlDaten["$HINZUGEFUEGTE$KARTEN$BINDESTRICH_IDS"]
+          ?: yamlDaten["$HINZUGEFUEGTE$KATEGORIEN$BINDESTRICH_IDS"]) as List<Int>
 
       // findet alle Elemente per ID aus der Liste aller möglichen Elemente
       val originaleElemente = moeglicheElemente.finde(originaleElementeIDs[IDS]!!)

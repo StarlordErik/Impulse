@@ -134,7 +134,7 @@ class Datenbanksystem(private val datenbank: File) {
    * @return die gefundene oder neu erstellte Sammlung
    */
   private fun <T: SammlungAnSpielelementen<E>, E: LokalisierbaresSpielelement> alteSammlungFindenOderNeueErstellen(
-    name: String, elemente: Collection<E>, sprache: Sprachen, daten: Collection<T>
+    name: String, elemente: Collection<E>, sprache: Sprachen, daten: Collection<T>,
   ): T {
     var neueSammlung = daten.finde(name)
 
@@ -153,8 +153,7 @@ class Datenbanksystem(private val datenbank: File) {
 
         else -> error("Unbekannter Typ: ${daten.first()::class.simpleName}")
       }
-    } else {
-      // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
+    } else { // Wenn die Sammlung gefunden wurden, werden neue Elemente den OG-Elemente hinzugefügt.
       elemente.forEach {
         if (!neueSammlung.originaleElemente[IDS]!!.contains(it)) neueSammlung.originaleElemente[IDS]!!.add(
           it
@@ -218,7 +217,7 @@ class Datenbanksystem(private val datenbank: File) {
    * @param elementFunktionZumElementHinzufuegen Funktion aus der Klasse, welche die Elemente der Sammlung hinzufügt
    */
   private fun <T: Any, E: LokalisierbaresSpielelement> elementHinzufuegen(
-    neueElemente: Collection<T>, daten: Collection<E>, elementFunktionZumElementHinzufuegen: (Collection<E>) -> Unit
+    neueElemente: Collection<T>, daten: Collection<E>, elementFunktionZumElementHinzufuegen: (Collection<E>) -> Unit,
   ) {
     when (neueElemente.first()) {
       is LokalisierbaresSpielelement -> @Suppress("UNCHECKED_CAST") elementFunktionZumElementHinzufuegen(

@@ -60,8 +60,7 @@ fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
         navArgument("spielID") {
           type = NavType.IntType
           nullable = false
-        })
-    ) { eingabe ->
+        })) {eingabe ->
       val id = eingabe.arguments!!.getInt("spielID")
       val spiel = viewModel.getSpiel(id)
       SpielScreen(viewModel, spiel)

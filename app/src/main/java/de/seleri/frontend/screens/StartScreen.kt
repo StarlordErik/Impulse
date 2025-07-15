@@ -38,7 +38,7 @@ fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
     item {
       Titel()
     }
-    items(spiele, key = { it.id }) { spiel ->
+    items(spiele, key = {it.id}) {spiel ->
       SammlungsButton(viewModel.getName(spiel)) {
         navController.navigate(Screens.Spiel.mitDerID(spiel.id))
       }
@@ -53,7 +53,7 @@ fun Titel() {
   val containerHeightDp = windowInfo.containerSize.height
 
   // Umrechnung von px in dp
-  val containerHeight = with(density) { containerHeightDp.toDp() }
+  val containerHeight = with(density) {containerHeightDp.toDp()}
   val anteilDesTitelsAmBildschirm = 3.toFloat()
   val titelHoehe = containerHeight / anteilDesTitelsAmBildschirm
 

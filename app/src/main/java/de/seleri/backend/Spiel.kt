@@ -14,7 +14,7 @@ class Spiel(
   override var id: Int,
   override val localizations: MutableMap<Sprachen, String?>,
   override val originaleElemente: Map<String, MutableSet<Kategorie>>,
-  override val hinzugefuegteElemente: MutableSet<Kategorie>
+  override val hinzugefuegteElemente: MutableSet<Kategorie>,
 ): SammlungAnSpielelementen<Kategorie>(
   id, localizations, originaleElemente, hinzugefuegteElemente
 ) {
@@ -50,7 +50,7 @@ class Spiel(
    *
    * @return alleKarten(originale Kategorien) + alleKarten(hinzugefügte Kategorien)
    */
-  override fun getKarten(): Set<Karte> = getKategorien().flatMap { it.getKarten() }.toSet()
+  override fun getKarten(): Set<Karte> = getKategorien().flatMap {it.getKarten()}.toSet()
 
   /**
    * Gibt alle Karten aller Kategorien des Spiels zurück ohne die "davon entfernten" Kategorien.
@@ -58,7 +58,7 @@ class Spiel(
    * @return aktuelleKarten(originale Kategorien - davon entfernten Kategorien) +
    * aktuelleKarten(hinzugefügte Kategorien)
    */
-  override fun getAktuelleKarten(): Set<Karte> = getAktuelleKategorien().flatMap { it.getAktuelleKarten() }.toSet()
+  override fun getAktuelleKarten(): Set<Karte> = getAktuelleKategorien().flatMap {it.getAktuelleKarten()}.toSet()
 
   /**
    * Gibt alle noch nicht gesehenen Karten des Spiels zurück.
@@ -106,7 +106,7 @@ class Spiel(
      * @return neues Spiel ohne entfernte oder hinzugefügte Kategorien
      */
     fun fromEingabe(
-      id: Int, sprache: Sprachen, name: String, originaleKategorien: Collection<Kategorie>
+      id: Int, sprache: Sprachen, name: String, originaleKategorien: Collection<Kategorie>,
     ): Spiel = fromEingabe(id, sprache, name, originaleKategorien, ::Spiel)
 
     /**
@@ -126,7 +126,7 @@ class Spiel(
 
         // Fall 1: mehrere Spiele
         SPIELE in yamlDaten -> {
-          fromYamlListe(SPIELE, yamlDaten) { fromYaml(it, moeglicheKategorien) }
+          fromYamlListe(SPIELE, yamlDaten) {fromYaml(it, moeglicheKategorien)}
         }
 
         // Fall 2: einzelnes Spiel
@@ -135,7 +135,9 @@ class Spiel(
         }
 
         // Fall 3: ungültige Struktur
-        else -> throw IllegalArgumentException("Ungültige Spielstruktur.")
+        else -> throw IllegalArgumentException(
+          "Ungültige Spielstruktur."
+        )
       }
     }
   }

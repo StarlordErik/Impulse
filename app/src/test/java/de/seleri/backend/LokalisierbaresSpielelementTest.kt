@@ -9,7 +9,7 @@ import org.yaml.snakeyaml.Yaml
 
 /** Dummy-Implementierung, da Klasse abstrakt ist und manche Methoden protected */
 data class DummyLokalisierbaresSpielelement(
-  override var id: Int, override val localizations: MutableMap<Sprachen, String?>
+  override var id: Int, override val localizations: MutableMap<Sprachen, String?>,
 ): LokalisierbaresSpielelement(id, localizations) {
   fun dummyLocalizationsToYaml(bezeichnung: String) = super.localizationsToYaml(bezeichnung)
   fun dummyToYaml(): String {
@@ -26,18 +26,17 @@ data class DummyLokalisierbaresSpielelement(
     fun fromYamlListe(
       elementart: String,
       yamlDaten: Map<String, Any>,
-      converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>
+      converter: (Map<String, Any>) -> Collection<DummyLokalisierbaresSpielelement>,
     ) = LokalisierbaresSpielelement.fromYamlListe(elementart, yamlDaten, converter)
 
-    fun fromYaml(yamlDatensatz: Map<String, Any>): Set<DummyLokalisierbaresSpielelement> = setOf(
-      // erst kommt die normale Konvertierungsfunktion - Problem; es gibt statt einem Objekt ein Tupel aus
-      LokalisierbaresSpielelement.fromYaml(yamlDatensatz)
-        // also wird jedes Tupel in ein Objekt umgewandelt
-        .let { (id, localizations) ->
-          DummyLokalisierbaresSpielelement(
-            id, localizations
-          )
-        }) // und diese Tupel werden dann in ein Set umgewandelt
+    fun fromYaml(yamlDatensatz: Map<String, Any>): Set<DummyLokalisierbaresSpielelement> =
+      setOf( // erst kommt die normale Konvertierungsfunktion - Problem; es gibt statt einem Objekt ein Tupel aus
+        LokalisierbaresSpielelement.fromYaml(yamlDatensatz) // also wird jedes Tupel in ein Objekt umgewandelt
+          .let {(id, localizations) ->
+            DummyLokalisierbaresSpielelement(
+              id, localizations
+            )
+          }) // und diese Tupel werden dann in ein Set umgewandelt
   }
 }
 
@@ -139,7 +138,7 @@ class LokalisierbaresSpielelementTest {
     val dummy1 = dummyLokalisierbaresSpielelement()
 
     class Dummy2LokalisierbaresSpielelement(
-      override var id: Int, override val localizations: MutableMap<Sprachen, String?>
+      override var id: Int, override val localizations: MutableMap<Sprachen, String?>,
     ): LokalisierbaresSpielelement(id, localizations)
 
     val dummy2 = Dummy2LokalisierbaresSpielelement(DUMMY_ID, dummyLocalizations())
@@ -175,7 +174,7 @@ class LokalisierbaresSpielelementTest {
     erwarteteOGBezeichnung: String,
     erwarteteDEBezeichnung: String?,
     erwarteteENBezeichnung: String?,
-    dummy: DummyLokalisierbaresSpielelement
+    dummy: DummyLokalisierbaresSpielelement,
   ) {
     val actualID = dummy.id
     val actualOGBezeichnung = dummy.localizations[Sprachen.OG]
@@ -207,10 +206,10 @@ class LokalisierbaresSpielelementTest {
 
   private fun getDummyElemente(elementart: String): Set<DummyLokalisierbaresSpielelement> = getDummyDaten(
     "LokalisierbaresSpielelement.yml", elementart
-  ) { yamlDaten ->
+  ) {yamlDaten ->
     DummyLokalisierbaresSpielelement.fromYamlListe(
       elementart, yamlDaten
-    ) { DummyLokalisierbaresSpielelement.fromYaml(it) }
+    ) {DummyLokalisierbaresSpielelement.fromYaml(it)}
   }
 
   @Test
@@ -238,7 +237,7 @@ class LokalisierbaresSpielelementTest {
   fun `doppelteIDsErsetzen() doppelt belegte IDs werden neu belegt`() {
     val dummys = getDummyElemente("doppelteIDs")
 
-    val dummyIDs = (dummys.map { it.id }).toSet()
+    val dummyIDs = (dummys.map {it.id}).toSet()
     val actual = dummyIDs.size
 
     val expected = 3
@@ -246,7 +245,7 @@ class LokalisierbaresSpielelementTest {
   }
 
   private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
-    dummy: DummyLokalisierbaresSpielelement
+    dummy: DummyLokalisierbaresSpielelement,
   ) {
     testKorrekteInstanziierung(
       erwarteteID = 7,
@@ -258,7 +257,7 @@ class LokalisierbaresSpielelementTest {
   }
 
   private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
-    dummy: DummyLokalisierbaresSpielelement
+    dummy: DummyLokalisierbaresSpielelement,
   ) {
     testKorrekteInstanziierung(
       erwarteteID = 42,

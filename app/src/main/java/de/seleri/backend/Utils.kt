@@ -9,7 +9,7 @@ package de.seleri.backend
  * @return YAML-Zeile als String
  */
 internal fun attributToYamlZeile(
-  anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?
+  anzahlEinrueckungen: Int, attributsname: String, attributswert: Any?,
 ): String {
   val zeile = StringBuilder()
 
@@ -40,7 +40,7 @@ internal fun attributToYamlZeile(
       // sicheres Casten und Sortieren
       val sortierteAttributswertListe = (attributswert.filterIsInstance<LokalisierbaresSpielelement>()).sorted()
 
-      sortierteAttributswertListe.forEachIndexed { index, item ->
+      sortierteAttributswertListe.forEachIndexed {index, item ->
         zeile.append(item.id)
 
         // nur Kommata zwischen den Elementen (nicht hinter dem letzten)
@@ -57,7 +57,7 @@ internal fun attributToYamlZeile(
     is Map<*, *> -> {
       zeile.append("\n")
       val mapInhalt = StringBuilder()
-      attributswert.forEach { (key, value) ->
+      attributswert.forEach {(key, value) ->
         if (value != null) { // Einträge ohne Wert werden übersprungen
           mapInhalt.append(
             attributToYamlZeile(
@@ -65,8 +65,7 @@ internal fun attributToYamlZeile(
             )
           )
         }
-      }
-      // entfernt den letzten Zeilenumbruch und fügt es zu der "Zeile" hinzu
+      } // entfernt den letzten Zeilenumbruch und fügt es zu der "Zeile" hinzu
       zeile.append(mapInhalt.toString().trimEnd())
     }
 
@@ -89,7 +88,8 @@ internal fun attributToYamlZeile(
  * @return neue, eindeutige ID
  */
 internal fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
-  return (hoeherAlsIn.maxOfOrNull { it.id } ?: 0) + 1
+  return (hoeherAlsIn.maxOfOrNull {it.id}
+    ?: 0) + 1
 }
 
 /**
@@ -99,12 +99,13 @@ internal fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
  * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
  */
 internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
-  bezeichnung: String
+  bezeichnung: String,
 ): T? {
-  return find { element ->
+  return find {element ->
     element.localizations.values // Greift auf alle übersetzten Bezeichnungen des Elements zu.
-      .any { localization -> localization == bezeichnung }
-    // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
+
+      // Überprüft, ob irgendeine dieser Übersetzungen exakt mit dem gesuchten Text übereinstimmt.
+      .any {localization -> localization == bezeichnung}
   }
 }
 
@@ -115,8 +116,9 @@ internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
  * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
  */
 internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
-  id: Int
-): T = find { it.id == id } ?: error("Element mit ID $id nicht gefunden")
+  id: Int,
+): T = find {it.id == id}
+  ?: error("Element mit ID $id nicht gefunden")
 
 /**
  * Findet mehrere Spielelemente anhand einer Collection von IDs in der Collection<T>.
@@ -125,7 +127,7 @@ internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
  * @return Menge gefundener Elemente
  */
 internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
-  ids: Collection<Int>
+  ids: Collection<Int>,
 ): Set<T> {
-  return ids.mapTo(mutableSetOf()) { id -> finde(id) }
+  return ids.mapTo(mutableSetOf()) {id -> finde(id)}
 }

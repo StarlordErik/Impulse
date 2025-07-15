@@ -44,7 +44,7 @@ class ImpulseViewModelTest {
     val viewModel = dummyImpulseViewModel()
     val kategorie = viewModel.getSpiel(5).getAktuelleKategorien().finde(5)
 
-    val expectedScope = kategorie.getUngeseheneKarten().flatMap { it.localizations.values }
+    val expectedScope = kategorie.getUngeseheneKarten().flatMap {it.localizations.values}
 
     val actual = viewModel.getRandomKartentext(kategorie)
     assertTrue(expectedScope.contains(actual))

@@ -45,15 +45,17 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
       SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
     }
 
-    val kartentexte = remember { mutableStateMapOf<Int, String>() }
+    val kartentexte = remember {mutableStateMapOf<Int, String>()}
     LazyColumn(
       modifier = Modifier
         .weight(1f)
         .fillMaxWidth(), verticalArrangement = Arrangement.Center
     ) {
-      items(spiel.getAktuelleKategorien().toList(), key = { it.id }) { kategorie ->
+      items(spiel.getAktuelleKategorien().toList(), key = {it.id}) {kategorie ->
         val initialText = viewModel.getName(kategorie)
-        val kartentext = kartentexte[kategorie.id] ?: initialText
+        val kartentext =
+          kartentexte[kategorie.id]
+            ?: initialText
 
         SammlungsButton(kartentext) {
           kartentexte[kategorie.id] = viewModel.getRandomKartentext(kategorie)

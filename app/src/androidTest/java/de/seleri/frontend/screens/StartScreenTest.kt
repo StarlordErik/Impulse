@@ -28,7 +28,6 @@ class StartScreenTest {
   @get:Rule
   val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-
   private lateinit var navController: TestNavHostController
 
   @Before
@@ -51,7 +50,7 @@ class StartScreenTest {
     composeTestRule.onNodeWithText("Impulse").assertIsDisplayed()
 
     // Check that all game buttons are displayed
-    viewModel.spiele.forEach { spiel ->
+    viewModel.spiele.forEach {spiel ->
       val name = viewModel.getName(spiel)
       composeTestRule.onNodeWithText(name).assertIsDisplayed()
     }
@@ -126,7 +125,7 @@ class StartScreenTest2 {
     composeTestRule.onNodeWithText("Impulse").assertIsDisplayed()
 
     // Prüfe, ob für jedes Spiel ein Button mit dem Namen angezeigt wird
-    dummyViewModel.spiele.forEach { spiel ->
+    dummyViewModel.spiele.forEach {spiel ->
       val spielName = dummyViewModel.getName(spiel)
       composeTestRule.onNodeWithText(spielName).assertIsDisplayed()
     }
@@ -157,6 +156,6 @@ class StartScreenTest2 {
 
     composeTestRule.onNodeWithText("TestButton").assertIsDisplayed().performClick()
 
-    assert(clicked) { "Button wurde nicht geklickt" }
+    assert(clicked) {"Button wurde nicht geklickt"}
   }
 }

@@ -35,8 +35,7 @@ fun yamlDummySpiel(): String = """
         """.trimMargin()
 
 fun getDummySpiele(elementart: String): Set<Spiel> =
-  getDummyDaten("Spiel.yml", elementart) { Spiel.fromYaml(it, alleDummyKategorien()) }
-
+  getDummyDaten("Spiel.yml", elementart) {Spiel.fromYaml(it, alleDummyKategorien())}
 
 fun dummyOriginaleKategorienIDs(): MutableSet<Kategorie> =
   mutableSetOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
@@ -182,7 +181,7 @@ class SpielTest {
   private fun testKorrekteInstanziierung(
     erwarteteOriginale: Map<String, Collection<Kategorie>>,
     erwarteteHinzugefuegte: Collection<Kategorie>,
-    dummy: Spiel
+    dummy: Spiel,
   ) {
     val actualOriginale = dummy.originaleElemente
     val actualHinzugefuegte = dummy.hinzugefuegteElemente
@@ -221,7 +220,7 @@ class SpielTest {
   }
 
   private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
-    dummy: Spiel
+    dummy: Spiel,
   ) {
     val originaleKategorienIDs = setOf(dummyKategorie1())
     val davonEntfernte = emptySet<Kategorie>()
@@ -232,7 +231,7 @@ class SpielTest {
   }
 
   private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
-    dummy: Spiel
+    dummy: Spiel,
   ) {
     val originaleKategorienIDs = setOf(dummyKategorie1(), dummyKategorie2(), dummyKategorie3(), dummyKategorie4())
     val davonEntfernte = setOf(dummyKategorie2(), dummyKategorie4())

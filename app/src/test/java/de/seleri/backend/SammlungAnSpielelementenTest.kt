@@ -11,7 +11,7 @@ data class DummySammlungAnSpielelementen(
   override var id: Int,
   override val localizations: MutableMap<Sprachen, String?>,
   override val originaleElemente: Map<String, MutableSet<Karte>>,
-  override val hinzugefuegteElemente: MutableSet<Karte>
+  override val hinzugefuegteElemente: MutableSet<Karte>,
 ): SammlungAnSpielelementen<Karte>(
   id, localizations, originaleElemente, hinzugefuegteElemente
 ) {
@@ -29,18 +29,18 @@ data class DummySammlungAnSpielelementen(
 
   companion object {
     fun fromEingabe(
-      id: Int, sprache: Sprachen, name: String, originaleKarten: Collection<Karte>
+      id: Int, sprache: Sprachen, name: String, originaleKarten: Collection<Karte>,
     ): DummySammlungAnSpielelementen =
       fromEingabe(id, sprache, name, originaleKarten, ::DummySammlungAnSpielelementen)
 
     fun fromYamlListe(
       elementart: String,
       yamlDaten: Map<String, Any>,
-      converter: (Map<String, Any>) -> Collection<DummySammlungAnSpielelementen>
+      converter: (Map<String, Any>) -> Collection<DummySammlungAnSpielelementen>,
     ) = LokalisierbaresSpielelement.fromYamlListe(elementart, yamlDaten, converter)
 
     fun fromYaml(
-      yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>
+      yamlDaten: Map<String, Any>, moeglicheKarten: Collection<Karte>,
     ): Set<DummySammlungAnSpielelementen> =
       setOf(fromYaml(yamlDaten, moeglicheKarten, ::DummySammlungAnSpielelementen))
   }
@@ -263,7 +263,7 @@ class SammlungAnSpielelementenTest {
   private fun testKorrekteInstanziierung(
     erwarteteOriginale: Map<String, Collection<Karte>>,
     erwarteteHinzugefuegte: Collection<Karte>,
-    dummy: DummySammlungAnSpielelementen
+    dummy: DummySammlungAnSpielelementen,
   ) {
     val actualOriginale = dummy.originaleElemente
     val actualHinzugefuegte = dummy.hinzugefuegteElemente
@@ -289,7 +289,7 @@ class SammlungAnSpielelementenTest {
   }
 
   private fun getDummySammlungen(elementart: String): Set<DummySammlungAnSpielelementen> =
-    getDummyDaten("SammlungAnSpielelementen.yml", elementart) { yamlDaten ->
+    getDummyDaten("SammlungAnSpielelementen.yml", elementart) {yamlDaten ->
       DummySammlungAnSpielelementen.fromYamlListe(
         elementart, yamlDaten
       ) {
@@ -311,7 +311,7 @@ class SammlungAnSpielelementenTest {
   }
 
   private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
-    dummy: DummySammlungAnSpielelementen
+    dummy: DummySammlungAnSpielelementen,
   ) {
     val originaleKartenIDs = setOf(dummyKarte1())
     val davonEntfernte = emptySet<Karte>()
@@ -322,7 +322,7 @@ class SammlungAnSpielelementenTest {
   }
 
   private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
-    dummy: DummySammlungAnSpielelementen
+    dummy: DummySammlungAnSpielelementen,
   ) {
     val originaleKartenIDs = setOf(dummyKarte1(), dummyKarte2(), dummyKarte3(), dummyKarte4())
     val davonEntfernte = setOf(dummyKarte2(), dummyKarte4())

@@ -11,7 +11,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
 
-
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTest {
 
@@ -21,8 +20,8 @@ class InstrumentedTest {
     val rawDatenbank = context.resources.openRawResource(R.raw.datenbank)
 
     val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-    rawDatenbank.use { input ->
-      datenbank.outputStream().use { output ->
+    rawDatenbank.use {input ->
+      datenbank.outputStream().use {output ->
         input.copyTo(output)
       }
     }
@@ -44,5 +43,4 @@ class InstrumentedTest {
     assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
     assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
   }
-
 }

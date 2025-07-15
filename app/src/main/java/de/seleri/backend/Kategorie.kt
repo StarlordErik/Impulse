@@ -14,7 +14,7 @@ class Kategorie(
   override var id: Int,
   override val localizations: MutableMap<Sprachen, String?>,
   override val originaleElemente: Map<String, MutableSet<Karte>>,
-  override val hinzugefuegteElemente: MutableSet<Karte>
+  override val hinzugefuegteElemente: MutableSet<Karte>,
 ): SammlungAnSpielelementen<Karte>(id, localizations, originaleElemente, hinzugefuegteElemente) {
 
   /**
@@ -89,7 +89,7 @@ class Kategorie(
      * @return neue Kategorie ohne entfernte oder hinzugefügte Karten
      */
     fun fromEingabe(
-      id: Int, sprache: Sprachen, name: String, originaleKarten: Collection<Karte>
+      id: Int, sprache: Sprachen, name: String, originaleKarten: Collection<Karte>,
     ): Kategorie = fromEingabe(id, sprache, name, originaleKarten, ::Kategorie)
 
     /**
@@ -109,7 +109,7 @@ class Kategorie(
 
         // Fall 1: mehrere Kategorien
         KATEGORIEN in yamlDaten -> {
-          fromYamlListe(KATEGORIEN, yamlDaten) { fromYaml(it, moeglicheKarten) }
+          fromYamlListe(KATEGORIEN, yamlDaten) {fromYaml(it, moeglicheKarten)}
         }
 
         // Fall 2: einzelne Kategorie
@@ -118,7 +118,9 @@ class Kategorie(
         }
 
         // Fall 3: ungültige Struktur
-        else -> throw IllegalArgumentException("Ungültige Kategoriestruktur.")
+        else -> throw IllegalArgumentException(
+          "Ungültige Kategoriestruktur."
+        )
       }
     }
   }

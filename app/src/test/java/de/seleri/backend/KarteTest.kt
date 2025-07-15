@@ -64,7 +64,7 @@ class KarteTest {
    * prüft nur die Instanziierung der neuen Attribute von Karte im Vergleich zur Superklasse
    */
   private fun testKorrekteInstanziierung(
-    erwartetesGesehen: Boolean, erwartetesGeloescht: Boolean, dummy: Karte
+    erwartetesGesehen: Boolean, erwartetesGeloescht: Boolean, dummy: Karte,
   ) {
     val actualGesehen = dummy.gesehen
     val actualGeloescht = dummy.geloescht
@@ -86,7 +86,6 @@ class KarteTest {
     testKorrekteInstanziierung(erwartetesGesehen, erwartetesGeloescht, dummy)
   }
 
-
   @Test
   fun `fromYaml() Yaml-Datei wird korrekt in eine Menge von Objekten verwandelt`() {
     val dummys = getDummyKarten("gültigeKarten")
@@ -98,7 +97,7 @@ class KarteTest {
   }
 
   private fun `fromYaml(7) Objekt mit der ID 7 korrekt aus der Yaml gelesen`(
-    dummy: Karte
+    dummy: Karte,
   ) {
     testKorrekteInstanziierung(
       erwartetesGesehen = true, erwartetesGeloescht = false, dummy
@@ -106,7 +105,7 @@ class KarteTest {
   }
 
   private fun `fromYaml(42) Objekt mit der ID 42 korrekt aus der Yaml gelesen`(
-    dummy: Karte
+    dummy: Karte,
   ) {
     testKorrekteInstanziierung(
       erwartetesGesehen = false, erwartetesGeloescht = true, dummy

@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 sealed class SpielScreenIcons(
-  @param:DrawableRes val ressource: Int, @param:StringRes val beschreibung: Int
+  @param:DrawableRes val ressource: Int, @param:StringRes val beschreibung: Int,
 ) {
   object Einstellungsrad: SpielScreenIcons(
     de.seleri.frontend.R.drawable.settings_for_game_mechanics,

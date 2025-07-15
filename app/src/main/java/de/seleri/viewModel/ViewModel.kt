@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 @HiltViewModel
 class ImpulseViewModel @Inject constructor(
-  private val dbs: Datenbanksystem
+  private val dbs: Datenbanksystem,
 ): ViewModel() {
   val spiele = dbs.spiele.toList()
 
