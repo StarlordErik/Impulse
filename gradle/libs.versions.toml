@@ -27,6 +27,9 @@ ksp = "2.2.0-2.0.2"
 
 mokk = "1.14.4"
 robolectric = "4.15.1"
+junitKtx = "1.2.1"
+uiTestJunit4Android = "1.8.3"
+navigationTestingAndroid = "2.9.1"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
@@ -59,6 +62,9 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 
 mokk = { group = "io.mockk", name = "mockk", version.ref = "mokk" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
+androidx-navigation-testing-android = { group = "androidx.navigation", name = "navigation-testing-android", version.ref = "navigationTestingAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
