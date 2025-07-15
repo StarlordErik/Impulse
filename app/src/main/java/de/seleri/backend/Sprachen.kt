@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 /**
  * unterstützte Sprachversionen für alle Spielelemente

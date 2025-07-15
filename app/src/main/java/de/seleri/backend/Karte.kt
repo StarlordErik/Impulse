@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 const val KARTEN: String = "Karten"
 const val TEXT: String = "Text"

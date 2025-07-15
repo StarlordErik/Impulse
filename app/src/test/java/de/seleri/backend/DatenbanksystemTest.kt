@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

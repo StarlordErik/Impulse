@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 const val KATEGORIEN: String = "Kategorien"
 

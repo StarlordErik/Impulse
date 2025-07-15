@@ -24,9 +24,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import de.seleri.frontend.ImpulseTheme
 import de.seleri.tools.dummyViewModel
+import de.seleri.viewModel.ImpulseViewModel
 
 @Composable
-fun StartScreen(navController: NavHostController, viewModel: de.seleri.frontend.ImpulseViewModel) {
+fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
     val spiele = viewModel.spiele
 
     LazyColumn(

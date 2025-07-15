@@ -1,10 +1,10 @@
 package de.seleri.tools
 
-import de.seleri.frontend.ImpulseViewModel
-import de.seleri.spielelemente.DATENBANK_DATEIFORMAT
-import de.seleri.spielelemente.DATENBANK_NAME
-import de.seleri.spielelemente.DATENBANK_PFAD
-import de.seleri.spielelemente.Datenbanksystem
+import de.seleri.backend.DATENBANK_DATEIFORMAT
+import de.seleri.backend.DATENBANK_NAME
+import de.seleri.backend.DATENBANK_PFAD
+import de.seleri.backend.Datenbanksystem
+import de.seleri.viewModel.ImpulseViewModel
 import java.io.File
 import java.nio.file.Paths
 

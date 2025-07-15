@@ -1,7 +1,7 @@
 package de.seleri.tools
 
-import de.seleri.spielelemente.Datenbanksystem
-import de.seleri.spielelemente.Sprachen
+import de.seleri.backend.Datenbanksystem
+import de.seleri.backend.Sprachen
 
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {

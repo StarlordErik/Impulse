@@ -26,12 +26,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import de.seleri.backend.Spiel
 import de.seleri.frontend.ImpulseTheme
-import de.seleri.spielelemente.Spiel
 import de.seleri.tools.dummyViewModel
+import de.seleri.viewModel.ImpulseViewModel
 
 @Composable
-fun SpielScreen(viewModel: de.seleri.frontend.ImpulseViewModel, spiel: Spiel) {
+fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
     Column(
         modifier = Modifier
             .fillMaxSize()

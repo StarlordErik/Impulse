@@ -1,6 +1,6 @@
 package de.seleri.tools
 
-import de.seleri.spielelemente.DATENBANK_PFAD
+import de.seleri.backend.DATENBANK_PFAD
 import java.io.File
 
 @Suppress("LongMethod", "MaxLineLength")

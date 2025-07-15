@@ -1,7 +1,4 @@
-package de.seleri.spielelemente
-
-import kotlin.collections.first
-import kotlin.collections.set
+package de.seleri.backend
 
 const val ID: String = "ID"
 

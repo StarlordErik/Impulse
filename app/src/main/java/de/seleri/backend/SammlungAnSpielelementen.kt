@@ -1,6 +1,4 @@
-package de.seleri.spielelemente
-
-import kotlin.collections.contains
+package de.seleri.backend
 
 const val NAME: String = "Name"
 

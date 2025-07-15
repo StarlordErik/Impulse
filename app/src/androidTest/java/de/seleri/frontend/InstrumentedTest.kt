@@ -2,10 +2,10 @@ package de.seleri.frontend
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import de.seleri.spielelemente.DATENBANK_DATEIFORMAT
-import de.seleri.spielelemente.DATENBANK_NAME
-import de.seleri.spielelemente.Datenbanksystem
-import de.seleri.spielelemente.finde
+import de.seleri.backend.DATENBANK_DATEIFORMAT
+import de.seleri.backend.DATENBANK_NAME
+import de.seleri.backend.Datenbanksystem
+import de.seleri.backend.finde
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.junit.runner.RunWith

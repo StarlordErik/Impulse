@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 import android.content.Context
 import de.seleri.frontend.R

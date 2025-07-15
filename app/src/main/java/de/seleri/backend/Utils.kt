@@ -1,4 +1,4 @@
-package de.seleri.spielelemente
+package de.seleri.backend
 
 /**
  * Konvertiert ein Attribut zu einer Zeile im YAML-Format

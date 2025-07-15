@@ -103,17 +103,13 @@ kover {
         filters {
             excludes {
                 classes(
-                    "*ComposableSingletons*",
-                    "*AppModule*",
-                    "*MainActivity*",
-                    "*NavigationKt",
-                    "*Theme*",
                     "*ImpulseViewModel_*",
-                    "de.seleri.frontend.Impulse",
+                    "*AppModule*",
                     "*Datenbanksystem\$Companion",
                     )
                 packages(
                     "de.seleri.tools",
+                    "de.seleri.frontend",
                     "dagger.hilt.internal.aggregatedroot.codegen",
                     "hilt_aggregated_deps"
                 )
