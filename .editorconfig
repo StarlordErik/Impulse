@@ -1,0 +1,13 @@
+root = true
+
+[*]
+charset = utf-8 # Zeichensatz
+end_of_line = lf # \n für Zeilenende (Unix-Stil)
+insert_final_newline = true # Neue Zeile am Dateiende
+trim_trailing_whitespace = true # Entfernt Leerzeichen am Zeilenende
+
+max_line_length = 117 # Harte Grenze für Codezeilen
+
+indent_style = space # space oder tab
+indent_size = 2 # Anzahl Leerzeichen oder Tabweite
+tab_width = 2 # Wenn indent_style = tab
