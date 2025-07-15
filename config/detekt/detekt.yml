@@ -73,23 +73,23 @@ comments:
     matchTypeParameters: true # prüft, ob generische Typ-Parameter erwähnt werden
     matchDeclarationsOrder: true # prüft, ob Reihenfolge der @param mit der Reihenfolge in der Funktion übereinstimmt
     allowParamOnConstructorProperties: false # erlaubt, dass fälschlicherweise @param statt @property verwendet wird
-  UndocumentedPublicClass:
-    active: false
+  UndocumentedPublicClass: # prüft, ob Klasse dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: true
     searchInInnerInterface: true
-    searchInProtectedClass: false
-    ignoreDefaultCompanionObject: false
-  UndocumentedPublicFunction:
-    active: false
+    searchInProtectedClass: true
+    ignoreDefaultCompanionObject: true
+  UndocumentedPublicFunction: # prüft, ob Funktion dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-    searchProtectedFunction: false
-  UndocumentedPublicProperty:
-    active: false
+    searchProtectedFunction: true
+  UndocumentedPublicProperty: # prüft, ob Konstanten dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-    searchProtectedProperty: false
+    searchProtectedProperty: true
 
 complexity:
   active: true
