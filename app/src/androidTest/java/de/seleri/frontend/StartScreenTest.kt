@@ -7,10 +7,12 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import de.seleri.frontend.ImpulseTheme
@@ -115,5 +117,61 @@ class StartScreenTest {
             .onNodeWithText("Impulse")
             .assertIsDisplayed()
             .assert(hasAnyAncestor(isRoot()))
+    }
+}
+
+class StartScreenTest2 {
+    @get:Rule
+    val composeTestRule = createComposeRule()
+
+    @Test
+    fun startScreen_showsTitleAndButtons() {
+        val dummyViewModel = dummyViewModel()
+
+        composeTestRule.setContent {
+            val navController = rememberNavController()
+            ImpulseTheme {
+                StartScreen(navController, dummyViewModel)
+            }
+        }
+
+        // Prüfe, ob Titel "Impulse" angezeigt wird
+        composeTestRule.onNodeWithText("Impulse").assertIsDisplayed()
+
+        // Prüfe, ob für jedes Spiel ein Button mit dem Namen angezeigt wird
+        dummyViewModel.spiele.forEach { spiel ->
+            val spielName = dummyViewModel.getName(spiel)
+            composeTestRule.onNodeWithText(spielName).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun titel_composable_displaysCorrectText() {
+        composeTestRule.setContent {
+            ImpulseTheme {
+                Titel()
+            }
+        }
+
+        composeTestRule.onNodeWithText("Impulse").assertIsDisplayed()
+    }
+
+    @Test
+    fun sammlungsButton_displaysTextAndRespondsToClick() {
+        var clicked = false
+
+        composeTestRule.setContent {
+            ImpulseTheme {
+                SammlungsButton("TestButton") {
+                    clicked = true
+                }
+            }
+        }
+
+        composeTestRule.onNodeWithText("TestButton")
+            .assertIsDisplayed()
+            .performClick()
+
+        assert(clicked) { "Button wurde nicht geklickt" }
     }
 }
