@@ -15,13 +15,13 @@ import java.nio.file.Paths
  * @return Instanz des Datenbanksystems mit geladenen Daten
  */
 fun Datenbanksystem.Companion.generieren(): Datenbanksystem {
-    val dateipfad = Paths.get(DATENBANK_PFAD)
-    return Datenbanksystem(dateipfad.toFile())
+  val dateipfad = Paths.get(DATENBANK_PFAD)
+  return Datenbanksystem(dateipfad.toFile())
 }
 
 @Suppress("LongMethod")
 fun dummyViewModel(): ImpulseViewModel {
-    val dummyDatenbank = """
+  val dummyDatenbank = """
 Karten:
   - ID: 1
     Text:
@@ -124,10 +124,10 @@ Spiele:
       davon_entfernt: []
     hinzugefügte_Kategorien-IDs: []
 """
-    val testDatei = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-    testDatei.writeText(dummyDatenbank)
+  val testDatei = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+  testDatei.writeText(dummyDatenbank)
 
-    val dbs = Datenbanksystem(testDatei)
+  val dbs = Datenbanksystem(testDatei)
 
-    return ImpulseViewModel(dbs)
+  return ImpulseViewModel(dbs)
 }

@@ -5,14 +5,14 @@ import java.io.File
 
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
-    val file = File(DATENBANK_PFAD)
+  val file = File(DATENBANK_PFAD)
 
-    // Lese den kompletten Dateiinhalt als String
-    val content = file.readText()
+  // Lese den kompletten Dateiinhalt als String
+  val content = file.readText()
 
-    // Ersetze alle Vorkommen von "" durch null
-    val updatedContent = content.replace(": \"\"", ":")
+  // Ersetze alle Vorkommen von "" durch null
+  val updatedContent = content.replace(": \"\"", ":")
 
-    // Schreibe den neuen Inhalt zurück in die Datei
-    file.writeText(updatedContent)
+  // Schreibe den neuen Inhalt zurück in die Datei
+  file.writeText(updatedContent)
 }

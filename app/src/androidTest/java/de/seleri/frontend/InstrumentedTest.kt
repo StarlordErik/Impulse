@@ -15,34 +15,34 @@ import java.io.File
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTest {
 
-    @Test
-    fun rawDatenbankKorrektAusgelesen() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val rawDatenbank = context.resources.openRawResource(R.raw.datenbank)
+  @Test
+  fun rawDatenbankKorrektAusgelesen() {
+    val context = InstrumentationRegistry.getInstrumentation().targetContext
+    val rawDatenbank = context.resources.openRawResource(R.raw.datenbank)
 
-        val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
-        rawDatenbank.use { input ->
-            datenbank.outputStream().use { output ->
-                input.copyTo(output)
-            }
-        }
-
-        val dbs = Datenbanksystem(datenbank)
-
-        assertNotNull(dbs.spiele.finde("We're not really strangers"))
-        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
-        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
+    val datenbank = File.createTempFile(DATENBANK_NAME, DATENBANK_DATEIFORMAT)
+    rawDatenbank.use { input ->
+      datenbank.outputStream().use { output ->
+        input.copyTo(output)
+      }
     }
 
-    @Test
-    fun datenbanksystemKorrektGeneriert() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
+    val dbs = Datenbanksystem(datenbank)
 
-        val dbs = Datenbanksystem.generieren(context)
+    assertNotNull(dbs.spiele.finde("We're not really strangers"))
+    assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
+    assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
+  }
 
-        assertNotNull(dbs.spiele.finde("We're not really strangers"))
-        assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
-        assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
-    }
+  @Test
+  fun datenbanksystemKorrektGeneriert() {
+    val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+    val dbs = Datenbanksystem.generieren(context)
+
+    assertNotNull(dbs.spiele.finde("We're not really strangers"))
+    assertNotNull(dbs.kategorien.finde("Level 1: Perception"))
+    assertNotNull(dbs.karten.finde("Do I look kind? Explain."))
+  }
 
 }

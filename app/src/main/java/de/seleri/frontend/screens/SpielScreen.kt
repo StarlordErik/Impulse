@@ -33,83 +33,83 @@ import de.seleri.viewModel.ImpulseViewModel
 
 @Composable
 fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        Spacer(modifier = Modifier.height(10.dp))
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .background(MaterialTheme.colorScheme.background)
+  ) {
+    Spacer(modifier = Modifier.height(10.dp))
 
-        SpielScreenRow {
-            SpielTitel(viewModel.getName(spiel), Modifier.weight(1f))
-            SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
-        }
-
-        val kartentexte = remember { mutableStateMapOf<Int, String>() }
-        LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(), verticalArrangement = Arrangement.Center
-        ) {
-            items(spiel.getAktuelleKategorien().toList(), key = { it.id }) { kategorie ->
-                val initialText = viewModel.getName(kategorie)
-                val kartentext = kartentexte[kategorie.id] ?: initialText
-
-                SammlungsButton(kartentext) {
-                    kartentexte[kategorie.id] = viewModel.getRandomKartentext(kategorie)
-                }
-            }
-        }
-
-        SpielScreenRow {
-            SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
-            SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
-        }
+    SpielScreenRow {
+      SpielTitel(viewModel.getName(spiel), Modifier.weight(1f))
+      SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
     }
+
+    val kartentexte = remember { mutableStateMapOf<Int, String>() }
+    LazyColumn(
+      modifier = Modifier
+        .weight(1f)
+        .fillMaxWidth(), verticalArrangement = Arrangement.Center
+    ) {
+      items(spiel.getAktuelleKategorien().toList(), key = { it.id }) { kategorie ->
+        val initialText = viewModel.getName(kategorie)
+        val kartentext = kartentexte[kategorie.id] ?: initialText
+
+        SammlungsButton(kartentext) {
+          kartentexte[kategorie.id] = viewModel.getRandomKartentext(kategorie)
+        }
+      }
+    }
+
+    SpielScreenRow {
+      SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
+      SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
+    }
+  }
 }
 
 @Composable
 fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 0.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        content()
-    }
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 16.dp, vertical = 0.dp),
+    horizontalArrangement = Arrangement.SpaceBetween,
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    content()
+  }
 }
 
 @Composable
 fun SpielTitel(name: String, modifier: Modifier) {
-    Text(
-        text = name,
-        color = MaterialTheme.colorScheme.primary,
-        style = MaterialTheme.typography.displayMedium,
-        maxLines = 2,
-        overflow = TextOverflow.Ellipsis,
-        modifier = modifier
-    )
+  Text(
+    text = name,
+    color = MaterialTheme.colorScheme.primary,
+    style = MaterialTheme.typography.displayMedium,
+    maxLines = 2,
+    overflow = TextOverflow.Ellipsis,
+    modifier = modifier
+  )
 }
 
 @Composable
 fun SpielScreenIcon(icon: SpielScreenIcons) {
-    Icon(
-        painter = painterResource(icon.ressource),
-        contentDescription = stringResource(icon.beschreibung),
-        tint = MaterialTheme.colorScheme.primaryContainer,
-        modifier = Modifier.size(50.dp)
-    )
+  Icon(
+    painter = painterResource(icon.ressource),
+    contentDescription = stringResource(icon.beschreibung),
+    tint = MaterialTheme.colorScheme.primaryContainer,
+    modifier = Modifier.size(50.dp)
+  )
 }
 
 @Preview
 @Composable
 fun SpielScreenPreview() {
-    val dummyViewModel = dummyViewModel()
-    val dummySpiel = dummyViewModel.getSpiel(1)
+  val dummyViewModel = dummyViewModel()
+  val dummySpiel = dummyViewModel.getSpiel(1)
 
-    ImpulseTheme {
-        SpielScreen(dummyViewModel, dummySpiel)
-    }
+  ImpulseTheme {
+    SpielScreen(dummyViewModel, dummySpiel)
+  }
 }

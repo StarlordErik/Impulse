@@ -28,83 +28,81 @@ import de.seleri.viewModel.ImpulseViewModel
 
 @Composable
 fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
-    val spiele = viewModel.spiele
+  val spiele = viewModel.spiele
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        item {
-            Titel()
-        }
-        items(spiele, key = { it.id }) { spiel ->
-            SammlungsButton(viewModel.getName(spiel)) {
-                navController.navigate(Screens.Spiel.mitDerID(spiel.id))
-            }
-        }
+  LazyColumn(
+    modifier = Modifier
+      .fillMaxSize()
+      .background(MaterialTheme.colorScheme.background)
+  ) {
+    item {
+      Titel()
     }
+    items(spiele, key = { it.id }) { spiel ->
+      SammlungsButton(viewModel.getName(spiel)) {
+        navController.navigate(Screens.Spiel.mitDerID(spiel.id))
+      }
+    }
+  }
 }
 
 @Composable
 fun Titel() {
-    val windowInfo = LocalWindowInfo.current
-    val density = LocalDensity.current
-    val containerHeightDp = windowInfo.containerSize.height
+  val windowInfo = LocalWindowInfo.current
+  val density = LocalDensity.current
+  val containerHeightDp = windowInfo.containerSize.height
 
-    // Umrechnung von px in dp
-    val containerHeight = with(density) { containerHeightDp.toDp() }
-    val anteilDesTitelsAmBildschirm = 3.toFloat()
-    val titelHoehe = containerHeight / anteilDesTitelsAmBildschirm
+  // Umrechnung von px in dp
+  val containerHeight = with(density) { containerHeightDp.toDp() }
+  val anteilDesTitelsAmBildschirm = 3.toFloat()
+  val titelHoehe = containerHeight / anteilDesTitelsAmBildschirm
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(titelHoehe), //.
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Impulse",
-            color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.displayLarge
-        )
-    }
+  Box(
+    modifier = Modifier
+      .fillMaxWidth()
+      .height(titelHoehe), //.
+    contentAlignment = Alignment.Center
+  ) {
+    Text(
+      text = "Impulse", color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.displayLarge
+    )
+  }
 }
 
 @Composable
 fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
-    Card(
-        onClick = onClick,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-            contentColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f)
-        ),
-        shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 30.dp, vertical = 10.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+  Card(
+    onClick = onClick,
+    colors = CardDefaults.cardColors(
+      containerColor = MaterialTheme.colorScheme.secondaryContainer,
+      contentColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f)
+    ),
+    shape = RoundedCornerShape(12.dp),
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 30.dp, vertical = 10.dp),
+    elevation = CardDefaults.cardElevation(4.dp)
+  ) {
+    Box(
+      modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = buttonText,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(15.dp)
-            )
-        }
+      Text(
+        text = buttonText,
+        color = MaterialTheme.colorScheme.onSecondaryContainer,
+        style = MaterialTheme.typography.titleLarge,
+        modifier = Modifier.padding(15.dp)
+      )
     }
+  }
 }
 
 @Preview
 @Composable
 fun StartScreenPreview() {
-    val dummyNavController = rememberNavController()
-    val dummyViewModel = dummyViewModel()
+  val dummyNavController = rememberNavController()
+  val dummyViewModel = dummyViewModel()
 
-    ImpulseTheme {
-        StartScreen(dummyNavController, dummyViewModel)
-    }
+  ImpulseTheme {
+    StartScreen(dummyNavController, dummyViewModel)
+  }
 }

@@ -10,14 +10,14 @@ import de.seleri.frontend.screens.Navigation
 
 @AndroidEntryPoint
 class MainActivity: ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ImpulseTheme {
-                Navigation()
-            }
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      ImpulseTheme {
+        Navigation()
+      }
     }
+  }
 }
 
 @HiltAndroidApp

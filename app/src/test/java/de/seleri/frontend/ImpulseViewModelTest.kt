@@ -11,44 +11,44 @@ import org.junit.Test
 fun dummyImpulseViewModel() = ImpulseViewModel(dummyDatenbanksystem())
 class ImpulseViewModelTest {
 
-    @Test
-    fun `dummyImpulseViewModel() ViewModel initialisieren`() {
-        val viewModel = dummyImpulseViewModel()
+  @Test
+  fun `dummyImpulseViewModel() ViewModel initialisieren`() {
+    val viewModel = dummyImpulseViewModel()
 
-        assertTrue(viewModel.spiele.isNotEmpty())
-    }
+    assertTrue(viewModel.spiele.isNotEmpty())
+  }
 
-    @Test
-    fun `getSpiel() Spiel wird gefunden`() {
-        val viewModel = dummyImpulseViewModel()
+  @Test
+  fun `getSpiel() Spiel wird gefunden`() {
+    val viewModel = dummyImpulseViewModel()
 
-        val actual = viewModel.getSpiel(1)
+    val actual = viewModel.getSpiel(1)
 
-        val expected = dummySpiel1()
-        assertEquals(expected, actual)
-    }
+    val expected = dummySpiel1()
+    assertEquals(expected, actual)
+  }
 
-    @Test
-    fun `getName() ausgegebener Name entspricht einer Lokalisierung`() {
-        val viewModel = dummyImpulseViewModel()
-        val spiel = viewModel.getSpiel(1)
+  @Test
+  fun `getName() ausgegebener Name entspricht einer Lokalisierung`() {
+    val viewModel = dummyImpulseViewModel()
+    val spiel = viewModel.getSpiel(1)
 
-        val actual = viewModel.getName(spiel)
+    val actual = viewModel.getName(spiel)
 
-        val expectedScope = dummySpiel1().localizations.values
-        assertTrue(expectedScope.contains(actual))
-    }
+    val expectedScope = dummySpiel1().localizations.values
+    assertTrue(expectedScope.contains(actual))
+  }
 
-    @Test
-    fun `getRandomKartentext() ausgegebener Kartentext kommt aus der Sammlung`() {
-        val viewModel = dummyImpulseViewModel()
-        val kategorie = viewModel.getSpiel(5).getAktuelleKategorien().finde(5)
+  @Test
+  fun `getRandomKartentext() ausgegebener Kartentext kommt aus der Sammlung`() {
+    val viewModel = dummyImpulseViewModel()
+    val kategorie = viewModel.getSpiel(5).getAktuelleKategorien().finde(5)
 
-        val expectedScope = kategorie.getUngeseheneKarten().flatMap { it.localizations.values }
+    val expectedScope = kategorie.getUngeseheneKarten().flatMap { it.localizations.values }
 
-        val actual = viewModel.getRandomKartentext(kategorie)
-        assertTrue(expectedScope.contains(actual))
-    }
+    val actual = viewModel.getRandomKartentext(kategorie)
+    assertTrue(expectedScope.contains(actual))
+  }
 }
 
 

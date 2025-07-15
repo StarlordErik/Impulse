@@ -19,26 +19,25 @@ import javax.inject.Singleton
 
 @HiltViewModel
 class ImpulseViewModel @Inject constructor(
-    private val dbs: Datenbanksystem
+  private val dbs: Datenbanksystem
 ): ViewModel() {
-    val spiele = dbs.spiele.toList()
+  val spiele = dbs.spiele.toList()
 
-    fun getSpiel(id: Int): Spiel = dbs.spiele.finde(id)
+  fun getSpiel(id: Int): Spiel = dbs.spiele.finde(id)
 
-    fun getName(sammlung: SammlungAnSpielelementen<*>): String =
-        sammlung.localizations[Sprachen.OG]!!
+  fun getName(sammlung: SammlungAnSpielelementen<*>): String = sammlung.localizations[Sprachen.OG]!!
 
-    fun getRandomKartentext(kategorie: Kategorie): String {
-        return dbs.getRandomKartentext(kategorie)
-    }
+  fun getRandomKartentext(kategorie: Kategorie): String {
+    return dbs.getRandomKartentext(kategorie)
+  }
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    @Provides
-    @Singleton
-    fun provideDatenbanksystem(@ApplicationContext context: Context): Datenbanksystem {
-        return Datenbanksystem.generieren(context)
-    }
+  @Provides
+  @Singleton
+  fun provideDatenbanksystem(@ApplicationContext context: Context): Datenbanksystem {
+    return Datenbanksystem.generieren(context)
+  }
 }

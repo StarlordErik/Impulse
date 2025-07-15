@@ -5,14 +5,14 @@ import org.junit.Test
 
 class ScreenTest {
 
-    @Test
-    fun `SpielScreen_mitDerID() erzeugt korrekten Pfad fuer SpieleScreen`() {
-        val id = 42
-        val screen = Screens.Spiel
+  @Test
+  fun `SpielScreen_mitDerID() erzeugt korrekten Pfad fuer SpieleScreen`() {
+    val id = 42
+    val screen = Screens.Spiel
 
-        val actual = screen.mitDerID(id)
+    val actual = screen.mitDerID(id)
 
-        val expected = screen.route + "/42"
-        assertEquals(expected, actual)
-    }
+    val expected = screen.route + "/42"
+    assertEquals(expected, actual)
+  }
 }
