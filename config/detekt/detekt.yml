@@ -93,23 +93,23 @@ comments:
 
 complexity:
   active: true
-  CognitiveComplexMethod:
-    active: false
+  CognitiveComplexMethod: # warnt, falls Methode zu viele Verzweigungen oder Schleifen enthält
+    active: true
     threshold: 15
-  ComplexCondition:
+  ComplexCondition: # warnt, falls eine Verzweigung zu viele logische Operatoren (!, &&, ||) enthält
     active: true
     threshold: 4
-  ComplexInterface:
-    active: false
+  ComplexInterface: # warnt, falls ein Interface zu viele Methoden enthält
+    active: true
     threshold: 10
-    includeStaticDeclarations: false
-    includePrivateDeclarations: false
-    ignoreOverloaded: false
+    includeStaticDeclarations: true # Zählen statische Funktionen mit?
+    includePrivateDeclarations: false # Zählen private Funktionen mit?
+    ignoreOverloaded: true # ignoriert überladene Methoden
   CyclomaticComplexMethod:
     active: true
-    threshold: 15
-    ignoreSingleWhenExpression: false
-    ignoreSimpleWhenEntries: false
+    threshold: 10
+    ignoreSingleWhenExpression: true
+    ignoreSimpleWhenEntries: true
     ignoreNestingFunctions: false
     nestingFunctions:
       - 'also'
