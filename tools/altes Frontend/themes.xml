@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.Impulse" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/Hintergrund</item>
+        <item name="android:textColor">@color/Textfarbe</item>
+        <item name="android:statusBarColor">@color/Hintergrund</item>
+        <item name="android:navigationBarColor">@color/Hintergrund</item>
+    </style>
+</resources>
