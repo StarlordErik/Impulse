@@ -10,7 +10,7 @@ build:
 config:
   validation: true
   warningsAsErrors: false
-  checkExhaustiveness: false
+  checkExhaustiveness: true
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
   excludes: ''
 
@@ -36,7 +36,7 @@ console-reports:
   exclude:
      - 'ProjectStatisticsReport'
      - 'ComplexityReport'
-     - 'NotificationReport'
+    #  - 'NotificationReport'
      - 'FindingsReport'
      - 'FileBasedFindingsReport'
   #  - 'LiteFindingsReport'
@@ -48,31 +48,31 @@ output-reports:
     - 'XmlOutputReport'
   # - 'HtmlOutputReport'
     - 'MdOutputReport'
-    - 'SarifOutputReport'
+    - 'sarif'
 
 comments:
   active: true
-  AbsentOrWrongFileLicense:
+  AbsentOrWrongFileLicense: # prüft, ob am Anfang jeder Datei eine Lizenz steht
     active: false
     licenseTemplateFile: 'license.template'
     licenseTemplateIsRegex: false
-  CommentOverPrivateFunction:
+  CommentOverPrivateFunction: # warnt, falls private Funktion KDoc besitzen
     active: false
-  CommentOverPrivateProperty:
+  CommentOverPrivateProperty: # warnt, falls private Attribute KDoc besitzen
     active: false
-  DeprecatedBlockTag:
-    active: false
-  EndOfSentenceFormat:
+  DeprecatedBlockTag: # warnt, falls @deprecated nur im Kommentar steht
+    active: true
+  EndOfSentenceFormat: # prüft, ob Kommentare mit einem Satzzeichen enden
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
-  KDocReferencesNonPublicProperty:
-    active: false
+  KDocReferencesNonPublicProperty: # warnt, falls KDoc auf private Attribute verweist
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-  OutdatedDocumentation:
-    active: false
-    matchTypeParameters: true
-    matchDeclarationsOrder: true
-    allowParamOnConstructorProperties: false
+  OutdatedDocumentation: # prüft, ob KDoc noch zu Methode/Parametern passt
+    active: true
+    matchTypeParameters: true # prüft, ob generische Typ-Parameter erwähnt werden
+    matchDeclarationsOrder: true # prüft, ob Reihenfolge der @param mit der Reihenfolge in der Funktion übereinstimmt
+    allowParamOnConstructorProperties: false # erlaubt, dass fälschlicherweise @param statt @property verwendet wird
   UndocumentedPublicClass:
     active: false
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
