@@ -12,6 +12,7 @@ const val BINDESTRICH_IDS: String = "-$IDS"
 /**
  * Abstrakte Basisklasse für alle Spielelemente, die eine Sammlung von anderen Elementen beeinhalten
  *
+ * @param T Typ des Elementes, das in der Sammlung enthalten ist
  * @property id eindeutige ID des Elements
  * @property localizations Map mit den Übersetzungen des Namens für verschiedene Sprachen
  * @property originaleElemente zwei Mengen mit den originalen Elementen und denen, die vom Nutzer entfernt wurden
@@ -160,6 +161,8 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
     /**
      * Erstellt eine Sammlung anhand von Benutzereingaben oder Skriptdaten.
      *
+     * @param T Sammlung, die erstellt wird
+     * @param E Element, das in der Sammlung enthalten ist
      * @param id neue, noch nicht vergebene ID
      * @param sprache Sprache des Namens
      * @param name Name
@@ -192,6 +195,8 @@ abstract class SammlungAnSpielelementen<T: LokalisierbaresSpielelement>(
      *
      * Wieso gibt es nur fromYaml und nicht fromYamlListe? Die super-Funktion reicht völlig.
      *
+     * @param T Sammlung, die erstellt wird
+     * @param E Element, das in der Sammlung enthalten ist
      * @param yamlDaten YAML-Datensatz einer Sammlung
      * @param moeglicheElemente Collection aller Elemente vom Typ T, aus denen die Sammlung bestehen **könnte** -
      * im Zweifel einfach alle möglichen Elemente

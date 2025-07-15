@@ -127,6 +127,7 @@ abstract class LokalisierbaresSpielelement(
      * Entfernt Duplikate aus der gegebenen Collection von lokalisierbaren Spielelementen.
      * Ein Duplikat liegt vor, wenn zwei Elemente für alle Sprachen identische `localizations` besitzen.
      *
+     * @param T Element aus der Datenbank.yml
      * @param elemente Menge von Spielelementen, aus der Duplikate entfernt werden sollen
      */
     private fun <T: LokalisierbaresSpielelement> duplikateLoeschen(elemente: MutableCollection<T>) {
@@ -150,6 +151,7 @@ abstract class LokalisierbaresSpielelement(
     /**
      * Ersetzt doppelt vorkommende IDs in der gegebenen Collection von Spielelementen durch neue eindeutige IDs.
      *
+     * @param T Element aus der Datenbank.yml
      * @param elemente Menge von Spielelementen, deren IDs auf Eindeutigkeit geprüft werden sollen
      */
     private fun <T: LokalisierbaresSpielelement> doppelteIDsErsetzen(elemente: Collection<T>) {

@@ -16,14 +16,15 @@ const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
  * Diese Datenbank wird beim Initialisieren geparst und im Speicher als Objekte dargestellt.
  * Änderungen an den Objekten werden in die YAML-Datei zurückgeschrieben.
  *
- * @param datenbank Die YAML-Datei, die als Datenbank dient.
- * @property karten Menge aller ausgelesenen Karten.
- * @property kategorien Menge aller ausgelesenen Kategorien.
- * @property spiele Menge aller ausgelesenen Spiele.
+ *
+ * @property datenbank Die YAML-Datei, die als Datenbank dient.
+ * property karten Menge aller ausgelesenen Karten.
+ * property kategorien Menge aller ausgelesenen Kategorien.
+ * property spiele Menge aller ausgelesenen Spiele.
  * @constructor Initialisiert das Datenbanksystem mit der gegebenen YAML-Datei,
  * indem es die Inhalte einliest und sie in Objekte deserialisiert.
  */
-class Datenbanksystem(private val datenbank: File) {
+class Datenbanksystem(val datenbank: File) {
 
   val karten: MutableSet<Karte>
   val kategorien: MutableSet<Kategorie>
@@ -127,6 +128,8 @@ class Datenbanksystem(private val datenbank: File) {
    *
    * Wenn bereits eine Sammlung mit dem gegebenen Namen existiert, werden neue Elemente den OG-Elemente hinzugefügt.
    *
+   * @param T Typ der Sammlung
+   * @param E Elemente in der Sammlung
    * @param name Name der gesuchten oder zu erstellenden Sammlung
    * @param elemente Collection der Elemente, die in der Sammlung enthalten sein sollen
    * @param sprache Sprache des übergebenen Namens
@@ -212,6 +215,8 @@ class Datenbanksystem(private val datenbank: File) {
   /**
    * Fügt neue Elemente zu einer Sammlung hinzu.
    *
+   * @param T Sammlung (direktes Hinzufügen) oder Int (finden durch ID)
+   * @param E Element, das in der Sammlung enthalten ist
    * @param neueElemente Collection von Element-Objekten oder IDs
    * @param daten Collection, zu der die Sammlung hinzugefügt werden sollen
    * @param elementFunktionZumElementHinzufuegen Funktion aus der Klasse, welche die Elemente der Sammlung hinzufügt
@@ -236,6 +241,7 @@ class Datenbanksystem(private val datenbank: File) {
   /**
    * Fügt neue `Karte`n zu einer `Kategorie` hinzu.
    *
+   * @param T Element (direktes Hinzufügen) oder Int (finden durch ID)
    * @param kategorie Kategorie, zu der die Karten hinzugefügt werden sollen
    * @param neueKarten Collection von `Karte`n-Objekten oder IDs
    */
@@ -246,6 +252,7 @@ class Datenbanksystem(private val datenbank: File) {
   /**
    * Fügt neue `Kategorie`n zu einem `Spiel` hinzu.
    *
+   * @param T Element (direktes Hinzufügen) oder Int (finden durch ID)
    * @param spiel Spiel, zu dem die Kategorien hinzugefügt werden sollen
    * @param neueKategorien Collection von `Kategorie`-Objekten oder IDs
    */

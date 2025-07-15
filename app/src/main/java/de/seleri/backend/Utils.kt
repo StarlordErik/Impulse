@@ -95,6 +95,7 @@ internal fun neueID(hoeherAlsIn: Collection<LokalisierbaresSpielelement>): Int {
 /**
  * Findet ein Spielelement anhand einer Texteingabe in der Collection<T>.
  *
+ * @param T Element, das gesucht werden soll
  * @param bezeichnung Kartentext oder Sammlungs-Name einer beliebigen Sprache
  * @return gefundenes Element oder null (um im nächsten Schritt das Element erstellen zu können)
  */
@@ -112,6 +113,7 @@ internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
 /**
  * Findet ein Spielelement anhand seiner ID in der Collection<T>.
  *
+ * @param T Element, das gesucht werden soll
  * @param id gesuchte ID
  * @return gefundenes Element oder Error (es ist illegal, nach IDs zu suchen, die nicht existieren)
  */
@@ -123,6 +125,7 @@ internal fun <T: LokalisierbaresSpielelement> Collection<T>.finde(
 /**
  * Findet mehrere Spielelemente anhand einer Collection von IDs in der Collection<T>.
  *
+ * @param T Element, das gesucht werden soll
  * @param ids Collection gesuchter IDs
  * @return Menge gefundener Elemente
  */
