@@ -26,6 +26,12 @@ import de.seleri.frontend.ImpulseTheme
 import de.seleri.tools.dummyViewModel
 import de.seleri.viewModel.ImpulseViewModel
 
+/**
+ * Startbildschirm der App
+ *
+ * @param navController [Navigation] übergibt die Kontrolle für weitere [Screens]
+ * @param viewModel [ImpulseViewModel] mit allen Daten und Funktionen der App
+ */
 @Composable
 fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
   val spiele = viewModel.spiele
@@ -46,6 +52,9 @@ fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
   }
 }
 
+/**
+ * Darstellung des App-Titels
+ */
 @Composable
 fun Titel() {
   val windowInfo = LocalWindowInfo.current
@@ -69,6 +78,12 @@ fun Titel() {
   }
 }
 
+/**
+ * Darstellung von [de.seleri.backend.SammlungAnSpielelementen] als Button
+ *
+ * @param buttonText Text des Buttons
+ * @param onClick Funktion, die ausgeführt wird, wenn der Button geklickt wird
+ */
 @Composable
 fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
   Card(
@@ -96,6 +111,9 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
   }
 }
 
+/**
+ * Preview von [StartScreen] mit Dummy-Daten
+ */
 @Preview
 @Composable
 fun StartScreenPreview() {

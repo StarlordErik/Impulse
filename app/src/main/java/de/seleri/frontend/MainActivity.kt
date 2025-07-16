@@ -27,7 +27,7 @@ class MainActivity: ComponentActivity() {
 
 /**
  * Hilt benötigt diese Klasse, um bestimmte Werte über die gesamte Laufzeit der App zur Verfügung zu stellen,
- * unabhängig von der Lebensdauer einer Activity oder eines [Screens]
+ * unabhängig von der Lebensdauer einer Activity oder eines [Screens].
  */
 @HiltAndroidApp
 class Impulse: Application()

@@ -3,6 +3,9 @@ package de.seleri.tools
 import de.seleri.backend.DATENBANK_PFAD
 import java.io.File
 
+/**
+ * ersetzt alle Vorkommen von "" durch null in der Datenbank
+ */
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
   val file = File(DATENBANK_PFAD)

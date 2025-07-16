@@ -19,6 +19,9 @@ fun Datenbanksystem.Companion.generieren(): Datenbanksystem {
   return Datenbanksystem(dateipfad.toFile())
 }
 
+/**
+ * Dummy-Daten für das Frontend als [ImpulseViewModel]
+ */
 @Suppress("LongMethod")
 fun dummyViewModel(): ImpulseViewModel {
   val dummyDatenbank = """

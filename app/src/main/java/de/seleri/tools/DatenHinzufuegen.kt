@@ -3,6 +3,9 @@ package de.seleri.tools
 import de.seleri.backend.Datenbanksystem
 import de.seleri.backend.Sprachen
 
+/**
+ * um neue Daten in die Datenbank einzufügen
+ */
 @Suppress("LongMethod", "MaxLineLength")
 fun main() {
 
