@@ -1,8 +1,23 @@
 package de.seleri.backend
 
+/**
+ * Datenbank-Bezeichner für [Karte]
+ */
 const val KARTEN: String = "Karten"
+
+/**
+ * Datenbank-Bezeichner für den Text in [Karte.localizations]
+ */
 const val TEXT: String = "Text"
+
+/**
+ * Datenbank-Bezeichner für den Status [Karte.gesehen]
+ */
 const val GESEHEN: String = "gesehen"
+
+/**
+ * Datenbank-Bezeichner für den Status [Karte.geloescht]
+ */
 const val GELOESCHT: String = "gelöscht"
 
 /**

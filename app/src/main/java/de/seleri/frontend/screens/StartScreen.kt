@@ -40,7 +40,7 @@ fun StartScreen(navController: NavHostController, viewModel: ImpulseViewModel) {
     }
     items(spiele, key = {it.id}) {spiel ->
       SammlungsButton(viewModel.getName(spiel)) {
-        navController.navigate(Screens.Spiel.mitDerID(spiel.id))
+        navController.navigate(Screens.SpielScreen.mitDerID(spiel.id))
       }
     }
   }

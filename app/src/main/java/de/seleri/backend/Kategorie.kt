@@ -1,5 +1,8 @@
 package de.seleri.backend
 
+/**
+ * Datenbank-Bezeichner für [Kategorie]
+ */
 const val KATEGORIEN: String = "Kategorien"
 
 /**

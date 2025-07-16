@@ -31,6 +31,12 @@ import de.seleri.frontend.ImpulseTheme
 import de.seleri.tools.dummyViewModel
 import de.seleri.viewModel.ImpulseViewModel
 
+/**
+ * Darstellung eines Spiel als eine Bildschirmoberfläche
+ *
+ * @param viewModel [ImpulseViewModel] mit allen Daten und Funktionen der App
+ * @param spiel [Spiel], das angezeigt wird
+ */
 @Composable
 fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
   Column(
@@ -70,6 +76,11 @@ fun SpielScreen(viewModel: ImpulseViewModel, spiel: Spiel) {
   }
 }
 
+/**
+ * Gruppierung von den Row-Inhalten des [SpielScreen]
+ *
+ * @param content Inhalt der Row
+ */
 @Composable
 fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
   Row(
@@ -83,6 +94,12 @@ fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
   }
 }
 
+/**
+ * Darstellung des Spiele-Titels
+ *
+ * @param name Name des Spiels aus [Spiel.localizations]
+ * @param modifier [Modifier] für die Darstellung in [SpielScreenRow]
+ */
 @Composable
 fun SpielTitel(name: String, modifier: Modifier) {
   Text(
@@ -95,6 +112,11 @@ fun SpielTitel(name: String, modifier: Modifier) {
   )
 }
 
+/**
+ * Darstellung eines Icons für den [SpielScreen]
+ *
+ * @param icon Icon aus [SpielScreenIcons]
+ */
 @Composable
 fun SpielScreenIcon(icon: SpielScreenIcons) {
   Icon(
@@ -105,6 +127,9 @@ fun SpielScreenIcon(icon: SpielScreenIcons) {
   )
 }
 
+/**
+ * Preview von [SpielScreen] mit Dummy-Daten
+ */
 @Preview
 @Composable
 fun SpielScreenPreview() {

@@ -8,7 +8,7 @@ class ScreenTest {
   @Test
   fun `SpielScreen_mitDerID() erzeugt korrekten Pfad fuer SpieleScreen`() {
     val id = 42
-    val screen = Screens.Spiel
+    val screen = Screens.SpielScreen
 
     val actual = screen.mitDerID(id)
 

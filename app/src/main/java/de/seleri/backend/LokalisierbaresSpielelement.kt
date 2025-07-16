@@ -1,5 +1,8 @@
 package de.seleri.backend
 
+/**
+ * Datenbankbezeichner für [LokalisierbaresSpielelement.id]
+ */
 const val ID: String = "ID"
 
 /**

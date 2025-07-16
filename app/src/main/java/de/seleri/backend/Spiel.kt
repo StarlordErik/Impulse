@@ -1,5 +1,8 @@
 package de.seleri.backend
 
+/**
+ * Datenbank-Bezeichner für [Spiel]
+ */
 const val SPIELE: String = "Spiele"
 
 /**

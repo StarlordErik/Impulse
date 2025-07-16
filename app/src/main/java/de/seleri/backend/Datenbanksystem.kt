@@ -6,9 +6,24 @@ import org.yaml.snakeyaml.Yaml
 import java.io.File
 
 // Datenbank-Pfade
+/**
+ * Dateiname der Datenbank-Datei ohne Endung
+ */
 const val DATENBANK_NAME = "datenbank"
+
+/**
+ * Endung der Datenbank-Datei
+ */
 const val DATENBANK_DATEIFORMAT = ".yml"
+
+/**
+ * Dateiname der Datenbank-Datei mit Endung
+ */
 const val DATENBANK_DATEI = "$DATENBANK_NAME$DATENBANK_DATEIFORMAT"
+
+/**
+ * Pfad zur Datenbank-Datei
+ */
 const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
 
 /**
@@ -18,16 +33,24 @@ const val DATENBANK_PFAD = "app/src/main/res/raw/$DATENBANK_DATEI"
  *
  *
  * @property datenbank Die YAML-Datei, die als Datenbank dient.
- * property karten Menge aller ausgelesenen Karten.
- * property kategorien Menge aller ausgelesenen Kategorien.
- * property spiele Menge aller ausgelesenen Spiele.
  * @constructor Initialisiert das Datenbanksystem mit der gegebenen YAML-Datei,
  * indem es die Inhalte einliest und sie in Objekte deserialisiert.
  */
 class Datenbanksystem(val datenbank: File) {
 
+  /**
+   * Menge aller ausgelesenen Karten
+   */
   val karten: MutableSet<Karte>
+
+  /**
+   * Menge aller ausgelesenen Kategorien
+   */
   val kategorien: MutableSet<Kategorie>
+
+  /**
+   * Menge aller ausgelesenen Spiele
+   */
   val spiele: MutableSet<Spiel>
 
   init {

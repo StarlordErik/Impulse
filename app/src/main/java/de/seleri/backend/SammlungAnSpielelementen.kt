@@ -1,12 +1,36 @@
 package de.seleri.backend
 
+/**
+ * Datenbankbezeichner für den Namen einer [SammlungAnSpielelementen] in [SammlungAnSpielelementen.localizations]
+ */
 const val NAME: String = "Name"
 
+/**
+ * Datenbankbezeichner-Präfix für den originalen Teil einer [SammlungAnSpielelementen] in
+ * [SammlungAnSpielelementen.originaleElemente]
+ */
 const val ORIGINALE: String = "originale_"
+
+/**
+ * Datenbankbezeichner-Plural für [LokalisierbaresSpielelement.id] in [SammlungAnSpielelementen.originaleElemente]
+ */
 const val IDS = "${ID}s"
+
+/**
+ * Datenbankbezeichner für den gelöschten Teil der originale Elemente in [SammlungAnSpielelementen.originaleElemente]
+ */
 const val DAVON_ENTFERNT: String = "davon_entfernt"
 
+/**
+ * Datenbankbezeichner-Präfix für den hinzugefügten Teil einer [SammlungAnSpielelementen] in
+ * [SammlungAnSpielelementen.hinzugefuegteElemente]
+ */
 const val HINZUGEFUEGTE: String = "hinzugefügte_"
+
+/**
+ * Datenbankbezeichner mit Bindestrich vorneweg für [LokalisierbaresSpielelement.id] in
+ * [SammlungAnSpielelementen.hinzugefuegteElemente]
+ */
 const val BINDESTRICH_IDS: String = "-$IDS"
 
 /**
