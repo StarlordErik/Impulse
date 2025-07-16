@@ -1,11 +1,29 @@
 package de.seleri.frontend.screens
 
-sealed class Screens(val route: String) {
-    object Start: Screens("start")
+import de.seleri.backend.Spiel
 
-    object Spiel: Screens("spiel") {
-        fun mitDerID(id: Int): String {
-            return "$route/$id"
-        }
+/**
+ * enthält die Bildschirmoberflächen der App
+ *
+ * @property route Bezeichnung zur Bildschirmoberfläche, aus der der Pfad gebildet wird
+ */
+sealed class Screens(val route: String) {
+  /**
+   * Startbildschirm der App
+   */
+  object StartScreen: Screens("start")
+
+  /**
+   * Spielbildschirm eines jeden Spiels
+   */
+  object SpielScreen: Screens("spiel") {
+    /**
+     * erzeugt Pfad zum Spielbildschirm
+     *
+     * @param id [Spiel.id] des zu ladenden Spiels
+     */
+    fun mitDerID(id: Int): String {
+      return "$route/$id"
     }
+  }
 }

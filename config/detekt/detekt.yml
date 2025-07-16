@@ -10,7 +10,7 @@ build:
 config:
   validation: true
   warningsAsErrors: false
-  checkExhaustiveness: false
+  checkExhaustiveness: true
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
   excludes: ''
 
@@ -36,7 +36,7 @@ console-reports:
   exclude:
      - 'ProjectStatisticsReport'
      - 'ComplexityReport'
-     - 'NotificationReport'
+    #  - 'NotificationReport'
      - 'FindingsReport'
      - 'FileBasedFindingsReport'
   #  - 'LiteFindingsReport'
@@ -48,68 +48,68 @@ output-reports:
     - 'XmlOutputReport'
   # - 'HtmlOutputReport'
     - 'MdOutputReport'
-    - 'SarifOutputReport'
+    - 'sarif'
 
 comments:
   active: true
-  AbsentOrWrongFileLicense:
+  AbsentOrWrongFileLicense: # prüft, ob am Anfang jeder Datei eine Lizenz steht
     active: false
     licenseTemplateFile: 'license.template'
     licenseTemplateIsRegex: false
-  CommentOverPrivateFunction:
+  CommentOverPrivateFunction: # warnt, falls private Funktion KDoc besitzen
     active: false
-  CommentOverPrivateProperty:
+  CommentOverPrivateProperty: # warnt, falls private Attribute KDoc besitzen
     active: false
-  DeprecatedBlockTag:
-    active: false
-  EndOfSentenceFormat:
+  DeprecatedBlockTag: # warnt, falls @deprecated nur im Kommentar steht
+    active: true
+  EndOfSentenceFormat: # prüft, ob Kommentare mit einem Satzzeichen enden
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
-  KDocReferencesNonPublicProperty:
-    active: false
+  KDocReferencesNonPublicProperty: # warnt, falls KDoc auf private Attribute verweist
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-  OutdatedDocumentation:
-    active: false
-    matchTypeParameters: true
-    matchDeclarationsOrder: true
-    allowParamOnConstructorProperties: false
-  UndocumentedPublicClass:
-    active: false
+  OutdatedDocumentation: # prüft, ob KDoc noch zu Methode/Parametern passt
+    active: true
+    matchTypeParameters: true # prüft, ob generische Typ-Parameter erwähnt werden
+    matchDeclarationsOrder: true # prüft, ob Reihenfolge der @param mit der Reihenfolge in der Funktion übereinstimmt
+    allowParamOnConstructorProperties: false # erlaubt, dass fälschlicherweise @param statt @property verwendet wird
+  UndocumentedPublicClass: # prüft, ob Klasse dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: true
     searchInInnerInterface: true
-    searchInProtectedClass: false
-    ignoreDefaultCompanionObject: false
-  UndocumentedPublicFunction:
-    active: false
+    searchInProtectedClass: true
+    ignoreDefaultCompanionObject: true
+  UndocumentedPublicFunction: # prüft, ob Funktion dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-    searchProtectedFunction: false
-  UndocumentedPublicProperty:
-    active: false
+    searchProtectedFunction: true
+  UndocumentedPublicProperty: # prüft, ob Konstanten dokumentiert
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
-    searchProtectedProperty: false
+    searchProtectedProperty: true
 
 complexity:
   active: true
-  CognitiveComplexMethod:
-    active: false
+  CognitiveComplexMethod: # warnt, falls Methode zu viele Verzweigungen oder Schleifen enthält
+    active: true
     threshold: 15
-  ComplexCondition:
+  ComplexCondition: # warnt, falls eine Verzweigung zu viele logische Operatoren (!, &&, ||) enthält
     active: true
     threshold: 4
-  ComplexInterface:
-    active: false
+  ComplexInterface: # warnt, falls ein Interface zu viele Methoden enthält
+    active: true
     threshold: 10
-    includeStaticDeclarations: false
-    includePrivateDeclarations: false
-    ignoreOverloaded: false
+    includeStaticDeclarations: true # Zählen statische Funktionen mit?
+    includePrivateDeclarations: false # Zählen private Funktionen mit?
+    ignoreOverloaded: true # ignoriert überladene Methoden
   CyclomaticComplexMethod:
     active: true
-    threshold: 15
-    ignoreSingleWhenExpression: false
-    ignoreSimpleWhenEntries: false
+    threshold: 10
+    ignoreSingleWhenExpression: true
+    ignoreSimpleWhenEntries: true
     ignoreNestingFunctions: false
     nestingFunctions:
       - 'also'
@@ -567,7 +567,7 @@ style:
     active: false
     includeLineWrapping: false
   ForbiddenAnnotation:
-    active: false
+    active: true
     annotations:
       - reason: 'it is a java annotation. Use `Suppress` instead.'
         value: 'java.lang.SuppressWarnings'
@@ -644,7 +644,7 @@ style:
     maxChainedCalls: 5
   MaxLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 117
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: false
@@ -698,7 +698,7 @@ style:
   SerialVersionUIDInSerializableClass:
     active: true
   SpacingBetweenPackageAndImports:
-    active: false
+    active: true
   StringShouldBeRawString:
     active: false
     maxEscapedCharacterCount: 2
