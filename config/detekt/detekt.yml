@@ -567,7 +567,7 @@ style:
     active: false
     includeLineWrapping: false
   ForbiddenAnnotation:
-    active: false
+    active: true
     annotations:
       - reason: 'it is a java annotation. Use `Suppress` instead.'
         value: 'java.lang.SuppressWarnings'
@@ -698,7 +698,7 @@ style:
   SerialVersionUIDInSerializableClass:
     active: true
   SpacingBetweenPackageAndImports:
-    active: false
+    active: true
   StringShouldBeRawString:
     active: false
     maxEscapedCharacterCount: 2
