@@ -1,7 +1,9 @@
-package de.seleri.kern.daten.entities
+package de.seleri.kern.daten.entities.joins
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import de.seleri.kern.daten.entities.Kartentext
+import de.seleri.kern.daten.entities.Kategorie
 
 @Entity(
   tableName = "KategorieXKartentexte",

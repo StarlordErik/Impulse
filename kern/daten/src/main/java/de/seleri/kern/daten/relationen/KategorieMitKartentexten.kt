@@ -5,7 +5,7 @@ import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.kern.daten.entities.Kartentext
 import de.seleri.kern.daten.entities.Kategorie
-import de.seleri.kern.daten.entities.KategorieXKartentexte
+import de.seleri.kern.daten.entities.joins.KategorieXKartentexte
 
 data class KategorieMitKartentexten(
   @Embedded
