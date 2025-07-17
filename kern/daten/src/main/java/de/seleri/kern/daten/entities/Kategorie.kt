@@ -3,7 +3,7 @@ package de.seleri.kern.daten.entities
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import de.seleri.kern.daten.utils.Spielelement
+import de.seleri.kern.daten.utils.SpielelementAttribute
 
 @Entity(tableName = "Kategorien")
 data class Kategorie(
@@ -11,5 +11,5 @@ data class Kategorie(
   val id: Int,
 
   @Embedded
-  val spielelement: Spielelement,
+  val spielelementAttribute: SpielelementAttribute,
 )

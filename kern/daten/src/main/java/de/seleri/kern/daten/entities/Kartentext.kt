@@ -3,7 +3,7 @@ package de.seleri.kern.daten.entities
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import de.seleri.kern.daten.utils.Spielelement
+import de.seleri.kern.daten.utils.SpielelementAttribute
 
 @Entity(tableName = "Kartentexte")
 data class Kartentext(
@@ -11,7 +11,7 @@ data class Kartentext(
   val id: Int,
 
   @Embedded
-  val spielelement: Spielelement,
+  val spielelementAttribute: SpielelementAttribute,
 
   val gesehen: Boolean,
 )
