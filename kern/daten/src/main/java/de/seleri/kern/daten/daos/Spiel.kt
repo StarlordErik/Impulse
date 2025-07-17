@@ -21,6 +21,6 @@ interface Spiel {
   @Query("SELECT * FROM Spiele")
   suspend fun getAlle(): List<Spiel>
 
-  @Query("SELECT * FROM Spiele WHERE ausgeblendet = 0")
-  suspend fun getAlleSichtbaren(): List<Spiel>
+  @Query("SELECT * FROM Spiele WHERE inaktiv = 0")
+  suspend fun getAktive(): List<Spiel>
 }

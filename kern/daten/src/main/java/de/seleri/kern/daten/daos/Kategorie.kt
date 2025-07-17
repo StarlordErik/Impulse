@@ -21,6 +21,6 @@ interface Kategorie {
   @Query("SELECT * FROM Kategorien")
   suspend fun getAlle(): List<Kategorie>
 
-  @Query("SELECT * FROM Kategorien WHERE ausgeblendet = 0")
-  suspend fun getAlleSichtbaren(): List<Kategorie>
+  @Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
+  suspend fun getAktive(): List<Kategorie>
 }
