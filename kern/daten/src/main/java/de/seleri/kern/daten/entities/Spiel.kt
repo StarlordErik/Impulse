@@ -3,6 +3,7 @@ package de.seleri.kern.daten.entities
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import de.seleri.kern.daten.utils.Herkunft
 
 @Entity(
   tableName = "Spiele",
@@ -17,8 +18,9 @@ data class Spiel(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
   val lokalisierungsID: Int,
-  val ausgeblendet: Boolean,
+  val herkunft: Herkunft = Herkunft.OG,
+  val ausgeblendet: Boolean = false,
 
-  val bildURL: String,
-  val texteProKarte: Int,
+  val texteProKarte: Int = 1,
+  val bildDateiname: String?,
 )

@@ -18,9 +18,8 @@ data class Kartentext(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
   val lokalisierungsID: Int,
-  val ausgeblendet: Boolean,
-
   val herkunft: Herkunft,
+  val ausgeblendet: Boolean,
 
   val gesehen: Boolean,
 )

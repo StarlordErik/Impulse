@@ -18,7 +18,6 @@ data class Kategorie(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
   val lokalisierungsID: Int,
-  val ausgeblendet: Boolean,
-
   val herkunft: Herkunft,
+  val ausgeblendet: Boolean,
 )
