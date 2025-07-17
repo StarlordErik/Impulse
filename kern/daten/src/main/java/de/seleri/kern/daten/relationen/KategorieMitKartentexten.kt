@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.relationen.nXm
+package de.seleri.kern.daten.relationen
 
 import androidx.room.Embedded
 import androidx.room.Junction
@@ -10,6 +10,7 @@ import de.seleri.kern.daten.entities.KategorieXKartentexte
 data class KategorieMitKartentexten(
   @Embedded
   val kategorie: Kategorie,
+
   @Relation(
     parentColumn = "id",
     entityColumn = "id",
@@ -19,5 +20,6 @@ data class KategorieMitKartentexten(
       entityColumn = "kartentextID"
     )
   )
+
   val kartentexte: List<Kartentext>,
 )
