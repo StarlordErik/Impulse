@@ -28,9 +28,9 @@ data class Lokalisierung(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
 
-  val sprache: Sprache,
   val bezeichnung: String,
-  val veraendert: Boolean,
+  val sprache: Sprache = Sprache.OG,
+  val veraendert: Boolean = false,
 
   val spielID: Int? = null,
   val kategorieID: Int? = null,
