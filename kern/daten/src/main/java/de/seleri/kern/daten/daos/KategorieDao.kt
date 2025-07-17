@@ -7,7 +7,7 @@ import androidx.room.Upsert
 import de.seleri.kern.daten.entities.Kategorie
 
 @Dao
-interface Kategorie {
+interface KategorieDao {
 
   @Upsert
   suspend fun upsert(kategorie: Kategorie)

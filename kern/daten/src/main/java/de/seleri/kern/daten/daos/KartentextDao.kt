@@ -7,7 +7,7 @@ import androidx.room.Upsert
 import de.seleri.kern.daten.entities.Kartentext
 
 @Dao
-interface Kartentext {
+interface KartentextDao {
 
   @Upsert
   suspend fun upsert(kartentext: Kartentext)

@@ -7,7 +7,7 @@ import androidx.room.Upsert
 import de.seleri.kern.daten.entities.Spiel
 
 @Dao
-interface Spiel {
+interface SpielDao {
 
   @Upsert
   suspend fun upsert(spiel: Spiel)
