@@ -11,6 +11,7 @@ appcompat = "1.7.1"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
 
+room = "2.7.2"
 snakeyaml = "2.4"
 
 detekt = "1.23.8"
@@ -42,6 +43,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 snakeyaml = { group = "org.yaml", name = "snakeyaml", version.ref = "snakeyaml" }
 
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "composeUi" }
@@ -69,6 +74,8 @@ androidx-navigation-testing-android = { group = "androidx.navigation", name = "n
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+room = { id = "androidx.room", version.ref = "room" }
 
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
