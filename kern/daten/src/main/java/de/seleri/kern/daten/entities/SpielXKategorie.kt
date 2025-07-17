@@ -5,21 +5,20 @@ import androidx.room.ForeignKey
 
 @Entity(
   tableName = "SpielXKategorie",
-  primaryKeys = ["spielId", "kategorieId"],
+  primaryKeys = ["spielID", "kategorieID"],
   foreignKeys = [ForeignKey(
     entity = Spiel::class,
     parentColumns = ["id"],
-    childColumns = ["spielId"],
+    childColumns = ["spielID"],
     onDelete = ForeignKey.CASCADE
   ), ForeignKey(
     entity = Kategorie::class,
     parentColumns = ["id"],
-    childColumns = ["kategorieId"],
+    childColumns = ["kategorieID"],
     onDelete = ForeignKey.CASCADE
   )]
 )
 data class SpielXKategorie(
-  val spielId: Int,
-  val kategorieId: Int,
+  val spielID: Int,
+  val kategorieID: Int,
 )
-

@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.relationen
+package de.seleri.kern.daten.relationen.nXm
 
 import androidx.room.Embedded
 import androidx.room.Junction
@@ -15,10 +15,9 @@ data class SpielMitKategorien(
     entityColumn = "id",
     associateBy = Junction(
       value = SpielXKategorie::class,
-      parentColumn = "spielId",
-      entityColumn = "kategorieId"
+      parentColumn = "spielID",
+      entityColumn = "kategorieID"
     )
   )
   val kategorien: List<Kategorie>,
 )
-
