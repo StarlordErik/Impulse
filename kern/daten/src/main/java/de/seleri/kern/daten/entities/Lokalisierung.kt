@@ -30,7 +30,7 @@ data class Lokalisierung(
 
   val bezeichnung: String,
   val sprache: Sprache = Sprache.OG,
-  val veraendert: Boolean = false,
+  val bearbeitet: Boolean = false,
 
   val spielID: Int? = null,
   val kategorieID: Int? = null,
