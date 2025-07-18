@@ -15,13 +15,13 @@ interface KartentextDao {
   @Delete
   suspend fun delete(kartentext: Kartentext)
 
-  @Query("SELECT * FROM Spiele WHERE id = :id")
+  @Query("SELECT * FROM Kartentexte WHERE id = :id")
   suspend fun getByID(id: Int): Kartentext?
 
-  @Query("SELECT * FROM Spiele")
+  @Query("SELECT * FROM Kartentexte")
   suspend fun getAlle(): List<Kartentext>
 
-  @Query("SELECT * FROM Spiele WHERE inaktiv = 0")
+  @Query("SELECT * FROM Kartentexte WHERE inaktiv = 0")
   suspend fun getAktive(): List<Kartentext>
 
   @Query("SELECT * FROM Kartentexte WHERE inaktiv = 0 AND gesehen = 0")
