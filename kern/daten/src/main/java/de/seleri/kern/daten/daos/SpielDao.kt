@@ -33,11 +33,11 @@ interface SpielDao {
   @Transaction
   @Query(
     """
-  SELECT DISTINCT s.* FROM Spiele s
+  SELECT s.* FROM Spiele s
   INNER JOIN SpielXKategorie x ON s.id = x.spielID
   INNER JOIN Kategorien k ON x.kategorieID = k.id
-  WHERE s.inaktiv = 0 AND k.inaktiv = 0
+  WHERE s.id = :spielId AND s.inaktiv = 0 AND k.inaktiv = 0
 """
   )
-  fun getMitAktivenKategorien(): List<SpielMitKategorien>
+  fun getMitAktivenKategorien(spielId: Int): SpielMitKategorien
 }

@@ -33,24 +33,24 @@ interface KategorieDao {
   @Transaction
   @Query(
     """
-  SELECT DISTINCT k.* FROM Kategorien k
+  SELECT k.* FROM Kategorien k
   INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
   INNER JOIN Kartentexte t ON x.kartentextID = t.id
-  WHERE k.inaktiv = 0 AND t.inaktiv = 0
+  WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0
 """
   )
-  fun getMitAktivenKartentexten(): List<KategorieMitKartentexten>
+  fun getMitAktivenKartentexten(kategorieId: Int): KategorieMitKartentexten
 
   @Transaction
   @Query(
     """
-  SELECT DISTINCT k.* FROM Kategorien k
+  SELECT k.* FROM Kategorien k
   INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
   INNER JOIN Kartentexte t ON x.kartentextID = t.id
-  WHERE k.inaktiv = 0 AND t.inaktiv = 0 AND t.gesehen = 0
+  WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0 AND t.gesehen = 0
 """
   )
-  fun getMitUngesehenenKartentexten(): List<KategorieMitKartentexten>
+  fun getMitUngesehenenKartentexten(kategorieId: Int): KategorieMitKartentexten
 
 
 }
