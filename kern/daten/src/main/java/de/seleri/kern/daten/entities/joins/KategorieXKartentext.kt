@@ -6,7 +6,7 @@ import de.seleri.kern.daten.entities.Kartentext
 import de.seleri.kern.daten.entities.Kategorie
 
 @Entity(
-  tableName = "KategorieXKartentexte",
+  tableName = "KategorieXKartentext",
   primaryKeys = ["kategorieID", "kartentextID"],
   foreignKeys = [ForeignKey(
     entity = Kategorie::class,
@@ -20,7 +20,7 @@ import de.seleri.kern.daten.entities.Kategorie
     onDelete = ForeignKey.CASCADE
   )]
 )
-data class KategorieXKartentexte(
+data class KategorieXKartentext(
   val kategorieID: Int,
   val kartentextID: Int,
 )

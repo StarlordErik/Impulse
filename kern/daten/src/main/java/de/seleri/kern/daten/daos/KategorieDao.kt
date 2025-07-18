@@ -34,7 +34,7 @@ interface KategorieDao {
   @Query(
     """
   SELECT DISTINCT k.* FROM Kategorien k
-  INNER JOIN KategorieXKartentexte x ON k.id = x.kategorieID
+  INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
   INNER JOIN Kartentexte t ON x.kartentextID = t.id
   WHERE k.inaktiv = 0 AND t.inaktiv = 0
 """
@@ -45,7 +45,7 @@ interface KategorieDao {
   @Query(
     """
   SELECT DISTINCT k.* FROM Kategorien k
-  INNER JOIN KategorieXKartentexte x ON k.id = x.kategorieID
+  INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
   INNER JOIN Kartentexte t ON x.kartentextID = t.id
   WHERE k.inaktiv = 0 AND t.inaktiv = 0 AND t.gesehen = 0
 """

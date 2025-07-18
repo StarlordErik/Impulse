@@ -5,7 +5,7 @@ import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.kern.daten.entities.Kartentext
 import de.seleri.kern.daten.entities.Kategorie
-import de.seleri.kern.daten.entities.joins.KategorieXKartentexte
+import de.seleri.kern.daten.entities.joins.KategorieXKartentext
 
 data class KategorieMitKartentexten(
   @Embedded
@@ -15,7 +15,7 @@ data class KategorieMitKartentexten(
     parentColumn = "id",
     entityColumn = "id",
     associateBy = Junction(
-      value = KategorieXKartentexte::class,
+      value = KategorieXKartentext::class,
       parentColumn = "kategorieID",
       entityColumn = "kartentextID"
     )
