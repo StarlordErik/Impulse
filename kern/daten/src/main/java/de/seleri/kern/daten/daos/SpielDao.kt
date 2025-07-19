@@ -6,7 +6,6 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
 import de.seleri.kern.daten.entities.Spiel
-import de.seleri.kern.daten.relationen.SpielMitKartentexten
 import de.seleri.kern.daten.relationen.SpielMitKategorien
 
 @Dao
@@ -31,6 +30,7 @@ interface SpielDao {
   @Query("SELECT * FROM Spiele WHERE id = :spielId")
   fun getMitKategorien(spielId: Int): SpielMitKategorien
 
+  /*
   @Transaction
   @Query(
     """
@@ -73,5 +73,5 @@ interface SpielDao {
 """
   )
   fun getMitUngesehenenKartentexten(spielId: Int): SpielMitKartentexten
-
+  */
 }

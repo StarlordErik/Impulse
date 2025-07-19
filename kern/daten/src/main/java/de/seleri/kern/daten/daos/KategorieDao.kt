@@ -30,6 +30,7 @@ interface KategorieDao {
   @Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
   fun getMitKartentexten(kategorieId: Int): KategorieMitKartentexten
 
+  /*
   @Transaction
   @Query(
     """
@@ -51,6 +52,5 @@ interface KategorieDao {
 """
   )
   fun getMitUngesehenenKartentexten(kategorieId: Int): KategorieMitKartentexten
-
-
+  */
 }
