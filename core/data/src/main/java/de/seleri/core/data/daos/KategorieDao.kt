@@ -1,0 +1,56 @@
+package de.seleri.core.data.daos
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Upsert
+import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.relationen.KategorieMitKartentexten
+
+@Dao
+interface KategorieDao {
+
+  @Upsert
+  suspend fun upsert(kategorie: KategorieEntity)
+
+  @Delete
+  suspend fun delete(kategorie: KategorieEntity)
+
+  @Query("SELECT * FROM Kategorien WHERE id = :id")
+  suspend fun getByID(id: Int): KategorieEntity?
+
+  @Query("SELECT * FROM Kategorien")
+  suspend fun getAlle(): List<KategorieEntity>
+
+  @Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
+  suspend fun getAktive(): List<KategorieEntity>
+
+  @Transaction
+  @Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
+  fun getMitKartentexten(kategorieId: Int): KategorieMitKartentexten
+
+  /*
+  @Transaction
+  @Query(
+    """
+  SELECT k.* FROM Kategorien k
+  INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
+  INNER JOIN Kartentexte t ON x.kartentextID = t.id
+  WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0
+"""
+  )
+  fun getMitAktivenKartentexten(kategorieId: Int): KategorieMitKartentexten
+
+  @Transaction
+  @Query(
+    """
+  SELECT k.* FROM Kategorien k
+  INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
+  INNER JOIN Kartentexte t ON x.kartentextID = t.id
+  WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0 AND t.gesehen = 0
+"""
+  )
+  fun getMitUngesehenenKartentexten(kategorieId: Int): KategorieMitKartentexten
+  */
+}

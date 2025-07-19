@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Impulse"
 include(":app")
-include(":kern:daten")
+include(":core:data")
