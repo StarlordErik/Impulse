@@ -16,7 +16,7 @@ android {
   compileSdk = 36
 
   defaultConfig {
-    applicationId = "de.seleri.kern.data"
+    applicationId = "de.seleri.core.data"
     minSdk = 29
     targetSdk = 36
     versionCode = 1
