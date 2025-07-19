@@ -7,7 +7,7 @@ import androidx.room.Transaction
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.data.entities.singles.SpielEntity
-import de.seleri.core.data.relationen.SpielMitKategorien
+import de.seleri.core.data.relations.SpielMitKategorien
 
 @Dao
 interface SpielDao {

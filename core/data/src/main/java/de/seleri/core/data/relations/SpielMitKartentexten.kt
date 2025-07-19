@@ -1,4 +1,4 @@
-package de.seleri.core.data.relationen/*
+package de.seleri.core.data.relations/*
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation

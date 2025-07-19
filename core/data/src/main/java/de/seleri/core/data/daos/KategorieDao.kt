@@ -7,7 +7,7 @@ import androidx.room.Transaction
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.singles.KategorieEntity
-import de.seleri.core.data.relationen.KategorieMitKartentexten
+import de.seleri.core.data.relations.KategorieMitKartentexten
 
 @Dao
 interface KategorieDao {
