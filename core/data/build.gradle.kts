@@ -61,7 +61,9 @@ dependencies {
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 
-  implementation(libs.androidx.room.runtime)
+	implementation(project(":core:common"))
+
+	implementation(libs.androidx.room.runtime)
   ksp(libs.androidx.room.compiler)
   implementation(libs.androidx.room.ktx)
   testImplementation(libs.androidx.room.testing)

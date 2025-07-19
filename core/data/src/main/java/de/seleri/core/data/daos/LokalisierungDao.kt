@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.core.Sprache
+import de.seleri.core.common.Sprache
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 
 @Dao

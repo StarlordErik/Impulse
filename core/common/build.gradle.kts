@@ -9,14 +9,14 @@ plugins {
 }
 
 android {
-	namespace = "de.seleri.core.repository"
+	namespace = "de.seleri.core.common"
 	compileSdk = project
 		.property("compileSdk")
 		.toString()
 		.toInt()
 
 	defaultConfig {
-		applicationId = "de.seleri.core.repository"
+		applicationId = "de.seleri.core.common"
 		minSdk = project
 			.property("minSdk")
 			.toString()
@@ -55,14 +55,13 @@ kotlin {
 }
 
 dependencies {
+
 	implementation(libs.androidx.core.ktx)
 	implementation(libs.androidx.appcompat)
 	implementation(libs.material)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-
-	implementation(project(":core:common"))
 }
 
 kover {

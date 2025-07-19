@@ -1,6 +1,6 @@
 package de.seleri.core.data.entities.singles
 
-import de.seleri.core.Sprache
+import de.seleri.core.common.Sprache
 
 data class Basis(
 	val ogSprache: Sprache = Sprache.DE,
