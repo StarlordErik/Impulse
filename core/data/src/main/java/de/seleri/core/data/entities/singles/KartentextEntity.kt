@@ -8,8 +8,10 @@ import androidx.room.PrimaryKey
 data class KartentextEntity(
 	@PrimaryKey(autoGenerate = true)
 	val id: Int,
+
 	@Embedded
 	val basis: Basis,
+
 	val gesehen: Boolean = false,
 	val besprochen: Boolean = false,
 )

@@ -26,9 +26,11 @@ import de.seleri.core.Sprache
 data class LokalisierungEntity(
 	@PrimaryKey(autoGenerate = true)
 	val id: Int,
+
 	val bezeichnung: String,
 	val sprache: Sprache = Sprache.OG,
 	val bearbeitet: Boolean = false,
+
 	val spielID: Int? = null,
 	val kategorieID: Int? = null,
 	val kartentextID: Int? = null,

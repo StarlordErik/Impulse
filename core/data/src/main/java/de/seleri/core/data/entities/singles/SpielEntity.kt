@@ -8,8 +8,10 @@ import androidx.room.PrimaryKey
 data class SpielEntity(
 	@PrimaryKey(autoGenerate = true)
 	val id: Int,
+
 	@Embedded
 	val basis: Basis,
+
 	val texteProKarte: Int = 1,
 	val bildDateiname: String? = null,
 )
