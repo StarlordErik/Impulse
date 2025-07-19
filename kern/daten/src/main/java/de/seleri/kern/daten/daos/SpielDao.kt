@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.Spiel
+import de.seleri.kern.daten.entities.singles.Spiel
 import de.seleri.kern.daten.relationen.SpielMitKategorien
 
 @Dao

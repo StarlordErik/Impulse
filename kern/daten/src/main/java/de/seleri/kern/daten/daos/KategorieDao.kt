@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.Kategorie
+import de.seleri.kern.daten.entities.singles.Kategorie
 import de.seleri.kern.daten.relationen.KategorieMitKartentexten
 
 @Dao

@@ -1,17 +1,16 @@
-package de.seleri.kern.daten.entities
+package de.seleri.kern.daten.entities.singles
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Spiele")
-data class Spiel(
+@Entity(tableName = "Kartentexte")
+data class Kartentext(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
 
   @Embedded
   val spielelementAttribute: SpielelementAttribute,
 
-  val texteProKarte: Int = 1,
-  val bildDateiname: String?,
+  val gesehen: Boolean,
 )

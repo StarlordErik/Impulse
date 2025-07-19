@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.entities
+package de.seleri.kern.daten.entities.singles
 
 import androidx.room.Embedded
 import androidx.room.Entity

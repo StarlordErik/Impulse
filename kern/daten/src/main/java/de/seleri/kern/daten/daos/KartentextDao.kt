@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.Kartentext
+import de.seleri.kern.daten.entities.singles.Kartentext
 
 @Dao
 interface KartentextDao {

@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.entities
+package de.seleri.kern.daten.entities.singles
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -11,17 +11,17 @@ import de.seleri.kern.daten.utils.Sprache
     entity = Spiel::class,
     parentColumns = ["id"],
     childColumns = ["spielId"],
-    onDelete = ForeignKey.CASCADE
+    onDelete = ForeignKey.Companion.CASCADE
   ), ForeignKey(
     entity = Kategorie::class,
     parentColumns = ["id"],
     childColumns = ["kategorieId"],
-    onDelete = ForeignKey.CASCADE
+    onDelete = ForeignKey.Companion.CASCADE
   ), ForeignKey(
     entity = Kartentext::class,
     parentColumns = ["id"],
     childColumns = ["kartentextId"],
-    onDelete = ForeignKey.CASCADE
+    onDelete = ForeignKey.Companion.CASCADE
   )]
 )
 data class Lokalisierung(

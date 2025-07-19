@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.entities
+package de.seleri.kern.daten.entities.singles
 
 import de.seleri.kern.daten.utils.Herkunft
 
