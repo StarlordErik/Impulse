@@ -8,18 +8,12 @@ import de.seleri.core.data.entities.singles.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 data class SpielMitKategorien(
-  @Embedded
-  val spiel: SpielEntity,
-
-  @Relation(
-    parentColumn = "id",
-    entityColumn = "id",
-    associateBy = Junction(
-      value = SpielXKategorie::class,
-      parentColumn = "spielID",
-      entityColumn = "kategorieID"
-    )
-  )
-
-  val kategorien: List<KategorieEntity>,
+	@Embedded
+	val spiel: SpielEntity,
+	@Relation(
+		parentColumn = "id", entityColumn = "id", associateBy = Junction(
+			value = SpielXKategorie::class, parentColumn = "spielID", entityColumn = "kategorieID"
+		)
+	)
+	val kategorien: List<KategorieEntity>,
 )

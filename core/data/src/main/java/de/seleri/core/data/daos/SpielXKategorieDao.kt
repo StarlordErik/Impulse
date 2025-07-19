@@ -5,10 +5,9 @@ import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.SpielXKategorie
 
 interface SpielXKategorieDao {
+	@Upsert
+	suspend fun upsert(spielXKategorie: SpielXKategorie)
 
-  @Upsert
-  suspend fun upsert(spielXKategorie: SpielXKategorie)
-
-  @Delete
-  suspend fun delete(spielXKategorie: SpielXKategorie)
+	@Delete
+	suspend fun delete(spielXKategorie: SpielXKategorie)
 }

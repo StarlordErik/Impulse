@@ -6,9 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Kategorien")
 data class KategorieEntity(
-  @PrimaryKey(autoGenerate = true)
-  val id: Int,
-
-  @Embedded
-  val basis: Basis,
+	@PrimaryKey(autoGenerate = true)
+	val id: Int,
+	@Embedded
+	val basis: Basis,
 )

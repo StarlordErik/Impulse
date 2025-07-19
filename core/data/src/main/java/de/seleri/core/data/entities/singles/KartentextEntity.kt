@@ -6,12 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Kartentexte")
 data class KartentextEntity(
-  @PrimaryKey(autoGenerate = true)
-  val id: Int,
-
-  @Embedded
-  val basis: Basis,
-
-  val gesehen: Boolean = false,
-  val besprochen: Boolean = false,
+	@PrimaryKey(autoGenerate = true)
+	val id: Int,
+	@Embedded
+	val basis: Basis,
+	val gesehen: Boolean = false,
+	val besprochen: Boolean = false,
 )

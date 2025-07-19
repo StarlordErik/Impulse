@@ -6,12 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Spiele")
 data class SpielEntity(
-  @PrimaryKey(autoGenerate = true)
-  val id: Int,
-
-  @Embedded
-  val basis: Basis,
-
-  val texteProKarte: Int = 1,
-  val bildDateiname: String? = null,
+	@PrimaryKey(autoGenerate = true)
+	val id: Int,
+	@Embedded
+	val basis: Basis,
+	val texteProKarte: Int = 1,
+	val bildDateiname: String? = null,
 )

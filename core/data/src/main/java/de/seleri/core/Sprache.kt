@@ -1,8 +1,8 @@
 package de.seleri.core
 
 enum class Sprache {
-  OG,
-  ERIK,
-  DE,
-  EN,
+	OG,
+	ERIK,
+	DE,
+	EN,
 }

@@ -8,13 +8,18 @@ trim_trailing_whitespace = true # Entfernt Leerzeichen am Zeilenende
 
 max_line_length = 117 # Harte Grenze für Codezeilen
 ij_wrap_on_typing = true
+ij_smart_tabs = false
 
-indent_style = space # space oder tab
+indent_style = tab # space oder tab
 indent_size = 2 # Anzahl Leerzeichen oder Tabweite
 tab_width = 2 # Wenn indent_style = tab
+ij_continuation_indent_size = 2
+
+ij_formatter_tags_enabled = true
+ij_formatter_off_tag = @formatter:off
+ij_formatter_on_tag = @formatter:on
 
 [{*.kt,*.kts}]
-ij_continuation_indent_size = 2
 ij_kotlin_align_in_columns_case_branch = false
 ij_kotlin_align_multiline_binary_operation = false
 ij_kotlin_align_multiline_extends_list = false
@@ -31,9 +36,10 @@ ij_kotlin_block_comment_add_space = true
 ij_kotlin_block_comment_at_first_column = false
 ij_kotlin_call_parameters_new_line_after_left_paren = true
 ij_kotlin_call_parameters_right_paren_on_new_line = true
-ij_kotlin_call_parameters_wrap = split_into_lines
+ij_kotlin_call_parameters_wrap = on_every_item
 ij_kotlin_catch_on_new_line = false
 ij_kotlin_class_annotation_wrap = split_into_lines
+ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
 ij_kotlin_continuation_indent_for_chained_calls = false
 ij_kotlin_continuation_indent_for_expression_bodies = false
 ij_kotlin_continuation_indent_in_argument_lists = false
@@ -50,11 +56,11 @@ ij_kotlin_if_rparen_on_new_line = true
 ij_kotlin_import_nested_classes = false
 ij_kotlin_imports_layout = *, java.**, javax.**, kotlin.**, ^
 ij_kotlin_indent_before_arrow_on_new_line = true
-ij_kotlin_insert_whitespaces_in_simple_one_line_method = false
+ij_kotlin_insert_whitespaces_in_simple_one_line_method = true
 ij_kotlin_keep_blank_lines_before_right_brace = 0
-ij_kotlin_keep_blank_lines_in_code = 1
-ij_kotlin_keep_blank_lines_in_declarations = 1
-ij_kotlin_keep_first_column_comment = false
+ij_kotlin_keep_blank_lines_in_code = 0
+ij_kotlin_keep_blank_lines_in_declarations = 2
+ij_kotlin_keep_first_column_comment = true
 ij_kotlin_keep_indents_on_empty_lines = false
 ij_kotlin_keep_line_breaks = false
 ij_kotlin_lbrace_on_next_line = false
@@ -63,7 +69,7 @@ ij_kotlin_line_comment_add_space = true
 ij_kotlin_line_comment_add_space_on_reformat = true
 ij_kotlin_line_comment_at_first_column = false
 ij_kotlin_method_annotation_wrap = split_into_lines
-ij_kotlin_method_call_chain_wrap = on_every_item
+ij_kotlin_method_call_chain_wrap = split_into_lines
 ij_kotlin_method_parameters_new_line_after_left_paren = true
 ij_kotlin_method_parameters_right_paren_on_new_line = true
 ij_kotlin_method_parameters_wrap = on_every_item
@@ -95,8 +101,9 @@ ij_kotlin_spaces_around_relational_operators = true
 ij_kotlin_spaces_around_unary_operator = false
 ij_kotlin_spaces_around_when_arrow = true
 ij_kotlin_use_custom_formatting_for_modifiers = true
-ij_kotlin_variable_annotation_wrap = on_every_item
+ij_kotlin_variable_annotation_wrap = split_into_lines
 ij_kotlin_while_on_new_line = false
 ij_kotlin_wrap_elvis_expressions = 2
-ij_kotlin_wrap_expression_body_functions = 1
+ij_kotlin_wrap_expression_body_functions = 2
 ij_kotlin_wrap_first_method_in_call_chain = true
+
