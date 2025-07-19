@@ -10,5 +10,5 @@ data class KategorieEntity(
   val id: Int,
 
   @Embedded
-  val basis: BasisEntity,
+  val basis: Basis,
 )

@@ -10,7 +10,7 @@ data class KartentextEntity(
   val id: Int,
 
   @Embedded
-  val basis: BasisEntity,
+  val basis: Basis,
 
   val gesehen: Boolean = false,
   val besprochen: Boolean = false,
