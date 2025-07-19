@@ -9,6 +9,7 @@ plugins {
 
   alias(libs.plugins.ksp)
   alias(libs.plugins.room)
+	alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -53,7 +54,6 @@ kotlin {
 }
 
 dependencies {
-
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)
   implementation(libs.material)
@@ -62,6 +62,9 @@ dependencies {
   ksp(libs.androidx.room.compiler)
   implementation(libs.androidx.room.ktx)
   testImplementation(libs.androidx.room.testing)
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
