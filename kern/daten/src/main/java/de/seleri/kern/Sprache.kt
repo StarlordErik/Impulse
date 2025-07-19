@@ -2,7 +2,7 @@ package de.seleri.kern
 
 enum class Sprache {
   OG,
-  NUTZER,
+  ERIK,
   DE,
   EN,
 }
