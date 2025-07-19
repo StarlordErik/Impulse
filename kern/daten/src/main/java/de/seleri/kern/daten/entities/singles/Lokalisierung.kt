@@ -3,7 +3,7 @@ package de.seleri.kern.daten.entities.singles
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import de.seleri.kern.daten.utils.Sprache
+import de.seleri.kern.Sprache
 
 @Entity(
   tableName = "Lokalisierungen",

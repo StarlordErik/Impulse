@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
+import de.seleri.kern.Sprache
 import de.seleri.kern.daten.entities.singles.Lokalisierung
-import de.seleri.kern.daten.utils.Sprache
 
 @Dao
 interface LokalisierungDao {

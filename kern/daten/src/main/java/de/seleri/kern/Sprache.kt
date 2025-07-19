@@ -1,4 +1,4 @@
-package de.seleri.kern.daten.utils
+package de.seleri.kern
 
 enum class Sprache {
   OG,
