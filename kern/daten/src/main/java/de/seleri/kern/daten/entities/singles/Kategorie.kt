@@ -10,5 +10,5 @@ data class Kategorie(
   val id: Int,
 
   @Embedded
-  val spielelementAttribute: SpielelementAttribute,
+  val spielelementBasis: SpielelementBasis,
 )
