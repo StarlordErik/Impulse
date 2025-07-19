@@ -12,6 +12,9 @@ data class Kartentext(
   @Embedded
   val spielelementAttribute: SpielelementAttribute,
 
+  @Embedded
+  val favorisierbar: Favorisierbar,
+
   val gesehen: Boolean = false,
   val besprochen: Boolean = false,
 )

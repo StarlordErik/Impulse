@@ -12,6 +12,9 @@ data class Spiel(
   @Embedded
   val spielelementAttribute: SpielelementAttribute,
 
+  @Embedded
+  val favorisierbar: Favorisierbar,
+
   val texteProKarte: Int = 1,
-  val bildDateiname: String?,
+  val bildDateiname: String? = null,
 )
