@@ -13,12 +13,12 @@ plugins {
 
 android {
   namespace = "de.seleri.core.data"
-  compileSdk = 36
+  compileSdk = project.property("compileSdk").toString().toInt()
 
   defaultConfig {
     applicationId = "de.seleri.core.data"
-    minSdk = 29
-    targetSdk = 36
+    minSdk = project.property("minSdk").toString().toInt()
+    targetSdk = project.property("targetSdk").toString().toInt()
     versionCode = 1
     versionName = "1.0"
 
