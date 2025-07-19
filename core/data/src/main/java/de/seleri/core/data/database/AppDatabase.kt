@@ -4,10 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import de.seleri.core.data.daos.KartentextDao
 import de.seleri.core.data.daos.KategorieDao
-import de.seleri.core.data.daos.KategorieXKartentextDao
 import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.SpielDao
-import de.seleri.core.data.daos.SpielXKategorieDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.data.entities.singles.KartentextEntity
@@ -30,6 +28,4 @@ abstract class AppDatabase: RoomDatabase() {
 	abstract fun kartentextDao(): KartentextDao
 	abstract fun kategorieDao(): KategorieDao
 	abstract fun spielDao(): SpielDao
-	abstract fun kategorieXKartentextDao(): KategorieXKartentextDao
-	abstract fun spielXKategorieDao(): SpielXKategorieDao
 }

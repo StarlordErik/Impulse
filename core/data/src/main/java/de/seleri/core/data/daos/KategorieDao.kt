@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
+import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.singles.KategorieEntity
 import de.seleri.core.data.relationen.KategorieMitKartentexten
 
@@ -25,9 +26,19 @@ interface KategorieDao {
 	@Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
 	suspend fun getAktive(): List<KategorieEntity>
 
+
 	@Transaction
 	@Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
-	fun getMitKartentexten(kategorieId: Int): KategorieMitKartentexten	/*
+	fun getMitKartentexten(kategorieId: Int): KategorieMitKartentexten
+
+	@Upsert
+	suspend fun upsert(kategorieXKartentext: KategorieXKartentext)
+
+	@Delete
+	suspend fun delete(kategorieXKartentext: KategorieXKartentext)
+
+	//.
+	/*
 	@Transaction
 	@Query(
 		"""
