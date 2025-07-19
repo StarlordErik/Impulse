@@ -13,4 +13,5 @@ data class Kartentext(
   val spielelementAttribute: SpielelementAttribute,
 
   val gesehen: Boolean,
+  val besprochen: Boolean,
 )
