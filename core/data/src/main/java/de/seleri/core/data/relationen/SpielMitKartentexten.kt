@@ -1,5 +1,4 @@
-package de.seleri.core.data.relationen
-
+package de.seleri.core.data.relationen/*
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
@@ -23,3 +22,4 @@ data class SpielMitKartentexten(
   )
   val kategorienMitKartentexten: List<KategorieMitKartentexten>,
 )
+*/
