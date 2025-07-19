@@ -57,6 +57,9 @@ dependencies {
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)
   implementation(libs.material)
+	testImplementation(libs.junit)
+	androidTestImplementation(libs.androidx.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
 
   implementation(libs.androidx.room.runtime)
   ksp(libs.androidx.room.compiler)
@@ -65,10 +68,6 @@ dependencies {
 
 	implementation(libs.hilt.android)
 	ksp(libs.hilt.android.compiler)
-
-  testImplementation(libs.junit)
-  androidTestImplementation(libs.androidx.junit)
-  androidTestImplementation(libs.androidx.espresso.core)
 }
 
 kover {
