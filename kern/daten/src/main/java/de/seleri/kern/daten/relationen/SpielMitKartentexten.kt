@@ -4,15 +4,15 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.kern.daten.entities.joins.SpielXKategorie
-import de.seleri.kern.daten.entities.singles.Kategorie
-import de.seleri.kern.daten.entities.singles.Spiel
+import de.seleri.kern.daten.entities.singles.KategorieEntity
+import de.seleri.kern.daten.entities.singles.SpielEntity
 
 data class SpielMitKartentexten(
   @Embedded
-  val spiel: Spiel,
+  val spiel: SpielEntity,
 
   @Relation(
-    entity = Kategorie::class,
+    entity = KategorieEntity::class,
     parentColumn = "id",
     entityColumn = "id",
     associateBy = Junction(

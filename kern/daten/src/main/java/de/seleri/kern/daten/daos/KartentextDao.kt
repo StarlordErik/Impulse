@@ -4,26 +4,26 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.singles.Kartentext
+import de.seleri.kern.daten.entities.singles.KartentextEntity
 
 @Dao
 interface KartentextDao {
 
   @Upsert
-  suspend fun upsert(kartentext: Kartentext)
+  suspend fun upsert(kartentext: KartentextEntity)
 
   @Delete
-  suspend fun delete(kartentext: Kartentext)
+  suspend fun delete(kartentext: KartentextEntity)
 
   @Query("SELECT * FROM Kartentexte WHERE id = :id")
-  suspend fun getByID(id: Int): Kartentext?
+  suspend fun getByID(id: Int): KartentextEntity?
 
   @Query("SELECT * FROM Kartentexte")
-  suspend fun getAlle(): List<Kartentext>
+  suspend fun getAlle(): List<KartentextEntity>
 
   @Query("SELECT * FROM Kartentexte WHERE inaktiv = 0")
-  suspend fun getAktive(): List<Kartentext>
+  suspend fun getAktive(): List<KartentextEntity>
 
   @Query("SELECT * FROM Kartentexte WHERE inaktiv = 0 AND gesehen = 0")
-  suspend fun getUngesehene(): List<Kartentext>
+  suspend fun getUngesehene(): List<KartentextEntity>
 }

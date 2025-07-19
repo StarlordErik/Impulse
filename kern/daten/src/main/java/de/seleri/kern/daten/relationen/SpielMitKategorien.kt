@@ -4,12 +4,12 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.kern.daten.entities.joins.SpielXKategorie
-import de.seleri.kern.daten.entities.singles.Kategorie
-import de.seleri.kern.daten.entities.singles.Spiel
+import de.seleri.kern.daten.entities.singles.KategorieEntity
+import de.seleri.kern.daten.entities.singles.SpielEntity
 
 data class SpielMitKategorien(
   @Embedded
-  val spiel: Spiel,
+  val spiel: SpielEntity,
 
   @Relation(
     parentColumn = "id",
@@ -21,5 +21,5 @@ data class SpielMitKategorien(
     )
   )
 
-  val kategorien: List<Kategorie>,
+  val kategorien: List<KategorieEntity>,
 )

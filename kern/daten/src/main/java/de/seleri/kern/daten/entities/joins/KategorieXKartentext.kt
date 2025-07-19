@@ -2,19 +2,19 @@ package de.seleri.kern.daten.entities.joins
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import de.seleri.kern.daten.entities.singles.Kartentext
-import de.seleri.kern.daten.entities.singles.Kategorie
+import de.seleri.kern.daten.entities.singles.KartentextEntity
+import de.seleri.kern.daten.entities.singles.KategorieEntity
 
 @Entity(
   tableName = "KategorieXKartentext",
   primaryKeys = ["kategorieID", "kartentextID"],
   foreignKeys = [ForeignKey(
-    entity = Kategorie::class,
+    entity = KategorieEntity::class,
     parentColumns = ["id"],
     childColumns = ["kategorieID"],
     onDelete = ForeignKey.CASCADE
   ), ForeignKey(
-    entity = Kartentext::class,
+    entity = KartentextEntity::class,
     parentColumns = ["id"],
     childColumns = ["kartentextID"],
     onDelete = ForeignKey.CASCADE

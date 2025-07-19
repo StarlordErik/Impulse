@@ -5,26 +5,26 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.singles.Spiel
+import de.seleri.kern.daten.entities.singles.SpielEntity
 import de.seleri.kern.daten.relationen.SpielMitKategorien
 
 @Dao
 interface SpielDao {
 
   @Upsert
-  suspend fun upsert(spiel: Spiel)
+  suspend fun upsert(spiel: SpielEntity)
 
   @Delete
-  suspend fun delete(spiel: Spiel)
+  suspend fun delete(spiel: SpielEntity)
 
   @Query("SELECT * FROM Spiele WHERE id = :id")
-  suspend fun getByID(id: Int): Spiel?
+  suspend fun getByID(id: Int): SpielEntity?
 
   @Query("SELECT * FROM Spiele")
-  suspend fun getAlle(): List<Spiel>
+  suspend fun getAlle(): List<SpielEntity>
 
   @Query("SELECT * FROM Spiele WHERE inaktiv = 0")
-  suspend fun getAktive(): List<Spiel>
+  suspend fun getAktive(): List<SpielEntity>
 
   @Transaction
   @Query("SELECT * FROM Spiele WHERE id = :spielId")

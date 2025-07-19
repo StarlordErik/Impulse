@@ -4,11 +4,14 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Kategorien")
-data class Kategorie(
+@Entity(tableName = "Kartentexte")
+data class KartentextEntity(
   @PrimaryKey(autoGenerate = true)
   val id: Int,
 
   @Embedded
-  val spielelementBasis: SpielelementBasis,
+  val basis: BasisEntity,
+
+  val gesehen: Boolean = false,
+  val besprochen: Boolean = false,
 )

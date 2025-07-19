@@ -5,26 +5,26 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import de.seleri.kern.daten.entities.singles.Kategorie
+import de.seleri.kern.daten.entities.singles.KategorieEntity
 import de.seleri.kern.daten.relationen.KategorieMitKartentexten
 
 @Dao
 interface KategorieDao {
 
   @Upsert
-  suspend fun upsert(kategorie: Kategorie)
+  suspend fun upsert(kategorie: KategorieEntity)
 
   @Delete
-  suspend fun delete(kategorie: Kategorie)
+  suspend fun delete(kategorie: KategorieEntity)
 
   @Query("SELECT * FROM Kategorien WHERE id = :id")
-  suspend fun getByID(id: Int): Kategorie?
+  suspend fun getByID(id: Int): KategorieEntity?
 
   @Query("SELECT * FROM Kategorien")
-  suspend fun getAlle(): List<Kategorie>
+  suspend fun getAlle(): List<KategorieEntity>
 
   @Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
-  suspend fun getAktive(): List<Kategorie>
+  suspend fun getAktive(): List<KategorieEntity>
 
   @Transaction
   @Query("SELECT * FROM Kategorien WHERE id = :kategorieId")

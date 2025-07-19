@@ -2,19 +2,19 @@ package de.seleri.kern.daten.entities.joins
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import de.seleri.kern.daten.entities.singles.Kategorie
-import de.seleri.kern.daten.entities.singles.Spiel
+import de.seleri.kern.daten.entities.singles.KategorieEntity
+import de.seleri.kern.daten.entities.singles.SpielEntity
 
 @Entity(
   tableName = "SpielXKategorie",
   primaryKeys = ["spielID", "kategorieID"],
   foreignKeys = [ForeignKey(
-    entity = Spiel::class,
+    entity = SpielEntity::class,
     parentColumns = ["id"],
     childColumns = ["spielID"],
     onDelete = ForeignKey.CASCADE
   ), ForeignKey(
-    entity = Kategorie::class,
+    entity = KategorieEntity::class,
     parentColumns = ["id"],
     childColumns = ["kategorieID"],
     onDelete = ForeignKey.CASCADE
