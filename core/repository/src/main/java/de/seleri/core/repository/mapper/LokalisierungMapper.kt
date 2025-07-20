@@ -1,42 +1,37 @@
 package de.seleri.core.repository.mapper
 
+import de.seleri.core.common.LokalisierungFK
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.domain.model.DatenbankEintragsDaten
 import de.seleri.core.domain.model.Lokalisierung
 
 fun LokalisierungEntity.toDomain(): Lokalisierung {
-	val spielelementID = spielID
-		?: kategorieID
-		?: kartentextID
-		?: error("LokalisierungEntity besitzt keinen Fremdschlüssel - weder für Spiel, Kategorie noch Kartentext!")
+	val spielelementFK = when {
+		spielID != null -> LokalisierungFK.SPIEL to spielID!!
+		kategorieID != null -> LokalisierungFK.KATEGORIE to kategorieID!!
+		kartentextID != null -> LokalisierungFK.KARTENTEXT to kartentextID!!
+		else -> error("LokalisierungEntity besitzt keinen Fremdschlüssel - weder für Spiel, Kategorie noch Kartentext!")
+	}
 
 	return Lokalisierung(
 		datenbankEintragsDaten = DatenbankEintragsDaten(id),
 		bezeichnung = bezeichnung,
 		sprache = sprache,
-		bearbeitet = bearbeitet,
-		spielelementID = spielelementID
+		bearbeitet = bearbeitet, spielelementFK = spielelementFK
 	)
 }
 
-fun Lokalisierung.toSpielEntity(): LokalisierungEntity =
-	toEntityWithId(spielId = this.spielelementID)
+fun Lokalisierung.toEntity(): LokalisierungEntity {
+	val lokalisierungFK = spielelementFK.first
+	val spielelementID = spielelementFK.second
 
-fun Lokalisierung.toKategorieEntity(): LokalisierungEntity =
-	toEntityWithId(kategorieId = this.spielelementID)
-
-fun Lokalisierung.toKartentextEntity(): LokalisierungEntity =
-	toEntityWithId(kartentextId = this.spielelementID)
-
-private fun Lokalisierung.toEntityWithId(
-	spielId: Int? = null, kategorieId: Int? = null, kartentextId: Int? = null
-): LokalisierungEntity =
-	LokalisierungEntity(
+	return LokalisierungEntity(
 		id = this.id,
-		bezeichnung = this.bezeichnung,
-		sprache = this.sprache,
-		bearbeitet = this.bearbeitet,
-		spielID = spielId,
-		kategorieID = kategorieId,
-		kartentextID = kartentextId
+		bezeichnung = bezeichnung,
+		sprache = sprache,
+		bearbeitet = bearbeitet,
+		spielID = if (lokalisierungFK == LokalisierungFK.SPIEL) spielelementID else null,
+		kategorieID = if (lokalisierungFK == LokalisierungFK.KATEGORIE) spielelementID else null,
+		kartentextID = if (lokalisierungFK == LokalisierungFK.KARTENTEXT) spielelementID else null
 	)
+}
