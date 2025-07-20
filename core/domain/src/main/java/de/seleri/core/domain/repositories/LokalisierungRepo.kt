@@ -7,10 +7,6 @@ import de.seleri.core.domain.model.Lokalisierung
 interface LokalisierungRepo: DatenbankObjektRepo<Lokalisierung>, BestandteilRepo<Lokalisierung> {
 
 	suspend fun getForSpielelementInSprache(spielelementID: SpielelementID, sprache: Sprache): Lokalisierung
-	suspend fun getForAllSpielelementInSprache(spielelementID: Collection<SpielelementID>): List<Lokalisierung>
-//.
-	/*
-	suspend fun getBearbeitete(): List<Lokalisierung>
+	suspend fun getForSpielelementeInSprache(spielelementID: Collection<SpielelementID>): List<Lokalisierung>
 
- */
 }

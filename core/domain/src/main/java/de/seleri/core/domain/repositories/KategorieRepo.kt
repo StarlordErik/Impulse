@@ -1,3 +1,5 @@
 package de.seleri.core.domain.repositories
 
-interface KategorieRepo {}
+import de.seleri.core.domain.model.spielelemente.Kategorie
+
+interface KategorieRepo: DatenbankObjektRepo<Kategorie>, BestandteilRepo<Kategorie>

@@ -1,3 +1,5 @@
 package de.seleri.core.domain.repositories
 
-interface SpielRepo {}
+import de.seleri.core.domain.model.spielelemente.Spiel
+
+interface SpielRepo: DatenbankObjektRepo<Spiel>
