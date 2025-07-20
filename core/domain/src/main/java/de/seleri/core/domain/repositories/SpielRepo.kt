@@ -6,4 +6,7 @@ import de.seleri.core.domain.model.spielelemente.Spiel
 import de.seleri.core.domain.repositories.basis.DatenbankObjektRepo
 import de.seleri.core.domain.repositories.basis.SammlungRepo
 
-interface SpielRepo: DatenbankObjektRepo<Spiel>, SammlungRepo<Spiel, Kategorie, BestandteilID.KategorieID>
+interface SpielRepo: DatenbankObjektRepo<Spiel>, SammlungRepo<Spiel, Kategorie, BestandteilID.KategorieID> {
+
+	suspend fun getAlleSpiele(): List<Spiel>
+}
