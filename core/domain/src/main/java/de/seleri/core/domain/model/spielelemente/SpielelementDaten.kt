@@ -1,7 +1,9 @@
-package de.seleri.core.domain.model
+package de.seleri.core.domain.model.spielelemente
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.BestandteilID
+import de.seleri.core.domain.model.DatenbankObjekt
+import de.seleri.core.domain.model.DatenbankObjektDaten
 
 abstract class SpielelementDaten(
 	val datenbankObjektDaten: DatenbankObjektDaten,

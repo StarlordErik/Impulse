@@ -3,8 +3,8 @@ package de.seleri.core.repository.mapper
 import de.seleri.core.data.entities.singles.Basis
 import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.SpielelementDaten
 import de.seleri.core.domain.model.spielelemente.Kartentext
+import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
 fun KartentextEntity.toKartentext(lokalisierungen: Collection<Lokalisierung>): Kartentext {
 	val spielelementDaten = object: SpielelementDaten(
