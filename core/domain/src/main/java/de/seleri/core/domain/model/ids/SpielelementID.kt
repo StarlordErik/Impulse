@@ -1,4 +1,4 @@
-package de.seleri.core.common.ids
+package de.seleri.core.domain.model.ids
 
 sealed class SpielelementID: idToInt {
 

@@ -1,4 +1,4 @@
-package de.seleri.core.domain.repositories
+package de.seleri.core.domain.repositories.basis
 
 import de.seleri.core.domain.model.DatenbankObjekt
 

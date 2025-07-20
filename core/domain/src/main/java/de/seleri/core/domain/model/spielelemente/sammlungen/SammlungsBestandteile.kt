@@ -1,6 +1,6 @@
 package de.seleri.core.domain.model.spielelemente.sammlungen
 
-import de.seleri.core.common.ids.BestandteilID
+import de.seleri.core.domain.model.ids.BestandteilID
 
 abstract class SammlungsBestandteile<ID: BestandteilID>(
 	val originaleBestandteile: Collection<ID>,
