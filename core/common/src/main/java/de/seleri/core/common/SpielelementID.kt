@@ -1,15 +1,10 @@
 package de.seleri.core.common
 
-sealed class SpielelementID {
+sealed class SpielelementID: idToInt {
 
-	abstract val id: Int
+	class KartentextID(override val idKey: Int): SpielelementID()
 
-	fun toInt(): Int =
-		id
+	class KategorieID(override val idKey: Int): SpielelementID()
 
-	class KartentextID(override val id: Int): SpielelementID()
-
-	class KategorieID(override val id: Int): SpielelementID()
-
-	class SpielID(override val id: Int): SpielelementID()
+	class SpielID(override val idKey: Int): SpielelementID()
 }

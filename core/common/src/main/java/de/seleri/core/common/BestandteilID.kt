@@ -1,15 +1,10 @@
 package de.seleri.core.common
 
-sealed class BestandteilID {
+sealed class BestandteilID: idToInt {
 
-	abstract val fk: Int
+	class LokalisierungID(override val idKey: Int): BestandteilID()
 
-	fun toInt(): Int =
-		fk
+	class KartentextID(override val idKey: Int): BestandteilID()
 
-	class LokalisierungID(override val fk: Int): BestandteilID()
-
-	class KartentextID(override val fk: Int): BestandteilID()
-
-	class KategorieID(override val fk: Int): BestandteilID()
+	class KategorieID(override val idKey: Int): BestandteilID()
 }
