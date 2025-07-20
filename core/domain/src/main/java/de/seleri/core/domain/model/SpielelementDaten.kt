@@ -10,6 +10,4 @@ abstract class SpielelementDaten(
 	val selbstErstellt: Boolean,
 	val inaktiv: Boolean,
 	val favorisiert: Boolean,
-): Spielelement {
-
-}
+): Spielelement
