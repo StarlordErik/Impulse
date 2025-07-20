@@ -7,14 +7,13 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
 import de.seleri.core.domain.model.spielelemente.Spiel
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungsBestandteilTyp
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungsBestandteile
+import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
+// @formatter:off
 fun SpielEntity.toDomain(
 	lokalisierungen: Collection<BestandteilID.LokalisierungID>,
-	kategorieIDs: Map<SammlungsBestandteilTyp, Collection<BestandteilID.KategorieID>>
+	kategorieIDs: Collection<BestandteilID.KategorieID>
 ): Spiel =
-	// @formatter:off
 	Spiel(
 		spielelementDaten = SpielelementDaten(
 			datenbankObjektDaten = DatenbankObjektDaten(
@@ -26,7 +25,7 @@ fun SpielEntity.toDomain(
 			inaktiv = spielelementBasis.inaktiv,
 			favorisiert = spielelementBasis.favorisiert
 		),
-		sammlungsBestandteile = SammlungsBestandteile(kategorieIDs),
+		sammlungDaten = SammlungDaten(kategorieIDs),
 		texteProKarte = texteProKarte,
 		bildDateiname = bildDateiname
 	)
@@ -48,8 +47,7 @@ fun Spiel.toEntity(): SpielEntity =
 // @formatter:on
 
 fun Spiel.toJoinEntities(): Collection<SpielXKategorie> =
-	sammlungsBestandteile.bestandteileMap
-		.flatMap { (_, ids) -> ids }
+	sammlungDaten.bestandteile
 		.map { id ->
 			// @formatter:off
 			SpielXKategorie(

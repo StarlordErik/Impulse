@@ -7,14 +7,13 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungsBestandteilTyp
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungsBestandteile
+import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
+// @formatter:off
 fun KategorieEntity.toDomain(
 	lokalisierungen: Collection<BestandteilID.LokalisierungID>,
-	kartentextIDs: Map<SammlungsBestandteilTyp, Collection<BestandteilID.KartentextID>>
+	kartentextIDs: Collection<BestandteilID.KartentextID>
 ): Kategorie =
-	// @formatter:off
 	Kategorie(
 		spielelementDaten = SpielelementDaten(
 			datenbankObjektDaten = DatenbankObjektDaten(
@@ -26,9 +25,9 @@ fun KategorieEntity.toDomain(
 			inaktiv = spielelementBasis.inaktiv,
 			favorisiert = spielelementBasis.favorisiert
 		),
-		sammlungsBestandteile = SammlungsBestandteile(kartentextIDs)
+		sammlungDaten = SammlungDaten(kartentextIDs)
 	)
-	// @formatter:on
+// @formatter:on
 
 fun Kategorie.toEntity(): KategorieEntity =
 	// @formatter:off
@@ -44,9 +43,7 @@ fun Kategorie.toEntity(): KategorieEntity =
 	// @formatter:on
 
 fun Kategorie.toJoinEntities(): Collection<KategorieXKartentext> =
-	sammlungsBestandteile.bestandteileMap
-		.flatMap { (_, ids) -> ids }
-		.map { id ->
+	sammlungDaten.bestandteile.map { id ->
 			// @formatter:off
 			KategorieXKartentext(
 				kategorieID = spielelementDaten.datenbankObjektDaten.id,
