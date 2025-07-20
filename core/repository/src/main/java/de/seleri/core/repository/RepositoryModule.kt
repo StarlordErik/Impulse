@@ -18,4 +18,6 @@ object RepositoryModule {
 	): LokalisierungRepo {
 		return LokalisierungImpl(dao)
 	}
+
+	// TODO die anderen RepoImpls
 }
