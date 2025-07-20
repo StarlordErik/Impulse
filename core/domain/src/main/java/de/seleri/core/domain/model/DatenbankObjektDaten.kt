@@ -1,5 +1,5 @@
 package de.seleri.core.domain.model
 
-class DatenbankObjektDaten(
+data class DatenbankObjektDaten(
 	override val id: Int
 ): DatenbankObjekt
