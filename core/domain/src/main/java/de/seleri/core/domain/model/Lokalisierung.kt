@@ -11,9 +11,4 @@ data class Lokalisierung(
 	val bearbeitet: Boolean,
 
 	val spielelementFK: Pair<LokalisierungFK, Int>,
-): DatenbankObjekt by datenbankObjektDaten, Comparable<Lokalisierung> {
-
-	override fun compareTo(other: Lokalisierung): Int {
-		TODO("Not yet implemented")
-	}
-}
+): DatenbankObjekt by datenbankObjektDaten, Bestandteil

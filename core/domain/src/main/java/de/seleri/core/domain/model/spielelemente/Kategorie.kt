@@ -1,6 +1,7 @@
 package de.seleri.core.domain.model.spielelemente
 
-import de.seleri.core.common.DatenbankObjektID
+import de.seleri.core.common.BestandteilID
+import de.seleri.core.domain.model.Bestandteil
 import de.seleri.core.domain.model.Spielelement
 import de.seleri.core.domain.model.SpielelementDaten
 import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
@@ -9,10 +10,10 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungsBestandteil
 data class Kategorie(
 	val spielelementDaten: SpielelementDaten,
 
-	val sammlungsBestandteile: SammlungsBestandteile<DatenbankObjektID.KartentextID>,
-): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile {
+	val sammlungsBestandteile: SammlungsBestandteile<BestandteilID.KartentextID>,
+): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile, Bestandteil {
 
-	override fun karte(texteProKarte: Int): List<DatenbankObjektID.KartentextID> {
+	override fun karte(texteProKarte: Int): List<BestandteilID.KartentextID> {
 		// return texteProKarte an Kartentexten
 		TODO("Not yet implemented")
 	}
