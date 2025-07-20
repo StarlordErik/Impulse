@@ -1,11 +1,29 @@
 package de.seleri.core.data.entities.singles
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import de.seleri.core.common.LokalisierungVon
 import de.seleri.core.common.Sprache
 
-@Entity(tableName = "Lokalisierungen")
+@Entity(
+	tableName = "Lokalisierungen", foreignKeys = [ForeignKey(
+		entity = SpielEntity::class,
+		parentColumns = ["id"],
+		childColumns = ["spielId"],
+		onDelete = ForeignKey.Companion.CASCADE
+	), ForeignKey(
+		entity = KategorieEntity::class,
+		parentColumns = ["id"],
+		childColumns = ["kategorieId"],
+		onDelete = ForeignKey.Companion.CASCADE
+	), ForeignKey(
+		entity = KartentextEntity::class,
+		parentColumns = ["id"],
+		childColumns = ["kartentextId"],
+		onDelete = ForeignKey.Companion.CASCADE
+	)]
+)
 data class LokalisierungEntity(
 	@PrimaryKey(autoGenerate = true)
 	val id: Int,
@@ -15,5 +33,7 @@ data class LokalisierungEntity(
 	val bearbeitet: Boolean = false,
 
 	val lokalisierungVon: LokalisierungVon,
-	val spielelementID: Int,
+	val spielID: Int? = null,
+	val kategorieID: Int? = null,
+	val kartentextID: Int? = null,
 )
