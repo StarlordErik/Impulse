@@ -1,5 +1,6 @@
 package de.seleri.core.domain.model
 
+import de.seleri.core.common.LokalisierungFK
 import de.seleri.core.common.Sprache
 
 data class Lokalisierung(
@@ -9,7 +10,7 @@ data class Lokalisierung(
 	val sprache: Sprache,
 	val bearbeitet: Boolean,
 
-	val spielelementID: Int,
+	val spielelementFK: Pair<LokalisierungFK, Int>,
 ): DatenbankEintrag by datenbankEintragsDaten, Comparable<Lokalisierung> {
 
 	override fun compareTo(other: Lokalisierung): Int {
