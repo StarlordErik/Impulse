@@ -9,7 +9,10 @@ import de.seleri.core.domain.repositories.basis.DatenbankObjektRepo
 
 interface LokalisierungRepo: DatenbankObjektRepo<Lokalisierung>, BestandteilRepo<Lokalisierung> {
 
-	suspend fun getLokalisierungIDsForSpielelement(spielelementID: SpielelementID): List<BestandteilID.LokalisierungID>
+	// @formatter:off
+	suspend fun getLokalisierungIDsForSpielelement(spielelementID: SpielelementID):
+		Collection<BestandteilID.LokalisierungID>
+	// @formatter:on
 
 	suspend fun getByIDinSprache(spielelementID: SpielelementID, inSprache: Sprache): Lokalisierung?
 }

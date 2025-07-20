@@ -31,14 +31,14 @@ fun KartentextEntity.toDomain(
 fun Kartentext.toEntity(): KartentextEntity =
 	// @formatter:off
 	KartentextEntity(
-		id = this.id,
+		id = spielelementDaten.datenbankObjektDaten.id,
 		spielelementBasis = SpielelementBasis(
-			ogSprache = this.spielelementDaten.ogSprache,
-			selbstErstellt = this.spielelementDaten.selbstErstellt,
-			inaktiv = this.spielelementDaten.inaktiv,
-			favorisiert = this.spielelementDaten.favorisiert
+			ogSprache = spielelementDaten.ogSprache,
+			selbstErstellt = spielelementDaten.selbstErstellt,
+			inaktiv = spielelementDaten.inaktiv,
+			favorisiert = spielelementDaten.favorisiert
 		),
-		gesehen = this.gesehen,
-		besprochen = this.besprochen
+		gesehen = gesehen,
+		besprochen = besprochen
 	)
 	// @formatter:on
