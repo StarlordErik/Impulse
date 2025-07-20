@@ -2,7 +2,7 @@ package de.seleri.core.domain.model
 
 import de.seleri.core.common.Sprache
 
-abstract class SpielelementBasis(
+abstract class SpielelementDaten(
 	override val id: Int,
 	override val lokalisierungen: Collection<Lokalisierung>,
 
