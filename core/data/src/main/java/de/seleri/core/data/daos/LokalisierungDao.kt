@@ -2,9 +2,7 @@ package de.seleri.core.data.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.core.common.Sprache
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 
 @Dao
@@ -26,7 +24,6 @@ interface LokalisierungDao {
 
 	@Query("SELECT * FROM Lokalisierungen WHERE bearbeitet = 1")
 	suspend fun getBearbeitete(): List<LokalisierungEntity>
-	 */
 
 	@Query("SELECT * FROM Lokalisierungen WHERE spielID = :spielId")
 	suspend fun getForSpiel(spielId: Int): List<LokalisierungEntity>
@@ -45,4 +42,5 @@ interface LokalisierungDao {
 
 	@Query("SELECT * FROM Lokalisierungen WHERE kartentextID = :kartentextId AND sprache = :inSprache")
 	suspend fun getForKartentext(kartentextId: Int, inSprache: Sprache): LokalisierungEntity?
+	 */
 }
