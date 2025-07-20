@@ -14,4 +14,8 @@ class GetTextUsecase(
 
 		return lokalisierung.bezeichnung
 	}
+
+	suspend operator fun invoke(spielelementIDs: Collection<SpielelementID>, inSprache: Sprache): Collection<String> {
+		return spielelementIDs.map { this(it, inSprache) }
+	}
 }
