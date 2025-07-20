@@ -2,7 +2,7 @@ package de.seleri.core.domain.model.spielelemente.sammlungen
 
 import de.seleri.core.domain.model.ids.BestandteilID
 
-abstract class SammlungsBestandteile<ID: BestandteilID>(
+data class SammlungsBestandteile<ID: BestandteilID>(
 	val sammlungsBestandteile: Map<SammlungsBestandteilTyp, Collection<ID>>,
 ): Sammlung {
 
@@ -17,4 +17,8 @@ abstract class SammlungsBestandteile<ID: BestandteilID>(
 	fun selbstErstellteBestandteile(): Collection<ID> =
 		sammlungsBestandteile[SammlungsBestandteilTyp.SELBST_ERSTELLT]
 			?: emptyList()
+
+	override fun karte(texteProKarte: Int): List<BestandteilID.KartentextID> {
+		TODO("Not yet implemented")
+	}
 }
