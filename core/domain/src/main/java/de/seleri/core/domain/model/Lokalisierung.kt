@@ -1,6 +1,6 @@
 package de.seleri.core.domain.model
 
-import de.seleri.core.common.LokalisierungFK
+import de.seleri.core.common.LokalisierungVon
 import de.seleri.core.common.Sprache
 
 data class Lokalisierung(
@@ -10,5 +10,5 @@ data class Lokalisierung(
 	val sprache: Sprache,
 	val bearbeitet: Boolean,
 
-	val spielelementFK: Pair<LokalisierungFK, Int>,
+	val spielelementFK: Pair<LokalisierungVon, Int>,
 ): DatenbankObjekt by datenbankObjektDaten, Bestandteil

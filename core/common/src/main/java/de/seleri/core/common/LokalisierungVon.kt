@@ -1,6 +1,6 @@
 package de.seleri.core.common
 
-enum class LokalisierungFK {
+enum class LokalisierungVon {
 
 	SPIEL,
 	KATEGORIE,
