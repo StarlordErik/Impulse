@@ -6,18 +6,16 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 
 fun LokalisierungEntity.toDomain(): Lokalisierung {
-	val spielelementFK = when {
-		spielID != null -> LokalisierungVon.SPIEL to spielID!!
-		kategorieID != null -> LokalisierungVon.KATEGORIE to kategorieID!!
-		kartentextID != null -> LokalisierungVon.KARTENTEXT to kartentextID!!
-		else -> error("LokalisierungEntity besitzt keinen Fremdschlüssel - weder für Spiel, Kategorie noch Kartentext!")
+	val spielelementFK = when (lokalisierungVon) {
+		LokalisierungVon.SPIEL -> LokalisierungVon.SPIEL to spielID!!
+		LokalisierungVon.KATEGORIE -> LokalisierungVon.KATEGORIE to kategorieID!!
+		LokalisierungVon.KARTENTEXT -> LokalisierungVon.KARTENTEXT to kartentextID!!
 	}
 
 	return Lokalisierung(
 		datenbankObjektDaten = DatenbankObjektDaten(id),
 		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet, spielelementFK = spielelementFK
+		sprache = sprache, bearbeitet = bearbeitet, spielelementFK = spielelementFK
 	)
 }
 
@@ -25,13 +23,33 @@ fun Lokalisierung.toEntity(): LokalisierungEntity {
 	val lokalisierungFK = spielelementFK.first
 	val spielelementID = spielelementFK.second
 
-	return LokalisierungEntity(
+	val lol = LokalisierungEntity(
 		id = this.id,
 		bezeichnung = bezeichnung,
 		sprache = sprache,
-		bearbeitet = bearbeitet,
+		bearbeitet = bearbeitet, lokalisierungVon = lokalisierungFK,
 		spielID = if (lokalisierungFK == LokalisierungVon.SPIEL) spielelementID else null,
 		kategorieID = if (lokalisierungFK == LokalisierungVon.KATEGORIE) spielelementID else null,
 		kartentextID = if (lokalisierungFK == LokalisierungVon.KARTENTEXT) spielelementID else null
 	)
+
+	if (validateLokalisierung(lol)) {
+		return lol
+	} else {
+		// @formatter:off
+		error(
+			"LokalisierungEntity ist nicht gültig - Fremdschlüssel nicht passend!\n" +
+				"Das soll eine Lokalisierung von \"${lol.lokalisierungVon}\" sein, aber die Fremdschlüssel sind:\n" +
+				"\tSpielID: ${lol.spielID}, KategorieID: ${lol.kategorieID}, KartentextID: ${lol.kartentextID}"
+		)
+		// @formatter:on
+	}
+}
+
+private fun validateLokalisierung(entity: LokalisierungEntity): Boolean {
+	return when (entity.lokalisierungVon) {
+		LokalisierungVon.SPIEL -> entity.spielID != null && entity.kategorieID == null && entity.kartentextID == null
+		LokalisierungVon.KATEGORIE -> entity.kategorieID != null && entity.spielID == null && entity.kartentextID == null
+		LokalisierungVon.KARTENTEXT -> entity.kartentextID != null && entity.spielID == null && entity.kategorieID == null
+	}
 }
