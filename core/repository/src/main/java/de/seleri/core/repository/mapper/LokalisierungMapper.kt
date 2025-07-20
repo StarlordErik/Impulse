@@ -4,28 +4,31 @@ import de.seleri.core.common.LokalisierungVon
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.model.ids.SpielelementID
 
 fun LokalisierungEntity.toDomain(): Lokalisierung {
 	val spielelementFK = when (lokalisierungVon) {
-		LokalisierungVon.SPIEL -> LokalisierungVon.SPIEL to spielID!!
-		LokalisierungVon.KATEGORIE -> LokalisierungVon.KATEGORIE to kategorieID!!
-		LokalisierungVon.KARTENTEXT -> LokalisierungVon.KARTENTEXT to kartentextID!!
+		LokalisierungVon.SPIEL -> LokalisierungVon.SPIEL to SpielelementID.SpielID(spielID!!)
+		LokalisierungVon.KATEGORIE -> LokalisierungVon.KATEGORIE to SpielelementID.KategorieID(kategorieID!!)
+		LokalisierungVon.KARTENTEXT -> LokalisierungVon.KARTENTEXT to SpielelementID.KartentextID(kartentextID!!)
 	}
 
 	return Lokalisierung(
 		datenbankObjektDaten = DatenbankObjektDaten(id),
-		bezeichnung = bezeichnung, sprache = sprache, bearbeitet = bearbeitet, spielelementFK = spielelementFK
+		bezeichnung = bezeichnung,
+		sprache = sprache,
+		bearbeitet = bearbeitet,
+		spielelementFK = spielelementFK
 	)
 }
 
 fun Lokalisierung.toEntity(): LokalisierungEntity {
 	val lokalisierungFK = spielelementFK.first
-	val spielelementID = spielelementFK.second
+	val spielelementID = spielelementFK.second.toInt()
 
 	val lol = LokalisierungEntity(
-		id = this.id,
-		bezeichnung = bezeichnung,
-		sprache = sprache, bearbeitet = bearbeitet, lokalisierungVon = lokalisierungFK,
+		id = datenbankObjektDaten.id,
+		bezeichnung = bezeichnung, sprache = sprache, bearbeitet = bearbeitet, lokalisierungVon = lokalisierungFK,
 		spielID = if (lokalisierungFK == LokalisierungVon.SPIEL) spielelementID else null,
 		kategorieID = if (lokalisierungFK == LokalisierungVon.KATEGORIE) spielelementID else null,
 		kartentextID = if (lokalisierungFK == LokalisierungVon.KARTENTEXT) spielelementID else null
