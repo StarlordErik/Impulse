@@ -2,8 +2,8 @@ package de.seleri.core.domain.model.ids
 
 interface idToInt {
 
-	val idKey: Int
+	val keyID: Int
 
 	fun toInt(): Int =
-		idKey
+		keyID
 }
