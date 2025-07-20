@@ -4,7 +4,7 @@ import de.seleri.core.common.Sprache
 
 data class Basis(
 	val ogSprache: Sprache = Sprache.DE,
-	val inaktiv: Boolean = false,
 	val selbstErstellt: Boolean = false,
+	val inaktiv: Boolean = false,
 	val favorisiert: Boolean = false,
 )

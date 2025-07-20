@@ -7,8 +7,8 @@ abstract class SpielelementBasis(
 	override val lokalisierungen: Collection<Lokalisierung>,
 
 	val ogSprache: Sprache,
-	val inaktiv: Boolean,
 	val selbstErstellt: Boolean,
+	val inaktiv: Boolean,
 	val favorisiert: Boolean,
 ): Spielelement {
 
