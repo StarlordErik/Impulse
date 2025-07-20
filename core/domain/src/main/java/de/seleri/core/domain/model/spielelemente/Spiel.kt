@@ -15,6 +15,7 @@ data class Spiel(
 ): Spielelement by spielelementBasis, Sammlung<Kategorie> by sammlungsBestandteile {
 
 	override fun karte(texteProKarte: Int): List<Kartentext> {
+		// wähle eine Kategorie aus und return kategorie.karte(texteProKarte)
 		TODO("Not yet implemented")
 	}
 }

@@ -9,9 +9,4 @@ data class Kartentext(
 
 	val gesehen: Boolean,
 	val besprochen: Boolean,
-): Spielelement by spielelementBasis, Bestandteil {
-
-	override fun wurdeGesehen() {
-		TODO("Not yet implemented")
-	}
-}
+): Spielelement by spielelementBasis, Bestandteil

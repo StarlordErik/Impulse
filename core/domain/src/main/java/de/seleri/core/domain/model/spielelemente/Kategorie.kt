@@ -13,10 +13,7 @@ data class Kategorie(
 ): Spielelement by spielelementBasis, Sammlung<Kartentext> by sammlungsBestandteile, Bestandteil {
 
 	override fun karte(texteProKarte: Int): List<Kartentext> {
-		TODO("Not yet implemented")
-	}
-
-	override fun wurdeGesehen() {
+		// return texteProKarte an Kartentexten
 		TODO("Not yet implemented")
 	}
 }
