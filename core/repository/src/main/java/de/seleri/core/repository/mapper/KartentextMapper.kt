@@ -1,7 +1,7 @@
 package de.seleri.core.repository.mapper
 
-import de.seleri.core.data.entities.singles.Basis
 import de.seleri.core.data.entities.singles.KartentextEntity
+import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
@@ -10,10 +10,10 @@ fun KartentextEntity.toKartentext(lokalisierungen: Collection<Lokalisierung>): K
 	val spielelementDaten = object: SpielelementDaten(
 		id = this.id,
 		lokalisierungen = lokalisierungen,
-		ogSprache = basis.ogSprache,
-		selbstErstellt = basis.selbstErstellt,
-		inaktiv = basis.inaktiv,
-		favorisiert = basis.favorisiert
+		ogSprache = spielelementBasis.ogSprache,
+		selbstErstellt = spielelementBasis.selbstErstellt,
+		inaktiv = spielelementBasis.inaktiv,
+		favorisiert = spielelementBasis.favorisiert
 	) {}
 
 	return Kartentext(
@@ -23,7 +23,7 @@ fun KartentextEntity.toKartentext(lokalisierungen: Collection<Lokalisierung>): K
 
 fun Kartentext.toEntity(): KartentextEntity {
 	return KartentextEntity(
-		id = this.id, basis = Basis(
+		id = this.id, spielelementBasis = SpielelementBasis(
 			ogSprache = this.spielelementDaten.ogSprache,
 			selbstErstellt = this.spielelementDaten.selbstErstellt,
 			inaktiv = this.spielelementDaten.inaktiv,
