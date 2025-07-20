@@ -14,8 +14,7 @@ fun LokalisierungEntity.toDomain(): Lokalisierung {
 
 	return Lokalisierung(
 		datenbankObjektDaten = DatenbankObjektDaten(id),
-		bezeichnung = bezeichnung,
-		sprache = sprache, bearbeitet = bearbeitet, spielelementFK = spielelementFK
+		bezeichnung = bezeichnung, sprache = sprache, bearbeitet = bearbeitet, spielelementFK = spielelementFK
 	)
 }
 
@@ -26,8 +25,7 @@ fun Lokalisierung.toEntity(): LokalisierungEntity {
 	val lol = LokalisierungEntity(
 		id = this.id,
 		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet, lokalisierungVon = lokalisierungFK,
+		sprache = sprache, bearbeitet = bearbeitet, lokalisierungVon = lokalisierungFK,
 		spielID = if (lokalisierungFK == LokalisierungVon.SPIEL) spielelementID else null,
 		kategorieID = if (lokalisierungFK == LokalisierungVon.KATEGORIE) spielelementID else null,
 		kartentextID = if (lokalisierungFK == LokalisierungVon.KARTENTEXT) spielelementID else null

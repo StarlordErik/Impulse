@@ -8,7 +8,7 @@ import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
 
-fun KartentextEntity.toKartentext(
+fun KartentextEntity.toDomain(
 	lokalisierungIds: List<BestandteilID.LokalisierungID>
 ): Kartentext =
 	// @formatter:off
