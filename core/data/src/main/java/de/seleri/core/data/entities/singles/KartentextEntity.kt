@@ -12,6 +12,6 @@ data class KartentextEntity(
 	@Embedded
 	val spielelementBasis: SpielelementBasis,
 
-	val gesehen: Boolean = false,
-	val besprochen: Boolean = false,
+	val gesehen: Boolean,
+	val besprochen: Boolean,
 )

@@ -29,8 +29,8 @@ data class LokalisierungEntity(
 	val id: Int,
 
 	val bezeichnung: String,
-	val sprache: Sprache = Sprache.OG,
-	val bearbeitet: Boolean = false,
+	val sprache: Sprache,
+	val bearbeitet: Boolean,
 
 	val lokalisierungVon: LokalisierungVon,
 	val spielID: Int? = null,

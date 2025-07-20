@@ -5,6 +5,6 @@ import de.seleri.core.domain.model.Bestandteil
 data class Kartentext(
 	val spielelementDaten: SpielelementDaten,
 
-	val gesehen: Boolean,
-	val besprochen: Boolean,
+	val gesehen: Boolean = false,
+	val besprochen: Boolean = false,
 ): Spielelement by spielelementDaten, Bestandteil

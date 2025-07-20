@@ -2,13 +2,14 @@ package de.seleri.core.domain.model
 
 import de.seleri.core.common.LokalisierungVon
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.model.ids.SpielelementID
 
 data class Lokalisierung(
-	val datenbankObjektDaten: DatenbankObjektDaten,
+	val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
 	val bezeichnung: String,
-	val sprache: Sprache,
-	val bearbeitet: Boolean,
+	val sprache: Sprache = Sprache.OG,
+	val bearbeitet: Boolean = false,
 
-	val spielelementFK: Pair<LokalisierungVon, Int>,
+	val spielelementFK: Pair<LokalisierungVon, SpielelementID>,
 ): DatenbankObjekt by datenbankObjektDaten, Bestandteil

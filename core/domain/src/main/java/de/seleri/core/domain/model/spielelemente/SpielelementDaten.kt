@@ -6,12 +6,12 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
 
 data class SpielelementDaten(
-	val datenbankObjektDaten: DatenbankObjektDaten,
+	val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
 	val lokalisierungen: Collection<BestandteilID.LokalisierungID>,
 
-	val ogSprache: Sprache,
-	val selbstErstellt: Boolean,
-	val inaktiv: Boolean,
-	val favorisiert: Boolean,
+	val ogSprache: Sprache = Sprache.DE,
+	val selbstErstellt: Boolean = false,
+	val inaktiv: Boolean = false,
+	val favorisiert: Boolean = false,
 ): DatenbankObjekt by datenbankObjektDaten, Spielelement

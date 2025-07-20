@@ -9,6 +9,6 @@ data class Spiel(
 
 	val sammlungsBestandteile: SammlungsBestandteile<BestandteilID.KategorieID>,
 
-	val texteProKarte: Int,
-	val bildDateiname: String?,
+	val texteProKarte: Int = 1,
+	val bildDateiname: String? = null,
 ): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile
