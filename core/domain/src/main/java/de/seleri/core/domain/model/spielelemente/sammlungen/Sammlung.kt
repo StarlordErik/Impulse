@@ -4,5 +4,5 @@ import de.seleri.core.domain.model.spielelemente.Kartentext
 
 interface Sammlung<B: Bestandteil> {
 
-	fun erstelleKarte(texteProKarte: Int): List<Kartentext>
+	fun karte(texteProKarte: Int): List<Kartentext>
 }
