@@ -2,7 +2,7 @@ package de.seleri.core.repository.mapper
 
 import de.seleri.core.common.LokalisierungFK
 import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.domain.model.DatenbankEintragsDaten
+import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 
 fun LokalisierungEntity.toDomain(): Lokalisierung {
@@ -14,7 +14,7 @@ fun LokalisierungEntity.toDomain(): Lokalisierung {
 	}
 
 	return Lokalisierung(
-		datenbankEintragsDaten = DatenbankEintragsDaten(id),
+		datenbankObjektDaten = DatenbankObjektDaten(id),
 		bezeichnung = bezeichnung,
 		sprache = sprache,
 		bearbeitet = bearbeitet, spielelementFK = spielelementFK

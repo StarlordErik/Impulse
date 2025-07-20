@@ -1,15 +1,15 @@
 package de.seleri.core.domain.model
 
-import de.seleri.core.common.BestandteilFK
+import de.seleri.core.common.DatenbankObjektID
 import de.seleri.core.common.Sprache
 
 abstract class SpielelementDaten(
-	val datenbankEintragsDaten: DatenbankEintragsDaten,
+	val datenbankObjektDaten: DatenbankObjektDaten,
 
-	val lokalisierungen: Collection<BestandteilFK.LokalisierungID>,
+	val lokalisierungen: Collection<DatenbankObjektID.LokalisierungID>,
 
 	val ogSprache: Sprache,
 	val selbstErstellt: Boolean,
 	val inaktiv: Boolean,
 	val favorisiert: Boolean,
-): DatenbankEintrag by datenbankEintragsDaten, Spielelement
+): DatenbankObjekt by datenbankObjektDaten, Spielelement

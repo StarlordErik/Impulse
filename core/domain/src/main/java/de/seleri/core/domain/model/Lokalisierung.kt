@@ -4,14 +4,14 @@ import de.seleri.core.common.LokalisierungFK
 import de.seleri.core.common.Sprache
 
 data class Lokalisierung(
-	val datenbankEintragsDaten: DatenbankEintragsDaten,
+	val datenbankObjektDaten: DatenbankObjektDaten,
 
 	val bezeichnung: String,
 	val sprache: Sprache,
 	val bearbeitet: Boolean,
 
 	val spielelementFK: Pair<LokalisierungFK, Int>,
-): DatenbankEintrag by datenbankEintragsDaten, Comparable<Lokalisierung> {
+): DatenbankObjekt by datenbankObjektDaten, Comparable<Lokalisierung> {
 
 	override fun compareTo(other: Lokalisierung): Int {
 		TODO("Not yet implemented")

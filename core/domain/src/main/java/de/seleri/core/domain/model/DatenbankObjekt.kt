@@ -1,9 +1,9 @@
 package de.seleri.core.domain.model
 
-interface DatenbankEintrag {
+interface DatenbankObjekt {
 	val id: Int
 
-	fun compareByIdTo(other: DatenbankEintrag): Int {
+	fun compareByIdTo(other: DatenbankObjekt): Int {
 		TODO("Not yet implemented")
 	}
 }
