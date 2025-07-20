@@ -1,4 +1,4 @@
-package de.seleri.core.common
+package de.seleri.core.common.ids
 
 sealed class BestandteilID: idToInt {
 

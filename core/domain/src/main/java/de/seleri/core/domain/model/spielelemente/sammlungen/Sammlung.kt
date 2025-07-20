@@ -1,6 +1,6 @@
 package de.seleri.core.domain.model.spielelemente.sammlungen
 
-import de.seleri.core.common.BestandteilID
+import de.seleri.core.common.ids.BestandteilID
 
 interface Sammlung {
 

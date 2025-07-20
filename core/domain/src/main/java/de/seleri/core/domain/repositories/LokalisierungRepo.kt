@@ -1,7 +1,7 @@
 package de.seleri.core.domain.repositories
 
-import de.seleri.core.common.SpielelementID
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.ids.SpielelementID
 import de.seleri.core.domain.model.Lokalisierung
 
 interface LokalisierungRepo: DatenbankObjektRepo<Lokalisierung>, BestandteilRepo<Lokalisierung> {

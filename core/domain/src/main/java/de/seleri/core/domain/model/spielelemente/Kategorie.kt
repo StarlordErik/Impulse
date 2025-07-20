@@ -1,6 +1,6 @@
 package de.seleri.core.domain.model.spielelemente
 
-import de.seleri.core.common.BestandteilID
+import de.seleri.core.common.ids.BestandteilID
 import de.seleri.core.domain.model.Bestandteil
 import de.seleri.core.domain.model.Spielelement
 import de.seleri.core.domain.model.SpielelementDaten
