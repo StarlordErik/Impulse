@@ -9,10 +9,4 @@ data class Kategorie(
 	val spielelementDaten: SpielelementDaten,
 
 	val sammlungsBestandteile: SammlungsBestandteile<BestandteilID.KartentextID>,
-): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile, Bestandteil {
-
-	override fun karte(texteProKarte: Int): List<BestandteilID.KartentextID> {
-		// return texteProKarte an Kartentexten
-		TODO("Not yet implemented")
-	}
-}
+): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile, Bestandteil

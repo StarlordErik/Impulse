@@ -11,10 +11,4 @@ data class Spiel(
 
 	val texteProKarte: Int,
 	val bildDateiname: String?,
-): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile {
-
-	override fun karte(texteProKarte: Int): List<BestandteilID.KartentextID> {
-		// wähle eine Kategorie aus und return kategorie.karte(texteProKarte)
-		TODO("Not yet implemented")
-	}
-}
+): Spielelement by spielelementDaten, Sammlung by sammlungsBestandteile
