@@ -7,6 +7,10 @@ interface LokalisierungRepo {
 	suspend fun upsert(lokalisierung: Lokalisierung)
 	suspend fun delete(lokalisierung: Lokalisierung)
 
+//.
+	/*
 	suspend fun getById(id: Int): Lokalisierung?
 	suspend fun getBearbeitete(): List<Lokalisierung>
+
+ */
 }

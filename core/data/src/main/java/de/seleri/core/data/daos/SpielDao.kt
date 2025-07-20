@@ -11,21 +11,12 @@ import de.seleri.core.data.relations.SpielMitKategorien
 
 @Dao
 interface SpielDao {
+
 	@Upsert
 	suspend fun upsert(spiel: SpielEntity)
 
 	@Delete
 	suspend fun delete(spiel: SpielEntity)
-
-	@Query("SELECT * FROM Spiele WHERE id = :id")
-	suspend fun getByID(id: Int): SpielEntity?
-
-	@Query("SELECT * FROM Spiele")
-	suspend fun getAlle(): List<SpielEntity>
-
-	@Query("SELECT * FROM Spiele WHERE inaktiv = 0")
-	suspend fun getAktive(): List<SpielEntity>
-
 
 	@Transaction
 	@Query("SELECT * FROM Spiele WHERE id = :spielId")
@@ -39,6 +30,17 @@ interface SpielDao {
 
 	//.
 	/*
+
+		@Query("SELECT * FROM Spiele WHERE id = :id")
+	suspend fun getByID(id: Int): SpielEntity?
+
+	@Query("SELECT * FROM Spiele")
+	suspend fun getAlle(): List<SpielEntity>
+
+	@Query("SELECT * FROM Spiele WHERE inaktiv = 0")
+	suspend fun getAktive(): List<SpielEntity>
+
+
 	@Transaction
 	@Query(
 		"""

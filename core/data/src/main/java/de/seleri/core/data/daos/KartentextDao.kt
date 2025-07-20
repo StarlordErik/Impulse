@@ -2,7 +2,6 @@ package de.seleri.core.data.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.entities.singles.KartentextEntity
 
@@ -14,6 +13,8 @@ interface KartentextDao {
 	@Delete
 	suspend fun delete(kartentext: KartentextEntity)
 
+//.
+	/*
 	@Query("SELECT * FROM Kartentexte WHERE id = :id")
 	suspend fun getByID(id: Int): KartentextEntity?
 
@@ -25,4 +26,6 @@ interface KartentextDao {
 
 	@Query("SELECT * FROM Kartentexte WHERE inaktiv = 0 AND gesehen = 0")
 	suspend fun getUngesehene(): List<KartentextEntity>
+
+	 */
 }

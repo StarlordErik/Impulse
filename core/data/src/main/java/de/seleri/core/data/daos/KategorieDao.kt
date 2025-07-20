@@ -11,21 +11,12 @@ import de.seleri.core.data.relations.KategorieMitKartentexten
 
 @Dao
 interface KategorieDao {
+
 	@Upsert
 	suspend fun upsert(kategorie: KategorieEntity)
 
 	@Delete
 	suspend fun delete(kategorie: KategorieEntity)
-
-	@Query("SELECT * FROM Kategorien WHERE id = :id")
-	suspend fun getByID(id: Int): KategorieEntity?
-
-	@Query("SELECT * FROM Kategorien")
-	suspend fun getAlle(): List<KategorieEntity>
-
-	@Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
-	suspend fun getAktive(): List<KategorieEntity>
-
 
 	@Transaction
 	@Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
@@ -39,6 +30,16 @@ interface KategorieDao {
 
 	//.
 	/*
+
+		@Query("SELECT * FROM Kategorien WHERE id = :id")
+	suspend fun getByID(id: Int): KategorieEntity?
+
+	@Query("SELECT * FROM Kategorien")
+	suspend fun getAlle(): List<KategorieEntity>
+
+	@Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
+	suspend fun getAktive(): List<KategorieEntity>
+
 	@Transaction
 	@Query(
 		"""

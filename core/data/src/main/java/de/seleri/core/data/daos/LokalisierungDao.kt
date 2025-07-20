@@ -9,20 +9,24 @@ import de.seleri.core.data.entities.singles.LokalisierungEntity
 
 @Dao
 interface LokalisierungDao {
+
 	@Upsert
 	suspend fun upsert(lokalisierung: LokalisierungEntity)
 
-	@Upsert
-	suspend fun upsertAll(lokalisierungen: List<LokalisierungEntity>)
-
 	@Delete
 	suspend fun delete(lokalisierung: LokalisierungEntity)
+
+	//.
+	/*
+	@Upsert
+	suspend fun upsertAll(lokalisierungen: List<LokalisierungEntity>)
 
 	@Query("SELECT * FROM Lokalisierungen WHERE id = :id")
 	suspend fun getById(id: Int): LokalisierungEntity?
 
 	@Query("SELECT * FROM Lokalisierungen WHERE bearbeitet = 1")
 	suspend fun getBearbeitete(): List<LokalisierungEntity>
+	 */
 
 	@Query("SELECT * FROM Lokalisierungen WHERE spielID = :spielId")
 	suspend fun getForSpiel(spielId: Int): List<LokalisierungEntity>

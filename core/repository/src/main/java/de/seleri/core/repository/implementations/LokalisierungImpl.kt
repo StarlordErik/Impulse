@@ -3,7 +3,6 @@ package de.seleri.core.repository.implementations
 import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
-import de.seleri.core.repository.mapper.toDomain
 import de.seleri.core.repository.mapper.toEntity
 
 class LokalisierungImpl(
@@ -18,7 +17,8 @@ class LokalisierungImpl(
 		dao.delete(lokalisierung.toEntity())
 	}
 
-
+//.
+	/*
 	override suspend fun getById(id: Int): Lokalisierung? {
 		return dao
 			.getById(id)
@@ -30,4 +30,6 @@ class LokalisierungImpl(
 			.getBearbeitete()
 			.map { it.toDomain() }
 	}
+
+	 */
 }
