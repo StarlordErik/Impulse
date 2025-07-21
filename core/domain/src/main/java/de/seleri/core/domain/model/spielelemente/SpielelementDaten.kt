@@ -8,10 +8,13 @@ import de.seleri.core.domain.model.ids.BestandteilID
 data class SpielelementDaten(
 	override val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
-	val lokalisierungen: Collection<BestandteilID.LokalisierungID>,
+	override val lokalisierungen: Collection<BestandteilID.LokalisierungID>,
 
-	val ogSprache: Sprache = Sprache.DE,
-	val selbstErstellt: Boolean = false,
-	val inaktiv: Boolean = false,
-	val favorisiert: Boolean = false,
-): DatenbankObjekt by datenbankObjektDaten, Spielelement
+	override val ogSprache: Sprache = Sprache.DE,
+	override val selbstErstellt: Boolean = false,
+	override val inaktiv: Boolean = false,
+	override val favorisiert: Boolean = false,
+): DatenbankObjekt by datenbankObjektDaten, Spielelement {
+
+	override val spielelementDaten: SpielelementDaten get() = this
+}

@@ -3,7 +3,7 @@ package de.seleri.core.domain.model.spielelemente
 import de.seleri.core.domain.model.Bestandteil
 
 data class Kartentext(
-	val spielelementDaten: SpielelementDaten,
+	override val spielelementDaten: SpielelementDaten,
 
 	val gesehen: Boolean = false,
 	val besprochen: Boolean = false,
