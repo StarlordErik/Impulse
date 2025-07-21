@@ -8,4 +8,4 @@ data class Lokalisierung(
 	val bezeichnung: String,
 	val sprache: Sprache = Sprache.OG,
 	val bearbeitet: Boolean = false,
-): DatenbankObjekt by datenbankObjektDaten, Bestandteil
+): DatenbankObjekt by datenbankObjektDaten
