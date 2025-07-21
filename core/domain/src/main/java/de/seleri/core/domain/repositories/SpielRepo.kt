@@ -10,5 +10,4 @@ import de.seleri.core.domain.repositories.basis.SammlungRepo
 interface SpielRepo: DatenbankObjektRepo<Spiel>,
 	SammlungRepo<Spiel, SammlungID.SpielID, Kategorie, BestandteilID.KategorieID> {
 
-	suspend fun getAlleSpiele(): List<Spiel>
 }
