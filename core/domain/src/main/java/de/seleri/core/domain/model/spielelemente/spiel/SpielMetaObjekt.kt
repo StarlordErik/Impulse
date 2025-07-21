@@ -1,10 +1,5 @@
 package de.seleri.core.domain.model.spielelemente.spiel
 
-import de.seleri.core.domain.model.DatenbankObjekt
-import de.seleri.core.domain.model.DatenbankObjektDaten
-
-class SpielMetaObjekt(
-	private val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
-
-	private val spielMetaDaten: SpielMetaDaten = SpielMetaDaten(),
-): DatenbankObjekt by datenbankObjektDaten, SpielMeta by spielMetaDaten
+data class SpielMetaObjekt(
+	private val spielMetaDaten: SpielMetaDaten,
+): SpielMeta by spielMetaDaten
