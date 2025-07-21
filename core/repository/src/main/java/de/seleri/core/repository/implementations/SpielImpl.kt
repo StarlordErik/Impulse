@@ -16,7 +16,15 @@ class SpielImpl @Inject constructor(
 ): SpielRepo {
 
 	override suspend fun upsert(spielelement: Spiel) {
-		TODO("Not yet implemented")
+		val keyID = dao
+			.upsert(spielelement.toEntity())
+			.toInt()
+
+		val spielID = SpielelementID.SpielID(keyID)
+
+		spielelement.lokalisierungen.map { lokalisierung ->
+			lokalisierungRepo.upsertForSpiel(spielID, lokalisierung)
+		}
 	}
 
 	override suspend fun delete(spielelement: Spiel) =

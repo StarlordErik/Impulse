@@ -1,18 +1,28 @@
 package de.seleri.core.repository.implementations
 
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.KategorieDao
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.KategorieRepo
+import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.repository.mapper.toEntity
 import javax.inject.Inject
 
 class KategorieImpl @Inject constructor(
-	private val dao: KategorieDao,
+	private val dao: KategorieDao, private val lokalisierungRepo: LokalisierungRepo
 ): KategorieRepo {
 
 	override suspend fun upsert(spielelement: Kategorie) {
-		TODO("Not yet implemented")
+		val keyID = dao
+			.upsert(spielelement.toEntity())
+			.toInt()
+
+		val kategorieID = SpielelementID.KategorieID(keyID)
+
+		spielelement.lokalisierungen.map { lokalisierung ->
+			lokalisierungRepo.upsertForKategorie(kategorieID, lokalisierung)
+		}
 	}
 
 	override suspend fun delete(spielelement: Kategorie) =
