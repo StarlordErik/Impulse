@@ -1,110 +1,120 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
-  alias(libs.plugins.androidApplication)
-  alias(libs.plugins.jetbrainsKotlinAndroid)
+	alias(libs.plugins.androidApplication)
+	alias(libs.plugins.jetbrainsKotlinAndroid)
 
-  alias(libs.plugins.detekt)
-  alias(libs.plugins.kover)
+	alias(libs.plugins.detekt)
+	alias(libs.plugins.kover)
 
-  alias(libs.plugins.ksp)
-  alias(libs.plugins.room)
+	alias(libs.plugins.ksp)
 	alias(libs.plugins.hilt.android)
+
+	alias(libs.plugins.room)
 }
 
 android {
-  namespace = "de.seleri.core.data"
-  compileSdk = project.property("compileSdk").toString().toInt()
+	namespace = "de.seleri.core.data"
+	compileSdk = project
+		.property("compileSdk")
+		.toString()
+		.toInt()
 
-  defaultConfig {
-    applicationId = "de.seleri.core.data"
-    minSdk = project.property("minSdk").toString().toInt()
-    targetSdk = project.property("targetSdk").toString().toInt()
-    versionCode = 1
-    versionName = "1.0"
+	defaultConfig {
+		applicationId = "de.seleri.core.data"
+		minSdk = project
+			.property("minSdk")
+			.toString()
+			.toInt()
+		targetSdk = project
+			.property("targetSdk")
+			.toString()
+			.toInt()
+		versionCode = 1
+		versionName = "1.0"
 
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-  }
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+	}
 
-  buildTypes {
-    release {
-      isMinifyEnabled = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-    }
-  }
+	buildTypes {
+		release {
+			isMinifyEnabled = false
+			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+		}
+	}
 
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-  }
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
+	}
 
-  lint {
-    warningsAsErrors = true
-  }
+	lint {
+		warningsAsErrors = true
+	}
 
-  room {
-    schemaDirectory("$projectDir/schemas")
-  }
+	room {
+		schemaDirectory("$projectDir/schemas")
+	}
 }
 
 kotlin {
-  compilerOptions {
-    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-  }
+	compilerOptions {
+		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+	}
 }
 
 dependencies {
-  implementation(libs.androidx.core.ktx)
-  implementation(libs.androidx.appcompat)
-  implementation(libs.material)
+	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.appcompat)
+	implementation(libs.material)
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 
 	implementation(project(":core:common"))
 
-	implementation(libs.androidx.room.runtime)
-  ksp(libs.androidx.room.compiler)
-  implementation(libs.androidx.room.ktx)
-  testImplementation(libs.androidx.room.testing)
-
 	implementation(libs.hilt.android)
 	ksp(libs.hilt.android.compiler)
+
+	implementation(libs.androidx.room.runtime)
+	ksp(libs.androidx.room.compiler)
+	implementation(libs.androidx.room.ktx)
+	testImplementation(libs.androidx.room.testing)
 }
 
 kover {
-  reports {
-    filters {
-      excludes {
-        classes(
-          "",
-        )
-        packages(
-          "",
-        )
-      }
-    }
-    verify {
-      warningInsteadOfFailure = false
+	reports {
+		filters {
+			excludes {
+				classes(
+					"",
+				)
+				packages(
+					"",
+				)
+			}
+		}
+		verify {
+			warningInsteadOfFailure = false
 
-      rule("genug Abzweigungen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.BRANCH
-        }
-      }
-      rule("genug Anweisungen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.INSTRUCTION
-        }
-      }
-      rule("genug Zeilen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.LINE
-        }
-      }
-    }
-  }
+			rule("genug Abzweigungen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.BRANCH
+				}
+			}
+			rule("genug Anweisungen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.INSTRUCTION
+				}
+			}
+			rule("genug Zeilen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.LINE
+				}
+			}
+		}
+	}
 }
