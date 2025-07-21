@@ -1,60 +1,49 @@
 package de.seleri.core.repository.mapper
 
-import de.seleri.core.data.entities.joins.SpielXKategorie
+import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.ids.BestandteilID
+import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
+import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaDaten
 
-// @formatter:off
-fun SpielEntity.toDomain(
-	lokalisierungen: Collection<BestandteilID.LokalisierungID>,
-	kategorieIDs: Collection<BestandteilID.KategorieID>
-): Spiel =
-	Spiel(
-		spielelementDaten = SpielelementDaten(
-			datenbankObjektDaten = DatenbankObjektDaten(
-				id = id
-			),
-			lokalisierungen = lokalisierungen,
-			ogSprache = spielelementBasis.ogSprache,
-			selbstErstellt = spielelementBasis.selbstErstellt,
-			inaktiv = spielelementBasis.inaktiv,
-			favorisiert = spielelementBasis.favorisiert
-		),
-		sammlungDaten = SammlungDaten(kategorieIDs),
-		anleitung = anleitung,
-		texteProKarte = texteProKarte,
-		bildDateiname = bildDateiname
-	)
-// @formatter:on
+object SpielMapper {
 
-fun Spiel.toEntity(): SpielEntity =
-	// @formatter:off
-	SpielEntity(
-		id = spielelementDaten.datenbankObjektDaten.id,
-		spielelementBasis = SpielelementBasis(
-			ogSprache = spielelementDaten.ogSprache,
-			selbstErstellt = spielelementDaten.selbstErstellt,
-			inaktiv = spielelementDaten.inaktiv,
-			favorisiert = spielelementDaten.favorisiert
-		),
-		anleitung = anleitung,
-		texteProKarte = texteProKarte,
-		bildDateiname = bildDateiname
-	)
-// @formatter:on
-
-fun Spiel.toJoinEntities(): Collection<SpielXKategorie> =
-	sammlungDaten.bestandteile
-		.map { id ->
-			// @formatter:off
-			SpielXKategorie(
-				spielID = spielelementDaten.datenbankObjektDaten.id,
-				kategorieID = id.toInt()
-			)
-			// @formatter:on
+	fun lokalisierungenToEntities(
+		spielID: SpielelementID.SpielID, lokalisierungen: Collection<Lokalisierung>
+	): Collection<LokalisierungEntity> {
+		return lokalisierungen.map { lokalisierung ->
+			lokalisierung.toEntityForSpiel(spielID)
 		}
+	}
+}
+
+fun Spiel.toEntity(): SpielEntity {
+	return SpielEntity(
+		id = id, spielelementBasis = SpielelementBasis(
+			selbstErstellt = selbstErstellt, inaktiv = inaktiv, favorisiert = favorisiert, ogSprache = ogSprache
+		), anleitung = anleitung, texteProKarte = texteProKarte, bildDateiname = bildDateiname
+	)
+}
+
+fun SpielEntity.toDomain(
+	lokalisierungen: Collection<Lokalisierung>, kategorien: Collection<Kategorie>
+): Spiel {
+	return Spiel(
+		spielMetaDaten = SpielMetaDaten(
+			spielelementDaten = SpielelementDaten(
+				DatenbankObjektDaten(id = id),
+				selbstErstellt = spielelementBasis.selbstErstellt,
+				inaktiv = spielelementBasis.inaktiv,
+				favorisiert = spielelementBasis.favorisiert,
+				ogSprache = spielelementBasis.ogSprache,
+				lokalisierungen = lokalisierungen
+			), bildDateiname = bildDateiname
+		), anleitung = anleitung, texteProKarte = texteProKarte, sammlungDaten = SammlungDaten(kategorien)
+	)
+}
