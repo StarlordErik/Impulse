@@ -11,7 +11,7 @@ class KategorieImpl @Inject constructor(
 	private val dao: KategorieDao,
 ): KategorieRepo {
 
-	override suspend fun upsert(spielelement: Kategorie): Integer? {
+	override suspend fun upsert(spielelement: Kategorie) {
 		TODO("Not yet implemented")
 	}
 

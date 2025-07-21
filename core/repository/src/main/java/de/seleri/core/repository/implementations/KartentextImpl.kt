@@ -10,12 +10,13 @@ class KartentextImpl @Inject constructor(
 	private val dao: KartentextDao,
 ): KartentextRepo {
 
-	override suspend fun upsert(spielelement: Kartentext): Integer? {
+	override suspend fun upsert(spielelement: Kartentext) {
 		TODO("Not yet implemented")
 	}
 
 	override suspend fun delete(spielelement: Kartentext) =
 		dao.delete(spielelement.toEntity())
+
 
 	override suspend fun upsert(kartentexte: Collection<Kartentext>) {
 		TODO("Not yet implemented")

@@ -15,7 +15,7 @@ class SpielImpl @Inject constructor(
 	private val dao: SpielDao, private val lokalisierungRepo: LokalisierungRepo
 ): SpielRepo {
 
-	override suspend fun upsert(spielelement: Spiel): Integer? {
+	override suspend fun upsert(spielelement: Spiel) {
 		TODO("Not yet implemented")
 	}
 

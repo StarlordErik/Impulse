@@ -7,6 +7,6 @@ interface SpielelementRepo<S: Spielelement> {
 	/**
 	 * @return generierte ID oder null bei nur-Update
 	 */
-	suspend fun upsert(spielelement: S): Integer?
+	suspend fun upsert(spielelement: S)
 	suspend fun delete(spielelement: S)
 }
