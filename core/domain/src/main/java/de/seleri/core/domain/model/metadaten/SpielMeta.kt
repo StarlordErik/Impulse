@@ -1,4 +1,4 @@
-package de.seleri.core.domain.model.spiele.metadaten
+package de.seleri.core.domain.model.metadaten
 
 interface SpielMeta {
 

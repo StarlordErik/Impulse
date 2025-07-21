@@ -4,8 +4,8 @@ import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.spiele.spielelemente.Kartentext
-import de.seleri.core.domain.model.spiele.spielelemente.SpielelementDaten
+import de.seleri.core.domain.model.spielelemente.Kartentext
+import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
 
 fun KartentextEntity.toDomain(

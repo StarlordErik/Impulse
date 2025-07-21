@@ -1,7 +1,7 @@
 package de.seleri.core.domain.repositories.basis
 
+import de.seleri.core.domain.model.Bestandteil
 import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.sammlungen.Bestandteil
 
 interface BestandteilRepo<B: Bestandteil> {
 
