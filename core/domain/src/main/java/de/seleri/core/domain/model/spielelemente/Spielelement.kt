@@ -1,15 +1,15 @@
 package de.seleri.core.domain.model.spielelemente
 
+import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.DatenbankObjekt
+import de.seleri.core.domain.model.ids.BestandteilID
 
 interface Spielelement: DatenbankObjekt {
 
-	val spielelementDaten: SpielelementDaten
+	val lokalisierungen: Collection<BestandteilID.LokalisierungID>
 
-	val lokalisierungen get() = spielelementDaten.lokalisierungen
-
-	val ogSprache get() = spielelementDaten.ogSprache
-	val selbstErstellt get() = spielelementDaten.selbstErstellt
-	val inaktiv get() = spielelementDaten.inaktiv
-	val favorisiert get() = spielelementDaten.favorisiert
+	val ogSprache: Sprache
+	val selbstErstellt: Boolean
+	val inaktiv: Boolean
+	val favorisiert: Boolean
 }

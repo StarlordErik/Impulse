@@ -14,7 +14,4 @@ data class SpielelementDaten(
 	override val selbstErstellt: Boolean = false,
 	override val inaktiv: Boolean = false,
 	override val favorisiert: Boolean = false,
-): DatenbankObjekt by datenbankObjektDaten, Spielelement {
-
-	override val spielelementDaten: SpielelementDaten get() = this
-}
+): DatenbankObjekt by datenbankObjektDaten, Spielelement

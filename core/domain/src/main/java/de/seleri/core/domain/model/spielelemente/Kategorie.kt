@@ -6,7 +6,7 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
 import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
 data class Kategorie(
-	override val spielelementDaten: SpielelementDaten,
+	private val spielelementDaten: SpielelementDaten,
 
 	override val sammlungDaten: SammlungDaten<BestandteilID.KartentextID>,
 ): Spielelement by spielelementDaten, Sammlung<BestandteilID.KartentextID> by sammlungDaten, Bestandteil
