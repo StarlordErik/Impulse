@@ -3,11 +3,10 @@ package de.seleri.core.data.daos
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
-import androidx.room.Transaction
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.KategorieXKartentext
+import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.data.entities.singles.KategorieEntity
-import de.seleri.core.data.relations.KategorieMitKartentexten
 
 @Dao
 interface KategorieDao {
@@ -18,9 +17,8 @@ interface KategorieDao {
 	@Delete
 	suspend fun delete(kategorie: KategorieEntity)
 
-	@Transaction
 	@Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
-	fun getMitKartentexten(kategorieId: Int): KategorieMitKartentexten
+	suspend fun get(kategorieId: Int): KategorieEntity
 
 	@Upsert
 	suspend fun upsert(kategorieXKartentext: KategorieXKartentext)
@@ -28,4 +26,12 @@ interface KategorieDao {
 	@Delete
 	suspend fun delete(kategorieXKartentext: KategorieXKartentext)
 
+	@Query(
+		"""
+        SELECT t.* FROM Kartentexte t
+        INNER JOIN KategorieXKartentext x ON t.id = x.kartentextID
+        WHERE x.kategorieID = :kategorieId
+    """
+	)
+	suspend fun getKartentexte(kategorieId: Int): List<KartentextEntity>
 }

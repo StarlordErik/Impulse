@@ -5,14 +5,18 @@ import de.seleri.core.data.daos.SpielDao
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.repository.mapper.toDomain
 import de.seleri.core.repository.mapper.toEntity
 import de.seleri.core.repository.mapper.toMeta
 import javax.inject.Inject
 
 class SpielImpl @Inject constructor(
-	private val dao: SpielDao, private val lokalisierungRepo: LokalisierungRepo
+	private val dao: SpielDao,
+	private val lokalisierungRepo: LokalisierungRepo,
+	private val kategorieRepo: KategorieRepo
 ): SpielRepo {
 
 	override suspend fun upsert(spielelement: Spiel) {
@@ -30,6 +34,22 @@ class SpielImpl @Inject constructor(
 	override suspend fun delete(spielelement: Spiel) =
 		dao.delete(spielelement.toEntity())
 
+	override suspend fun get(spielelementID: SpielelementID.SpielID): Spiel {
+		val spielEntity = dao.get(spielelementID.toInt())
+
+		val kategorien = dao
+			.getKategorien(spielelementID.toInt())
+			.map { kategorieEntity ->
+				val kategorieID = SpielelementID.KategorieID(kategorieEntity.id)
+				kategorieRepo.get(kategorieID)
+			}
+
+		val spielID = SpielelementID.SpielID(spielEntity.id)
+		val lokalisierungen = lokalisierungRepo.getForSpiel(spielID)
+
+		return spielEntity.toDomain(lokalisierungen, kategorien)
+	}
+
 
 	override suspend fun insertConnection(
 		sammlung: Spiel, bestandteil: Kategorie
@@ -42,6 +62,7 @@ class SpielImpl @Inject constructor(
 	) {
 		TODO("Not yet implemented")
 	}
+
 
 	override suspend fun getAllMetas(): Collection<SpielMetaObjekt> {
 		val spielEntities = dao.getAll()
