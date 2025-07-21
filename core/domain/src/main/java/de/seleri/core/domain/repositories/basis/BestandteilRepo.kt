@@ -5,5 +5,6 @@ import de.seleri.core.domain.model.ids.BestandteilID
 
 interface BestandteilRepo<B: Bestandteil> {
 
-	suspend fun getByIDs(ids: Collection<BestandteilID>): List<B>
+	suspend fun getByIDs(ids: Collection<BestandteilID>): Collection<B>
+	suspend fun getAktuelleByIDs(ids: Collection<BestandteilID>): Collection<B>
 }
