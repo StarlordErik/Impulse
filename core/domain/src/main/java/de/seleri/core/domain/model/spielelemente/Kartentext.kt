@@ -1,8 +1,10 @@
 package de.seleri.core.domain.model.spielelemente
 
 import de.seleri.core.domain.model.Bestandteil
+import de.seleri.core.domain.model.DEFAULT_ID
 
-data class Kartentext(
+class Kartentext(
+	override val id: Int = DEFAULT_ID,
 	private val spielelementDaten: SpielelementDaten,
 
 	val gesehen: Boolean = false,
