@@ -1,4 +1,4 @@
-package de.seleri.core.domain.model.spielelemente.sammlungen
+package de.seleri.core.domain.model.sammlungen
 
 import de.seleri.core.domain.model.ids.BestandteilID
 

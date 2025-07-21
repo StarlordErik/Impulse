@@ -5,9 +5,9 @@ import de.seleri.core.data.entities.singles.SpielEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.spielelemente.Spiel
-import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
+import de.seleri.core.domain.model.sammlungen.SammlungDaten
+import de.seleri.core.domain.model.spiele.Spiel
+import de.seleri.core.domain.model.spiele.spielelemente.SpielelementDaten
 
 // @formatter:off
 fun SpielEntity.toDomain(

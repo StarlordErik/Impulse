@@ -1,9 +1,9 @@
 package de.seleri.core.domain.repositories.basis
 
-import de.seleri.core.domain.model.Bestandteil
 import de.seleri.core.domain.model.ids.BestandteilID
 import de.seleri.core.domain.model.ids.SammlungID
-import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.model.sammlungen.Bestandteil
+import de.seleri.core.domain.model.sammlungen.Sammlung
 
 interface SammlungRepo<S: Sammlung, SID: SammlungID, B: Bestandteil, BID: BestandteilID> {
 

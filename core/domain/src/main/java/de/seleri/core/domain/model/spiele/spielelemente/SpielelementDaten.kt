@@ -1,4 +1,4 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.model.spiele.spielelemente
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.DatenbankObjekt

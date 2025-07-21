@@ -1,4 +1,4 @@
-package de.seleri.core.domain.model.metadaten
+package de.seleri.core.domain.model.spiele.metadaten
 
 import de.seleri.core.domain.model.DatenbankObjekt
 import de.seleri.core.domain.model.DatenbankObjektDaten

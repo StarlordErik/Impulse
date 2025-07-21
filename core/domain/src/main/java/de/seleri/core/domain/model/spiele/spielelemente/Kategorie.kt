@@ -1,9 +1,9 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.model.spiele.spielelemente
 
-import de.seleri.core.domain.model.Bestandteil
 import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
+import de.seleri.core.domain.model.sammlungen.Bestandteil
+import de.seleri.core.domain.model.sammlungen.Sammlung
+import de.seleri.core.domain.model.sammlungen.SammlungDaten
 
 data class Kategorie(
 	private val spielelementDaten: SpielelementDaten,

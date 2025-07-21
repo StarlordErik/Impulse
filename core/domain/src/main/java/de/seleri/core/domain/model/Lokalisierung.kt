@@ -1,6 +1,7 @@
 package de.seleri.core.domain.model
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.model.sammlungen.Bestandteil
 
 data class Lokalisierung(
 	private val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
