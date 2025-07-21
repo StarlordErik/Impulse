@@ -8,6 +8,17 @@ import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
+object KartentextMapper {
+
+	fun lokalisierungenToEntities(
+		kartentextID: Int, lokalisierungen: Collection<Lokalisierung>
+	): Collection<LokalisierungEntity> {
+		return lokalisierungen.map { lokalisierung ->
+			lokalisierung.toEntityForKartentext(kartentextID)
+		}
+	}
+}
+
 fun Kartentext.toEntity(): KartentextEntity {
 	return KartentextEntity(
 		id = id, spielelementBasis = SpielelementBasis(
@@ -29,12 +40,4 @@ fun KartentextEntity.toDomain(
 			lokalisierungen = lokalisierungen
 		), gesehen = gesehen, besprochen = besprochen
 	)
-}
-
-fun mapLokalisierungenToEntities(
-	kartentextID: Int, lokalisierungen: Collection<Lokalisierung>
-): List<LokalisierungEntity> {
-	return lokalisierungen.map { lokalisierung ->
-		lokalisierung.toEntityForKartentext(kartentextID)
-	}
 }
