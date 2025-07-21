@@ -28,14 +28,15 @@ interface SpielDao {
 	@Delete
 	suspend fun delete(spielXKategorie: SpielXKategorie)
 
-	//.
+	@Query("SELECT * FROM Spiele")
+	suspend fun getAll(): List<SpielEntity>
+
+//.
 	/*
 
 		@Query("SELECT * FROM Spiele WHERE id = :id")
 	suspend fun getByID(id: Int): SpielEntity?
 
-	@Query("SELECT * FROM Spiele")
-	suspend fun getAlle(): List<SpielEntity>
 
 	@Query("SELECT * FROM Spiele WHERE inaktiv = 0")
 	suspend fun getAktive(): List<SpielEntity>
