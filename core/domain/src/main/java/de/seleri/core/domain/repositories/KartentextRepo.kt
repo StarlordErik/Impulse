@@ -9,4 +9,5 @@ interface KartentextRepo: DatenbankObjektRepo<Kartentext>, BestandteilRepo<Karte
 
 	fun upsert(kartentexte: Collection<Kartentext>)
 	fun getUngeseheneByIDs(kartentexteIDs: Collection<BestandteilID.KartentextID>): Collection<Kartentext>
+	fun setUngesehen(kartentextIDs: Collection<BestandteilID.KartentextID>)
 }
