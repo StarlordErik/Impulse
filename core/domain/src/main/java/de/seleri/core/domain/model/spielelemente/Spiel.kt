@@ -1,6 +1,7 @@
 package de.seleri.core.domain.model.spielelemente
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.model.DEFAULT_BILD_DATEINAME
 import de.seleri.core.domain.model.DEFAULT_FAVORISIERT
 import de.seleri.core.domain.model.DEFAULT_ID
 import de.seleri.core.domain.model.DEFAULT_INAKTIV
@@ -24,11 +25,10 @@ class Spiel(
 
 	private val sammlungDaten: SammlungDaten<BestandteilID.KategorieID>,
 
-	private val spielMetaDaten: SpielMetaDaten = SpielMetaDaten(),
+	bildDateiname: String? = DEFAULT_BILD_DATEINAME,
 
 	val anleitung: String? = null,
 	val texteProKarte: Int = 1,
 ): Spielelement by SpielelementDaten(id, lokalisierungen, ogSprache, selbstErstellt, inaktiv, favorisiert),
-	Sammlung<BestandteilID.KategorieID> by sammlungDaten,
-	SpielMeta by spielMetaDaten
+	Sammlung<BestandteilID.KategorieID> by sammlungDaten, SpielMeta by SpielMetaDaten(bildDateiname)
 
