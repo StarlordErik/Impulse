@@ -1,5 +1,6 @@
 package de.seleri.core.repository.mapper
 
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.KategorieEntity
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
@@ -13,7 +14,7 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 object KategorieMapper {
 
 	fun lokalisierungenToEntities(
-		kategorieID: Int, lokalisierungen: Collection<Lokalisierung>
+		kategorieID: SpielelementID.KategorieID, lokalisierungen: Collection<Lokalisierung>
 	): Collection<LokalisierungEntity> {
 		return lokalisierungen.map { lokalisierung ->
 			lokalisierung.toEntityForKategorie(kategorieID)

@@ -1,5 +1,6 @@
 package de.seleri.core.repository.mapper
 
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
@@ -11,7 +12,7 @@ import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 object KartentextMapper {
 
 	fun lokalisierungenToEntities(
-		kartentextID: Int, lokalisierungen: Collection<Lokalisierung>
+		kartentextID: SpielelementID.KartentextID, lokalisierungen: Collection<Lokalisierung>
 	): Collection<LokalisierungEntity> {
 		return lokalisierungen.map { lokalisierung ->
 			lokalisierung.toEntityForKartentext(kartentextID)
