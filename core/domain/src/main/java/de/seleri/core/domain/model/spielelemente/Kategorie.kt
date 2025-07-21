@@ -8,5 +8,5 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 data class Kategorie(
 	val spielelementDaten: SpielelementDaten,
 
-	val sammlungDaten: SammlungDaten<BestandteilID.KartentextID>,
-): Spielelement by spielelementDaten, Sammlung by sammlungDaten, Bestandteil
+	override val sammlungDaten: SammlungDaten<BestandteilID.KartentextID>,
+): Spielelement by spielelementDaten, Sammlung<BestandteilID.KartentextID> by sammlungDaten, Bestandteil

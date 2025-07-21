@@ -2,7 +2,9 @@ package de.seleri.core.domain.model.spielelemente.sammlungen
 
 import de.seleri.core.domain.model.ids.BestandteilID
 
-interface Sammlung {
+interface Sammlung<ID: BestandteilID> {
 
-	fun karte(texteProKarte: Int): Collection<BestandteilID.KartentextID>?
+	val sammlungDaten: SammlungDaten<ID>
+
+	val bestandteile get() = sammlungDaten.bestandteile
 }
