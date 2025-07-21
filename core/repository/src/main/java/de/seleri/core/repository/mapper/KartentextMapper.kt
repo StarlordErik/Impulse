@@ -3,7 +3,6 @@ package de.seleri.core.repository.mapper
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
@@ -13,23 +12,21 @@ object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 
 	override fun lokalisierungToEntity(
 		id: SpielelementID.KartentextID, lokalisierung: Lokalisierung
-	): LokalisierungEntity {
-		return lokalisierung.toEntityForKartentext(id)
-	}
+	): LokalisierungEntity =
+		lokalisierung.toEntityForKartentext(id)
 }
 
-fun Kartentext.toEntity(): KartentextEntity {
-	return KartentextEntity(
-		id = id, spielelementBasis = SpielelementBasis(
-			selbstErstellt = selbstErstellt, inaktiv = inaktiv, favorisiert = favorisiert, ogSprache = ogSprache
-		), gesehen = gesehen, besprochen = besprochen
+
+fun Kartentext.toEntity(): KartentextEntity =
+	KartentextEntity(
+		id = id, spielelementBasis = domainToSpielelmentBasis(this), gesehen = gesehen, besprochen = besprochen
 	)
-}
+
 
 fun KartentextEntity.toDomain(
 	lokalisierungen: Collection<Lokalisierung>
-): Kartentext {
-	return Kartentext(
+): Kartentext =
+	Kartentext(
 		spielelementDaten = SpielelementDaten(
 			DatenbankObjektDaten(id = id),
 			selbstErstellt = spielelementBasis.selbstErstellt,
@@ -39,4 +36,3 @@ fun KartentextEntity.toDomain(
 			lokalisierungen = lokalisierungen
 		), gesehen = gesehen, besprochen = besprochen
 	)
-}

@@ -3,7 +3,6 @@ package de.seleri.core.repository.mapper
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.KategorieEntity
 import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
@@ -22,9 +21,7 @@ object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
 fun Kategorie.toEntity(): KategorieEntity {
 	return KategorieEntity(
-		id = id, spielelementBasis = SpielelementBasis(
-			selbstErstellt = selbstErstellt, inaktiv = inaktiv, favorisiert = favorisiert, ogSprache = ogSprache
-		)
+		id = id, spielelementBasis = domainToSpielelmentBasis(this)
 	)
 }
 
