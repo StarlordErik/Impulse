@@ -12,6 +12,7 @@ data class SpielEntity(
 	@Embedded
 	val spielelementBasis: SpielelementBasis,
 
+	val anleitung: String?,
 	val texteProKarte: Int,
 	val bildDateiname: String?,
 )

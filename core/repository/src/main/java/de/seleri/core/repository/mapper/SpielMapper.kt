@@ -26,6 +26,7 @@ fun SpielEntity.toDomain(
 			favorisiert = spielelementBasis.favorisiert
 		),
 		sammlungDaten = SammlungDaten(kategorieIDs),
+		anleitung = anleitung,
 		texteProKarte = texteProKarte,
 		bildDateiname = bildDateiname
 	)
@@ -41,6 +42,7 @@ fun Spiel.toEntity(): SpielEntity =
 			inaktiv = spielelementDaten.inaktiv,
 			favorisiert = spielelementDaten.favorisiert
 		),
+		anleitung = anleitung,
 		texteProKarte = texteProKarte,
 		bildDateiname = bildDateiname
 	)
