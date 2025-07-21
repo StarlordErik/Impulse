@@ -1,3 +1,7 @@
 package de.seleri.core.domain.model
 
-interface DatenbankObjekt
+interface DatenbankObjekt {
+
+	val datenbankObjektDaten: DatenbankObjektDaten
+	val id get() = datenbankObjektDaten.id
+}

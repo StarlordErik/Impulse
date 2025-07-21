@@ -6,7 +6,7 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
 
 data class SpielelementDaten(
-	val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
+	override val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
 	val lokalisierungen: Collection<BestandteilID.LokalisierungID>,
 
