@@ -5,7 +5,7 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.ids.SpielelementID
 
 data class Lokalisierung(
-	override val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
+	private val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
 	val bezeichnung: String,
 	val sprache: Sprache = Sprache.OG,
