@@ -1,13 +1,12 @@
 package de.seleri.core.domain.model.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.DEFAULT_ID
 import de.seleri.core.domain.model.DatenbankObjekt
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.ids.BestandteilID
 
-class SpielelementDaten(
-	id: Int = DEFAULT_ID,
+data class SpielelementDaten(
+	private val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
 
 	override val lokalisierungen: Collection<BestandteilID.LokalisierungID>,
 
@@ -15,4 +14,4 @@ class SpielelementDaten(
 	override val selbstErstellt: Boolean = false,
 	override val inaktiv: Boolean = false,
 	override val favorisiert: Boolean = false,
-): DatenbankObjekt by DatenbankObjektDaten(id), Spielelement
+): DatenbankObjekt by datenbankObjektDaten, Spielelement
