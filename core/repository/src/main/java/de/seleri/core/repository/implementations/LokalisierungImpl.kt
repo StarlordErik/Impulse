@@ -4,6 +4,7 @@ import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
+import de.seleri.core.repository.mapper.toDomain
 import javax.inject.Inject
 
 class LokalisierungImpl @Inject constructor(
@@ -32,15 +33,19 @@ class LokalisierungImpl @Inject constructor(
 		TODO("Not yet implemented")
 	}
 
-	override suspend fun getForSpiel(spielID: SpielelementID.SpielID): Collection<Lokalisierung> {
-		TODO("Not yet implemented")
-	}
+	override suspend fun getForSpiel(spielID: SpielelementID.SpielID): Collection<Lokalisierung> =
+		dao
+			.getForSpiel(spielID.toInt())
+			.map { it.toDomain() }
 
-	override suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): Collection<Lokalisierung> {
-		TODO("Not yet implemented")
-	}
 
-	override suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): Collection<Lokalisierung> {
-		TODO("Not yet implemented")
-	}
+	override suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): Collection<Lokalisierung> =
+		dao
+			.getForKategorie(kategorieID.toInt())
+			.map { it.toDomain() }
+
+	override suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): Collection<Lokalisierung> =
+		dao
+			.getForKartentext(kartentextID.toInt())
+			.map { it.toDomain() }
 }
