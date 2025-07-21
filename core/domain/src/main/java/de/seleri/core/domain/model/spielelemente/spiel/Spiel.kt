@@ -1,8 +1,8 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.model.spielelemente.spiel
 
 import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.metadaten.SpielMeta
-import de.seleri.core.domain.model.metadaten.SpielMetaDaten
+import de.seleri.core.domain.model.spielelemente.Spielelement
+import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
 import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
@@ -18,4 +18,3 @@ data class Spiel(
 ): Spielelement by spielelementDaten,
 	Sammlung<BestandteilID.KategorieID> by sammlungDaten,
 	SpielMeta by spielMetaDaten
-
