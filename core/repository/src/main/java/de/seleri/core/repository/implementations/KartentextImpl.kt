@@ -29,6 +29,6 @@ class KartentextImpl @Inject constructor(
 
 
 	override suspend fun update(kartentexte: Collection<Kartentext>) {
-		TODO("Not yet implemented")
+		dao.update(kartentexte.map { it.toEntity() })
 	}
 }
