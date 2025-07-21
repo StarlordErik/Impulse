@@ -7,6 +7,7 @@ import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.repository.mapper.toEntity
 import de.seleri.core.repository.mapper.toMeta
 import javax.inject.Inject
 
@@ -18,9 +19,9 @@ class SpielImpl @Inject constructor(
 		TODO("Not yet implemented")
 	}
 
-	override suspend fun delete(spielelement: Spiel) {
-		TODO("Not yet implemented")
-	}
+	override suspend fun delete(spielelement: Spiel) =
+		dao.delete(spielelement.toEntity())
+
 
 	override suspend fun insertConnection(
 		sammlung: Spiel, bestandteil: Kategorie

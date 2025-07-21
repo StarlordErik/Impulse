@@ -13,6 +13,17 @@ fun LokalisierungEntity.toDomain() =
 		bearbeitet = bearbeitet
 	)
 
+fun Lokalisierung.toNullEntity() =
+	LokalisierungEntity(
+		id = id,
+		bezeichnung = bezeichnung,
+		sprache = sprache,
+		bearbeitet = bearbeitet,
+		spielID = null,
+		kategorieID = null,
+		kartentextID = null
+	)
+
 fun Lokalisierung.toEntityForSpiel(spielID: SpielelementID.SpielID) =
 	LokalisierungEntity(
 		id = id,

@@ -5,6 +5,7 @@ import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.repository.mapper.toDomain
+import de.seleri.core.repository.mapper.toNullEntity
 import javax.inject.Inject
 
 class LokalisierungImpl @Inject constructor(
@@ -29,15 +30,15 @@ class LokalisierungImpl @Inject constructor(
 		TODO("Not yet implemented")
 	}
 
-	override suspend fun delete(lokalisierung: Lokalisierung) {
-		TODO("Not yet implemented")
-	}
+
+	override suspend fun delete(lokalisierung: Lokalisierung) =
+		dao.delete(lokalisierung.toNullEntity())
+
 
 	override suspend fun getForSpiel(spielID: SpielelementID.SpielID): Collection<Lokalisierung> =
 		dao
 			.getForSpiel(spielID.toInt())
 			.map { it.toDomain() }
-
 
 	override suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): Collection<Lokalisierung> =
 		dao
