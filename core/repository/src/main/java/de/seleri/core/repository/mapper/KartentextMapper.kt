@@ -1,44 +1,40 @@
 package de.seleri.core.repository.mapper
 
 import de.seleri.core.data.entities.singles.KartentextEntity
+import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.SpielelementBasis
 import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.ids.BestandteilID
+import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
+fun Kartentext.toEntity(): KartentextEntity {
+	return KartentextEntity(
+		id = id, spielelementBasis = SpielelementBasis(
+			selbstErstellt = selbstErstellt, inaktiv = inaktiv, favorisiert = favorisiert, ogSprache = ogSprache
+		), gesehen = gesehen, besprochen = besprochen
+	)
+}
 
 fun KartentextEntity.toDomain(
-	lokalisierungIds: List<BestandteilID.LokalisierungID>
-): Kartentext =
-	// @formatter:off
-	Kartentext(
+	lokalisierungen: Collection<Lokalisierung>
+): Kartentext {
+	return Kartentext(
 		spielelementDaten = SpielelementDaten(
-			datenbankObjektDaten = DatenbankObjektDaten(
-				id = id
-			),
-			lokalisierungen = lokalisierungIds,
-			ogSprache = spielelementBasis.ogSprache,
+			DatenbankObjektDaten(id = id),
 			selbstErstellt = spielelementBasis.selbstErstellt,
 			inaktiv = spielelementBasis.inaktiv,
-			favorisiert = spielelementBasis.favorisiert
-		),
-		gesehen = gesehen,
-		besprochen = besprochen
+			favorisiert = spielelementBasis.favorisiert,
+			ogSprache = spielelementBasis.ogSprache,
+			lokalisierungen = lokalisierungen
+		), gesehen = gesehen, besprochen = besprochen
 	)
-	// @formatter:on
+}
 
-fun Kartentext.toEntity(): KartentextEntity =
-	// @formatter:off
-	KartentextEntity(
-		id = spielelementDaten.datenbankObjektDaten.id,
-		spielelementBasis = SpielelementBasis(
-			ogSprache = spielelementDaten.ogSprache,
-			selbstErstellt = spielelementDaten.selbstErstellt,
-			inaktiv = spielelementDaten.inaktiv,
-			favorisiert = spielelementDaten.favorisiert
-		),
-		gesehen = gesehen,
-		besprochen = besprochen
-	)
-	// @formatter:on
+fun mapLokalisierungenToEntities(
+	kartentextID: Int, lokalisierungen: Collection<Lokalisierung>
+): List<LokalisierungEntity> {
+	return lokalisierungen.map { lokalisierung ->
+		lokalisierung.toEntityForKartentext(kartentextID)
+	}
+}
