@@ -5,5 +5,5 @@ import de.seleri.core.domain.repositories.basis.SpielelementRepo
 
 interface KartentextRepo: SpielelementRepo<Kartentext> {
 
-	suspend fun upsert(kartentexte: Collection<Kartentext>)
+	suspend fun update(kartentexte: Collection<Kartentext>)
 }

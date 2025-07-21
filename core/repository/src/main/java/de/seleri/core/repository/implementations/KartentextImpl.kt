@@ -18,7 +18,7 @@ class KartentextImpl @Inject constructor(
 		dao.delete(spielelement.toEntity())
 
 
-	override suspend fun upsert(kartentexte: Collection<Kartentext>) {
+	override suspend fun update(kartentexte: Collection<Kartentext>) {
 		TODO("Not yet implemented")
 	}
 }
