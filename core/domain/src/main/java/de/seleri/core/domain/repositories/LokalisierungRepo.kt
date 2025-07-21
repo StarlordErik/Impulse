@@ -1,18 +1,16 @@
 package de.seleri.core.domain.repositories
 
-import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.ids.BestandteilID
-import de.seleri.core.domain.model.ids.SpielelementID
-import de.seleri.core.domain.repositories.basis.BestandteilRepo
-import de.seleri.core.domain.repositories.basis.DatenbankObjektRepo
 
-interface LokalisierungRepo: DatenbankObjektRepo<Lokalisierung>, BestandteilRepo<Lokalisierung> {
+interface LokalisierungRepo {
 
-	// @formatter:off
-	suspend fun getLokalisierungIDsForSpielelement(spielelementID: SpielelementID):
-		Collection<BestandteilID.LokalisierungID>
-	// @formatter:on
+	suspend fun upsertForSpiel(spielId: Int, lokalisierung: Lokalisierung)
+	suspend fun upsertForKategorie(kategorieId: Int, lokalisierung: Lokalisierung)
+	suspend fun upsertForKartentext(kartentextId: Int, lokalisierung: Lokalisierung)
 
-	suspend fun getByIDinSprache(spielelementID: SpielelementID, inSprache: Sprache): Lokalisierung?
+	suspend fun delete(lokalisierung: Lokalisierung)
+
+	suspend fun getForSpiel(spielId: Int): Collection<Lokalisierung>
+	suspend fun getForKategorie(kategorieId: Int): Collection<Lokalisierung>
+	suspend fun getForKartentext(kartentextId: Int): Collection<Lokalisierung>
 }

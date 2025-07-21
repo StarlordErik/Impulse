@@ -3,7 +3,6 @@ package de.seleri.core.data.entities.singles
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import de.seleri.core.common.LokalisierungVon
 import de.seleri.core.common.Sprache
 
 @Entity(
@@ -32,7 +31,6 @@ data class LokalisierungEntity(
 	val sprache: Sprache,
 	val bearbeitet: Boolean,
 
-	val lokalisierungVon: LokalisierungVon,
 	val spielID: Int? = null,
 	val kategorieID: Int? = null,
 	val kartentextID: Int? = null,
