@@ -21,7 +21,7 @@ class Kategorie(
 	inaktiv: Boolean = DEFAULT_INAKTIV,
 	favorisiert: Boolean = DEFAULT_FAVORISIERT,
 
-	private val sammlungDaten: SammlungDaten<BestandteilID.KartentextID>,
+	bestandteile: Collection<BestandteilID.KartentextID>,
 ): Spielelement by SpielelementDaten(id, lokalisierungen, ogSprache, selbstErstellt, inaktiv, favorisiert),
-	Sammlung<BestandteilID.KartentextID> by sammlungDaten,
+	Sammlung<BestandteilID.KartentextID> by SammlungDaten(bestandteile),
 	Bestandteil

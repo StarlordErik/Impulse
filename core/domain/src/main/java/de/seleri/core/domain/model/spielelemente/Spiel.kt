@@ -23,12 +23,13 @@ class Spiel(
 	inaktiv: Boolean = DEFAULT_INAKTIV,
 	favorisiert: Boolean = DEFAULT_FAVORISIERT,
 
-	private val sammlungDaten: SammlungDaten<BestandteilID.KategorieID>,
+	bestandteile: Collection<BestandteilID.KategorieID>,
 
 	bildDateiname: String? = DEFAULT_BILD_DATEINAME,
 
 	val anleitung: String? = null,
 	val texteProKarte: Int = 1,
 ): Spielelement by SpielelementDaten(id, lokalisierungen, ogSprache, selbstErstellt, inaktiv, favorisiert),
-	Sammlung<BestandteilID.KategorieID> by sammlungDaten, SpielMeta by SpielMetaDaten(bildDateiname)
+	Sammlung<BestandteilID.KategorieID> by SammlungDaten(bestandteile),
+	SpielMeta by SpielMetaDaten(bildDateiname)
 
