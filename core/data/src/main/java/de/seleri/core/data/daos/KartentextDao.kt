@@ -8,7 +8,7 @@ import de.seleri.core.data.entities.singles.KartentextEntity
 @Dao
 interface KartentextDao {
 	@Upsert
-	suspend fun upsert(kartentext: KartentextEntity)
+	suspend fun upsert(kartentext: KartentextEntity): Long
 
 	@Delete
 	suspend fun delete(kartentext: KartentextEntity)

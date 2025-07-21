@@ -13,7 +13,7 @@ import de.seleri.core.data.relations.SpielMitKategorien
 interface SpielDao {
 
 	@Upsert
-	suspend fun upsert(spiel: SpielEntity)
+	suspend fun upsert(spiel: SpielEntity): Long
 
 	@Delete
 	suspend fun delete(spiel: SpielEntity)

@@ -13,7 +13,7 @@ import de.seleri.core.data.relations.KategorieMitKartentexten
 interface KategorieDao {
 
 	@Upsert
-	suspend fun upsert(kategorie: KategorieEntity)
+	suspend fun upsert(kategorie: KategorieEntity): Long
 
 	@Delete
 	suspend fun delete(kategorie: KategorieEntity)
