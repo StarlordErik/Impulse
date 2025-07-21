@@ -8,9 +8,10 @@ import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
 import de.seleri.core.repository.mapper.toMeta
+import javax.inject.Inject
 
-class SpielImpl(
-	private val spielDao: SpielDao, private val lokalisierungRepo: LokalisierungRepo
+class SpielImpl @Inject constructor(
+	private val dao: SpielDao, private val lokalisierungRepo: LokalisierungRepo
 ): SpielRepo {
 
 	override suspend fun upsert(spielelement: Spiel): Integer? {
@@ -34,7 +35,7 @@ class SpielImpl(
 	}
 
 	override suspend fun getAllMetas(): Collection<SpielMetaObjekt> {
-		val spielEntities = spielDao.getAll()
+		val spielEntities = dao.getAll()
 
 		return spielEntities.map { spielEntity ->
 			val spielID = SpielelementID.SpielID(spielEntity.id)
