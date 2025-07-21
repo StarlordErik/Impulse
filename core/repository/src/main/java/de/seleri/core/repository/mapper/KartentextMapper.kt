@@ -9,14 +9,12 @@ import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 
-object KartentextMapper {
+object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 
-	fun lokalisierungenToEntities(
-		kartentextID: SpielelementID.KartentextID, lokalisierungen: Collection<Lokalisierung>
-	): Collection<LokalisierungEntity> {
-		return lokalisierungen.map { lokalisierung ->
-			lokalisierung.toEntityForKartentext(kartentextID)
-		}
+	override fun lokalisierungToEntity(
+		id: SpielelementID.KartentextID, lokalisierung: Lokalisierung
+	): LokalisierungEntity {
+		return lokalisierung.toEntityForKartentext(id)
 	}
 }
 

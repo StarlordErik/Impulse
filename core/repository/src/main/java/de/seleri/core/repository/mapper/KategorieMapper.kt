@@ -11,14 +11,12 @@ import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
 import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
-object KategorieMapper {
+object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
-	fun lokalisierungenToEntities(
-		kategorieID: SpielelementID.KategorieID, lokalisierungen: Collection<Lokalisierung>
-	): Collection<LokalisierungEntity> {
-		return lokalisierungen.map { lokalisierung ->
-			lokalisierung.toEntityForKategorie(kategorieID)
-		}
+	override fun lokalisierungToEntity(
+		id: SpielelementID.KategorieID, lokalisierung: Lokalisierung
+	): LokalisierungEntity {
+		return lokalisierung.toEntityForKategorie(id)
 	}
 }
 

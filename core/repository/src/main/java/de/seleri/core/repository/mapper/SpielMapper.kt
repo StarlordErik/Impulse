@@ -12,14 +12,12 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaDaten
 
-object SpielMapper {
+object SpielMapper: SpielelementMapper<SpielelementID.SpielID> {
 
-	fun lokalisierungenToEntities(
-		spielID: SpielelementID.SpielID, lokalisierungen: Collection<Lokalisierung>
-	): Collection<LokalisierungEntity> {
-		return lokalisierungen.map { lokalisierung ->
-			lokalisierung.toEntityForSpiel(spielID)
-		}
+	override fun lokalisierungToEntity(
+		id: SpielelementID.SpielID, lokalisierung: Lokalisierung
+	): LokalisierungEntity {
+		return lokalisierung.toEntityForSpiel(id)
 	}
 }
 
