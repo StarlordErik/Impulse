@@ -1,8 +1,8 @@
 package de.seleri.core.domain.model.spielelemente.sammlungen
 
-import de.seleri.core.domain.model.ids.BestandteilID
+import de.seleri.core.domain.model.Bestandteil
 
-interface Sammlung<ID: BestandteilID> {
+interface Sammlung<B: Bestandteil> {
 
-	val bestandteile: Collection<ID>
+	val bestandteile: Collection<B>
 }
