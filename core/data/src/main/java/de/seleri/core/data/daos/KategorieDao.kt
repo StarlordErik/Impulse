@@ -28,38 +28,4 @@ interface KategorieDao {
 	@Delete
 	suspend fun delete(kategorieXKartentext: KategorieXKartentext)
 
-	//.
-	/*
-
-		@Query("SELECT * FROM Kategorien WHERE id = :id")
-	suspend fun getByID(id: Int): KategorieEntity?
-
-	@Query("SELECT * FROM Kategorien")
-	suspend fun getAlle(): List<KategorieEntity>
-
-	@Query("SELECT * FROM Kategorien WHERE inaktiv = 0")
-	suspend fun getAktive(): List<KategorieEntity>
-
-	@Transaction
-	@Query(
-		"""
-	SELECT k.* FROM Kategorien k
-	INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
-	INNER JOIN Kartentexte t ON x.kartentextID = t.id
-	WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0
-"""
-	)
-	fun getMitAktivenKartentexten(kategorieId: Int): KategorieMitKartentexten
-
-	@Transaction
-	@Query(
-		"""
-	SELECT k.* FROM Kategorien k
-	INNER JOIN KategorieXKartentext x ON k.id = x.kategorieID
-	INNER JOIN Kartentexte t ON x.kartentextID = t.id
-	WHERE k.id = :kategorieId AND k.inaktiv = 0 AND t.inaktiv = 0 AND t.gesehen = 0
-"""
-	)
-	fun getMitUngesehenenKartentexten(kategorieId: Int): KategorieMitKartentexten
-	*/
 }

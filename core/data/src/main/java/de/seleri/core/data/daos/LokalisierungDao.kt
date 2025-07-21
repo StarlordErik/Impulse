@@ -24,20 +24,4 @@ interface LokalisierungDao {
 	@Query("SELECT * FROM Lokalisierungen WHERE kartentextID = :kartentextId")
 	suspend fun getForKartentext(kartentextId: Int): List<LokalisierungEntity>
 
-//.
-	/*
-	@Upsert
-	suspend fun upsertAll(lokalisierungen: List<LokalisierungEntity>)
-
-	@Query("SELECT * FROM Lokalisierungen WHERE id = :id")
-	suspend fun getById(id: Int): LokalisierungEntity?
-
-	@Query("SELECT * FROM Lokalisierungen WHERE bearbeitet = 1")
-	suspend fun getBearbeitete(): List<LokalisierungEntity>
-
-
-
-
-
-	 */
 }

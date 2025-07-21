@@ -13,19 +13,4 @@ interface KartentextDao {
 	@Delete
 	suspend fun delete(kartentext: KartentextEntity)
 
-//.
-	/*
-	@Query("SELECT * FROM Kartentexte WHERE id = :id")
-	suspend fun getByID(id: Int): KartentextEntity?
-
-	@Query("SELECT * FROM Kartentexte")
-	suspend fun getAlle(): List<KartentextEntity>
-
-	@Query("SELECT * FROM Kartentexte WHERE inaktiv = 0")
-	suspend fun getAktive(): List<KartentextEntity>
-
-	@Query("SELECT * FROM Kartentexte WHERE inaktiv = 0 AND gesehen = 0")
-	suspend fun getUngesehene(): List<KartentextEntity>
-
-	 */
 }
