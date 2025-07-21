@@ -7,7 +7,7 @@ import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 data class Spiel(
 	private val spielelementDaten: SpielelementDaten,
 
-	override val sammlungDaten: SammlungDaten<BestandteilID.KategorieID>,
+	private val sammlungDaten: SammlungDaten<BestandteilID.KategorieID>,
 
 	val anleitung: String? = null,
 	val texteProKarte: Int = 1,
