@@ -1,4 +1,4 @@
-package de.seleri.core.data.database
+package de.seleri.core.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

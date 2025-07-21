@@ -1,4 +1,4 @@
-package de.seleri.core.data.database
+package de.seleri.core.data
 
 import android.content.Context
 import androidx.room.Room
@@ -45,4 +45,3 @@ object DatabaseModule {
 	fun provideSpielDao(db: AppDatabase): SpielDao =
 		db.spielDao()
 }
-
