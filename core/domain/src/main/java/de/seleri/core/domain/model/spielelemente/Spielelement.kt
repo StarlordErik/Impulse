@@ -2,11 +2,11 @@ package de.seleri.core.domain.model.spielelemente
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.DatenbankObjekt
-import de.seleri.core.domain.model.ids.BestandteilID
+import de.seleri.core.domain.model.Lokalisierung
 
 interface Spielelement: DatenbankObjekt {
 
-	val lokalisierungen: Collection<BestandteilID.LokalisierungID>
+	val lokalisierungen: Collection<Lokalisierung>
 
 	val ogSprache: Sprache
 	val selbstErstellt: Boolean
