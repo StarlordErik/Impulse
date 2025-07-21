@@ -6,6 +6,9 @@ plugins {
 
 	alias(libs.plugins.detekt)
 	alias(libs.plugins.kover)
+
+	alias(libs.plugins.ksp)
+	alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -63,6 +66,9 @@ dependencies {
 	androidTestImplementation(libs.androidx.espresso.core)
 
 	implementation(project(":core:common"))
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
 }
 
 kover {
