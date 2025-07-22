@@ -11,7 +11,7 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 @Dao
-interface SpielDao : SpielelementDao<SpielEntity> {
+interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
 
 	@Upsert
 	override suspend fun upsert(entity: SpielEntity): Long
@@ -26,10 +26,10 @@ interface SpielDao : SpielelementDao<SpielEntity> {
 	suspend fun getAll(): List<SpielEntity>
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	suspend fun insert(spielXKategorie: SpielXKategorie)
+	override suspend fun insert(joinEntity: SpielXKategorie)
 
 	@Delete
-	suspend fun delete(spielXKategorie: SpielXKategorie)
+	override suspend fun delete(joinEntity: SpielXKategorie)
 
 	@Query(
 		"""

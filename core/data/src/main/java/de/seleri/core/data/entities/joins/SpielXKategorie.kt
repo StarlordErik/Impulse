@@ -19,4 +19,4 @@ import de.seleri.core.data.entities.singles.SpielEntity
 data class SpielXKategorie(
 	val spielID: Int,
 	val kategorieID: Int,
-) : NzuMrelation
+) : JoinEntity
