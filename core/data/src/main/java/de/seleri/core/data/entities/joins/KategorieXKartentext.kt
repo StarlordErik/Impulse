@@ -22,4 +22,4 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 data class KategorieXKartentext(
 	val kategorieID: Int,
 	val kartentextID: Int,
-)
+) : NzuMrelation
