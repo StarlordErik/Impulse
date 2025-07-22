@@ -1,351 +1,420 @@
 {
-	"formatVersion": 1,
-	"database": {
-		"version": 1,
-		"identityHash": "d67d82913050e58c3cd6ac82013866a6",
-		"entities": [
-			{
-				"tableName": "Lokalisierungen",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `bezeichnung` TEXT NOT NULL, `sprache` TEXT NOT NULL, `bearbeitet` INTEGER NOT NULL, `spielID` INTEGER, `kategorieID` INTEGER, `kartentextID` INTEGER, FOREIGN KEY(`spielID`) REFERENCES `Spiele`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kartentextID`) REFERENCES `Kartentexte`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-				"fields": [
-					{
-						"fieldPath": "id",
-						"columnName": "id",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "bezeichnung",
-						"columnName": "bezeichnung",
-						"affinity": "TEXT",
-						"notNull": true
-					},
-					{
-						"fieldPath": "sprache",
-						"columnName": "sprache",
-						"affinity": "TEXT",
-						"notNull": true
-					},
-					{
-						"fieldPath": "bearbeitet",
-						"columnName": "bearbeitet",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielID",
-						"columnName": "spielID",
-						"affinity": "INTEGER"
-					},
-					{
-						"fieldPath": "kategorieID",
-						"columnName": "kategorieID",
-						"affinity": "INTEGER"
-					},
-					{
-						"fieldPath": "kartentextID",
-						"columnName": "kartentextID",
-						"affinity": "INTEGER"
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": true,
-					"columnNames": [
-						"id"
-					]
-				},
-				"foreignKeys": [
-					{
-						"table": "Spiele",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"spielID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					},
-					{
-						"table": "Kategorien",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"kategorieID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					},
-					{
-						"table": "Kartentexte",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"kartentextID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					}
-				]
-			},
-			{
-				"tableName": "Kartentexte",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gesehen` INTEGER NOT NULL, `besprochen` INTEGER NOT NULL, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
-				"fields": [
-					{
-						"fieldPath": "id",
-						"columnName": "id",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "gesehen",
-						"columnName": "gesehen",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "besprochen",
-						"columnName": "besprochen",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.ogSprache",
-						"columnName": "ogSprache",
-						"affinity": "TEXT",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.selbstErstellt",
-						"columnName": "selbstErstellt",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.inaktiv",
-						"columnName": "inaktiv",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.favorisiert",
-						"columnName": "favorisiert",
-						"affinity": "INTEGER",
-						"notNull": true
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": true,
-					"columnNames": [
-						"id"
-					]
-				}
-			},
-			{
-				"tableName": "Kategorien",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
-				"fields": [
-					{
-						"fieldPath": "id",
-						"columnName": "id",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.ogSprache",
-						"columnName": "ogSprache",
-						"affinity": "TEXT",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.selbstErstellt",
-						"columnName": "selbstErstellt",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.inaktiv",
-						"columnName": "inaktiv",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.favorisiert",
-						"columnName": "favorisiert",
-						"affinity": "INTEGER",
-						"notNull": true
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": true,
-					"columnNames": [
-						"id"
-					]
-				}
-			},
-			{
-				"tableName": "Spiele",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `anleitung` TEXT, `texteProKarte` INTEGER NOT NULL, `bildDateiname` TEXT, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
-				"fields": [
-					{
-						"fieldPath": "id",
-						"columnName": "id",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "anleitung",
-						"columnName": "anleitung",
-						"affinity": "TEXT"
-					},
-					{
-						"fieldPath": "texteProKarte",
-						"columnName": "texteProKarte",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "bildDateiname",
-						"columnName": "bildDateiname",
-						"affinity": "TEXT"
-					},
-					{
-						"fieldPath": "spielelementBasis.ogSprache",
-						"columnName": "ogSprache",
-						"affinity": "TEXT",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.selbstErstellt",
-						"columnName": "selbstErstellt",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.inaktiv",
-						"columnName": "inaktiv",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "spielelementBasis.favorisiert",
-						"columnName": "favorisiert",
-						"affinity": "INTEGER",
-						"notNull": true
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": true,
-					"columnNames": [
-						"id"
-					]
-				}
-			},
-			{
-				"tableName": "KategorieXKartentext",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`kategorieID` INTEGER NOT NULL, `kartentextID` INTEGER NOT NULL, PRIMARY KEY(`kategorieID`, `kartentextID`), FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kartentextID`) REFERENCES `Kartentexte`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-				"fields": [
-					{
-						"fieldPath": "kategorieID",
-						"columnName": "kategorieID",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "kartentextID",
-						"columnName": "kartentextID",
-						"affinity": "INTEGER",
-						"notNull": true
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": false,
-					"columnNames": [
-						"kategorieID",
-						"kartentextID"
-					]
-				},
-				"foreignKeys": [
-					{
-						"table": "Kategorien",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"kategorieID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					},
-					{
-						"table": "Kartentexte",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"kartentextID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					}
-				]
-			},
-			{
-				"tableName": "SpielXKategorie",
-				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`spielID` INTEGER NOT NULL, `kategorieID` INTEGER NOT NULL, PRIMARY KEY(`spielID`, `kategorieID`), FOREIGN KEY(`spielID`) REFERENCES `Spiele`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-				"fields": [
-					{
-						"fieldPath": "spielID",
-						"columnName": "spielID",
-						"affinity": "INTEGER",
-						"notNull": true
-					},
-					{
-						"fieldPath": "kategorieID",
-						"columnName": "kategorieID",
-						"affinity": "INTEGER",
-						"notNull": true
-					}
-				],
-				"primaryKey": {
-					"autoGenerate": false,
-					"columnNames": [
-						"spielID",
-						"kategorieID"
-					]
-				},
-				"foreignKeys": [
-					{
-						"table": "Spiele",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"spielID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					},
-					{
-						"table": "Kategorien",
-						"onDelete": "CASCADE",
-						"onUpdate": "NO ACTION",
-						"columns": [
-							"kategorieID"
-						],
-						"referencedColumns": [
-							"id"
-						]
-					}
-				]
-			}
-		],
-		"setupQueries": [
-			"CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-			"INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd67d82913050e58c3cd6ac82013866a6')"
-		]
-	}
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "9f54780ce8db3e8dcb332589cc5802dd",
+    "entities": [
+      {
+        "tableName": "Lokalisierungen",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `bezeichnung` TEXT NOT NULL, `sprache` TEXT NOT NULL, `bearbeitet` INTEGER NOT NULL, `spielID` INTEGER, `kategorieID` INTEGER, `kartentextID` INTEGER, FOREIGN KEY(`spielID`) REFERENCES `Spiele`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kartentextID`) REFERENCES `Kartentexte`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bezeichnung",
+            "columnName": "bezeichnung",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sprache",
+            "columnName": "sprache",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bearbeitet",
+            "columnName": "bearbeitet",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielID",
+            "columnName": "spielID",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "kategorieID",
+            "columnName": "kategorieID",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "kartentextID",
+            "columnName": "kartentextID",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Lokalisierungen_spielID",
+            "unique": false,
+            "columnNames": [
+              "spielID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Lokalisierungen_spielID` ON `${TABLE_NAME}` (`spielID`)"
+          },
+          {
+            "name": "index_Lokalisierungen_kategorieID",
+            "unique": false,
+            "columnNames": [
+              "kategorieID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Lokalisierungen_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
+          },
+          {
+            "name": "index_Lokalisierungen_kartentextID",
+            "unique": false,
+            "columnNames": [
+              "kartentextID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Lokalisierungen_kartentextID` ON `${TABLE_NAME}` (`kartentextID`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Spiele",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "spielID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Kategorien",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kategorieID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Kartentexte",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kartentextID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Kartentexte",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gesehen` INTEGER NOT NULL, `besprochen` INTEGER NOT NULL, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gesehen",
+            "columnName": "gesehen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "besprochen",
+            "columnName": "besprochen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.ogSprache",
+            "columnName": "ogSprache",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.selbstErstellt",
+            "columnName": "selbstErstellt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.inaktiv",
+            "columnName": "inaktiv",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.favorisiert",
+            "columnName": "favorisiert",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "Kategorien",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.ogSprache",
+            "columnName": "ogSprache",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.selbstErstellt",
+            "columnName": "selbstErstellt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.inaktiv",
+            "columnName": "inaktiv",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.favorisiert",
+            "columnName": "favorisiert",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "Spiele",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `anleitung` TEXT, `texteProKarte` INTEGER NOT NULL, `bildDateiname` TEXT, `ogSprache` TEXT NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "anleitung",
+            "columnName": "anleitung",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "texteProKarte",
+            "columnName": "texteProKarte",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bildDateiname",
+            "columnName": "bildDateiname",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "spielelementBasis.ogSprache",
+            "columnName": "ogSprache",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.selbstErstellt",
+            "columnName": "selbstErstellt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.inaktiv",
+            "columnName": "inaktiv",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spielelementBasis.favorisiert",
+            "columnName": "favorisiert",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "KategorieXKartentext",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`kategorieID` INTEGER NOT NULL, `kartentextID` INTEGER NOT NULL, PRIMARY KEY(`kategorieID`, `kartentextID`), FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kartentextID`) REFERENCES `Kartentexte`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "kategorieID",
+            "columnName": "kategorieID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kartentextID",
+            "columnName": "kartentextID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "kategorieID",
+            "kartentextID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_KategorieXKartentext_kategorieID",
+            "unique": false,
+            "columnNames": [
+              "kategorieID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_KategorieXKartentext_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
+          },
+          {
+            "name": "index_KategorieXKartentext_kartentextID",
+            "unique": false,
+            "columnNames": [
+              "kartentextID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_KategorieXKartentext_kartentextID` ON `${TABLE_NAME}` (`kartentextID`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Kategorien",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kategorieID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Kartentexte",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kartentextID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "SpielXKategorie",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`spielID` INTEGER NOT NULL, `kategorieID` INTEGER NOT NULL, PRIMARY KEY(`spielID`, `kategorieID`), FOREIGN KEY(`spielID`) REFERENCES `Spiele`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kategorieID`) REFERENCES `Kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "spielID",
+            "columnName": "spielID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kategorieID",
+            "columnName": "kategorieID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "spielID",
+            "kategorieID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_SpielXKategorie_spielID",
+            "unique": false,
+            "columnNames": [
+              "spielID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_SpielXKategorie_spielID` ON `${TABLE_NAME}` (`spielID`)"
+          },
+          {
+            "name": "index_SpielXKategorie_kategorieID",
+            "unique": false,
+            "columnNames": [
+              "kategorieID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_SpielXKategorie_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Spiele",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "spielID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Kategorien",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kategorieID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f54780ce8db3e8dcb332589cc5802dd')"
+    ]
+  }
 }
