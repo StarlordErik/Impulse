@@ -1,4 +1,4 @@
-package de.seleri.core.domain
+package de.seleri.core.di
 
 import dagger.Module
 import dagger.Provides
