@@ -11,16 +11,16 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 @Dao
-interface SpielDao {
+interface SpielDao : SpielelementDao<SpielEntity> {
 
 	@Upsert
-	suspend fun upsert(spiel: SpielEntity): Long
+	override suspend fun upsert(entity: SpielEntity): Long
 
 	@Delete
-	suspend fun delete(spiel: SpielEntity)
+	override suspend fun delete(entity: SpielEntity)
 
-	@Query("SELECT * FROM Spiele WHERE id = :spielId")
-	suspend fun get(spielId: Int): SpielEntity
+	@Query("SELECT * FROM Spiele WHERE id = :spielelementId")
+	override suspend fun get(spielelementId: Int): SpielEntity
 
 	@Query("SELECT * FROM Spiele")
 	suspend fun getAll(): List<SpielEntity>

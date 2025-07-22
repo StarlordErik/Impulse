@@ -8,17 +8,17 @@ import androidx.room.Upsert
 import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
 
 @Dao
-interface KartentextDao {
+interface KartentextDao : SpielelementDao<KartentextEntity> {
 
 	@Upsert
-	suspend fun upsert(kartentext: KartentextEntity): Long
+	override suspend fun upsert(entity: KartentextEntity): Long
 
 	@Update
 	suspend fun update(kartentexte: Collection<KartentextEntity>)
 
 	@Delete
-	suspend fun delete(kartentext: KartentextEntity)
+	override suspend fun delete(entity: KartentextEntity)
 
-	@Query("SELECT * FROM Kartentexte WHERE id = :kartentextId")
-	suspend fun get(kartentextId: Int): KartentextEntity
+	@Query("SELECT * FROM Kartentexte WHERE id = :spielelementId")
+	override suspend fun get(spielelementId: Int): KartentextEntity
 }

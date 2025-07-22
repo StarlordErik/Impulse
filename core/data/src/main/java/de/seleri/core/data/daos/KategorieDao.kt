@@ -11,16 +11,16 @@ import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 
 @Dao
-interface KategorieDao {
+interface KategorieDao : SpielelementDao<KategorieEntity> {
 
 	@Upsert
-	suspend fun upsert(kategorie: KategorieEntity): Long
+	override suspend fun upsert(entity: KategorieEntity): Long
 
 	@Delete
-	suspend fun delete(kategorie: KategorieEntity)
+	override suspend fun delete(entity: KategorieEntity)
 
-	@Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
-	suspend fun get(kategorieId: Int): KategorieEntity
+	@Query("SELECT * FROM Kategorien WHERE id = :spielelementId")
+	override suspend fun get(spielelementId: Int): KategorieEntity
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	suspend fun insert(kategorieXKartentext: KategorieXKartentext)
