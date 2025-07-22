@@ -12,9 +12,8 @@ import de.seleri.core.domain.repositories.SpielRepo
 import de.seleri.core.repository.mapper.toDomain
 import de.seleri.core.repository.mapper.toEntity
 import de.seleri.core.repository.mapper.toMeta
-import javax.inject.Inject
 
-class SpielImpl @Inject constructor(
+class SpielImpl(
 	private val dao: SpielDao,
 	private val lokalisierungRepo: LokalisierungRepo,
 	private val kategorieRepo: KategorieRepo

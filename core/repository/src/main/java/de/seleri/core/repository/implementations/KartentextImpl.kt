@@ -7,9 +7,8 @@ import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.repository.mapper.toDomain
 import de.seleri.core.repository.mapper.toEntity
-import javax.inject.Inject
 
-class KartentextImpl @Inject constructor(
+class KartentextImpl(
 	private val dao: KartentextDao, private val lokalisierungRepo: LokalisierungRepo
 ): KartentextRepo {
 

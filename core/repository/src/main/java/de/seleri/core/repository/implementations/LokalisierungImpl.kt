@@ -9,9 +9,8 @@ import de.seleri.core.repository.mapper.toEntityForKartentext
 import de.seleri.core.repository.mapper.toEntityForKategorie
 import de.seleri.core.repository.mapper.toEntityForSpiel
 import de.seleri.core.repository.mapper.toNullEntity
-import javax.inject.Inject
 
-class LokalisierungImpl @Inject constructor(
+class LokalisierungImpl(
 	private val dao: LokalisierungDao,
 ): LokalisierungRepo {
 

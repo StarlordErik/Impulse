@@ -10,9 +10,8 @@ import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.repository.mapper.toDomain
 import de.seleri.core.repository.mapper.toEntity
-import javax.inject.Inject
 
-class KategorieImpl @Inject constructor(
+class KategorieImpl(
 	private val dao: KategorieDao,
 	private val lokalisierungRepo: LokalisierungRepo,
 	private val kartentextRepo: KartentextRepo
