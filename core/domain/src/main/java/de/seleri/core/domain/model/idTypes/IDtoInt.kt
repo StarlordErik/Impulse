@@ -1,4 +1,4 @@
-package de.seleri.core.common.idTypes
+package de.seleri.core.domain.model.idTypes
 
 interface IDtoInt {
 

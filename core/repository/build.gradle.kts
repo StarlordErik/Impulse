@@ -49,7 +49,6 @@ dependencies {
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 
-	implementation(project(":core:common"))
 	implementation(project(":core:data"))
 	implementation(project(":core:domain"))
 

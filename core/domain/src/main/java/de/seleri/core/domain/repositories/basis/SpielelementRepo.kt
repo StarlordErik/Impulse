@@ -1,6 +1,6 @@
 package de.seleri.core.domain.repositories.basis
 
-import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.domain.model.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.Spielelement
 
 interface SpielelementRepo<S: Spielelement, ID: SpielelementID> {
