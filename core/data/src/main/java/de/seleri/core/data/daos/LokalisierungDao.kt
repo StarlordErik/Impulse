@@ -7,13 +7,13 @@ import androidx.room.Upsert
 import de.seleri.core.data.entities.singles.spielelemente.LokalisierungEntity
 
 @Dao
-interface LokalisierungDao {
+interface LokalisierungDao : DatenbankObjektDao<LokalisierungEntity> {
 
 	@Upsert
-	suspend fun upsert(lokalisierung: LokalisierungEntity)
+	override suspend fun upsert(entity: LokalisierungEntity) : Long
 
 	@Delete
-	suspend fun delete(lokalisierung: LokalisierungEntity)
+	override suspend fun delete(entity: LokalisierungEntity)
 
 	@Query("SELECT * FROM lokalisierungen WHERE spielId = :spielId")
 	suspend fun getForSpiel(spielId: Int): List<LokalisierungEntity>
