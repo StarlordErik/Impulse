@@ -1,21 +1,16 @@
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+
 plugins {
-	alias(libs.plugins.androidApplication)
+	alias(libs.plugins.androidLibrary)
 	alias(libs.plugins.jetbrainsKotlinAndroid)
+
+	alias(libs.plugins.detekt)
+	alias(libs.plugins.kover)
 }
 
 android {
 	namespace = "de.seleri.core.representation"
 	compileSdk = 36
-
-	defaultConfig {
-		applicationId = "de.seleri.core.representation"
-		minSdk = 29
-		targetSdk = 36
-		versionCode = 1
-		versionName = "1.0"
-
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
 
 	buildTypes {
 		release {
@@ -23,12 +18,20 @@ android {
 			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 		}
 	}
+
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 	}
-	kotlinOptions {
-		jvmTarget = "11"
+
+	lint {
+		warningsAsErrors = true
+	}
+}
+
+kotlin {
+	compilerOptions {
+		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
 	}
 }
 
@@ -40,4 +43,44 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation(project(":core:common"))
+	implementation(project(":core:domain"))
+}
+
+kover {
+	reports {
+		filters {
+			excludes {
+				classes(
+					"",
+				)
+				packages(
+					"",
+				)
+			}
+		}
+		verify {
+			warningInsteadOfFailure = false
+
+			rule("genug Abzweigungen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.BRANCH
+				}
+			}
+			rule("genug Anweisungen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.INSTRUCTION
+				}
+			}
+			rule("genug Zeilen getestet") {
+				bound {
+					minValue = 66
+					coverageUnits = CoverageUnit.LINE
+				}
+			}
+		}
+	}
 }

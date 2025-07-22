@@ -1,21 +1,14 @@
 plugins {
-	alias(libs.plugins.androidApplication)
+	alias(libs.plugins.androidLibrary)
 	alias(libs.plugins.jetbrainsKotlinAndroid)
+
+	alias(libs.plugins.ksp)
+	alias(libs.plugins.hilt.android)
 }
 
 android {
 	namespace = "de.seleri.core.di"
 	compileSdk = 36
-
-	defaultConfig {
-		applicationId = "de.seleri.core.di"
-		minSdk = 29
-		targetSdk = 36
-		versionCode = 1
-		versionName = "1.0"
-
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
 
 	buildTypes {
 		release {
@@ -23,12 +16,20 @@ android {
 			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 		}
 	}
+
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 	}
-	kotlinOptions {
-		jvmTarget = "11"
+
+	lint {
+		warningsAsErrors = true
+	}
+}
+
+kotlin {
+	compilerOptions {
+		jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
 	}
 }
 
@@ -40,4 +41,11 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation(project(":core:data"))
+	implementation(project(":core:repository"))
+	implementation(project(":core:domain"))
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
 }
