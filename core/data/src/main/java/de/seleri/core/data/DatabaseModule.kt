@@ -7,10 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import de.seleri.core.data.daos.KartentextDao
-import de.seleri.core.data.daos.KategorieDao
+import de.seleri.core.data.daos.spielelemente.KartentextDao
+import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.daos.LokalisierungDao
-import de.seleri.core.data.daos.SpielDao
+import de.seleri.core.data.daos.spielelemente.SpielDao
 import javax.inject.Singleton
 
 @Module

@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import de.seleri.core.data.daos.KartentextDao
-import de.seleri.core.data.daos.KategorieDao
+import de.seleri.core.data.daos.spielelemente.KartentextDao
+import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.daos.LokalisierungDao
-import de.seleri.core.data.daos.SpielDao
+import de.seleri.core.data.daos.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity

@@ -1,6 +1,6 @@
-package de.seleri.core.data.daos
+package de.seleri.core.data.daos.spielelemente
 
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.daos.DatenbankObjektDao
 import de.seleri.core.data.entities.singles.spielelemente.SpielelementEntity
 
 interface SpielelementDao<S: SpielelementEntity> : DatenbankObjektDao<S> {

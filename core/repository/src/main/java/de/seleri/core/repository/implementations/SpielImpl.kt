@@ -1,7 +1,7 @@
 package de.seleri.core.repository.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.SpielDao
+import de.seleri.core.data.daos.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
