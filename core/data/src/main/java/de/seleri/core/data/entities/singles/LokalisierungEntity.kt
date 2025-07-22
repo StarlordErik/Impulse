@@ -2,6 +2,7 @@ package de.seleri.core.data.entities.singles
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.seleri.core.common.Sprache
 
@@ -18,7 +19,7 @@ import de.seleri.core.common.Sprache
 		entity = KartentextEntity::class,
 		parentColumns = ["id"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.Companion.CASCADE
-	)]
+	)], indices = [Index("spielID"), Index("kategorieID"), Index("kartentextID")]
 )
 data class LokalisierungEntity(
 	@PrimaryKey(autoGenerate = true)

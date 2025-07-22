@@ -2,6 +2,7 @@ package de.seleri.core.data.entities.joins
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import de.seleri.core.data.entities.singles.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
@@ -13,7 +14,7 @@ import de.seleri.core.data.entities.singles.SpielEntity
 		parentColumns = ["id"],
 		childColumns = ["kategorieID"],
 		onDelete = ForeignKey.CASCADE
-	)]
+	)], indices = [Index("spielID"), Index("kategorieID")]
 )
 data class SpielXKategorie(
 	val spielID: Int,

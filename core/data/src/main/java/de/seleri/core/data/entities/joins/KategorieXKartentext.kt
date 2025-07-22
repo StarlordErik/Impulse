@@ -2,6 +2,7 @@ package de.seleri.core.data.entities.joins
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import de.seleri.core.data.entities.singles.KartentextEntity
 import de.seleri.core.data.entities.singles.KategorieEntity
 
@@ -16,7 +17,7 @@ import de.seleri.core.data.entities.singles.KategorieEntity
 		parentColumns = ["id"],
 		childColumns = ["kartentextID"],
 		onDelete = ForeignKey.CASCADE
-	)]
+	)], indices = [Index("kategorieID"), Index("kartentextID")]
 )
 data class KategorieXKartentext(
 	val kategorieID: Int,
