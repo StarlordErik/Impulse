@@ -15,16 +15,19 @@ class LokalisierungImpl @Inject constructor(
 	private val dao: LokalisierungDao,
 ): LokalisierungRepo {
 
-	override suspend fun upsertForSpiel(spielID: SpielelementID.SpielID, lokalisierung: Lokalisierung) =
+	override suspend fun upsertForSpiel(spielID: SpielelementID.SpielID, lokalisierung: Lokalisierung) {
 		dao.upsert(lokalisierung.toEntityForSpiel(spielID))
+	}
 
 
-	override suspend fun upsertForKategorie(kategorieID: SpielelementID.KategorieID, lokalisierung: Lokalisierung) =
+	override suspend fun upsertForKategorie(kategorieID: SpielelementID.KategorieID, lokalisierung: Lokalisierung) {
 		dao.upsert(lokalisierung.toEntityForKategorie(kategorieID))
+	}
 
 
-	override suspend fun upsertForKartentext(kartentextID: SpielelementID.KartentextID, lokalisierung: Lokalisierung) =
+	override suspend fun upsertForKartentext(kartentextID: SpielelementID.KartentextID, lokalisierung: Lokalisierung) {
 		dao.upsert(lokalisierung.toEntityForKartentext(kartentextID))
+	}
 
 
 	override suspend fun delete(lokalisierung: Lokalisierung) =
