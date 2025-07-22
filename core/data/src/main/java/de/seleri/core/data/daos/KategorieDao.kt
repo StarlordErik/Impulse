@@ -2,6 +2,8 @@ package de.seleri.core.data.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.KategorieXKartentext
@@ -20,8 +22,8 @@ interface KategorieDao {
 	@Query("SELECT * FROM Kategorien WHERE id = :kategorieId")
 	suspend fun get(kategorieId: Int): KategorieEntity
 
-	@Upsert
-	suspend fun upsert(kategorieXKartentext: KategorieXKartentext)
+	@Insert(onConflict = OnConflictStrategy.IGNORE)
+	suspend fun insert(kategorieXKartentext: KategorieXKartentext)
 
 	@Delete
 	suspend fun delete(kategorieXKartentext: KategorieXKartentext)

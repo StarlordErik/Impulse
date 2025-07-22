@@ -2,6 +2,7 @@ package de.seleri.core.repository.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.KategorieDao
+import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.KartentextRepo
@@ -52,12 +53,18 @@ class KategorieImpl @Inject constructor(
 	override suspend fun insertConnection(
 		sammlung: Kategorie, bestandteil: Kartentext
 	) {
-		TODO("Not yet implemented")
+		val kategorieXKartentext = KategorieXKartentext(
+			kategorieID = sammlung.id, kartentextID = bestandteil.id
+		)
+		dao.insert(kategorieXKartentext)
 	}
 
 	override suspend fun deleteConnection(
 		sammlung: Kategorie, bestandteil: Kartentext
 	) {
-		TODO("Not yet implemented")
+		val kategorieXKartentext = KategorieXKartentext(
+			kategorieID = sammlung.id, kartentextID = bestandteil.id
+		)
+		dao.delete(kategorieXKartentext)
 	}
 }
