@@ -3,16 +3,18 @@ package de.seleri.core.data.entities.singles
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import de.seleri.core.data.entities.singles.spielelemente.SpielelementBasis
+import de.seleri.core.data.entities.singles.spielelemente.SpielelementEntity
 
 @Entity(tableName = "Spiele")
 data class SpielEntity(
 	@PrimaryKey(autoGenerate = true)
-	val id: Int,
+	override val id: Int,
 
 	@Embedded
-	val spielelementBasis: SpielelementBasis,
+	override val spielelementBasis: SpielelementBasis,
 
 	val anleitung: String?,
 	val texteProKarte: Int,
 	val bildDateiname: String?,
-)
+) : SpielelementEntity

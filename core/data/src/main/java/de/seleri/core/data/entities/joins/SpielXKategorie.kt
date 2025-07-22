@@ -3,7 +3,7 @@ package de.seleri.core.data.entities.joins
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 @Entity(

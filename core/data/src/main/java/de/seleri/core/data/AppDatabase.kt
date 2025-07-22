@@ -11,9 +11,9 @@ import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.SpielDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.KartentextEntity
-import de.seleri.core.data.entities.singles.KategorieEntity
-import de.seleri.core.data.entities.singles.LokalisierungEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.LokalisierungEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

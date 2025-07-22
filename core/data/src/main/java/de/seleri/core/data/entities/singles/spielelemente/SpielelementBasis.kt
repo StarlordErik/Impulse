@@ -1,4 +1,4 @@
-package de.seleri.core.data.entities.singles
+package de.seleri.core.data.entities.singles.spielelemente
 
 import de.seleri.core.common.Sprache
 

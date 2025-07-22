@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
-import de.seleri.core.data.entities.singles.KartentextEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
 
 @Dao
 interface KartentextDao {

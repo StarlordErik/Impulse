@@ -3,8 +3,8 @@ package de.seleri.core.data.entities.joins
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import de.seleri.core.data.entities.singles.KartentextEntity
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 
 @Entity(
 	tableName = "KategorieXKartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(

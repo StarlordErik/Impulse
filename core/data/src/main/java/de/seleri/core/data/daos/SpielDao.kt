@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 @Dao

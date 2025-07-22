@@ -1,4 +1,4 @@
-package de.seleri.core.data.entities.singles
+package de.seleri.core.data.entities.singles.spielelemente
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -7,11 +7,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Kartentexte")
 data class KartentextEntity(
 	@PrimaryKey(autoGenerate = true)
-	val id: Int,
+	override val id: Int,
 
 	@Embedded
-	val spielelementBasis: SpielelementBasis,
+	override val spielelementBasis: SpielelementBasis,
 
 	val gesehen: Boolean,
 	val besprochen: Boolean,
-)
+) : SpielelementEntity

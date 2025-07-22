@@ -7,8 +7,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.KategorieXKartentext
-import de.seleri.core.data.entities.singles.KartentextEntity
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 
 @Dao
 interface KategorieDao {

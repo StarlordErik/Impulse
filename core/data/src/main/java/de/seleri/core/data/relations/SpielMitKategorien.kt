@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
 
 data class SpielMitKategorien(

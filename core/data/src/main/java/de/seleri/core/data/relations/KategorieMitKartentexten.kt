@@ -4,8 +4,8 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import de.seleri.core.data.entities.joins.KategorieXKartentext
-import de.seleri.core.data.entities.singles.KartentextEntity
-import de.seleri.core.data.entities.singles.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 
 data class KategorieMitKartentexten(
 	@Embedded

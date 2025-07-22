@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.core.data.entities.singles.LokalisierungEntity
+import de.seleri.core.data.entities.singles.spielelemente.LokalisierungEntity
 
 @Dao
 interface LokalisierungDao {

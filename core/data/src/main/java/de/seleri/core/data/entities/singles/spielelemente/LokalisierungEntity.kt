@@ -1,10 +1,12 @@
-package de.seleri.core.data.entities.singles
+package de.seleri.core.data.entities.singles.spielelemente
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.seleri.core.common.Sprache
+import de.seleri.core.data.entities.singles.DatenbankObjektEntity
+import de.seleri.core.data.entities.singles.SpielEntity
 
 @Entity(
 	tableName = "Lokalisierungen", foreignKeys = [ForeignKey(
@@ -23,7 +25,7 @@ import de.seleri.core.common.Sprache
 )
 data class LokalisierungEntity(
 	@PrimaryKey(autoGenerate = true)
-	val id: Int,
+	override val id: Int,
 
 	val bezeichnung: String,
 	val sprache: Sprache,
@@ -32,4 +34,4 @@ data class LokalisierungEntity(
 	val spielID: Int? = null,
 	val kategorieID: Int? = null,
 	val kartentextID: Int? = null,
-)
+) : DatenbankObjektEntity
