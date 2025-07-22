@@ -2,6 +2,7 @@ package de.seleri.core.repository.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.SpielDao
+import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
@@ -54,13 +55,19 @@ class SpielImpl @Inject constructor(
 	override suspend fun insertConnection(
 		sammlung: Spiel, bestandteil: Kategorie
 	) {
-		TODO("Not yet implemented")
+		val spielXKategorie = SpielXKategorie(
+			spielID = sammlung.id, kategorieID = bestandteil.id
+		)
+		dao.insert(spielXKategorie)
 	}
 
 	override suspend fun deleteConnection(
 		sammlung: Spiel, bestandteil: Kategorie
 	) {
-		TODO("Not yet implemented")
+		val spielXKategorie = SpielXKategorie(
+			spielID = sammlung.id, kategorieID = bestandteil.id
+		)
+		dao.delete(spielXKategorie)
 	}
 
 

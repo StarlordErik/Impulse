@@ -2,6 +2,8 @@ package de.seleri.core.data.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.entities.joins.SpielXKategorie
@@ -23,8 +25,8 @@ interface SpielDao {
 	@Query("SELECT * FROM Spiele")
 	suspend fun getAll(): List<SpielEntity>
 
-	@Upsert
-	suspend fun upsert(spielXKategorie: SpielXKategorie)
+	@Insert(onConflict = OnConflictStrategy.IGNORE)
+	suspend fun insert(spielXKategorie: SpielXKategorie)
 
 	@Delete
 	suspend fun delete(spielXKategorie: SpielXKategorie)
