@@ -8,18 +8,15 @@ import de.seleri.core.common.Sprache
 @Entity(
 	tableName = "Lokalisierungen", foreignKeys = [ForeignKey(
 		entity = SpielEntity::class,
-		parentColumns = ["id"],
-		childColumns = ["spielId"],
+		parentColumns = ["id"], childColumns = ["spielID"],
 		onDelete = ForeignKey.Companion.CASCADE
 	), ForeignKey(
 		entity = KategorieEntity::class,
-		parentColumns = ["id"],
-		childColumns = ["kategorieId"],
+		parentColumns = ["id"], childColumns = ["kategorieID"],
 		onDelete = ForeignKey.Companion.CASCADE
 	), ForeignKey(
 		entity = KartentextEntity::class,
-		parentColumns = ["id"],
-		childColumns = ["kartentextId"],
+		parentColumns = ["id"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.Companion.CASCADE
 	)]
 )

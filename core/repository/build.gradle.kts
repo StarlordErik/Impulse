@@ -1,7 +1,7 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
-	alias(libs.plugins.androidApplication)
+	alias(libs.plugins.androidLibrary)
 	alias(libs.plugins.jetbrainsKotlinAndroid)
 
 	alias(libs.plugins.detekt)
@@ -17,22 +17,6 @@ android {
 		.property("compileSdk")
 		.toString()
 		.toInt()
-
-	defaultConfig {
-		applicationId = "de.seleri.core.repository"
-		minSdk = project
-			.property("minSdk")
-			.toString()
-			.toInt()
-		targetSdk = project
-			.property("targetSdk")
-			.toString()
-			.toInt()
-		versionCode = 1
-		versionName = "1.0"
-
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-	}
 
 	buildTypes {
 		release {
