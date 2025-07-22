@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9f54780ce8db3e8dcb332589cc5802dd",
+		"identityHash": "b61178a938be8845b758b0bff2bf2bf9",
     "entities": [
       {
         "tableName": "Lokalisierungen",
@@ -366,26 +366,6 @@
             "kategorieID"
           ]
         },
-        "indices": [
-          {
-            "name": "index_SpielXKategorie_spielID",
-            "unique": false,
-            "columnNames": [
-              "spielID"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_SpielXKategorie_spielID` ON `${TABLE_NAME}` (`spielID`)"
-          },
-          {
-            "name": "index_SpielXKategorie_kategorieID",
-            "unique": false,
-            "columnNames": [
-              "kategorieID"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_SpielXKategorie_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
-          }
-        ],
         "foreignKeys": [
           {
             "table": "Spiele",
@@ -414,7 +394,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f54780ce8db3e8dcb332589cc5802dd')"
+			"INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b61178a938be8845b758b0bff2bf2bf9')"
     ]
   }
 }
