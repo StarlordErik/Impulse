@@ -5,12 +5,24 @@ plugins {
 }
 
 kotlin {
-	jvmToolchain(21)
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
 }
 
 java {
 	toolchain {
-		languageVersion.set(JavaLanguageVersion.of(21))
+		languageVersion.set(
+			JavaLanguageVersion.of(
+				project
+					.property("jdkVersion")
+					.toString()
+					.toInt()
+			)
+		)
 	}
 }
 
