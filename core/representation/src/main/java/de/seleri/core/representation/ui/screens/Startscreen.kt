@@ -37,7 +37,7 @@ fun Startscreen(
 			Titel()
 		}
 		items(items = spielMetaObjekte, key = { it.id }) { spielMetaObjekt ->
-			SammlungsButton(spielMetaObjekt.getBezeichnung(vm.sprache)) {
+			SammlungsButton(vm.getDarstellungAlsText(spielMetaObjekt)) {
 				onSpielClicked(SpielelementID.SpielID(spielMetaObjekt.id))
 			}
 		}

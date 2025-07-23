@@ -10,11 +10,10 @@ import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
 import kotlinx.coroutines.launch
 
-class StartscreenVM(
+open class StartscreenVM(
 	private val getAllSpielMetasUseCase: GetAllSpielMetaObjekteUC
 ): ViewModel() {
 
-	val sprache = Sprache.OG
 	var spielMetaObjekte by mutableStateOf<List<SpielMetaObjekt>>(emptyList())
 		private set
 
@@ -27,4 +26,9 @@ class StartscreenVM(
 			spielMetaObjekte = getAllSpielMetasUseCase() as List
 		}
 	}
+
+	val sprache = Sprache.OG // TODO Sprache muss variabel gesetzt werden
+
+	fun getDarstellungAlsText(spielMetaObjekt: SpielMetaObjekt): String =
+		spielMetaObjekt.getBezeichnung(sprache)
 }
