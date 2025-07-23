@@ -10,7 +10,7 @@ import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
 import kotlinx.coroutines.launch
 
 open class StartscreenVM(
-	private val getAllSpielMetasUseCase: GetAllSpielMetaObjekteUC
+	private val getAllSpielMetaObjekteUC: GetAllSpielMetaObjekteUC
 ): ViewModel(), SpielelementAlsTextDarstellen {
 
 	var spielMetaObjekte by mutableStateOf<List<SpielMetaObjekt>>(emptyList())
@@ -18,7 +18,7 @@ open class StartscreenVM(
 
 	init {
 		viewModelScope.launch {
-			spielMetaObjekte = getAllSpielMetasUseCase()
+			spielMetaObjekte = getAllSpielMetaObjekteUC()
 		}
 	}
 }

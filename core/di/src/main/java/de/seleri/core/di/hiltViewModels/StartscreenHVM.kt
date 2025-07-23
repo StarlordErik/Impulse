@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StartscreenHVM @Inject constructor(
-	getAllSpielMetasUseCase: GetAllSpielMetaObjekteUC
-): StartscreenVM(getAllSpielMetasUseCase)
+	getAllSpielMetaObjekteUC: GetAllSpielMetaObjekteUC
+): StartscreenVM(getAllSpielMetaObjekteUC)
