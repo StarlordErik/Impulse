@@ -13,6 +13,29 @@ plugins {
 	alias(libs.plugins.room)
 }
 
+dependencies {
+	implementation(project(":core:common"))
+
+	testImplementation(libs.junit)
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
+
+	implementation(libs.androidx.room.runtime)
+	ksp(libs.androidx.room.compiler)
+	implementation(libs.androidx.room.ktx)
+	testImplementation(libs.androidx.room.testing)
+}
+
+kotlin {
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
+}
+
 android {
 	namespace = "de.seleri.core.data"
 	compileSdk = project
@@ -45,61 +68,44 @@ android {
 	}
 }
 
-kotlin {
-	jvmToolchain(
-		project
-			.property("jdkVersion")
+kover.reports {
+	filters.excludes {
+		classes(
+			"",
+		)
+		packages(
+			"",
+		)
+	}
+	verify {
+		warningInsteadOfFailure = false
+
+		val minimum = project
+			.property("koverMinValue")
 			.toString()
 			.toInt()
-	)
-}
-
-dependencies {
-	implementation(project(":core:common"))
-
-	testImplementation(libs.junit)
-
-	implementation(libs.hilt.android)
-	ksp(libs.hilt.android.compiler)
-
-	implementation(libs.androidx.room.runtime)
-	ksp(libs.androidx.room.compiler)
-	implementation(libs.androidx.room.ktx)
-	testImplementation(libs.androidx.room.testing)
-}
-
-kover {
-	reports {
-		filters {
-			excludes {
-				classes(
-					"",
-				)
-				packages(
-					"",
-				)
+		rule(
+			"${
+				project
+					.property("koverRulePrefix")
+					.toString()
+			} $minimum${
+				project
+					.property("koverRuleSuffix")
+					.toString()
+			}"
+		) {
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.BRANCH
 			}
-		}
-		verify {
-			warningInsteadOfFailure = false
-
-			rule("genug Abzweigungen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.BRANCH
-				}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.INSTRUCTION
 			}
-			rule("genug Anweisungen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.INSTRUCTION
-				}
-			}
-			rule("genug Zeilen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.LINE
-				}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.LINE
 			}
 		}
 	}

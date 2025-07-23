@@ -13,53 +13,6 @@ dependencies {
 	testImplementation(libs.junit)
 }
 
-kover {
-	reports {
-		filters {
-			excludes {
-				classes(
-					"",
-				)
-				packages(
-					"",
-				)
-			}
-		}
-		verify {
-			warningInsteadOfFailure = false
-
-			val minimum = project
-				.property("koverMinValue")
-				.toString()
-				.toInt()
-			rule(
-				"${
-					project
-						.property("koverRulePrefix")
-						.toString()
-				} $minimum${
-					project
-						.property("koverRuleSuffix")
-						.toString()
-				}"
-			) {
-				bound {
-					minValue = minimum
-					coverageUnits = CoverageUnit.BRANCH
-				}
-				bound {
-					minValue = minimum
-					coverageUnits = CoverageUnit.INSTRUCTION
-				}
-				bound {
-					minValue = minimum
-					coverageUnits = CoverageUnit.LINE
-				}
-			}
-		}
-	}
-}
-
 kotlin {
 	jvmToolchain(
 		project
@@ -79,5 +32,48 @@ java {
 					.toInt()
 			)
 		)
+	}
+}
+
+kover.reports {
+	filters.excludes {
+		classes(
+			"",
+		)
+		packages(
+			"",
+		)
+	}
+	verify {
+		warningInsteadOfFailure = false
+
+		val minimum = project
+			.property("koverMinValue")
+			.toString()
+			.toInt()
+		rule(
+			"${
+				project
+					.property("koverRulePrefix")
+					.toString()
+			} $minimum${
+				project
+					.property("koverRuleSuffix")
+					.toString()
+			}"
+		) {
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.BRANCH
+			}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.INSTRUCTION
+			}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.LINE
+			}
+		}
 	}
 }

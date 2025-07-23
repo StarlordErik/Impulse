@@ -11,6 +11,31 @@ plugins {
 	alias(libs.plugins.hilt.android)
 }
 
+dependencies {
+	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.appcompat)
+	implementation(libs.material)
+	testImplementation(libs.junit)
+	androidTestImplementation(libs.androidx.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation(project(":core:common"))
+	implementation(project(":core:data"))
+	implementation(project(":core:domain"))
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
+}
+
+kotlin {
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
+}
+
 android {
 	namespace = "de.seleri.core.repository"
 	compileSdk = project
@@ -35,63 +60,44 @@ android {
 	}
 }
 
-kotlin {
-	jvmToolchain(
-		project
-			.property("jdkVersion")
+kover.reports {
+	filters.excludes {
+		classes(
+			"",
+		)
+		packages(
+			"",
+		)
+	}
+	verify {
+		warningInsteadOfFailure = false
+
+		val minimum = project
+			.property("koverMinValue")
 			.toString()
 			.toInt()
-	)
-}
-
-dependencies {
-	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.appcompat)
-	implementation(libs.material)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-
-	implementation(project(":core:common"))
-	implementation(project(":core:data"))
-	implementation(project(":core:domain"))
-
-	implementation(libs.hilt.android)
-	ksp(libs.hilt.android.compiler)
-}
-
-kover {
-	reports {
-		filters {
-			excludes {
-				classes(
-					"",
-				)
-				packages(
-					"",
-				)
+		rule(
+			"${
+				project
+					.property("koverRulePrefix")
+					.toString()
+			} $minimum${
+				project
+					.property("koverRuleSuffix")
+					.toString()
+			}"
+		) {
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.BRANCH
 			}
-		}
-		verify {
-			warningInsteadOfFailure = false
-
-			rule("genug Abzweigungen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.BRANCH
-				}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.INSTRUCTION
 			}
-			rule("genug Anweisungen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.INSTRUCTION
-				}
-			}
-			rule("genug Zeilen getestet") {
-				bound {
-					minValue = 66
-					coverageUnits = CoverageUnit.LINE
-				}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.LINE
 			}
 		}
 	}

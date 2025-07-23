@@ -11,6 +11,28 @@ dependencies {
 	testImplementation(libs.junit)
 }
 
+kotlin {
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
+}
+
+java {
+	toolchain {
+		languageVersion.set(
+			JavaLanguageVersion.of(
+				project
+					.property("jdkVersion")
+					.toString()
+					.toInt()
+			)
+		)
+	}
+}
+
 kover.reports {
 	filters.excludes {
 		classes(
@@ -51,28 +73,5 @@ kover.reports {
 				coverageUnits = CoverageUnit.LINE
 			}
 		}
-	}
-}
-
-
-kotlin {
-	jvmToolchain(
-		project
-			.property("jdkVersion")
-			.toString()
-			.toInt()
-	)
-}
-
-java {
-	toolchain {
-		languageVersion.set(
-			JavaLanguageVersion.of(
-				project
-					.property("jdkVersion")
-					.toString()
-					.toInt()
-			)
-		)
 	}
 }

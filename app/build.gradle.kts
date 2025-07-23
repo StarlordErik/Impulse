@@ -10,6 +10,52 @@ plugins {
   alias(libs.plugins.hilt.android)
 }
 
+dependencies {
+	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.appcompat)
+	implementation(libs.androidx.activity)
+	implementation(libs.androidx.constraintlayout)
+
+	implementation(libs.snakeyaml)
+
+	implementation(libs.compose.ui)
+	implementation(libs.compose.material3)
+	implementation(libs.compose.ui.tooling.preview)
+	implementation(libs.activity.compose)
+	implementation(libs.androidx.navigation.compose)
+	implementation(libs.androidx.lifecycle.runtime.compose)
+	implementation(libs.material)
+
+	implementation(libs.hilt.android)
+	implementation(libs.androidx.junit.ktx)
+	implementation(libs.androidx.ui.test.junit4.android)
+	implementation(libs.androidx.navigation.testing.android)
+	ksp(libs.hilt.android.compiler)
+	implementation(libs.androidx.hilt.navigation.compose)
+	implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+	testImplementation(libs.junit)
+	testImplementation(libs.mokk)
+	testImplementation(libs.robolectric)
+	testImplementation(libs.androidx.core)
+
+	androidTestImplementation(libs.androidx.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
+	androidTestImplementation(libs.compose.ui.test.junit4)
+
+	debugImplementation(libs.compose.ui.tooling)
+	debugImplementation(libs.compose.ui.test.manifest)
+}
+
+kotlin {
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
+}
+
 android {
   namespace = "de.seleri.frontend"
   compileSdk = project.property("compileSdk").toString().toInt()
@@ -59,93 +105,51 @@ android {
   }
 }
 
-kotlin {
-	jvmToolchain(
-		project
-			.property("jdkVersion")
+kover.reports {
+	filters.excludes {
+		classes(
+			"*ImpulseViewModel_*",
+			"*AppModule*",
+			"*Datenbanksystem\$Companion",
+		)
+		packages(
+			"de.seleri.tools", "de.seleri.frontend", "dagger.hilt.internal.aggregatedroot.codegen", "hilt_aggregated_deps"
+		)
+	}
+	verify {
+		warningInsteadOfFailure = false
+
+		val minimum = project
+			.property("koverMinValue")
 			.toString()
 			.toInt()
-	)
+		rule(
+			"${
+				project
+					.property("koverRulePrefix")
+					.toString()
+			} $minimum${
+				project
+					.property("koverRuleSuffix")
+					.toString()
+			}"
+		) {
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.BRANCH
+			}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.INSTRUCTION
+			}
+			bound {
+				minValue = minimum
+				coverageUnits = CoverageUnit.LINE
+			}
+		}
+	}
 }
 
-dependencies {
-  implementation(libs.androidx.core.ktx)
-  implementation(libs.androidx.appcompat)
-  implementation(libs.androidx.activity)
-  implementation(libs.androidx.constraintlayout)
-
-  implementation(libs.snakeyaml)
-
-  implementation(libs.compose.ui)
-  implementation(libs.compose.material3)
-  implementation(libs.compose.ui.tooling.preview)
-  implementation(libs.activity.compose)
-  implementation(libs.androidx.navigation.compose)
-  implementation(libs.androidx.lifecycle.runtime.compose)
-  implementation(libs.material)
-
-  implementation(libs.hilt.android)
-  implementation(libs.androidx.junit.ktx)
-  implementation(libs.androidx.ui.test.junit4.android)
-  implementation(libs.androidx.navigation.testing.android)
-  ksp(libs.hilt.android.compiler)
-  implementation(libs.androidx.hilt.navigation.compose)
-  implementation(libs.androidx.lifecycle.viewmodel.compose)
-
-  testImplementation(libs.junit)
-  testImplementation(libs.mokk)
-  testImplementation(libs.robolectric)
-  testImplementation(libs.androidx.core)
-
-  androidTestImplementation(libs.androidx.junit)
-  androidTestImplementation(libs.androidx.espresso.core)
-  androidTestImplementation(libs.compose.ui.test.junit4)
-
-  debugImplementation(libs.compose.ui.tooling)
-  debugImplementation(libs.compose.ui.test.manifest)
-}
-
-kover {
-  reports {
-    filters {
-      excludes {
-        classes(
-          "*ImpulseViewModel_*",
-          "*AppModule*",
-          "*Datenbanksystem\$Companion",
-        )
-        packages(
-          "de.seleri.tools",
-          "de.seleri.frontend",
-          "dagger.hilt.internal.aggregatedroot.codegen",
-          "hilt_aggregated_deps"
-        )
-      }
-    }
-    verify {
-      warningInsteadOfFailure = false
-
-      rule("genug Abzweigungen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.BRANCH
-        }
-      }
-      rule("genug Anweisungen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.INSTRUCTION
-        }
-      }
-      rule("genug Zeilen getestet") {
-        bound {
-          minValue = 66
-          coverageUnits = CoverageUnit.LINE
-        }
-      }
-    }
-  }
-}
 
 tasks.register("alleDebugTests") {
   dependsOn(

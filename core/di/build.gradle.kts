@@ -6,6 +6,31 @@ plugins {
 	alias(libs.plugins.hilt.android)
 }
 
+dependencies {
+	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.appcompat)
+	implementation(libs.material)
+	testImplementation(libs.junit)
+	androidTestImplementation(libs.androidx.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation(project(":core:data"))
+	implementation(project(":core:repository"))
+	implementation(project(":core:domain"))
+
+	implementation(libs.hilt.android)
+	ksp(libs.hilt.android.compiler)
+}
+
+kotlin {
+	jvmToolchain(
+		project
+			.property("jdkVersion")
+			.toString()
+			.toInt()
+	)
+}
+
 android {
 	namespace = "de.seleri.core.di"
 	compileSdk = project
@@ -32,30 +57,4 @@ android {
 	lint {
 		warningsAsErrors = true
 	}
-}
-
-kotlin {
-	jvmToolchain(
-		project
-			.property("jdkVersion")
-			.toString()
-			.toInt()
-	)
-}
-
-dependencies {
-
-	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.appcompat)
-	implementation(libs.material)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-
-	implementation(project(":core:data"))
-	implementation(project(":core:repository"))
-	implementation(project(":core:domain"))
-
-	implementation(libs.hilt.android)
-	ksp(libs.hilt.android.compiler)
 }
