@@ -75,6 +75,7 @@ androidx-navigation-testing-android = { group = "androidx.navigation", name = "n
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 room = { id = "androidx.room", version.ref = "room" }
 

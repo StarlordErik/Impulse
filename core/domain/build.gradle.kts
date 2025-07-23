@@ -1,7 +1,7 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
-	kotlin("jvm")
+	alias(libs.plugins.jetbrainsKotlinJvm)
 
 	alias(libs.plugins.detekt)
 	alias(libs.plugins.kover)
