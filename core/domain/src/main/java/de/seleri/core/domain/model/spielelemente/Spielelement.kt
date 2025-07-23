@@ -12,4 +12,12 @@ interface Spielelement: DatenbankObjekt {
 	val selbstErstellt: Boolean
 	val inaktiv: Boolean
 	val favorisiert: Boolean
+
+	fun getBezeichnung(sprache: Sprache): String =
+		lokalisierungIn(sprache)?.bezeichnung
+			?: if (sprache == ogSprache) lokalisierungIn(Sprache.OG)!!.bezeichnung
+			else "localization unavailable"
+
+	private fun lokalisierungIn(sprache: Sprache): Lokalisierung? =
+		lokalisierungen.find { it.sprache == sprache }
 }
