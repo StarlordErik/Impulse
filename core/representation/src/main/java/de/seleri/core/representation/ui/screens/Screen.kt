@@ -4,7 +4,7 @@ import de.seleri.core.domain.model.idTypes.SpielelementID
 
 sealed class Screen(val route: String) {
 
-	object StartScreen: Screen(route = "start")
+	object Startscreen: Screen(route = "start")
 
-	class SpielScreen(spielID: SpielelementID.SpielID): Screen(route = "spiel/${spielID.toInt()}")
+	class Spielscreen(spielID: SpielelementID.SpielID): Screen(route = "spiel/${spielID.toInt()}")
 }
