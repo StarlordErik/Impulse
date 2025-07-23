@@ -1,10 +1,10 @@
 package de.seleri.core.domain.model.idTypes
 
-sealed class SpielelementID: IDtoInt {
+sealed class SpielelementID(override val keyID: Int): IDtoInt {
 
-	class KartentextID(override val keyID: Int): SpielelementID()
+	class KartentextID(keyID: Int): SpielelementID(keyID)
 
-	class KategorieID(override val keyID: Int): SpielelementID()
+	class KategorieID(keyID: Int): SpielelementID(keyID)
 
-	class SpielID(override val keyID: Int): SpielelementID()
+	class SpielID(keyID: Int): SpielelementID(keyID)
 }
