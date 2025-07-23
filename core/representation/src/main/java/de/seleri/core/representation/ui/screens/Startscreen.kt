@@ -26,8 +26,6 @@ import de.seleri.core.representation.viewModels.StartscreenVM
 fun Startscreen(
 	vm: StartscreenVM, onSpielClicked: (SpielelementID.SpielID) -> Unit
 ) {
-	val spielMetaObjekte = vm.spielMetaObjekte
-
 	LazyColumn(
 		modifier = Modifier
 			.fillMaxSize()
@@ -36,9 +34,9 @@ fun Startscreen(
 		item {
 			Titel()
 		}
-		items(items = spielMetaObjekte, key = { it.id }) { spielMetaObjekt ->
-			SammlungsButton(vm.getDarstellungAlsText(spielMetaObjekt)) {
-				onSpielClicked(SpielelementID.SpielID(spielMetaObjekt.id))
+		items(items = vm.getSpiele()) { spiel ->
+			SammlungsButton(vm.getDarstellungAlsText(spiel)) {
+				onSpielClicked(vm.getID(spiel))
 			}
 		}
 	}
