@@ -10,6 +10,7 @@ dependencies {
 	implementation(project(":core:data"))
 	implementation(project(":core:repository"))
 	implementation(project(":core:domain"))
+	implementation(project(":core:representation"))
 
 	implementation(libs.hilt.android)
 	ksp(libs.hilt.android.compiler)
