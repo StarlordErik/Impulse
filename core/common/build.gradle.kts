@@ -26,21 +26,31 @@ kover {
 		verify {
 			warningInsteadOfFailure = false
 
-			val min = project
+			val minimum = project
 				.property("koverMinValue")
 				.toString()
 				.toInt()
-			rule("Mindestens $min% getestet!") {
+			rule(
+				"${
+					project
+						.property("koverRulePrefix")
+						.toString()
+				} $minimum${
+					project
+						.property("koverRuleSuffix")
+						.toString()
+				}"
+			) {
 				bound {
-					minValue = min
+					minValue = minimum
 					coverageUnits = CoverageUnit.BRANCH
 				}
 				bound {
-					minValue = min
+					minValue = minimum
 					coverageUnits = CoverageUnit.INSTRUCTION
 				}
 				bound {
-					minValue = min
+					minValue = minimum
 					coverageUnits = CoverageUnit.LINE
 				}
 			}
