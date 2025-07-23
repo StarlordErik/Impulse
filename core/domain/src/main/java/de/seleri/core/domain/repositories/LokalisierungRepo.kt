@@ -10,7 +10,7 @@ interface LokalisierungRepo {
 	suspend fun upsertForKartentext(kartentextID: SpielelementID.KartentextID, lokalisierung: Lokalisierung)
 	suspend fun delete(lokalisierung: Lokalisierung)
 
-	suspend fun getForSpiel(spielID: SpielelementID.SpielID): Collection<Lokalisierung>
-	suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): Collection<Lokalisierung>
-	suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): Collection<Lokalisierung>
+	suspend fun getForSpiel(spielID: SpielelementID.SpielID): List<Lokalisierung>
+	suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): List<Lokalisierung>
+	suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): List<Lokalisierung>
 }

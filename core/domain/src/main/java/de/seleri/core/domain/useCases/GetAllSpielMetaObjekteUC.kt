@@ -5,6 +5,6 @@ import de.seleri.core.domain.repositories.SpielRepo
 
 class GetAllSpielMetaObjekteUC(private val spielRepo: SpielRepo) {
 
-	suspend operator fun invoke(): Collection<SpielMetaObjekt> =
+	suspend operator fun invoke(): List<SpielMetaObjekt> =
 		spielRepo.getAllMetaObjekte()
 }

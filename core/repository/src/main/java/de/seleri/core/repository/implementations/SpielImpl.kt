@@ -70,7 +70,7 @@ class SpielImpl(
 	}
 
 
-	override suspend fun getAllMetaObjekte(): Collection<SpielMetaObjekt> {
+	override suspend fun getAllMetaObjekte(): List<SpielMetaObjekt> {
 		val spielEntities = dao.getAll()
 
 		return spielEntities.map { spielEntity ->

@@ -23,7 +23,7 @@ open class StartscreenVM(
 
 	private fun loadSpielMetaObjekte() {
 		viewModelScope.launch {
-			spielMetaObjekte = getAllSpielMetasUseCase() as List
+			spielMetaObjekte = getAllSpielMetasUseCase()
 		}
 	}
 

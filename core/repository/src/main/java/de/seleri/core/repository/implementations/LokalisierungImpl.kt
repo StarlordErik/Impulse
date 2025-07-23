@@ -33,17 +33,17 @@ class LokalisierungImpl(
 		dao.delete(lokalisierung.toNullEntity())
 
 
-	override suspend fun getForSpiel(spielID: SpielelementID.SpielID): Collection<Lokalisierung> =
+	override suspend fun getForSpiel(spielID: SpielelementID.SpielID): List<Lokalisierung> =
 		dao
 			.getForSpiel(spielID.toInt())
 			.map { it.toDomain() }
 
-	override suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): Collection<Lokalisierung> =
+	override suspend fun getForKategorie(kategorieID: SpielelementID.KategorieID): List<Lokalisierung> =
 		dao
 			.getForKategorie(kategorieID.toInt())
 			.map { it.toDomain() }
 
-	override suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): Collection<Lokalisierung> =
+	override suspend fun getForKartentext(kartentextID: SpielelementID.KartentextID): List<Lokalisierung> =
 		dao
 			.getForKartentext(kartentextID.toInt())
 			.map { it.toDomain() }
