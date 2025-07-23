@@ -16,8 +16,8 @@ android {
 
   defaultConfig {
     applicationId = "de.seleri.frontend"
-    minSdk = project.property("minSdk").toString().toInt()
-    targetSdk = project.property("targetSdk").toString().toInt()
+		minSdk = 29
+		targetSdk = 36
     versionCode = 1
     versionName = "1.0"
 

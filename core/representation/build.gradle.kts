@@ -10,7 +10,10 @@ plugins {
 
 android {
 	namespace = "de.seleri.core.representation"
-	compileSdk = 36
+	compileSdk = project
+		.property("compileSdk")
+		.toString()
+		.toInt()
 
 	buildTypes {
 		release {
