@@ -6,6 +6,8 @@ plugins {
 
 	alias(libs.plugins.detekt)
 	alias(libs.plugins.kover)
+
+	alias(libs.plugins.androidxComposeCompiler)
 }
 
 dependencies {
@@ -13,11 +15,27 @@ dependencies {
 	implementation(project(":core:domain"))
 
 	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.appcompat)
-	implementation(libs.material)
-	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
+
+	/* Jetpack Compose: */
+
+	// um die Versionen von allen Compose-Abhängigkeiten über composeBOM zu regeln
+	implementation(platform(libs.androidx.compose.bom))
+	androidTestImplementation(platform(libs.androidx.compose.bom))
+
+	// Material Design 3: enthält die UI-Elemente und Farbverwaltung
+	implementation(libs.androidx.material3)
+
+	// Android Studio Preview support
+	implementation(libs.androidx.ui.tooling.preview)
+	debugImplementation(libs.androidx.ui.tooling)
+
+	// UI Tests
+	androidTestImplementation(libs.androidx.ui.test.junit4)
+	debugImplementation(libs.androidx.ui.test.manifest)
+
+	// View-Models
+	implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
 
 kotlin {
@@ -54,6 +72,10 @@ android {
 
 	lint {
 		warningsAsErrors = true
+	}
+
+	buildFeatures {
+		compose = true
 	}
 }
 
