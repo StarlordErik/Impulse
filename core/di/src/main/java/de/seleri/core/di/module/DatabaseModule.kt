@@ -1,4 +1,4 @@
-package de.seleri.core.di
+package de.seleri.core.di.module
 
 import android.content.Context
 import androidx.room.Room
