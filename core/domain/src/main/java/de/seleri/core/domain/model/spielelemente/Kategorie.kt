@@ -24,4 +24,37 @@ data class Kategorie(
 
 	override fun setKartentexteUnbesprochen(): Collection<Kartentext> =
 		getAktiveKartentexte().flatMap { it.setKartentexteUnbesprochen() }
+
+	override fun getKategorieMitKarte(
+		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>
+	): Pair<Kategorie, List<Kartentext>> =
+		this to bestandteile
+			.flatMap { it.getUngeseheneKartentexte() }
+			.chooseNkartentexte(anzahlTexte, bereitsEnthalteneKT)
+
+	private fun Collection<Kartentext>.chooseNkartentexte(
+		erforderlicheAnzahlAnKT: Int, bereitsEnthalteneKT: Collection<Kartentext>
+	): List<Kartentext> {
+		if (erforderlicheAnzahlAnKT <= 0) return emptyList()
+
+		val shuffled = this.shuffled()
+		val erg = mutableListOf<Kartentext>()
+
+		var i = 0
+		var skip = 0
+		while (i < erforderlicheAnzahlAnKT) {
+			val index = i++ + skip
+			if (index >= shuffled.size) return erg // keine OutOfBoundException pls
+
+			val kt = shuffled[index]
+			if (kt.id in bereitsEnthalteneKT.map { it.id }) {
+				i--
+				skip++
+			} else {
+				erg.add(kt)
+			}
+		}
+
+		return erg + bereitsEnthalteneKT
+	}
 }

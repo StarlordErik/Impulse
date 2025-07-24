@@ -1,5 +1,6 @@
 package de.seleri.core.domain.model.spielelemente.spiel
 
+import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
 import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
@@ -11,4 +12,15 @@ data class Spiel(
 	val texteProKarte: Int = 1,
 
 	private val sammlungDaten: SammlungDaten<Kategorie>,
-): SpielMeta by spielMetaDaten, Sammlung<Kategorie> by sammlungDaten
+): SpielMeta by spielMetaDaten, Sammlung<Kategorie> by sammlungDaten {
+
+	override fun getKategorieMitKarte(
+		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>
+	): Pair<Kategorie, List<Kartentext>> {
+		return chooseKategorie().getKategorieMitKarte(texteProKarte)
+	}
+
+	private fun chooseKategorie(): Kategorie {
+		return getAktiveBestandteile().random()
+	}
+}

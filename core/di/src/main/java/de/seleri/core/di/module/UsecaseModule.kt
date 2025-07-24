@@ -7,7 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.SpielRepo
 import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
-import de.seleri.core.domain.useCases.GetKarteUC
+import de.seleri.core.domain.useCases.GetKategorieMitKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
 
 @Module
@@ -23,6 +23,6 @@ object UsecaseModule {
 		GetSpielUC(spielRepo)
 
 	@Provides
-	fun provideGetKarteUC(kartentextRepo: KartentextRepo): GetKarteUC =
-		GetKarteUC(kartentextRepo)
+	fun provideGetKarteUC(kartentextRepo: KartentextRepo): GetKategorieMitKarteUC =
+		GetKategorieMitKarteUC(kartentextRepo)
 }
