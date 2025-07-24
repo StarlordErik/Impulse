@@ -18,4 +18,10 @@ data class Kategorie(
 
 	override fun getUngeseheneKartentexte(): Collection<Kartentext> =
 		getUnbesprocheneKartentexte().flatMap { it.getUngeseheneKartentexte() }
+
+	override fun setKartentexteUngesehen(): Collection<Kartentext> =
+		getUnbesprocheneKartentexte().flatMap { it.setKartentexteUngesehen() }
+
+	override fun setKartentexteUnbesprochen(): Collection<Kartentext> =
+		getAktiveKartentexte().flatMap { it.setKartentexteUnbesprochen() }
 }

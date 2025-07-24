@@ -17,4 +17,13 @@ data class Kartentext(
 
 	override fun getUngeseheneKartentexte(): Collection<Kartentext> =
 		if (!gesehen) getUnbesprocheneKartentexte() else emptyList()
+
+
+	override fun setKartentexteUngesehen(): Collection<Kartentext> =
+		if (gesehen && this in getUnbesprocheneKartentexte()) listOf(this.copy(gesehen = false)) else emptyList()
+
+	override fun setKartentexteUnbesprochen(): Collection<Kartentext> =
+		if (besprochen && this in getAktiveKartentexte()) setKartentexteUngesehen().map {
+			it.copy(besprochen = false)
+		} else emptyList()
 }

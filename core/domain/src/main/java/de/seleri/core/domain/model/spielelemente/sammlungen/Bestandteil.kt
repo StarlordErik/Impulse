@@ -7,4 +7,7 @@ interface Bestandteil {
 	fun getAktiveKartentexte(): Collection<Kartentext>
 	fun getUnbesprocheneKartentexte(): Collection<Kartentext>
 	fun getUngeseheneKartentexte(): Collection<Kartentext>
+
+	fun setKartentexteUngesehen(): Collection<Kartentext>
+	fun setKartentexteUnbesprochen(): Collection<Kartentext>
 }
