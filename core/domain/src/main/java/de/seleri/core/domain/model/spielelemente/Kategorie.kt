@@ -8,4 +8,14 @@ data class Kategorie(
 	private val spielelementDaten: SpielelementDaten,
 
 	private val sammlungDaten: SammlungDaten<Kartentext>,
-): Spielelement by spielelementDaten, Sammlung<Kartentext> by sammlungDaten, Bestandteil
+): Spielelement by spielelementDaten, Sammlung<Kartentext> by sammlungDaten, Bestandteil {
+
+	override fun getAktiveKartentexte(): Collection<Kartentext> =
+		if (!inaktiv) bestandteile.flatMap { it.getAktiveKartentexte() } else emptyList()
+
+	override fun getUnbesprocheneKartentexte(): Collection<Kartentext> =
+		getAktiveKartentexte().flatMap { it.getUnbesprocheneKartentexte() }
+
+	override fun getUngeseheneKartentexte(): Collection<Kartentext> =
+		getUnbesprocheneKartentexte().flatMap { it.getUngeseheneKartentexte() }
+}
