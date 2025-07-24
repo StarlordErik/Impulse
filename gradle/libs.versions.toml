@@ -28,7 +28,7 @@ hiltAndroid = "2.57"
 hiltNavigationCompose = "1.2.0"
 ksp = "2.2.0-2.0.2"
 
-mokk = "1.14.5"
+mockk = "1.14.5"
 robolectric = "4.15.1"
 junitKtx = "1.2.1"
 uiTestJunit4Android = "1.8.3"
@@ -73,7 +73,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 
-mokk = { group = "io.mockk", name = "mockk", version.ref = "mokk" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }

@@ -35,7 +35,7 @@ dependencies {
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 	testImplementation(libs.junit)
-	testImplementation(libs.mokk)
+	testImplementation(libs.mockk)
 	testImplementation(libs.robolectric)
 	testImplementation(libs.androidx.core)
 

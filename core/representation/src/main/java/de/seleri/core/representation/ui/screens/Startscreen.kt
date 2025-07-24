@@ -18,9 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.representation.viewModels.StartscreenVM
+import io.mockk.every
+import io.mockk.mockk
 
 @Composable
 fun Startscreen(
@@ -89,5 +93,30 @@ fun SammlungsButton(buttonText: String, onClick: () -> Unit) {
 				modifier = Modifier.padding(15.dp)
 			)
 		}
+	}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun StartscreenPreview() {
+	// Mokk VM
+	val mockVM = mockk<StartscreenVM>(relaxed = true)
+
+	// Beispiel-Spiele IDs
+	val sampleSpiele = listOf(
+		mockk<SpielMetaObjekt>(relaxed = true),
+		mockk<SpielMetaObjekt>(relaxed = true),
+		mockk<SpielMetaObjekt>(relaxed = true)
+	)
+
+	every { mockVM.getSpiele() } returns sampleSpiele
+	every { mockVM.getDarstellungAlsText(any()) } answers {
+		val spiel = firstArg<SpielMetaObjekt>()
+		"Spiel Name für ${spiel.id}"
+	}
+	every { mockVM.getID(any()) } answers { firstArg() }
+
+	Startscreen(vm = mockVM) { spielId ->
+		// Preview: Klick-Handler leer lassen
 	}
 }
