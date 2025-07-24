@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.useCases.GetSpielUC
 import kotlinx.coroutines.launch
@@ -22,4 +23,7 @@ open class SpielscreenVM(
 			spiel = getSpielUC(spielID)
 		}
 	}
+
+	fun getRandomKartentext(kategorie: Kategorie): String =
+		TODO()
 }

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.seleri.core.representation.viewModels.SpielscreenVM
@@ -40,7 +40,7 @@ fun Spielscreen(
 
 		SpielScreenRow {
 			SpielTitel(vm.getDarstellungAlsText(spiel), Modifier.weight(1f))
-			SpielScreenIcon(SpielScreenIcons.Einstellungsrad)
+			SpielScreenIcon(SpielscreenIcons.Einstellungsrad)
 		}
 
 		val kartentexte = remember { mutableStateMapOf<Int, String>() }
@@ -49,23 +49,20 @@ fun Spielscreen(
 				.weight(1f)
 				.fillMaxWidth(), verticalArrangement = Arrangement.Center
 		) {
-			items(
-				spiel
-					.getAktuelleKategorien()
-					.toList(), key = { it.id }) { kategorie ->
-				val initialText = viewModel.getName(kategorie)
+			items(spiel!!.bestandteile as List) { kategorie ->
+				val initialText = vm.getDarstellungAlsText(kategorie)
 				val kartentext = kartentexte[kategorie.id]
 					?: initialText
 
 				SammlungsButton(kartentext) {
-					kartentexte[kategorie.id] = viewModel.getRandomKartentext(kategorie)
+					kartentexte[kategorie.id] = vm.getRandomKartentext(kategorie)
 				}
 			}
 		}
 
 		SpielScreenRow {
-			SpielScreenIcon(SpielScreenIcons.PfeilFuerLetzteKarte)
-			SpielScreenIcon(SpielScreenIcons.KarteLoeschen)
+			SpielScreenIcon(SpielscreenIcons.PfeilFuerLetzteKarte)
+			SpielScreenIcon(SpielscreenIcons.KarteLoeschen)
 		}
 	}
 }
@@ -112,10 +109,9 @@ fun SpielTitel(name: String, modifier: Modifier) {
  * @param icon Icon aus [SpielScreenIcons]
  */
 @Composable
-fun SpielScreenIcon(icon: SpielScreenIcons) {
+fun SpielScreenIcon(icon: SpielscreenIcons) {
 	Icon(
-		painter = painterResource(icon.ressource),
-		contentDescription = stringResource(icon.beschreibung),
+		painter = painterResource(icon.ressource), contentDescription = null,
 		tint = MaterialTheme.colorScheme.primaryContainer,
 		modifier = Modifier.size(50.dp)
 	)
