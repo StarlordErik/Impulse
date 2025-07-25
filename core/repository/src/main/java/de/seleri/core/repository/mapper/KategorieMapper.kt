@@ -8,7 +8,6 @@ import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 
 object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
@@ -36,6 +35,6 @@ fun KategorieEntity.toDomain(
 			favorisiert = spielelementBasis.favorisiert,
 			ogSprache = spielelementBasis.ogSprache,
 			lokalisierungen = lokalisierungen
-		), sammlungDaten = SammlungDaten(kartentexte)
+		), bestandteile = kartentexte
 	)
 }

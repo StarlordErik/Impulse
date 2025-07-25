@@ -7,7 +7,6 @@ import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.sammlungen.SammlungDaten
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaDaten
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
@@ -37,8 +36,7 @@ fun SpielEntity.toDomain(
 	Spiel(
 		spielMetaDaten = entityToSpielMetaDaten(this, lokalisierungen),
 		anleitung = anleitung,
-		texteProKarte = texteProKarte,
-		sammlungDaten = SammlungDaten(kategorien)
+		texteProKarte = texteProKarte, bestandteile = kategorien
 	)
 
 
