@@ -1,4 +1,4 @@
-package de.seleri.frontend.screens
+package de.seleri.app
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
@@ -9,27 +9,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import de.seleri.viewModel.ImpulseViewModel
+import de.seleri.core.representation.ui.screens.ScreenRoute
+import de.seleri.core.representation.ui.screens.Spielscreen
+import de.seleri.core.representation.ui.screens.Startscreen
 
-/**
- * Dauer der Transition zwischen den [Screens] in Millisekunden
- */
 const val TRANSITION_DAUER = 300
 
-/**
- * Navigation über die [Screens]
- *
- * @param viewModel [ImpulseViewModel] mit allen Daten und Funktionen der App
- */
 @Composable
 fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
   val navController = rememberNavController()
 
-  NavHost(navController, startDestination = Screens.StartScreen.route) {
+	NavHost(navController, startDestination = ScreenRoute.StartscreenRoute.route) {
 
-    composable(Screens.StartScreen.route, enterTransition = {
+		composable(ScreenRoute.StartscreenRoute.route, enterTransition = {
       when (initialState.destination.route) {
-        Screens.SpielScreen.route + "/{spielID}" -> slideIntoContainer(
+				ScreenRoute.SpielscreenRoute.route + "/{spielID}" -> slideIntoContainer(
           AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(TRANSITION_DAUER)
         )
 
@@ -37,7 +31,7 @@ fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
       }
     }, exitTransition = {
       when (targetState.destination.route) {
-        Screens.SpielScreen.route + "/{spielID}" -> slideOutOfContainer(
+				ScreenRoute.SpielscreenRoute.route + "/{spielID}" -> slideOutOfContainer(
           AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween(TRANSITION_DAUER)
         )
 
@@ -45,7 +39,7 @@ fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
       }
     }, popEnterTransition = {
       when (initialState.destination.route) {
-        Screens.SpielScreen.route + "/{spielID}" -> slideIntoContainer(
+				ScreenRoute.SpielscreenRoute.route + "/{spielID}" -> slideIntoContainer(
           AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(TRANSITION_DAUER)
         )
 
@@ -53,25 +47,25 @@ fun Navigation(viewModel: ImpulseViewModel = hiltViewModel()) {
       }
     }, popExitTransition = {
       when (targetState.destination.route) {
-        Screens.SpielScreen.route + "/{spielID}" -> slideOutOfContainer(
+				ScreenRoute.SpielscreenRoute.route + "/{spielID}" -> slideOutOfContainer(
           AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween(TRANSITION_DAUER)
         )
 
         else -> null
       }
     }) {
-      StartScreen(navController, viewModel)
+			Startscreen(navController, viewModel)
     }
 
     composable(
-      route = Screens.SpielScreen.route + "/{spielID}", arguments = listOf(
+			route = ScreenRoute.SpielscreenRoute.route + "/{spielID}", arguments = listOf(
         navArgument("spielID") {
           type = NavType.IntType
           nullable = false
         })) {eingabe ->
       val id = eingabe.arguments!!.getInt("spielID")
       val spiel = viewModel.getSpiel(id)
-      SpielScreen(viewModel, spiel)
+			Spielscreen(viewModel, spiel)
     }
   }
 }

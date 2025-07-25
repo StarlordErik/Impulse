@@ -1,50 +1,46 @@
-import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
-
 plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsKotlinAndroid)
+
   alias(libs.plugins.detekt)
-  alias(libs.plugins.kover)
-  alias(libs.plugins.androidxComposeCompiler)
+
   alias(libs.plugins.ksp)
-  alias(libs.plugins.hilt.android)
+	alias(libs.plugins.hilt.android)
+
+	alias(libs.plugins.androidxComposeCompiler)
 }
 
 dependencies {
+	implementation(project(":core:common"))
+	implementation(project(":core:di"))
+	implementation(project(":core:representation"))
+
 	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.appcompat)
 	implementation(libs.androidx.activity)
-	implementation(libs.androidx.constraintlayout)
-
-	implementation(libs.snakeyaml)
-
-	implementation(libs.compose.ui)
-	implementation(libs.compose.material3)
-	implementation(libs.compose.ui.tooling.preview)
-	implementation(libs.activity.compose)
-	implementation(libs.androidx.navigation.compose)
-	implementation(libs.androidx.lifecycle.runtime.compose)
-	implementation(libs.material)
+	// implementation(libs.androidx.appcompat)
+	// implementation(libs.androidx.constraintlayout)
 
 	implementation(libs.hilt.android)
-	implementation(libs.androidx.junit.ktx)
-	implementation(libs.androidx.ui.test.junit4.android)
-	implementation(libs.androidx.navigation.testing.android)
 	ksp(libs.hilt.android.compiler)
-	implementation(libs.androidx.hilt.navigation.compose)
-	implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-	testImplementation(libs.junit)
-	testImplementation(libs.mockk)
-	testImplementation(libs.robolectric)
-	testImplementation(libs.androidx.core)
+	implementation(libs.androidx.navigation.compose)
+	implementation(libs.androidx.navigation.testing.android)
+	implementation(libs.androidx.hilt.navigation.compose)
+
+// 	implementation(libs.compose.ui)
+// 	implementation(libs.compose.material3)
+// 	implementation(libs.compose.ui.tooling.preview)
+// 	implementation(libs.activity.compose)
+// 	implementation(libs.androidx.lifecycle.runtime.compose)
+//
+// 	implementation(libs.androidx.junit.ktx)
+// 	implementation(libs.androidx.ui.test.junit4.android)
+// 	implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+//	testImplementation(libs.androidx.core)
 
 	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-	androidTestImplementation(libs.compose.ui.test.junit4)
 
-	debugImplementation(libs.compose.ui.tooling)
-	debugImplementation(libs.compose.ui.test.manifest)
 }
 
 kotlin {
@@ -57,11 +53,11 @@ kotlin {
 }
 
 android {
-  namespace = "de.seleri.frontend"
+	namespace = "de.seleri.app"
   compileSdk = project.property("compileSdk").toString().toInt()
 
   defaultConfig {
-    applicationId = "de.seleri.frontend"
+		applicationId = "de.seleri.app"
 		minSdk = 29
 		targetSdk = 36
     versionCode = 1
@@ -104,52 +100,6 @@ android {
     kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
   }
 }
-
-kover.reports {
-	filters.excludes {
-		classes(
-			"*ImpulseViewModel_*",
-			"*AppModule*",
-			"*Datenbanksystem\$Companion",
-		)
-		packages(
-			"de.seleri.tools", "de.seleri.frontend", "dagger.hilt.internal.aggregatedroot.codegen", "hilt_aggregated_deps"
-		)
-	}
-	verify {
-		warningInsteadOfFailure = false
-
-		val minimum = project
-			.property("koverMinValue")
-			.toString()
-			.toInt()
-		rule(
-			"${
-				project
-					.property("koverRulePrefix")
-					.toString()
-			} $minimum${
-				project
-					.property("koverRuleSuffix")
-					.toString()
-			}"
-		) {
-			bound {
-				minValue = minimum
-				coverageUnits = CoverageUnit.BRANCH
-			}
-			bound {
-				minValue = minimum
-				coverageUnits = CoverageUnit.INSTRUCTION
-			}
-			bound {
-				minValue = minimum
-				coverageUnits = CoverageUnit.LINE
-			}
-		}
-	}
-}
-
 
 tasks.register("alleDebugTests") {
   dependsOn(
