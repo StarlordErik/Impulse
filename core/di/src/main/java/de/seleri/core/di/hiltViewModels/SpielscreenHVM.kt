@@ -1,7 +1,8 @@
 package de.seleri.core.di.hiltViewModels
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.domain.useCases.GetKategorieMitKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
 import de.seleri.core.representation.viewModels.SpielscreenVM
 import javax.inject.Inject

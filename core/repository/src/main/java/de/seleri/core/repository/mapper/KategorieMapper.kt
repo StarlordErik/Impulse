@@ -1,10 +1,10 @@
 package de.seleri.core.repository.mapper
 
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.spielelemente.LokalisierungEntity
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.SpielelementDaten

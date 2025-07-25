@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
 import kotlinx.coroutines.launch

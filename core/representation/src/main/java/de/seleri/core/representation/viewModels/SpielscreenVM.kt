@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel

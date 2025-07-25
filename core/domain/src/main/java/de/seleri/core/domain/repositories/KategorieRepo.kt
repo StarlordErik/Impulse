@@ -1,6 +1,6 @@
 package de.seleri.core.domain.repositories
 
-import de.seleri.core.domain.model.idTypes.SpielelementID
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.basis.SammlungRepo

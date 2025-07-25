@@ -1,7 +1,7 @@
 package de.seleri.core.domain.repositories
 
+import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.idTypes.SpielelementID
 
 interface LokalisierungRepo {
 
