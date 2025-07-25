@@ -12,6 +12,7 @@ pluginManagement {
 	}
 }
 
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
@@ -32,3 +33,4 @@ include(":core:common")
 include(":core:domain")
 include(":core:di")
 include(":core:representation")
+include(":core:tools")

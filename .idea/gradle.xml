@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/repository" />
             <option value="$PROJECT_DIR$/core/representation" />
+            <option value="$PROJECT_DIR$/core/tools" />
           </set>
         </option>
       </GradleProjectSettings>
