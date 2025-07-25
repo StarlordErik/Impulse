@@ -34,13 +34,14 @@ open class SpielscreenVM(
 
 	init {
 		viewModelScope.launch {
-			spiel = getSpielUC(spielID)
+			val geladenesSpiel: Spiel = getSpielUC(spielID)
+			spiel = geladenesSpiel
 
-			val obereKMK = getKategorieMitKarteUC(spiel.texteProKarte, spiel)
+			val obereKMK = getKategorieMitKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
 			obereKategorie = obereKMK.first
 			obereKarte = obereKMK.second
 
-			val untereKMK = getKategorieMitKarteUC(spiel.texteProKarte, spiel)
+			val untereKMK = getKategorieMitKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
 			untereKategorie = untereKMK.first
 			untereKarte = untereKMK.second
 		}

@@ -3,7 +3,7 @@ package de.seleri.core.domain.model.spielelemente.sammlungen
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 
-interface Sammlung<B: Bestandteil> {
+interface Sammlung<out B: Bestandteil> {
 
 	val bestandteile: Collection<B>
 
