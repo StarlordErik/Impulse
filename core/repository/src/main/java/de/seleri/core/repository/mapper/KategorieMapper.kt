@@ -22,6 +22,7 @@ fun Kategorie.toEntity(): KategorieEntity {
 	return KategorieEntity(
 		id = id, spielelementBasis = domainToSpielelmentBasis(this)
 	)
+	// TODO Hier z.B. muss auch KategorieXkartentexte gemappt werden
 }
 
 fun KategorieEntity.toDomain(
