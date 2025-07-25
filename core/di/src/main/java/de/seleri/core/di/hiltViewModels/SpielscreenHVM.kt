@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SpielscreenHVM @Inject constructor(
-	spielID: SpielelementID.SpielID, getSpielUC: GetSpielUC
-): SpielscreenVM(spielID, getSpielUC)
+	spielID: SpielelementID.SpielID, getSpielUC: GetSpielUC, getKategorieMitKarteUC: GetKategorieMitKarteUC
+): SpielscreenVM(spielID, getSpielUC, getKategorieMitKarteUC)
