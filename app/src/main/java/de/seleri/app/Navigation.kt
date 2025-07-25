@@ -3,17 +3,13 @@ package de.seleri.app
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import dagger.hilt.android.EntryPointAccessors
-import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.di.hiltViewModels.SpielscreenHVMFactoryProvider
+import de.seleri.core.di.hiltViewModels.SpielscreenHVM
 import de.seleri.core.di.hiltViewModels.StartscreenHVM
 import de.seleri.core.representation.ui.screens.ScreenRoute
 import de.seleri.core.representation.ui.screens.Spielscreen
@@ -72,17 +68,8 @@ fun Navigation() {
 				navArgument("spielID") {
 					type = NavType.IntType
 					nullable = false
-				})
-		) { eingabe ->
-			val spielID = SpielelementID.SpielID(eingabe.arguments!!.getInt("spielID")) // TODO UNUSED
-
-			val factory = EntryPointAccessors
-				.fromApplication(
-					LocalContext.current.applicationContext, SpielscreenHVMFactoryProvider::class.java
-				)
-				.spielscreenHVMFactory()
-			val spielscreenHVM = remember { factory.create(spielID) }
-
+				})) {
+			val spielscreenHVM: SpielscreenHVM = hiltViewModel()
 			Spielscreen(vm = spielscreenHVM)
 		}
 	}
