@@ -55,6 +55,13 @@ android {
 		.toString()
 		.toInt()
 
+	defaultConfig {
+		minSdk = project
+			.property("minSdk")
+			.toString()
+			.toInt()
+	}
+
 	buildTypes {
 		release {
 			isMinifyEnabled = false
