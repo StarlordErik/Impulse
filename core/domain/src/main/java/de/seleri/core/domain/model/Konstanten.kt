@@ -19,4 +19,6 @@ object Konstanten {
 	val BESPROCHEN = false
 
 	val BILD_DATEINAME = null
+	val ANLEITUNG = null
+	val TEXTE_PRO_KARTE = 1
 }
