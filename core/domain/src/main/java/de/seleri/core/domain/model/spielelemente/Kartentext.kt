@@ -56,7 +56,7 @@ data class Kartentext(
 			)
 
 		fun fromAllInOneEingabe(
-			bezeichnung: String,
+			text: String,
 
 			id: Int = Konstanten.ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
@@ -68,7 +68,7 @@ data class Kartentext(
 		): Kartentext =
 			Kartentext(
 				spielelementDaten = SpielelementDaten.fromAllInOneEingabe(
-					bezeichnung = bezeichnung,
+					bezeichnung = text,
 
 					id = id,
 					ogSprache = ogSprache,
