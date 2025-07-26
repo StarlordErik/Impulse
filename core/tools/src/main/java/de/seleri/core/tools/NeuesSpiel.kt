@@ -2,6 +2,7 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
+import java.io.File
 
 @Suppress("MaxLineLength")
 fun main() {
@@ -99,38 +100,51 @@ fun main() {
 		name = spielName, kategorienMitKartentexten = kategorienMitKartentexten, ogSprache = ogSprache
 	)
 
-	checkAufDerKonsole(spiel)
+	ausgabeInDatei(spiel)
 }
 
-private fun checkAufDerKonsole(spiel: Spiel) {
-	val spielLokalisierungen = spiel.lokalisierungen.map { lokalisierung ->
-		lokalisierung.sprache to lokalisierung.bezeichnung
-	}
-	println("Folgendes Spiel wurde erstellt:")
-	println("\"${spielLokalisierungen.first().second}\" in den Sprachen: ${spielLokalisierungen.map { it.first }}\n")
 
-	val kategorieLokalisierungen = spiel.bestandteile.map { kategorie ->
-		kategorie.lokalisierungen.first().bezeichnung
-	}
-	println("mit den Kategorien:")
-	println(kategorieLokalisierungen)
-	println()
+private fun ausgabeInDatei(spiel: Spiel) {
+	val outputFile = File("core/tools/src/main/java/de/seleri/core/tools/build/spiel.txt")
+	outputFile.parentFile.mkdirs()
 
-	val kartentextLokalisierungen = spiel.bestandteile.map { kategorie ->
-		kategorie.bestandteile.map { kartentext ->
-			kartentext.lokalisierungen.map { lokalisierung ->
-				lokalisierung.bezeichnung.replace("\n", "\\n")
+	val content = buildString {
+		val spielLokalisierungen = spiel.lokalisierungen.map { lokalisierung ->
+			lokalisierung.sprache to lokalisierung.bezeichnung
+		}
+		appendLine("Folgendes Spiel wurde erstellt:")
+		appendLine("\"${spielLokalisierungen.first().second}\" in den Sprachen: ${spielLokalisierungen.map { it.first }}")
+		appendLine()
+
+		val kategorieLokalisierungen = spiel.bestandteile.map { kategorie ->
+			kategorie.lokalisierungen.first().bezeichnung
+		}
+		appendLine("mit den Kategorien:")
+		appendLine(kategorieLokalisierungen)
+		appendLine()
+
+		val kartentextLokalisierungen = spiel.bestandteile.map { kategorie ->
+			kategorie.bestandteile.map { kartentext ->
+				kartentext.lokalisierungen.map { lokalisierung ->
+					lokalisierung.bezeichnung.replace("\n", "\\n")
+				}
 			}
 		}
-	}
 
-	val kmkLokalisierungen = kategorieLokalisierungen.zip(kartentextLokalisierungen)
+		val kmkLokalisierungen = kategorieLokalisierungen.zip(kartentextLokalisierungen)
 
-	kmkLokalisierungen.forEach { kategorieMitKartentexten ->
-		println("${kategorieMitKartentexten.first}:")
-		kategorieMitKartentexten.second.forEach { kartentext ->
-			println("\"${kartentext.first()}\",")
+		kmkLokalisierungen.forEach { kategorieMitKartentexten ->
+			appendLine("${kategorieMitKartentexten.first}:")
+			kategorieMitKartentexten.second.forEach { kartentext ->
+				appendLine("\"${kartentext.first()}\",")
+			}
+			appendLine()
 		}
-		println()
 	}
+
+	outputFile.writeText(content)
+	println(
+		"Ausgabe gespeichert in: ${outputFile.absolutePath}\n" + "\t(Psst: Wenn das kein Link zur Datei ist, main() einfach nochmal ausführen.)"
+	)
 }
+
