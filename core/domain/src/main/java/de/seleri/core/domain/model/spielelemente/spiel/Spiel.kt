@@ -5,6 +5,7 @@ import de.seleri.core.domain.model.Konstanten
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
+import de.seleri.core.domain.model.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
@@ -16,10 +17,10 @@ data class Spiel(
 	override val bestandteile: Collection<Kategorie>,
 ): SpielMeta by spielMetaDaten, Sammlung<Kategorie> {
 
-	override fun getKategorieMitKarte(
+	override fun getKarte(
 		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>
-	): Pair<Kategorie, List<Kartentext>> {
-		return chooseKategorie().getKategorieMitKarte(texteProKarte)
+	): Karte {
+		return chooseKategorie().getKarte(texteProKarte)
 	}
 
 	private fun chooseKategorie(): Kategorie {

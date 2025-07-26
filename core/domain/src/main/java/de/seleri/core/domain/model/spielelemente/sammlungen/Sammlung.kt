@@ -1,7 +1,6 @@
 package de.seleri.core.domain.model.spielelemente.sammlungen
 
 import de.seleri.core.domain.model.spielelemente.Kartentext
-import de.seleri.core.domain.model.spielelemente.Kategorie
 
 interface Sammlung<out B: Bestandteil> {
 
@@ -16,9 +15,9 @@ interface Sammlung<out B: Bestandteil> {
 	fun setAllKTunbesprochen(): Collection<Kartentext> =
 		bestandteile.flatMap { it.setKartentexteUnbesprochen() }
 
-	fun getKategorieMitKarte(
+	fun getKarte(
 		anzahlTexte: Int,
 		bereitsEnthalteneKT: Collection<Kartentext> = emptyList()
-	): Pair<Kategorie, List<Kartentext>>
+	): Karte
 
 }

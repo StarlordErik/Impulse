@@ -4,6 +4,7 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.domain.model.Konstanten
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.model.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.model.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
@@ -27,14 +28,16 @@ data class Kategorie(
 	override fun setKartentexteUnbesprochen(): Collection<Kartentext> =
 		getAktiveKartentexte().flatMap { it.setKartentexteUnbesprochen() }
 
-	override fun getKategorieMitKarte(
+	override fun getKarte(
 		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>
-	): Pair<Kategorie, List<Kartentext>> =
-		this to bestandteile
-			.flatMap { it.getUngeseheneKartentexte() }
-			.chooseNkartentexte(anzahlTexte, bereitsEnthalteneKT)
+	): Karte =
+		Karte(
+			this,
+			bestandteile
+				.flatMap { it.getUngeseheneKartentexte() }
+				.chooseNkartentexte(anzahlTexte, bereitsEnthalteneKT))
 
-	private fun Collection<Kartentext>.chooseNkartentexte(
+	private fun List<Kartentext>.chooseNkartentexte(
 		erforderlicheAnzahlAnKT: Int, bereitsEnthalteneKT: Collection<Kartentext>
 	): List<Kartentext> {
 		if (erforderlicheAnzahlAnKT <= 0) return emptyList()

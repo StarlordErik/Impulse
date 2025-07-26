@@ -10,26 +10,25 @@ import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
-import de.seleri.core.domain.useCases.GetKategorieMitKarteUC
+import de.seleri.core.domain.useCases.GetKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
 import kotlinx.coroutines.launch
 
 open class SpielscreenVM(
 	private val spielID: SpielelementID.SpielID,
-	private val getSpielUC: GetSpielUC,
-	private val getKategorieMitKarteUC: GetKategorieMitKarteUC
+	private val getSpielUC: GetSpielUC, private val getKarteUC: GetKarteUC
 ): ViewModel(), SpielelementAlsTextDarstellen {
 
 	var spiel by mutableStateOf<Spiel?>(null)
 		private set
 
-	var obereKarte by mutableStateOf<List<Kartentext>>(emptyList())
-		private set
 	var obereKategorie by mutableStateOf<Kategorie?>(null)
 		private set
-	var untereKarte by mutableStateOf<List<Kartentext>>(emptyList())
+	var obereKartentexte by mutableStateOf<List<Kartentext>>(emptyList())
 		private set
 	var untereKategorie by mutableStateOf<Kategorie?>(null)
+		private set
+	var untereKartentexte by mutableStateOf<List<Kartentext>>(emptyList())
 		private set
 
 	init {
@@ -37,18 +36,18 @@ open class SpielscreenVM(
 			val geladenesSpiel: Spiel = getSpielUC(spielID)
 			spiel = geladenesSpiel
 
-			val obereKMK = getKategorieMitKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
-			obereKategorie = obereKMK.first
-			obereKarte = obereKMK.second
+			val obereKarte = getKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
+			obereKategorie = obereKarte.kategorie
+			obereKartentexte = obereKarte.kartentexte
 
-			val untereKMK = getKategorieMitKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
-			untereKategorie = untereKMK.first
-			untereKarte = untereKMK.second
+			val untereKarte = getKarteUC(geladenesSpiel.texteProKarte, geladenesSpiel)
+			untereKategorie = untereKarte.kategorie
+			untereKartentexte = untereKarte.kartentexte
 		}
 	}
 
 	fun getRandomKartentext(kategorie: Kategorie): String =
-		obereKarte
+		obereKartentexte
 			.first()
 			.getBezeichnung(Sprache.OG)
 }
