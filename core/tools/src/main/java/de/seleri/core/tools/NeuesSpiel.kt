@@ -100,12 +100,12 @@ fun main() {
 		name = spielName, kategorienMitKartentexten = kategorienMitKartentexten, ogSprache = ogSprache
 	)
 
-	ausgabeInDatei(spiel)
+	checkDurchAusgabeInDatei(spiel)
 }
 
 
-private fun ausgabeInDatei(spiel: Spiel) {
-	val outputFile = File("core/tools/src/main/java/de/seleri/core/tools/build/spiel.txt")
+private fun checkDurchAusgabeInDatei(spiel: Spiel) {
+	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
 	outputFile.parentFile.mkdirs()
 
 	val content = buildString {
@@ -143,8 +143,11 @@ private fun ausgabeInDatei(spiel: Spiel) {
 	}
 
 	outputFile.writeText(content)
-	println(
-		"Ausgabe gespeichert in: ${outputFile.absolutePath}\n" + "\t(Psst: Wenn das kein Link zur Datei ist, main() einfach nochmal ausführen.)"
-	)
+	val uri =
+		outputFile
+			.toPath()
+			.toUri()
+			.toString()
+	println("Inhalte des Spiels gespeichert in: $uri")
 }
 
