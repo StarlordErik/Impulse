@@ -19,7 +19,12 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
 	), ForeignKey(
 		entity = KartentextEntity::class, parentColumns = ["id"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.Companion.CASCADE
-	)], indices = [Index("spielID"), Index("kategorieID"), Index("kartentextID")]
+	)], indices = [ // @formatter:off
+		Index("spielID"),
+		Index("kategorieID"),
+		Index("kartentextID"),
+		Index(value = ["kartentextID", "sprache"], unique = true)
+	] // @formatter:on
 )
 data class LokalisierungEntity(
 	@PrimaryKey(autoGenerate = true)
