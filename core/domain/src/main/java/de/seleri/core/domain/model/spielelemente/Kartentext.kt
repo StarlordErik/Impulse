@@ -57,6 +57,7 @@ data class Kartentext(
 
 		fun fromAllInOneEingabe(
 			bezeichnung: String,
+
 			id: Int = Konstanten.ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
@@ -66,8 +67,8 @@ data class Kartentext(
 			besprochen: Boolean = Konstanten.BESPROCHEN
 		): Kartentext =
 			Kartentext(
-				spielelementDaten = SpielelementDaten.fromEingabe(
-					lokalisierungen = listOf(Lokalisierung.fromEingabe(bezeichnung = bezeichnung)),
+				spielelementDaten = SpielelementDaten.fromAllInOneEingabe(
+					bezeichnung = bezeichnung,
 
 					id = id,
 					ogSprache = ogSprache,

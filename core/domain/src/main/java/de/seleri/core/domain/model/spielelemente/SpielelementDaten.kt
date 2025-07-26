@@ -21,6 +21,7 @@ data class SpielelementDaten(
 
 		fun fromEingabe(
 			lokalisierungen: Collection<Lokalisierung>,
+
 			id: Int = Konstanten.ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
@@ -38,19 +39,27 @@ data class SpielelementDaten(
 
 		fun fromAllInOneEingabe(
 			bezeichnung: String,
+
 			id: Int = Konstanten.ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
 			favorisiert: Boolean = Konstanten.FAVORISIERT
-		): SpielelementDaten =
-			SpielelementDaten(
-				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id),
-				lokalisierungen = listOf(Lokalisierung.fromEingabe(bezeichnung = bezeichnung)),
+		): SpielelementDaten {
+			val ogLokalisierung = Lokalisierung.fromEingabe(bezeichnung = bezeichnung)
+			val lokalisierungen = mutableListOf(ogLokalisierung)
+
+			if (ogSprache != ogLokalisierung.sprache) {
+				lokalisierungen += Lokalisierung.fromEingabe(bezeichnung = bezeichnung, sprache = ogSprache)
+			}
+
+			return SpielelementDaten(
+				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id), lokalisierungen = lokalisierungen.toList(),
 				ogSprache = ogSprache,
 				selbstErstellt = selbstErstellt,
 				inaktiv = inaktiv,
 				favorisiert = favorisiert
 			)
+		}
 	}
 }
