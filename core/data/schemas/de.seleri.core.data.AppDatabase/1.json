@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-		"identityHash": "9f54780ce8db3e8dcb332589cc5802dd",
+		"identityHash": "b3b1be60b09baede6f359a9c719f6402",
     "entities": [
       {
         "tableName": "Lokalisierungen",
@@ -81,6 +81,16 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_Lokalisierungen_kartentextID` ON `${TABLE_NAME}` (`kartentextID`)"
+					},
+					{
+						"name": "index_Lokalisierungen_kartentextID_sprache",
+						"unique": true,
+						"columnNames": [
+							"kartentextID",
+							"sprache"
+						],
+						"orders": [],
+						"createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Lokalisierungen_kartentextID_sprache` ON `${TABLE_NAME}` (`kartentextID`, `sprache`)"
           }
         ],
         "foreignKeys": [
@@ -414,7 +424,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-			"INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f54780ce8db3e8dcb332589cc5802dd')"
+			"INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b3b1be60b09baede6f359a9c719f6402')"
     ]
   }
 }
