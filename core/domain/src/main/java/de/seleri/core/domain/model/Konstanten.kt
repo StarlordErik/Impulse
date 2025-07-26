@@ -14,4 +14,7 @@ object Konstanten {
 	val SELBST_ERSTELLT = false
 	val INAKTIV = false
 	val FAVORISIERT = false
+
+	val GESEHEN = false
+	val BESPROCHEN = false
 }
