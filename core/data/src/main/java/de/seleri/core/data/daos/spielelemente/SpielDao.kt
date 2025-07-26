@@ -8,8 +8,8 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.data.entities.singles.SpielEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
 
 @Dao
 interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
@@ -31,6 +31,9 @@ interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
 
 	@Delete
 	override suspend fun delete(joinEntity: SpielXKategorie)
+
+	@Query("SELECT * FROM SpielXKategorie WHERE spielID = :sammlungsId")
+	override suspend fun getAllConnections(sammlungsId: Int): List<SpielXKategorie>
 
 	@Query(
 		"""

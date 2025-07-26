@@ -29,6 +29,9 @@ interface KategorieDao : SpielelementDao<KategorieEntity>, JoinDao<KategorieXKar
 	@Delete
 	override suspend fun delete(joinEntity: KategorieXKartentext)
 
+	@Query("SELECT * FROM KategorieXKartentext WHERE kategorieID = :sammlungsId")
+	override suspend fun getAllConnections(sammlungsId: Int): List<KategorieXKartentext>
+
 	@Query(
 		"""
         SELECT t.* FROM Kartentexte t
