@@ -5,6 +5,7 @@ import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 
 @Suppress("MaxLineLength")
 fun main() {
+	println("Hello Se Wörldu!\n")
 
 	val ogSprache = Sprache.DE
 	val spielName = "Erzählt euch mehr - Klassik"
@@ -98,5 +99,38 @@ fun main() {
 		name = spielName, kategorienMitKartentexten = kategorienMitKartentexten, ogSprache = ogSprache
 	)
 
-	println(spiel.toString())
+	checkAufDerKonsole(spiel)
+}
+
+private fun checkAufDerKonsole(spiel: Spiel) {
+	val spielLokalisierungen = spiel.lokalisierungen.map { lokalisierung ->
+		lokalisierung.sprache to lokalisierung.bezeichnung
+	}
+	println("Folgendes Spiel wurde erstellt:")
+	println("\"${spielLokalisierungen.first().second}\" in den Sprachen: ${spielLokalisierungen.map { it.first }}\n")
+
+	val kategorieLokalisierungen = spiel.bestandteile.map { kategorie ->
+		kategorie.lokalisierungen.first().bezeichnung
+	}
+	println("mit den Kategorien:")
+	println(kategorieLokalisierungen)
+	println()
+
+	val kartentextLokalisierungen = spiel.bestandteile.map { kategorie ->
+		kategorie.bestandteile.map { kartentext ->
+			kartentext.lokalisierungen.map { lokalisierung ->
+				lokalisierung.bezeichnung.replace("\n", "\\n")
+			}
+		}
+	}
+
+	val kmkLokalisierungen = kategorieLokalisierungen.zip(kartentextLokalisierungen)
+
+	kmkLokalisierungen.forEach { kategorieMitKartentexten ->
+		println("${kategorieMitKartentexten.first}:")
+		kategorieMitKartentexten.second.forEach { kartentext ->
+			println("\"${kartentext.first()}\",")
+		}
+		println()
+	}
 }
