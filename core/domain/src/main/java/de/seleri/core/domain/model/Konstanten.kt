@@ -17,4 +17,6 @@ object Konstanten {
 
 	val GESEHEN = false
 	val BESPROCHEN = false
+
+	val BILD_DATEINAME = null
 }
