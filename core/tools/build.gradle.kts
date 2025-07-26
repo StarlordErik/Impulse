@@ -1,5 +1,6 @@
 plugins {
-	alias(libs.plugins.jetbrainsKotlinJvm)
+	alias(libs.plugins.androidLibrary)
+	alias(libs.plugins.jetbrainsKotlinAndroid)
 
 	alias(libs.plugins.detekt)
 }
@@ -19,15 +20,26 @@ kotlin {
 	)
 }
 
-java {
-	toolchain {
-		languageVersion.set(
-			JavaLanguageVersion.of(
-				project
-					.property("jdkVersion")
-					.toString()
-					.toInt()
-			)
-		)
+android {
+	namespace = "de.seleri.core.tools"
+	compileSdk = project
+		.property("compileSdk")
+		.toString()
+		.toInt()
+
+	buildTypes {
+		release {
+			isMinifyEnabled = false
+			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_21
+		targetCompatibility = JavaVersion.VERSION_21
+	}
+
+	lint {
+		warningsAsErrors = true
 	}
 }
