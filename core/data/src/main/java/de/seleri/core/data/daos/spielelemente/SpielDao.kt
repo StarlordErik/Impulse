@@ -8,8 +8,8 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.SpielEntity
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.data.entities.singles.SpielEntity
 
 @Dao
 interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
@@ -28,9 +28,6 @@ interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	override suspend fun insert(joinEntity: SpielXKategorie)
-
-	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	override suspend fun insert(joinEntities: Collection<SpielXKategorie>)
 
 	@Delete
 	override suspend fun delete(joinEntity: SpielXKategorie)
