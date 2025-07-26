@@ -26,6 +26,9 @@ interface KategorieDao : SpielelementDao<KategorieEntity>, JoinDao<KategorieXKar
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	override suspend fun insert(joinEntity: KategorieXKartentext)
 
+	@Insert(onConflict = OnConflictStrategy.IGNORE)
+	override suspend fun insert(joinEntities: Collection<KategorieXKartentext>)
+
 	@Delete
 	override suspend fun delete(joinEntity: KategorieXKartentext)
 
