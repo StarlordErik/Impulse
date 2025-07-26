@@ -8,8 +8,8 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.SpielEntity
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
 
 @Dao
 interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {

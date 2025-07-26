@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
-import de.seleri.core.data.entities.singles.SpielEntity
+import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
 
 @Entity(
 	tableName = "SpielXKategorie", primaryKeys = ["spielID", "kategorieID"], foreignKeys = [ForeignKey(

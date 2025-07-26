@@ -1,7 +1,7 @@
 package de.seleri.core.repository.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.spielelemente.LokalisierungEntity
+import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.domain.model.DatenbankObjektDaten
 import de.seleri.core.domain.model.Lokalisierung
 
