@@ -29,6 +29,8 @@ class SpielImpl(
 		spielelement.lokalisierungen.map { lokalisierung ->
 			lokalisierungRepo.upsertForSpiel(spielID, lokalisierung)
 		}
+
+		updateConnections(spielelement, spielelement.bestandteile)
 	}
 
 	override suspend fun delete(spielelement: Spiel) =
@@ -54,10 +56,7 @@ class SpielImpl(
 	override suspend fun insertConnection(
 		sammlung: Spiel, bestandteil: Kategorie
 	) {
-		val spielXKategorie = SpielXKategorie(
-			spielID = sammlung.id, kategorieID = bestandteil.id
-		)
-		dao.insert(spielXKategorie)
+		insertConnectionByID(sammlung, SpielelementID.KategorieID(bestandteil.id))
 	}
 
 	override suspend fun deleteConnection(
@@ -69,6 +68,35 @@ class SpielImpl(
 		dao.delete(spielXKategorie)
 	}
 
+
+	override suspend fun updateConnections(
+		sammlung: Spiel, neueBestandteile: Collection<Kategorie>
+	) {
+		val alteConnections = dao.getAllConnections(sammlung.id)
+		val neueKids = neueBestandteile
+			.map { it.id }
+			.toMutableSet()
+
+		alteConnections.forEach { alteConnection ->
+			val alteKid = alteConnection.kategorieID
+
+			if (alteKid !in neueKids) {
+				dao.delete(alteConnection)
+				neueKids.remove(alteKid)
+			}
+		}
+
+		neueKids.forEach { neueKTid ->
+			insertConnectionByID(sammlung, SpielelementID.KategorieID(neueKTid))
+		}
+	}
+
+	private suspend fun insertConnectionByID(sammlung: Spiel, bestandteilID: SpielelementID.KategorieID) {
+		val spielXKategorie = SpielXKategorie(
+			spielID = sammlung.id, kategorieID = bestandteilID.toInt()
+		)
+		dao.insert(spielXKategorie)
+	}
 
 	override suspend fun getAllMetaObjekte(): List<SpielMetaObjekt> {
 		val spielEntities = dao.getAll()

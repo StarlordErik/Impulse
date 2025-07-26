@@ -27,6 +27,8 @@ class KategorieImpl(
 		spielelement.lokalisierungen.map { lokalisierung ->
 			lokalisierungRepo.upsertForKategorie(kategorieID, lokalisierung)
 		}
+
+		updateConnections(spielelement, spielelement.bestandteile)
 	}
 
 	override suspend fun delete(spielelement: Kategorie) =
@@ -52,10 +54,7 @@ class KategorieImpl(
 	override suspend fun insertConnection(
 		sammlung: Kategorie, bestandteil: Kartentext
 	) {
-		val kategorieXKartentext = KategorieXKartentext(
-			kategorieID = sammlung.id, kartentextID = bestandteil.id
-		)
-		dao.insert(kategorieXKartentext)
+		insertConnectionByID(sammlung, SpielelementID.KartentextID(bestandteil.id))
 	}
 
 	override suspend fun deleteConnection(
@@ -65,5 +64,34 @@ class KategorieImpl(
 			kategorieID = sammlung.id, kartentextID = bestandteil.id
 		)
 		dao.delete(kategorieXKartentext)
+	}
+
+	override suspend fun updateConnections(
+		sammlung: Kategorie, neueBestandteile: Collection<Kartentext>
+	) {
+		val alteConnections = dao.getAllConnections(sammlung.id)
+		val neueKTids = neueBestandteile
+			.map { it.id }
+			.toMutableSet()
+
+		alteConnections.forEach { alteConnection ->
+			val alteKTid = alteConnection.kartentextID
+
+			if (alteKTid !in neueKTids) {
+				dao.delete(alteConnection)
+				neueKTids.remove(alteKTid)
+			}
+		}
+
+		neueKTids.forEach { neueKTid ->
+			insertConnectionByID(sammlung, SpielelementID.KartentextID(neueKTid))
+		}
+	}
+
+	private suspend fun insertConnectionByID(sammlung: Kategorie, bestandteilID: SpielelementID.KartentextID) {
+		val kategorieXKartentext = KategorieXKartentext(
+			kategorieID = sammlung.id, kartentextID = bestandteilID.toInt()
+		)
+		dao.insert(kategorieXKartentext)
 	}
 }
