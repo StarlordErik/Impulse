@@ -14,8 +14,8 @@ data class Lokalisierung(
 	companion object {
 
 		fun fromEingabe(
-			id: Int = Konstanten.ID,
 			bezeichnung: String,
+			id: Int = Konstanten.ID,
 			sprache: Sprache = Konstanten.SPRACHE,
 			bearbeitet: Boolean = Konstanten.BEARBEITET,
 		): Lokalisierung =

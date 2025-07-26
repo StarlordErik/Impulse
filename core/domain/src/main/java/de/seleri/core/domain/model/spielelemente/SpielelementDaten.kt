@@ -20,8 +20,8 @@ data class SpielelementDaten(
 	companion object {
 
 		fun fromEingabe(
-			id: Int = Konstanten.ID,
 			lokalisierungen: Collection<Lokalisierung>,
+			id: Int = Konstanten.ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
@@ -30,6 +30,23 @@ data class SpielelementDaten(
 			SpielelementDaten(
 				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id),
 				lokalisierungen = lokalisierungen,
+				ogSprache = ogSprache,
+				selbstErstellt = selbstErstellt,
+				inaktiv = inaktiv,
+				favorisiert = favorisiert
+			)
+
+		fun fromAllInOneEingabe(
+			bezeichnung: String,
+			id: Int = Konstanten.ID,
+			ogSprache: Sprache = Konstanten.OG_SPRACHE,
+			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
+			inaktiv: Boolean = Konstanten.INAKTIV,
+			favorisiert: Boolean = Konstanten.FAVORISIERT
+		): SpielelementDaten =
+			SpielelementDaten(
+				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id),
+				lokalisierungen = listOf(Lokalisierung.fromEingabe(bezeichnung = bezeichnung)),
 				ogSprache = ogSprache,
 				selbstErstellt = selbstErstellt,
 				inaktiv = inaktiv,
