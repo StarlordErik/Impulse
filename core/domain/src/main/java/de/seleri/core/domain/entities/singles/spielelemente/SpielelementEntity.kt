@@ -3,9 +3,9 @@ package de.seleri.core.domain.entities.singles.spielelemente
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.SpielelementIDint
-import de.seleri.core.domain.entities.singles.DatenbankObjektEntity
+import de.seleri.core.domain.entities.singles.Entity
 
-interface SpielelementEntity: DatenbankObjektEntity {
+interface SpielelementEntity: Entity {
 
 	override val id: SpielelementIDint
 

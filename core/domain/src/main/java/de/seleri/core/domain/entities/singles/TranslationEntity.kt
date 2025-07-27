@@ -12,4 +12,4 @@ data class TranslationEntity(
 	val sprache: Sprache,
 	val bezeichnung: String,
 	val bearbeitet: Boolean,
-): DatenbankObjektEntity
+): Entity
