@@ -35,24 +35,28 @@ data class DatenbankSlice(
 			val rest = others.drop(1)
 
 			rest.forEach { slice ->
-				erg.translationen.addAll(slice.translationen)
-				erg.lokalisierungen.addAll(slice.lokalisierungen)
-				erg.kartentexte.addAll(slice.kartentexte)
-				erg.kategorien.addAll(slice.kategorien)
-				erg.spiele.addAll(slice.spiele)
-				erg.kategorieXkartentexte.addAll(slice.kategorieXkartentexte)
-				erg.spielXkategorien.addAll(slice.spielXkategorien)
+				erg.translationen.merge(slice.translationen)
+				erg.lokalisierungen.merge(slice.lokalisierungen)
+				erg.kartentexte.merge(slice.kartentexte)
+				erg.kategorien.merge(slice.kategorien)
+				erg.spiele.merge(slice.spiele)
+				erg.kategorieXkartentexte.merge(slice.kategorieXkartentexte)
+				erg.spielXkategorien.merge(slice.spielXkategorien)
 			}
 
-			erg.translationen.addAll(translationen)
-			erg.lokalisierungen.addAll(lokalisierungen)
-			erg.kartentexte.addAll(kartentexte)
-			erg.kategorien.addAll(kategorien)
-			erg.spiele.addAll(spiele)
-			erg.kategorieXkartentexte.addAll(kategorieXkartentexte)
-			erg.spielXkategorien.addAll(spielXkategorien)
+			erg.translationen.merge(translationen)
+			erg.lokalisierungen.merge(lokalisierungen)
+			erg.kartentexte.merge(kartentexte)
+			erg.kategorien.merge(kategorien)
+			erg.spiele.merge(spiele)
+			erg.kategorieXkartentexte.merge(kategorieXkartentexte)
+			erg.spielXkategorien.merge(spielXkategorien)
 
 			return erg
+		}
+
+		private fun <T> MutableList<T>.merge(sliceElemente: List<T>) {
+			if (sliceElemente.isNotEmpty()) this.addAll(sliceElemente)
 		}
 	}
 }
