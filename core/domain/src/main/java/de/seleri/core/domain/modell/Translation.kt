@@ -5,7 +5,7 @@ import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 
 data class Translation(
-	override val id: TranslationIDint = Konstanten.TRANSLATION_ID,
+	override val id: TranslationIDint,
 
 	val sprache: Sprache,
 	val bezeichnung: String,
@@ -18,6 +18,7 @@ data class Translation(
 			spracheMitBezeichnung: SpracheMitBezeichnung
 		): Translation =
 			Translation(
+				id = spracheMitBezeichnung.id,
 				sprache = spracheMitBezeichnung.sprache,
 				bezeichnung = spracheMitBezeichnung.bezeichnung,
 			)

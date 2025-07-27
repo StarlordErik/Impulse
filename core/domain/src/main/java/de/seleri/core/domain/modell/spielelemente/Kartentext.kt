@@ -8,7 +8,7 @@ import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
-	override val id: KartentextIDint = Konstanten.KARTENTEXT_ID,
+	override val id: KartentextIDint,
 
 	private val spielelementDaten: SpielelementDaten,
 

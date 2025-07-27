@@ -4,13 +4,12 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.KategorieIDint
 import de.seleri.core.domain.mapper.eingabeUtils.KategorieEingabe
 import de.seleri.core.domain.modell.EntityModell
-import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
-	override val id: KategorieIDint = Konstanten.KATEGORIE_ID,
+	override val id: KategorieIDint,
 
 	private val spielelementDaten: SpielelementDaten,
 

@@ -11,7 +11,7 @@ import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
-	override val id: SpielIDint = Konstanten.SPIEL_ID,
+	override val id: SpielIDint,
 
 	private val spielMetaDaten: SpielMetaDaten,
 

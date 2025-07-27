@@ -6,7 +6,7 @@ import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 
 
 data class Lokalisierung(
-	override val id: LokalisierungIDint = Konstanten.LOKALISIERUNG_ID,
+	override val id: LokalisierungIDint,
 
 	val ogSprache: Sprache, val translationen: Collection<Translation>
 ): EntityModell {
