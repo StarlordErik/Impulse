@@ -1,16 +1,20 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.KartentextIDint
 import de.seleri.core.domain.mapper.eingabeUtils.KartentextEingabe
+import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
+	override val id: KartentextIDint = Konstanten.KARTENTEXT_ID,
+
 	private val spielelementDaten: SpielelementDaten,
 
 	val gesehen: Boolean = Konstanten.GESEHEN,
 	val besprochen: Boolean = Konstanten.BESPROCHEN,
-): Spielelement by spielelementDaten, Bestandteil {
+): EntityModell, Spielelement by spielelementDaten, Bestandteil {
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =
 		if (!inaktiv) listOf(this) else emptyList()

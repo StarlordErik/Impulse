@@ -1,14 +1,15 @@
 package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 
 
 data class Lokalisierung(
-	private val entityModellDaten: EntityModellDaten = EntityModellDaten(id = Konstanten.LOKALISIERUNG_ID),
+	override val id: LokalisierungIDint = Konstanten.LOKALISIERUNG_ID,
 
 	val ogSprache: Sprache, val translationen: Collection<Translation>
-): EntityModell by entityModellDaten {
+): EntityModell {
 
 	companion object {
 

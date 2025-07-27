@@ -1,16 +1,21 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.KategorieIDint
 import de.seleri.core.domain.mapper.eingabeUtils.KategorieEingabe
+import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
+	override val id: KategorieIDint = Konstanten.KATEGORIE_ID,
+
 	private val spielelementDaten: SpielelementDaten,
 
 	override val bestandteile: Collection<Kartentext>,
-): Spielelement by spielelementDaten, Sammlung<Kartentext>, Bestandteil {
+): EntityModell, Spielelement by spielelementDaten, Sammlung<Kartentext>, Bestandteil {
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =
 		if (!inaktiv) bestandteile.flatMap { it.getAktiveKartentexte() } else emptyList()
