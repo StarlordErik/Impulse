@@ -1,8 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.modell.Konstanten
-import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.mapper.KategorieEingabe
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
@@ -65,55 +64,15 @@ data class Kategorie(
 
 	companion object {
 
-		fun fromEingabe(
-			lokalisierungen: Collection<Lokalisierung>,
-			bestandteile: Collection<Kartentext>,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT
-		): Kategorie =
-			Kategorie(
-				spielelementDaten = SpielelementDaten.fromEingabe(
-					lokalisierungen = lokalisierungen,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), bestandteile = bestandteile
-			)
-
-		fun fromAllInOneEingabe(
-			name: String,
-			kartentextTexte: Collection<String>,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT,
-
-			): Kategorie {
-			val kartentexte = kartentextTexte.map {
-				Kartentext.fromAllInOneEingabe(
-					text = it, ogSprache = ogSprache, selbstErstellt = selbstErstellt, inaktiv = inaktiv
-				)
-			}
+		fun forInitialdaten(
+			ogSprache: Sprache,
+			kategorieEingabe: KategorieEingabe,
+		): Kategorie {
+			val kartentexte = kategorieEingabe.kartentexte.map { Kartentext.forInitialdaten(ogSprache, it) }
 
 			return Kategorie(
-				spielelementDaten = SpielelementDaten.fromAllInOneEingabe(
-					bezeichnung = name,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), bestandteile = kartentexte
+				spielelementDaten = SpielelementDaten.forInitialdaten(ogSprache, kategorieEingabe.translationen),
+				bestandteile = kartentexte
 			)
 		}
 	}
