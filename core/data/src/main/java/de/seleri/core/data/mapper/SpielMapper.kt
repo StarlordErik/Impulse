@@ -54,7 +54,6 @@ private fun entityToSpielMetaDaten(entity: SpielEntity, lokalisierungen: Collect
 			selbstErstellt = entity.spielelementBasis.selbstErstellt,
 			inaktiv = entity.spielelementBasis.inaktiv,
 			favorisiert = entity.spielelementBasis.favorisiert,
-			ogSprache = entity.spielelementBasis.ogSprache,
-			lokalisierungen = lokalisierungen
+			ogSprache = entity.spielelementBasis.ogSprache, lokalisierung = lokalisierungen
 		), bildDateiname = entity.bildDateiname
 	)

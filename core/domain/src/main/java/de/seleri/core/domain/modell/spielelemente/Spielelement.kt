@@ -6,18 +6,13 @@ import de.seleri.core.domain.modell.Lokalisierung
 
 interface Spielelement: EntityModell {
 
-	val lokalisierungen: Collection<Lokalisierung>
+	val lokalisierung: Lokalisierung
 
-	val ogSprache: Sprache
 	val selbstErstellt: Boolean
 	val inaktiv: Boolean
 	val favorisiert: Boolean
 
 	fun getBezeichnung(sprache: Sprache): String =
-		lokalisierungIn(sprache)?.bezeichnung
-			?: if (sprache == ogSprache) lokalisierungIn(Sprache.OG)!!.bezeichnung
-			else "localization unavailable"
-
-	private fun lokalisierungIn(sprache: Sprache): Lokalisierung? =
-		lokalisierungen.find { it.sprache == sprache }
+		lokalisierung.translationen.find { it.sprache == sprache }?.bezeichnung
+			?: "localization unavailable"
 }

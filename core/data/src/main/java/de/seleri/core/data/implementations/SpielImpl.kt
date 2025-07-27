@@ -26,7 +26,7 @@ class SpielImpl(
 
 		val spielID = SpielelementID.SpielID(keyID)
 
-		spielelement.lokalisierungen.map { lokalisierung ->
+		spielelement.lokalisierung.map { lokalisierung ->
 			lokalisierungRepo.upsertForSpiel(spielID, lokalisierung)
 		}
 

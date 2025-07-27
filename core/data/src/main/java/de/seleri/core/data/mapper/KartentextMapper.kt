@@ -32,7 +32,6 @@ fun KartentextEntity.toDomain(
 			selbstErstellt = spielelementBasis.selbstErstellt,
 			inaktiv = spielelementBasis.inaktiv,
 			favorisiert = spielelementBasis.favorisiert,
-			ogSprache = spielelementBasis.ogSprache,
-			lokalisierungen = lokalisierungen
+			ogSprache = spielelementBasis.ogSprache, lokalisierung = lokalisierungen
 		), gesehen = gesehen, besprochen = besprochen
 	)

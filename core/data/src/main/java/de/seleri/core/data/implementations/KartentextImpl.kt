@@ -19,7 +19,7 @@ class KartentextImpl(
 
 		val kartentextID = SpielelementID.KartentextID(keyID)
 
-		spielelement.lokalisierungen.map { lokalisierung ->
+		spielelement.lokalisierung.map { lokalisierung ->
 			lokalisierungRepo.upsertForKartentext(kartentextID, lokalisierung)
 		}
 	}

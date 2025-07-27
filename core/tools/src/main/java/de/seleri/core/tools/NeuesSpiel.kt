@@ -109,7 +109,7 @@ private fun checkDurchAusgabeInDatei(spiel: Spiel) {
 	outputFile.parentFile.mkdirs()
 
 	val content = buildString {
-		val spielLokalisierungen = spiel.lokalisierungen.map { lokalisierung ->
+		val spielLokalisierungen = spiel.lokalisierung.map { lokalisierung ->
 			lokalisierung.sprache to lokalisierung.bezeichnung
 		}
 		appendLine("Folgendes Spiel wurde erstellt:")
@@ -117,7 +117,7 @@ private fun checkDurchAusgabeInDatei(spiel: Spiel) {
 		appendLine()
 
 		val kategorieLokalisierungen = spiel.bestandteile.map { kategorie ->
-			kategorie.lokalisierungen.first().bezeichnung
+			kategorie.lokalisierung.first().bezeichnung
 		}
 		appendLine("mit den Kategorien:")
 		appendLine(kategorieLokalisierungen)
@@ -125,7 +125,7 @@ private fun checkDurchAusgabeInDatei(spiel: Spiel) {
 
 		val kartentextLokalisierungen = spiel.bestandteile.map { kategorie ->
 			kategorie.bestandteile.map { kartentext ->
-				kartentext.lokalisierungen.map { lokalisierung ->
+				kartentext.lokalisierung.map { lokalisierung ->
 					lokalisierung.bezeichnung.replace("\n", "\\n")
 				}
 			}

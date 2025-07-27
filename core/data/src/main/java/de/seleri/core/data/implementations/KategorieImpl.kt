@@ -24,7 +24,7 @@ class KategorieImpl(
 
 		val kategorieID = SpielelementID.KategorieID(keyID)
 
-		spielelement.lokalisierungen.map { lokalisierung ->
+		spielelement.lokalisierung.map { lokalisierung ->
 			lokalisierungRepo.upsertForKategorie(kategorieID, lokalisierung)
 		}
 

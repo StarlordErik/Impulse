@@ -34,8 +34,7 @@ fun KategorieEntity.toDomain(
 			selbstErstellt = spielelementBasis.selbstErstellt,
 			inaktiv = spielelementBasis.inaktiv,
 			favorisiert = spielelementBasis.favorisiert,
-			ogSprache = spielelementBasis.ogSprache,
-			lokalisierungen = lokalisierungen
+			ogSprache = spielelementBasis.ogSprache, lokalisierung = lokalisierungen
 		), bestandteile = kartentexte
 	)
 }
