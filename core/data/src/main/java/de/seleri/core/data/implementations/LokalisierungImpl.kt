@@ -7,7 +7,7 @@ import de.seleri.core.data.mapper.toEntityForKartentext
 import de.seleri.core.data.mapper.toEntityForKategorie
 import de.seleri.core.data.mapper.toEntityForSpiel
 import de.seleri.core.data.mapper.toNullEntity
-import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
 
 class LokalisierungImpl(

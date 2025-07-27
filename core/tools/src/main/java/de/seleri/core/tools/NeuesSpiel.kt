@@ -1,7 +1,7 @@
 package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import java.io.File
 
 @Suppress("MaxLineLength")

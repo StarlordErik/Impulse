@@ -1,10 +1,10 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.DatenbankObjekt
-import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.Lokalisierung
 
-interface Spielelement: DatenbankObjekt {
+interface Spielelement: EntityModell {
 
 	val lokalisierungen: Collection<Lokalisierung>
 

@@ -1,7 +1,7 @@
 package de.seleri.core.domain.repositories.basis
 
-import de.seleri.core.domain.model.spielelemente.sammlungen.Bestandteil
-import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 interface SammlungRepo<B: Bestandteil, S: Sammlung<B>> {
 

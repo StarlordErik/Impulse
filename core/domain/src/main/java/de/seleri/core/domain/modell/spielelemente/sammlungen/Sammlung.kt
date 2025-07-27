@@ -1,6 +1,6 @@
-package de.seleri.core.domain.model.spielelemente.sammlungen
+package de.seleri.core.domain.modell.spielelemente.sammlungen
 
-import de.seleri.core.domain.model.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Kartentext
 
 interface Sammlung<out B: Bestandteil> {
 

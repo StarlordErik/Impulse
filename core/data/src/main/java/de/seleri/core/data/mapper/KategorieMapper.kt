@@ -3,11 +3,11 @@ package de.seleri.core.data.mapper
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
-import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.spielelemente.Kartentext
-import de.seleri.core.domain.model.spielelemente.Kategorie
-import de.seleri.core.domain.model.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.EntityModellDaten
+import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
 object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
@@ -30,7 +30,7 @@ fun KategorieEntity.toDomain(
 ): Kategorie {
 	return Kategorie(
 		spielelementDaten = SpielelementDaten(
-			DatenbankObjektDaten(id = id),
+			EntityModellDaten(id = id),
 			selbstErstellt = spielelementBasis.selbstErstellt,
 			inaktiv = spielelementBasis.inaktiv,
 			favorisiert = spielelementBasis.favorisiert,

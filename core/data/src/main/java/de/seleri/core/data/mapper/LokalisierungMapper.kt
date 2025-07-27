@@ -2,12 +2,12 @@ package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.modell.EntityModellDaten
+import de.seleri.core.domain.modell.Lokalisierung
 
 fun LokalisierungEntity.toDomain() =
 	Lokalisierung(
-		datenbankObjektDaten = DatenbankObjektDaten(id = id),
+		datenbankObjektDaten = EntityModellDaten(id = id),
 		bezeichnung = bezeichnung,
 		sprache = sprache,
 		bearbeitet = bearbeitet

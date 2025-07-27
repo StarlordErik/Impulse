@@ -1,13 +1,13 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.DatenbankObjekt
-import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.Konstanten
-import de.seleri.core.domain.model.Lokalisierung
+import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.EntityModellDaten
+import de.seleri.core.domain.modell.Konstanten
+import de.seleri.core.domain.modell.Lokalisierung
 
 data class SpielelementDaten(
-	private val datenbankObjektDaten: DatenbankObjektDaten = DatenbankObjektDaten(),
+	private val datenbankObjektDaten: EntityModellDaten = EntityModellDaten(),
 
 	override val lokalisierungen: Collection<Lokalisierung>,
 
@@ -15,7 +15,7 @@ data class SpielelementDaten(
 	override val selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 	override val inaktiv: Boolean = Konstanten.INAKTIV,
 	override val favorisiert: Boolean = Konstanten.FAVORISIERT,
-): DatenbankObjekt by datenbankObjektDaten, Spielelement {
+): EntityModell by datenbankObjektDaten, Spielelement {
 
 	companion object {
 
@@ -29,7 +29,7 @@ data class SpielelementDaten(
 			favorisiert: Boolean = Konstanten.FAVORISIERT
 		): SpielelementDaten =
 			SpielelementDaten(
-				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id),
+				datenbankObjektDaten = EntityModellDaten.fromEingabe(id),
 				lokalisierungen = lokalisierungen,
 				ogSprache = ogSprache,
 				selbstErstellt = selbstErstellt,
@@ -54,7 +54,7 @@ data class SpielelementDaten(
 			}
 
 			return SpielelementDaten(
-				datenbankObjektDaten = DatenbankObjektDaten.fromEingabe(id), lokalisierungen = lokalisierungen.toList(),
+				datenbankObjektDaten = EntityModellDaten.fromEingabe(id), lokalisierungen = lokalisierungen.toList(),
 				ogSprache = ogSprache,
 				selbstErstellt = selbstErstellt,
 				inaktiv = inaktiv,

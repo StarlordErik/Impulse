@@ -1,4 +1,4 @@
-package de.seleri.core.domain.model
+package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
 

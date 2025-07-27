@@ -1,10 +1,10 @@
-package de.seleri.core.domain.model.spielelemente.spiel
+package de.seleri.core.domain.modell.spielelemente.spiel
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.Konstanten
-import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.spielelemente.Spielelement
-import de.seleri.core.domain.model.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.Konstanten
+import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.spielelemente.Spielelement
+import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
 class SpielMetaDaten(
 	private val spielelementDaten: SpielelementDaten,

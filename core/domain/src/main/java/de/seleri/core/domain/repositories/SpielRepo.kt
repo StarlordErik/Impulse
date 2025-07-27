@@ -1,9 +1,9 @@
 package de.seleri.core.domain.repositories
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.domain.model.spielelemente.Kategorie
-import de.seleri.core.domain.model.spielelemente.spiel.Spiel
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.repositories.basis.SammlungRepo
 import de.seleri.core.domain.repositories.basis.SpielelementRepo
 

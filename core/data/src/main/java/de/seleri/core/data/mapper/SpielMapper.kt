@@ -3,13 +3,13 @@ package de.seleri.core.data.mapper
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
-import de.seleri.core.domain.model.DatenbankObjektDaten
-import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.spielelemente.Kategorie
-import de.seleri.core.domain.model.spielelemente.SpielelementDaten
-import de.seleri.core.domain.model.spielelemente.spiel.Spiel
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaDaten
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.domain.modell.EntityModellDaten
+import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDaten
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
 
 object SpielMapper: SpielelementMapper<SpielelementID.SpielID> {
 
@@ -50,7 +50,7 @@ fun SpielEntity.toMeta(
 private fun entityToSpielMetaDaten(entity: SpielEntity, lokalisierungen: Collection<Lokalisierung>): SpielMetaDaten =
 	SpielMetaDaten(
 		spielelementDaten = SpielelementDaten(
-			DatenbankObjektDaten(id = entity.id),
+			EntityModellDaten(id = entity.id),
 			selbstErstellt = entity.spielelementBasis.selbstErstellt,
 			inaktiv = entity.spielelementBasis.inaktiv,
 			favorisiert = entity.spielelementBasis.favorisiert,

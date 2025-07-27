@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.domain.model.spielelemente.Kartentext
-import de.seleri.core.domain.model.spielelemente.Kategorie
-import de.seleri.core.domain.model.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.domain.useCases.GetKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
 import kotlinx.coroutines.launch

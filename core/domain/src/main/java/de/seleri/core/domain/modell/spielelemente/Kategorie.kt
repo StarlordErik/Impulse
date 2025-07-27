@@ -1,11 +1,11 @@
-package de.seleri.core.domain.model.spielelemente
+package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.model.Konstanten
-import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.spielelemente.sammlungen.Bestandteil
-import de.seleri.core.domain.model.spielelemente.sammlungen.Karte
-import de.seleri.core.domain.model.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.modell.Konstanten
+import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
+import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
 	private val spielelementDaten: SpielelementDaten,

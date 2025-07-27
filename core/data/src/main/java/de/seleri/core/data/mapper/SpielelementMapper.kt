@@ -3,8 +3,8 @@ package de.seleri.core.data.mapper
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungEntity
 import de.seleri.core.data.entities.singles.spielelemente.SpielelementBasis
-import de.seleri.core.domain.model.Lokalisierung
-import de.seleri.core.domain.model.spielelemente.Spielelement
+import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.spielelemente.Spielelement
 
 interface SpielelementMapper<ID: SpielelementID> {
 

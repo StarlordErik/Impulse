@@ -1,7 +1,7 @@
-package de.seleri.core.domain.model.spielelemente.sammlungen
+package de.seleri.core.domain.modell.spielelemente.sammlungen
 
-import de.seleri.core.domain.model.spielelemente.Kartentext
-import de.seleri.core.domain.model.spielelemente.Spielelement
+import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Spielelement
 
 interface Bestandteil: Spielelement {
 

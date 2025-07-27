@@ -6,9 +6,9 @@ import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
 import de.seleri.core.data.mapper.toMeta
-import de.seleri.core.domain.model.spielelemente.Kategorie
-import de.seleri.core.domain.model.spielelemente.spiel.Spiel
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
