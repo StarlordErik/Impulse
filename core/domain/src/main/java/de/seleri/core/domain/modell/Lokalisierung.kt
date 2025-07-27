@@ -4,9 +4,8 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.mapper.eingabeUtils.LokalisierungEingabe
+import de.seleri.core.domain.mapper.eingabeUtils.TRANSLATION_ID_BOOSTER
 import de.seleri.core.domain.mapper.eingabeUtils.TranslationEingabe
-
-const val TRANSLATION_ID_BOOSTER = 1000000
 
 data class Lokalisierung(
 	override val id: LokalisierungIDint,
