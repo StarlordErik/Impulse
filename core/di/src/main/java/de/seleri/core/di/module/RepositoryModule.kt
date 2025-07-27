@@ -8,14 +8,14 @@ import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.spielelemente.KartentextDao
 import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.daos.spielelemente.SpielDao
+import de.seleri.core.data.implementations.KartentextImpl
+import de.seleri.core.data.implementations.KategorieImpl
+import de.seleri.core.data.implementations.LokalisierungImpl
+import de.seleri.core.data.implementations.SpielImpl
 import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
-import de.seleri.core.repository.implementations.KartentextImpl
-import de.seleri.core.repository.implementations.KategorieImpl
-import de.seleri.core.repository.implementations.LokalisierungImpl
-import de.seleri.core.repository.implementations.SpielImpl
 import javax.inject.Singleton
 
 @Module

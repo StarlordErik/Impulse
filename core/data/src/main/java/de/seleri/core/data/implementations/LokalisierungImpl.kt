@@ -1,14 +1,14 @@
-package de.seleri.core.repository.implementations
+package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.LokalisierungDao
+import de.seleri.core.data.mapper.toDomain
+import de.seleri.core.data.mapper.toEntityForKartentext
+import de.seleri.core.data.mapper.toEntityForKategorie
+import de.seleri.core.data.mapper.toEntityForSpiel
+import de.seleri.core.data.mapper.toNullEntity
 import de.seleri.core.domain.model.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
-import de.seleri.core.repository.mapper.toDomain
-import de.seleri.core.repository.mapper.toEntityForKartentext
-import de.seleri.core.repository.mapper.toEntityForKategorie
-import de.seleri.core.repository.mapper.toEntityForSpiel
-import de.seleri.core.repository.mapper.toNullEntity
 
 class LokalisierungImpl(
 	private val dao: LokalisierungDao,

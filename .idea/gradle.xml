@@ -16,7 +16,6 @@
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/di" />
             <option value="$PROJECT_DIR$/core/domain" />
-            <option value="$PROJECT_DIR$/core/repository" />
             <option value="$PROJECT_DIR$/core/representation" />
             <option value="$PROJECT_DIR$/core/tools" />
           </set>

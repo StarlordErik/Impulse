@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ImpulseTheme" parent="Theme.Material3.DayNight.NoActionBar">
+
+	<style name="ImpulseTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
         <item name="android:statusBarColor">@color/Hintergrund</item>
         <item name="android:navigationBarColor">@color/Hintergrund</item>
     </style>

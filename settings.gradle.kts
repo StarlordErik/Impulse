@@ -28,7 +28,6 @@ plugins {
 rootProject.name = "Impulse"
 include(":app")
 include(":core:data")
-include(":core:repository")
 include(":core:common")
 include(":core:domain")
 include(":core:di")

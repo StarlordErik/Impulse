@@ -1,4 +1,4 @@
-package de.seleri.core.repository.mapper
+package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungEntity

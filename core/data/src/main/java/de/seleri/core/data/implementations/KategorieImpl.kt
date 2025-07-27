@@ -1,15 +1,15 @@
-package de.seleri.core.repository.implementations
+package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
+import de.seleri.core.data.mapper.toDomain
+import de.seleri.core.data.mapper.toEntity
 import de.seleri.core.domain.model.spielelemente.Kartentext
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
-import de.seleri.core.repository.mapper.toDomain
-import de.seleri.core.repository.mapper.toEntity
 
 class KategorieImpl(
 	private val dao: KategorieDao,

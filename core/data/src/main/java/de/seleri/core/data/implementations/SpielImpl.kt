@@ -1,17 +1,17 @@
-package de.seleri.core.repository.implementations
+package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
+import de.seleri.core.data.mapper.toDomain
+import de.seleri.core.data.mapper.toEntity
+import de.seleri.core.data.mapper.toMeta
 import de.seleri.core.domain.model.spielelemente.Kategorie
 import de.seleri.core.domain.model.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
-import de.seleri.core.repository.mapper.toDomain
-import de.seleri.core.repository.mapper.toEntity
-import de.seleri.core.repository.mapper.toMeta
 
 class SpielImpl(
 	private val dao: SpielDao,
