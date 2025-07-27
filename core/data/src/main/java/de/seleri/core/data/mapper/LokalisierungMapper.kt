@@ -7,7 +7,7 @@ import de.seleri.core.domain.modell.Lokalisierung
 
 fun LokalisierungEntity.toDomain() =
 	Lokalisierung(
-		datenbankObjektDaten = EntityModellDaten(id = id),
+		entityModellDaten = EntityModellDaten(id = id),
 		bezeichnung = bezeichnung,
 		sprache = sprache,
 		bearbeitet = bearbeitet

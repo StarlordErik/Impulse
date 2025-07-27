@@ -1,29 +1,33 @@
 package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.mapper.SpracheMitBezeichnung
 
 
 data class Lokalisierung(
-	private val datenbankObjektDaten: EntityModellDaten = EntityModellDaten(),
+	private val entityModellDaten: EntityModellDaten = EntityModellDaten(id = Konstanten.LOKALISIERUNG_ID),
 
-	val bezeichnung: String,
-	val sprache: Sprache = Konstanten.SPRACHE,
-	val bearbeitet: Boolean = Konstanten.BEARBEITET,
-): EntityModell by datenbankObjektDaten {
+	val ogSprache: Sprache, val translationen: Collection<Translation>
+): EntityModell by entityModellDaten {
 
 	companion object {
 
-		fun fromEingabe(
-			bezeichnung: String,
-			id: Int = Konstanten.ID,
-			sprache: Sprache = Konstanten.SPRACHE,
-			bearbeitet: Boolean = Konstanten.BEARBEITET,
-		): Lokalisierung =
-			Lokalisierung(
-				datenbankObjektDaten = EntityModellDaten.fromEingabe(id),
-				bezeichnung = bezeichnung,
-				sprache = sprache,
-				bearbeitet = bearbeitet
-			)
+		fun forInitialdaten(
+			ogSprache: Sprache, translationen: Collection<SpracheMitBezeichnung>
+		): Lokalisierung {
+			val mehrTranslationen = translationen.toMutableList()
+
+			val vorhandeneSprachen = translationen.map { it.sprache }
+			val ogTranslation = translationen.find { it.sprache == ogSprache }
+
+			if (ogSprache !in vorhandeneSprachen && ogTranslation != null) {
+				mehrTranslationen += SpracheMitBezeichnung(
+					sprache = ogSprache, bezeichnung = ogTranslation.bezeichnung
+				)
+			}
+
+			return Lokalisierung(
+				ogSprache = ogSprache, translationen = mehrTranslationen.map { Translation.forInitialdaten(it) })
+		}
 	}
 }
