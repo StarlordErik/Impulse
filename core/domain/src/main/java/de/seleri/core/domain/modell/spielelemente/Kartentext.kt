@@ -1,8 +1,8 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.mapper.KartentextEingabe
 import de.seleri.core.domain.modell.Konstanten
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
@@ -32,50 +32,9 @@ data class Kartentext(
 
 	companion object {
 
-		fun fromEingabe(
-			lokalisierungen: Collection<Lokalisierung>,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT,
-			gesehen: Boolean = Konstanten.GESEHEN,
-			besprochen: Boolean = Konstanten.BESPROCHEN
-		): Kartentext =
+		fun forInitialdaten(ogSprache: Sprache, kartentextEingabe: KartentextEingabe): Kartentext =
 			Kartentext(
-				spielelementDaten = SpielelementDaten.fromEingabe(
-					lokalisierungen = lokalisierungen,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), gesehen = gesehen, besprochen = besprochen
-			)
-
-		fun fromAllInOneEingabe(
-			text: String,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT,
-			gesehen: Boolean = Konstanten.GESEHEN,
-			besprochen: Boolean = Konstanten.BESPROCHEN
-		): Kartentext =
-			Kartentext(
-				spielelementDaten = SpielelementDaten.fromAllInOneEingabe(
-					bezeichnung = text,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), gesehen = gesehen, besprochen = besprochen
+				spielelementDaten = SpielelementDaten.forInitialdaten(ogSprache, kartentextEingabe.translationen)
 			)
 	}
 }
