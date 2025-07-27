@@ -14,9 +14,11 @@ fun Lokalisierung.toEntity(): LokalisierungEntity =
 		id = this.id, ogSprache = this.ogSprache
 	)
 
-fun Lokalisierung.toDatenbankSlice(): DatenbankSlice =
-	DatenbankSlice(
-		translationen = this.translationen.map { it.toEntity(lokalisierungsID = this.id) },
-		lokalisierungen = listOf(this.toEntity())
+fun Lokalisierung.toDatenbankSlice(): DatenbankSlice {
+	val translationSlices = this.translationen.map { it.toDatenbankSlice(lokalisierungsID = this.id) }
+
+	return DatenbankSlice.merged(
+		others = translationSlices, lokalisierungen = listOf(this.toEntity())
 	)
+}
 
