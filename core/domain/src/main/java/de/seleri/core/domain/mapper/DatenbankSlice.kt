@@ -9,60 +9,50 @@ import de.seleri.core.domain.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.domain.entities.singles.spielelemente.SpielEntity
 
 data class DatenbankSlice(
-	val translationen: Collection<TranslationEntity>? = null,
-	val lokalisierungen: Collection<LokalisierungEntity>? = null,
-	val kartentexte: Collection<KartentextEntity>? = null,
-	val kategorien: Collection<KategorieEntity>? = null,
-	val spiele: Collection<SpielEntity>? = null,
+	val translationen: MutableList<TranslationEntity> = mutableListOf(),
+	val lokalisierungen: MutableList<LokalisierungEntity> = mutableListOf(),
+	val kartentexte: MutableList<KartentextEntity> = mutableListOf(),
+	val kategorien: MutableList<KategorieEntity> = mutableListOf(),
+	val spiele: MutableList<SpielEntity> = mutableListOf(),
 
-	val kategorieXkartentexte: Collection<KategorieXkartentext>? = null,
-	val spielXkategorien: Collection<SpielXkategorie>? = null,
+	val kategorieXkartentexte: MutableList<KategorieXkartentext> = mutableListOf(),
+	val spielXkategorien: MutableList<SpielXkategorie> = mutableListOf(),
 ) {
 
 	companion object {
 
 		fun merged(
-			others: Collection<DatenbankSlice>,
-			translationen: Collection<TranslationEntity>? = null,
-			lokalisierungen: Collection<LokalisierungEntity>? = null,
-			kartentexte: Collection<KartentextEntity>? = null,
-			kategorien: Collection<KategorieEntity>? = null,
-			spiele: Collection<SpielEntity>? = null,
-			kategorieXkartentexte: Collection<KategorieXkartentext>? = null,
-			spielXkategorien: Collection<SpielXkategorie>? = null,
+			others: List<DatenbankSlice>,
+			translationen: MutableList<TranslationEntity> = mutableListOf(),
+			lokalisierungen: MutableList<LokalisierungEntity> = mutableListOf(),
+			kartentexte: MutableList<KartentextEntity> = mutableListOf(),
+			kategorien: MutableList<KategorieEntity> = mutableListOf(),
+			spiele: MutableList<SpielEntity> = mutableListOf(),
+			kategorieXkartentexte: MutableList<KategorieXkartentext> = mutableListOf(),
+			spielXkategorien: MutableList<SpielXkategorie> = mutableListOf(),
 		): DatenbankSlice {
-			// Schritt 1: initialer Slice aus den neuen Daten
-			val initial = DatenbankSlice(
-				translationen = translationen,
-				lokalisierungen = lokalisierungen,
-				kartentexte = kartentexte,
-				kategorien = kategorien,
-				spiele = spiele,
-				kategorieXkartentexte = kategorieXkartentexte,
-				spielXkategorien = spielXkategorien
-			)
-			// Schritt 2: Fold über alle anderen Slices und merge jeweils mit den bereits akkumulierten
-			return others.fold(initial) { akkumulierteSlices, slice ->
-				DatenbankSlice(
-					translationen = merge(akkumulierteSlices.translationen, slice.translationen),
-					lokalisierungen = merge(akkumulierteSlices.lokalisierungen, slice.lokalisierungen),
-					kartentexte = merge(akkumulierteSlices.kartentexte, slice.kartentexte),
-					kategorien = merge(akkumulierteSlices.kategorien, slice.kategorien),
-					spiele = merge(akkumulierteSlices.spiele, slice.spiele),
-					kategorieXkartentexte = merge(akkumulierteSlices.kategorieXkartentexte, slice.kategorieXkartentexte),
-					spielXkategorien = merge(akkumulierteSlices.spielXkategorien, slice.spielXkategorien)
-				)
-			}
-		}
+			val erg = others.first()
+			val rest = others.drop(1)
 
-		private fun <T> merge(
-			a: Collection<T>?, b: Collection<T>?
-		): Collection<T>? =
-			when {
-				a == null && b == null -> null
-				a == null -> b
-				b == null -> a
-				else -> a + b
+			rest.forEach { slice ->
+				erg.translationen.addAll(slice.translationen)
+				erg.lokalisierungen.addAll(slice.lokalisierungen)
+				erg.kartentexte.addAll(slice.kartentexte)
+				erg.kategorien.addAll(slice.kategorien)
+				erg.spiele.addAll(slice.spiele)
+				erg.kategorieXkartentexte.addAll(slice.kategorieXkartentexte)
+				erg.spielXkategorien.addAll(slice.spielXkategorien)
 			}
+
+			erg.translationen.addAll(translationen)
+			erg.lokalisierungen.addAll(lokalisierungen)
+			erg.kartentexte.addAll(kartentexte)
+			erg.kategorien.addAll(kategorien)
+			erg.spiele.addAll(spiele)
+			erg.kategorieXkartentexte.addAll(kategorieXkartentexte)
+			erg.spielXkategorien.addAll(spielXkategorien)
+
+			return erg
+		}
 	}
 }

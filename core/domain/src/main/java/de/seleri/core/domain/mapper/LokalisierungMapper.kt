@@ -18,7 +18,7 @@ fun Lokalisierung.toDatenbankSlice(): DatenbankSlice {
 	val translationSlices = this.translationen.map { it.toDatenbankSlice(lokalisierungsID = this.id) }
 
 	return DatenbankSlice.merged(
-		others = translationSlices, lokalisierungen = listOf(this.toEntity())
+		others = translationSlices, lokalisierungen = mutableListOf(this.toEntity())
 	)
 }
 

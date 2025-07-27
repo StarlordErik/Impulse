@@ -19,4 +19,4 @@ fun Translation.toEntity(lokalisierungsID: LokalisierungIDint): TranslationEntit
 	)
 
 fun Translation.toDatenbankSlice(lokalisierungsID: LokalisierungIDint): DatenbankSlice =
-	DatenbankSlice(translationen = listOf(this.toEntity(lokalisierungsID)))
+	DatenbankSlice(translationen = mutableListOf(this.toEntity(lokalisierungsID)))
