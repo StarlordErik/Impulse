@@ -1,11 +1,12 @@
 package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.EntityIDint
 
 @Suppress("MayBeConstant")
 object Konstanten {
 
-	val ID = 0
+	val ID = EntityIDint(0)
 
 	val SPRACHE = Sprache.OG
 	val BEARBEITET = false

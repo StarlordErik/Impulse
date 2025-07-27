@@ -1,4 +1,4 @@
 package de.seleri.core.common.idInt
 
 @JvmInline
-value class TranslationIDint(val translationID: Int): EntityIDint
+value class TranslationIDint(val translationID: Int): IDint

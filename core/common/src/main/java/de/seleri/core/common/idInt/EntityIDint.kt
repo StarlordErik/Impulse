@@ -1,13 +1,4 @@
 package de.seleri.core.common.idInt
 
-interface EntityIDint
-
-
-
-
-
-
-
-
-
-
+@JvmInline
+value class EntityIDint(val id: Int): IDint
