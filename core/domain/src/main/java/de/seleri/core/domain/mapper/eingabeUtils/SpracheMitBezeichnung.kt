@@ -1,4 +1,4 @@
-package de.seleri.core.domain.mapper
+package de.seleri.core.domain.mapper.eingabeUtils
 
 import de.seleri.core.common.Sprache
 

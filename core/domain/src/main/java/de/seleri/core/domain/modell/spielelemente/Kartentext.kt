@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.mapper.KartentextEingabe
+import de.seleri.core.domain.mapper.eingabeUtils.KartentextEingabe
 import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 

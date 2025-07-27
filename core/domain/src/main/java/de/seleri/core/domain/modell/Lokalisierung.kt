@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.mapper.SpracheMitBezeichnung
+import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 
 
 data class Lokalisierung(

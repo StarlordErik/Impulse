@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.mapper.SpracheMitBezeichnung
+import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Konstanten
