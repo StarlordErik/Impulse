@@ -8,3 +8,15 @@ fun LokalisierungEntity.toModell(translationen: Collection<Translation>): Lokali
 	Lokalisierung(
 		id = this.id, ogSprache = this.ogSprache, translationen = translationen
 	)
+
+fun Lokalisierung.toEntity(): LokalisierungEntity =
+	LokalisierungEntity(
+		id = this.id, ogSprache = this.ogSprache
+	)
+
+fun Lokalisierung.toDatenbankSlice(): DatenbankSlice =
+	DatenbankSlice(
+		translationen = this.translationen.map { it.toEntity(lokalisierungsID = this.id) },
+		lokalisierungen = listOf(this.toEntity())
+	)
+
