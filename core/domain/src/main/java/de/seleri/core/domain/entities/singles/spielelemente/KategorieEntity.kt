@@ -1,6 +1,5 @@
 package de.seleri.core.domain.entities.singles.spielelemente
 
-import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.KategorieIDint
 import de.seleri.core.common.idInt.LokalisierungIDint
 
@@ -8,7 +7,6 @@ data class KategorieEntity(
 	override val id: KategorieIDint,
 
 	override val lokalisierungID: LokalisierungIDint,
-	override val ogSprache: Sprache,
 	override val selbstErstellt: Boolean,
 	override val inaktiv: Boolean,
 	override val favorisiert: Boolean,
