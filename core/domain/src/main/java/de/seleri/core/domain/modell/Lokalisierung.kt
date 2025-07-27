@@ -3,6 +3,7 @@ package de.seleri.core.domain.modell
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.TranslationIDint
+import de.seleri.core.domain.mapper.eingabeUtils.LokalisierungEingabe
 import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
 
 const val TRANSLATION_ID_BOOSTER = 1000000
@@ -16,12 +17,12 @@ data class Lokalisierung(
 	companion object {
 
 		fun forInitialdaten(
-			ogSprache: Sprache, id: LokalisierungIDint, translationen: Collection<SpracheMitBezeichnung>
+			ogSprache: Sprache, lokalisierungEingabe: LokalisierungEingabe
 		): Lokalisierung {
-			val mehrTranslationen = translationen.toMutableList()
+			val mehrTranslationen = lokalisierungEingabe.translationen.toMutableList()
 
-			val vorhandeneSprachen = translationen.map { it.sprache }
-			val ogTranslation = translationen.find { it.sprache == ogSprache }
+			val vorhandeneSprachen = lokalisierungEingabe.translationen.map { it.sprache }
+			val ogTranslation = lokalisierungEingabe.translationen.find { it.sprache == ogSprache }
 
 			if (ogSprache !in vorhandeneSprachen && ogTranslation != null) {
 				val neueID = ogTranslation.id.translationID + TRANSLATION_ID_BOOSTER
@@ -31,7 +32,9 @@ data class Lokalisierung(
 			}
 
 			return Lokalisierung(
-				id = id, ogSprache = ogSprache, translationen = mehrTranslationen.map { Translation.forInitialdaten(it) })
+				id = lokalisierungEingabe.id,
+				ogSprache = ogSprache,
+				translationen = mehrTranslationen.map { Translation.forInitialdaten(it) })
 		}
 	}
 }
