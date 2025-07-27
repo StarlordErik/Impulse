@@ -22,7 +22,7 @@ data class SpielelementDaten(
 		fun fromEingabe(
 			lokalisierungen: Collection<Lokalisierung>,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
@@ -40,7 +40,7 @@ data class SpielelementDaten(
 		fun fromAllInOneEingabe(
 			bezeichnung: String,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,

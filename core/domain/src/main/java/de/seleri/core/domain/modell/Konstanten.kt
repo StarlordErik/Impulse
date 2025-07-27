@@ -1,17 +1,30 @@
 package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.idInt.EntityIDint
+import de.seleri.core.common.idInt.AbstractEntityIDint
+import de.seleri.core.common.idInt.AbstractSpielelementIDint
+import de.seleri.core.common.idInt.KartentextIDint
+import de.seleri.core.common.idInt.KategorieIDint
+import de.seleri.core.common.idInt.LokalisierungIDint
+import de.seleri.core.common.idInt.SpielIDint
+import de.seleri.core.common.idInt.TranslationIDint
 
 @Suppress("MayBeConstant")
 object Konstanten {
 
-	val ID = EntityIDint(0)
+	val ENTITY_ID = AbstractEntityIDint(0)
 
-	val SPRACHE = Sprache.OG
-	val BEARBEITET = false
+	val TRANSLATION_ID = TranslationIDint(ENTITY_ID.id)
+	val LOKALISIERUNG_ID = LokalisierungIDint(ENTITY_ID.id)
+
+	val SPIELELEMENT_ID = AbstractSpielelementIDint(ENTITY_ID.id)
+	val KARTENTEXT_ID = KartentextIDint(ENTITY_ID.id)
+	val KATEGORIE_ID = KategorieIDint(ENTITY_ID.id)
+	val SPIEL_ID = SpielIDint(ENTITY_ID.id)
 
 	val OG_SPRACHE = Sprache.DE
+
+	val BEARBEITET = false
 	val SELBST_ERSTELLT = false
 	val INAKTIV = false
 	val FAVORISIERT = false

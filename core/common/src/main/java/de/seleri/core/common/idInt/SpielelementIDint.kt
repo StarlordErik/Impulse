@@ -1,3 +1,3 @@
 package de.seleri.core.common.idInt
 
-interface SpielelementIDint: IDint
+interface SpielelementIDint: EntityIDint

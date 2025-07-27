@@ -33,7 +33,7 @@ data class Spiel(
 			lokalisierungen: Collection<Lokalisierung>,
 			bestandteile: Collection<Kategorie>,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
@@ -59,7 +59,7 @@ data class Spiel(
 			name: String,
 			kategorienMitKartentexten: Collection<Pair<String, Collection<String>>>,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,

@@ -17,7 +17,7 @@ class SpielMetaDaten(
 		fun fromEingabe(
 			lokalisierungen: Collection<Lokalisierung>,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
@@ -39,7 +39,7 @@ class SpielMetaDaten(
 		fun fromAllInOneEingabe(
 			name: String,
 
-			id: Int = Konstanten.ID,
+			id: Int = Konstanten.ENTITY_ID,
 			ogSprache: Sprache = Konstanten.OG_SPRACHE,
 			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 			inaktiv: Boolean = Konstanten.INAKTIV,
