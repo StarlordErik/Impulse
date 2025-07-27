@@ -1,8 +1,8 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.domain.mapper.SpracheMitBezeichnung
 import de.seleri.core.domain.modell.Konstanten
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Spielelement
 import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
@@ -14,48 +14,9 @@ class SpielMetaDaten(
 
 	companion object {
 
-		fun fromEingabe(
-			lokalisierungen: Collection<Lokalisierung>,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT,
-			bildDateiname: String? = Konstanten.BILD_DATEINAME
-		): SpielMetaDaten =
+		fun forInitialdaten(ogSprache: Sprache, spielTranslationen: Collection<SpracheMitBezeichnung>): SpielMetaDaten =
 			SpielMetaDaten(
-				spielelementDaten = SpielelementDaten.fromEingabe(
-					lokalisierungen = lokalisierungen,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), bildDateiname = bildDateiname
-			)
-
-		fun fromAllInOneEingabe(
-			name: String,
-
-			id: Int = Konstanten.ENTITY_ID,
-			ogSprache: Sprache = Konstanten.OG_SPRACHE,
-			selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
-			inaktiv: Boolean = Konstanten.INAKTIV,
-			favorisiert: Boolean = Konstanten.FAVORISIERT,
-			bildDateiname: String? = Konstanten.BILD_DATEINAME
-		): SpielMetaDaten =
-			SpielMetaDaten(
-				spielelementDaten = SpielelementDaten.fromAllInOneEingabe(
-					bezeichnung = name,
-
-					id = id,
-					ogSprache = ogSprache,
-					selbstErstellt = selbstErstellt,
-					inaktiv = inaktiv,
-					favorisiert = favorisiert
-				), bildDateiname = bildDateiname
+				spielelementDaten = SpielelementDaten.forInitialdaten(ogSprache, spielTranslationen),
 			)
 	}
 }
