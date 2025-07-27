@@ -2,7 +2,7 @@ package de.seleri.core.domain.modell
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.TranslationIDint
-import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
+import de.seleri.core.domain.mapper.eingabeUtils.TranslationEingabe
 
 data class Translation(
 	override val id: TranslationIDint,
@@ -15,12 +15,12 @@ data class Translation(
 	companion object {
 
 		fun forInitialdaten(
-			spracheMitBezeichnung: SpracheMitBezeichnung
+			translationEingabe: TranslationEingabe
 		): Translation =
 			Translation(
-				id = spracheMitBezeichnung.id,
-				sprache = spracheMitBezeichnung.sprache,
-				bezeichnung = spracheMitBezeichnung.bezeichnung,
+				id = translationEingabe.id,
+				sprache = translationEingabe.sprache,
+				bezeichnung = translationEingabe.bezeichnung,
 			)
 	}
 }

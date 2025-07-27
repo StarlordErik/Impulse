@@ -4,7 +4,7 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.mapper.eingabeUtils.LokalisierungEingabe
-import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
+import de.seleri.core.domain.mapper.eingabeUtils.TranslationEingabe
 
 const val TRANSLATION_ID_BOOSTER = 1000000
 
@@ -26,7 +26,7 @@ data class Lokalisierung(
 
 			if (ogSprache !in vorhandeneSprachen && ogTranslation != null) {
 				val neueID = ogTranslation.id.translationID + TRANSLATION_ID_BOOSTER
-				mehrTranslationen += SpracheMitBezeichnung(
+				mehrTranslationen += TranslationEingabe(
 					id = TranslationIDint(neueID), sprache = ogSprache, bezeichnung = ogTranslation.bezeichnung
 				)
 			}

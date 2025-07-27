@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.mapper.eingabeUtils.SpracheMitBezeichnung
+import de.seleri.core.domain.mapper.eingabeUtils.TranslationEingabe
 import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.Spielelement
 import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
@@ -14,7 +14,7 @@ class SpielMetaDaten(
 
 	companion object {
 
-		fun forInitialdaten(ogSprache: Sprache, spielTranslationen: Collection<SpracheMitBezeichnung>): SpielMetaDaten =
+		fun forInitialdaten(ogSprache: Sprache, spielTranslationen: Collection<TranslationEingabe>): SpielMetaDaten =
 			SpielMetaDaten(
 				spielelementDaten = SpielelementDaten.forInitialdaten(ogSprache, spielTranslationen),
 			)
