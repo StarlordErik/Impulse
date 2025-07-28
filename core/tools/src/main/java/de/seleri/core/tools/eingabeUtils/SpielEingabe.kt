@@ -1,4 +1,4 @@
-package de.seleri.core.domain.mapper.eingabeUtils
+package de.seleri.core.tools.eingabeUtils
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.SpielIDint
