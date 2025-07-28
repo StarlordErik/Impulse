@@ -65,7 +65,7 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 	erikTranslationen: List<Translation?>,
 	deTranslationen: List<Translation?>,
 	enTranslationen: List<Translation?>
-): Pair<List<Lokalisierung>, Int> {
+): Pair<List<Lokalisierung>?, Int> {
 
 	// @formatter:off
 	require(
@@ -91,13 +91,18 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 
 	val lokalisierungen = mutableListOf<Lokalisierung>()
 
-	translationenProKartentext.forEach { translations ->
-		if (translations.any { it != null }) {
+	translationenProKartentext.forEach { kartentextTranslationen ->
+		if (kartentextTranslationen.any { it != null }) {
 			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen++
 
 			@Suppress("MagicNumber")
 			val lokalisierung = Lokalisierung.fromSkript(
-				neueID, ogSprache, translations[0], translations[1], translations[2], translations[3]
+				neueID,
+				ogSprache,
+				kartentextTranslationen[0],
+				kartentextTranslationen[1],
+				kartentextTranslationen[2],
+				kartentextTranslationen[3]
 			)
 			if (lokalisierung != null) {
 				lokalisierungen += lokalisierung
@@ -106,5 +111,10 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 	}
 
 	val maxID = anzahlNeueLokalisierungen - 1
-	return lokalisierungen.toList() to maxID
+
+	return if (lokalisierungen.isEmpty()) {
+		null to maxID
+	} else {
+		lokalisierungen.toList() to maxID
+	}
 }
