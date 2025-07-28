@@ -2,6 +2,7 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.mapper.eingabeUtils.fromSkript
+import de.seleri.core.domain.mapper.eingabeUtils.fromSkriptForKartentexte
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 
@@ -135,6 +136,30 @@ fun main() {
 	val kategorie4Lokalisierung = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie4OG, kategorie4ERIK, kategorie4DE, kategorie4EN
 	)
+
+	val kartentexte1LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
+		++maxLokalisierungID, ogSprache, kartentexte1OG, kartentexte1ERIK, kartentexte1DE, kartentexte1EN
+	)
+	val kartentexte1Lokalisierungen = kartentexte1LokalisierungsInfos.first
+	maxLokalisierungID += kartentexte1LokalisierungsInfos.second
+
+	val kartentexte2LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
+		++maxLokalisierungID, ogSprache, kartentexte2OG, kartentexte2ERIK, kartentexte2DE, kartentexte2EN
+	)
+	val kartentexte2Lokalisierungen = kartentexte2LokalisierungsInfos.first
+	maxLokalisierungID += kartentexte2LokalisierungsInfos.second
+
+	val kartentexte3LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
+		++maxLokalisierungID, ogSprache, kartentexte3OG, kartentexte3ERIK, kartentexte3DE, kartentexte3EN
+	)
+	val kartentexte3Lokalisierungen = kartentexte3LokalisierungsInfos.first
+	maxLokalisierungID += kartentexte3LokalisierungsInfos.second
+
+	val kartentexte4LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
+		++maxLokalisierungID, ogSprache, kartentexte4OG, kartentexte4ERIK, kartentexte4DE, kartentexte4EN
+	)
+	val kartentexte4Lokalisierungen = kartentexte4LokalisierungsInfos.first
+	maxLokalisierungID += kartentexte4LokalisierungsInfos.second
 
 //	checkDurchAusgabeInDatei()
 }
