@@ -32,3 +32,10 @@ fun Kategorie.Companion.fromSkript(
 		}
 	}
 }
+
+fun entferneNullerKategorien(kategorien: List<Kategorie?>): List<Kategorie>? {
+	val kategorienOhneNull = kategorien.filterNotNull()
+	return kategorienOhneNull.ifEmpty {
+		null
+	}
+}

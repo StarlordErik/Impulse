@@ -5,6 +5,7 @@ import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
@@ -188,6 +189,8 @@ fun main() {
 	val kategorie2 = Kategorie.fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
 	val kategorie3 = Kategorie.fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
 	val kategorie4 = Kategorie.fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
+
+	val kategorien = entferneNullerKategorien(listOf(kategorie1, kategorie2, kategorie3, kategorie4))
 
 	// Kategorien zu Spiel (mit Lokalisierungen):
 
