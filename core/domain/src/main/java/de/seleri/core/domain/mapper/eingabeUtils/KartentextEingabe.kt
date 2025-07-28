@@ -10,3 +10,16 @@ fun Kartentext.Companion.fromSkript(kartentextID: Int, lokalisierung: Lokalisier
 		id = KartentextIDint(kartentextID),
 		spielelementDaten = SpielelementDaten.fromSkript(lokalisierung),
 	)
+
+fun Kartentext.Companion.fromSkriptForAll(
+	kartentextID: Int, lokalisierungen: List<Lokalisierung>
+): Pair<List<Kartentext>, Int> {
+	var anzahlNeuerKartentexte = 0
+
+	val kartentexte = lokalisierungen.map { lokalisierung ->
+		val neueID = kartentextID + anzahlNeuerKartentexte++
+		Kartentext.fromSkript(neueID, lokalisierung)
+	}
+
+	return Pair(kartentexte, anzahlNeuerKartentexte)
+}
