@@ -16,13 +16,17 @@ fun main() {
 
 	println("Zeit für ein neues Spiel!")
 
-	val ogSprache = Sprache.DE
+	// Schau in die Datenbank; Was ist die höchste, vergebene ID der jeweiligen Tabellen?
 
 	var maxTranslationID = 0
 	var maxLokalisierungID = 0
 	var maxKartentextID = 0
 	var maxKategorieID = 0
 	var maxSpielID = 0
+
+	// In welcher Sprache ist das Spiel geschrieben?
+
+	val ogSprache = Sprache.DE
 
 	// Spiel:
 
@@ -76,6 +80,12 @@ fun main() {
 	val kartentext4TexteEN: List<String> = listOf()
 
 	// ------------------------------------ EINGABE BIS HIERHIN UND NICHT WEITER ------------------------------------
+
+	val startTranslationsID = maxTranslationID
+	val startLokalisierungID = maxLokalisierungID
+	val startKartentextID = maxKartentextID
+	val startKategorieID = maxKategorieID
+	val startSpielID = maxSpielID
 
 	// Eingabe to Translationen:
 
@@ -197,11 +207,26 @@ fun main() {
 
 	val spiel = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
 
-//	checkDurchAusgabeInDatei(spiel)
-}
+	// ---------------------------------- SPIEL WURDE ERSTELLT - NUN ZUR AUSWERTUNG ----------------------------------
 
-/*
-private fun checkDurchAusgabeInDatei(spiel: Spiel) {
+	println("Spiel wurde erstellt! Schauen wir uns an, wie viele Objekte erstellt worden sind!")
+
+	val anzahlSpiele = maxSpielID - startSpielID
+	println("$anzahlSpiele Spiel/e wurden erstellt, probably eins mit dem Namen: \"$spielNameOG\"")
+
+	val anzahlKategorien = maxKategorieID - startKategorieID
+	println("$anzahlKategorien Kategorie/n wurden erstellt")
+
+	val anzahlKartentexte = maxKartentextID - startKartentextID
+	println("$anzahlKartentexte Kartentexte wurden erstellt")
+
+	val anzahlLokalisierungen = maxLokalisierungID - startLokalisierungID
+	println("$anzahlLokalisierungen Lokalisierungen wurden erstellt")
+
+	val anzahlTranslationen = maxTranslationID - startTranslationsID
+	println("$anzahlTranslationen Translationen wurden erstellt")
+
+	/*
 	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
 	outputFile.parentFile.mkdirs()
 
@@ -246,6 +271,7 @@ private fun checkDurchAusgabeInDatei(spiel: Spiel) {
 			.toUri()
 			.toString()
 	println("Inhalte des Spiels gespeichert in: $uri")
-}
+
 
  */
+}
