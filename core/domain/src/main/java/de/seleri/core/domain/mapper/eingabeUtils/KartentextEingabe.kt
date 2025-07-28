@@ -12,15 +12,20 @@ fun Kartentext.Companion.fromSkript(kartentextID: Int, lokalisierung: Lokalisier
 	)
 
 fun Kartentext.Companion.fromSkriptForAll(
-	kartentextID: Int, lokalisierungen: List<Lokalisierung>
-): Pair<List<Kartentext>, Int> {
+	kartentextID: Int, lokalisierungen: List<Lokalisierung>?
+): Pair<List<Kartentext>?, Int> {
 	var anzahlNeuerKartentexte = 0
 
-	val kartentexte = lokalisierungen.map { lokalisierung ->
+	val kartentexte = lokalisierungen?.map { lokalisierung ->
 		val neueID = kartentextID + anzahlNeuerKartentexte++
 		Kartentext.fromSkript(neueID, lokalisierung)
 	}
 
 	val maxID = anzahlNeuerKartentexte - 1
-	return Pair(kartentexte, maxID)
+
+	return if (kartentexte == null) {
+		null to maxID
+	} else {
+		Pair(kartentexte, maxID)
+	}
 }
