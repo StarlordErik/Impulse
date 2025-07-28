@@ -26,8 +26,7 @@ fun Kategorie.Companion.fromSkript(
 			// @formatter:on
 		} else {
 			return Kategorie(
-				id = KategorieIDint(kategorieID),
-				spielelementDaten = SpielelementDaten.fromSkript(lokalisierung),
+				id = KategorieIDint(kategorieID), spielelementDaten = SpielelementDaten(lokalisierung),
 				bestandteile = kartentexte
 			)
 		}

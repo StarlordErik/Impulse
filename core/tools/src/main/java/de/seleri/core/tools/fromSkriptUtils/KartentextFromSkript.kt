@@ -8,7 +8,7 @@ import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 fun Kartentext.Companion.fromSkript(kartentextID: Int, lokalisierung: Lokalisierung): Kartentext =
 	Kartentext(
 		id = KartentextIDint(kartentextID),
-		spielelementDaten = SpielelementDaten.fromSkript(lokalisierung),
+		spielelementDaten = SpielelementDaten(lokalisierung),
 	)
 
 fun Kartentext.Companion.fromSkriptForAll(
