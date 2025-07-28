@@ -2,9 +2,11 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.mapper.eingabeUtils.fromSkript
+import de.seleri.core.domain.mapper.eingabeUtils.fromSkriptForAll
 import de.seleri.core.domain.mapper.eingabeUtils.fromSkriptForKartentexte
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
+import de.seleri.core.domain.modell.spielelemente.Kartentext
 
 @Suppress("MaxLineLength", "LongMethod")
 fun main() {
@@ -160,6 +162,26 @@ fun main() {
 	)
 	val kartentexte4Lokalisierungen = kartentexte4LokalisierungsInfos.first
 	maxLokalisierungID += kartentexte4LokalisierungsInfos.second
+
+	// Lokalisierungen zu Kartentexten:
+
+	val kartentexte1Infos = Kartentext.fromSkriptForAll(++maxKartentextID, kartentexte1Lokalisierungen)
+	val kartentexte1 = kartentexte1Infos.first
+	maxKartentextID += kartentexte1Infos.second
+
+	val kartentexte2Infos = Kartentext.fromSkriptForAll(++maxKartentextID, kartentexte2Lokalisierungen)
+	val kartentexte2 = kartentexte2Infos.first
+	maxKartentextID += kartentexte2Infos.second
+
+	val kartentexte3Infos = Kartentext.fromSkriptForAll(++maxKartentextID, kartentexte3Lokalisierungen)
+	val kartentexte3 = kartentexte3Infos.first
+	maxKartentextID += kartentexte3Infos.second
+
+	val kartentexte4Infos = Kartentext.fromSkriptForAll(++maxKartentextID, kartentexte4Lokalisierungen)
+	val kartentexte4 = kartentexte4Infos.first
+	maxKartentextID += kartentexte4Infos.second
+
+	// Kartentexte zu Kategorien (mit Lokalisierungen)
 
 //	checkDurchAusgabeInDatei()
 }
