@@ -1,4 +1,4 @@
-package de.seleri.core.tools.eingabeUtils
+package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.SpielIDint

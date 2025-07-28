@@ -4,9 +4,9 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.tools.eingabeUtils.fromSkript
-import de.seleri.core.tools.eingabeUtils.fromSkriptForAll
-import de.seleri.core.tools.eingabeUtils.fromSkriptForKartentexte
+import de.seleri.core.tools.fromSkriptUtils.fromSkript
+import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
+import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
 
 @Suppress("MaxLineLength", "LongMethod")
 fun main() {

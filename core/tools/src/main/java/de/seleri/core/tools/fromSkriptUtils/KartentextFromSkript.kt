@@ -1,4 +1,4 @@
-package de.seleri.core.tools.eingabeUtils
+package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.idInt.KartentextIDint
 import de.seleri.core.domain.modell.Lokalisierung
