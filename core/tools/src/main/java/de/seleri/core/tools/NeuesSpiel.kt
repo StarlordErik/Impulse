@@ -5,6 +5,7 @@ import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
@@ -194,7 +195,9 @@ fun main() {
 
 	// Kategorien zu Spiel (mit Lokalisierungen):
 
-//	checkDurchAusgabeInDatei()
+	val spiel = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
+
+//	checkDurchAusgabeInDatei(spiel)
 }
 
 /*
