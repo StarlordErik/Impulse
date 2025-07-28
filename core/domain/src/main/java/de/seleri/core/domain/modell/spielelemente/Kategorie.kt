@@ -1,8 +1,6 @@
 package de.seleri.core.domain.modell.spielelemente
 
-import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.KategorieIDint
-import de.seleri.core.domain.mapper.eingabeUtils.KategorieEingabe
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
@@ -64,20 +62,5 @@ data class Kategorie(
 		}
 
 		return erg + bereitsEnthalteneKT
-	}
-
-	companion object {
-
-		fun forInitialdaten(
-			ogSprache: Sprache,
-			kategorieEingabe: KategorieEingabe,
-		): Kategorie {
-			val kartentexte = kategorieEingabe.kartentexte.map { Kartentext.forInitialdaten(ogSprache, it) }
-
-			return Kategorie(
-				spielelementDaten = SpielelementDaten.forInitialdaten(ogSprache, kategorieEingabe.translationen),
-				bestandteile = kartentexte
-			)
-		}
 	}
 }
