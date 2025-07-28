@@ -7,4 +7,7 @@ data class Lokalisierung(
 	override val id: LokalisierungIDint,
 
 	val ogSprache: Sprache, val translationen: Collection<Translation>
-): EntityModell
+): EntityModell {
+
+	companion object
+}
