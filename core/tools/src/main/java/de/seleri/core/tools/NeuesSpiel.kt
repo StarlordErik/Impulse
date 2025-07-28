@@ -4,6 +4,7 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
@@ -181,7 +182,14 @@ fun main() {
 	val kartentexte4 = kartentexte4Infos.first
 	maxKartentextID += kartentexte4Infos.second
 
-	// Kartentexte zu Kategorien (mit Lokalisierungen)
+	// Kartentexte zu Kategorien (mit Lokalisierungen):
+
+	val kategorie1 = Kategorie.fromSkript(++maxKategorieID, kategorie1Lokalisierung, kartentexte1)
+	val kategorie2 = Kategorie.fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
+	val kategorie3 = Kategorie.fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
+	val kategorie4 = Kategorie.fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
+
+	// Kategorien zu Spiel (mit Lokalisierungen):
 
 //	checkDurchAusgabeInDatei()
 }
