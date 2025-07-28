@@ -63,4 +63,6 @@ data class Kategorie(
 
 		return erg + bereitsEnthalteneKT
 	}
+
+	companion object
 }

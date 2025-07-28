@@ -28,4 +28,6 @@ data class Spiel(
 	private fun chooseKategorie(): Kategorie {
 		return getAktiveBestandteile().random()
 	}
+
+	companion object
 }

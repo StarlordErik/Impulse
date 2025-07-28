@@ -9,4 +9,7 @@ data class SpielelementDaten(
 	override val selbstErstellt: Boolean = Konstanten.SELBST_ERSTELLT,
 	override val inaktiv: Boolean = Konstanten.INAKTIV,
 	override val favorisiert: Boolean = Konstanten.FAVORISIERT,
-): Spielelement
+): Spielelement {
+
+	companion object
+}

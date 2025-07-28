@@ -31,4 +31,8 @@ data class Kartentext(
 		if (besprochen && this in getAktiveKartentexte()) setKartentexteUngesehen().map {
 			it.copy(besprochen = false)
 		} else emptyList()
+
+
+	companion object
+
 }
