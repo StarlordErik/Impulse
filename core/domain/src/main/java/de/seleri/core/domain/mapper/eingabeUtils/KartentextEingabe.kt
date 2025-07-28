@@ -21,5 +21,6 @@ fun Kartentext.Companion.fromSkriptForAll(
 		Kartentext.fromSkript(neueID, lokalisierung)
 	}
 
-	return Pair(kartentexte, anzahlNeuerKartentexte)
+	val maxID = anzahlNeuerKartentexte - 1
+	return Pair(kartentexte, maxID)
 }

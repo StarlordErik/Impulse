@@ -105,5 +105,6 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 		}
 	}
 
-	return lokalisierungen.toList() to anzahlNeueLokalisierungen
+	val maxID = anzahlNeueLokalisierungen - 1
+	return lokalisierungen.toList() to maxID
 }
