@@ -2,6 +2,7 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.mapper.eingabeUtils.fromSkript
+import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 
 @Suppress("MaxLineLength", "LongMethod")
@@ -70,7 +71,7 @@ fun main() {
 
 	// ------------------------------------ EINGABE BIS HIERHIN UND NICHT WEITER ------------------------------------
 
-	// und jetzt die Verwandlung zum Modell:
+	// Eingabe to Translationen:
 
 	val spielOG = Translation.fromSkript(++maxTranslationID, Sprache.OG, spielNameOG)
 	val spielERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, spielNameERIK)
@@ -114,9 +115,26 @@ fun main() {
 
 	val kartentexte4OG = kartentext4TexteOG.map { Translation.fromSkript(++maxTranslationID, Sprache.OG, it) }
 	val kartentexte4ERIK = kartentext4TexteERIK.map { Translation.fromSkript(++maxTranslationID, Sprache.ERIK, it) }
-
 	val kartentexte4DE = kartentext4TexteDE.map { Translation.fromSkript(++maxTranslationID, Sprache.DE, it) }
 	val kartentexte4EN = kartentext4TexteEN.map { Translation.fromSkript(++maxTranslationID, Sprache.EN, it) }
+
+	// Translationen in Lokalisierung gruppieren:
+
+	val spielLokalisierung =
+		Lokalisierung.fromSkript(++maxLokalisierungID, ogSprache, spielOG, spielERIK, spielDE, spielEN)
+
+	val kategorie1Lokalisierung = Lokalisierung.fromSkript(
+		++maxLokalisierungID, ogSprache, kategorie1OG, kategorie1ERIK, kategorie1DE, kategorie1EN
+	)
+	val kategorie2Lokalisierung = Lokalisierung.fromSkript(
+		++maxLokalisierungID, ogSprache, kategorie2OG, kategorie2ERIK, kategorie2DE, kategorie2EN
+	)
+	val kategorie3Lokalisierung = Lokalisierung.fromSkript(
+		++maxLokalisierungID, ogSprache, kategorie3OG, kategorie3ERIK, kategorie3DE, kategorie3EN
+	)
+	val kategorie4Lokalisierung = Lokalisierung.fromSkript(
+		++maxLokalisierungID, ogSprache, kategorie4OG, kategorie4ERIK, kategorie4DE, kategorie4EN
+	)
 
 //	checkDurchAusgabeInDatei()
 }
