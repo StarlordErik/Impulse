@@ -1,10 +1,15 @@
 package de.seleri.core.domain.mapper.eingabeUtils
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 
+const val DE_ID_BOOSTER = 2
+const val EN_ID_BOOSTER = 3
+
+@Suppress("LongParameterList")
 fun Lokalisierung.Companion.fromSkript(
 	freieLokalisierungID: Int,
 	ogSprache: Sprache,
@@ -16,8 +21,8 @@ fun Lokalisierung.Companion.fromSkript(
 	val idBooster = when (ogSprache) {
 		Sprache.OG -> error("Du kannst nicht \"Sprache.OG\" als ogSprache setzen!")
 		Sprache.ERIK -> error("Du kannst nicht \"Sprache.ERIK\" als ogSprache setzen!")
-		Sprache.DE -> 2
-		Sprache.EN -> 3
+		Sprache.DE -> DE_ID_BOOSTER
+		Sprache.EN -> EN_ID_BOOSTER
 	}
 
 	if (ogTranslation == null) {
@@ -28,55 +33,24 @@ fun Lokalisierung.Companion.fromSkript(
 	} else {
 		val translationen = mutableListOf(ogTranslation)
 		if (erikTranslation != null) translationen += erikTranslation
+		if (deTranslation != null) translationen += deTranslation
 
 		val neueID = ogTranslation.id.translationID + idBooster
 
-		if (ogSprache == Sprache.DE) {
-			if (deTranslation != null) {
-				translationen += deTranslation
-			} else {
-				val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
-			}
-			if (enTranslation != null) translationen += enTranslation
+		if (ogSprache == Sprache.DE && deTranslation == null) {
+			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
+			translationen += neueTranslation
 		}
 
-		if (ogSprache == Sprache.EN) {
-			if (deTranslation != null) translationen += deTranslation
-			if (enTranslation != null) {
-				translationen += enTranslation
-			} else {
-				val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
-			}
-		}
-
-
-		if (deTranslation != null) translationen += deTranslation
 		if (enTranslation != null) translationen += enTranslation
 
-		val neueTranslationen: Translation?
-		if (ogSprache !in echteTranslationen.map { it.sprache }) {
-			neueTranslationen = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
-		} else neueTranslationen = null
-	}
-}
+		if (ogSprache == Sprache.EN && enTranslation == null) {
+			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
+			translationen += neueTranslation
+		}
 
-fun generiereLokalisierung(
-	ogSprache: Sprache, lokalisierungEingabe: LokalisierungEingabe
-): Lokalisierung {
-	val mehrTranslationen = lokalisierungEingabe.translationen.toMutableList()
-
-	val vorhandeneSprachen = lokalisierungEingabe.translationen.map { it.sprache }
-	val ogTranslation = lokalisierungEingabe.translationen.find { it.sprache == ogSprache }
-
-	if (ogSprache !in vorhandeneSprachen && ogTranslation != null) {
-		val neueID = ogTranslation.id.translationID + TRANSLATION_ID_BOOSTER
-		mehrTranslationen += TranslationEingabe(
-			id = TranslationIDint(neueID), sprache = ogSprache, bezeichnung = ogTranslation.bezeichnung
+		return Lokalisierung(
+			id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
 		)
 	}
-
-	return Lokalisierung(
-		id = lokalisierungEingabe.id,
-		ogSprache = ogSprache,
-		translationen = mehrTranslationen.map { generiereTranslation(it) })
 }
