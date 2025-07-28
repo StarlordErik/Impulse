@@ -1,15 +1,12 @@
 package de.seleri.core.domain.mapper.eingabeUtils
 
-import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.KartentextIDint
+import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
-data class KartentextEingabe(
-	val kartentextIDint: KartentextIDint, val lokalisierung: LokalisierungEingabe,
-)
-
-fun generiereKartentext(ogSprache: Sprache, kartentextEingabe: KartentextEingabe): Kartentext =
+fun Kartentext.Companion.fromSkript(kartentextID: Int, lokalisierung: Lokalisierung): Kartentext =
 	Kartentext(
-		id = kartentextEingabe.kartentextIDint,
-		spielelementDaten = generiereSpielelementDaten(ogSprache, kartentextEingabe.lokalisierung),
+		id = KartentextIDint(kartentextID),
+		spielelementDaten = SpielelementDaten.fromSkript(lokalisierung),
 	)
