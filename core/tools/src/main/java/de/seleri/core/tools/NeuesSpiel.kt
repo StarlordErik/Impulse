@@ -374,7 +374,7 @@ fun main() {
 	println("\t$anzahlLokalisierungen Lokalisierungen")
 
 	val anzahlTranslationen = translationsCounter - startTranslationsID
-	println("\t$anzahlTranslationen Translationen\t")
+	println("\t$anzahlTranslationen Translationen\n\n")
 
 	// --------------------------------- SPIEL ZUM CHECK IN EINE DATEI SCHREIBEN --------------------------------------
 
@@ -410,9 +410,19 @@ fun main() {
 
 private fun spielelementToTXT(spielElement: Spielelement): String =
 	buildString {
-		appendLine("\tLokalisierungID: ${spielElement.lokalisierung.id.lokalisierungID}")
-		appendLine("\t\tTranslationen: ID | Sprache | Bezeichnung")
+		appendLine("\t\tLokalisierungID: ${spielElement.lokalisierung.id.lokalisierungID}")
+		appendLine("\t\tTranslID | Spr. | Bezeichnung")
 		spielElement.lokalisierung.translationen.forEach {
-			appendLine("\t\t\t${it.id.translationID} | ${it.sprache} | ${it.bezeichnung}")
+			val id = it.id.translationID.toString()
+			val sprache = it.sprache.toString()
+			val bezeichnung = it.bezeichnung
+			appendLine("\t\t\t${in4Zeichen(id)} | ${in4Zeichen(sprache)} | $bezeichnung")
 		}
 	}
+
+private fun in4Zeichen(input: String): String {
+	val anzahlZeichen = 1 + 1 + 1 + 1
+	return input
+		.take(anzahlZeichen)
+		.padStart(anzahlZeichen, ' ')
+}
