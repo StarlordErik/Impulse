@@ -1,0 +1,632 @@
+[
+	{
+		"id": 1,
+		"lokalisierungID": 5,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 2,
+		"lokalisierungID": 6,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 3,
+		"lokalisierungID": 7,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 4,
+		"lokalisierungID": 8,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 5,
+		"lokalisierungID": 9,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 6,
+		"lokalisierungID": 10,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 7,
+		"lokalisierungID": 11,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 8,
+		"lokalisierungID": 12,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 9,
+		"lokalisierungID": 13,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 10,
+		"lokalisierungID": 14,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 11,
+		"lokalisierungID": 15,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 12,
+		"lokalisierungID": 16,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 13,
+		"lokalisierungID": 17,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 14,
+		"lokalisierungID": 18,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 15,
+		"lokalisierungID": 19,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 16,
+		"lokalisierungID": 20,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 17,
+		"lokalisierungID": 21,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 18,
+		"lokalisierungID": 22,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 19,
+		"lokalisierungID": 23,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 20,
+		"lokalisierungID": 24,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 21,
+		"lokalisierungID": 25,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 22,
+		"lokalisierungID": 26,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 23,
+		"lokalisierungID": 27,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 24,
+		"lokalisierungID": 28,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 25,
+		"lokalisierungID": 29,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 26,
+		"lokalisierungID": 30,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 27,
+		"lokalisierungID": 31,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 28,
+		"lokalisierungID": 32,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 29,
+		"lokalisierungID": 33,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 30,
+		"lokalisierungID": 34,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 31,
+		"lokalisierungID": 35,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 32,
+		"lokalisierungID": 36,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 33,
+		"lokalisierungID": 37,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 34,
+		"lokalisierungID": 38,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 35,
+		"lokalisierungID": 39,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 36,
+		"lokalisierungID": 40,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 37,
+		"lokalisierungID": 41,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 38,
+		"lokalisierungID": 42,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 39,
+		"lokalisierungID": 43,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 40,
+		"lokalisierungID": 44,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 41,
+		"lokalisierungID": 45,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 42,
+		"lokalisierungID": 46,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 43,
+		"lokalisierungID": 47,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 44,
+		"lokalisierungID": 48,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 45,
+		"lokalisierungID": 49,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 46,
+		"lokalisierungID": 50,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 47,
+		"lokalisierungID": 51,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 48,
+		"lokalisierungID": 52,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 49,
+		"lokalisierungID": 53,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 50,
+		"lokalisierungID": 54,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 51,
+		"lokalisierungID": 55,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 52,
+		"lokalisierungID": 56,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 53,
+		"lokalisierungID": 57,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 54,
+		"lokalisierungID": 58,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 55,
+		"lokalisierungID": 59,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 56,
+		"lokalisierungID": 60,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 57,
+		"lokalisierungID": 61,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 58,
+		"lokalisierungID": 62,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 59,
+		"lokalisierungID": 63,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 60,
+		"lokalisierungID": 64,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 61,
+		"lokalisierungID": 65,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 62,
+		"lokalisierungID": 66,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 63,
+		"lokalisierungID": 67,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 64,
+		"lokalisierungID": 68,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 65,
+		"lokalisierungID": 69,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 66,
+		"lokalisierungID": 70,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 67,
+		"lokalisierungID": 71,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 68,
+		"lokalisierungID": 72,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 69,
+		"lokalisierungID": 73,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	},
+	{
+		"id": 70,
+		"lokalisierungID": 74,
+		"selbstErstellt": false,
+		"inaktiv": false,
+		"favorisiert": false,
+		"gesehen": false,
+		"besprochen": false
+	}
+]
