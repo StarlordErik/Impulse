@@ -5,11 +5,13 @@ import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.spielelemente.Spielelement
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
+import java.io.File
 
 @Suppress("MaxLineLength", "LongMethod")
 fun main() {
@@ -372,56 +374,45 @@ fun main() {
 	println("\t$anzahlLokalisierungen Lokalisierungen")
 
 	val anzahlTranslationen = translationsCounter - startTranslationsID
-	println("\t$anzahlTranslationen Translationen")
+	println("\t$anzahlTranslationen Translationen\t")
 
 	// --------------------------------- SPIEL ZUM CHECK IN EINE DATEI SCHREIBEN --------------------------------------
 
-	/*
 	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
 	outputFile.parentFile.mkdirs()
 
 	val content = buildString {
-		val spielLokalisierungen = spiel.lokalisierung.map { lokalisierung ->
-			lokalisierung.sprache to lokalisierung.bezeichnung
-		}
-		appendLine("Folgendes Spiel wurde erstellt:")
-		appendLine("\"${spielLokalisierungen.first().second}\" in den Sprachen: ${spielLokalisierungen.map { it.first }}")
-		appendLine()
+		appendLine("Das ist der konkrete Inhalt - zum Checken, ob der Code das richtige getan hat:\n")
 
-		val kategorieLokalisierungen = spiel.bestandteile.map { kategorie ->
-			kategorie.lokalisierung.first().bezeichnung
-		}
-		appendLine("mit den Kategorien:")
-		appendLine(kategorieLokalisierungen)
-		appendLine()
+		// Spiel:
 
-		val kartentextLokalisierungen = spiel.bestandteile.map { kategorie ->
-			kategorie.bestandteile.map { kartentext ->
-				kartentext.lokalisierung.map { lokalisierung ->
-					lokalisierung.bezeichnung.replace("\n", "\\n")
-				}
-			}
-		}
+		appendLine("Spiel:")
+		appendLine("\tSpielID: ${spiel.id.spielID}")
+		append(spielelementToTXT(spiel))
 
-		val kmkLokalisierungen = kategorieLokalisierungen.zip(kartentextLokalisierungen)
-
-		kmkLokalisierungen.forEach { kategorieMitKartentexten ->
-			appendLine("${kategorieMitKartentexten.first}:")
-			kategorieMitKartentexten.second.forEach { kartentext ->
-				appendLine("\"${kartentext.first()}\",")
-			}
-			appendLine()
+		// Kategorien:
+		appendLine("\nKategorien:")
+		spiel.bestandteile.forEach { kategorie ->
+			appendLine("\tKategorieID: ${kategorie.id.kategorieID}")
+			append(spielelementToTXT(kategorie))
 		}
 	}
 
+	println(content)
+
 	outputFile.writeText(content)
-	val uri =
-		outputFile
-			.toPath()
-			.toUri()
-			.toString()
+	val uri = outputFile
+		.toPath()
+		.toUri()
+		.toString()
 	println("Inhalte des Spiels gespeichert in: $uri")
-
-
- */
 }
+
+private fun spielelementToTXT(spielElement: Spielelement): String =
+	buildString {
+		appendLine("\tLokalisierungID: ${spielElement.lokalisierung.id.lokalisierungID}")
+		appendLine("\t\tTranslationen: ID | Sprache | Bezeichnung")
+		spielElement.lokalisierung.translationen.forEach {
+			appendLine("\t\t\t${it.id.translationID} | ${it.sprache} | ${it.bezeichnung}")
+		}
+	}
