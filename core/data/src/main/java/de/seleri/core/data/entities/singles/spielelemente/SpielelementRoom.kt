@@ -4,9 +4,11 @@ import de.seleri.core.data.entities.singles.EntityRoom
 
 interface SpielelementRoom: EntityRoom {
 
+	val lokalisierungID: Int
+
 	val spielelementDatenRoom: SpielelementDatenRoom
 
-	val favorisiert get() = spielelementDatenRoom.favorisiert
-	val inaktiv get() = spielelementDatenRoom.inaktiv
 	val selbstErstellt get() = spielelementDatenRoom.selbstErstellt
+	val inaktiv get() = spielelementDatenRoom.inaktiv
+	val favorisiert get() = spielelementDatenRoom.favorisiert
 }

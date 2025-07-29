@@ -21,7 +21,7 @@ data class KartentextRoom(
 	@PrimaryKey(autoGenerate = true)
 	override val id: Int,
 
-	val lokalisierungID: Int,
+	override val lokalisierungID: Int,
 
 	@Embedded
 	override val spielelementDatenRoom: SpielelementDatenRoom,
