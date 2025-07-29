@@ -5,9 +5,13 @@ plugins {
 
 	alias(libs.plugins.detekt)
 	alias(libs.plugins.kover)
+
+	alias(libs.plugins.kotlinx.serialization)
 }
 
 dependencies {
+	implementation(libs.kotlinx.serialization.json)
+
 	testImplementation(libs.junit)
 }
 
