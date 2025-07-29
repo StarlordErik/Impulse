@@ -53,7 +53,7 @@ fun Lokalisierung.Companion.fromSkript(
 
 		return Lokalisierung(
 			id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
-		) to 1
+		) to 0
 	}
 }
 
@@ -95,7 +95,7 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 		val lokalisierungen = mutableListOf<Lokalisierung>()
 
 		translationenProKartentext.forEach { kartentextTranslationen ->
-			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen
+			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen++
 
 			val ogTranslation = kartentextTranslationen.first()
 			val erikTranslation = kartentextTranslationen.find { it.sprache == Sprache.ERIK }
