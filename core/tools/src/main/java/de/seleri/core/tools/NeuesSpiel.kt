@@ -355,7 +355,7 @@ fun main() {
 
 	println("Fertig!\n")
 
-	// ---------------------------------- SPIEL WURDE ERSTELLT - NUN ZUR AUSWERTUNG ----------------------------------
+	// -------------------------------- SPIEL WURDE ERSTELLT - NUN ZUR AUSWERTUNG -------------------------------------
 
 	println("\"$spielNameOG\" wurde erstellt! \n")
 
@@ -373,6 +373,8 @@ fun main() {
 
 	val anzahlTranslationen = translationsCounter - startTranslationsID
 	println("\t$anzahlTranslationen Translationen")
+
+	// --------------------------------- SPIEL ZUM CHECK IN EINE DATEI SCHREIBEN --------------------------------------
 
 	/*
 	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
