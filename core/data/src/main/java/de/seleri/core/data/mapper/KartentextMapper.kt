@@ -2,7 +2,7 @@ package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -17,13 +17,13 @@ object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 }
 
 
-fun Kartentext.toEntity(): KartentextEntityRoom =
-	KartentextEntityRoom(
+fun Kartentext.toEntity(): KartentextRoom =
+	KartentextRoom(
 		id = id, spielelementBasis = domainToSpielelmentBasis(this), gesehen = gesehen, besprochen = besprochen
 	)
 
 
-fun KartentextEntityRoom.toDomain(
+fun KartentextRoom.toDomain(
 	lokalisierungen: Collection<Lokalisierung>
 ): Kartentext =
 	Kartentext(

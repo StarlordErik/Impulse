@@ -2,7 +2,7 @@ package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -18,14 +18,14 @@ object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 	}
 }
 
-fun Kategorie.toEntity(): KategorieEntityRoom {
-	return KategorieEntityRoom(
+fun Kategorie.toEntity(): KategorieRoom {
+	return KategorieRoom(
 		id = id, spielelementBasis = domainToSpielelmentBasis(this)
 	)
 	// TODO Hier z.B. muss auch KategorieXkartentexte gemappt werden
 }
 
-fun KategorieEntityRoom.toDomain(
+fun KategorieRoom.toDomain(
 	lokalisierungen: Collection<Lokalisierung>, kartentexte: Collection<Kartentext>
 ): Kategorie {
 	return Kategorie(

@@ -5,10 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Kategorien")
-data class KategorieEntityRoom(
+data class KategorieRoom(
 	@PrimaryKey(autoGenerate = true)
 	override val id: Int,
 
 	@Embedded
 	override val spielelementBasis: SpielelementBasis,
-): SpielelementEntityRoom
+): SpielelementRoom

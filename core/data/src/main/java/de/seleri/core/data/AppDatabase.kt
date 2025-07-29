@@ -10,17 +10,17 @@ import de.seleri.core.data.daos.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.joins.SpielXKategorie
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
-import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
+import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 
 @TypeConverters(Converters::class)
 @Database(
 	entities = [
 		LokalisierungRoom::class,
-		KartentextEntityRoom::class,
-		KategorieEntityRoom::class,
-		SpielEntityRoom::class,
+		KartentextRoom::class,
+		KategorieRoom::class,
+		SpielRoom::class,
 		KategorieXKartentext::class,
 		SpielXKategorie::class,
 	], version = 1
