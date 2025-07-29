@@ -82,7 +82,7 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 		}
 
 		// @formatter:off
-		if (ogTranslationen.size != translationenProKartentext.first().size) {
+		if (ogTranslationen.size != translationenProKartentext.size) {
 			error("Die Kartentext-Translation-Listen sind nicht gleich lang! U.a. betroffene Kartentexte:\n" +
 				"${ogTranslationen.take(ANZAHL_TRANSLATION_AUSGABEN_BEI_FEHLER).map {
 					it.bezeichnung.take(ANZAHL_TRANSLATION_BUCHSTABEN_PRO_FEHLER)
