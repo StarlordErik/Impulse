@@ -8,14 +8,14 @@ import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.daos.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
 
 @Database(
 	entities = [
-		LokalisierungEntityRoom::class,
+		LokalisierungRoom::class,
 		KartentextEntityRoom::class,
 		KategorieEntityRoom::class,
 		SpielEntityRoom::class,

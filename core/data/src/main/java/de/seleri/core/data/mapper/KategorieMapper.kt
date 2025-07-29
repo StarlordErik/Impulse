@@ -1,7 +1,7 @@
 package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
@@ -13,7 +13,7 @@ object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
 	override fun lokalisierungToEntity(
 		id: SpielelementID.KategorieID, lokalisierung: Lokalisierung
-	): LokalisierungEntityRoom {
+	): LokalisierungRoom {
 		return lokalisierung.toEntityForKategorie(id)
 	}
 }

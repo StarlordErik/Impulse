@@ -1,7 +1,7 @@
 package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
@@ -12,7 +12,7 @@ object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 
 	override fun lokalisierungToEntity(
 		id: SpielelementID.KartentextID, lokalisierung: Lokalisierung
-	): LokalisierungEntityRoom =
+	): LokalisierungRoom =
 		lokalisierung.toEntityForKartentext(id)
 }
 

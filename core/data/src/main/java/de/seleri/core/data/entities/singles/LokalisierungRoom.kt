@@ -26,7 +26,7 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
 		Index(value = ["kartentextID", "sprache"], unique = true)
 	] // @formatter:on
 )
-data class LokalisierungEntityRoom(
+data class LokalisierungRoom(
 	@PrimaryKey(autoGenerate = true)
 	override val id: Int,
 

@@ -1,7 +1,7 @@
 package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielelementBasis
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Spielelement
@@ -10,7 +10,7 @@ interface SpielelementMapper<ID: SpielelementID> {
 
 	fun lokalisierungenToEntities(
 		id: ID, lokalisierungen: Collection<Lokalisierung>
-	): Collection<LokalisierungEntityRoom> =
+	): Collection<LokalisierungRoom> =
 		lokalisierungen.map { lokalisierung ->
 			lokalisierungToEntity(id, lokalisierung)
 		}
@@ -18,7 +18,7 @@ interface SpielelementMapper<ID: SpielelementID> {
 
 	fun lokalisierungToEntity(
 		id: ID, lokalisierung: Lokalisierung
-	): LokalisierungEntityRoom
+	): LokalisierungRoom
 }
 
 fun domainToSpielelmentBasis(spielelement: Spielelement): SpielelementBasis =
