@@ -2,7 +2,6 @@ package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
-import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 
@@ -27,38 +26,37 @@ fun Lokalisierung.Companion.fromSkript(
 		Sprache.EN -> EN_ID_BOOSTER
 	}
 
-	var erschaffeTranslation = 0
+	var erschaffteTranslation = 0
 
 	if (ogTranslation == null) {
 		if (erikTranslation != null || deTranslation != null || enTranslation != null) {
 			error("Es fehlt eine Übersetzung für \"$ogSprache\"!")
 		}
-		return Triple(null, -1, erschaffeTranslation)
+		return Triple(null, -1, erschaffteTranslation)
 	} else {
 		val translationen = mutableListOf(ogTranslation)
 		if (erikTranslation != null) translationen += erikTranslation
 		if (deTranslation != null) translationen += deTranslation
 
-		val neueID = ogTranslation.id.translationID + idBooster
-
+		val neueID = ogTranslation.id.translationID + idBooster/*
 		if (ogSprache == Sprache.DE && deTranslation == null) {
 			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
 			translationen += neueTranslation
-			erschaffeTranslation++
-		}
+			erschaffteTranslation++
+		}*/
 
-		if (enTranslation != null) translationen += enTranslation
 
+		if (enTranslation != null) translationen += enTranslation/*
 		if (ogSprache == Sprache.EN && enTranslation == null) {
 			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
 			translationen += neueTranslation
-			erschaffeTranslation++
-		}
+			erschaffteTranslation++
+		}*/
 
 		return Triple(
 			Lokalisierung(
 				id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
-			), 0, erschaffeTranslation
+			), 0, erschaffteTranslation
 		)
 	}
 }
