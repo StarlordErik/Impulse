@@ -396,6 +396,17 @@ fun main() {
 			appendLine("\tKategorieID: ${kategorie.id.kategorieID}")
 			append(spielelementToTXT(kategorie))
 		}
+
+		// Kartentexte:
+		appendLine("\nKartentexte:")
+		spiel.bestandteile.forEach { kategorie ->
+			appendLine("  ${kategorie.lokalisierung.translationen.first().bezeichnung}:")
+			kategorie.bestandteile.forEach { kartentext ->
+				appendLine("\tKartentextID: ${kartentext.id.kartentextID}")
+				append(spielelementToTXT(kartentext))
+			}
+		}
+
 	}
 
 	println(content)
