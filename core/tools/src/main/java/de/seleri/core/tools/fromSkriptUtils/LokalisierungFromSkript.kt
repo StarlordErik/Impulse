@@ -61,60 +61,61 @@ fun Lokalisierung.Companion.fromSkript(
 fun Lokalisierung.Companion.fromSkriptForKartentexte(
 	freieLokalisierungID: Int,
 	ogSprache: Sprache,
-	ogTranslationen: List<Translation?>,
-	erikTranslationen: List<Translation?>,
-	deTranslationen: List<Translation?>,
-	enTranslationen: List<Translation?>
+	ogTranslationen: List<Translation>?,
+	erikTranslationen: List<Translation>?,
+	deTranslationen: List<Translation>?,
+	enTranslationen: List<Translation>?
 ): Pair<List<Lokalisierung>?, Int> {
+	if (ogTranslationen == null) {
+		if (erikTranslationen != null || deTranslationen != null || enTranslationen != null) {
+			error("Es fehlt eine Übersetzung für \"$ogSprache\"!")
+		}
+		return null to -1
+	} else {
 
-	// @formatter:off
-	require(
-		ogTranslationen.size == erikTranslationen.size
-			&& ogTranslationen.size == deTranslationen.size
-			&& ogTranslationen.size == enTranslationen.size
-	) {
-		"Die Kartentext-Translation-Listen sind nicht gleich lang! Betroffen sind die folgenden Kartentexte:\n" +
-			"${ogTranslationen.take(ANZAHL_TRANSLATION_AUSGABEN_BEI_FEHLER).map {
-				it?.bezeichnung?.take(ANZAHL_TRANSLATION_BUCHSTABEN_PRO_FEHLER)
-					?.replace("\n", "\\n")?.replace("\t", "\\t")
-			}}..."
-	}
-	// @formatter:on
+		val echteTranslationen = listOfNotNull(
+			ogTranslationen, erikTranslationen, deTranslationen, enTranslationen
+		)
 
-	var anzahlNeueLokalisierungen = 0
-
-	val translationenProKartentext = ogTranslationen
-		.zip(erikTranslationen)
-		.zip(deTranslationen.zip(enTranslationen)) { (og, erik), (de, en) ->
-			listOf(og, erik, de, en)
+		val translationenProKartentext = echteTranslationen[0].indices.map { index ->
+			echteTranslationen.map { it[index] }
 		}
 
-	val lokalisierungen = mutableListOf<Lokalisierung>()
+		// @formatter:off
+		if (ogTranslationen.size != translationenProKartentext.first().size) {
+			error("Die Kartentext-Translation-Listen sind nicht gleich lang! U.a. betroffene Kartentexte:\n" +
+				"${ogTranslationen.take(ANZAHL_TRANSLATION_AUSGABEN_BEI_FEHLER).map {
+					it.bezeichnung.take(ANZAHL_TRANSLATION_BUCHSTABEN_PRO_FEHLER)
+					.replace("\n", "\\n").replace("\t", "\\t")
+				}}...")
+		}
+		// @formatter:on
 
-	translationenProKartentext.forEach { kartentextTranslationen ->
-		if (kartentextTranslationen.any { it != null }) {
+		var anzahlNeueLokalisierungen = 0
+		val lokalisierungen = mutableListOf<Lokalisierung>()
+
+		translationenProKartentext.forEach { kartentextTranslationen ->
 			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen++
 
-			@Suppress("MagicNumber")
+			val ogTranslation = kartentextTranslationen.first()
+			val erikTranslation = kartentextTranslationen.find { it.sprache == Sprache.ERIK }
+			val deTranslation = kartentextTranslationen.find { it.sprache == Sprache.DE }
+			val enTranslation = kartentextTranslationen.find { it.sprache == Sprache.EN }
+
 			val lokalisierung = Lokalisierung.fromSkript(
-				neueID,
-				ogSprache,
-				kartentextTranslationen[0],
-				kartentextTranslationen[1],
-				kartentextTranslationen[2],
-				kartentextTranslationen[3]
+				neueID, ogSprache, ogTranslation, erikTranslation, deTranslation, enTranslation
 			)
 			if (lokalisierung != null) {
 				lokalisierungen += lokalisierung
 			}
 		}
-	}
 
-	val maxID = anzahlNeueLokalisierungen - 1
+		val maxID = anzahlNeueLokalisierungen - 1
 
-	return if (lokalisierungen.isEmpty()) {
-		null to maxID
-	} else {
-		lokalisierungen.toList() to maxID
+		return if (lokalisierungen.isEmpty()) {
+			null to maxID
+		} else {
+			lokalisierungen.toList() to maxID
+		}
 	}
 }
