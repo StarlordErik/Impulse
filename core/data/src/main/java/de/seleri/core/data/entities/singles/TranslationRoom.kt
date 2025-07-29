@@ -16,8 +16,8 @@ import de.seleri.core.common.id.LokalisierungID
 	)], indices = [Index(value = ["lokalisierungID", "sprache"], unique = true)]
 )
 data class TranslationRoom(
-	@PrimaryKey
-	override val id: Int, // nicht autogeneriert, da deterministisch über LokalisierungID feststellbar
+	@PrimaryKey(autoGenerate = false) // nicht autogeneriert, da deterministisch über LokalisierungID feststellbar
+	override val id: Int,
 
 	val lokalisierungID: LokalisierungID,
 
