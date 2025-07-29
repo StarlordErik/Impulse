@@ -59,17 +59,17 @@ fun main() {
 
 	// Kartentexte:
 
-	val kartentexte1TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte1TexteOG: List<String> = listOf("Gedanken", "spiel")
 	val kartentexte1TexteERIK: List<String> = listOf()
 	val kartentexte1TexteDE: List<String> = listOf()
 	val kartentexte1TexteEN: List<String> = listOf()
 
-	val kartentexte2TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte2TexteOG: List<String> = listOf("Kreuz", "verhör")
 	val kartentexte2TexteERIK: List<String> = listOf()
 	val kartentexte2TexteDE: List<String> = listOf()
 	val kartentexte2TexteEN: List<String> = listOf()
 
-	val kartentexte3TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte3TexteOG: List<String> = listOf("Selbst", "reflexion")
 	val kartentexte3TexteERIK: List<String> = listOf()
 	val kartentexte3TexteDE: List<String> = listOf()
 	val kartentexte3TexteEN: List<String> = listOf()
