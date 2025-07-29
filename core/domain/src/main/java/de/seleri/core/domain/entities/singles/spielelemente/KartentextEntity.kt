@@ -2,7 +2,9 @@ package de.seleri.core.domain.entities.singles.spielelemente
 
 import de.seleri.core.common.idInt.KartentextIDint
 import de.seleri.core.common.idInt.LokalisierungIDint
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class KartentextEntity(
 	override val id: KartentextIDint,
 

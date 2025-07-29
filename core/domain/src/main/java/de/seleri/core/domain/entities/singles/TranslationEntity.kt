@@ -3,7 +3,9 @@ package de.seleri.core.domain.entities.singles
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.LokalisierungIDint
 import de.seleri.core.common.idInt.TranslationIDint
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class TranslationEntity(
 	override val id: TranslationIDint,
 
