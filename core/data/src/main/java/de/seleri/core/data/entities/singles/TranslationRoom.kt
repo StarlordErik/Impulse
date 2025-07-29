@@ -6,7 +6,6 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.id.LokalisierungID
-import de.seleri.core.common.id.TranslationID
 
 @Entity(
 	tableName = "translationen", foreignKeys = [ForeignKey(
@@ -18,7 +17,7 @@ import de.seleri.core.common.id.TranslationID
 )
 data class TranslationRoom(
 	@PrimaryKey
-	override val id: TranslationID,
+	override val id: Int, // nicht autogeneriert, da deterministisch über LokalisierungID feststellbar
 
 	val lokalisierungID: LokalisierungID,
 
