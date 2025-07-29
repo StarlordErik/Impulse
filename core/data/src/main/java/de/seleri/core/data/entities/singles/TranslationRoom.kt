@@ -6,7 +6,9 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.id.LokalisierungID
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(
 	tableName = "translationen", foreignKeys = [ForeignKey(
 		entity = LokalisierungRoom::class,
