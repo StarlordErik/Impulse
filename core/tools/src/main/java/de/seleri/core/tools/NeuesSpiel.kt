@@ -543,7 +543,7 @@ fun main() {
 	println("\t$anzahlLokalisierungen Lokalisierungen")
 
 	val anzahlTranslationen = translationsCounter - startTranslationsID
-	println("\t$anzahlTranslationen Translationen\n\n")
+	println("\t$anzahlTranslationen Translationen (der Wert stimmt probably nicht)\n\n")
 
 	// --------------------------------- SPIEL ZUM CHECK IN EINE DATEI SCHREIBEN --------------------------------------
 
