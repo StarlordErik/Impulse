@@ -4,6 +4,7 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.modell.Translation
 
+const val ANZAHL_AN_SPRACHEN = 4
 fun Translation.Companion.fromSkript(
 	freieTranslationID: Int, sprache: Sprache, bezeichnung: String
 ): Pair<Translation?, Int> {
@@ -14,23 +15,21 @@ fun Translation.Companion.fromSkript(
 fun Translation.Companion.fromSkriptForKartentexte(
 	freieTranslationID: Int, sprache: Sprache, bezeichnungen: List<String>
 ): Pair<List<Translation>?, Int> {
-	var anzahlNeueTranslationen = 0
+	var anzahlNeuerTranslationen = 0
 
 	val translationen = mutableListOf<Translation>()
 
 	bezeichnungen.forEach { bezeichnung ->
-		val neueID = freieTranslationID + anzahlNeueTranslationen++
+		val neueID = freieTranslationID + anzahlNeuerTranslationen
 		val translationInfo = Translation.fromSkript(neueID, sprache, bezeichnung)
 
 		val translation = translationInfo.first
-		if (translation != null) {
-			translationen += translation
-		} else {
-			anzahlNeueTranslationen += translationInfo.second
-		}
+		if (translation != null) translationen += translation
+
+		anzahlNeuerTranslationen += (1 + translationInfo.second) * ANZAHL_AN_SPRACHEN
 	}
 
-	val maxID = anzahlNeueTranslationen - 1
+	val maxID = anzahlNeuerTranslationen - 1
 
 	return if (translationen.isEmpty()) {
 		null to maxID
