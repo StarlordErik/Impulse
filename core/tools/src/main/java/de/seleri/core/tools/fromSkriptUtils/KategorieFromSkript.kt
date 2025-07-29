@@ -8,10 +8,10 @@ import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
 fun Kategorie.Companion.fromSkript(
 	kategorieID: Int, lokalisierung: Lokalisierung?, kartentexte: List<Kartentext>?
-): Kategorie? {
+): Pair<Kategorie?, Int> {
 	if (lokalisierung == null) {
 		if (kartentexte == null) {
-			return null
+			return null to -1
 		} else {
 			// @formatter:off
 			error("Die Kategorie-Lokalisierung darf nicht null sein, wenn es dazu Kartentexte gibt! Betroffen sind:\n" +
@@ -28,7 +28,7 @@ fun Kategorie.Companion.fromSkript(
 			return Kategorie(
 				id = KategorieIDint(kategorieID), spielelementDaten = SpielelementDaten(lokalisierung),
 				bestandteile = kartentexte
-			)
+			) to 0
 		}
 	}
 }

@@ -14,7 +14,7 @@ import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
 @Suppress("MaxLineLength", "LongMethod")
 fun main() {
 
-	println("Zeit für ein neues Spiel!")
+	println("Zeit für ein neues Spiel!\n.\n.\n.\n")
 
 	// Schau in die Datenbank; Was ist die höchste, vergebene ID der jeweiligen Tabellen?
 
@@ -320,10 +320,21 @@ fun main() {
 
 	// Kartentexte zu Kategorien (mit Lokalisierungen):
 
-	val kategorie1 = Kategorie.fromSkript(++maxKategorieID, kategorie1Lokalisierung, kartentexte1)
-	val kategorie2 = Kategorie.fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
-	val kategorie3 = Kategorie.fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
-	val kategorie4 = Kategorie.fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
+	val kategorie1Info = Kategorie.fromSkript(++maxKategorieID, kategorie1Lokalisierung, kartentexte1)
+	val kategorie1 = kategorie1Info.first
+	maxKategorieID += kategorie1Info.second
+
+	val kategorie2Info = Kategorie.fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
+	val kategorie2 = kategorie2Info.first
+	maxKategorieID += kategorie2Info.second
+
+	val kategorie3Info = Kategorie.fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
+	val kategorie3 = kategorie3Info.first
+	maxKategorieID += kategorie3Info.second
+
+	val kategorie4Info = Kategorie.fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
+	val kategorie4 = kategorie4Info.first
+	maxKategorieID += kategorie4Info.second
 
 	val kategorien = entferneNullerKategorien(listOf(kategorie1, kategorie2, kategorie3, kategorie4))
 
@@ -333,13 +344,13 @@ fun main() {
 
 	// ---------------------------------- SPIEL WURDE ERSTELLT - NUN ZUR AUSWERTUNG ----------------------------------
 
-	println("Spiel wurde erstellt! Schauen wir uns an, wie viele Objekte erstellt worden sind!")
+	println("Spiel wurde erstellt! Schauen wir uns an, wie viele Objekte erstellt worden sind!\n")
 
 	val anzahlSpiele = maxSpielID - startSpielID
-	println("$anzahlSpiele Spiel/e wurden erstellt, probably eins mit dem Namen: \"$spielNameOG\"")
+	println("$anzahlSpiele Spiel wurde erstellt, probably mit dem Namen: \"$spielNameOG\"")
 
 	val anzahlKategorien = maxKategorieID - startKategorieID
-	println("$anzahlKategorien Kategorie/n wurden erstellt")
+	println("$anzahlKategorien Kategorien wurden erstellt")
 
 	val anzahlKartentexte = maxKartentextID - startKartentextID
 	println("$anzahlKartentexte Kartentexte wurden erstellt")
