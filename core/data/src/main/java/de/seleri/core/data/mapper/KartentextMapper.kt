@@ -1,8 +1,8 @@
 package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
+import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -12,18 +12,18 @@ object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 
 	override fun lokalisierungToEntity(
 		id: SpielelementID.KartentextID, lokalisierung: Lokalisierung
-	): LokalisierungEntity =
+	): LokalisierungEntityRoom =
 		lokalisierung.toEntityForKartentext(id)
 }
 
 
-fun Kartentext.toEntity(): KartentextEntity =
-	KartentextEntity(
+fun Kartentext.toEntity(): KartentextEntityRoom =
+	KartentextEntityRoom(
 		id = id, spielelementBasis = domainToSpielelmentBasis(this), gesehen = gesehen, besprochen = besprochen
 	)
 
 
-fun KartentextEntity.toDomain(
+fun KartentextEntityRoom.toDomain(
 	lokalisierungen: Collection<Lokalisierung>
 ): Kartentext =
 	Kartentext(

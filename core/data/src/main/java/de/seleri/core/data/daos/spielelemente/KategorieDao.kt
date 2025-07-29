@@ -8,20 +8,20 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
 import de.seleri.core.data.entities.joins.KategorieXKartentext
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
 
 @Dao
-interface KategorieDao : SpielelementDao<KategorieEntity>, JoinDao<KategorieXKartentext> {
+interface KategorieDao : SpielelementDao<KategorieEntityRoom>, JoinDao<KategorieXKartentext> {
 
 	@Upsert
-	override suspend fun upsert(entity: KategorieEntity): Long
+	override suspend fun upsert(entity: KategorieEntityRoom): Long
 
 	@Delete
-	override suspend fun delete(entity: KategorieEntity)
+	override suspend fun delete(entity: KategorieEntityRoom)
 
 	@Query("SELECT * FROM Kategorien WHERE id = :spielelementId")
-	override suspend fun get(spielelementId: Int): KategorieEntity
+	override suspend fun get(spielelementId: Int): KategorieEntityRoom
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	override suspend fun insert(joinEntity: KategorieXKartentext)
@@ -39,5 +39,5 @@ interface KategorieDao : SpielelementDao<KategorieEntity>, JoinDao<KategorieXKar
         WHERE x.kategorieID = :kategorieId
     """
 	)
-	suspend fun getKartentexte(kategorieId: Int): List<KartentextEntity>
+	suspend fun getKartentexte(kategorieId: Int): List<KartentextEntityRoom>
 }

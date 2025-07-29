@@ -1,8 +1,8 @@
 package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungEntity
-import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
+import de.seleri.core.data.entities.singles.LokalisierungEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
@@ -15,13 +15,13 @@ object SpielMapper: SpielelementMapper<SpielelementID.SpielID> {
 
 	override fun lokalisierungToEntity(
 		id: SpielelementID.SpielID, lokalisierung: Lokalisierung
-	): LokalisierungEntity =
+	): LokalisierungEntityRoom =
 		lokalisierung.toEntityForSpiel(id)
 }
 
 
-fun Spiel.toEntity(): SpielEntity =
-	SpielEntity(
+fun Spiel.toEntity(): SpielEntityRoom =
+	SpielEntityRoom(
 		id = id,
 		spielelementBasis = domainToSpielelmentBasis(this),
 		anleitung = anleitung,
@@ -30,7 +30,7 @@ fun Spiel.toEntity(): SpielEntity =
 	)
 
 
-fun SpielEntity.toDomain(
+fun SpielEntityRoom.toDomain(
 	lokalisierungen: Collection<Lokalisierung>, kategorien: Collection<Kategorie>
 ): Spiel =
 	Spiel(
@@ -40,14 +40,14 @@ fun SpielEntity.toDomain(
 	)
 
 
-fun SpielEntity.toMeta(
+fun SpielEntityRoom.toMeta(
 	lokalisierungen: Collection<Lokalisierung>
 ): SpielMetaObjekt =
 	SpielMetaObjekt(
 		spielMetaDaten = entityToSpielMetaDaten(this, lokalisierungen)
 	)
 
-private fun entityToSpielMetaDaten(entity: SpielEntity, lokalisierungen: Collection<Lokalisierung>): SpielMetaDaten =
+private fun entityToSpielMetaDaten(entity: SpielEntityRoom, lokalisierungen: Collection<Lokalisierung>): SpielMetaDaten =
 	SpielMetaDaten(
 		spielelementDaten = SpielelementDaten(
 			EntityModellDaten(id = entity.id),

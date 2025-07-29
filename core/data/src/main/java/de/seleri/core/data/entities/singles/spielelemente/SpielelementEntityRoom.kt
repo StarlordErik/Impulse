@@ -1,8 +1,8 @@
 package de.seleri.core.data.entities.singles.spielelemente
 
-import de.seleri.core.data.entities.singles.DatenbankObjektEntity
+import de.seleri.core.data.entities.singles.EntityRoom
 
-interface SpielelementEntity : DatenbankObjektEntity {
+interface SpielelementEntityRoom : EntityRoom {
 	val spielelementBasis: SpielelementBasis
 
 	val favorisiert get() = spielelementBasis.favorisiert

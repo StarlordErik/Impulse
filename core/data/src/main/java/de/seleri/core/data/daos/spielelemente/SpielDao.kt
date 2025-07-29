@@ -8,23 +8,23 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
 import de.seleri.core.data.entities.joins.SpielXKategorie
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
-import de.seleri.core.data.entities.singles.spielelemente.SpielEntity
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
 
 @Dao
-interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
+interface SpielDao : SpielelementDao<SpielEntityRoom>, JoinDao<SpielXKategorie> {
 
 	@Upsert
-	override suspend fun upsert(entity: SpielEntity): Long
+	override suspend fun upsert(entity: SpielEntityRoom): Long
 
 	@Delete
-	override suspend fun delete(entity: SpielEntity)
+	override suspend fun delete(entity: SpielEntityRoom)
 
 	@Query("SELECT * FROM Spiele WHERE id = :spielelementId")
-	override suspend fun get(spielelementId: Int): SpielEntity
+	override suspend fun get(spielelementId: Int): SpielEntityRoom
 
 	@Query("SELECT * FROM Spiele")
-	suspend fun getAll(): List<SpielEntity>
+	suspend fun getAll(): List<SpielEntityRoom>
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	override suspend fun insert(joinEntity: SpielXKategorie)
@@ -42,6 +42,6 @@ interface SpielDao : SpielelementDao<SpielEntity>, JoinDao<SpielXKategorie> {
         WHERE x.spielId = :spielId
     """
 	)
-	suspend fun getKategorien(spielId: Int): List<KategorieEntity>
+	suspend fun getKategorien(spielId: Int): List<KategorieEntityRoom>
 
 }

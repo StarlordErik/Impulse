@@ -1,5 +1,5 @@
 package de.seleri.core.data.entities.singles
 
-interface DatenbankObjektEntity {
+interface EntityRoom {
 	val id :Int
 }

@@ -4,11 +4,15 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Kategorien")
-data class KategorieEntity(
+@Entity(tableName = "Spiele")
+data class SpielEntityRoom(
 	@PrimaryKey(autoGenerate = true)
 	override val id: Int,
 
 	@Embedded
 	override val spielelementBasis: SpielelementBasis,
-): SpielelementEntity
+
+	val anleitung: String?,
+	val texteProKarte: Int,
+	val bildDateiname: String?,
+) : SpielelementEntityRoom

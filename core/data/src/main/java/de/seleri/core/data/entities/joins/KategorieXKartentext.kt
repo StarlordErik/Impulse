@@ -3,17 +3,17 @@ package de.seleri.core.data.entities.joins
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import de.seleri.core.data.entities.singles.spielelemente.KartentextEntity
-import de.seleri.core.data.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
+import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
 
 @Entity(
 	tableName = "KategorieXKartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(
-		entity = KategorieEntity::class,
+		entity = KategorieEntityRoom::class,
 		parentColumns = ["id"],
 		childColumns = ["kategorieID"],
 		onDelete = ForeignKey.CASCADE
 	), ForeignKey(
-		entity = KartentextEntity::class,
+		entity = KartentextEntityRoom::class,
 		parentColumns = ["id"],
 		childColumns = ["kartentextID"],
 		onDelete = ForeignKey.CASCADE
