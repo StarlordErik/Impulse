@@ -10,7 +10,7 @@ data class SpielRoom(
 	override val id: Int,
 
 	@Embedded
-	override val spielelementBasis: SpielelementBasis,
+	override val spielelementDatenRoom: SpielelementDatenRoom,
 
 	val anleitung: String?,
 	val texteProKarte: Int,

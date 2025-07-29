@@ -20,7 +20,7 @@ object KategorieMapper: SpielelementMapper<SpielelementID.KategorieID> {
 
 fun Kategorie.toEntity(): KategorieRoom {
 	return KategorieRoom(
-		id = id, spielelementBasis = domainToSpielelmentBasis(this)
+		id = id, spielelementDatenRoom = domainToSpielelmentBasis(this)
 	)
 	// TODO Hier z.B. muss auch KategorieXkartentexte gemappt werden
 }
@@ -31,10 +31,11 @@ fun KategorieRoom.toDomain(
 	return Kategorie(
 		spielelementDaten = SpielelementDaten(
 			EntityModellDaten(id = id),
-			selbstErstellt = spielelementBasis.selbstErstellt,
-			inaktiv = spielelementBasis.inaktiv,
-			favorisiert = spielelementBasis.favorisiert,
-			ogSprache = spielelementBasis.ogSprache, lokalisierung = lokalisierungen
+			selbstErstellt = spielelementDatenRoom.selbstErstellt,
+			inaktiv = spielelementDatenRoom.inaktiv,
+			favorisiert = spielelementDatenRoom.favorisiert,
+			ogSprache = spielelementDatenRoom.ogSprache,
+			lokalisierung = lokalisierungen
 		), bestandteile = kartentexte
 	)
 }

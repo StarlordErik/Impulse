@@ -10,5 +10,5 @@ data class KategorieRoom(
 	override val id: Int,
 
 	@Embedded
-	override val spielelementBasis: SpielelementBasis,
+	override val spielelementDatenRoom: SpielelementDatenRoom,
 ): SpielelementRoom

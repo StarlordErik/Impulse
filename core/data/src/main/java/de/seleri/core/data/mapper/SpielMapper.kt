@@ -22,8 +22,7 @@ object SpielMapper: SpielelementMapper<SpielelementID.SpielID> {
 
 fun Spiel.toEntity(): SpielRoom =
 	SpielRoom(
-		id = id,
-		spielelementBasis = domainToSpielelmentBasis(this),
+		id = id, spielelementDatenRoom = domainToSpielelmentBasis(this),
 		anleitung = anleitung,
 		texteProKarte = texteProKarte,
 		bildDateiname = bildDateiname
@@ -51,9 +50,10 @@ private fun entityToSpielMetaDaten(entity: SpielRoom, lokalisierungen: Collectio
 	SpielMetaDaten(
 		spielelementDaten = SpielelementDaten(
 			EntityModellDaten(id = entity.id),
-			selbstErstellt = entity.spielelementBasis.selbstErstellt,
-			inaktiv = entity.spielelementBasis.inaktiv,
-			favorisiert = entity.spielelementBasis.favorisiert,
-			ogSprache = entity.spielelementBasis.ogSprache, lokalisierung = lokalisierungen
+			selbstErstellt = entity.spielelementDatenRoom.selbstErstellt,
+			inaktiv = entity.spielelementDatenRoom.inaktiv,
+			favorisiert = entity.spielelementDatenRoom.favorisiert,
+			ogSprache = entity.spielelementDatenRoom.ogSprache,
+			lokalisierung = lokalisierungen
 		), bildDateiname = entity.bildDateiname
 	)

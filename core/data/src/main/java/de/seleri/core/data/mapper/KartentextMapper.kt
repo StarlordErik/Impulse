@@ -19,7 +19,7 @@ object KartentextMapper: SpielelementMapper<SpielelementID.KartentextID> {
 
 fun Kartentext.toEntity(): KartentextRoom =
 	KartentextRoom(
-		id = id, spielelementBasis = domainToSpielelmentBasis(this), gesehen = gesehen, besprochen = besprochen
+		id = id, spielelementDatenRoom = domainToSpielelmentBasis(this), gesehen = gesehen, besprochen = besprochen
 	)
 
 
@@ -29,9 +29,10 @@ fun KartentextRoom.toDomain(
 	Kartentext(
 		spielelementDaten = SpielelementDaten(
 			EntityModellDaten(id = id),
-			selbstErstellt = spielelementBasis.selbstErstellt,
-			inaktiv = spielelementBasis.inaktiv,
-			favorisiert = spielelementBasis.favorisiert,
-			ogSprache = spielelementBasis.ogSprache, lokalisierung = lokalisierungen
+			selbstErstellt = spielelementDatenRoom.selbstErstellt,
+			inaktiv = spielelementDatenRoom.inaktiv,
+			favorisiert = spielelementDatenRoom.favorisiert,
+			ogSprache = spielelementDatenRoom.ogSprache,
+			lokalisierung = lokalisierungen
 		), gesehen = gesehen, besprochen = besprochen
 	)

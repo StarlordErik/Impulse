@@ -3,10 +3,10 @@ package de.seleri.core.data.entities.singles.spielelemente
 import de.seleri.core.data.entities.singles.EntityRoom
 
 interface SpielelementRoom: EntityRoom {
-	val spielelementBasis: SpielelementBasis
 
-	val favorisiert get() = spielelementBasis.favorisiert
-	val inaktiv get() = spielelementBasis.inaktiv
-	val selbstErstellt get() = spielelementBasis.selbstErstellt
-	val ogSprache get() = spielelementBasis.ogSprache
+	val spielelementDatenRoom: SpielelementDatenRoom
+
+	val favorisiert get() = spielelementDatenRoom.favorisiert
+	val inaktiv get() = spielelementDatenRoom.inaktiv
+	val selbstErstellt get() = spielelementDatenRoom.selbstErstellt
 }

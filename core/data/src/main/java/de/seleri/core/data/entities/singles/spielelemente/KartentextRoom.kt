@@ -10,7 +10,7 @@ data class KartentextRoom(
 	override val id: Int,
 
 	@Embedded
-	override val spielelementBasis: SpielelementBasis,
+	override val spielelementDatenRoom: SpielelementDatenRoom,
 
 	val gesehen: Boolean,
 	val besprochen: Boolean,
