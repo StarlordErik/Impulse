@@ -7,7 +7,7 @@ import de.seleri.core.domain.modell.Translation
 fun Translation.Companion.fromSkript(
 	freieTranslationID: Int, sprache: Sprache, bezeichnung: String
 ): Pair<Translation?, Int> {
-	return if (bezeichnung.isNotBlank()) Translation(TranslationIDint(freieTranslationID), sprache, bezeichnung) to 1
+	return if (bezeichnung.isNotBlank()) Translation(TranslationIDint(freieTranslationID), sprache, bezeichnung) to 0
 	else null to -1
 }
 
