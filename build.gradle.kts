@@ -10,5 +10,7 @@ plugins {
 
 	alias(libs.plugins.ksp) apply false // KSP; benötigt für Hilt, Room
 	alias(libs.plugins.hilt.android) apply false // Hilt
+
+	alias(libs.plugins.kotlinx.serialization) apply false // Kotlin Serialization
 	alias(libs.plugins.room) apply false // Room
 }
