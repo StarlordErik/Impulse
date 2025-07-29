@@ -599,8 +599,8 @@ fun main() {
 	dbsToJson(dbs.kartentexte, "kartentexte", outputName)
 	dbsToJson(dbs.lokalisierungen, "lokalisierungen", outputName)
 	dbsToJson(dbs.translationen, "translationen", outputName)
-	dbsToJson(dbs.spielXkategorien, "spielxkategorien", outputName)
-	dbsToJson(dbs.kategorieXkartentexte, "kategoriexkartentexte", outputName)
+	dbsToJson(dbs.spielXkategorien, "spiel_x_kategorie", outputName)
+	dbsToJson(dbs.kategorieXkartentexte, "kategorie_x_kartentext", outputName)
 }
 
 private inline fun <reified T> dbsToJson(tabelle: List<T>, name: String, outputName: String) {
