@@ -247,6 +247,7 @@ fun main() {
 		Lokalisierung.fromSkript(++maxLokalisierungID, ogSprache, spielOG, spielERIK, spielDE, spielEN)
 	val spielLokalisierung = spielLokalisierungInfo.first
 	maxLokalisierungID += spielLokalisierungInfo.second
+	maxTranslationID += spielLokalisierungInfo.third
 
 	// Translationen in Lokalisierung gruppieren - für die Kategorien:
 
@@ -255,24 +256,28 @@ fun main() {
 	)
 	val kategorie1Lokalisierung = kategorie1LokalisierungInfo.first
 	maxLokalisierungID += kategorie1LokalisierungInfo.second
+	maxTranslationID += kategorie1LokalisierungInfo.third
 
 	val kategorie2LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie2OG, kategorie2ERIK, kategorie2DE, kategorie2EN
 	)
 	val kategorie2Lokalisierung = kategorie2LokalisierungInfo.first
 	maxLokalisierungID += kategorie2LokalisierungInfo.second
+	maxTranslationID += kategorie2LokalisierungInfo.third
 
 	val kategorie3LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie3OG, kategorie3ERIK, kategorie3DE, kategorie3EN
 	)
 	val kategorie3Lokalisierung = kategorie3LokalisierungInfo.first
 	maxLokalisierungID += kategorie3LokalisierungInfo.second
+	maxTranslationID += kategorie3LokalisierungInfo.third
 
 	val kategorie4LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie4OG, kategorie4ERIK, kategorie4DE, kategorie4EN
 	)
 	val kategorie4Lokalisierung = kategorie4LokalisierungInfo.first
 	maxLokalisierungID += kategorie4LokalisierungInfo.second
+	maxTranslationID += kategorie4LokalisierungInfo.third
 
 	// Translationen in Lokalisierung gruppieren - für die Kartentexte:
 
@@ -281,24 +286,28 @@ fun main() {
 	)
 	val kartentexte1Lokalisierungen = kartentexte1LokalisierungsInfos.first
 	maxLokalisierungID += kartentexte1LokalisierungsInfos.second
+	maxTranslationID += kartentexte1LokalisierungsInfos.third
 
 	val kartentexte2LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
 		++maxLokalisierungID, ogSprache, kartentexte2OG, kartentexte2ERIK, kartentexte2DE, kartentexte2EN
 	)
 	val kartentexte2Lokalisierungen = kartentexte2LokalisierungsInfos.first
 	maxLokalisierungID += kartentexte2LokalisierungsInfos.second
+	maxTranslationID += kartentexte2LokalisierungsInfos.third
 
 	val kartentexte3LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
 		++maxLokalisierungID, ogSprache, kartentexte3OG, kartentexte3ERIK, kartentexte3DE, kartentexte3EN
 	)
 	val kartentexte3Lokalisierungen = kartentexte3LokalisierungsInfos.first
 	maxLokalisierungID += kartentexte3LokalisierungsInfos.second
+	maxTranslationID += kartentexte3LokalisierungsInfos.third
 
 	val kartentexte4LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
 		++maxLokalisierungID, ogSprache, kartentexte4OG, kartentexte4ERIK, kartentexte4DE, kartentexte4EN
 	)
 	val kartentexte4Lokalisierungen = kartentexte4LokalisierungsInfos.first
 	maxLokalisierungID += kartentexte4LokalisierungsInfos.second
+	maxTranslationID += kartentexte4LokalisierungsInfos.third
 
 	// Lokalisierungen zu Kartentexten:
 

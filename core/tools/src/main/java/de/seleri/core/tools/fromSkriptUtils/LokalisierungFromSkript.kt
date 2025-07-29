@@ -19,7 +19,7 @@ fun Lokalisierung.Companion.fromSkript(
 	erikTranslation: Translation?,
 	deTranslation: Translation?,
 	enTranslation: Translation?
-): Pair<Lokalisierung?, Int> {
+): Triple<Lokalisierung?, Int, Int> {
 	val idBooster = when (ogSprache) {
 		Sprache.OG -> error("Du kannst nicht \"Sprache.OG\" als ogSprache setzen!")
 		Sprache.ERIK -> error("Du kannst nicht \"Sprache.ERIK\" als ogSprache setzen!")
@@ -27,11 +27,13 @@ fun Lokalisierung.Companion.fromSkript(
 		Sprache.EN -> EN_ID_BOOSTER
 	}
 
+	var erschaffeTranslation = 0
+
 	if (ogTranslation == null) {
 		if (erikTranslation != null || deTranslation != null || enTranslation != null) {
 			error("Es fehlt eine Übersetzung für \"$ogSprache\"!")
 		}
-		return null to -1
+		return Triple(null, -1, erschaffeTranslation)
 	} else {
 		val translationen = mutableListOf(ogTranslation)
 		if (erikTranslation != null) translationen += erikTranslation
@@ -42,6 +44,7 @@ fun Lokalisierung.Companion.fromSkript(
 		if (ogSprache == Sprache.DE && deTranslation == null) {
 			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
 			translationen += neueTranslation
+			erschaffeTranslation++
 		}
 
 		if (enTranslation != null) translationen += enTranslation
@@ -49,11 +52,14 @@ fun Lokalisierung.Companion.fromSkript(
 		if (ogSprache == Sprache.EN && enTranslation == null) {
 			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
 			translationen += neueTranslation
+			erschaffeTranslation++
 		}
 
-		return Lokalisierung(
-			id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
-		) to 0
+		return Triple(
+			Lokalisierung(
+				id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
+			), 0, erschaffeTranslation
+		)
 	}
 }
 
@@ -65,12 +71,13 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 	erikTranslationen: List<Translation>?,
 	deTranslationen: List<Translation>?,
 	enTranslationen: List<Translation>?
-): Pair<List<Lokalisierung>?, Int> {
+): Triple<List<Lokalisierung>?, Int, Int> {
+	var anzahlNeuerTranslationen = 0
 	if (ogTranslationen == null) {
 		if (erikTranslationen != null || deTranslationen != null || enTranslationen != null) {
 			error("Es fehlt eine Übersetzung für \"$ogSprache\"!")
 		}
-		return null to -1
+		return Triple(null, -1, anzahlNeuerTranslationen)
 	} else {
 
 		val echteTranslationen = listOfNotNull(
@@ -110,14 +117,15 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 				lokalisierungen += lokalisierung
 			}
 			anzahlNeueLokalisierungen += lokalisierungInfo.second
+			anzahlNeuerTranslationen += lokalisierungInfo.third
 		}
 
 		val maxID = anzahlNeueLokalisierungen - 1
 
 		return if (lokalisierungen.isEmpty()) {
-			null to maxID
+			Triple(null, maxID, anzahlNeuerTranslationen)
 		} else {
-			lokalisierungen.toList() to maxID
+			Triple(lokalisierungen.toList(), maxID, anzahlNeuerTranslationen)
 		}
 	}
 }
