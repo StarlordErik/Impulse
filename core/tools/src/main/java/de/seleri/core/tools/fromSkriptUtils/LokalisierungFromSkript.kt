@@ -19,7 +19,7 @@ fun Lokalisierung.Companion.fromSkript(
 	erikTranslation: Translation?,
 	deTranslation: Translation?,
 	enTranslation: Translation?
-): Lokalisierung? {
+): Pair<Lokalisierung?, Int> {
 	val idBooster = when (ogSprache) {
 		Sprache.OG -> error("Du kannst nicht \"Sprache.OG\" als ogSprache setzen!")
 		Sprache.ERIK -> error("Du kannst nicht \"Sprache.ERIK\" als ogSprache setzen!")
@@ -31,7 +31,7 @@ fun Lokalisierung.Companion.fromSkript(
 		if (erikTranslation != null || deTranslation != null || enTranslation != null) {
 			error("Es fehlt eine Übersetzung für \"$ogSprache\"!")
 		}
-		return null
+		return null to -1
 	} else {
 		val translationen = mutableListOf(ogTranslation)
 		if (erikTranslation != null) translationen += erikTranslation
@@ -53,7 +53,7 @@ fun Lokalisierung.Companion.fromSkript(
 
 		return Lokalisierung(
 			id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
-		)
+		) to 1
 	}
 }
 
@@ -95,19 +95,21 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 		val lokalisierungen = mutableListOf<Lokalisierung>()
 
 		translationenProKartentext.forEach { kartentextTranslationen ->
-			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen++
+			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen
 
 			val ogTranslation = kartentextTranslationen.first()
 			val erikTranslation = kartentextTranslationen.find { it.sprache == Sprache.ERIK }
 			val deTranslation = kartentextTranslationen.find { it.sprache == Sprache.DE }
 			val enTranslation = kartentextTranslationen.find { it.sprache == Sprache.EN }
 
-			val lokalisierung = Lokalisierung.fromSkript(
+			val lokalisierungInfo = Lokalisierung.fromSkript(
 				neueID, ogSprache, ogTranslation, erikTranslation, deTranslation, enTranslation
 			)
+			val lokalisierung = lokalisierungInfo.first
 			if (lokalisierung != null) {
 				lokalisierungen += lokalisierung
 			}
+			anzahlNeueLokalisierungen += lokalisierungInfo.second
 		}
 
 		val maxID = anzahlNeueLokalisierungen - 1

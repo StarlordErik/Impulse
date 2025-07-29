@@ -87,7 +87,7 @@ fun main() {
 	val startKategorieID = maxKategorieID
 	val startSpielID = maxSpielID
 
-	// Eingabe to Translationen:
+	// Eingabe to Translationen - fürs Spiel:
 
 	val spielOGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, spielNameOG)
 	val spielOG = spielOGinfo.first
@@ -104,6 +104,8 @@ fun main() {
 	val spielENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, spielNameEN)
 	val spielEN = spielENinfo.first
 	maxTranslationID += spielENinfo.second
+
+	// Eingabe to Translationen - für die Kategorien:
 
 	val kategorie1OGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie1NameOG)
 	val kategorie1OG = kategorie1OGinfo.first
@@ -168,6 +170,8 @@ fun main() {
 	val kategorie4ENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie4NameEN)
 	val kategorie4EN = kategorie4ENinfo.first
 	maxTranslationID += kategorie4ENinfo.second
+
+	// Eingabe to Translationen - für die Kartentexte:
 
 	val kartentexte1OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte1TexteOG)
 	val kartentexte1OG = kartentexte1OGinfo.first
@@ -237,23 +241,40 @@ fun main() {
 	val kartentexte4EN = kartentexte4ENinfo.first
 	maxTranslationID += kartentexte4ENinfo.second
 
-	// Translationen in Lokalisierung gruppieren:
+	// Translationen in Lokalisierung gruppieren - für das Spiel:
 
-	val spielLokalisierung =
+	val spielLokalisierungInfo =
 		Lokalisierung.fromSkript(++maxLokalisierungID, ogSprache, spielOG, spielERIK, spielDE, spielEN)
+	val spielLokalisierung = spielLokalisierungInfo.first
+	maxLokalisierungID += spielLokalisierungInfo.second
 
-	val kategorie1Lokalisierung = Lokalisierung.fromSkript(
+	// Translationen in Lokalisierung gruppieren - für die Kategorien:
+
+	val kategorie1LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie1OG, kategorie1ERIK, kategorie1DE, kategorie1EN
 	)
-	val kategorie2Lokalisierung = Lokalisierung.fromSkript(
+	val kategorie1Lokalisierung = kategorie1LokalisierungInfo.first
+	maxLokalisierungID += kategorie1LokalisierungInfo.second
+
+	val kategorie2LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie2OG, kategorie2ERIK, kategorie2DE, kategorie2EN
 	)
-	val kategorie3Lokalisierung = Lokalisierung.fromSkript(
+	val kategorie2Lokalisierung = kategorie2LokalisierungInfo.first
+	maxLokalisierungID += kategorie2LokalisierungInfo.second
+
+	val kategorie3LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie3OG, kategorie3ERIK, kategorie3DE, kategorie3EN
 	)
-	val kategorie4Lokalisierung = Lokalisierung.fromSkript(
+	val kategorie3Lokalisierung = kategorie3LokalisierungInfo.first
+	maxLokalisierungID += kategorie3LokalisierungInfo.second
+
+	val kategorie4LokalisierungInfo = Lokalisierung.fromSkript(
 		++maxLokalisierungID, ogSprache, kategorie4OG, kategorie4ERIK, kategorie4DE, kategorie4EN
 	)
+	val kategorie4Lokalisierung = kategorie4LokalisierungInfo.first
+	maxLokalisierungID += kategorie4LokalisierungInfo.second
+
+	// Translationen in Lokalisierung gruppieren - für die Kartentexte:
 
 	val kartentexte1LokalisierungsInfos = Lokalisierung.fromSkriptForKartentexte(
 		++maxLokalisierungID, ogSprache, kartentexte1OG, kartentexte1ERIK, kartentexte1DE, kartentexte1EN
