@@ -59,25 +59,25 @@ fun main() {
 
 	// Kartentexte:
 
-	val kartentext1TexteOG: List<String> = listOf("Sex", "mehr Sex")
-	val kartentext1TexteERIK: List<String> = listOf()
-	val kartentext1TexteDE: List<String> = listOf()
-	val kartentext1TexteEN: List<String> = listOf()
+	val kartentexte1TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte1TexteERIK: List<String> = listOf()
+	val kartentexte1TexteDE: List<String> = listOf()
+	val kartentexte1TexteEN: List<String> = listOf()
 
-	val kartentext2TexteOG: List<String> = listOf("Sex", "mehr Sex")
-	val kartentext2TexteERIK: List<String> = listOf()
-	val kartentext2TexteDE: List<String> = listOf()
-	val kartentext2TexteEN: List<String> = listOf()
+	val kartentexte2TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte2TexteERIK: List<String> = listOf()
+	val kartentexte2TexteDE: List<String> = listOf()
+	val kartentexte2TexteEN: List<String> = listOf()
 
-	val kartentext3TexteOG: List<String> = listOf("Sex", "mehr Sex")
-	val kartentext3TexteERIK: List<String> = listOf()
-	val kartentext3TexteDE: List<String> = listOf()
-	val kartentext3TexteEN: List<String> = listOf()
+	val kartentexte3TexteOG: List<String> = listOf("Sex", "mehr Sex")
+	val kartentexte3TexteERIK: List<String> = listOf()
+	val kartentexte3TexteDE: List<String> = listOf()
+	val kartentexte3TexteEN: List<String> = listOf()
 
-	val kartentext4TexteOG: List<String> = listOf()
-	val kartentext4TexteERIK: List<String> = listOf()
-	val kartentext4TexteDE: List<String> = listOf()
-	val kartentext4TexteEN: List<String> = listOf()
+	val kartentexte4TexteOG: List<String> = listOf()
+	val kartentexte4TexteERIK: List<String> = listOf()
+	val kartentexte4TexteDE: List<String> = listOf()
+	val kartentexte4TexteEN: List<String> = listOf()
 
 	// ------------------------------------ EINGABE BIS HIERHIN UND NICHT WEITER ------------------------------------
 
@@ -89,50 +89,153 @@ fun main() {
 
 	// Eingabe to Translationen:
 
-	val spielOG = Translation.fromSkript(++maxTranslationID, Sprache.OG, spielNameOG)
-	val spielERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, spielNameERIK)
-	val spielDE = Translation.fromSkript(++maxTranslationID, Sprache.DE, spielNameDE)
-	val spielEN = Translation.fromSkript(++maxTranslationID, Sprache.EN, spielNameEN)
+	val spielOGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, spielNameOG)
+	val spielOG = spielOGinfo.first
+	maxTranslationID += spielOGinfo.second
 
-	val kategorie1OG = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie1NameOG)
-	val kategorie1ERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie1NameERIK)
-	val kategorie1DE = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie1NameDE)
-	val kategorie1EN = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie1NameEN)
+	val spielERIKinfo = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, spielNameERIK)
+	val spielERIK = spielERIKinfo.first
+	maxTranslationID += spielERIKinfo.second
 
-	val kategorie2OG = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie2NameOG)
-	val kategorie2ERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie2NameERIK)
-	val kategorie2DE = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie2NameDE)
-	val kategorie2EN = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie2NameEN)
+	val spielDEinfo = Translation.fromSkript(++maxTranslationID, Sprache.DE, spielNameDE)
+	val spielDE = spielDEinfo.first
+	maxTranslationID += spielDEinfo.second
 
-	val kategorie3OG = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie3NameOG)
-	val kategorie3ERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie3NameERIK)
-	val kategorie3DE = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie3NameDE)
-	val kategorie3EN = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie3NameEN)
+	val spielENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, spielNameEN)
+	val spielEN = spielENinfo.first
+	maxTranslationID += spielENinfo.second
 
-	val kategorie4OG = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie4NameOG)
-	val kategorie4ERIK = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie4NameERIK)
-	val kategorie4DE = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie4NameDE)
-	val kategorie4EN = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie4NameEN)
+	val kategorie1OGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie1NameOG)
+	val kategorie1OG = kategorie1OGinfo.first
+	maxTranslationID += kategorie1OGinfo.second
 
-	val kartentexte1OG = kartentext1TexteOG.map { Translation.fromSkript(++maxTranslationID, Sprache.OG, it) }
-	val kartentexte1ERIK = kartentext1TexteERIK.map { Translation.fromSkript(++maxTranslationID, Sprache.ERIK, it) }
-	val kartentexte1DE = kartentext1TexteDE.map { Translation.fromSkript(++maxTranslationID, Sprache.DE, it) }
-	val kartentexte1EN = kartentext1TexteEN.map { Translation.fromSkript(++maxTranslationID, Sprache.EN, it) }
+	val kategorie1ERIKinfo = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie1NameERIK)
+	val kategorie1ERIK = kategorie1ERIKinfo.first
+	maxTranslationID += kategorie1ERIKinfo.second
 
-	val kartentexte2OG = kartentext2TexteOG.map { Translation.fromSkript(++maxTranslationID, Sprache.OG, it) }
-	val kartentexte2ERIK = kartentext2TexteERIK.map { Translation.fromSkript(++maxTranslationID, Sprache.ERIK, it) }
-	val kartentexte2DE = kartentext2TexteDE.map { Translation.fromSkript(++maxTranslationID, Sprache.DE, it) }
-	val kartentexte2EN = kartentext2TexteEN.map { Translation.fromSkript(++maxTranslationID, Sprache.EN, it) }
+	val kategorie1DEinfo = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie1NameDE)
+	val kategorie1DE = kategorie1DEinfo.first
+	maxTranslationID += kategorie1DEinfo.second
 
-	val kartentexte3OG = kartentext3TexteOG.map { Translation.fromSkript(++maxTranslationID, Sprache.OG, it) }
-	val kartentexte3ERIK = kartentext3TexteERIK.map { Translation.fromSkript(++maxTranslationID, Sprache.ERIK, it) }
-	val kartentexte3DE = kartentext3TexteDE.map { Translation.fromSkript(++maxTranslationID, Sprache.DE, it) }
-	val kartentexte3EN = kartentext3TexteEN.map { Translation.fromSkript(++maxTranslationID, Sprache.EN, it) }
+	val kategorie1ENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie1NameEN)
+	val kategorie1EN = kategorie1ENinfo.first
+	maxTranslationID += kategorie1ENinfo.second
 
-	val kartentexte4OG = kartentext4TexteOG.map { Translation.fromSkript(++maxTranslationID, Sprache.OG, it) }
-	val kartentexte4ERIK = kartentext4TexteERIK.map { Translation.fromSkript(++maxTranslationID, Sprache.ERIK, it) }
-	val kartentexte4DE = kartentext4TexteDE.map { Translation.fromSkript(++maxTranslationID, Sprache.DE, it) }
-	val kartentexte4EN = kartentext4TexteEN.map { Translation.fromSkript(++maxTranslationID, Sprache.EN, it) }
+	val kategorie2OGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie2NameOG)
+	val kategorie2OG = kategorie2OGinfo.first
+	maxTranslationID += kategorie2OGinfo.second
+
+	val kategorie2ERIKinfo = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie2NameERIK)
+	val kategorie2ERIK = kategorie2ERIKinfo.first
+	maxTranslationID += kategorie2ERIKinfo.second
+
+	val kategorie2DEinfo = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie2NameDE)
+	val kategorie2DE = kategorie2DEinfo.first
+	maxTranslationID += kategorie2DEinfo.second
+
+	val kategorie2ENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie2NameEN)
+	val kategorie2EN = kategorie2ENinfo.first
+	maxTranslationID += kategorie2ENinfo.second
+
+	val kategorie3OGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie3NameOG)
+	val kategorie3OG = kategorie3OGinfo.first
+	maxTranslationID += kategorie3OGinfo.second
+
+	val kategorie3ERIKinfo = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie3NameERIK)
+	val kategorie3ERIK = kategorie3ERIKinfo.first
+	maxTranslationID += kategorie3ERIKinfo.second
+
+	val kategorie3DEinfo = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie3NameDE)
+	val kategorie3DE = kategorie3DEinfo.first
+	maxTranslationID += kategorie3DEinfo.second
+
+	val kategorie3ENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie3NameEN)
+	val kategorie3EN = kategorie3ENinfo.first
+	maxTranslationID += kategorie3ENinfo.second
+
+	val kategorie4OGinfo = Translation.fromSkript(++maxTranslationID, Sprache.OG, kategorie4NameOG)
+	val kategorie4OG = kategorie4OGinfo.first
+	maxTranslationID += kategorie4OGinfo.second
+
+	val kategorie4ERIKinfo = Translation.fromSkript(++maxTranslationID, Sprache.ERIK, kategorie4NameERIK)
+	val kategorie4ERIK = kategorie4ERIKinfo.first
+	maxTranslationID += kategorie4ERIKinfo.second
+
+	val kategorie4DEinfo = Translation.fromSkript(++maxTranslationID, Sprache.DE, kategorie4NameDE)
+	val kategorie4DE = kategorie4DEinfo.first
+	maxTranslationID += kategorie4DEinfo.second
+
+	val kategorie4ENinfo = Translation.fromSkript(++maxTranslationID, Sprache.EN, kategorie4NameEN)
+	val kategorie4EN = kategorie4ENinfo.first
+	maxTranslationID += kategorie4ENinfo.second
+
+	val kartentexte1OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte1TexteOG)
+	val kartentexte1OG = kartentexte1OGinfo.first
+	maxTranslationID += kartentexte1OGinfo.second
+
+	val kartentexte1ERIKinfo =
+		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte1TexteERIK)
+	val kartentexte1ERIK = kartentexte1ERIKinfo.first
+	maxTranslationID += kartentexte1ERIKinfo.second
+
+	val kartentexte1DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte1TexteDE)
+	val kartentexte1DE = kartentexte1DEinfo.first
+	maxTranslationID += kartentexte1DEinfo.second
+
+	val kartentexte1ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte1TexteEN)
+	val kartentexte1EN = kartentexte1ENinfo.first
+	maxTranslationID += kartentexte1ENinfo.second
+
+	val kartentexte2OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte2TexteOG)
+	val kartentexte2OG = kartentexte2OGinfo.first
+	maxTranslationID += kartentexte2OGinfo.second
+
+	val kartentexte2ERIKinfo =
+		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte2TexteERIK)
+	val kartentexte2ERIK = kartentexte2ERIKinfo.first
+	maxTranslationID += kartentexte2ERIKinfo.second
+
+	val kartentexte2DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte2TexteDE)
+	val kartentexte2DE = kartentexte2DEinfo.first
+	maxTranslationID += kartentexte2DEinfo.second
+
+	val kartentexte2ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte2TexteEN)
+	val kartentexte2EN = kartentexte2ENinfo.first
+	maxTranslationID += kartentexte2ENinfo.second
+
+	val kartentexte3OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte3TexteOG)
+	val kartentexte3OG = kartentexte3OGinfo.first
+	maxTranslationID += kartentexte3OGinfo.second
+
+	val kartentexte3ERIKinfo =
+		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte3TexteERIK)
+	val kartentexte3ERIK = kartentexte3ERIKinfo.first
+	maxTranslationID += kartentexte3ERIKinfo.second
+
+	val kartentexte3DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte3TexteDE)
+	val kartentexte3DE = kartentexte3DEinfo.first
+	maxTranslationID += kartentexte3DEinfo.second
+
+	val kartentexte3ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte3TexteEN)
+	val kartentexte3EN = kartentexte3ENinfo.first
+	maxTranslationID += kartentexte3ENinfo.second
+
+	val kartentexte4OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte4TexteOG)
+	val kartentexte4OG = kartentexte4OGinfo.first
+	maxTranslationID += kartentexte4OGinfo.second
+
+	val kartentexte4ERIKinfo =
+		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte4TexteERIK)
+	val kartentexte4ERIK = kartentexte4ERIKinfo.first
+	maxTranslationID += kartentexte4ERIKinfo.second
+
+	val kartentexte4DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte4TexteDE)
+	val kartentexte4DE = kartentexte4DEinfo.first
+	maxTranslationID += kartentexte4DEinfo.second
+
+	val kartentexte4ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte4TexteEN)
+	val kartentexte4EN = kartentexte4ENinfo.first
+	maxTranslationID += kartentexte4ENinfo.second
 
 	// Translationen in Lokalisierung gruppieren:
 
