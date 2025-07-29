@@ -1,12 +1,15 @@
 package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
+import de.seleri.core.common.idInt.TranslationIDint
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.Spielelement
+import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDaten
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
@@ -179,71 +182,87 @@ fun main() {
 
 	val kartentexte1OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte1TexteOG)
 	val kartentexte1OG = kartentexte1OGinfo.first
-	translationsCounter += 1 + kartentexte1OGinfo.second
+	maxTranslationID += (kartentexte1OGinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte1OGinfo.second / Sprache.entries.size)
 
 	val kartentexte1ERIKinfo =
 		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte1TexteERIK)
 	val kartentexte1ERIK = kartentexte1ERIKinfo.first
-	translationsCounter += 1 + kartentexte1ERIKinfo.second
+	maxTranslationID += (kartentexte1ERIKinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte1ERIKinfo.second / Sprache.entries.size)
 
 	val kartentexte1DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte1TexteDE)
 	val kartentexte1DE = kartentexte1DEinfo.first
-	translationsCounter += 1 + kartentexte1DEinfo.second
+	maxTranslationID += (kartentexte1DEinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte1DEinfo.second / Sprache.entries.size)
 
 	val kartentexte1ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte1TexteEN)
 	val kartentexte1EN = kartentexte1ENinfo.first
-	translationsCounter += 1 + kartentexte1ENinfo.second
+	maxTranslationID += (kartentexte1ENinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte1ENinfo.second / Sprache.entries.size)
 
 	val kartentexte2OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte2TexteOG)
 	val kartentexte2OG = kartentexte2OGinfo.first
-	translationsCounter += 1 + kartentexte2OGinfo.second
+	maxTranslationID += (kartentexte2OGinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte2OGinfo.second / Sprache.entries.size)
 
 	val kartentexte2ERIKinfo =
 		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte2TexteERIK)
 	val kartentexte2ERIK = kartentexte2ERIKinfo.first
-	translationsCounter += 1 + kartentexte2ERIKinfo.second
+	maxTranslationID += (kartentexte2ERIKinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte2ERIKinfo.second / Sprache.entries.size)
 
 	val kartentexte2DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte2TexteDE)
 	val kartentexte2DE = kartentexte2DEinfo.first
-	translationsCounter += 1 + kartentexte2DEinfo.second
+	maxTranslationID += (kartentexte2DEinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte2DEinfo.second / Sprache.entries.size)
 
 	val kartentexte2ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte2TexteEN)
 	val kartentexte2EN = kartentexte2ENinfo.first
-	translationsCounter += 1 + kartentexte2ENinfo.second
+	maxTranslationID += (kartentexte2ENinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte2ENinfo.second / Sprache.entries.size)
 
 	val kartentexte3OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte3TexteOG)
 	val kartentexte3OG = kartentexte3OGinfo.first
-	translationsCounter += 1 + kartentexte3OGinfo.second
+	maxTranslationID += (kartentexte3OGinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte3OGinfo.second / Sprache.entries.size)
 
 	val kartentexte3ERIKinfo =
 		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte3TexteERIK)
 	val kartentexte3ERIK = kartentexte3ERIKinfo.first
-	translationsCounter += 1 + kartentexte3ERIKinfo.second
+	maxTranslationID += (kartentexte3ERIKinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte3ERIKinfo.second / Sprache.entries.size)
 
 	val kartentexte3DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte3TexteDE)
 	val kartentexte3DE = kartentexte3DEinfo.first
-	translationsCounter += 1 + kartentexte3DEinfo.second
+	maxTranslationID += (kartentexte3DEinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte3DEinfo.second / Sprache.entries.size)
 
 	val kartentexte3ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte3TexteEN)
 	val kartentexte3EN = kartentexte3ENinfo.first
-	translationsCounter += 1 + kartentexte3ENinfo.second
+	maxTranslationID += (kartentexte3ENinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte3ENinfo.second / Sprache.entries.size)
 
 	val kartentexte4OGinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.OG, kartentexte4TexteOG)
 	val kartentexte4OG = kartentexte4OGinfo.first
-	translationsCounter += 1 + kartentexte4OGinfo.second
+	maxTranslationID += (kartentexte4OGinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte4OGinfo.second / Sprache.entries.size)
 
 	val kartentexte4ERIKinfo =
 		Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.ERIK, kartentexte4TexteERIK)
 	val kartentexte4ERIK = kartentexte4ERIKinfo.first
-	translationsCounter += 1 + kartentexte4ERIKinfo.second
+	maxTranslationID += (kartentexte4ERIKinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte4ERIKinfo.second / Sprache.entries.size)
 
 	val kartentexte4DEinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.DE, kartentexte4TexteDE)
 	val kartentexte4DE = kartentexte4DEinfo.first
-	translationsCounter += 1 + kartentexte4DEinfo.second
+	maxTranslationID += (kartentexte4DEinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte4DEinfo.second / Sprache.entries.size)
 
 	val kartentexte4ENinfo = Translation.fromSkriptForKartentexte(++maxTranslationID, Sprache.EN, kartentexte4TexteEN)
 	val kartentexte4EN = kartentexte4ENinfo.first
-	translationsCounter += 1 + kartentexte4ENinfo.second
+	maxTranslationID += (kartentexte4ENinfo.second / Sprache.entries.size) + Sprache.entries.size - 1
+	translationsCounter += 1 + (kartentexte4ENinfo.second / Sprache.entries.size)
 
 	// Translationen in Lokalisierung gruppieren - für das Spiel:
 
@@ -353,7 +372,11 @@ fun main() {
 
 	// Kategorien zu Spiel (mit Lokalisierungen):
 
-	val spiel = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
+	val spielCursed = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
+
+	// Fix der Translations-IDs anhand ihrer Lokalisierungs-IDs:
+
+	val spiel = fixeTranslationsIDsGlobal(spielCursed)
 
 	println("Fertig!\n")
 
@@ -417,6 +440,52 @@ fun main() {
 		.toUri()
 		.toString()
 	println("Inhalte des Spiels gespeichert in: $uri")
+}
+
+private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
+	val neueKategorien = mutableListOf<Kategorie>()
+
+	spiel.bestandteile.forEach { kategorie ->
+		val neueKartentexte = mutableListOf<Kartentext>()
+
+		kategorie.bestandteile.forEach { kartentext ->
+			neueKartentexte += kartentext.copy(
+				spielelementDaten = SpielelementDaten(
+					lokalisierung = fixeTranslationsIDs(kartentext.lokalisierung)
+				)
+			)
+		}
+
+		neueKategorien += kategorie.copy(
+			spielelementDaten = SpielelementDaten(
+				lokalisierung = fixeTranslationsIDs(kategorie.lokalisierung)
+			), bestandteile = neueKartentexte
+		)
+	}
+
+	return spiel.copy(
+		spielMetaDaten = SpielMetaDaten(spielelementDaten = SpielelementDaten(lokalisierung = spiel.lokalisierung)),
+		bestandteile = neueKategorien
+	)
+}
+
+private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
+	val lokalisierungID = lokalisierung.id.lokalisierungID
+	val ogID = (lokalisierungID - 1) * Sprache.entries.size + 1
+	val erikID = ogID + 1
+	val deID = erikID + 1
+	val enID = deID + 1
+
+	val neueTranslationen = mutableListOf<Translation>()
+
+	lokalisierung.translationen.forEach { translation ->
+		if (translation.sprache == Sprache.OG) neueTranslationen += translation.copy(id = TranslationIDint(ogID))
+		else if (translation.sprache == Sprache.ERIK) neueTranslationen += translation.copy(id = TranslationIDint(erikID))
+		else if (translation.sprache == Sprache.DE) neueTranslationen += translation.copy(id = TranslationIDint(deID))
+		else if (translation.sprache == Sprache.EN) neueTranslationen += translation.copy(id = TranslationIDint(enID))
+	}
+
+	return lokalisierung.copy(translationen = neueTranslationen)
 }
 
 private fun spielelementToTXT(spielElement: Spielelement): String =
