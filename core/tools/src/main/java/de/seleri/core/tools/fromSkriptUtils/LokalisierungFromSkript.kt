@@ -67,10 +67,10 @@ fun Lokalisierung.Companion.fromSkript(
 fun Lokalisierung.Companion.fromSkriptForKartentexte(
 	freieLokalisierungID: Int,
 	ogSprache: Sprache,
-	ogTranslationen: List<Translation>?,
-	erikTranslationen: List<Translation>?,
-	deTranslationen: List<Translation>?,
-	enTranslationen: List<Translation>?
+	ogTranslationen: List<Translation?>?,
+	erikTranslationen: List<Translation?>?,
+	deTranslationen: List<Translation?>?,
+	enTranslationen: List<Translation?>?
 ): Triple<List<Lokalisierung>?, Int, Int> {
 	var anzahlNeuerTranslationen = 0
 	if (ogTranslationen == null) {
@@ -92,8 +92,8 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 		if (ogTranslationen.size != translationenProKartentext.size) {
 			error("Die Kartentext-Translation-Listen sind nicht gleich lang! U.a. betroffene Kartentexte:\n" +
 				"${ogTranslationen.take(ANZAHL_TRANSLATION_AUSGABEN_BEI_FEHLER).map {
-					it.bezeichnung.take(ANZAHL_TRANSLATION_BUCHSTABEN_PRO_FEHLER)
-					.replace("\n", "\\n").replace("\t", "\\t")
+					it?.bezeichnung?.take(ANZAHL_TRANSLATION_BUCHSTABEN_PRO_FEHLER)
+					?.replace("\n", "\\n")?.replace("\t", "\\t")
 				}}...")
 		}
 		// @formatter:on
@@ -105,9 +105,9 @@ fun Lokalisierung.Companion.fromSkriptForKartentexte(
 			val neueID = freieLokalisierungID + anzahlNeueLokalisierungen++
 
 			val ogTranslation = kartentextTranslationen.first()
-			val erikTranslation = kartentextTranslationen.find { it.sprache == Sprache.ERIK }
-			val deTranslation = kartentextTranslationen.find { it.sprache == Sprache.DE }
-			val enTranslation = kartentextTranslationen.find { it.sprache == Sprache.EN }
+			val erikTranslation = kartentextTranslationen.find { it?.sprache == Sprache.ERIK }
+			val deTranslation = kartentextTranslationen.find { it?.sprache == Sprache.DE }
+			val enTranslation = kartentextTranslationen.find { it?.sprache == Sprache.EN }
 
 			val lokalisierungInfo = Lokalisierung.fromSkript(
 				neueID, ogSprache, ogTranslation, erikTranslation, deTranslation, enTranslation

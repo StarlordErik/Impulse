@@ -13,24 +13,27 @@ fun Translation.Companion.fromSkript(
 
 fun Translation.Companion.fromSkriptForKartentexte(
 	freieTranslationID: Int, sprache: Sprache, bezeichnungen: List<String>
-): Pair<List<Translation>?, Int> {
+): Pair<List<Translation?>?, Int> {
 	var anzahlNeuerTranslationen = 0
 
-	val translationen = mutableListOf<Translation>()
+	val translationen = mutableListOf<Translation?>()
 
 	bezeichnungen.forEach { bezeichnung ->
 		val neueID = freieTranslationID + anzahlNeuerTranslationen
 		val translationInfo = Translation.fromSkript(neueID, sprache, bezeichnung)
 
 		val translation = translationInfo.first
-		if (translation != null) translationen += translation
+		translationen += translation
 
 		anzahlNeuerTranslationen += (1 + translationInfo.second) * Sprache.entries.size
 	}
 
 	val maxID = anzahlNeuerTranslationen - 1
 
-	return if (translationen.isEmpty()) {
+	return if (translationen
+			.filterNotNull()
+			.isEmpty()
+	) {
 		null to maxID
 	} else {
 		translationen.toList() to maxID

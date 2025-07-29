@@ -36,24 +36,24 @@ fun main() {
 	// Spiel:
 
 	val spielNameOG: String = "Erzählt euch mehr - Klassik"
-	val spielNameERIK: String = ""
+	val spielNameERIK: String = "Erzählt euch mehr - Klassik"
 	val spielNameDE: String = ""
 	val spielNameEN: String = ""
 
 	// Kategorien:
 
 	val kategorie1NameOG: String = "Gedankenspiel"
-	val kategorie1NameERIK: String = ""
+	val kategorie1NameERIK: String = "Gedankenspiel"
 	val kategorie1NameDE: String = ""
 	val kategorie1NameEN: String = ""
 
 	val kategorie2NameOG: String = "Kreuzverhör"
-	val kategorie2NameERIK: String = ""
+	val kategorie2NameERIK: String = "Kreuzverhör"
 	val kategorie2NameDE: String = ""
 	val kategorie2NameEN: String = ""
 
 	val kategorie3NameOG: String = "Selbstreflexion"
-	val kategorie3NameERIK: String = ""
+	val kategorie3NameERIK: String = "Selbstreflexion"
 	val kategorie3NameDE: String = ""
 	val kategorie3NameEN: String = ""
 
@@ -64,18 +64,164 @@ fun main() {
 
 	// Kartentexte:
 
-	val kartentexte1TexteOG: List<String> = listOf("Gedanken", "spiel")
-	val kartentexte1TexteERIK: List<String> = listOf()
+	val kartentexte1TexteOG: List<String> = listOf(
+		"Du kannst einem Menschen auf dieser Welt einen Herzenswunsch erfüllen.\n\nWem erfüllst du welchen Wunsch?",
+		"Du kannst auf eine persönliche Hygieneroutine verzichten, ohne, dass es sich negativ auswirkt.\n\nWelche Routine wählst du aus?",
+		"Du kannst einen Tag in deinem Leben nochmal leben.\n\nWelchen Tag wählst du aus?",
+		"Du bekommst die Möglichkeit, (noch) einmal zu studieren.\n\nFür welchen Studiengang entscheidest du dich?",
+		"Du kannst für einen Tag die Darstellung des Google Logos bestimmen.\n\nWie würde es aussehen?",
+		"Die Biografie welches deiner Verwandten würdest du am liebsten lesen und warum?",
+		"Du kannst der weltweit führende Experte in einer bestimmten Nische sein.\n\nWelche Nische wählst du?",
+		"Von all deinen Besitztümern darfst du lediglich fünf behalten.\n\nFür welche entscheidest du dich?",
+		"Du hast eine fünfminütige Audienz beim Papst.\n\nWorüber sprichst du mit ihm?",
+		"Du bist sowohl geografisch als auch finanziell unabhängig.\n\nWie und wo lebst du?",
+		"Du findest heraus, dass dein gesamtes Leben ein einziger Traum ist. Du kannst jetzt entscheiden, ob du aufwachst oder in deinem Traum weiterlebst.\n\nWas tust du?",
+		"Du kannst genau einen Umstand an der Art, wie du aufgewachsen bist, ändern.\n\nWofür entscheidest du dich?",
+		"Du kannst deine tägliche Schlafzeit problemlos halbieren.\n\nWofür nutzt du die neu gewonnene Zeit?",
+		"Du bist Bildungsminister und erarbeitest die Schulinhalte für die nächsten Jahre.\n\nWas muss zwingend auf die Lehrpläne?",
+		"Du wirst für eine Woche lang mit einer Superkraft deiner Wahl ausgestattet.\n\nFür welche Superkraft entscheidest du dich?",
+		"Du bekommst 100.000€, um einen Raum in deinem bestehenden Zuhause nach deinen Wünschen umzugestalten.\n\nWelchen Raum wählst du und was änderst du?",
+		"Du bist mit einem seltenen Virus infiziert. Ärzte teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?",
+		"Du reist in die Vergangenheit und hast ein fünfminütiges Gespräch mit deinem zehnjährigen Ich.\n\nWas erzählst du ihm?",
+		"Du hast einen Freifahrtschein in der Schönheitsklinik. Würdest du etwas ändern lassen?\n\nFalls ja, was?",
+		"Du wirst nach deinem Ableben einmalig wiedergeboren und kannst komplett frei bestimmen als was.\n\nWofür entscheidest du dich?",
+		"Unter sämtlichen Menschen dieser Welt darfst du drei zum Abendessen einladen. Sie werden sicher erscheinen.\n\nWen lädst du ein?"
+	)
+	val kartentexte1TexteERIK: List<String> = listOf(
+		"",
+		"Du kannst auf eine persönliche Hygieneroutine verzichten, ohne dass es sich negativ auswirkt.\n\nWelche Routine wählst du aus?",
+		"",
+		"",
+		"Du kannst für einen Tag die Darstellung des Google-Logos bestimmen.\n\nWie würde es aussehen?",
+		"",
+		"Du kannst der weltweit führende Experte* in einer bestimmten Nische sein.\n\nWelche Nische wählst du?",
+		"Von all deinen Besitztümern darfst du lediglich 5 behalten.\n\nFür welche entscheidest du dich?",
+		"Du hast eine 5-minütige Audienz beim Papst.\n\nWorüber sprichst du mit ihm?",
+		"",
+		"",
+		"",
+		"",
+		"Du bist Bildungsminister* und erarbeitest die Schulinhalte für die nächsten Jahre.\n\nWas muss zwingend auf die Lehrpläne?",
+		"",
+		"",
+		"Du bist mit einem seltenen Virus infiziert. Ärzte* teilen dir mit, dass du nur noch eine Woche zu leben hast. Du bist mobil und frei beweglich.\n\nWie gestaltest du deine letzte Woche?",
+		"Du reist in die Vergangenheit und hast ein 5-minütiges Gespräch mit deinem 10-jährigen Ich.\n\nWas erzählst du deinem jüngeren Ich?",
+		"",
+		"",
+		"Unter sämtlichen Menschen dieser Welt darfst du 3 zum Abendessen einladen. Sie werden sicher erscheinen.\n\nWen lädst du ein?"
+	)
 	val kartentexte1TexteDE: List<String> = listOf()
 	val kartentexte1TexteEN: List<String> = listOf()
 
-	val kartentexte2TexteOG: List<String> = listOf("Kreuz", "verhör")
-	val kartentexte2TexteERIK: List<String> = listOf()
+	val kartentexte2TexteOG: List<String> = listOf(
+		"Würdest du lieber ...\n\n ... das Weltall oder den Ozean erkunden?\n ... den ganzen Tag lang Anzug oder Jogginganzug tragen?\n ... alle Sprachen dieser Welt oder alle Instrumente dieser Welt beherrschen?",
+		"Bevorzugst du ...\n\n ... Podcast oder Hörbuch hören?\n ... Online Shopping oder in Geschäfte gehen?\n ... Nachrichten schreiben oder telefonieren?\n ... Sport machen oder Sport gucken?",
+		"Wie informierst du dich? Nenne jeweils 3 ...\n\n ... Websites\n ... Printerzeugnisse\n ... TV Formate\n ... Podcasts",
+		"Teile je Stichwort eine Kindheitserinnerung:\n\n-Süßigkeit\n-TV Serie\n-Gesellschaftsspiel\n-beste(r) Freund(in)",
+		"Dein Lieblingsgetränk ...\n\n ... beim Frühstück?\n ... im Kino?\n ... im Club?\n ... auf der Arbeit?",
+		"Bist du eher ...\n\n ... ein Fluss,\n ... ein See,\n ... ein Meer oder\n ... ein Wasserfall?\n\nWarum?",
+		"Verzichtest du eher auf ...\n\n ... Kaffee oder Alkohol?\n ... Fleisch oder Fisch?\n ... die Fähigkeit zu schreiben oder die Fähigkeit zu lesen?\n ... 1,5 Monatsgehälter oder deinen Jahresurlaub?",
+		"Regnerischer Spielnachmittag, aber wie?\n\n-Karten oder Brettspiel?\n-Wii oder Playstation?\n-Fifa oder Mario Kart?\n-Heißer Kakao oder Bier?",
+		"Du hast eine eigene Minibar im Haus. Was darf nicht fehlen?\n\n-Wein oder Bier?\n-Klarer oder Kräuterschnaps?\n-Coca-Cola oder Red Bull?\n-Schokolade oder Erdnüsse?",
+		"Wieviel Bargeld hast du in diesem Moment bei dir?\n\nWas war deine letzte Anschaffung < 100€?\n\nWas war deine letzte Anschaffung > 100€?\n\nWofür sparst du gerade?"
+	)
+	val kartentexte2TexteERIK: List<String> = listOf(
+		"",
+		"Wann bevorzugst du ...\n\n ... Podcast- oder Hörbuch-Hören?\n ... Online Shopping oder in Geschäfte Gehen?\n ... Nachrichten-Schreiben oder Telefonieren?\n ... Sport-Machen oder Sport-Gucken?",
+		"",
+		"Teile je Stichwort eine Kindheitserinnerung:\n\n- Süßigkeit\n- TV Serie\n- Gesellschaftsspiel\n- bester Freund*",
+		"Dein Lieblingsgetränk ...\n\n ... beim Frühstück?\n ... im Kino?\n ... im Club?\n ... auf der Arbeit? (oder Schule/Uni)",
+		"",
+		"",
+		"Regnerischer Spielnachmittag, aber wie?\n\n- Karten- oder Brettspiel?\n- Konsole oder PC?\n- Fifa oder Mario Kart?\n- Heißer Kakao oder Bier?",
+		"Du hast eine eigene Minibar im Haus. Was darf nicht fehlen?\n\n- Wein oder Bier?\n- Klarer oder Kräuterschnaps?\n- Coca-Cola oder Red Bull?\n- Schokolade oder Erdnüsse?",
+		"- Wieviel Bargeld hast du in diesem Moment bei dir?\n\n- Was war deine letzte Anschaffung unter 100€?\n\n- Was war deine letzte Anschaffung über 100€?\n\n- Wofür sparst du gerade?",
+	)
 	val kartentexte2TexteDE: List<String> = listOf()
 	val kartentexte2TexteEN: List<String> = listOf()
 
-	val kartentexte3TexteOG: List<String> = listOf("Selbst", "reflexion")
-	val kartentexte3TexteERIK: List<String> = listOf()
+	val kartentexte3TexteOG: List<String> = listOf(
+		"Worauf freust du dich momentan ganz besonders?",
+		"Was war dein persönlich größter Erfolg in deinem Leben?",
+		"Wofür bewunderst du andere Menschen?",
+		"Wo möchtest du im Leben stehen, wenn du deinen nächsten runden Geburtstag erreichst?",
+		"Was war dein Berufswunsch als Kind und wie denkst du heute darüber?",
+		"Gibt es etwas, woran du gerade voller Passion arbeitest?",
+		"Was ist dein Lieblingsgeruch und was verbindest du mit ihm?",
+		"Was hast du irgendwann einmal getan, wofür du dich heute ernsthaft schämst?",
+		"Worüber hast du das letzte Mal so sehr gelacht, dass deine Augen anfingen zu tränen?",
+		"Was ist, deiner Meinung nach, der größte Unterschied zwischen uns beiden?",
+		"Welche Entscheidung, die du getroffen hast, hat dein Leben am stärksten beeinflusst?",
+		"Welche Eigenschaft anderer Menschen macht dich wahnsinnig?",
+		"Wofür gibst du gerne Geld aus und schaust auch nicht zwingend auf das Preisschild?",
+		"Wann und in welcher Situation hast du das letzte Mal jemanden oder etwas aufgegeben?",
+		"Was tust du, um dich selbst glücklich zu machen?",
+		"Was tust du regelmäßig und immer wieder, obwohl es dir absolut nicht gefällt?",
+		"Was ist momentan deine größte Herausforderung?",
+		"Welcher Mensch hat dich besonders inspiriert und warum?",
+		"Was ist das Beste daran, du zu sein?",
+		"Was tust du, um andere Menschen glücklich zu machen?",
+		"Was ist dein wichtigstes Ziel für die nächsten 6 Monate?",
+		"Was haben wir deiner Meinung nach gemeinsam?",
+		"Warst du jemals sehr beunruhigt oder ängstlich wegen einer Sache, die sich im Nachgang als halb so wild entpuppte?",
+		"Welches Kompliment ist dir besonders in Erinnerung geblieben?",
+		"Beschreibe, wie ein Buch und ein Film dich besonders beeinflusst haben.",
+		"Wann hast du das letzte Mal in Gegenwart einer anderen Person geweint und warum?",
+		"Welches Ereignis oder welche Person hat zuletzt deine Sichtweise auf ein bestimmtes Thema signifikant geändert?",
+		"Was war das Hilfreichste, das du in letzter Zeit gelernt hast?",
+		"Wie sieht dein perfekter Sonntagabend aus?",
+		"Was ist deine aktuell größte Sorge?",
+		"Was war dein stolzester Moment in den letzten 12 Monaten?",
+		"Was verbessert deine Laune schlagartig?",
+		"Beschreibe deine Morgenroutine.",
+		"Was bedeutet es für dich ein glückliches Leben zu führen?",
+		"Was denken viele Leute über dich, ist deiner Meinung nach aber nicht zutreffend?",
+		"Erkläre den Einfluss deiner Kinderstube an der Art, wie du ...\n... Urlaub machst.\n... Weihnachten feierst.\n... in den Tag startest.",
+		"Wann hast du dir das letzte Mal einen Rat oder eine Meinung eingeholt?\n\nZu wem gehst du in solchen Fällen?",
+		"Wann war dein letzter richtig mieser Tag?\n\nWas ist geschehen?",
+		"Gibt es etwas, von dem du schon lange träumst es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
+	)
+	val kartentexte3TexteERIK: List<String> = listOf(
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"Was bedeutet es für dich, ein glückliches Leben zu führen?",
+		"",
+		"",
+		"",
+		"",
+		"Gibt es etwas, von dem du schon lange träumst, es zu tun?\n\nWas hielt dich bisher davon ab, es zu tun?"
+	)
 	val kartentexte3TexteDE: List<String> = listOf()
 	val kartentexte3TexteEN: List<String> = listOf()
 
@@ -479,10 +625,12 @@ private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
 	val neueTranslationen = mutableListOf<Translation>()
 
 	lokalisierung.translationen.forEach { translation ->
-		if (translation.sprache == Sprache.OG) neueTranslationen += translation.copy(id = TranslationIDint(ogID))
-		else if (translation.sprache == Sprache.ERIK) neueTranslationen += translation.copy(id = TranslationIDint(erikID))
-		else if (translation.sprache == Sprache.DE) neueTranslationen += translation.copy(id = TranslationIDint(deID))
-		else if (translation.sprache == Sprache.EN) neueTranslationen += translation.copy(id = TranslationIDint(enID))
+		neueTranslationen += when (translation.sprache) {
+			Sprache.OG -> translation.copy(id = TranslationIDint(ogID))
+			Sprache.ERIK -> translation.copy(id = TranslationIDint(erikID))
+			Sprache.DE -> translation.copy(id = TranslationIDint(deID))
+			Sprache.EN -> translation.copy(id = TranslationIDint(enID))
+		}
 	}
 
 	return lokalisierung.copy(translationen = neueTranslationen)
@@ -496,6 +644,8 @@ private fun spielelementToTXT(spielElement: Spielelement): String =
 			val id = it.id.translationID.toString()
 			val sprache = it.sprache.toString()
 			val bezeichnung = it.bezeichnung
+				.replace("\n", "\\n")
+				.replace("\t", "\\t")
 			appendLine("\t\t\t${in4Zeichen(id)} | ${in4Zeichen(sprache)} | $bezeichnung")
 		}
 	}
