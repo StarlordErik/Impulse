@@ -2,6 +2,7 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.idInt.TranslationIDint
+import de.seleri.core.domain.mapper.toDatenbankSlice
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -575,7 +576,6 @@ fun main() {
 				append(spielelementToTXT(kartentext))
 			}
 		}
-
 	}
 
 	println(content)
@@ -586,6 +586,26 @@ fun main() {
 		.toUri()
 		.toString()
 	println("Inhalte des Spiels gespeichert in: $uri")
+
+	// ------------------------------------------ NUN IN DIE DATENBANK -----------------------------------------------
+
+	val dbs = spiel.toDatenbankSlice()
+
+	val outputFile2 = File("core/tools/build/outputs/neues_Spiel.txt")
+	outputFile2.parentFile.mkdirs()
+
+	val content2 = buildString {
+
+	}
+
+	println(content2)
+
+	outputFile2.writeText(content2)
+	val uri2 = outputFile2
+		.toPath()
+		.toUri()
+		.toString()
+	println("Datenbank-Einträge gespeichert in: $uri2")
 }
 
 private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
