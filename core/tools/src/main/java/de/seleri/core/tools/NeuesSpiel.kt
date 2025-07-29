@@ -14,7 +14,7 @@ import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
 @Suppress("MaxLineLength", "LongMethod")
 fun main() {
 
-	println("Zeit für ein neues Spiel!\n.\n.\n.\n")
+	println("Zeit für ein neues Spiel!\n.\n.\n.")
 
 	// Schau in die Datenbank; Was ist die höchste, vergebene ID der jeweiligen Tabellen?
 
@@ -342,24 +342,26 @@ fun main() {
 
 	val spiel = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
 
+	println("Fertig!\n")
+
 	// ---------------------------------- SPIEL WURDE ERSTELLT - NUN ZUR AUSWERTUNG ----------------------------------
 
-	println("Spiel wurde erstellt! Schauen wir uns an, wie viele Objekte erstellt worden sind!\n")
+	println("\"$spielNameOG\" wurde erstellt! \n")
 
 	val anzahlSpiele = maxSpielID - startSpielID
-	println("$anzahlSpiele Spiel wurde erstellt, probably mit dem Namen: \"$spielNameOG\"")
+	println("Statistik für $anzahlSpiele Spiel:")
 
 	val anzahlKategorien = maxKategorieID - startKategorieID
-	println("$anzahlKategorien Kategorien wurden erstellt")
+	println("\t$anzahlKategorien Kategorien")
 
 	val anzahlKartentexte = maxKartentextID - startKartentextID
-	println("$anzahlKartentexte Kartentexte wurden erstellt")
+	println("\t$anzahlKartentexte Kartentexte")
 
 	val anzahlLokalisierungen = maxLokalisierungID - startLokalisierungID
-	println("$anzahlLokalisierungen Lokalisierungen wurden erstellt")
+	println("\t$anzahlLokalisierungen Lokalisierungen")
 
 	val anzahlTranslationen = maxTranslationID - startTranslationsID
-	println("$anzahlTranslationen Translationen wurden erstellt")
+	println("\t$anzahlTranslationen Translationen")
 
 	/*
 	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
