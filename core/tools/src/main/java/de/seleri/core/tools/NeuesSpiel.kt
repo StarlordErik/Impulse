@@ -15,6 +15,7 @@ import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForKartentexte
+import kotlinx.serialization.json.Json
 import java.io.File
 
 @Suppress("MaxLineLength", "LongMethod")
@@ -548,7 +549,9 @@ fun main() {
 
 	// --------------------------------- SPIEL ZUM CHECK IN EINE DATEI SCHREIBEN --------------------------------------
 
-	val outputFile = File("core/tools/build/outputs/neues_Spiel.txt")
+	val outputName = toDateiname(spielNameOG)
+
+	val outputFile = File("core/tools/build/neue_Spiele/$outputName/Check.txt")
 	outputFile.parentFile.mkdirs()
 
 	val content = buildString {
@@ -585,27 +588,33 @@ fun main() {
 		.toPath()
 		.toUri()
 		.toString()
-	println("Inhalte des Spiels gespeichert in: $uri")
+	println("Check-Datei gespeichert in: $uri\n")
 
 	// ------------------------------------------ NUN IN DIE DATENBANK -----------------------------------------------
 
 	val dbs = spiel.toDatenbankSlice()
 
-	val outputFile2 = File("core/tools/build/outputs/neues_Spiel.txt")
-	outputFile2.parentFile.mkdirs()
+	dbsToJson(dbs.spiele, "Spiele", outputName)
+	dbsToJson(dbs.kategorien, "Kategorien", outputName)
+	dbsToJson(dbs.kartentexte, "Kartentexte", outputName)
+	dbsToJson(dbs.lokalisierungen, "Lokalisierungen", outputName)
+	dbsToJson(dbs.translationen, "Translationen", outputName)
+	dbsToJson(dbs.spielXkategorien, "SpielXkategorien", outputName)
+	dbsToJson(dbs.kategorieXkartentexte, "KategorieXkartentexte", outputName)
+}
 
-	val content2 = buildString {
+private inline fun <reified T> dbsToJson(tabelle: List<T>, name: String, outputName: String) {
+	val jsonDatei = File("core/tools/build/neue_Spiele/$outputName/$name.json")
+	jsonDatei.parentFile.mkdirs()
 
-	}
+	val json = Json.encodeToString(tabelle)
 
-	println(content2)
-
-	outputFile2.writeText(content2)
-	val uri2 = outputFile2
+	jsonDatei.writeText(json)
+	val uri = jsonDatei
 		.toPath()
 		.toUri()
 		.toString()
-	println("Datenbank-Einträge gespeichert in: $uri2")
+	println("\"$name\"-Tabelle: $uri")
 }
 
 private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
@@ -675,4 +684,24 @@ private fun in4Zeichen(input: String): String {
 	return input
 		.take(anzahlZeichen)
 		.padStart(anzahlZeichen, ' ')
+}
+
+private fun toDateiname(input: String): String {
+	val replacements = mapOf(
+		'ä' to "ae", 'ö' to "oe", 'ü' to "ue", 'Ä' to "Ae", 'Ö' to "Oe", 'Ü' to "Ue", 'ß' to "ss", ' ' to "_"
+	)
+
+	val sanitized = buildString {
+		for (char in input) {
+			append(
+				replacements[char]
+					?: when {
+						char.isLetterOrDigit() || char == '_' || char == '-' -> char
+						else -> "" // Entferne ungültige Zeichen
+					}
+			)
+		}
+	}
+
+	return sanitized.lowercase()
 }
