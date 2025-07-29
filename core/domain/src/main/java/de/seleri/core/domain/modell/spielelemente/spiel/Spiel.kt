@@ -1,6 +1,6 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
-import de.seleri.core.common.idInt.SpielIDint
+import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -9,7 +9,7 @@ import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
-	override val id: SpielIDint,
+	override val id: SpielID,
 
 	private val spielMetaDaten: SpielMetaDaten,
 

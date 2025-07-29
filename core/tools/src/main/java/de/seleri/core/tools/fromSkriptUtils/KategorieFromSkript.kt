@@ -1,6 +1,6 @@
 package de.seleri.core.tools.fromSkriptUtils
 
-import de.seleri.core.common.idInt.KategorieIDint
+import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
@@ -26,7 +26,7 @@ fun Kategorie.Companion.fromSkript(
 			// @formatter:on
 		} else {
 			return Kategorie(
-				id = KategorieIDint(kategorieID), spielelementDaten = SpielelementDaten(lokalisierung),
+				id = KategorieID(kategorieID), spielelementDaten = SpielelementDaten(lokalisierung),
 				bestandteile = kartentexte
 			) to 0
 		}

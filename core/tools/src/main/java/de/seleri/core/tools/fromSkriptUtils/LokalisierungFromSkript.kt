@@ -1,7 +1,7 @@
 package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.idInt.LokalisierungIDint
+import de.seleri.core.common.id.LokalisierungID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 
@@ -38,7 +38,7 @@ fun Lokalisierung.Companion.fromSkript(
 		if (erikTranslation != null) translationen += erikTranslation
 		if (deTranslation != null) translationen += deTranslation
 
-		val neueID = ogTranslation.id.translationID + idBooster/*
+		val neueID = ogTranslation.id.id + idBooster/*
 		if (ogSprache == Sprache.DE && deTranslation == null) {
 			val neueTranslation = Translation(TranslationIDint(neueID), ogSprache, ogTranslation.bezeichnung)
 			translationen += neueTranslation
@@ -55,7 +55,7 @@ fun Lokalisierung.Companion.fromSkript(
 
 		return Triple(
 			Lokalisierung(
-				id = LokalisierungIDint(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
+				id = LokalisierungID(freieLokalisierungID), ogSprache = ogSprache, translationen = translationen
 			), 0, erschaffteTranslation
 		)
 	}

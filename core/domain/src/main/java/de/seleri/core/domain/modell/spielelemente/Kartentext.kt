@@ -1,12 +1,12 @@
 package de.seleri.core.domain.modell.spielelemente
 
-import de.seleri.core.common.idInt.KartentextIDint
+import de.seleri.core.common.id.spielelementID.KartentextID
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.Konstanten
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
-	override val id: KartentextIDint,
+	override val id: KartentextID,
 
 	private val spielelementDaten: SpielelementDaten,
 

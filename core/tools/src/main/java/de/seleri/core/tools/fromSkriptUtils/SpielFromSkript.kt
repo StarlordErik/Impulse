@@ -1,6 +1,6 @@
 package de.seleri.core.tools.fromSkriptUtils
 
-import de.seleri.core.common.idInt.SpielIDint
+import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
@@ -29,7 +29,7 @@ fun Spiel.Companion.fromSkript(spielID: Int, lokalisierung: Lokalisierung?, kate
 			// @formatter:on
 		} else {
 			return Spiel(
-				id = SpielIDint(spielID), spielMetaDaten = SpielMetaDaten(
+				id = SpielID(spielID), spielMetaDaten = SpielMetaDaten(
 					spielelementDaten = SpielelementDaten(lokalisierung)
 				), bestandteile = kategorien
 			)

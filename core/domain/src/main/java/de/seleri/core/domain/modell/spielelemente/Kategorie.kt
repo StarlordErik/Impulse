@@ -1,13 +1,13 @@
 package de.seleri.core.domain.modell.spielelemente
 
-import de.seleri.core.common.idInt.KategorieIDint
+import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
-	override val id: KategorieIDint,
+	override val id: KategorieID,
 
 	private val spielelementDaten: SpielelementDaten,
 

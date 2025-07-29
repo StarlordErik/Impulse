@@ -1,7 +1,7 @@
 package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.idInt.TranslationIDint
+import de.seleri.core.common.id.TranslationID
 import de.seleri.core.domain.mapper.toDatenbankSlice
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
@@ -560,13 +560,13 @@ fun main() {
 		// Spiel:
 
 		appendLine("Spiel:")
-		appendLine("\tSpielID: ${spiel.id.spielID}")
+		appendLine("\tSpielID: ${spiel.id.id}")
 		append(spielelementToTXT(spiel))
 
 		// Kategorien:
 		appendLine("\nKategorien:")
 		spiel.bestandteile.forEach { kategorie ->
-			appendLine("\tKategorieID: ${kategorie.id.kategorieID}")
+			appendLine("\tKategorieID: ${kategorie.id.id}")
 			append(spielelementToTXT(kategorie))
 		}
 
@@ -575,7 +575,7 @@ fun main() {
 		spiel.bestandteile.forEach { kategorie ->
 			appendLine("  ${kategorie.lokalisierung.translationen.first().bezeichnung}:")
 			kategorie.bestandteile.forEach { kartentext ->
-				appendLine("\tKartentextID: ${kartentext.id.kartentextID}")
+				appendLine("\tKartentextID: ${kartentext.id.id}")
 				append(spielelementToTXT(kartentext))
 			}
 		}
@@ -645,7 +645,7 @@ private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
 }
 
 private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
-	val lokalisierungID = lokalisierung.id.lokalisierungID
+	val lokalisierungID = lokalisierung.id.id
 	val ogID = (lokalisierungID - 1) * Sprache.entries.size + 1
 	val erikID = ogID + 1
 	val deID = erikID + 1
@@ -655,10 +655,10 @@ private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
 
 	lokalisierung.translationen.forEach { translation ->
 		neueTranslationen += when (translation.sprache) {
-			Sprache.OG -> translation.copy(id = TranslationIDint(ogID))
-			Sprache.ERIK -> translation.copy(id = TranslationIDint(erikID))
-			Sprache.DE -> translation.copy(id = TranslationIDint(deID))
-			Sprache.EN -> translation.copy(id = TranslationIDint(enID))
+			Sprache.OG -> translation.copy(id = TranslationID(ogID))
+			Sprache.ERIK -> translation.copy(id = TranslationID(erikID))
+			Sprache.DE -> translation.copy(id = TranslationID(deID))
+			Sprache.EN -> translation.copy(id = TranslationID(enID))
 		}
 	}
 
@@ -667,10 +667,10 @@ private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
 
 private fun spielelementToTXT(spielElement: Spielelement): String =
 	buildString {
-		appendLine("\t\tLokalisierungID: ${spielElement.lokalisierung.id.lokalisierungID}")
+		appendLine("\t\tLokalisierungID: ${spielElement.lokalisierung.id.id}")
 		appendLine("\t\tTranslID | Spr. | Bezeichnung")
 		spielElement.lokalisierung.translationen.forEach {
-			val id = it.id.translationID.toString()
+			val id = it.id.id.toString()
 			val sprache = it.sprache.toString()
 			val bezeichnung = it.bezeichnung
 				.replace("\n", "\\n")

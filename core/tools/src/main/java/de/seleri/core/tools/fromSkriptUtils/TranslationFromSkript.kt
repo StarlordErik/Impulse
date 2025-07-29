@@ -1,13 +1,13 @@
 package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.idInt.TranslationIDint
+import de.seleri.core.common.id.TranslationID
 import de.seleri.core.domain.modell.Translation
 
 fun Translation.Companion.fromSkript(
 	freieTranslationID: Int, sprache: Sprache, bezeichnung: String
 ): Pair<Translation?, Int> {
-	return if (bezeichnung.isNotBlank()) Translation(TranslationIDint(freieTranslationID), sprache, bezeichnung) to 0
+	return if (bezeichnung.isNotBlank()) Translation(TranslationID(freieTranslationID), sprache, bezeichnung) to 0
 	else null to -1
 }
 
