@@ -7,6 +7,8 @@ plugins {
 	alias(libs.plugins.detekt)
 	alias(libs.plugins.kover)
 
+	alias(libs.plugins.kotlinx.serialization)
+
 	alias(libs.plugins.ksp)
 	alias(libs.plugins.hilt.android)
 
@@ -18,6 +20,8 @@ dependencies {
 	implementation(project(":core:domain"))
 
 	testImplementation(libs.junit)
+
+	implementation(libs.kotlinx.serialization.json)
 
 	implementation(libs.hilt.android)
 	ksp(libs.hilt.android.compiler)
