@@ -2,6 +2,7 @@ package de.seleri.core.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.spielelemente.KartentextDao
 import de.seleri.core.data.daos.spielelemente.KategorieDao
@@ -13,6 +14,7 @@ import de.seleri.core.data.entities.singles.spielelemente.KartentextEntityRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieEntityRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielEntityRoom
 
+@TypeConverters(Converters::class)
 @Database(
 	entities = [
 		LokalisierungRoom::class,
