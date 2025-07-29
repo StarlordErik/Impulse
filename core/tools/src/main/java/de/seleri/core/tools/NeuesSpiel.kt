@@ -594,13 +594,13 @@ fun main() {
 
 	val dbs = spiel.toDatenbankSlice()
 
-	dbsToJson(dbs.spiele, "Spiele", outputName)
-	dbsToJson(dbs.kategorien, "Kategorien", outputName)
-	dbsToJson(dbs.kartentexte, "Kartentexte", outputName)
-	dbsToJson(dbs.lokalisierungen, "Lokalisierungen", outputName)
-	dbsToJson(dbs.translationen, "Translationen", outputName)
-	dbsToJson(dbs.spielXkategorien, "SpielXkategorien", outputName)
-	dbsToJson(dbs.kategorieXkartentexte, "KategorieXkartentexte", outputName)
+	dbsToJson(dbs.spiele, "spiele", outputName)
+	dbsToJson(dbs.kategorien, "kategorien", outputName)
+	dbsToJson(dbs.kartentexte, "kartentexte", outputName)
+	dbsToJson(dbs.lokalisierungen, "lokalisierungen", outputName)
+	dbsToJson(dbs.translationen, "translationen", outputName)
+	dbsToJson(dbs.spielXkategorien, "spielxkategorien", outputName)
+	dbsToJson(dbs.kategorieXkartentexte, "kategoriexkartentexte", outputName)
 }
 
 private inline fun <reified T> dbsToJson(tabelle: List<T>, name: String, outputName: String) {
