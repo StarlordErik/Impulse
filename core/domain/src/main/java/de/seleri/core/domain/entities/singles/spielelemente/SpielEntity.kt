@@ -13,7 +13,8 @@ data class SpielEntity(
 	override val inaktiv: Boolean,
 	override val favorisiert: Boolean,
 
+	val bildDateiname: String?,
+
 	val anleitung: String?,
 	val texteProKarte: Int,
-	val bildDateiname: String?,
 ): SpielelementEntity
