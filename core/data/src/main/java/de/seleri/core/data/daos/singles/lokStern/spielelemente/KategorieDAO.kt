@@ -9,7 +9,7 @@ import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
 @Dao
-interface KategorieDao: SpielelementDao<KategorieRoom, KategorieID> {
+interface KategorieDAO: SpielelementDAO<KategorieRoom, KategorieID> {
 
 	@Insert
 	override suspend fun insert(entity: KategorieRoom): Long

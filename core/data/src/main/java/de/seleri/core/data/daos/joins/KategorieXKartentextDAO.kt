@@ -4,7 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 
-interface KategorieXKartentextDao: JoinDao<KategorieXKartentextRoom> {
+interface KategorieXKartentextDAO: JoinDAO<KategorieXKartentextRoom> {
 
 	@Insert
 	override suspend fun insert(entity: KategorieXKartentextRoom): Long

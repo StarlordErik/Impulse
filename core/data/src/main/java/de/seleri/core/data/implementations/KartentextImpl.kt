@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDao
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -9,7 +9,7 @@ import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 
 class KartentextImpl(
-	private val dao: KartentextDao, private val lokalisierungRepo: LokalisierungRepo
+	private val dao: KartentextDAO, private val lokalisierungRepo: LokalisierungRepo
 ): KartentextRepo {
 
 	override suspend fun upsert(spielelement: Kartentext) {

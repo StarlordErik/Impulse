@@ -4,7 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 
-interface SpielXKategorieDao: JoinDao<SpielXKategorieRoom> {
+interface SpielXKategorieDAO: JoinDAO<SpielXKategorieRoom> {
 
 	@Insert
 	override suspend fun insert(entity: SpielXKategorieRoom): Long

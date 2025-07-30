@@ -9,7 +9,7 @@ import de.seleri.core.common.id.spielelementID.KartentextID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 
 @Dao
-interface KartentextDao: SpielelementDao<KartentextRoom, KartentextID> {
+interface KartentextDAO: SpielelementDAO<KartentextRoom, KartentextID> {
 
 	@Insert
 	override suspend fun insert(entity: KartentextRoom): Long

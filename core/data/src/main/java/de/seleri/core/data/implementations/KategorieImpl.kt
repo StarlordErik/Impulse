@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDao
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
@@ -12,7 +12,7 @@ import de.seleri.core.domain.repositories.KategorieRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo
 
 class KategorieImpl(
-	private val dao: KategorieDao,
+	private val dao: KategorieDAO,
 	private val lokalisierungRepo: LokalisierungRepo,
 	private val kartentextRepo: KartentextRepo
 ): KategorieRepo {

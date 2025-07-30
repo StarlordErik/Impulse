@@ -5,11 +5,11 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.seleri.core.common.id.EntityID
-import de.seleri.core.data.daos.EntityDao
+import de.seleri.core.data.daos.EntityDAO
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 
 @Dao
-interface LokalisierungDao: EntityDao<LokalisierungRoom> {
+interface LokalisierungDAO: EntityDAO<LokalisierungRoom> {
 
 	@Insert
 	override suspend fun insert(entity: LokalisierungRoom): Long

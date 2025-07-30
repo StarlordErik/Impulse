@@ -4,10 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import de.seleri.core.data.daos.singles.LokalisierungDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDao
+import de.seleri.core.data.daos.singles.LokalisierungDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
 import de.seleri.core.data.implementations.KartentextImpl
 import de.seleri.core.data.implementations.KategorieImpl
 import de.seleri.core.data.implementations.LokalisierungImpl
@@ -25,28 +25,28 @@ object RepositoryModule {
 	@Provides
 	@Singleton
 	fun provideLokalisierungRepo(
-		dao: LokalisierungDao
+		dao: LokalisierungDAO
 	): LokalisierungRepo =
 		LokalisierungImpl(dao)
 
 	@Provides
 	@Singleton
 	fun provideKartentextRepo(
-		dao: KartentextDao, lokalisierungRepo: LokalisierungRepo
+		dao: KartentextDAO, lokalisierungRepo: LokalisierungRepo
 	): KartentextRepo =
 		KartentextImpl(dao, lokalisierungRepo)
 
 	@Provides
 	@Singleton
 	fun provideKategorieRepo(
-		dao: KategorieDao, lokalisierungRepo: LokalisierungRepo, kartentextRepo: KartentextRepo
+		dao: KategorieDAO, lokalisierungRepo: LokalisierungRepo, kartentextRepo: KartentextRepo
 	): KategorieRepo =
 		KategorieImpl(dao, lokalisierungRepo, kartentextRepo)
 
 	@Provides
 	@Singleton
 	fun provideSpielRepo(
-		dao: SpielDao, lokalisierungRepo: LokalisierungRepo, kategorieRepo: KategorieRepo
+		dao: SpielDAO, lokalisierungRepo: LokalisierungRepo, kategorieRepo: KategorieRepo
 	): SpielRepo =
 		SpielImpl(dao, lokalisierungRepo, kategorieRepo)
 }

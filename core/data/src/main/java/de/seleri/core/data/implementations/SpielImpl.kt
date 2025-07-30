@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDao
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
@@ -14,7 +14,7 @@ import de.seleri.core.domain.repositories.LokalisierungRepo
 import de.seleri.core.domain.repositories.SpielRepo
 
 class SpielImpl(
-	private val dao: SpielDao,
+	private val dao: SpielDAO,
 	private val lokalisierungRepo: LokalisierungRepo,
 	private val kategorieRepo: KategorieRepo
 ): SpielRepo {

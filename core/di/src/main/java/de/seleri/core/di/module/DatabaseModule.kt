@@ -10,11 +10,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.seleri.core.data.AppDatabase
-import de.seleri.core.data.daos.singles.LokalisierungDao
-import de.seleri.core.data.daos.singles.lokStern.TranslationDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDao
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDao
+import de.seleri.core.data.daos.singles.LokalisierungDAO
+import de.seleri.core.data.daos.singles.lokStern.TranslationDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
+import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
 import de.seleri.core.di.utils.JsonDataLoader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,11 +43,11 @@ object DatabaseModule {
 	@Singleton
 	fun provideRoomCallback(
 		context: Context,
-		spielDao: SpielDao,
-		kategorieDao: KategorieDao,
-		kartentextDao: KartentextDao,
-		lokalisierungDao: LokalisierungDao,
-		translationDao: TranslationDao,
+		spielDao: SpielDAO,
+		kategorieDao: KategorieDAO,
+		kartentextDao: KartentextDAO,
+		lokalisierungDao: LokalisierungDAO,
+		translationDao: TranslationDAO,
 		kategorieXkartentextDao: KategorieXkartentextDao,
 		spielXkategorieDao: SpielXkategorieDao
 	): RoomDatabase.Callback {
@@ -70,18 +70,18 @@ object DatabaseModule {
 	}
 
 	@Provides
-	fun provideLokalisierungDao(db: AppDatabase): LokalisierungDao =
+	fun provideLokalisierungDao(db: AppDatabase): LokalisierungDAO =
 		db.lokalisierungDao()
 
 	@Provides
-	fun provideKartentextDao(db: AppDatabase): KartentextDao =
+	fun provideKartentextDao(db: AppDatabase): KartentextDAO =
 		db.kartentextDao()
 
 	@Provides
-	fun provideKategorieDao(db: AppDatabase): KategorieDao =
+	fun provideKategorieDao(db: AppDatabase): KategorieDAO =
 		db.kategorieDao()
 
 	@Provides
-	fun provideSpielDao(db: AppDatabase): SpielDao =
+	fun provideSpielDao(db: AppDatabase): SpielDAO =
 		db.spielDao()
 }

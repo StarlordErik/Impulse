@@ -4,7 +4,7 @@ import androidx.room.Query
 import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
-interface SpielMitKategorien: RelationDao<SpielID, KategorieRoom> {
+interface SpielMitKategorienDAO: RelationDAO<SpielID, KategorieRoom> {
 
 	@Query(
 		"""

@@ -9,7 +9,7 @@ import de.seleri.core.common.id.LokalisierungID
 import de.seleri.core.data.entities.singles.lokStern.TranslationRoom
 
 @Dao
-interface TranslationDao: LokSternDao<TranslationRoom> {
+interface TranslationDAO: LokSternDAO<TranslationRoom> {
 
 	@Insert
 	override suspend fun insert(entity: TranslationRoom): Long

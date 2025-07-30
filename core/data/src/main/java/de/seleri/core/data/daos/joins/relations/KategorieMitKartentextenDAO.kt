@@ -4,7 +4,7 @@ import androidx.room.Query
 import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 
-interface KategorieMitKartentexten: RelationDao<KategorieID, KartentextRoom> {
+interface KategorieMitKartentextenDAO: RelationDAO<KategorieID, KartentextRoom> {
 
 	@Query(
 		"""

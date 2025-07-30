@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.LokalisierungDao
+import de.seleri.core.data.daos.singles.LokalisierungDAO
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntityForKartentext
 import de.seleri.core.data.mapper.toEntityForKategorie
@@ -11,7 +11,7 @@ import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
 
 class LokalisierungImpl(
-	private val dao: LokalisierungDao,
+	private val dao: LokalisierungDAO,
 ): LokalisierungRepo {
 
 	override suspend fun upsertForSpiel(spielID: SpielelementID.SpielID, lokalisierung: Lokalisierung) {
