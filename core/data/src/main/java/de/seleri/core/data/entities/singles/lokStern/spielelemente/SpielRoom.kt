@@ -29,7 +29,7 @@ data class SpielRoom(
 
 	val anleitung: String?,
 	val texteProKarte: Int,
-): SpielelementRoom {
+): SpielelementRoom, SammlungRoom {
 
 	override val id: SpielID get() = SpielID(lokalisierungID.id)
 }

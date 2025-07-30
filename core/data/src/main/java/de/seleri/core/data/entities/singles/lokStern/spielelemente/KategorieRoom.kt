@@ -24,7 +24,7 @@ data class KategorieRoom(
 	override val selbstErstellt: Boolean,
 	override val inaktiv: Boolean,
 	override val favorisiert: Boolean,
-): SpielelementRoom {
+): SpielelementRoom, SammlungRoom, BestandteilRoom {
 
 	override val id: KategorieID get() = KategorieID(lokalisierungID.id)
 }

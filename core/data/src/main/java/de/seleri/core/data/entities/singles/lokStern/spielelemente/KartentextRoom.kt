@@ -27,7 +27,7 @@ data class KartentextRoom(
 
 	val gesehen: Boolean,
 	val besprochen: Boolean,
-): SpielelementRoom {
+): SpielelementRoom, BestandteilRoom {
 
 	override val id: KartentextID get() = KartentextID(lokalisierungID.id)
 }
