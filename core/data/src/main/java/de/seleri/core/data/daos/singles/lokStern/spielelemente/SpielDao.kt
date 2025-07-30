@@ -3,45 +3,26 @@ package de.seleri.core.data.daos.singles.lokStern.spielelemente
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
-import de.seleri.core.data.daos.joins.JoinDao
-import de.seleri.core.data.entities.joins.SpielXKategorieRoom
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
+import androidx.room.Update
+import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielRoom
 
 @Dao
-interface SpielDao: SpielelementDao<SpielRoom>, JoinDao<SpielXKategorieRoom> {
+interface SpielDao: SpielelementDao<SpielRoom, SpielID> {
 
-	@Upsert
-	override suspend fun upsert(entity: SpielRoom): Long
+	@Insert
+	override suspend fun insert(entity: SpielRoom): Long
 
-	@Delete
-	override suspend fun delete(entity: SpielRoom)
-
-	@Query("SELECT * FROM Spiele WHERE id = :spielelementID")
-	override suspend fun get(spielelementID: Int): SpielRoom
-
-	@Query("SELECT * FROM Spiele")
-	suspend fun getAll(): List<SpielRoom>
-
-	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	override suspend fun insert(joinEntity: SpielXKategorieRoom)
+	@Insert
+	override suspend fun insertAll(entities: Collection<SpielRoom>): List<Long>
 
 	@Delete
-	override suspend fun delete(joinEntity: SpielXKategorieRoom)
+	override suspend fun delete(entity: SpielRoom): Int
 
-	@Query("SELECT * FROM SpielXKategorie WHERE spielID = :sammlungsId")
-	override suspend fun getAllConnections(sammlungsId: Int): List<SpielXKategorieRoom>
+	@Update
+	override suspend fun update(entity: SpielRoom): Int
 
-	@Query(
-		"""
-        SELECT k.* FROM Kategorien k
-        INNER JOIN SpielXKategorie x ON k.id = x.kategorieId
-        WHERE x.spielId = :spielId
-    """
-	)
-	suspend fun getKategorien(spielId: Int): List<KategorieRoom>
-
+	@Query("SELECT * FROM spiele WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: SpielID): SpielRoom
 }
