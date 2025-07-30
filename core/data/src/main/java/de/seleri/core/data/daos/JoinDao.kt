@@ -1,8 +1,8 @@
 package de.seleri.core.data.daos
 
-import de.seleri.core.data.entities.joins.JoinEntity
+import de.seleri.core.data.entities.joins.JoinRoom
 
-interface JoinDao<J: JoinEntity> {
+interface JoinDao<J: JoinRoom> {
 
 	suspend fun insert(joinEntity: J)
 	suspend fun delete(joinEntity: J)

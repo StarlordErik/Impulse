@@ -7,7 +7,7 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 
 @Entity(
-	tableName = "SpielXKategorie", primaryKeys = ["spielID", "kategorieID"], foreignKeys = [ForeignKey(
+	tableName = "spiel_x_kategorie", primaryKeys = ["spielID", "kategorieID"], foreignKeys = [ForeignKey(
 		entity = SpielRoom::class, parentColumns = ["id"], childColumns = ["spielID"], onDelete = ForeignKey.CASCADE
 	), ForeignKey(
 		entity = KategorieRoom::class,
@@ -19,4 +19,4 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 data class SpielXKategorie(
 	val spielID: Int,
 	val kategorieID: Int,
-) : JoinEntity
+): JoinRoom

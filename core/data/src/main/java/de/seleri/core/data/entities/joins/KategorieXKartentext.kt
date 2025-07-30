@@ -7,7 +7,7 @@ import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 
 @Entity(
-	tableName = "KategorieXKartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(
+	tableName = "kategorie_x_kartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(
 		entity = KategorieRoom::class,
 		parentColumns = ["id"],
 		childColumns = ["kategorieID"],
@@ -22,4 +22,4 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 data class KategorieXKartentext(
 	val kategorieID: Int,
 	val kartentextID: Int,
-) : JoinEntity
+): JoinRoom
