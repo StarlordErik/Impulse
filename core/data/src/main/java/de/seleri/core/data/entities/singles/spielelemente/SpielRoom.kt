@@ -12,13 +12,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity(
 	tableName = "spiele", foreignKeys = [ForeignKey(
-		entity = LokalisierungRoom::class, parentColumns = ["lokalisierungID"], childColumns = ["spielID"],
+		entity = LokalisierungRoom::class, parentColumns = ["id"], childColumns = ["id"],
 		onDelete = ForeignKey.CASCADE
 	)]
 )
 data class SpielRoom(
 	@PrimaryKey
-	@ColumnInfo(name = "spielID")
+	@ColumnInfo(name = "id")
 	override val lokalisierungID: LokalisierungID,
 
 	override val selbstErstellt: Boolean,
