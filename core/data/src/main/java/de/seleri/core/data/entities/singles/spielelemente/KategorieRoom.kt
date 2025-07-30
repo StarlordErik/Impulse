@@ -1,9 +1,7 @@
 package de.seleri.core.data.entities.singles.spielelemente
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.Serializable
@@ -15,14 +13,13 @@ import kotlinx.serialization.Serializable
 		parentColumns = ["id"],
 		childColumns = ["lokalisierungID"],
 		onDelete = ForeignKey.CASCADE
-	)], indices = [Index(value = ["lokalisierungID"], unique = true)]
+	)]
 )
 data class KategorieRoom(
-	@PrimaryKey(autoGenerate = true)
-	override val id: Int,
-
+	@PrimaryKey
 	override val lokalisierungID: Int,
 
-	@Embedded
-	override val spielelementDatenRoom: SpielelementDatenRoom,
+	override val selbstErstellt: Boolean,
+	override val inaktiv: Boolean,
+	override val favorisiert: Boolean,
 ): SpielelementRoom
