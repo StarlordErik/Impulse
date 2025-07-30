@@ -4,7 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import de.seleri.core.data.entities.singles.TranslationRoom
+import de.seleri.core.data.entities.TranslationRoom
 
 interface TranslationDao: EntityDao<TranslationRoom> {
 

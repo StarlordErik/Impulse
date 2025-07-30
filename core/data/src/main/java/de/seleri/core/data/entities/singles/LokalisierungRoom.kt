@@ -12,4 +12,4 @@ data class LokalisierungRoom(
 	override val id: Int,
 
 	val ogSprache: Sprache
-): IDEntityRoom
+): SingleRoom
