@@ -4,10 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
+import de.seleri.core.common.entities.joins.KategorieXKartentextEntity
 import de.seleri.core.common.id.spielelementID.KartentextID
 import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -23,12 +25,11 @@ import kotlinx.serialization.Serializable
 data class KategorieXKartentextRoom(
 
 	@ColumnInfo(name = "kategorieID")
+	@SerialName(value = "kategorieID")
 	override val sammlungID: KategorieID,
 
 	@ColumnInfo(name = "kartentextID")
+	@SerialName(value = "kartentextID")
 	override val bestandteilID: KartentextID,
-): JoinRoom<KategorieID, KartentextID> {
+): JoinRoom, KategorieXKartentextEntity
 
-	val kategorieID: KategorieID get() = sammlungID
-	val kartentextID: KartentextID get() = bestandteilID
-}

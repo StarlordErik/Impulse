@@ -4,10 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
+import de.seleri.core.common.entities.joins.SpielXKategorieEntity
 import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielRoom
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -21,12 +23,10 @@ import kotlinx.serialization.Serializable
 )
 data class SpielXKategorieRoom(
 	@ColumnInfo(name = "spielID")
+	@SerialName(value = "spielID")
 	override val sammlungID: SpielID,
 
 	@ColumnInfo(name = "kategorieID")
+	@SerialName(value = "kategorieID")
 	override val bestandteilID: KategorieID,
-): JoinRoom<SpielID, KategorieID> {
-
-	val spielID: SpielID get() = sammlungID
-	val kategorieID: KategorieID get() = bestandteilID
-}
+): JoinRoom, SpielXKategorieEntity

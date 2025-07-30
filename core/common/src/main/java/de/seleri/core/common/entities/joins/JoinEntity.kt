@@ -1,4 +1,4 @@
-package de.seleri.core.domain.entities.joins
+package de.seleri.core.common.entities.joins
 
 import de.seleri.core.common.id.spielelementID.BestandteilID
 import de.seleri.core.common.id.spielelementID.SammlungID
