@@ -1,0 +1,9 @@
+package de.seleri.core.data.daos.relations
+
+import de.seleri.core.common.id.spielelementID.SammlungID
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.BestandteilRoom
+
+interface RelationDao<SID: SammlungID, B: BestandteilRoom> {
+
+	suspend fun getAll(sammlungID: SID): List<B>
+}
