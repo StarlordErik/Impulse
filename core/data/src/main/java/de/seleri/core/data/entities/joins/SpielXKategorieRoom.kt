@@ -25,7 +25,7 @@ data class SpielXKategorieRoom(
 
 	@ColumnInfo(name = "kategorieID")
 	override val bestandteilID: KategorieID,
-): JoinRoom {
+): JoinRoom<SpielID, KategorieID> {
 
 	val spielID: SpielID get() = sammlungID
 	val kategorieID: KategorieID get() = bestandteilID

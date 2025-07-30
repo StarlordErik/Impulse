@@ -27,7 +27,7 @@ data class KategorieXKartentextRoom(
 
 	@ColumnInfo(name = "kartentextID")
 	override val bestandteilID: KartentextID,
-): JoinRoom {
+): JoinRoom<KategorieID, KartentextID> {
 
 	val kategorieID: KategorieID get() = sammlungID
 	val kartentextID: KartentextID get() = bestandteilID
