@@ -7,7 +7,7 @@ import androidx.room.Upsert
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 
 @Dao
-interface LokalisierungDao: DatenbankObjektDao<LokalisierungRoom> {
+interface LokalisierungDao: EntityDao<LokalisierungRoom> {
 
 	@Upsert
 	override suspend fun upsert(entity: LokalisierungRoom): Long
