@@ -1,7 +1,7 @@
 package de.seleri.core.domain.mapper
 
-import de.seleri.core.domain.entities.joins.KategorieXKartentext
-import de.seleri.core.domain.entities.joins.SpielXKategorie
+import de.seleri.core.domain.entities.joins.KategorieXKartentextEntity
+import de.seleri.core.domain.entities.joins.SpielXKategorieEntity
 import de.seleri.core.domain.entities.singles.LokalisierungEntity
 import de.seleri.core.domain.entities.singles.TranslationEntity
 import de.seleri.core.domain.entities.singles.spielelemente.KartentextEntity
@@ -15,8 +15,8 @@ data class DatenbankSlice(
 	val kategorien: MutableList<KategorieEntity> = mutableListOf(),
 	val spiele: MutableList<SpielEntity> = mutableListOf(),
 
-	val kategorieXkartentexte: MutableList<KategorieXKartentext> = mutableListOf(),
-	val spielXkategorien: MutableList<SpielXKategorie> = mutableListOf(),
+	val kategorieXkartentexteEntity: MutableList<KategorieXKartentextEntity> = mutableListOf(),
+	val spielXkategorienEntity: MutableList<SpielXKategorieEntity> = mutableListOf(),
 ) {
 
 	companion object {
@@ -28,8 +28,8 @@ data class DatenbankSlice(
 			kartentexte: MutableList<KartentextEntity> = mutableListOf(),
 			kategorien: MutableList<KategorieEntity> = mutableListOf(),
 			spiele: MutableList<SpielEntity> = mutableListOf(),
-			kategorieXkartentexte: MutableList<KategorieXKartentext> = mutableListOf(),
-			spielXkategorien: MutableList<SpielXKategorie> = mutableListOf(),
+			kategorieXkartentexteEntity: MutableList<KategorieXKartentextEntity> = mutableListOf(),
+			spielXkategorienEntity: MutableList<SpielXKategorieEntity> = mutableListOf(),
 		): DatenbankSlice {
 			val erg = others.first()
 			val rest = others.drop(1)
@@ -40,8 +40,8 @@ data class DatenbankSlice(
 				erg.kartentexte.merge(slice.kartentexte)
 				erg.kategorien.merge(slice.kategorien)
 				erg.spiele.merge(slice.spiele)
-				erg.kategorieXkartentexte.merge(slice.kategorieXkartentexte)
-				erg.spielXkategorien.merge(slice.spielXkategorien)
+				erg.kategorieXkartentexteEntity.merge(slice.kategorieXkartentexteEntity)
+				erg.spielXkategorienEntity.merge(slice.spielXkategorienEntity)
 			}
 
 			erg.translationen.merge(translationen)
@@ -49,8 +49,8 @@ data class DatenbankSlice(
 			erg.kartentexte.merge(kartentexte)
 			erg.kategorien.merge(kategorien)
 			erg.spiele.merge(spiele)
-			erg.kategorieXkartentexte.merge(kategorieXkartentexte)
-			erg.spielXkategorien.merge(spielXkategorien)
+			erg.kategorieXkartentexteEntity.merge(kategorieXkartentexteEntity)
+			erg.spielXkategorienEntity.merge(spielXkategorienEntity)
 
 			return erg
 		}

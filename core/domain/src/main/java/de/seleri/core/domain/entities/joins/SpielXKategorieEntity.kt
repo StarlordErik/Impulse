@@ -5,9 +5,9 @@ import de.seleri.core.common.id.spielelementID.SpielID
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SpielXKategorie(
+data class SpielXKategorieEntity(
 	override val sammlungID: SpielID, override val bestandteilID: KategorieID
-): Join<SpielID, KategorieID> {
+): JoinEntity<SpielID, KategorieID> {
 
 	val spielID: SpielID get() = sammlungID
 	val kategorieID: KategorieID get() = bestandteilID

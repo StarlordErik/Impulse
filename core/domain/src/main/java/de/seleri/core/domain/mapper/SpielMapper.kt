@@ -1,6 +1,6 @@
 package de.seleri.core.domain.mapper
 
-import de.seleri.core.domain.entities.joins.SpielXKategorie
+import de.seleri.core.domain.entities.joins.SpielXKategorieEntity
 import de.seleri.core.domain.entities.singles.spielelemente.SpielEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
@@ -37,8 +37,8 @@ fun Spiel.toDatenbankSlice(): DatenbankSlice {
 
 	val kategorieSlices = this.bestandteile.map { it.toDatenbankSlice() }
 
-	val spielXkategorie = this.bestandteile.map { SpielXKategorie(this.id, it.id) }
-	val spielXkategorieSlice = DatenbankSlice(spielXkategorien = spielXkategorie.toMutableList())
+	val spielXkategorieEntity = this.bestandteile.map { SpielXKategorieEntity(this.id, it.id) }
+	val spielXkategorieSlice = DatenbankSlice(spielXkategorienEntity = spielXkategorieEntity.toMutableList())
 
 	return DatenbankSlice.merged(
 		others = kategorieSlices + lokalisierungSlice + spielXkategorieSlice, spiele = mutableListOf(this.toEntity())
