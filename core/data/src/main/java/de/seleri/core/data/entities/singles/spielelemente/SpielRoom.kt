@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import de.seleri.core.common.id.LokalisierungID
 import de.seleri.core.common.id.spielelementID.SpielID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.Serializable
@@ -18,7 +19,7 @@ import kotlinx.serialization.Serializable
 data class SpielRoom(
 	@PrimaryKey
 	@ColumnInfo(name = "spielID")
-	override val lokalisierungID: Int,
+	override val lokalisierungID: LokalisierungID,
 
 	override val selbstErstellt: Boolean,
 	override val inaktiv: Boolean,
@@ -30,5 +31,5 @@ data class SpielRoom(
 	val texteProKarte: Int,
 ): SpielelementRoom {
 
-	override val id: SpielID get() = SpielID(lokalisierungID)
+	override val id: SpielID get() = SpielID(lokalisierungID.id)
 }

@@ -1,5 +1,6 @@
 package de.seleri.core.data.entities.singles
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import de.seleri.core.common.Sprache
@@ -10,10 +11,11 @@ import kotlinx.serialization.Serializable
 @Entity(tableName = "lokalisierungen")
 data class LokalisierungRoom(
 	@PrimaryKey(autoGenerate = true)
-	override val lokalisierungID: Int,
+	@ColumnInfo(name = "id")
+	val lokalisierungID: Int,
 
 	val ogSprache: Sprache
-): LokalisierungStern {
+): SingleRoom {
 
 	override val id: LokalisierungID get() = LokalisierungID(lokalisierungID)
 }

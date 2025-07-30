@@ -7,8 +7,6 @@ interface SpielelementRoom: LokalisierungStern {
 
 	override val id: SpielelementID
 
-	override val lokalisierungID: Int
-
 	val selbstErstellt: Boolean
 	val inaktiv: Boolean
 	val favorisiert: Boolean

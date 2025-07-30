@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
 )
 data class TranslationRoom(
 
-	override val lokalisierungID: Int,
+	override val lokalisierungID: LokalisierungID,
 
 	val sprache: Sprache,
 
@@ -25,5 +25,5 @@ data class TranslationRoom(
 	val bearbeitet: Boolean,
 ): LokalisierungStern {
 
-	override val id: LokalisierungID get() = LokalisierungID(lokalisierungID)
+	override val id: LokalisierungID get() = lokalisierungID
 }
