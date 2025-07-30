@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.seleri.core.common.id.spielelementID.KategorieID
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
 @Dao
@@ -26,13 +25,4 @@ interface KategorieDao: SpielelementDao<KategorieRoom, KategorieID> {
 
 	@Query("SELECT * FROM kategorien WHERE id = :spielelementID")
 	override suspend fun get(spielelementID: KategorieID): KategorieRoom
-
-	@Query(
-		"""
-        SELECT t.* FROM Kartentexte t
-        INNER JOIN KategorieXKartentext x ON t.id = x.kartentextID
-        WHERE x.kategorieID = :kategorieId
-    """
-	)
-	suspend fun getKartentexte(kategorieId: Int): List<KartentextRoom>
 }
