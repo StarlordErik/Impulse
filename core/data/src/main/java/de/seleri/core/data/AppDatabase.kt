@@ -10,9 +10,9 @@ import de.seleri.core.data.daos.singles.spielelemente.SpielDao
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
-import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
-import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielRoom
 
 @TypeConverters(Converters::class)
 @Database(

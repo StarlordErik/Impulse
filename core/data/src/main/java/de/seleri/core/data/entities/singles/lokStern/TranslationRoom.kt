@@ -1,10 +1,11 @@
-package de.seleri.core.data.entities.singles
+package de.seleri.core.data.entities.singles.lokStern
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -23,7 +24,7 @@ data class TranslationRoom(
 	val bezeichnung: String,
 
 	val bearbeitet: Boolean,
-): LokalisierungStern {
+): LokSternRoom {
 
 	override val id: LokalisierungID get() = lokalisierungID
 }

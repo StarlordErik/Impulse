@@ -1,4 +1,4 @@
-package de.seleri.core.data.entities.singles.spielelemente
+package de.seleri.core.data.entities.singles.lokStern.spielelemente
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

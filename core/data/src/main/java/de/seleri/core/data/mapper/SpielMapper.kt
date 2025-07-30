@@ -2,7 +2,7 @@ package de.seleri.core.data.mapper
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielRoom
 import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie

@@ -1,9 +1,9 @@
-package de.seleri.core.data.entities.singles.spielelemente
+package de.seleri.core.data.entities.singles.lokStern.spielelemente
 
 import de.seleri.core.common.id.spielelementID.SpielelementID
-import de.seleri.core.data.entities.singles.LokalisierungStern
+import de.seleri.core.data.entities.singles.lokStern.LokSternRoom
 
-interface SpielelementRoom: LokalisierungStern {
+interface SpielelementRoom: LokSternRoom {
 
 	override val id: SpielelementID
 

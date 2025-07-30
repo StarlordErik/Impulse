@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
-import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 
 @Dao
 interface KartentextDao: SpielelementDao<KartentextRoom> {

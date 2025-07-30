@@ -8,8 +8,8 @@ import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.joins.JoinDao
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
-import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
-import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
 @Dao
 interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKartentextRoom> {

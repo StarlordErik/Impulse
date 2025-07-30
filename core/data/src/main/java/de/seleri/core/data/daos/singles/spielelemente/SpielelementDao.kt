@@ -1,7 +1,7 @@
 package de.seleri.core.data.daos.singles.spielelemente
 
 import de.seleri.core.data.daos.EntityDao
-import de.seleri.core.data.entities.singles.spielelemente.SpielelementRoom
+import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielelementRoom
 
 interface SpielelementDao<S: SpielelementRoom>: EntityDao<S> {
 
