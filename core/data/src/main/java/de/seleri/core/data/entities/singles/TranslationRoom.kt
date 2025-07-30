@@ -21,6 +21,8 @@ data class TranslationRoom(
 	@PrimaryKey(autoGenerate = false) // nicht autogeneriert, da deterministisch über LokalisierungID feststellbar
 	override val id: Int,
 
+	// TODO Primary Key durch Kombi an lokalisierungID und sprache ersetzen
+
 	val lokalisierungID: LokalisierungID,
 
 	val sprache: Sprache,
