@@ -19,6 +19,6 @@ interface KartentextDao: SpielelementDao<KartentextRoom> {
 	@Delete
 	override suspend fun delete(entity: KartentextRoom)
 
-	@Query("SELECT * FROM Kartentexte WHERE id = :spielelementId")
-	override suspend fun get(spielelementId: Int): KartentextRoom
+	@Query("SELECT * FROM Kartentexte WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: Int): KartentextRoom
 }

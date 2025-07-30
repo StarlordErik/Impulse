@@ -20,8 +20,8 @@ interface SpielDao: SpielelementDao<SpielRoom>, JoinDao<SpielXKategorieRoom> {
 	@Delete
 	override suspend fun delete(entity: SpielRoom)
 
-	@Query("SELECT * FROM Spiele WHERE id = :spielelementId")
-	override suspend fun get(spielelementId: Int): SpielRoom
+	@Query("SELECT * FROM Spiele WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: Int): SpielRoom
 
 	@Query("SELECT * FROM Spiele")
 	suspend fun getAll(): List<SpielRoom>

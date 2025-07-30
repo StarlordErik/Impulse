@@ -20,8 +20,8 @@ interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKarten
 	@Delete
 	override suspend fun delete(entity: KategorieRoom)
 
-	@Query("SELECT * FROM Kategorien WHERE id = :spielelementId")
-	override suspend fun get(spielelementId: Int): KategorieRoom
+	@Query("SELECT * FROM Kategorien WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: Int): KategorieRoom
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	override suspend fun insert(joinEntity: KategorieXKartentextRoom)
