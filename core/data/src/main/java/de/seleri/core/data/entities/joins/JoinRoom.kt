@@ -1,3 +1,5 @@
 package de.seleri.core.data.entities.joins
 
-interface JoinRoom
+import de.seleri.core.data.entities.EntityRoom
+
+interface JoinRoom: EntityRoom
