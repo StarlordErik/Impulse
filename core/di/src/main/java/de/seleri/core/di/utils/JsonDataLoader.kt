@@ -5,9 +5,9 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 
-class JsonDataLoader {
+class JsonDataLoader(val context: Context) {
 
-	inline fun <reified T> loadList(context: Context, fileName: String): List<T> {
+	inline fun <reified T> loadList(fileName: String): List<T> {
 		val input = context.assets
 			.open(fileName)
 			.bufferedReader()
