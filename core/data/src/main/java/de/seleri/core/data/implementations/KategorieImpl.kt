@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.spielelemente.KategorieDao
+import de.seleri.core.data.daos.singles.spielelemente.KategorieDao
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity

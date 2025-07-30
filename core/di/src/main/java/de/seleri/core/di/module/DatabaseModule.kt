@@ -10,11 +10,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.seleri.core.data.AppDatabase
-import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.TranslationDao
-import de.seleri.core.data.daos.spielelemente.KartentextDao
-import de.seleri.core.data.daos.spielelemente.KategorieDao
-import de.seleri.core.data.daos.spielelemente.SpielDao
+import de.seleri.core.data.daos.singles.LokalisierungDao
+import de.seleri.core.data.daos.singles.spielelemente.KartentextDao
+import de.seleri.core.data.daos.singles.spielelemente.KategorieDao
+import de.seleri.core.data.daos.singles.spielelemente.SpielDao
 import de.seleri.core.di.utils.JsonDataLoader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.LokalisierungDao
+import de.seleri.core.data.daos.singles.LokalisierungDao
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntityForKartentext
 import de.seleri.core.data.mapper.toEntityForKategorie

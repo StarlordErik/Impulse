@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.spielelemente
+package de.seleri.core.data.daos.singles.spielelemente
 
 import de.seleri.core.data.daos.EntityDao
 import de.seleri.core.data.entities.singles.spielelemente.SpielelementRoom

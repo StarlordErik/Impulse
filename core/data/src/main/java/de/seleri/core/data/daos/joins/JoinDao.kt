@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos
+package de.seleri.core.data.daos.joins
 
 import de.seleri.core.data.entities.joins.JoinRoom
 

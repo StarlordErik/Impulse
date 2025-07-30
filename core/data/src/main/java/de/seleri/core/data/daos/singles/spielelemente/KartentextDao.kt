@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.spielelemente
+package de.seleri.core.data.daos.singles.spielelemente
 
 import androidx.room.Dao
 import androidx.room.Delete

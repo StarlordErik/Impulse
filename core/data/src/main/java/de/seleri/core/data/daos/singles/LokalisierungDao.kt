@@ -1,9 +1,10 @@
-package de.seleri.core.data.daos
+package de.seleri.core.data.daos.singles
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
+import de.seleri.core.data.daos.EntityDao
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 
 @Dao

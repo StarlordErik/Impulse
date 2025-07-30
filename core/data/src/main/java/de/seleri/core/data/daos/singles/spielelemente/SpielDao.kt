@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.spielelemente
+package de.seleri.core.data.daos.singles.spielelemente
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
-import de.seleri.core.data.daos.JoinDao
+import de.seleri.core.data.daos.joins.JoinDao
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielRoom

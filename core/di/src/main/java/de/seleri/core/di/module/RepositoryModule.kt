@@ -4,10 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import de.seleri.core.data.daos.LokalisierungDao
-import de.seleri.core.data.daos.spielelemente.KartentextDao
-import de.seleri.core.data.daos.spielelemente.KategorieDao
-import de.seleri.core.data.daos.spielelemente.SpielDao
+import de.seleri.core.data.daos.singles.LokalisierungDao
+import de.seleri.core.data.daos.singles.spielelemente.KartentextDao
+import de.seleri.core.data.daos.singles.spielelemente.KategorieDao
+import de.seleri.core.data.daos.singles.spielelemente.SpielDao
 import de.seleri.core.data.implementations.KartentextImpl
 import de.seleri.core.data.implementations.KategorieImpl
 import de.seleri.core.data.implementations.LokalisierungImpl
