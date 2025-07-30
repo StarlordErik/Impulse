@@ -2,7 +2,7 @@ package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.spielelemente.SpielDao
-import de.seleri.core.data.entities.joins.SpielXKategorie
+import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
 import de.seleri.core.data.mapper.toMeta
@@ -62,7 +62,7 @@ class SpielImpl(
 	override suspend fun deleteConnection(
 		sammlung: Spiel, bestandteil: Kategorie
 	) {
-		val spielXKategorie = SpielXKategorie(
+		val spielXKategorie = SpielXKategorieRoom(
 			spielID = sammlung.id, kategorieID = bestandteil.id
 		)
 		dao.delete(spielXKategorie)
@@ -92,7 +92,7 @@ class SpielImpl(
 	}
 
 	private suspend fun insertConnectionByID(sammlung: Spiel, bestandteilID: SpielelementID.KategorieID) {
-		val spielXKategorie = SpielXKategorie(
+		val spielXKategorie = SpielXKategorieRoom(
 			spielID = sammlung.id, kategorieID = bestandteilID.toInt()
 		)
 		dao.insert(spielXKategorie)

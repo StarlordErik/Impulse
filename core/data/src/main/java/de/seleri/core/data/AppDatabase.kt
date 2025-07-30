@@ -7,8 +7,8 @@ import de.seleri.core.data.daos.LokalisierungDao
 import de.seleri.core.data.daos.spielelemente.KartentextDao
 import de.seleri.core.data.daos.spielelemente.KategorieDao
 import de.seleri.core.data.daos.spielelemente.SpielDao
-import de.seleri.core.data.entities.joins.KategorieXKartentext
-import de.seleri.core.data.entities.joins.SpielXKategorie
+import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
+import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
@@ -21,8 +21,8 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 		KartentextRoom::class,
 		KategorieRoom::class,
 		SpielRoom::class,
-		KategorieXKartentext::class,
-		SpielXKategorie::class,
+		KategorieXKartentextRoom::class,
+		SpielXKategorieRoom::class,
 	], version = 1
 )
 abstract class AppDatabase: RoomDatabase() {

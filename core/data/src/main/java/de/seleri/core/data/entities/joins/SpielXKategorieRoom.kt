@@ -16,7 +16,7 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 		onDelete = ForeignKey.CASCADE
 	)], indices = [Index("spielID"), Index("kategorieID")]
 )
-data class SpielXKategorie(
+data class SpielXKategorieRoom(
 	val spielID: Int,
 	val kategorieID: Int,
 ): JoinRoom

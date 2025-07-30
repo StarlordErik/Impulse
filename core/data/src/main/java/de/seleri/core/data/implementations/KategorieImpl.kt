@@ -2,7 +2,7 @@ package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.spielelemente.KategorieDao
-import de.seleri.core.data.entities.joins.KategorieXKartentext
+import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.mapper.toDomain
 import de.seleri.core.data.mapper.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -60,7 +60,7 @@ class KategorieImpl(
 	override suspend fun deleteConnection(
 		sammlung: Kategorie, bestandteil: Kartentext
 	) {
-		val kategorieXKartentext = KategorieXKartentext(
+		val kategorieXKartentext = KategorieXKartentextRoom(
 			kategorieID = sammlung.id, kartentextID = bestandteil.id
 		)
 		dao.delete(kategorieXKartentext)
@@ -89,7 +89,7 @@ class KategorieImpl(
 	}
 
 	private suspend fun insertConnectionByID(sammlung: Kategorie, bestandteilID: SpielelementID.KartentextID) {
-		val kategorieXKartentext = KategorieXKartentext(
+		val kategorieXKartentext = KategorieXKartentextRoom(
 			kategorieID = sammlung.id, kartentextID = bestandteilID.toInt()
 		)
 		dao.insert(kategorieXKartentext)

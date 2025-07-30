@@ -7,12 +7,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import de.seleri.core.data.daos.JoinDao
-import de.seleri.core.data.entities.joins.KategorieXKartentext
+import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 
 @Dao
-interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKartentext> {
+interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKartentextRoom> {
 
 	@Upsert
 	override suspend fun upsert(entity: KategorieRoom): Long
@@ -24,13 +24,13 @@ interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKarten
 	override suspend fun get(spielelementId: Int): KategorieRoom
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	override suspend fun insert(joinEntity: KategorieXKartentext)
+	override suspend fun insert(joinEntity: KategorieXKartentextRoom)
 
 	@Delete
-	override suspend fun delete(joinEntity: KategorieXKartentext)
+	override suspend fun delete(joinEntity: KategorieXKartentextRoom)
 
 	@Query("SELECT * FROM KategorieXKartentext WHERE kategorieID = :sammlungsId")
-	override suspend fun getAllConnections(sammlungsId: Int): List<KategorieXKartentext>
+	override suspend fun getAllConnections(sammlungsId: Int): List<KategorieXKartentextRoom>
 
 	@Query(
 		"""
