@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import de.seleri.core.data.entities.TranslationRoom
 
-interface TranslationDao: EntityDao<TranslationRoom> {
+interface TranslationDao: EntityDao<TranslationRoom>, Updateable<TranslationRoom> {
 
 	@Insert
 	override suspend fun insert(entity: TranslationRoom): Long
@@ -14,11 +14,11 @@ interface TranslationDao: EntityDao<TranslationRoom> {
 	@Insert
 	override suspend fun insertAll(entities: Collection<TranslationRoom>): List<Long>
 
-	@Update
-	override suspend fun update(entity: TranslationRoom): Int
-
 	@Delete
 	override suspend fun delete(entity: TranslationRoom): Int
+
+	@Update
+	override suspend fun update(entity: TranslationRoom): Int
 
 	@Query("SELECT * FROM translationen WHERE lokalisierungID = :lokalisierungID")
 	suspend fun getForLokalisierung(lokalisierungID: Int): List<TranslationRoom>
