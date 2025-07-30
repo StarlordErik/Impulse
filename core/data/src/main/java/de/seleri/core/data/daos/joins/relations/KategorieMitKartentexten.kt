@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.singles.lokStern.spielelemente.relations
+package de.seleri.core.data.daos.joins.relations
 
 import androidx.room.Query
 import de.seleri.core.common.id.spielelementID.KategorieID
