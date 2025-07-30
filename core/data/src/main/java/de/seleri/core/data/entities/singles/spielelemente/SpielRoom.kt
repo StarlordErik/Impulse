@@ -1,5 +1,6 @@
 package de.seleri.core.data.entities.singles.spielelemente
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -10,14 +11,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity(
 	tableName = "spiele", foreignKeys = [ForeignKey(
-		entity = LokalisierungRoom::class,
-		parentColumns = ["id"],
-		childColumns = ["lokalisierungID"],
+		entity = LokalisierungRoom::class, parentColumns = ["lokalisierungID"], childColumns = ["spielID"],
 		onDelete = ForeignKey.CASCADE
 	)]
 )
 data class SpielRoom(
 	@PrimaryKey
+	@ColumnInfo(name = "spielID")
 	override val lokalisierungID: Int,
 
 	override val selbstErstellt: Boolean,

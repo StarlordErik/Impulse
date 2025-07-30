@@ -15,10 +15,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity(
 	tableName = "kategorie_x_kartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(
-		entity = KategorieRoom::class, parentColumns = ["lokalisierungID"], childColumns = ["kategorieID"],
+		entity = KategorieRoom::class, parentColumns = ["kategorieID"], childColumns = ["kategorieID"],
 		onDelete = ForeignKey.CASCADE
 	), ForeignKey(
-		entity = KartentextRoom::class, parentColumns = ["lokalisierungID"], childColumns = ["kartentextID"],
+		entity = KartentextRoom::class, parentColumns = ["kartentextID"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.CASCADE
 	)], indices = [Index("kategorieID")]
 )
