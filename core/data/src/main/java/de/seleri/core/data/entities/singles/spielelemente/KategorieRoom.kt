@@ -3,6 +3,7 @@ package de.seleri.core.data.entities.singles.spielelemente
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.Serializable
 
@@ -22,4 +23,7 @@ data class KategorieRoom(
 	override val selbstErstellt: Boolean,
 	override val inaktiv: Boolean,
 	override val favorisiert: Boolean,
-): SpielelementRoom
+): SpielelementRoom {
+
+	override val id: KategorieID get() = KategorieID(lokalisierungID)
+}
