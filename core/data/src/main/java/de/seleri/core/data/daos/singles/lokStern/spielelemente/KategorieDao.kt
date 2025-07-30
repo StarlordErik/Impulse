@@ -3,34 +3,29 @@ package de.seleri.core.data.daos.singles.lokStern.spielelemente
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
-import de.seleri.core.data.daos.joins.JoinDao
-import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
+import androidx.room.Update
+import de.seleri.core.common.id.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
 @Dao
-interface KategorieDao: SpielelementDao<KategorieRoom>, JoinDao<KategorieXKartentextRoom> {
+interface KategorieDao: SpielelementDao<KategorieRoom, KategorieID> {
 
-	@Upsert
-	override suspend fun upsert(entity: KategorieRoom): Long
+	@Insert
+	override suspend fun insert(entity: KategorieRoom): Long
 
-	@Delete
-	override suspend fun delete(entity: KategorieRoom)
-
-	@Query("SELECT * FROM Kategorien WHERE id = :spielelementID")
-	override suspend fun get(spielelementID: Int): KategorieRoom
-
-	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	override suspend fun insert(joinEntity: KategorieXKartentextRoom)
+	@Insert
+	override suspend fun insertAll(entities: Collection<KategorieRoom>): List<Long>
 
 	@Delete
-	override suspend fun delete(joinEntity: KategorieXKartentextRoom)
+	override suspend fun delete(entity: KategorieRoom): Int
 
-	@Query("SELECT * FROM KategorieXKartentext WHERE kategorieID = :sammlungsId")
-	override suspend fun getAllConnections(sammlungsId: Int): List<KategorieXKartentextRoom>
+	@Update
+	override suspend fun update(entity: KategorieRoom): Int
+
+	@Query("SELECT * FROM kategorien WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: KategorieID): KategorieRoom
 
 	@Query(
 		"""
