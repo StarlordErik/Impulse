@@ -4,10 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import de.seleri.core.common.id.spielelementID.BestandteilID
 import de.seleri.core.common.id.spielelementID.KartentextID
 import de.seleri.core.common.id.spielelementID.KategorieID
-import de.seleri.core.common.id.spielelementID.SammlungID
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import kotlinx.serialization.Serializable
@@ -15,25 +13,22 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity(
 	tableName = "kategorie_x_kartentext", primaryKeys = ["kategorieID", "kartentextID"], foreignKeys = [ForeignKey(
-		entity = KategorieRoom::class, parentColumns = ["kategorieID"], childColumns = ["kategorieID"],
+		entity = KategorieRoom::class, parentColumns = ["id"], childColumns = ["kategorieID"],
 		onDelete = ForeignKey.CASCADE
 	), ForeignKey(
-		entity = KartentextRoom::class, parentColumns = ["kartentextID"], childColumns = ["kartentextID"],
+		entity = KartentextRoom::class, parentColumns = ["id"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.CASCADE
 	)], indices = [Index("kategorieID")]
 )
 data class KategorieXKartentextRoom(
 
 	@ColumnInfo(name = "kategorieID")
-	override val firstID: Int,
+	override val sammlungID: KategorieID,
 
 	@ColumnInfo(name = "kartentextID")
-	override val secondID: Int,
+	override val bestandteilID: KartentextID,
 ): JoinRoom {
 
-	override val sammlungID: SammlungID get() = kategorieID
-	override val bestandteilID: BestandteilID get() = kartentextID
-
-	val kategorieID: KategorieID get() = KategorieID(firstID)
-	val kartentextID: KartentextID get() = KartentextID(secondID)
+	val kategorieID: KategorieID get() = sammlungID
+	val kartentextID: KartentextID get() = bestandteilID
 }

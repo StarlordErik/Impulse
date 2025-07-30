@@ -6,9 +6,6 @@ import de.seleri.core.data.entities.EntityRoom
 
 interface JoinRoom: EntityRoom {
 
-	val firstID: Int
-	val secondID: Int
-
 	val sammlungID: SammlungID
 
 	val bestandteilID: BestandteilID
