@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SpielXKategorie(
-	override val firstID: SpielID, override val secondID: KategorieID
-): Join
+	override val sammlungID: SpielID, override val bestandteilID: KategorieID
+): Join<SpielID, KategorieID>

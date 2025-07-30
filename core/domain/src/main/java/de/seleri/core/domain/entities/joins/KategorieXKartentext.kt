@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KategorieXKartentext(
-	override val firstID: KategorieID, override val secondID: KartentextID
-): Join
+	override val sammlungID: KategorieID, override val bestandteilID: KartentextID
+): Join<KategorieID, KartentextID>
