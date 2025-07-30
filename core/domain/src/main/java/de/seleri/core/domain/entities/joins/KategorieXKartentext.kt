@@ -5,6 +5,6 @@ import de.seleri.core.common.id.spielelementID.KategorieID
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class KategorieXkartentext(
+data class KategorieXKartentext(
 	override val firstID: KategorieID, override val secondID: KartentextID
-): JoinEntity
+): Join

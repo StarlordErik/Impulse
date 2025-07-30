@@ -1,6 +1,6 @@
 package de.seleri.core.domain.mapper
 
-import de.seleri.core.domain.entities.joins.KategorieXkartentext
+import de.seleri.core.domain.entities.joins.KategorieXKartentext
 import de.seleri.core.domain.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -31,7 +31,7 @@ fun Kategorie.toDatenbankSlice(): DatenbankSlice {
 
 	val lokalisierungSlice = this.lokalisierung.toDatenbankSlice()
 
-	val kategorieXkartentext = this.bestandteile.map { KategorieXkartentext(this.id, it.id) }
+	val kategorieXkartentext = this.bestandteile.map { KategorieXKartentext(this.id, it.id) }
 	val kategorieXkartentextSlice = DatenbankSlice(kategorieXkartentexte = kategorieXkartentext.toMutableList())
 
 	return DatenbankSlice.merged(

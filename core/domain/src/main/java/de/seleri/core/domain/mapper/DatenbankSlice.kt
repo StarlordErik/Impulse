@@ -1,7 +1,7 @@
 package de.seleri.core.domain.mapper
 
-import de.seleri.core.domain.entities.joins.KategorieXkartentext
-import de.seleri.core.domain.entities.joins.SpielXkategorie
+import de.seleri.core.domain.entities.joins.KategorieXKartentext
+import de.seleri.core.domain.entities.joins.SpielXKategorie
 import de.seleri.core.domain.entities.singles.LokalisierungEntity
 import de.seleri.core.domain.entities.singles.TranslationEntity
 import de.seleri.core.domain.entities.singles.spielelemente.KartentextEntity
@@ -15,8 +15,8 @@ data class DatenbankSlice(
 	val kategorien: MutableList<KategorieEntity> = mutableListOf(),
 	val spiele: MutableList<SpielEntity> = mutableListOf(),
 
-	val kategorieXkartentexte: MutableList<KategorieXkartentext> = mutableListOf(),
-	val spielXkategorien: MutableList<SpielXkategorie> = mutableListOf(),
+	val kategorieXkartentexte: MutableList<KategorieXKartentext> = mutableListOf(),
+	val spielXkategorien: MutableList<SpielXKategorie> = mutableListOf(),
 ) {
 
 	companion object {
@@ -28,8 +28,8 @@ data class DatenbankSlice(
 			kartentexte: MutableList<KartentextEntity> = mutableListOf(),
 			kategorien: MutableList<KategorieEntity> = mutableListOf(),
 			spiele: MutableList<SpielEntity> = mutableListOf(),
-			kategorieXkartentexte: MutableList<KategorieXkartentext> = mutableListOf(),
-			spielXkategorien: MutableList<SpielXkategorie> = mutableListOf(),
+			kategorieXkartentexte: MutableList<KategorieXKartentext> = mutableListOf(),
+			spielXkategorien: MutableList<SpielXKategorie> = mutableListOf(),
 		): DatenbankSlice {
 			val erg = others.first()
 			val rest = others.drop(1)
