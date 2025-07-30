@@ -1,8 +1,8 @@
 package de.seleri.core.data.entities.singles.spielelemente
 
-import de.seleri.core.data.entities.singles.EntityRoom
+import de.seleri.core.data.entities.singles.IDEntityRoom
 
-interface SpielelementRoom: EntityRoom {
+interface SpielelementRoom: IDEntityRoom {
 
 	val lokalisierungID: Int
 

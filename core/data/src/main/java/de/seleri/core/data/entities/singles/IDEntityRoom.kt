@@ -1,6 +1,6 @@
 package de.seleri.core.data.entities.singles
 
-interface EntityRoom {
+interface IDEntityRoom {
 
 	val id: Int
 }
