@@ -1,16 +1,17 @@
 package de.seleri.core.domain.modell
 
-@Suppress("MayBeConstant")
+@Suppress("MagicNumber")
 object Konstanten {
-	val BEARBEITET = false
-	val SELBST_ERSTELLT = false
-	val INAKTIV = false
-	val FAVORISIERT = false
 
-	val GESEHEN = false
-	val BESPROCHEN = false
+	const val BEARBEITET = false
+	const val SELBST_ERSTELLT = false
+	const val INAKTIV = false
+	const val FAVORISIERT = false
+
+	const val GESEHEN = false
+	const val BESPROCHEN = false
 
 	val BILD_DATEINAME = null
 	val ANLEITUNG = null
-	val TEXTE_PRO_KARTE = 1
+	const val TEXTE_PRO_KARTE = 1
 }
