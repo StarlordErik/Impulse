@@ -8,7 +8,7 @@ import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
-	private val spielMetaDaten: SpielMetaDaten,
+	private val spielMetaDaten: SpielMetaDO,
 
 	val anleitung: String? = Default.ANLEITUNG,
 	val texteProKarte: Int = Default.TEXTE_PRO_KARTE,

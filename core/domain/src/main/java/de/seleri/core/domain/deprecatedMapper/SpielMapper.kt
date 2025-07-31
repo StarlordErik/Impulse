@@ -4,14 +4,14 @@ import de.seleri.core.domain.entities.joins.SpielXKategorieEntity
 import de.seleri.core.domain.entities.singles.spielelemente.SpielEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDaten
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
 
 fun SpielEntity.toModell(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>): Spiel =
 	Spiel(
-		id = this.id, spielMetaDaten = SpielMetaDaten(
-			spielelementDaten = SpielelementDaten(
+		id = this.id, spielMetaDaten = SpielMetaDO(
+			spielelementDaten = SpielelementDO(
 				lokalisierung = lokalisierung,
 				selbstErstellt = this.selbstErstellt,
 				inaktiv = this.inaktiv,

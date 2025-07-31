@@ -1,16 +1,19 @@
 package de.seleri.core.domain.modell.spielelemente
 
-import de.seleri.core.common.konstanten.Default
+import de.seleri.core.common.Sprache
 import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.ModellEntity
 
-data class SpielelementDaten(
-	override val lokalisierung: Lokalisierung,
+interface SpielelementDaten: ModellEntity {
 
-	override val selbstErstellt: Boolean = Default.SELBST_ERSTELLT,
-	override val inaktiv: Boolean = Default.INAKTIV,
-	override val favorisiert: Boolean = Default.FAVORISIERT,
+	val lokalisierung: Lokalisierung
 
-	): Spielelement {
+	val selbstErstellt: Boolean
+	val inaktiv: Boolean
+	val favorisiert: Boolean
 
-	companion object
+	fun getBezeichnung(sprache: Sprache): String =
+		lokalisierung.translationen[sprache]?.bezeichnung
+			?: "localization unavailable"
+
 }

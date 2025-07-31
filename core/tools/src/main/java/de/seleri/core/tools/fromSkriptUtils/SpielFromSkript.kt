@@ -3,9 +3,9 @@ package de.seleri.core.tools.fromSkriptUtils
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDaten
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
 
 fun Spiel.Companion.fromSkript(spielID: Int, lokalisierung: Lokalisierung?, kategorien: List<Kategorie>?): Spiel {
 	if (lokalisierung == null) {
@@ -29,8 +29,8 @@ fun Spiel.Companion.fromSkript(spielID: Int, lokalisierung: Lokalisierung?, kate
 			// @formatter:on
 		} else {
 			return Spiel(
-				id = SpielID(spielID), spielMetaDaten = SpielMetaDaten(
-					spielelementDaten = SpielelementDaten(lokalisierung)
+				id = SpielID(spielID), spielMetaDaten = SpielMetaDO(
+					spielelementDaten = SpielelementDO(lokalisierung)
 				), bestandteile = kategorien
 			)
 		}

@@ -1,11 +1,10 @@
 package de.seleri.core.domain.modell.spielelemente.sammlungen
 
 import de.seleri.core.common.ids.spielelementID.BestandteilID
-import de.seleri.core.domain.modell.IDable
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Spielelement
 
-interface Bestandteil<BID: BestandteilID>: IDable<BID>, Spielelement {
+interface Bestandteil<BID: BestandteilID>: Spielelement<BID> {
 
 	override val id: BID
 

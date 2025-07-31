@@ -5,11 +5,11 @@ import de.seleri.core.domain.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 
 fun KategorieEntity.toModell(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>): Kategorie =
 	Kategorie(
-		id = this.id, spielelementDaten = SpielelementDaten(
+		id = this.id, spielelementDaten = SpielelementDO(
 			lokalisierung = lokalisierung,
 			selbstErstellt = this.selbstErstellt,
 			inaktiv = this.inaktiv,

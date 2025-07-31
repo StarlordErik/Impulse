@@ -1,17 +1,15 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KategorieID
-import de.seleri.core.domain.modell.IDable
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
-	private val spielelementDaten: SpielelementDaten,
+	private val spielelementDaten: SpielelementDO,
 
 	override val bestandteile: Collection<Kartentext>,
-): Spielelement by spielelementDaten,
-	IDable<KategorieID>,
+): SpielelementDaten by spielelementDaten,
 	Sammlung<Kartentext, KategorieID>,
 	Bestandteil<KategorieID> {
 

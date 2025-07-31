@@ -8,9 +8,9 @@ import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.Spielelement
-import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDaten
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
@@ -625,21 +625,21 @@ private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
 
 		kategorie.bestandteile.forEach { kartentext ->
 			neueKartentexte += kartentext.copy(
-				spielelementDaten = SpielelementDaten(
+				spielelementDaten = SpielelementDO(
 					lokalisierung = fixeTranslationsIDs(kartentext.lokalisierung)
 				)
 			)
 		}
 
 		neueKategorien += kategorie.copy(
-			spielelementDaten = SpielelementDaten(
+			spielelementDaten = SpielelementDO(
 				lokalisierung = fixeTranslationsIDs(kategorie.lokalisierung)
 			), bestandteile = neueKartentexte
 		)
 	}
 
 	return spiel.copy(
-		spielMetaDaten = SpielMetaDaten(spielelementDaten = SpielelementDaten(lokalisierung = spiel.lokalisierung)),
+		spielMetaDaten = SpielMetaDO(spielelementDaten = SpielelementDO(lokalisierung = spiel.lokalisierung)),
 		bestandteile = neueKategorien
 	)
 }

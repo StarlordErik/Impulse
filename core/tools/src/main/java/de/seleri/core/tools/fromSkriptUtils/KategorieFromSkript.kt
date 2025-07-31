@@ -4,7 +4,7 @@ import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
+import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 
 fun Kategorie.Companion.fromSkript(
 	kategorieID: Int, lokalisierung: Lokalisierung?, kartentexte: List<Kartentext>?
@@ -26,7 +26,7 @@ fun Kategorie.Companion.fromSkript(
 			// @formatter:on
 		} else {
 			return Kategorie(
-				id = KategorieID(kategorieID), spielelementDaten = SpielelementDaten(lokalisierung),
+				id = KategorieID(kategorieID), spielelementDaten = SpielelementDO(lokalisierung),
 				bestandteile = kartentexte
 			) to 0
 		}
