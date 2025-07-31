@@ -7,7 +7,7 @@ import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 
 // @formatter:off
-fun SpielEntity.toDomain(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>) =
+fun SpielEntity.toDomain(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>) : Spiel =
 	Spiel(
 		spielMetaDaten = SpielMetaMapper(this, lokalisierung),
 		anleitung = this.anleitung,

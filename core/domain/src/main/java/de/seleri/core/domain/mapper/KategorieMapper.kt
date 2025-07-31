@@ -7,7 +7,7 @@ import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 
 // @formatter:off
-fun KategorieEntity.toDomain(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>) =
+fun KategorieEntity.toDomain(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>): Kategorie =
 	Kategorie(
 		spielelementDaten = SpielelementMapper(this, lokalisierung),
 		bestandteile = kartentexte
