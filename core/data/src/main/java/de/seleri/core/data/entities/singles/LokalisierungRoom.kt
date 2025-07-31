@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Entity(tableName = "lokalisierungen")
 data class LokalisierungRoom(
+
 	@PrimaryKey(autoGenerate = true)
 	@ColumnInfo(name = "id")
 	@SerialName(value = "id")

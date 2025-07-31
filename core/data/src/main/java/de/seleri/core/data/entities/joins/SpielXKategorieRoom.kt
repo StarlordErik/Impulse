@@ -22,6 +22,7 @@ import kotlinx.serialization.Serializable
 	)], indices = [Index("spielID")]
 )
 data class SpielXKategorieRoom(
+
 	@ColumnInfo(name = "spielID")
 	@SerialName(value = "spielID")
 	override val sammlungID: SpielID,

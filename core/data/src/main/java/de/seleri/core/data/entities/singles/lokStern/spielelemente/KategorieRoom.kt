@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
 	)]
 )
 data class KategorieRoom(
+
 	@PrimaryKey
 	@ColumnInfo(name = "id")
 	@SerialName(value = "id")

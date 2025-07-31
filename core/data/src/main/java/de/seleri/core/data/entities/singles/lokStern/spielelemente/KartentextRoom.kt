@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
 	)]
 )
 data class KartentextRoom(
+
 	@PrimaryKey
 	@ColumnInfo(name = "id")
 	@SerialName(value = "id")
