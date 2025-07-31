@@ -2,7 +2,7 @@ package de.seleri.core.data.daos.joins.relations
 
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.KategorieID
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 
 interface KategorieMitKartentextenDAO: RelationDAO<KategorieID, KartentextRoom> {
 

@@ -1,12 +1,12 @@
-package de.seleri.core.tools.dtos.singles.lokStern.spielelemente
+package de.seleri.core.tools.dtos.singles.spielelemente
 
-import de.seleri.core.common.entities.singles.lokStern.spielelemente.KartentextEntity
+import de.seleri.core.common.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.common.ids.LokalisierungID
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class KartentextDTO(
+data class KategorieDTO(
 
 	@SerialName(value = "id")
 	override val lokalisierungID: LokalisierungID,
@@ -14,8 +14,5 @@ data class KartentextDTO(
 	override val selbstErstellt: Boolean,
 	override val inaktiv: Boolean,
 	override val favorisiert: Boolean,
-
-	override val gesehen: Boolean,
-	override val besprochen: Boolean,
-): SpielelementDTO, BestandteilDTO, KartentextEntity
+): SpielelementDTO, BestandteilDTO, KategorieEntity
 

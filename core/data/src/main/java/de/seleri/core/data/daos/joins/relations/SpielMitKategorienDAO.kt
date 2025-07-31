@@ -2,7 +2,7 @@ package de.seleri.core.data.daos.joins.relations
 
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.SpielID
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
+import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 
 interface SpielMitKategorienDAO: RelationDAO<SpielID, KategorieRoom> {
 

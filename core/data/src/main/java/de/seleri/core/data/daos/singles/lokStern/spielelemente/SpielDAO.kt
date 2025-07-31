@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.seleri.core.common.ids.spielelementID.SpielID
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.SpielRoom
+import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 
 @Dao
 interface SpielDAO: SpielelementDAO<SpielRoom, SpielID> {

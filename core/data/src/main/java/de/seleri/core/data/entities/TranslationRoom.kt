@@ -1,10 +1,10 @@
-package de.seleri.core.data.entities.singles.lokStern
+package de.seleri.core.data.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.entities.singles.lokStern.TranslationEntity
+import de.seleri.core.common.entities.TranslationEntity
 import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.Serializable

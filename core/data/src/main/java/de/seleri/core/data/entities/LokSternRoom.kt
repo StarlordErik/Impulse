@@ -1,4 +1,4 @@
-package de.seleri.core.data.entities.singles.lokStern
+package de.seleri.core.data.entities
 
 import de.seleri.core.data.entities.singles.SingleRoom
 

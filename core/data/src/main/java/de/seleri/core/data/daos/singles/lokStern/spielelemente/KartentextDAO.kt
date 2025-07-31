@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.seleri.core.common.ids.spielelementID.KartentextID
-import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
+import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 
 @Dao
 interface KartentextDAO: SpielelementDAO<KartentextRoom, KartentextID> {

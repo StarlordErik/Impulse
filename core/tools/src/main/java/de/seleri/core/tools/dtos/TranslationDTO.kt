@@ -1,7 +1,7 @@
-package de.seleri.core.tools.dtos.singles.lokStern
+package de.seleri.core.tools.dtos
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.entities.singles.lokStern.TranslationEntity
+import de.seleri.core.common.entities.TranslationEntity
 import de.seleri.core.common.ids.LokalisierungID
 import kotlinx.serialization.Serializable
 

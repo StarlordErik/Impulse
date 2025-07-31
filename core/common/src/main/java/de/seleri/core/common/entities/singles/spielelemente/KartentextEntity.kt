@@ -1,4 +1,4 @@
-package de.seleri.core.common.entities.singles.lokStern.spielelemente
+package de.seleri.core.common.entities.singles.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KartentextID
 

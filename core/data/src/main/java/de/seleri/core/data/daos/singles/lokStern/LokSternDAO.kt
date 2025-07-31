@@ -1,7 +1,7 @@
 package de.seleri.core.data.daos.singles.lokStern
 
 import de.seleri.core.data.daos.EntityDAO
-import de.seleri.core.data.entities.singles.lokStern.LokSternRoom
+import de.seleri.core.data.entities.LokSternRoom
 
 interface LokSternDAO<L: LokSternRoom>: EntityDAO<L> {
 

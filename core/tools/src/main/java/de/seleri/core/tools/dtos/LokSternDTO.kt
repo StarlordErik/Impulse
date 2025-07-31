@@ -1,4 +1,4 @@
-package de.seleri.core.tools.dtos.singles.lokStern
+package de.seleri.core.tools.dtos
 
 import de.seleri.core.tools.dtos.singles.SingleDTO
 
