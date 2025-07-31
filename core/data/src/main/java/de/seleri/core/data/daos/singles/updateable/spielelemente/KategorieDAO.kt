@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.singles.lokStern.spielelemente
+package de.seleri.core.data.daos.singles.updateable.spielelemente
 
 import androidx.room.Dao
 import androidx.room.Delete

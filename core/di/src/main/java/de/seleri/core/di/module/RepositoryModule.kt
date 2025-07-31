@@ -5,9 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import de.seleri.core.data.daos.singles.LokalisierungDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.KartentextDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.KategorieDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.SpielDAO
 import de.seleri.core.data.implementations.KartentextImpl
 import de.seleri.core.data.implementations.KategorieImpl
 import de.seleri.core.data.implementations.LokalisierungImpl

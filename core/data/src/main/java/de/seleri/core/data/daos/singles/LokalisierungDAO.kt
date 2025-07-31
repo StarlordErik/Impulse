@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import de.seleri.core.common.ids.EntityID
 import de.seleri.core.data.daos.EntityDAO
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 
@@ -21,5 +20,5 @@ interface LokalisierungDAO: EntityDAO<LokalisierungRoom> {
 	override suspend fun delete(entity: LokalisierungRoom): Int
 
 	@Query("SELECT * FROM lokalisierungen WHERE id = :id")
-	suspend fun get(id: EntityID): LokalisierungRoom
+	suspend fun get(id: Int): LokalisierungRoom
 }

@@ -4,9 +4,9 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import de.seleri.core.data.daos.singles.LokalisierungDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
-import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.KartentextDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.KategorieDAO
+import de.seleri.core.data.daos.singles.updateable.spielelemente.SpielDAO
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.entities.singles.LokalisierungRoom

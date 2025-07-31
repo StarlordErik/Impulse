@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.singles.lokStern
+package de.seleri.core.data.daos.singles.updateable
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -9,7 +9,7 @@ import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.data.entities.TranslationRoom
 
 @Dao
-interface TranslationDAO: LokSternDAO<TranslationRoom> {
+interface TranslationDAO: UpdateableDAO<TranslationRoom> {
 
 	@Insert
 	override suspend fun insert(entity: TranslationRoom): Long
