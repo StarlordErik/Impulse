@@ -9,7 +9,7 @@ data class Lokalisierung(
 	val ogSprache: Sprache,
 
 	val translationen: Map<Sprache, Translation>
-): EntityModell {
+): ModellEntity {
 
 	companion object
 }

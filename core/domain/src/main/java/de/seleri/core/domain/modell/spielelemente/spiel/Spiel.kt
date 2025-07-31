@@ -2,7 +2,7 @@ package de.seleri.core.domain.modell.spielelemente.spiel
 
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.ModellEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
@@ -17,7 +17,7 @@ data class Spiel(
 	val texteProKarte: Int = Default.TEXTE_PRO_KARTE,
 
 	override val bestandteile: Collection<Kategorie>,
-): EntityModell, SpielMeta by spielMetaDaten, Sammlung<Kategorie> {
+): ModellEntity, SpielMeta by spielMetaDaten, Sammlung<Kategorie> {
 
 	override fun getKarte(
 		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>

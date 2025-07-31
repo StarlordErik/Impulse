@@ -2,7 +2,7 @@ package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.ModellEntity
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
@@ -12,7 +12,7 @@ data class Kartentext(
 
 	val gesehen: Boolean = Default.GESEHEN,
 	val besprochen: Boolean = Default.BESPROCHEN,
-): EntityModell, Spielelement by spielelementDaten, Bestandteil {
+): ModellEntity, Spielelement by spielelementDaten, Bestandteil {
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =
 		if (!inaktiv) listOf(this) else emptyList()

@@ -10,7 +10,7 @@ data class Translation(
 	val sprache: Sprache,
 	val bezeichnung: String,
 	val bearbeitet: Boolean = Default.BEARBEITET,
-): EntityModell {
+): ModellEntity {
 
 	companion object
 }

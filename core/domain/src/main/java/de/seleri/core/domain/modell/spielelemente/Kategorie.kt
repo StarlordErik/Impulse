@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KategorieID
-import de.seleri.core.domain.modell.EntityModell
+import de.seleri.core.domain.modell.ModellEntity
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
@@ -12,7 +12,7 @@ data class Kategorie(
 	private val spielelementDaten: SpielelementDaten,
 
 	override val bestandteile: Collection<Kartentext>,
-): EntityModell, Spielelement by spielelementDaten, Sammlung<Kartentext>, Bestandteil {
+): ModellEntity, Spielelement by spielelementDaten, Sammlung<Kartentext>, Bestandteil {
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =
 		if (!inaktiv) bestandteile.flatMap { it.getAktiveKartentexte() } else emptyList()
