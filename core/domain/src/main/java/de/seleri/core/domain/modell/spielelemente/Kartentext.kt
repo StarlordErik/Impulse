@@ -3,7 +3,6 @@ package de.seleri.core.domain.modell.spielelemente
 import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.konstanten.Default
 import de.seleri.core.domain.modell.IDable
-import de.seleri.core.domain.modell.ModellEntity
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
@@ -11,7 +10,7 @@ data class Kartentext(
 
 	val gesehen: Boolean = Default.GESEHEN,
 	val besprochen: Boolean = Default.BESPROCHEN,
-): ModellEntity, IDable, Spielelement by spielelementDaten, Bestandteil {
+): Spielelement by spielelementDaten, IDable, Bestandteil {
 
 	override val id: KartentextID get() = KartentextID(lokalisierung.id.value)
 

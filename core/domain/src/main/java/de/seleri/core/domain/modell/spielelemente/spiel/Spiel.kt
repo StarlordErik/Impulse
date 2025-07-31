@@ -1,23 +1,19 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
-import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.ModellEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
-	override val id: SpielID,
-
 	private val spielMetaDaten: SpielMetaDaten,
 
 	val anleitung: String? = Default.ANLEITUNG,
 	val texteProKarte: Int = Default.TEXTE_PRO_KARTE,
 
 	override val bestandteile: Collection<Kategorie>,
-): ModellEntity, SpielMeta by spielMetaDaten, Sammlung<Kategorie> {
+): SpielMeta by spielMetaDaten, Sammlung<Kategorie> {
 
 	override fun getKarte(
 		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>
