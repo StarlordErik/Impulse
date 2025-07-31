@@ -1,11 +1,11 @@
 package de.seleri.core.domain.useCases
 
-import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.deprecatedRepositories.SpielRepo
+import de.seleri.core.domain.repositories.SpielRepo
 
 class GetSpielUC(private val spielRepo: SpielRepo) {
 
-	suspend operator fun invoke(spielID: SpielelementID.SpielID): Spiel =
+	suspend operator fun invoke(spielID: SpielID): Spiel =
 		spielRepo.get(spielID)
 }
