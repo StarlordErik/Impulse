@@ -9,7 +9,8 @@ data class SpielelementDaten(
 	override val selbstErstellt: Boolean = Default.SELBST_ERSTELLT,
 	override val inaktiv: Boolean = Default.INAKTIV,
 	override val favorisiert: Boolean = Default.FAVORISIERT,
-): Spielelement {
+
+	): Spielelement {
 
 	companion object
 }

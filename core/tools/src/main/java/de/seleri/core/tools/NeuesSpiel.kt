@@ -520,7 +520,7 @@ fun main() {
 
 	// Kategorien zu Spiel (mit Lokalisierungen):
 
-	val spielCursed = Spiel.fromSkript(++maxSpielID, spielLokalisierung, kategorien)
+	val spielCursed = fromSkript(++maxSpielID, spielLokalisierung, kategorien)
 
 	// Fix der Translations-IDs anhand ihrer Lokalisierungs-IDs:
 

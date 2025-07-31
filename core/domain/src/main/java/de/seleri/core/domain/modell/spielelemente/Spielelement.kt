@@ -2,8 +2,9 @@ package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.ModellEntity
 
-interface Spielelement {
+interface Spielelement: ModellEntity {
 
 	val lokalisierung: Lokalisierung
 
@@ -12,6 +13,6 @@ interface Spielelement {
 	val favorisiert: Boolean
 
 	fun getBezeichnung(sprache: Sprache): String =
-		lokalisierung.translationen.find { it.sprache == sprache }?.bezeichnung
+		lokalisierung.translationen[sprache]?.bezeichnung
 			?: "localization unavailable"
 }
