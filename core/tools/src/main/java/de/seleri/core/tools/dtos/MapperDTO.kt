@@ -9,6 +9,7 @@ import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.tools.dtos.joins.KategorieXKartentextDTO
+import de.seleri.core.tools.dtos.joins.SpielXKategorieDTO
 import de.seleri.core.tools.dtos.singles.LokalisierungDTO
 import de.seleri.core.tools.dtos.singles.spielelemente.KartentextDTO
 import de.seleri.core.tools.dtos.singles.spielelemente.KategorieDTO
@@ -31,3 +32,7 @@ fun Kategorie.toJoinDTO() =
 
 fun Spiel.toDTO() =
 	this.toEntity(::SpielDTO)
+
+fun Spiel.toJoinDTO() =
+	this.toEntity(::SpielXKategorieDTO)
+
