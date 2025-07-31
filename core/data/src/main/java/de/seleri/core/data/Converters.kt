@@ -20,7 +20,7 @@ class Converters {
 
 	@TypeConverter
 	fun fromEntityID(entityID: EntityID): Int =
-		entityID.id
+		entityID.value
 
 	@TypeConverter
 	fun toLokalisierungID(lokalisierungID: Int): LokalisierungID =

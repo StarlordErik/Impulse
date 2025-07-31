@@ -4,4 +4,4 @@ import kotlinx.serialization.Serializable
 
 @JvmInline
 @Serializable
-value class LokalisierungID(override val id: Int): EntityID
+value class LokalisierungID(override val value: Int): EntityID

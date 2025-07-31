@@ -13,7 +13,7 @@ data class Kartentext(
 	val besprochen: Boolean = Default.BESPROCHEN,
 ): ModellEntity, IDable, Spielelement by spielelementDaten, Bestandteil {
 
-	override val id: KartentextID get() = KartentextID(lokalisierung.id.id)
+	override val id: KartentextID get() = KartentextID(lokalisierung.id.value)
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =
 		if (!inaktiv) listOf(this) else emptyList()

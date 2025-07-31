@@ -560,13 +560,13 @@ fun main() {
 		// Spiel:
 
 		appendLine("Spiel:")
-		appendLine("\tSpielID: ${spiel.id.id}")
+		appendLine("\tSpielID: ${spiel.id.value}")
 		append(spielelementToTXT(spiel))
 
 		// Kategorien:
 		appendLine("\nKategorien:")
 		spiel.bestandteile.forEach { kategorie ->
-			appendLine("\tKategorieID: ${kategorie.id.id}")
+			appendLine("\tKategorieID: ${kategorie.id.value}")
 			append(spielelementToTXT(kategorie))
 		}
 
@@ -575,7 +575,7 @@ fun main() {
 		spiel.bestandteile.forEach { kategorie ->
 			appendLine("  ${kategorie.lokalisierung.translationen.first().bezeichnung}:")
 			kategorie.bestandteile.forEach { kartentext ->
-				appendLine("\tKartentextID: ${kartentext.id.id}")
+				appendLine("\tKartentextID: ${kartentext.id.value}")
 				append(spielelementToTXT(kartentext))
 			}
 		}
@@ -645,7 +645,7 @@ private fun fixeTranslationsIDsGlobal(spiel: Spiel): Spiel {
 }
 
 private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
-	val lokalisierungID = lokalisierung.id.id
+	val lokalisierungID = lokalisierung.id.value
 	val ogID = (lokalisierungID - 1) * Sprache.entries.size + 1
 	val erikID = ogID + 1
 	val deID = erikID + 1
@@ -667,7 +667,7 @@ private fun fixeTranslationsIDs(lokalisierung: Lokalisierung): Lokalisierung {
 
 private fun spielelementToTXT(spielElement: Spielelement): String =
 	buildString {
-		appendLine("\t\tLokalisierungID: ${spielElement.lokalisierung.id.id}")
+		appendLine("\t\tLokalisierungID: ${spielElement.lokalisierung.id.value}")
 		appendLine("\t\tTranslID | Spr. | Bezeichnung")
 		spielElement.lokalisierung.translationen.forEach {
 			val id = it.id.id.toString()

@@ -4,4 +4,4 @@ import kotlinx.serialization.Serializable
 
 @JvmInline
 @Serializable
-value class SpielID(override val id: Int): SpielelementID, SammlungID
+value class SpielID(override val value: Int): SpielelementID, SammlungID
