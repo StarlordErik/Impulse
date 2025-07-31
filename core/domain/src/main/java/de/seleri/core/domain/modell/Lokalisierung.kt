@@ -6,7 +6,9 @@ import de.seleri.core.common.ids.LokalisierungID
 data class Lokalisierung(
 	override val id: LokalisierungID,
 
-	val ogSprache: Sprache, val translationen: Collection<Translation>
+	val ogSprache: Sprache,
+
+	val translationen: Map<Sprache, Translation>
 ): EntityModell {
 
 	companion object
