@@ -3,6 +3,7 @@ package de.seleri.core.data
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.data.entities.TranslationRoom
+import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
@@ -25,6 +26,9 @@ fun Kartentext.toRoom() =
 
 fun Kategorie.toRoom() =
 	this.toEntity(::KategorieRoom)
+
+fun Kategorie.toJoinRoom() =
+	this.toEntity(::KategorieXKartentextRoom)
 
 fun Spiel.toRoom() =
 	this.toEntity(::SpielRoom)
