@@ -6,8 +6,10 @@ import de.seleri.core.domain.mapper.toEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.tools.dtos.singles.LokalisierungDTO
 import de.seleri.core.tools.dtos.singles.spielelemente.KartentextDTO
+import de.seleri.core.tools.dtos.singles.spielelemente.KategorieDTO
 
 fun Translation.toDTO(lokalisierungID: LokalisierungID, sprache: Sprache): TranslationDTO =
 	this.toEntity(lokalisierungID, sprache, ::TranslationDTO)
@@ -17,3 +19,6 @@ fun Lokalisierung.toDTO() =
 
 fun Kartentext.toDTO() =
 	this.toEntity(::KartentextDTO)
+
+fun Kategorie.toDTO() =
+	this.toEntity(::KategorieDTO)
