@@ -6,9 +6,11 @@ import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 
+// @formatter:off
 fun KategorieEntity.toDomain(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>) =
 	Kategorie(
-		spielelementDaten = SpielelementMapper(this, lokalisierung), bestandteile = kartentexte
+		spielelementDaten = SpielelementMapper(this, lokalisierung),
+		bestandteile = kartentexte
 	)
 
 typealias KategorieFactory<K> = (
@@ -20,5 +22,9 @@ typealias KategorieFactory<K> = (
 
 fun <E: KategorieEntity> Kategorie.toEntity(factory: KategorieFactory<E>): E =
 	factory(
-		this.lokalisierung.id, this.selbstErstellt, this.inaktiv, this.favorisiert
+		this.lokalisierung.id,
+		this.selbstErstellt,
+		this.inaktiv,
+		this.favorisiert
 	)
+// @formatter:on
