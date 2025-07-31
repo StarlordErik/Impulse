@@ -1,4 +1,4 @@
-package de.seleri.core.data.mapper
+package de.seleri.core.data
 
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.domain.mapper.toEntity

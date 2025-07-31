@@ -4,7 +4,7 @@ import de.seleri.core.common.entities.singles.spielelemente.SpielelementEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
-object SpielelementEtM {
+object SpielelementMapper {
 
 	operator fun invoke(dies: SpielelementEntity, lokalisierung: Lokalisierung): SpielelementDaten {
 		return SpielelementDaten(

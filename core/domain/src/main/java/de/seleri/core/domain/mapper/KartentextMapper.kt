@@ -8,7 +8,7 @@ import de.seleri.core.domain.modell.spielelemente.Kartentext
 // @formatter:off
 fun KartentextEntity.toDomain(lokalisierung: Lokalisierung): Kartentext =
 	Kartentext(
-		spielelementDaten = SpielelementEtM(this, lokalisierung),
+		spielelementDaten = SpielelementMapper(this, lokalisierung),
 		gesehen = this.gesehen,
 		besprochen = this.besprochen
 	)
@@ -20,7 +20,7 @@ typealias KartentextFactory<K> = (
 	favorisiert: Boolean,
 	gesehen: Boolean,
 	besprochen: Boolean
-) -> K
+	) -> K
 
 fun <E: KartentextEntity> Kartentext.toEntity(factory: KartentextFactory<E>): E =
 	factory(
