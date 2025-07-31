@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
 import de.seleri.core.common.ids.spielelementID.SpielID
-import de.seleri.core.common.konstanten.Standardwerte
+import de.seleri.core.common.konstanten.Default
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
@@ -13,8 +13,8 @@ data class Spiel(
 
 	private val spielMetaDaten: SpielMetaDaten,
 
-	val anleitung: String? = Standardwerte.ANLEITUNG,
-	val texteProKarte: Int = Standardwerte.TEXTE_PRO_KARTE,
+	val anleitung: String? = Default.ANLEITUNG,
+	val texteProKarte: Int = Default.TEXTE_PRO_KARTE,
 
 	override val bestandteile: Collection<Kategorie>,
 ): EntityModell, SpielMeta by spielMetaDaten, Sammlung<Kategorie> {

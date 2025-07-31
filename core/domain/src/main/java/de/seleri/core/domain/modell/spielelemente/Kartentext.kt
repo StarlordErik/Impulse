@@ -1,7 +1,7 @@
 package de.seleri.core.domain.modell.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KartentextID
-import de.seleri.core.common.konstanten.Standardwerte
+import de.seleri.core.common.konstanten.Default
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 
@@ -10,8 +10,8 @@ data class Kartentext(
 
 	private val spielelementDaten: SpielelementDaten,
 
-	val gesehen: Boolean = Standardwerte.GESEHEN,
-	val besprochen: Boolean = Standardwerte.BESPROCHEN,
+	val gesehen: Boolean = Default.GESEHEN,
+	val besprochen: Boolean = Default.BESPROCHEN,
 ): EntityModell, Spielelement by spielelementDaten, Bestandteil {
 
 	override fun getAktiveKartentexte(): Collection<Kartentext> =

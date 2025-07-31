@@ -1,6 +1,6 @@
 package de.seleri.core.common.konstanten
 
-object SpracheIDs {
+object SpracheID {
 
 	const val OG_ID = 0
 	const val ERIK_ID = 1

@@ -1,14 +1,14 @@
 package de.seleri.core.common
 
-import de.seleri.core.common.konstanten.SpracheIDs
+import de.seleri.core.common.konstanten.SpracheID
 
 
 enum class Sprache(val id: Int) {
 
-	OG(SpracheIDs.OG_ID),
-	ERIK(SpracheIDs.ERIK_ID),
-	DE(SpracheIDs.DE_ID),
-	EN(SpracheIDs.EN_ID);
+	OG(SpracheID.OG_ID),
+	ERIK(SpracheID.ERIK_ID),
+	DE(SpracheID.DE_ID),
+	EN(SpracheID.EN_ID);
 
 
 	companion object {
