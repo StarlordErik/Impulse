@@ -1,7 +1,7 @@
 package de.seleri.core.common.entities.joins
 
-import de.seleri.core.common.id.spielelementID.KartentextID
-import de.seleri.core.common.id.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.KartentextID
+import de.seleri.core.common.ids.spielelementID.KategorieID
 
 interface KategorieXKartentextEntity: JoinEntity<KategorieID, KartentextID> {
 

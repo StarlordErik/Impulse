@@ -1,7 +1,7 @@
 package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.id.TranslationID
+import de.seleri.core.common.ids.TranslationID
 import de.seleri.core.domain.modell.Translation
 
 fun Translation.Companion.fromSkript(

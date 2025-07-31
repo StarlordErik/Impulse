@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import de.seleri.core.common.entities.joins.KategorieXKartentextEntity
-import de.seleri.core.common.id.spielelementID.KartentextID
-import de.seleri.core.common.id.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.KartentextID
+import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 import kotlinx.serialization.SerialName

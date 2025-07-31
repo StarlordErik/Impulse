@@ -1,4 +1,4 @@
-package de.seleri.core.common.id.spielelementID
+package de.seleri.core.common.ids.spielelementID
 
 import kotlinx.serialization.Serializable
 

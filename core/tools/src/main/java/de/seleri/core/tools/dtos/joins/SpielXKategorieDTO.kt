@@ -1,8 +1,8 @@
 package de.seleri.core.tools.dtos.joins
 
 import de.seleri.core.common.entities.joins.SpielXKategorieEntity
-import de.seleri.core.common.id.spielelementID.KategorieID
-import de.seleri.core.common.id.spielelementID.SpielID
+import de.seleri.core.common.ids.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.SpielID
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

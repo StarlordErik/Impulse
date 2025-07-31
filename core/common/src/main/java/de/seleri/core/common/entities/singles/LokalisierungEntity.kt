@@ -1,7 +1,7 @@
 package de.seleri.core.common.entities.singles
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.common.ids.LokalisierungID
 
 interface LokalisierungEntity: SingleEntity {
 

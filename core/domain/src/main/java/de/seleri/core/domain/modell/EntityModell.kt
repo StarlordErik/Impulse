@@ -1,6 +1,6 @@
 package de.seleri.core.domain.modell
 
-import de.seleri.core.common.id.EntityID
+import de.seleri.core.common.ids.EntityID
 
 
 interface EntityModell {

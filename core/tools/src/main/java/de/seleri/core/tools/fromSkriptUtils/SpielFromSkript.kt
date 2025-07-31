@@ -1,6 +1,6 @@
 package de.seleri.core.tools.fromSkriptUtils
 
-import de.seleri.core.common.id.spielelementID.SpielID
+import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.SpielelementDaten

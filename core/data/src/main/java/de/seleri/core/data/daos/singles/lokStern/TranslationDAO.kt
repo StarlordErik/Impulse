@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.data.entities.singles.lokStern.TranslationRoom
 
 @Dao

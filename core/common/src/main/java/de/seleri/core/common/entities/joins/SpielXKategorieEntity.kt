@@ -1,7 +1,7 @@
 package de.seleri.core.common.entities.joins
 
-import de.seleri.core.common.id.spielelementID.KategorieID
-import de.seleri.core.common.id.spielelementID.SpielID
+import de.seleri.core.common.ids.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.SpielID
 
 interface SpielXKategorieEntity: JoinEntity<SpielID, KategorieID> {
 

@@ -1,7 +1,7 @@
 package de.seleri.core.common.entities.singles.lokStern.spielelemente
 
 import de.seleri.core.common.entities.singles.lokStern.LokSternEntity
-import de.seleri.core.common.id.spielelementID.SpielelementID
+import de.seleri.core.common.ids.spielelementID.SpielelementID
 
 interface SpielelementEntity: LokSternEntity {
 

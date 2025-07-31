@@ -1,6 +1,6 @@
 package de.seleri.core.domain.modell.spielelemente.spiel
 
-import de.seleri.core.common.id.spielelementID.SpielID
+import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.common.konstanten.Initialwerte
 import de.seleri.core.domain.modell.EntityModell
 import de.seleri.core.domain.modell.spielelemente.Kartentext

@@ -1,6 +1,6 @@
 package de.seleri.core.domain.mapper
 
-import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.domain.entities.singles.TranslationEntity
 import de.seleri.core.domain.modell.Translation
 

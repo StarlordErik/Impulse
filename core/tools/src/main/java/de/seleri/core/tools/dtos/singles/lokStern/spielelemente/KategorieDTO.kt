@@ -1,7 +1,7 @@
 package de.seleri.core.tools.dtos.singles.lokStern.spielelemente
 
 import de.seleri.core.common.entities.singles.lokStern.spielelemente.KategorieEntity
-import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.common.ids.LokalisierungID
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

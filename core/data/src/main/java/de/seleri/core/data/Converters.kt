@@ -2,11 +2,11 @@ package de.seleri.core.data
 
 import androidx.room.TypeConverter
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.id.EntityID
-import de.seleri.core.common.id.LokalisierungID
-import de.seleri.core.common.id.spielelementID.KartentextID
-import de.seleri.core.common.id.spielelementID.KategorieID
-import de.seleri.core.common.id.spielelementID.SpielID
+import de.seleri.core.common.ids.EntityID
+import de.seleri.core.common.ids.LokalisierungID
+import de.seleri.core.common.ids.spielelementID.KartentextID
+import de.seleri.core.common.ids.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.SpielID
 
 class Converters {
 

@@ -1,4 +1,4 @@
-package de.seleri.core.common.id
+package de.seleri.core.common.ids
 
 import kotlinx.serialization.Serializable
 

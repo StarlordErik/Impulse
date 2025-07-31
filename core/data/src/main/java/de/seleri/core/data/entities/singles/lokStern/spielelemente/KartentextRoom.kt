@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import de.seleri.core.common.entities.singles.lokStern.spielelemente.KartentextEntity
-import de.seleri.core.common.id.LokalisierungID
+import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import de.seleri.core.common.id.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.lokStern.spielelemente.KategorieRoom
 
 @Dao

@@ -1,7 +1,7 @@
 package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.common.id.TranslationID
+import de.seleri.core.common.ids.TranslationID
 import de.seleri.core.domain.mapper.toDatenbankSlice
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
