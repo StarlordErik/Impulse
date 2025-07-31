@@ -17,7 +17,7 @@ fun <
 	SID: SammlungID,
 	BID: BestandteilID,
 	B: Bestandteil<BID>
-	> Sammlung<B, SID>.toEntity(
+	> Sammlung<B, SID>.toJoinEntity(
 	factory: JoinFactory<E, SID, BID>
 ): Collection<E> =
 	this.bestandteile.map { bestandteil ->

@@ -2,8 +2,8 @@ package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
-import de.seleri.core.domain.mapper.toDomain
-import de.seleri.core.domain.mapper.toEntity
+import de.seleri.core.domain.mapper.spiel.toDomain
+import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.repositories.KartentextRepo
 import de.seleri.core.domain.repositories.LokalisierungRepo

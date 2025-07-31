@@ -6,7 +6,7 @@ import de.seleri.core.data.deprecatedMapper.toEntityForKartentext
 import de.seleri.core.data.deprecatedMapper.toEntityForKategorie
 import de.seleri.core.data.deprecatedMapper.toEntityForSpiel
 import de.seleri.core.data.deprecatedMapper.toNullEntity
-import de.seleri.core.domain.mapper.toDomain
+import de.seleri.core.domain.mapper.spiel.toDomain
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
 

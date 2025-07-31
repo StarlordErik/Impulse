@@ -2,7 +2,9 @@ package de.seleri.core.tools.dtos
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
+import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.mapper.toEntity
+import de.seleri.core.domain.mapper.toJoinEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -28,11 +30,11 @@ fun Kategorie.toDTO() =
 	this.toEntity(::KategorieDTO)
 
 fun Kategorie.toJoinDTO() =
-	this.toEntity(::KategorieXKartentextDTO)
+	this.toJoinEntity(::KategorieXKartentextDTO)
 
 fun Spiel.toDTO() =
 	this.toEntity(::SpielDTO)
 
 fun Spiel.toJoinDTO() =
-	this.toEntity(::SpielXKategorieDTO)
+	this.toJoinEntity(::SpielXKategorieDTO)
 

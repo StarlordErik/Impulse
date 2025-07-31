@@ -9,7 +9,9 @@ import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
+import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.mapper.toEntity
+import de.seleri.core.domain.mapper.toJoinEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -29,10 +31,10 @@ fun Kategorie.toRoom() =
 	this.toEntity(::KategorieRoom)
 
 fun Kategorie.toJoinRoom() =
-	this.toEntity(::KategorieXKartentextRoom)
+	this.toJoinEntity(::KategorieXKartentextRoom)
 
 fun Spiel.toRoom() =
 	this.toEntity(::SpielRoom)
 
 fun Spiel.toJoinRoom() =
-	this.toEntity(::SpielXKategorieRoom)
+	this.toJoinEntity(::SpielXKategorieRoom)
