@@ -1,7 +1,7 @@
 package de.seleri.core.common.konstanten
 
 @Suppress("MagicNumber")
-object Initialwerte {
+object Standardwerte {
 
 	const val BEARBEITET = false
 	const val SELBST_ERSTELLT = false
