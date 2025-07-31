@@ -1,52 +1,16 @@
 package de.seleri.core.data.mapper
 
-import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.common.Sprache
 import de.seleri.core.data.entities.singles.LokalisierungRoom
-import de.seleri.core.domain.modell.EntityModellDaten
 import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.Translation
 
-fun LokalisierungRoom.toDomain() =
+fun LokalisierungRoom.toDomain(translationen: Map<Sprache, Translation>): Lokalisierung =
 	Lokalisierung(
-		entityModellDaten = EntityModellDaten(id = id),
-		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet
+		id = this.id, ogSprache = this.ogSprache, translationen = translationen
 	)
 
-fun Lokalisierung.toNullEntity() =
+fun Lokalisierung.toEntity(): LokalisierungRoom =
 	LokalisierungRoom(
-		id = id,
-		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet,
-		spielID = null,
-		kategorieID = null,
-		kartentextID = null
-	)
-
-fun Lokalisierung.toEntityForSpiel(spielID: SpielelementID.SpielID) =
-	LokalisierungRoom(
-		id = id,
-		bezeichnung = bezeichnung,
-		sprache = sprache, bearbeitet = bearbeitet, spielID = spielID.toInt(),
-		kategorieID = null,
-		kartentextID = null
-	)
-
-fun Lokalisierung.toEntityForKategorie(kategorieID: SpielelementID.KategorieID) =
-	LokalisierungRoom(
-		id = id,
-		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet, spielID = null, kategorieID = kategorieID.toInt(),
-		kartentextID = null
-	)
-
-fun Lokalisierung.toEntityForKartentext(kartentextID: SpielelementID.KartentextID) =
-	LokalisierungRoom(
-		id = id,
-		bezeichnung = bezeichnung,
-		sprache = sprache,
-		bearbeitet = bearbeitet,
-		spielID = null, kategorieID = null, kartentextID = kartentextID.toInt()
+		lokalisierungID = this.id.value, ogSprache = this.ogSprache
 	)
