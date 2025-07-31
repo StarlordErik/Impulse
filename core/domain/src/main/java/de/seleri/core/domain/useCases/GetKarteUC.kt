@@ -3,7 +3,7 @@ package de.seleri.core.domain.useCases
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
-import de.seleri.core.domain.repositories.KartentextRepo
+import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
 
 class GetKarteUC(private val kartentextRepo: KartentextRepo) {
 

@@ -1,4 +1,4 @@
-package de.seleri.core.domain.repositories.basis
+package de.seleri.core.domain.deprecatedRepositories.basis
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.modell.spielelemente.Spielelement

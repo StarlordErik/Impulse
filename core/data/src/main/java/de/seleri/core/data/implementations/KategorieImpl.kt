@@ -7,9 +7,9 @@ import de.seleri.core.domain.mapper.spiel.toDomain
 import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.repositories.KartentextRepo
-import de.seleri.core.domain.repositories.KategorieRepo
-import de.seleri.core.domain.repositories.LokalisierungRepo
+import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
+import de.seleri.core.domain.deprecatedRepositories.KategorieRepo
+import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 
 class KategorieImpl(
 	private val dao: KategorieDAO,

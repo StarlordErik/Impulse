@@ -1,4 +1,4 @@
-package de.seleri.core.domain.repositories
+package de.seleri.core.domain.deprecatedRepositories
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.domain.modell.Lokalisierung

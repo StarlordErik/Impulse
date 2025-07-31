@@ -9,9 +9,9 @@ import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
-import de.seleri.core.domain.repositories.KategorieRepo
-import de.seleri.core.domain.repositories.LokalisierungRepo
-import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.domain.deprecatedRepositories.KategorieRepo
+import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
+import de.seleri.core.domain.deprecatedRepositories.SpielRepo
 
 class SpielImpl(
 	private val dao: SpielDAO,

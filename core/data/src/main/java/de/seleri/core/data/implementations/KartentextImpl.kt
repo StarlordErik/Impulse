@@ -5,8 +5,8 @@ import de.seleri.core.data.daos.singles.lokStern.spielelemente.KartentextDAO
 import de.seleri.core.domain.mapper.spiel.toDomain
 import de.seleri.core.domain.mapper.spiel.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.repositories.KartentextRepo
-import de.seleri.core.domain.repositories.LokalisierungRepo
+import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
+import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 
 class KartentextImpl(
 	private val dao: KartentextDAO, private val lokalisierungRepo: LokalisierungRepo

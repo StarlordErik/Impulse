@@ -12,10 +12,10 @@ import de.seleri.core.data.implementations.KartentextImpl
 import de.seleri.core.data.implementations.KategorieImpl
 import de.seleri.core.data.implementations.LokalisierungImpl
 import de.seleri.core.data.implementations.SpielImpl
-import de.seleri.core.domain.repositories.KartentextRepo
-import de.seleri.core.domain.repositories.KategorieRepo
-import de.seleri.core.domain.repositories.LokalisierungRepo
-import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
+import de.seleri.core.domain.deprecatedRepositories.KategorieRepo
+import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
+import de.seleri.core.domain.deprecatedRepositories.SpielRepo
 import javax.inject.Singleton
 
 @Module
