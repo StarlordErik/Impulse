@@ -7,5 +7,5 @@ import de.seleri.core.domain.repositories.base.SpielelementRepo
 
 interface SpielRepo: SpielelementRepo<Spiel, SpielID> {
 
-	suspend fun getAllMetas(): SpielMetaDO
+	suspend fun getAllMetas(): Collection<SpielMetaDO>
 }
