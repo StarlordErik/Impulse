@@ -1,3 +1,5 @@
 package de.seleri.core.tools.dtos.singles
 
-interface SingleDTO {}
+import de.seleri.core.tools.dtos.EntityDTO
+
+interface SingleDTO: EntityDTO

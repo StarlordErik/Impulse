@@ -1,3 +1,5 @@
 package de.seleri.core.tools.dtos.singles.lokStern
 
-interface LokSternDTO {}
+import de.seleri.core.tools.dtos.singles.SingleDTO
+
+interface LokSternDTO: SingleDTO

@@ -1,3 +1,21 @@
 package de.seleri.core.tools.dtos.singles.lokStern.spielelemente
 
-interface KartentextDTO {}
+import de.seleri.core.common.entities.singles.lokStern.spielelemente.KartentextEntity
+import de.seleri.core.common.id.LokalisierungID
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class KartentextDTO(
+
+	@SerialName(value = "id")
+	override val lokalisierungID: LokalisierungID,
+
+	override val selbstErstellt: Boolean,
+	override val inaktiv: Boolean,
+	override val favorisiert: Boolean,
+
+	override val gesehen: Boolean,
+	override val besprochen: Boolean,
+): SpielelementDTO, BestandteilDTO, KartentextEntity
+

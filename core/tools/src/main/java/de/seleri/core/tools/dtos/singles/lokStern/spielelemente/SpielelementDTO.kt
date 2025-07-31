@@ -1,3 +1,5 @@
 package de.seleri.core.tools.dtos.singles.lokStern.spielelemente
 
-interface SpielelementDTO {}
+import de.seleri.core.tools.dtos.singles.lokStern.LokSternDTO
+
+interface SpielelementDTO: LokSternDTO

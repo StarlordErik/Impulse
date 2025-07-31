@@ -1,3 +1,5 @@
 package de.seleri.core.tools.dtos.joins
 
-interface JoinDTO
+import de.seleri.core.tools.dtos.EntityDTO
+
+interface JoinDTO: EntityDTO
