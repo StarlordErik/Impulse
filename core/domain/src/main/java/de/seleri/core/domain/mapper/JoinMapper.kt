@@ -6,11 +6,18 @@ import de.seleri.core.common.ids.spielelementID.SammlungID
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
 
+// @formatter:off
 typealias JoinFactory<X, SID, BID> = (
-	sammlungID: SID, bestandteilID: BID
+	sammlungID: SID,
+	bestandteilID: BID
 ) -> X
 
-fun <E: JoinEntity<SID, BID>, SID: SammlungID, BID: BestandteilID, B: Bestandteil<BID>> Sammlung<B, SID>.toEntity(
+fun <
+	E: JoinEntity<SID, BID>,
+	SID: SammlungID,
+	BID: BestandteilID,
+	B: Bestandteil<BID>
+	> Sammlung<B, SID>.toEntity(
 	factory: JoinFactory<E, SID, BID>
 ): Collection<E> =
 	this.bestandteile.map { bestandteil ->
@@ -18,4 +25,4 @@ fun <E: JoinEntity<SID, BID>, SID: SammlungID, BID: BestandteilID, B: Bestandtei
 			this.id, bestandteil.id
 		)
 	}
-
+// @formatter:on
