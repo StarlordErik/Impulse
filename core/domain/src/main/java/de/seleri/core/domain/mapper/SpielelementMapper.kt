@@ -6,12 +6,11 @@ import de.seleri.core.domain.modell.spielelemente.SpielelementDaten
 
 object SpielelementMapper {
 
-	operator fun invoke(dies: SpielelementEntity, lokalisierung: Lokalisierung): SpielelementDaten {
-		return SpielelementDaten(
+	operator fun invoke(dies: SpielelementEntity, lokalisierung: Lokalisierung): SpielelementDaten =
+		SpielelementDaten(
 			lokalisierung = lokalisierung,
 			selbstErstellt = dies.selbstErstellt,
 			inaktiv = dies.inaktiv,
 			favorisiert = dies.favorisiert
 		)
-	}
 }
