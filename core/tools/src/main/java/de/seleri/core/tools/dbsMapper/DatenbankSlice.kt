@@ -1,4 +1,4 @@
-package de.seleri.core.domain.deprecatedMapper
+package de.seleri.core.tools.dbsMapper
 
 import de.seleri.core.domain.entities.joins.KategorieXKartentextEntity
 import de.seleri.core.domain.entities.joins.SpielXKategorieEntity

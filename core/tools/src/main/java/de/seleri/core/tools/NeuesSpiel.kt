@@ -2,7 +2,6 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.TranslationID
-import de.seleri.core.domain.deprecatedMapper.toDatenbankSlice
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
 import de.seleri.core.domain.modell.spielelemente.Kartentext
@@ -11,6 +10,7 @@ import de.seleri.core.domain.modell.spielelemente.Spielelement
 import de.seleri.core.domain.modell.spielelemente.SpielelementDO
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.tools.dbsMapper.toDatenbankSlice
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
 import de.seleri.core.tools.fromSkriptUtils.fromSkriptForAll
