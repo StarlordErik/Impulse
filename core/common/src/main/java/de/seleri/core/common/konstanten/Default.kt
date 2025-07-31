@@ -1,6 +1,5 @@
 package de.seleri.core.common.konstanten
 
-@Suppress("MagicNumber")
 object Default {
 
 	const val BEARBEITET = false
