@@ -5,6 +5,7 @@ import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
 
 // @formatter:off
 fun SpielEntity.toDomain(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>) =
@@ -14,6 +15,9 @@ fun SpielEntity.toDomain(lokalisierung: Lokalisierung, kategorien: Collection<Ka
 		texteProKarte = this.texteProKarte,
 		bestandteile = kategorien
 	)
+
+fun SpielEntity.toMeta(lokalisierung: Lokalisierung) =
+	SpielMetaObjekt(spielMetaDaten = SpielMetaMapper(this, lokalisierung))
 
 typealias SpielFactory<S> = (
 	lokalisierungID: LokalisierungID,
@@ -36,3 +40,4 @@ fun <E: SpielEntity> Spiel.toEntity(factory: SpielFactory<E>): E =
 		this.texteProKarte
 	)
 // @formatter:on
+
