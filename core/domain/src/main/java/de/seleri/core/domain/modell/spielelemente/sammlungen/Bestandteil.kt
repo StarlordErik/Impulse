@@ -1,9 +1,13 @@
 package de.seleri.core.domain.modell.spielelemente.sammlungen
 
+import de.seleri.core.common.ids.spielelementID.BestandteilID
+import de.seleri.core.domain.modell.IDable
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Spielelement
 
-interface Bestandteil: Spielelement {
+interface Bestandteil<BID: BestandteilID>: Spielelement, IDable {
+
+	override val id: BID
 
 	fun isAktiv(): Boolean =
 		!this.inaktiv

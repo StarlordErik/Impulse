@@ -10,7 +10,7 @@ data class Kategorie(
 	private val spielelementDaten: SpielelementDaten,
 
 	override val bestandteile: Collection<Kartentext>,
-): Spielelement by spielelementDaten, IDable, Sammlung<Kartentext>, Bestandteil {
+): Spielelement by spielelementDaten, IDable, Sammlung<Kartentext, KategorieID>, Bestandteil<KategorieID> {
 
 	override val id: KategorieID get() = KategorieID(lokalisierung.id.value)
 

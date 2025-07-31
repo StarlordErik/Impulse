@@ -1,8 +1,13 @@
 package de.seleri.core.domain.modell.spielelemente.sammlungen
 
+import de.seleri.core.common.ids.spielelementID.SammlungID
+import de.seleri.core.domain.modell.IDable
 import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.spielelemente.Spielelement
 
-interface Sammlung<out B: Bestandteil> {
+interface Sammlung<out B: Bestandteil<*>, SID: SammlungID>: Spielelement, IDable {
+
+	override val id: SID
 
 	val bestandteile: Collection<B>
 
