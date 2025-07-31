@@ -6,8 +6,8 @@ import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
 import de.seleri.core.domain.deprecatedRepositories.KategorieRepo
 import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
-import de.seleri.core.domain.mapper.spiel.toDomain
-import de.seleri.core.domain.mapper.spiel.toEntity
+import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
+import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 

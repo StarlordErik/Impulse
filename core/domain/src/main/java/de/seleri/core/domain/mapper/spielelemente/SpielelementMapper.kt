@@ -1,4 +1,4 @@
-package de.seleri.core.domain.mapper
+package de.seleri.core.domain.mapper.spielelemente
 
 import de.seleri.core.common.entities.singles.spielelemente.SpielelementEntity
 import de.seleri.core.domain.modell.Lokalisierung

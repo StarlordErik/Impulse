@@ -2,8 +2,8 @@ package de.seleri.core.tools.dtos
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
-import de.seleri.core.domain.mapper.spiel.toEntity
-import de.seleri.core.domain.mapper.toEntity
+import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
+import de.seleri.core.domain.mapper.spielelemente.toEntity
 import de.seleri.core.domain.mapper.toJoinEntity
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation

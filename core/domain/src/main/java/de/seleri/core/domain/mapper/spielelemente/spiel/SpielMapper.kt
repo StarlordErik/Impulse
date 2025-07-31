@@ -1,4 +1,4 @@
-package de.seleri.core.domain.mapper.spiel
+package de.seleri.core.domain.mapper.spielelemente.spiel
 
 import de.seleri.core.common.entities.singles.spielelemente.SpielEntity
 import de.seleri.core.common.ids.LokalisierungID
@@ -9,7 +9,7 @@ import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 // @formatter:off
 fun SpielEntity.toDomain(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>) : Spiel =
 	Spiel(
-		spielMetaDaten = SpielMetaMapper(this, lokalisierung),
+		spielMetaDaten = this.toMeta(lokalisierung),
 		anleitung = this.anleitung,
 		texteProKarte = this.texteProKarte,
 		bestandteile = kategorien
