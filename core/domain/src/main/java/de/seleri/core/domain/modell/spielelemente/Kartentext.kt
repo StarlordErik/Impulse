@@ -10,7 +10,7 @@ data class Kartentext(
 
 	val gesehen: Boolean = Default.GESEHEN,
 	val besprochen: Boolean = Default.BESPROCHEN,
-): Spielelement by spielelementDaten, IDable, Bestandteil<KartentextID> {
+): Spielelement by spielelementDaten, IDable<KartentextID>, Bestandteil<KartentextID> {
 
 	override val id: KartentextID get() = KartentextID(lokalisierung.id.value)
 

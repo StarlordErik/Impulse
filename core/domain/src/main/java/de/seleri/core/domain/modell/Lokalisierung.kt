@@ -9,7 +9,7 @@ data class Lokalisierung(
 	val ogSprache: Sprache,
 
 	val translationen: Map<Sprache, Translation>
-): IDable {
+): IDable<LokalisierungID> {
 
 	companion object
 }

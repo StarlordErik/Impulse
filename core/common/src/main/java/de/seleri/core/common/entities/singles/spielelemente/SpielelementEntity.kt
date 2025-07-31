@@ -4,7 +4,7 @@ import de.seleri.core.common.entities.LokSternEntity
 import de.seleri.core.common.entities.singles.SingleEntity
 import de.seleri.core.common.ids.spielelementID.SpielelementID
 
-interface SpielelementEntity: SingleEntity, LokSternEntity {
+interface SpielelementEntity: SingleEntity<SpielelementID>, LokSternEntity {
 
 	override val id: SpielelementID
 

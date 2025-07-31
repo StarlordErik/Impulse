@@ -3,7 +3,7 @@ package de.seleri.core.common.entities.singles
 import de.seleri.core.common.entities.Entity
 import de.seleri.core.common.ids.EntityID
 
-interface SingleEntity: Entity {
+interface SingleEntity<EID: EntityID>: Entity {
 
-	val id: EntityID
+	val id: EID
 }

@@ -5,7 +5,7 @@ import de.seleri.core.domain.modell.IDable
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Spielelement
 
-interface Bestandteil<BID: BestandteilID>: Spielelement, IDable {
+interface Bestandteil<BID: BestandteilID>: IDable<BID>, Spielelement {
 
 	override val id: BID
 
