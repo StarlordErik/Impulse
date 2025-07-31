@@ -1,4 +1,4 @@
-package de.seleri.core.data.mapper/*
+package de.seleri.core.data.deprecatedMapper/*
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.entities.singles.LokalisierungRoom
 import de.seleri.core.domain.modell.EntityModellDaten

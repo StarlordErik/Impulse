@@ -1,4 +1,4 @@
-package de.seleri.core.data.mapper
+package de.seleri.core.domain.mapper
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.data.entities.singles.LokalisierungRoom

@@ -3,8 +3,8 @@ package de.seleri.core.data.implementations
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.singles.lokStern.spielelemente.KategorieDAO
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
-import de.seleri.core.data.mapper.toDomain
-import de.seleri.core.data.mapper.toEntity
+import de.seleri.core.domain.mapper.toDomain
+import de.seleri.core.domain.mapper.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kartentext
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.KartentextRepo

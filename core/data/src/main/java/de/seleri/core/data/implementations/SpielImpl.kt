@@ -2,10 +2,10 @@ package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.singles.lokStern.spielelemente.SpielDAO
+import de.seleri.core.data.deprecatedMapper.toMeta
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
-import de.seleri.core.data.mapper.toDomain
-import de.seleri.core.data.mapper.toEntity
-import de.seleri.core.data.mapper.toMeta
+import de.seleri.core.domain.mapper.toDomain
+import de.seleri.core.domain.mapper.toEntity
 import de.seleri.core.domain.modell.spielelemente.Kategorie
 import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
 import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt

@@ -2,11 +2,11 @@ package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
 import de.seleri.core.data.daos.singles.LokalisierungDAO
-import de.seleri.core.data.mapper.toDomain
-import de.seleri.core.data.mapper.toEntityForKartentext
-import de.seleri.core.data.mapper.toEntityForKategorie
-import de.seleri.core.data.mapper.toEntityForSpiel
-import de.seleri.core.data.mapper.toNullEntity
+import de.seleri.core.data.deprecatedMapper.toEntityForKartentext
+import de.seleri.core.data.deprecatedMapper.toEntityForKategorie
+import de.seleri.core.data.deprecatedMapper.toEntityForSpiel
+import de.seleri.core.data.deprecatedMapper.toNullEntity
+import de.seleri.core.domain.mapper.toDomain
 import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.repositories.LokalisierungRepo
 
