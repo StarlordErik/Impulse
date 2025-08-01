@@ -14,7 +14,8 @@ class KartentextImpl(
 
 	override suspend fun new(modell: Kartentext): KartentextID {
 		val entity = modell.toRoom()
-
+//TODO translationen und lokalisierung erstellen, ggf. checken, ob die Lokalisierung bereits exisitiert und ID neu
+// zuweisen
 		val id = dao.insert(entity)
 
 		return KartentextID(id.toInt())
@@ -22,7 +23,7 @@ class KartentextImpl(
 
 	override suspend fun delete(model: Kartentext): Int {
 		val entity = model.toRoom()
-
+//TODO schauen, ob die Lokalisierung noch gebraucht wird und ggf. löschen
 		return dao.delete(entity)
 	}
 
