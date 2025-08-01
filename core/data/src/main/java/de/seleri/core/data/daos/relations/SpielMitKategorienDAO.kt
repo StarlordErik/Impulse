@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.joins.relations
+package de.seleri.core.data.daos.relations
 
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.SpielID
@@ -13,5 +13,5 @@ interface SpielMitKategorienDAO: RelationDAO<SpielID, KategorieRoom> {
 		WHERE sxk.spielID = :sammlungID
 	"""
 	)
-	override suspend fun getAll(sammlungID: SpielID): List<KategorieRoom>
+	override suspend fun getAllBestandteile(sammlungID: SpielID): List<KategorieRoom>
 }

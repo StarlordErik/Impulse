@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.joins.relations
+package de.seleri.core.data.daos.relations
 
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.KategorieID
@@ -13,5 +13,5 @@ interface KategorieMitKartentextenDAO: RelationDAO<KategorieID, KartentextRoom> 
 		WHERE kxk.kategorieID = :sammlungID
 	"""
 	)
-	override suspend fun getAll(sammlungID: KategorieID): List<KartentextRoom>
+	override suspend fun getAllBestandteile(sammlungID: KategorieID): List<KartentextRoom>
 }

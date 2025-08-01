@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.updateable.spielelemente.KartentextDAO
+import de.seleri.core.data.daos.singles.spielelemente.KartentextDAO
 import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
 import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain

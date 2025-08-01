@@ -1,7 +1,7 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.data.daos.singles.updateable.spielelemente.SpielDAO
+import de.seleri.core.data.daos.singles.spielelemente.SpielDAO
 import de.seleri.core.data.deprecatedMapper.toMeta
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.domain.deprecatedRepositories.KategorieRepo

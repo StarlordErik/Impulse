@@ -1,4 +1,4 @@
-package de.seleri.core.data.daos.singles.updateable.spielelemente
+package de.seleri.core.data.daos.singles.spielelemente
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -11,18 +11,18 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 @Dao
 interface SpielDAO: SpielelementDAO<SpielRoom, SpielID> {
 
+	@Delete
+	override suspend fun delete(entity: SpielRoom): Int
+
 	@Insert
 	override suspend fun insert(entity: SpielRoom): Long
 
 	@Insert
 	override suspend fun insertAll(entities: Collection<SpielRoom>): List<Long>
 
-	@Delete
-	override suspend fun delete(entity: SpielRoom): Int
+	@Query("SELECT * FROM spiele WHERE id = :spielelementID")
+	override suspend fun get(spielelementID: SpielID): SpielRoom
 
 	@Update
 	override suspend fun update(entity: SpielRoom): Int
-
-	@Query("SELECT * FROM spiele WHERE id = :spielelementID")
-	override suspend fun get(spielelementID: SpielID): SpielRoom
 }
