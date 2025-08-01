@@ -8,5 +8,5 @@ interface TranslationRepo: EntityRepo<Translation>, UpdateableRepo<Translation> 
 
 	suspend fun new(entity: Translation, lokalisierungID: LokalisierungID, sprache: Sprache)
 
-	suspend fun getAll(id: LokalisierungID): Collection<Translation>
+	suspend fun getForLokalisierung(id: LokalisierungID): Collection<Translation>
 }
