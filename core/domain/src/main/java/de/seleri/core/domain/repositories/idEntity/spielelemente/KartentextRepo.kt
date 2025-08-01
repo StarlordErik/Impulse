@@ -5,5 +5,5 @@ import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
 
 interface KartentextRepo: SpielelementRepo<Kartentext, KartentextID> {
 
-	suspend fun updateAll(kartentexte: Collection<Kartentext>)
+	suspend fun updateAll(kartentexte: Collection<Kartentext>): Int
 }

@@ -1,43 +1,48 @@
 package de.seleri.core.data.implementations
 
-import de.seleri.core.common.idTypes.SpielelementID
+import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.data.daos.singles.spielelemente.KartentextDAO
-import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
-import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
-import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
-import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
+import de.seleri.core.data.toRoom
+import de.seleri.core.domain.mapper.spielelemente.toDomain
 import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
 
 class KartentextImpl(
 	private val dao: KartentextDAO, private val lokalisierungRepo: LokalisierungRepo
 ): KartentextRepo {
 
-	override suspend fun upsert(spielelement: Kartentext) {
-		val keyID = dao
-			.upsert(spielelement.toEntity())
-			.toInt()
+	override suspend fun new(modell: Kartentext): KartentextID {
+		val entity = modell.toRoom()
 
-		val kartentextID = SpielelementID.KartentextID(keyID)
+		val id = dao.insert(entity)
 
-		spielelement.lokalisierung.map { lokalisierung ->
-			lokalisierungRepo.upsertForKartentext(kartentextID, lokalisierung)
-		}
+		return KartentextID(id.toInt())
 	}
 
-	override suspend fun delete(spielelement: Kartentext) =
-		dao.delete(spielelement.toEntity())
+	override suspend fun delete(model: Kartentext): Int {
+		val entity = model.toRoom()
 
-	override suspend fun get(spielelementID: SpielelementID.KartentextID): Kartentext {
-		val kartentextEntity = dao.get(spielelementID.toInt())
-
-		val kartentextID = SpielelementID.KartentextID(kartentextEntity.id)
-		val lokalisierungen = lokalisierungRepo.getForKartentext(kartentextID)
-
-		return kartentextEntity.toDomain(lokalisierungen)
+		return dao.delete(entity)
 	}
 
+	override suspend fun get(id: KartentextID): Kartentext {
+		val entity = dao.get(id)
 
-	override suspend fun update(kartentexte: Collection<Kartentext>) {
-		dao.update(kartentexte.map { it.toEntity() })
+		val lokalisierung = lokalisierungRepo.get(entity.lokalisierungID)
+
+		return entity.toDomain(lokalisierung)
+	}
+
+	override suspend fun update(model: Kartentext): Int {
+		val entity = model.toRoom()
+
+		return dao.update(entity)
+	}
+
+	override suspend fun updateAll(kartentexte: Collection<Kartentext>): Int {
+		val entities = kartentexte.map { it.toRoom() }
+
+		return dao.updateAll(entities)
 	}
 }

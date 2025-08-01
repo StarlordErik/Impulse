@@ -25,4 +25,7 @@ interface KartentextDAO: SpielelementDAO<KartentextRoom, KartentextID> {
 
 	@Update
 	override suspend fun update(entity: KartentextRoom): Int
+
+	@Update
+	suspend fun updateAll(entities: Collection<KartentextRoom>): Int
 }
