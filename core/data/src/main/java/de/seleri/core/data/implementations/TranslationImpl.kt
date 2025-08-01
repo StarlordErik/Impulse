@@ -34,9 +34,11 @@ class TranslationImpl(private val dao: TranslationDAO): TranslationRepo {
 		return dao.update(entity)
 	}
 
-	override suspend fun getForLokalisierung(id: LokalisierungID): Collection<Translation> {
+	override suspend fun getForLokalisierung(id: LokalisierungID): Map<Sprache, Translation> {
 		val entities = dao.getForLokalisierung(id)
 
-		return entities.map { it.toDomain() }
+		return entities.associate {
+			it.sprache to it.toDomain()
+		}
 	}
 }

@@ -12,5 +12,5 @@ interface TranslationRepo: EntityRepo<Translation> {
 
 	suspend fun update(translation: Translation, lokalisierungID: LokalisierungID, sprache: Sprache): Int
 
-	suspend fun getForLokalisierung(id: LokalisierungID): Collection<Translation>
+	suspend fun getForLokalisierung(id: LokalisierungID): Map<Sprache, Translation>
 }
