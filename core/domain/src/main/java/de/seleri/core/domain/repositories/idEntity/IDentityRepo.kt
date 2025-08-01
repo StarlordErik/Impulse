@@ -8,5 +8,7 @@ interface IDentityRepo<E: IDentity<ID>, ID: EntityID>: EntityRepo<E> {
 
 	suspend fun new(modell: E): ID
 
+	suspend fun delete(model: E): Int
+
 	suspend fun get(id: ID): E
 }
