@@ -1,9 +1,9 @@
 package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.ids.spielelementID.KartentextID
-import de.seleri.core.domain.modell.Lokalisierung
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.SpielelementDO
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.SpielelementDO
 
 fun Kartentext.Companion.fromSkript(kartentextID: Int, lokalisierung: Lokalisierung): Kartentext =
 	Kartentext(

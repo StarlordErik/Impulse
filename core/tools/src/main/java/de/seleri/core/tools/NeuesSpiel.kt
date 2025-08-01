@@ -2,14 +2,14 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.TranslationID
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.Spielelement
-import de.seleri.core.domain.modell.spielelemente.SpielelementDO
-import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.Spielelement
+import de.seleri.core.domain.modell.idEntity.spielelemente.SpielelementDO
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.tools.dbsMapper.toDatenbankSlice
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
@@ -500,19 +500,19 @@ fun main() {
 
 	// Kartentexte zu Kategorien (mit Lokalisierungen):
 
-	val kategorie1Info = Kategorie.fromSkript(++maxKategorieID, kategorie1Lokalisierung, kartentexte1)
+	val kategorie1Info = fromSkript(++maxKategorieID, kategorie1Lokalisierung, kartentexte1)
 	val kategorie1 = kategorie1Info.first
 	maxKategorieID += kategorie1Info.second
 
-	val kategorie2Info = Kategorie.fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
+	val kategorie2Info = fromSkript(++maxKategorieID, kategorie2Lokalisierung, kartentexte2)
 	val kategorie2 = kategorie2Info.first
 	maxKategorieID += kategorie2Info.second
 
-	val kategorie3Info = Kategorie.fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
+	val kategorie3Info = fromSkript(++maxKategorieID, kategorie3Lokalisierung, kartentexte3)
 	val kategorie3 = kategorie3Info.first
 	maxKategorieID += kategorie3Info.second
 
-	val kategorie4Info = Kategorie.fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
+	val kategorie4Info = fromSkript(++maxKategorieID, kategorie4Lokalisierung, kartentexte4)
 	val kategorie4 = kategorie4Info.first
 	maxKategorieID += kategorie4Info.second
 

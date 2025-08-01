@@ -1,6 +1,6 @@
 package de.seleri.core.tools.dbsMapper
 
-import de.seleri.core.domain.modell.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
 
 fun Kartentext.toDatenbankSlice(): DatenbankSlice {
 	val lokalisierungSlice = this.lokalisierung.toDatenbankSlice()

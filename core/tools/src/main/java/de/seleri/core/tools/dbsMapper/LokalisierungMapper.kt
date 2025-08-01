@@ -1,6 +1,6 @@
 package de.seleri.core.tools.dbsMapper
 
-import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
 
 fun Lokalisierung.toDatenbankSlice(): DatenbankSlice {
 	val translationSlices = this.translationen.map { it.toDatenbankSlice(lokalisierungsID = this.id) }

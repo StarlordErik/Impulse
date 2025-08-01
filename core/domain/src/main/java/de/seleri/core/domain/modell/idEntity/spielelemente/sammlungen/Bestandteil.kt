@@ -1,8 +1,8 @@
-package de.seleri.core.domain.modell.spielelemente.sammlungen
+package de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen
 
 import de.seleri.core.common.ids.spielelementID.BestandteilID
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.Spielelement
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Spielelement
 
 interface Bestandteil<BID: BestandteilID>: Spielelement<BID> {
 

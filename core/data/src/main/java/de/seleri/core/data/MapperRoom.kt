@@ -11,12 +11,13 @@ import de.seleri.core.data.entities.singles.spielelemente.KategorieRoom
 import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
 import de.seleri.core.domain.mapper.spielelemente.toEntity
+import de.seleri.core.domain.mapper.toEntity
 import de.seleri.core.domain.mapper.toJoinEntity
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
 
 fun Translation.toRoom(lokalisierungID: LokalisierungID, sprache: Sprache): TranslationRoom =
 	this.toEntity(lokalisierungID, sprache, ::TranslationRoom)

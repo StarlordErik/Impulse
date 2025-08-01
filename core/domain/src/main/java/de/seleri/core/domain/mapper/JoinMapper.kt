@@ -3,8 +3,8 @@ package de.seleri.core.domain.mapper
 import de.seleri.core.common.entities.joins.JoinEntity
 import de.seleri.core.common.ids.spielelementID.BestandteilID
 import de.seleri.core.common.ids.spielelementID.SammlungID
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Sammlung
 
 // @formatter:off
 typealias JoinFactory<X, SID, BID> = (

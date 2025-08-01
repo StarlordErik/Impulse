@@ -4,12 +4,13 @@ import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
 import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
 import de.seleri.core.domain.mapper.spielelemente.toEntity
+import de.seleri.core.domain.mapper.toEntity
 import de.seleri.core.domain.mapper.toJoinEntity
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
 import de.seleri.core.tools.dtos.joins.KategorieXKartentextDTO
 import de.seleri.core.tools.dtos.joins.SpielXKategorieDTO
 import de.seleri.core.tools.dtos.singles.LokalisierungDTO

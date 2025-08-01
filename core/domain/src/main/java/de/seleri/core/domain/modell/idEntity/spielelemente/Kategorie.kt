@@ -1,17 +1,15 @@
-package de.seleri.core.domain.modell.spielelemente
+package de.seleri.core.domain.modell.idEntity.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KategorieID
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Bestandteil
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Karte
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Sammlung
 
 data class Kategorie(
 	private val spielelementDaten: SpielelementDO,
 
 	override val bestandteile: Collection<Kartentext>,
-): SpielelementDaten by spielelementDaten,
-	Sammlung<Kartentext, KategorieID>,
-	Bestandteil<KategorieID> {
+): SpielelementDaten by spielelementDaten, Sammlung<Kartentext, KategorieID>, Bestandteil<KategorieID> {
 
 	override val id: KategorieID get() = KategorieID(lokalisierung.id.value)
 

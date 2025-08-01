@@ -1,8 +1,8 @@
 package de.seleri.core.domain.useCases
 
 import de.seleri.core.common.ids.spielelementID.SpielID
-import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
-import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
+import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 
 class GetSpielUC(private val spielRepo: SpielRepo) {
 

@@ -2,8 +2,8 @@ package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
 
 const val DE_ID_BOOSTER = 2
 const val EN_ID_BOOSTER = 3

@@ -1,7 +1,7 @@
-package de.seleri.core.domain.modell.spielelemente.spiel
+package de.seleri.core.domain.modell.idEntity.spielelemente.spiel
 
 import de.seleri.core.common.ids.spielelementID.SpielID
-import de.seleri.core.domain.modell.spielelemente.Spielelement
+import de.seleri.core.domain.modell.idEntity.spielelemente.Spielelement
 
 interface SpielMeta: Spielelement<SpielID> {
 

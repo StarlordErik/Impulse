@@ -1,7 +1,7 @@
 package de.seleri.core.domain.useCases
 
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaDO
-import de.seleri.core.domain.repositories.SpielRepo
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 
 class GetAllSpielMetaObjekteUC(private val spielRepo: SpielRepo) {
 

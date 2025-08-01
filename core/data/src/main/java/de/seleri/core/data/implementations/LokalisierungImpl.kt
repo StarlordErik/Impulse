@@ -8,7 +8,7 @@ import de.seleri.core.data.deprecatedMapper.toEntityForSpiel
 import de.seleri.core.data.deprecatedMapper.toNullEntity
 import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
-import de.seleri.core.domain.modell.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
 
 class LokalisierungImpl(
 	private val dao: LokalisierungDAO,

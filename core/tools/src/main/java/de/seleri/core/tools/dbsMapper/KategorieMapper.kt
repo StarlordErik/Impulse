@@ -1,7 +1,7 @@
 package de.seleri.core.tools.dbsMapper
 
 import de.seleri.core.domain.entities.joins.KategorieXKartentextEntity
-import de.seleri.core.domain.modell.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
 
 
 fun Kategorie.toDatenbankSlice(): DatenbankSlice {

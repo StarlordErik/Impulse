@@ -2,8 +2,8 @@ package de.seleri.core.domain.mapper
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.entities.singles.LokalisierungEntity
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.Translation
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
 
 // @formatter:off
 fun LokalisierungEntity.toDomain(translationen: Map<Sprache, Translation>): Lokalisierung =

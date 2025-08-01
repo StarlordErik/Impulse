@@ -1,11 +1,11 @@
-package de.seleri.core.domain.modell.spielelemente.spiel
+package de.seleri.core.domain.modell.idEntity.spielelemente.spiel
 
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.spielelemente.Kartentext
-import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Karte
-import de.seleri.core.domain.modell.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Karte
+import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Sammlung
 
 data class Spiel(
 	private val spielMetaDaten: SpielMetaDO,

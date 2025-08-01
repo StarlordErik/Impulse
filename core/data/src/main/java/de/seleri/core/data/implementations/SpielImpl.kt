@@ -9,8 +9,8 @@ import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 import de.seleri.core.domain.deprecatedRepositories.SpielRepo
 import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
 import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
-import de.seleri.core.domain.modell.spielelemente.Kategorie
-import de.seleri.core.domain.modell.spielelemente.spiel.Spiel
+import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
 import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
 
 class SpielImpl(

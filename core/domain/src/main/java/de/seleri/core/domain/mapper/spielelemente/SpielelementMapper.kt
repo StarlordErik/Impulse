@@ -1,8 +1,8 @@
 package de.seleri.core.domain.mapper.spielelemente
 
 import de.seleri.core.common.entities.singles.spielelemente.SpielelementEntity
-import de.seleri.core.domain.modell.Lokalisierung
-import de.seleri.core.domain.modell.spielelemente.SpielelementDO
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.modell.idEntity.spielelemente.SpielelementDO
 
 object SpielelementMapper {
 

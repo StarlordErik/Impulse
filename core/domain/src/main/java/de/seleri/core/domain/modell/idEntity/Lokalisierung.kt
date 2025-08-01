@@ -1,7 +1,8 @@
-package de.seleri.core.domain.modell
+package de.seleri.core.domain.modell.idEntity
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
+import de.seleri.core.domain.modell.Translation
 
 data class Lokalisierung(
 	override val id: LokalisierungID,
@@ -9,7 +10,7 @@ data class Lokalisierung(
 	val ogSprache: Sprache,
 
 	val translationen: Map<Sprache, Translation>
-): IDable<LokalisierungID> {
+): IDentity<LokalisierungID> {
 
 	companion object
 }

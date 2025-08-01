@@ -1,8 +1,8 @@
-package de.seleri.core.domain.modell.spielelemente
+package de.seleri.core.domain.modell.idEntity.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.modell.Lokalisierung
 import de.seleri.core.domain.modell.ModellEntity
+import de.seleri.core.domain.modell.idEntity.Lokalisierung
 
 interface SpielelementDaten: ModellEntity {
 
