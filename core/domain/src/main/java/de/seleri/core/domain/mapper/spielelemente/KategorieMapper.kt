@@ -2,9 +2,9 @@ package de.seleri.core.domain.mapper.spielelemente
 
 import de.seleri.core.common.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.common.ids.LokalisierungID
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.model.idEntity.Lokalisierung
+import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.model.idEntity.spielelemente.Kategorie
 
 // @formatter:off
 fun KategorieEntity.toDomain(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>): Kategorie =

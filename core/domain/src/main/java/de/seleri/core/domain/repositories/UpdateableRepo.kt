@@ -1,8 +1,8 @@
 package de.seleri.core.domain.repositories
 
-import de.seleri.core.domain.modell.ModellEntity
+import de.seleri.core.domain.model.ModelEntity
 
-interface UpdateableRepo<E: ModellEntity> {
+interface UpdateableRepo<E: ModelEntity> {
 
-	suspend fun update(entity: E): Int
+	suspend fun update(model: E): Int
 }

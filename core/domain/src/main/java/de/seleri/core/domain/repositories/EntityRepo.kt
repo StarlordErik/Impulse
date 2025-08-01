@@ -1,8 +1,8 @@
 package de.seleri.core.domain.repositories
 
-import de.seleri.core.domain.modell.ModellEntity
+import de.seleri.core.domain.model.ModelEntity
 
-interface EntityRepo<E: ModellEntity> {
+interface EntityRepo<E: ModelEntity> {
 
-	suspend fun delete(entity: E): Int
+	suspend fun delete(model: E): Int
 }

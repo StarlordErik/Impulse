@@ -1,7 +1,7 @@
-package de.seleri.core.domain.modell.idEntity.spielelemente
+package de.seleri.core.domain.model.idEntity.spielelemente
 
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.model.idEntity.Lokalisierung
 
 data class SpielelementDO(
 	override val lokalisierung: Lokalisierung,

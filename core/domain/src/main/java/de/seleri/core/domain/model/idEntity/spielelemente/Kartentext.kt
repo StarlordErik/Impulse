@@ -1,8 +1,8 @@
-package de.seleri.core.domain.modell.idEntity.spielelemente
+package de.seleri.core.domain.model.idEntity.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.konstanten.Default
-import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Bestandteil
+import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Bestandteil
 
 data class Kartentext(
 	private val spielelementDaten: SpielelementDO,

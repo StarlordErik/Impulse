@@ -6,7 +6,7 @@ import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
 import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
 import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
 import de.seleri.core.domain.mapper.spielelemente.spiel.toEntity
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
 
 class KartentextImpl(
 	private val dao: KartentextDAO, private val lokalisierungRepo: LokalisierungRepo

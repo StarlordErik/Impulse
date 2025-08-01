@@ -21,7 +21,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.domain.modell.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
 import de.seleri.core.representation.ui.ImpulseTheme
 import de.seleri.core.representation.viewModels.StartscreenVM
 import io.mockk.every

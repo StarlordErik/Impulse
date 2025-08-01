@@ -2,8 +2,8 @@ package de.seleri.core.domain.mapper.spielelemente
 
 import de.seleri.core.common.entities.singles.spielelemente.KartentextEntity
 import de.seleri.core.common.ids.LokalisierungID
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.model.idEntity.Lokalisierung
+import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
 
 // @formatter:off
 fun KartentextEntity.toDomain(lokalisierung: Lokalisierung): Kartentext =

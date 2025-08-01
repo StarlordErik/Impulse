@@ -1,7 +1,7 @@
 package de.seleri.core.representation.viewModels
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.modell.idEntity.spielelemente.Spielelement
+import de.seleri.core.domain.model.idEntity.spielelemente.Spielelement
 
 interface SpielelementAlsTextDarstellen {
 

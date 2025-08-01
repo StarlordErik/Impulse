@@ -1,7 +1,7 @@
 package de.seleri.core.tools.dbsMapper
 
 import de.seleri.core.domain.entities.joins.SpielXKategorieEntity
-import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
+import de.seleri.core.domain.model.idEntity.spielelemente.spiel.Spiel
 
 fun Spiel.toDatenbankSlice(): DatenbankSlice {
 	val lokalisierungSlice = this.lokalisierung.toDatenbankSlice()

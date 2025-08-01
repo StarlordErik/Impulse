@@ -1,7 +1,7 @@
 package de.seleri.core.domain.useCases
 
-import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Karte
-import de.seleri.core.domain.modell.idEntity.spielelemente.sammlungen.Sammlung
+import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Karte
+import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Sammlung
 import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
 
 class GetKarteUC(private val kartentextRepo: KartentextRepo) {

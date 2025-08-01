@@ -1,10 +1,10 @@
 package de.seleri.core.tools.fromSkriptUtils
 
 import de.seleri.core.common.ids.spielelementID.KategorieID
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
-import de.seleri.core.domain.modell.idEntity.spielelemente.SpielelementDO
+import de.seleri.core.domain.model.idEntity.Lokalisierung
+import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.model.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.model.idEntity.spielelemente.SpielelementDO
 
 fun Kategorie.Companion.fromSkript(
 	kategorieID: Int, lokalisierung: Lokalisierung?, kartentexte: List<Kartentext>?

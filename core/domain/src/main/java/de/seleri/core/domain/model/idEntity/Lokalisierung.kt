@@ -1,8 +1,8 @@
-package de.seleri.core.domain.modell.idEntity
+package de.seleri.core.domain.model.idEntity
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.LokalisierungID
-import de.seleri.core.domain.modell.Translation
+import de.seleri.core.domain.model.Translation
 
 data class Lokalisierung(
 	override val id: LokalisierungID,

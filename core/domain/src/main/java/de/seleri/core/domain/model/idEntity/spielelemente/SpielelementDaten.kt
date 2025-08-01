@@ -1,10 +1,10 @@
-package de.seleri.core.domain.modell.idEntity.spielelemente
+package de.seleri.core.domain.model.idEntity.spielelemente
 
 import de.seleri.core.common.Sprache
-import de.seleri.core.domain.modell.ModellEntity
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
+import de.seleri.core.domain.model.ModelEntity
+import de.seleri.core.domain.model.idEntity.Lokalisierung
 
-interface SpielelementDaten: ModellEntity {
+interface SpielelementDaten: ModelEntity {
 
 	val lokalisierung: Lokalisierung
 

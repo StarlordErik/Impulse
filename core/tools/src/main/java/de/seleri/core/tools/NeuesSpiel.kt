@@ -2,14 +2,14 @@ package de.seleri.core.tools
 
 import de.seleri.core.common.Sprache
 import de.seleri.core.common.ids.TranslationID
-import de.seleri.core.domain.modell.Translation
-import de.seleri.core.domain.modell.idEntity.Lokalisierung
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kartentext
-import de.seleri.core.domain.modell.idEntity.spielelemente.Kategorie
-import de.seleri.core.domain.modell.idEntity.spielelemente.Spielelement
-import de.seleri.core.domain.modell.idEntity.spielelemente.SpielelementDO
-import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.Spiel
-import de.seleri.core.domain.modell.idEntity.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.domain.model.Translation
+import de.seleri.core.domain.model.idEntity.Lokalisierung
+import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
+import de.seleri.core.domain.model.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.model.idEntity.spielelemente.Spielelement
+import de.seleri.core.domain.model.idEntity.spielelemente.SpielelementDO
+import de.seleri.core.domain.model.idEntity.spielelemente.spiel.Spiel
+import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.tools.dbsMapper.toDatenbankSlice
 import de.seleri.core.tools.fromSkriptUtils.entferneNullerKategorien
 import de.seleri.core.tools.fromSkriptUtils.fromSkript
