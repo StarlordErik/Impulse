@@ -55,7 +55,12 @@ class KategorieImpl(
 			deleteCounter += lokalisierungRepo.delete(model.lokalisierung)
 		}
 
-		// TODO kategoriexKartentexte löschen
+		model.bestandteile.forEach { kartentext ->
+			val joinEntity = KategorieXKartentextRoom(model.id, kartentext.id)
+			joinDao.delete(joinEntity)
+			deleteCounter++
+		}
+
 		return deleteCounter
 	}
 
