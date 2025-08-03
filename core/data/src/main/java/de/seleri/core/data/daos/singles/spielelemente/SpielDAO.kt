@@ -28,4 +28,7 @@ interface SpielDAO: SpielelementDAO<SpielRoom, SpielID> {
 
 	@Update
 	override suspend fun update(entity: SpielRoom): Int
+
+	@Query("SELECT * FROM spiele")
+	suspend fun getAll(): List<SpielRoom>
 }

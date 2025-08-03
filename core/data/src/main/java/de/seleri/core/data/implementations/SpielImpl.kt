@@ -9,6 +9,7 @@ import de.seleri.core.data.daos.singles.spielelemente.SpielDAO
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.toRoom
 import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
+import de.seleri.core.domain.mapper.spielelemente.spiel.toMeta
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
@@ -119,6 +120,11 @@ class SpielImpl(
 	}
 
 	override suspend fun getAllMetas(): Collection<SpielMetaDO> {
-		TODO("Not yet implemented")
+		val entities = dao.getAll()
+
+		return entities.map {
+			val lokalisierung = lokalisierungRepo.get(it.lokalisierungID)
+			it.toMeta(lokalisierung)
+		}
 	}
 }
