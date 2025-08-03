@@ -1,5 +1,7 @@
 package de.seleri.core.data.implementations
 
+import de.seleri.core.common.ids.spielelementID.KartentextID
+import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.data.daos.compositePk.joins.SpielXKategorieDAO
 import de.seleri.core.data.daos.relations.SpielMitKategorienDAO
@@ -37,7 +39,28 @@ class SpielImpl(
 	}
 
 	override suspend fun delete(model: Spiel): Int {
-		TODO("Not yet implemented")
+		val entity = model.toRoom()
+		val id = entity.id.value
+
+		var deleteCounter = dao.delete(entity)
+
+		val kartentextID = KartentextID(id)
+		val kartentext = kartentextRepo.find(kartentextID)
+
+		val kategorieID = KategorieID(id)
+		val kategorie = kategorieRepo.find(kategorieID)
+
+		if (kartentext == null && kategorie == null) {
+			deleteCounter += lokalisierungRepo.delete(model.lokalisierung)
+		}
+
+		model.bestandteile.forEach { kategorie ->
+			val joinEntity = SpielXKategorieRoom(model.id, kategorie.id)
+			joinDao.delete(joinEntity)
+			deleteCounter++
+		}
+
+		return deleteCounter
 	}
 
 	override suspend fun get(id: SpielID): Spiel {
