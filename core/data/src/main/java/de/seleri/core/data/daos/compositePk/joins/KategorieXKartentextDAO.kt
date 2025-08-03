@@ -2,10 +2,14 @@ package de.seleri.core.data.daos.compositePk.joins
 
 import androidx.room.Delete
 import androidx.room.Insert
-import de.seleri.core.data.daos.compositePk.CompositePkDAO
+import androidx.room.Query
+import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 
-interface KategorieXKartentextDAO: CompositePkDAO<KategorieXKartentextRoom> {
+interface KategorieXKartentextDAO: JoinDAO<KategorieXKartentextRoom, KategorieID> {
+
+	@Query("SELECT * FROM kategorie_x_kartentext WHERE kategorieID = :sammlungID")
+	override suspend fun getAll(sammlungID: KategorieID): List<KategorieXKartentextRoom>
 
 	@Delete
 	override suspend fun delete(entity: KategorieXKartentextRoom): Int
