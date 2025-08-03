@@ -6,7 +6,6 @@ import de.seleri.core.domain.repositories.idEntity.IDentityRepo
 
 interface SpielelementRepo<S: Spielelement<SID>, SID: SpielelementID>: IDentityRepo<S, SID> {
 
-	suspend fun update(model: S): Int
-
 	suspend fun find(id: SID): S?
+	suspend fun update(model: S): Int
 }
