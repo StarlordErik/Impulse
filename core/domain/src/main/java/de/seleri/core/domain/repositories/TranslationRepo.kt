@@ -6,11 +6,15 @@ import de.seleri.core.domain.model.Translation
 
 interface TranslationRepo: EntityRepo<Translation> {
 
-	suspend fun new(translation: Translation, lokalisierungID: LokalisierungID, sprache: Sprache)
+	suspend fun new(
+		lokalisierungID: LokalisierungID, translation: Translation, sprache: Sprache
+	)
 
 	suspend fun delete(translation: Translation, lokalisierungID: LokalisierungID, sprache: Sprache): Int
 
 	suspend fun update(translation: Translation, lokalisierungID: LokalisierungID, sprache: Sprache): Int
+
+	suspend fun findLokalisierungIDByBezeichnung(bezeichnung: String): LokalisierungID?
 
 	suspend fun getForLokalisierung(id: LokalisierungID): Map<Sprache, Translation>
 }

@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
 	tableName = "translationen", primaryKeys = ["lokalisierungID", "sprache"], foreignKeys = [ForeignKey(
 		entity = LokalisierungRoom::class,
 		parentColumns = ["id"], childColumns = ["lokalisierungID"], onDelete = ForeignKey.Companion.CASCADE
-	)], indices = [Index(value = ["lokalisierungID"])]
+	)], indices = [Index(value = ["lokalisierungID"]), Index(value = ["bezeichnung"])]
 )
 data class TranslationRoom(
 

@@ -24,6 +24,9 @@ interface TranslationDAO: CompositePkDAO<TranslationRoom>, UpdateableDAO<Transla
 	@Update
 	override suspend fun update(entity: TranslationRoom): Int
 
+	@Query("SELECT * FROM translationen WHERE bezeichnung = :bezeichnung")
+	suspend fun findByBezeichnung(bezeichnung: String): TranslationRoom?
+
 	@Query("SELECT * FROM translationen WHERE lokalisierungID = :lokalisierungID")
 	suspend fun getForLokalisierung(lokalisierungID: LokalisierungID): List<TranslationRoom>
 }

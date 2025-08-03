@@ -11,7 +11,7 @@ import de.seleri.core.domain.repositories.TranslationRepo
 class TranslationImpl(private val dao: TranslationDAO): TranslationRepo {
 
 	override suspend fun new(
-		translation: Translation, lokalisierungID: LokalisierungID, sprache: Sprache
+		lokalisierungID: LokalisierungID, translation: Translation, sprache: Sprache
 	) {
 		val entity = translation.toRoom(lokalisierungID, sprache)
 
@@ -32,6 +32,12 @@ class TranslationImpl(private val dao: TranslationDAO): TranslationRepo {
 		val entity = translation.toRoom(lokalisierungID, sprache)
 
 		return dao.update(entity)
+	}
+
+	override suspend fun findLokalisierungIDByBezeichnung(bezeichnung: String): LokalisierungID? {
+		val ggfVorhandeneEntity = dao.findByBezeichnung(bezeichnung)
+
+		return ggfVorhandeneEntity?.lokalisierungID
 	}
 
 	override suspend fun getForLokalisierung(id: LokalisierungID): Map<Sprache, Translation> {
