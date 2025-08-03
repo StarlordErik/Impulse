@@ -1,5 +1,6 @@
 package de.seleri.core.data.implementations
 
+import de.seleri.core.common.entities.singles.spielelemente.KartentextEntity
 import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.common.ids.spielelementID.SpielID
@@ -71,6 +72,16 @@ class KartentextImpl(
 		val entity = model.toRoom()
 
 		return dao.update(entity)
+	}
+
+	override suspend fun complete(bestandteilEntities: Collection<KartentextEntity>): Collection<Kartentext> {
+		return bestandteilEntities.map {
+			it.lokalisierungID
+
+			val lokalisierung = lokalisierungRepo.get(it.lokalisierungID)
+
+			it.toDomain(lokalisierung)
+		}
 	}
 
 	override suspend fun updateAll(kartentexte: Collection<Kartentext>): Int {
