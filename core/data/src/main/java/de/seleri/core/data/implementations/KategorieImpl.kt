@@ -1,17 +1,28 @@
 package de.seleri.core.data.implementations
 
+import de.seleri.core.common.entities.singles.spielelemente.KategorieEntity
+import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.ids.spielelementID.KategorieID
+import de.seleri.core.common.ids.spielelementID.SpielID
+import de.seleri.core.data.daos.compositePk.joins.KategorieXKartentextDAO
+import de.seleri.core.data.daos.relations.KategorieMitKartentextenDAO
 import de.seleri.core.data.daos.singles.spielelemente.KategorieDAO
+import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.toRoom
+import de.seleri.core.domain.mapper.spielelemente.toDomain
 import de.seleri.core.domain.model.idEntity.spielelemente.Kategorie
 import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
 import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
 import de.seleri.core.domain.repositories.idEntity.spielelemente.KategorieRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 
 class KategorieImpl(
 	private val dao: KategorieDAO,
+	private val joinDao: KategorieXKartentextDAO,
+	private val relationDao: KategorieMitKartentextenDAO,
 	private val lokalisierungRepo: LokalisierungRepo,
 	private val kartentextRepo: KartentextRepo,
+	private val spielRepo: SpielRepo
 ): KategorieRepo {
 
 	override suspend fun new(modell: Kategorie): KategorieID {
@@ -96,6 +107,13 @@ class KategorieImpl(
 	}
 
 	override suspend fun complete(bestandteilEntities: Collection<KategorieEntity>): Collection<Kategorie> {
-		TODO("Not yet implemented")
+		return bestandteilEntities.map {
+			val lokalisierung = lokalisierungRepo.get(it.lokalisierungID)
+
+			val kartentextEntities = relationDao.getAllBestandteile(it.id)
+			val kartentexte = kartentextRepo.complete(kartentextEntities)
+
+			it.toDomain(lokalisierung, kartentexte)
+		}
 	}
 }

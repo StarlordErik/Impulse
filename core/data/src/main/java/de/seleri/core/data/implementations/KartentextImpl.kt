@@ -76,8 +76,6 @@ class KartentextImpl(
 
 	override suspend fun complete(bestandteilEntities: Collection<KartentextEntity>): Collection<Kartentext> {
 		return bestandteilEntities.map {
-			it.lokalisierungID
-
 			val lokalisierung = lokalisierungRepo.get(it.lokalisierungID)
 
 			it.toDomain(lokalisierung)
