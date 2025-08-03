@@ -29,6 +29,16 @@ class KategorieImpl(
 	}
 
 	override suspend fun get(id: KategorieID): Kategorie {
+		val entity = dao.get(id)
+		val lokalisierung = lokalisierungRepo.get(entity.lokalisierungID)
+
+		val kartentextEntities = relationDao.getAllBestandteile(id)
+		val kartentexte = kartentextRepo.complete(kartentextEntities)
+
+		return entity.toDomain(lokalisierung, kartentexte)
+	}
+
+	override suspend fun find(id: KategorieID): Kategorie? {
 		TODO("Not yet implemented")
 	}
 
