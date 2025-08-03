@@ -89,7 +89,33 @@ class SpielImpl(
 	}
 
 	override suspend fun update(model: Spiel): Int {
-		TODO("Not yet implemented")
+		val entity = model.toRoom()
+
+		var updateCounter = dao.update(entity)
+
+		val connections = joinDao.getAll(entity.id)
+		val connectionKategorieIDs = connections.map { it.kategorieID }
+
+		model.bestandteile.forEach { kategorie ->
+			val kategorieID = kategorie.id
+			if (kategorieID !in connectionKategorieIDs) {
+				val joinEntity = SpielXKategorieRoom(entity.id, kategorieID)
+				joinDao.insert(joinEntity)
+				updateCounter++
+			}
+		}
+
+		val bestandteilKategorieIDs = model.bestandteile.map { it.id }
+
+		connectionKategorieIDs.forEach { connectionKategorieID ->
+			if (connectionKategorieID !in bestandteilKategorieIDs) {
+				val joinEntity = SpielXKategorieRoom(entity.id, connectionKategorieID)
+				joinDao.delete(joinEntity)
+				updateCounter++
+			}
+		}
+
+		return updateCounter
 	}
 
 	override suspend fun getAllMetas(): Collection<SpielMetaDO> {
