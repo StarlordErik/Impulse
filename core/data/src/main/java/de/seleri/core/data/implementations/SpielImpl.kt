@@ -1,14 +1,39 @@
 package de.seleri.core.data.implementations
 
 import de.seleri.core.common.ids.spielelementID.SpielID
+import de.seleri.core.data.daos.compositePk.joins.SpielXKategorieDAO
+import de.seleri.core.data.daos.relations.SpielMitKategorienDAO
+import de.seleri.core.data.daos.singles.spielelemente.SpielDAO
+import de.seleri.core.data.entities.joins.SpielXKategorieRoom
+import de.seleri.core.data.toRoom
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KategorieRepo
 import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 
-class SpielImpl: SpielRepo {
+class SpielImpl(
+	private val dao: SpielDAO,
+	private val joinDao: SpielXKategorieDAO,
+	private val relationDao: SpielMitKategorienDAO,
+	private val lokalisierungRepo: LokalisierungRepo,
+	private val kartentextRepo: KartentextRepo,
+	private val kategorieRepo: KategorieRepo
+): SpielRepo {
 
 	override suspend fun new(model: Spiel): SpielID {
-		TODO("Not yet implemented")
+		val entity = model.toRoom()
+
+		val id = dao.insert(entity)
+		val spielID = SpielID(id.toInt())
+
+		model.bestandteile.forEach { kategorie ->
+			val joinEntity = SpielXKategorieRoom(spielID, kategorie.id)
+			joinDao.insert(joinEntity)
+		}
+
+		return spielID
 	}
 
 	override suspend fun delete(model: Spiel): Int {
