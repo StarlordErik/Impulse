@@ -23,6 +23,9 @@ interface KategorieDAO: SpielelementDAO<KategorieRoom, KategorieID> {
 	@Query("SELECT * FROM kategorien WHERE id = :spielelementID")
 	override suspend fun get(spielelementID: KategorieID): KategorieRoom
 
+	@Query("SELECT * FROM kategorien WHERE id = :spielelementID")
+	override suspend fun find(spielelementID: KategorieID): KategorieRoom?
+
 	@Update
 	override suspend fun update(entity: KategorieRoom): Int
 }

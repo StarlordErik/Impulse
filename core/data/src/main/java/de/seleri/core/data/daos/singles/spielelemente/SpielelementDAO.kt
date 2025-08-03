@@ -8,4 +8,6 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielelementRoom
 interface SpielelementDAO<S: SpielelementRoom, SID: SpielelementID>: SingleDAO<S>, UpdateableDAO<S> {
 
 	suspend fun get(spielelementID: SID): S
+
+	suspend fun find(spielelementID: SID): S?
 }

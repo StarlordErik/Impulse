@@ -23,6 +23,9 @@ interface KartentextDAO: SpielelementDAO<KartentextRoom, KartentextID> {
 	@Query("SELECT * FROM kartentexte WHERE id = :spielelementID")
 	override suspend fun get(spielelementID: KartentextID): KartentextRoom
 
+	@Query("SELECT * FROM kartentexte WHERE id = :spielelementID")
+	override suspend fun find(spielelementID: KartentextID): KartentextRoom?
+
 	@Update
 	override suspend fun update(entity: KartentextRoom): Int
 
