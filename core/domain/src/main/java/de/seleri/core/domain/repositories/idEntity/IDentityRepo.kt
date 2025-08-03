@@ -6,7 +6,7 @@ import de.seleri.core.domain.repositories.EntityRepo
 
 interface IDentityRepo<E: IDentity<ID>, ID: EntityID>: EntityRepo<E> {
 
-	suspend fun new(modell: E): ID
+	suspend fun new(model: E): ID
 
 	suspend fun delete(model: E): Int
 

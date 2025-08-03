@@ -25,12 +25,18 @@ class KategorieImpl(
 	private val spielRepo: SpielRepo
 ): KategorieRepo {
 
-	override suspend fun new(modell: Kategorie): KategorieID {
-		val entity = modell.toRoom()
-// TODO KategorieXKartentext erstellen
-		val id = dao.insert(entity)
+	override suspend fun new(model: Kategorie): KategorieID {
+		val entity = model.toRoom()
 
-		return KategorieID(id.toInt())
+		val id = dao.insert(entity)
+		val kategorieID = KategorieID(id.toInt())
+
+		model.bestandteile.forEach { kartentext ->
+			val joinEntity = KategorieXKartentextRoom(kategorieID, kartentext.id)
+			joinDao.insert(joinEntity)
+		}
+
+		return kategorieID
 	}
 
 	override suspend fun delete(model: Kategorie): Int {
@@ -49,6 +55,7 @@ class KategorieImpl(
 			deleteCounter += lokalisierungRepo.delete(model.lokalisierung)
 		}
 
+		// TODO kategoriexKartentexte löschen
 		return deleteCounter
 	}
 

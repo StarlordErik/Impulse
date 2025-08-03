@@ -13,18 +13,18 @@ import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
 class LokalisierungImpl(private val dao: LokalisierungDAO, private val translationRepo: TranslationRepo):
 	LokalisierungRepo {
 
-	override suspend fun new(modell: Lokalisierung): LokalisierungID {
+	override suspend fun new(model: Lokalisierung): LokalisierungID {
 
 		suspend fun ggfNeueTranslationInserten(
 			ogBezeichnung: String, neueTranslation: Translation, neueSprache: Sprache, lokalisierungID: LokalisierungID
 		) {
-			if (neueSprache != modell.ogSprache || neueTranslation.bezeichnung != ogBezeichnung) {
+			if (neueSprache != model.ogSprache || neueTranslation.bezeichnung != ogBezeichnung) {
 				translationRepo.new(lokalisierungID, neueTranslation, neueSprache)
 			}
 		}
 
-		val entity = modell.toRoom()
-		val ogBezeichnung = modell.translationen[Sprache.OG]!!.bezeichnung
+		val entity = model.toRoom()
+		val ogBezeichnung = model.translationen[Sprache.OG]!!.bezeichnung
 		val ggfVorhandeneLokalisierungID = translationRepo.findLokalisierungIDByBezeichnung(ogBezeichnung)
 
 		if (ggfVorhandeneLokalisierungID == null) {
@@ -34,7 +34,7 @@ class LokalisierungImpl(private val dao: LokalisierungDAO, private val translati
 					.toInt()
 			)
 
-			modell.translationen.entries.forEach { (neueSprache, neueTranslation) ->
+			model.translationen.entries.forEach { (neueSprache, neueTranslation) ->
 				ggfNeueTranslationInserten(ogBezeichnung, neueTranslation, neueSprache, newLokalisierungID)
 			}
 
@@ -42,7 +42,7 @@ class LokalisierungImpl(private val dao: LokalisierungDAO, private val translati
 		} else {
 			val vorhandeneTranslationen = translationRepo.getForLokalisierung(ggfVorhandeneLokalisierungID)
 
-			modell.translationen.entries.forEach { (neueSprache, neueTranslation) ->
+			model.translationen.entries.forEach { (neueSprache, neueTranslation) ->
 
 				if (neueSprache !in vorhandeneTranslationen.keys) {
 					ggfNeueTranslationInserten(ogBezeichnung, neueTranslation, neueSprache, ggfVorhandeneLokalisierungID)

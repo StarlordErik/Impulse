@@ -20,10 +20,10 @@ class KartentextImpl(
 	private val spielRepo: SpielRepo
 ): KartentextRepo {
 
-	override suspend fun new(modell: Kartentext): KartentextID {
-		val entity = modell.toRoom()
+	override suspend fun new(model: Kartentext): KartentextID {
+		val entity = model.toRoom()
 
-		val lokalisierungID = lokalisierungRepo.new(modell.lokalisierung)
+		val lokalisierungID = lokalisierungRepo.new(model.lokalisierung)
 		val entityMitPassenderLokalisierungID = entity.copy(lokalisierungID = lokalisierungID)
 
 		val id = dao.insert(entityMitPassenderLokalisierungID)
