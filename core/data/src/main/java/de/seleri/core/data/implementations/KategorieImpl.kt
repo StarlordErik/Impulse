@@ -24,8 +24,21 @@ class KategorieImpl(
 
 	override suspend fun delete(model: Kategorie): Int {
 		val entity = model.toRoom()
-// TODO schau in KartentextImpl
-		return dao.delete(entity)
+		val id = entity.id.value
+
+		var deleteCounter = dao.delete(entity)
+
+		val kartentextID = KartentextID(id)
+		val kartentext = kartentextRepo.find(kartentextID)
+
+		val spielID = SpielID(id)
+		val spiel = spielRepo.find(spielID)
+
+		if (kartentext == null && spiel == null) {
+			deleteCounter += lokalisierungRepo.delete(model.lokalisierung)
+		}
+
+		return deleteCounter
 	}
 
 	override suspend fun get(id: KategorieID): Kategorie {
