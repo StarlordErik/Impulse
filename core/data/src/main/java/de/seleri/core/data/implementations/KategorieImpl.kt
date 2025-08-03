@@ -53,6 +53,36 @@ class KategorieImpl(
 	}
 
 	override suspend fun update(model: Kategorie): Int {
+		val entity = model.toRoom()
+
+		var updateCounter = dao.update(entity)
+
+		val connections = joinDao.getAll(entity.id)
+		val connectionKartentextIDs = connections.map { it.kartentextID }
+
+		model.bestandteile.forEach { kartentext ->
+			val kartentextID = kartentext.id
+			if (kartentextID !in connectionKartentextIDs) {
+				val joinEntity = KategorieXKartentextRoom(entity.id, kartentextID)
+				joinDao.insert(joinEntity)
+				updateCounter++
+			}
+		}
+
+		val bestandteilKartentextIDs = model.bestandteile.map { it.id }
+
+		connectionKartentextIDs.forEach { connectionKartentextID ->
+			if (connectionKartentextID !in bestandteilKartentextIDs) {
+				val joinEntity = KategorieXKartentextRoom(entity.id, connectionKartentextID)
+				joinDao.delete(joinEntity)
+				updateCounter++
+			}
+		}
+
+		return updateCounter
+	}
+
+	override suspend fun complete(bestandteilEntities: Collection<KategorieEntity>): Collection<Kategorie> {
 		TODO("Not yet implemented")
 	}
 }
