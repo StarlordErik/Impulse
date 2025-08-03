@@ -8,6 +8,7 @@ import de.seleri.core.data.daos.relations.SpielMitKategorienDAO
 import de.seleri.core.data.daos.singles.spielelemente.SpielDAO
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.toRoom
+import de.seleri.core.domain.mapper.spielelemente.spiel.toDomain
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.Spiel
 import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
@@ -64,7 +65,13 @@ class SpielImpl(
 	}
 
 	override suspend fun get(id: SpielID): Spiel {
-		TODO("Not yet implemented")
+		val entity = dao.get(id)
+		val lokalisierung = lokalisierungRepo.get(entity.lokalisierungID)
+
+		val kategorieEntities = relationDao.getAllBestandteile(id)
+		val kategorien = kategorieRepo.complete(kategorieEntities)
+
+		return entity.toDomain(lokalisierung, kategorien)
 	}
 
 	override suspend fun find(id: SpielID): Spiel? {
