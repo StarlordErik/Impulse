@@ -75,7 +75,17 @@ class SpielImpl(
 	}
 
 	override suspend fun find(id: SpielID): Spiel? {
-		TODO("Not yet implemented")
+		val entity = dao.find(id)
+
+		if (entity == null) return null
+		else {
+			val lokalisierung = lokalisierungRepo.get(entity.lokalisierungID)
+
+			val kategorieEntities = relationDao.getAllBestandteile(id)
+			val kategorien = kategorieRepo.complete(kategorieEntities)
+
+			return entity.toDomain(lokalisierung, kategorien)
+		}
 	}
 
 	override suspend fun update(model: Spiel): Int {
