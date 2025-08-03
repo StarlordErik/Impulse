@@ -3,10 +3,16 @@ package de.seleri.core.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import de.seleri.core.data.daos.compositePk.TranslationDAO
+import de.seleri.core.data.daos.compositePk.joins.KategorieXKartentextDAO
+import de.seleri.core.data.daos.compositePk.joins.SpielXKategorieDAO
+import de.seleri.core.data.daos.relations.KategorieMitKartentextenDAO
+import de.seleri.core.data.daos.relations.SpielMitKategorienDAO
 import de.seleri.core.data.daos.singles.LokalisierungDAO
 import de.seleri.core.data.daos.singles.spielelemente.KartentextDAO
 import de.seleri.core.data.daos.singles.spielelemente.KategorieDAO
 import de.seleri.core.data.daos.singles.spielelemente.SpielDAO
+import de.seleri.core.data.entities.TranslationRoom
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 import de.seleri.core.data.entities.singles.LokalisierungRoom
@@ -17,6 +23,7 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 @TypeConverters(Converters::class)
 @Database(
 	entities = [
+		TranslationRoom::class,
 		LokalisierungRoom::class,
 		KartentextRoom::class,
 		KategorieRoom::class,
@@ -27,10 +34,17 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 )
 abstract class AppDatabase: RoomDatabase() {
 
+	abstract fun translationDao(): TranslationDAO
 	abstract fun lokalisierungDao(): LokalisierungDAO
 	abstract fun kartentextDao(): KartentextDAO
 	abstract fun kategorieDao(): KategorieDAO
-	abstract fun spielDao(): SpielDAO/*
+	abstract fun kategorieXKartentextDao(): KategorieXKartentextDAO
+	abstract fun kategorieMitKartentextenDao(): KategorieMitKartentextenDAO
+	abstract fun spielDao(): SpielDAO
+	abstract fun spielXKategorieDao(): SpielXKategorieDAO
+	abstract fun spielMitKategorienDao(): SpielMitKategorienDAO
+
+	/*
 	companion object {
 
 		private var INSTANCE: AppDatabase? = null
