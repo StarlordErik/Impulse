@@ -1,9 +1,11 @@
 package de.seleri.core.data.daos.relations
 
+import androidx.room.Dao
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.data.entities.singles.spielelemente.KartentextRoom
 
+@Dao
 interface KategorieMitKartentextenDAO: RelationDAO<KategorieID, KartentextRoom> {
 
 	@Query(

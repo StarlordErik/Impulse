@@ -1,11 +1,13 @@
 package de.seleri.core.data.daos.compositePk.joins
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.KategorieID
 import de.seleri.core.data.entities.joins.KategorieXKartentextRoom
 
+@Dao
 interface KategorieXKartentextDAO: JoinDAO<KategorieXKartentextRoom, KategorieID> {
 
 	@Query("SELECT * FROM kategorie_x_kartentext WHERE kategorieID = :sammlungID")

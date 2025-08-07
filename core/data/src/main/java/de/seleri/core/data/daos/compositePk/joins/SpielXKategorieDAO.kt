@@ -1,11 +1,13 @@
 package de.seleri.core.data.daos.compositePk.joins
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.data.entities.joins.SpielXKategorieRoom
 
+@Dao
 interface SpielXKategorieDAO: JoinDAO<SpielXKategorieRoom, SpielID> {
 
 	@Query("SELECT * FROM spiel_x_kategorie WHERE spielID = :sammlungID")
