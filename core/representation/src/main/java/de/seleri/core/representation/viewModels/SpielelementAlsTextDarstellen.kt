@@ -8,7 +8,7 @@ interface SpielelementAlsTextDarstellen {
 	val sprache: Sprache
 		get() = Sprache.OG // TODO Sprache muss variabel gesetzt werden
 
-	fun getDarstellungAlsText(spielelement: Spielelement?): String =
+	fun getDarstellungAlsText(spielelement: Spielelement<*>?): String =
 		spielelement?.getBezeichnung(sprache)
 			?: "loading"
 }
