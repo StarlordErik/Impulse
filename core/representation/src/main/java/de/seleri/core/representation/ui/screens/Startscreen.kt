@@ -20,8 +20,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
+import de.seleri.core.common.ids.spielelementID.SpielID
+import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
 import de.seleri.core.representation.ui.ImpulseTheme
 import de.seleri.core.representation.viewModels.StartscreenVM
 import io.mockk.every
@@ -29,7 +29,7 @@ import io.mockk.mockk
 
 @Composable
 fun Startscreen(
-	vm: StartscreenVM, onSpielClicked: (SpielelementID.SpielID) -> Unit
+	vm: StartscreenVM, onSpielClicked: (SpielID) -> Unit
 ) {
 	LazyColumn(
 		modifier = Modifier
@@ -105,14 +105,12 @@ fun StartscreenPreview() {
 
 	// Beispiel-Spiele IDs
 	val sampleSpiele = listOf(
-		mockk<SpielMetaObjekt>(relaxed = true),
-		mockk<SpielMetaObjekt>(relaxed = true),
-		mockk<SpielMetaObjekt>(relaxed = true)
+		mockk<SpielMetaDO>(relaxed = true), mockk<SpielMetaDO>(relaxed = true), mockk<SpielMetaDO>(relaxed = true)
 	)
 
 	every { mockVM.getSpiele() } returns sampleSpiele
 	every { mockVM.getDarstellungAlsText(any()) } answers {
-		val spiel = firstArg<SpielMetaObjekt>()
+		val spiel = firstArg<SpielMetaDO>()
 		"Spiel Name für ${spiel.id}"
 	}
 	every { mockVM.getID(any()) } answers { firstArg() }
