@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
-import de.seleri.core.domain.deprecatedRepositories.SpielRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 import de.seleri.core.domain.useCases.GetAllSpielMetaDOsUC
 import de.seleri.core.domain.useCases.GetKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
