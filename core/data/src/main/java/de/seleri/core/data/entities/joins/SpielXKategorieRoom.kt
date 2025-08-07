@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 	), ForeignKey(
 		entity = KategorieRoom::class, parentColumns = ["id"], childColumns = ["kategorieID"],
 		onDelete = ForeignKey.CASCADE
-	)], indices = [Index("spielID")]
+	)], indices = [Index("spielID"), Index("kategorieID")]
 )
 data class SpielXKategorieRoom(
 

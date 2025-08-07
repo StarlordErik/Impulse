@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 	), ForeignKey(
 		entity = KartentextRoom::class, parentColumns = ["id"], childColumns = ["kartentextID"],
 		onDelete = ForeignKey.CASCADE
-	)], indices = [Index("kategorieID")]
+	)], indices = [Index("kategorieID"), Index("kartentextID")]
 )
 data class KategorieXKartentextRoom(
 
