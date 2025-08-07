@@ -34,15 +34,15 @@ import de.seleri.core.data.entities.singles.spielelemente.SpielRoom
 )
 abstract class AppDatabase: RoomDatabase() {
 
-	abstract fun translationDao(): TranslationDAO
-	abstract fun lokalisierungDao(): LokalisierungDAO
-	abstract fun kartentextDao(): KartentextDAO
-	abstract fun kategorieDao(): KategorieDAO
-	abstract fun kategorieXKartentextDao(): KategorieXKartentextDAO
-	abstract fun kategorieMitKartentextenDao(): KategorieMitKartentextenDAO
-	abstract fun spielDao(): SpielDAO
-	abstract fun spielXKategorieDao(): SpielXKategorieDAO
-	abstract fun spielMitKategorienDao(): SpielMitKategorienDAO
+	abstract fun translationDAO(): TranslationDAO
+	abstract fun lokalisierungDAO(): LokalisierungDAO
+	abstract fun kartentextDAO(): KartentextDAO
+	abstract fun kategorieDAO(): KategorieDAO
+	abstract fun kategorieXKartentextDAO(): KategorieXKartentextDAO
+	abstract fun kategorieMitKartentextenDAO(): KategorieMitKartentextenDAO
+	abstract fun spielDAO(): SpielDAO
+	abstract fun spielXKategorieDAO(): SpielXKategorieDAO
+	abstract fun spielMitKategorienDAO(): SpielMitKategorienDAO
 
 	/*
 	companion object {
