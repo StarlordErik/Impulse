@@ -4,6 +4,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import de.seleri.core.data.daos.compositePk.TranslationDAO
+import de.seleri.core.data.daos.compositePk.joins.KategorieXKartentextDAO
+import de.seleri.core.data.daos.compositePk.joins.SpielXKategorieDAO
+import de.seleri.core.data.daos.relations.KategorieMitKartentextenDAO
+import de.seleri.core.data.daos.relations.SpielMitKategorienDAO
 import de.seleri.core.data.daos.singles.LokalisierungDAO
 import de.seleri.core.data.daos.singles.spielelemente.KartentextDAO
 import de.seleri.core.data.daos.singles.spielelemente.KategorieDAO
@@ -12,10 +17,12 @@ import de.seleri.core.data.implementations.KartentextImpl
 import de.seleri.core.data.implementations.KategorieImpl
 import de.seleri.core.data.implementations.LokalisierungImpl
 import de.seleri.core.data.implementations.SpielImpl
-import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
-import de.seleri.core.domain.deprecatedRepositories.KategorieRepo
-import de.seleri.core.domain.deprecatedRepositories.LokalisierungRepo
-import de.seleri.core.domain.deprecatedRepositories.SpielRepo
+import de.seleri.core.data.implementations.TranslationImpl
+import de.seleri.core.domain.repositories.TranslationRepo
+import de.seleri.core.domain.repositories.idEntity.LokalisierungRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KartentextRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.KategorieRepo
+import de.seleri.core.domain.repositories.idEntity.spielelemente.SpielRepo
 import javax.inject.Singleton
 
 @Module
@@ -24,29 +31,46 @@ object RepositoryModule {
 
 	@Provides
 	@Singleton
+	fun provideTranslationRepo(
+		dao: TranslationDAO
+	): TranslationRepo =
+		TranslationImpl(dao)
+
+	@Provides
+	@Singleton
 	fun provideLokalisierungRepo(
-		dao: LokalisierungDAO
+		dao: LokalisierungDAO, translationRepo: TranslationRepo
 	): LokalisierungRepo =
-		LokalisierungImpl(dao)
+		LokalisierungImpl(dao, translationRepo)
 
 	@Provides
 	@Singleton
 	fun provideKartentextRepo(
-		dao: KartentextDAO, lokalisierungRepo: LokalisierungRepo
+		dao: KartentextDAO, lokalisierungRepo: LokalisierungRepo, kategorieRepo: KategorieRepo, spielRepo: SpielRepo
 	): KartentextRepo =
-		KartentextImpl(dao, lokalisierungRepo)
+		KartentextImpl(dao, lokalisierungRepo, kategorieRepo, spielRepo)
 
 	@Provides
 	@Singleton
 	fun provideKategorieRepo(
-		dao: KategorieDAO, lokalisierungRepo: LokalisierungRepo, kartentextRepo: KartentextRepo
+		dao: KategorieDAO,
+		joinDao: KategorieXKartentextDAO,
+		relationDao: KategorieMitKartentextenDAO,
+		lokalisierungRepo: LokalisierungRepo,
+		kartentextRepo: KartentextRepo,
+		spielRepo: SpielRepo
 	): KategorieRepo =
-		KategorieImpl(dao, lokalisierungRepo, kartentextRepo)
+		KategorieImpl(dao, joinDao, relationDao, lokalisierungRepo, kartentextRepo, spielRepo)
 
 	@Provides
 	@Singleton
 	fun provideSpielRepo(
-		dao: SpielDAO, lokalisierungRepo: LokalisierungRepo, kategorieRepo: KategorieRepo
+		dao: SpielDAO,
+		joinDao: SpielXKategorieDAO,
+		relationDao: SpielMitKategorienDAO,
+		lokalisierungRepo: LokalisierungRepo,
+		kartentextRepo: KartentextRepo,
+		kategorieRepo: KategorieRepo
 	): SpielRepo =
-		SpielImpl(dao, lokalisierungRepo, kategorieRepo)
+		SpielImpl(dao, joinDao, relationDao, lokalisierungRepo, kartentextRepo, kategorieRepo)
 }
