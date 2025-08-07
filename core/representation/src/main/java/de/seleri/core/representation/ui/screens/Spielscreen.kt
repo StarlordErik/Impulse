@@ -51,11 +51,11 @@ fun Spielscreen(
 		) {
 			items(spiel!!.bestandteile as List) { kategorie ->
 				val initialText = vm.getDarstellungAlsText(kategorie)
-				val kartentext = kartentexte[kategorie.id]
+				val kartentext = kartentexte[kategorie.id.value]
 					?: initialText
 
 				SammlungsButton(kartentext) {
-					kartentexte[kategorie.id] = vm.getRandomKartentext(kategorie)
+					kartentexte[kategorie.id.value] = vm.getRandomKartentext(kategorie)
 				}
 			}
 		}
@@ -68,7 +68,7 @@ fun Spielscreen(
 }
 
 /**
- * Gruppierung von den Row-Inhalten des [SpielScreen]
+ * Gruppierung von den Row-Inhalten
  *
  * @param content Inhalt der Row
  */
@@ -88,7 +88,7 @@ fun SpielScreenRow(content: @Composable RowScope.() -> Unit) {
 /**
  * Darstellung des Spiele-Titels
  *
- * @param name Name des Spiels aus [Spiel.localizations]
+ * @param name Name des Spiels
  * @param modifier [Modifier] für die Darstellung in [SpielScreenRow]
  */
 @Composable
@@ -104,9 +104,9 @@ fun SpielTitel(name: String, modifier: Modifier) {
 }
 
 /**
- * Darstellung eines Icons für den [SpielScreen]
+ * Darstellung eines Icons
  *
- * @param icon Icon aus [SpielScreenIcons]
+ * @param icon Icon
  */
 @Composable
 fun SpielScreenIcon(icon: SpielscreenIcons) {
