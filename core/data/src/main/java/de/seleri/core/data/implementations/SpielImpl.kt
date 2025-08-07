@@ -119,7 +119,7 @@ class SpielImpl(
 		return updateCounter
 	}
 
-	override suspend fun getAllMetas(): Collection<SpielMetaDO> {
+	override suspend fun getAllMetas(): List<SpielMetaDO> {
 		val entities = dao.getAll()
 
 		return entities.map {

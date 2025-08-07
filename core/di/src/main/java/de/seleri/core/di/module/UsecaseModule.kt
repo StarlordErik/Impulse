@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import de.seleri.core.domain.deprecatedRepositories.KartentextRepo
 import de.seleri.core.domain.deprecatedRepositories.SpielRepo
-import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
+import de.seleri.core.domain.useCases.GetAllSpielMetaDOsUC
 import de.seleri.core.domain.useCases.GetKarteUC
 import de.seleri.core.domain.useCases.GetSpielUC
 
@@ -15,8 +15,8 @@ import de.seleri.core.domain.useCases.GetSpielUC
 object UsecaseModule {
 
 	@Provides
-	fun provideGetAlleSpielMetasUC(spielRepo: SpielRepo): GetAllSpielMetaObjekteUC =
-		GetAllSpielMetaObjekteUC(spielRepo)
+	fun provideGetAlleSpielMetasUC(spielRepo: SpielRepo): GetAllSpielMetaDOsUC =
+		GetAllSpielMetaDOsUC(spielRepo)
 
 	@Provides
 	fun provideGetSpielUC(spielRepo: SpielRepo): GetSpielUC =

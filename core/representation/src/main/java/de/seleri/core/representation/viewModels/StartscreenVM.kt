@@ -5,28 +5,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.seleri.core.common.idTypes.SpielelementID
-import de.seleri.core.domain.model.spielelemente.spiel.SpielMetaObjekt
-import de.seleri.core.domain.useCases.GetAllSpielMetaObjekteUC
+import de.seleri.core.domain.model.idEntity.spielelemente.spiel.SpielMetaDO
+import de.seleri.core.domain.useCases.GetAllSpielMetaDOsUC
 import kotlinx.coroutines.launch
 
 open class StartscreenVM(
-	private val getAllSpielMetaObjekteUC: GetAllSpielMetaObjekteUC
+	private val getAllSpielMetaDOsUC: GetAllSpielMetaDOsUC
 ): ViewModel(), SpielelementAlsTextDarstellen {
 
-	var spielMetaObjekte by mutableStateOf<List<SpielMetaObjekt>>(emptyList())
+	var spielMetaObjekte by mutableStateOf<List<SpielMetaDO>>(emptyList())
 		private set
 		private get
 
 	init {
 		viewModelScope.launch {
-			spielMetaObjekte = getAllSpielMetaObjekteUC()
+			spielMetaObjekte = getAllSpielMetaDOsUC()
 		}
 	}
 
 	fun getSpiele() =
 		spielMetaObjekte
 
-	fun getID(spiel: SpielMetaObjekt) =
-		SpielelementID.SpielID(spiel.id)
+	fun getID(spiel: SpielMetaDO) =
+		spiel.id
 }
