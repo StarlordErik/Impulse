@@ -2,7 +2,6 @@ package de.seleri.core.di.module
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +27,8 @@ object DatabaseModule {
 	@Singleton
 	fun provideDatabase(
 		@ApplicationContext
-		context: Context, callback: RoomDatabase.Callback
+		context: Context,
+		// callback: RoomDatabase.Callback
 	): AppDatabase {
 		return Room
 			.databaseBuilder(
