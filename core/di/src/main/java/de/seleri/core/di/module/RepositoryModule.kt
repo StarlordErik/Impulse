@@ -1,5 +1,6 @@
 package de.seleri.core.di.module
 
+import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,7 +47,10 @@ object RepositoryModule {
 	@Provides
 	@Singleton
 	fun provideKartentextRepo(
-		dao: KartentextDAO, lokalisierungRepo: LokalisierungRepo, kategorieRepo: KategorieRepo, spielRepo: SpielRepo
+		dao: KartentextDAO,
+		lokalisierungRepo: LokalisierungRepo,
+		kategorieRepo: Lazy<KategorieRepo>,
+		spielRepo: Lazy<SpielRepo>
 	): KartentextRepo =
 		KartentextImpl(dao, lokalisierungRepo, kategorieRepo, spielRepo)
 
@@ -57,8 +61,7 @@ object RepositoryModule {
 		joinDao: KategorieXKartentextDAO,
 		relationDao: KategorieMitKartentextenDAO,
 		lokalisierungRepo: LokalisierungRepo,
-		kartentextRepo: KartentextRepo,
-		spielRepo: SpielRepo
+		kartentextRepo: KartentextRepo, spielRepo: Lazy<SpielRepo>
 	): KategorieRepo =
 		KategorieImpl(dao, joinDao, relationDao, lokalisierungRepo, kartentextRepo, spielRepo)
 

@@ -1,5 +1,6 @@
 package de.seleri.core.data.implementations
 
+import dagger.Lazy
 import de.seleri.core.common.entities.singles.spielelemente.KategorieEntity
 import de.seleri.core.common.ids.spielelementID.KartentextID
 import de.seleri.core.common.ids.spielelementID.KategorieID
@@ -21,8 +22,7 @@ class KategorieImpl(
 	private val joinDao: KategorieXKartentextDAO,
 	private val relationDao: KategorieMitKartentextenDAO,
 	private val lokalisierungRepo: LokalisierungRepo,
-	private val kartentextRepo: KartentextRepo,
-	private val spielRepo: SpielRepo
+	private val kartentextRepo: KartentextRepo, private val spielRepo: Lazy<SpielRepo>
 ): KategorieRepo {
 
 	override suspend fun new(model: Kategorie): KategorieID {
@@ -49,7 +49,9 @@ class KategorieImpl(
 		val kartentext = kartentextRepo.find(kartentextID)
 
 		val spielID = SpielID(id)
-		val spiel = spielRepo.find(spielID)
+		val spiel = spielRepo
+			.get()
+			.find(spielID)
 
 		if (kartentext == null && spiel == null) {
 			deleteCounter += lokalisierungRepo.delete(model.lokalisierung)
