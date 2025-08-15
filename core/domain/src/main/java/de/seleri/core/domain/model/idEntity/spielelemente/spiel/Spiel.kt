@@ -2,8 +2,10 @@ package de.seleri.core.domain.model.idEntity.spielelemente.spiel
 
 import de.seleri.core.common.ids.spielelementID.SpielID
 import de.seleri.core.common.konstanten.Default
+import de.seleri.core.domain.model.idEntity.Lokalisierung
 import de.seleri.core.domain.model.idEntity.spielelemente.Kartentext
 import de.seleri.core.domain.model.idEntity.spielelemente.Kategorie
+import de.seleri.core.domain.model.idEntity.spielelemente.SpielelementDO
 import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Sammlung
 
@@ -15,6 +17,10 @@ data class Spiel(
 
 	override val bestandteile: Collection<Kategorie>,
 ): SpielMeta by spielMetaDaten, Sammlung<Kategorie, SpielID> {
+
+	constructor(lokalisierung: Lokalisierung, kategorien: Collection<Kategorie>): this(
+		spielMetaDaten = SpielMetaDO(SpielelementDO(lokalisierung)), bestandteile = kategorien
+	)
 
 	override fun getKarte(
 		anzahlTexte: Int, bereitsEnthalteneKT: Collection<Kartentext>

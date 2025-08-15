@@ -1,6 +1,7 @@
 package de.seleri.core.domain.model.idEntity.spielelemente
 
 import de.seleri.core.common.ids.spielelementID.KategorieID
+import de.seleri.core.domain.model.idEntity.Lokalisierung
 import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Bestandteil
 import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Karte
 import de.seleri.core.domain.model.idEntity.spielelemente.sammlungen.Sammlung
@@ -10,6 +11,10 @@ data class Kategorie(
 
 	override val bestandteile: Collection<Kartentext>,
 ): SpielelementDaten by spielelementDaten, Sammlung<Kartentext, KategorieID>, Bestandteil<KategorieID> {
+
+	constructor(lokalisierung: Lokalisierung, kartentexte: Collection<Kartentext>): this(
+		spielelementDaten = SpielelementDO(lokalisierung), bestandteile = kartentexte
+	)
 
 	override val id: KategorieID get() = KategorieID(lokalisierung.id.value)
 
