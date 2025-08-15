@@ -7,5 +7,9 @@ data class Translation(
 	val bearbeitet: Boolean = Default.BEARBEITET,
 ): ModelEntity {
 
-	companion object
+	companion object {
+
+		fun fromTXT(bezeichnung: String): Translation =
+			Translation(bezeichnung)
+	}
 }
