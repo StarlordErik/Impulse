@@ -1,8 +1,9 @@
 package de.seleri.core.common
 
 import de.seleri.core.common.konstanten.SpracheID
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 enum class Sprache(val id: Int) {
 
 	OG(SpracheID.OG_ID),
