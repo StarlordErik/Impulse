@@ -1,4 +1,4 @@
-package de.seleri.core.data
+package de.seleri.core.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -43,46 +43,4 @@ abstract class AppDatabase: RoomDatabase() {
 	abstract fun spielDAO(): SpielDAO
 	abstract fun spielXKategorieDAO(): SpielXKategorieDAO
 	abstract fun spielMitKategorienDAO(): SpielMitKategorienDAO
-
-	/*
-	companion object {
-
-		private var INSTANCE: AppDatabase? = null
-
-
-		fun getInstance(context: Context): AppDatabase {
-			return INSTANCE
-				?: synchronized(this) {
-					val instance = Room
-						.databaseBuilder(
-							context.applicationContext, AppDatabase::class.java, "app_db"
-						)
-						.addCallback(object: Callback() {
-							override fun onCreate(db: SupportSQLiteDatabase) {
-								super.onCreate(db)
-								// Starte Coroutine, um Daten einzulesen und einzufügen
-								CoroutineScope(Dispatchers.IO).launch {
-									val database = getInstance(context)
-
-									fillDatabaseWithInitialData(context, database)
-								}
-							}
-						})
-						.build()
-					INSTANCE = instance
-					instance
-				}
-		}
-	}
-
-		 */
-}/*
-suspend fun fillDatabaseWithInitialData(context: Context, db: AppDatabase) {
-	TODO
-	val jsonString = context.assets.open("kartentexte.json").bufferedReader().use { it.readText() }
-	val kartentexte: List<KartentextEntity> = parseJsonToEntities(jsonString) // z.B. mit Moshi oder Gson
-
-	db.kartentextDao().insertAll(kartentexte)
-
 }
-*/

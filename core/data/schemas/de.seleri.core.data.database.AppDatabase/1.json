@@ -1,0 +1,420 @@
+{
+	"formatVersion": 1,
+	"database": {
+		"version": 1,
+		"identityHash": "c73e55b06acf8ff9175242b035d37126",
+		"entities": [
+			{
+				"tableName": "translationen",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lokalisierungID` INTEGER NOT NULL, `sprache` INTEGER NOT NULL, `bezeichnung` TEXT NOT NULL, `bearbeitet` INTEGER NOT NULL, PRIMARY KEY(`lokalisierungID`, `sprache`), FOREIGN KEY(`lokalisierungID`) REFERENCES `lokalisierungen`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "lokalisierungID",
+						"columnName": "lokalisierungID",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "sprache",
+						"columnName": "sprache",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "bezeichnung",
+						"columnName": "bezeichnung",
+						"affinity": "TEXT",
+						"notNull": true
+					},
+					{
+						"fieldPath": "bearbeitet",
+						"columnName": "bearbeitet",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"lokalisierungID",
+						"sprache"
+					]
+				},
+				"indices": [
+					{
+						"name": "index_translationen_lokalisierungID",
+						"unique": false,
+						"columnNames": [
+							"lokalisierungID"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_translationen_lokalisierungID` ON `${TABLE_NAME}` (`lokalisierungID`)"
+					},
+					{
+						"name": "index_translationen_bezeichnung",
+						"unique": false,
+						"columnNames": [
+							"bezeichnung"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_translationen_bezeichnung` ON `${TABLE_NAME}` (`bezeichnung`)"
+					}
+				],
+				"foreignKeys": [
+					{
+						"table": "lokalisierungen",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"lokalisierungID"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			},
+			{
+				"tableName": "lokalisierungen",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ogSprache` INTEGER NOT NULL)",
+				"fields": [
+					{
+						"fieldPath": "lokalisierungID",
+						"columnName": "id",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "ogSprache",
+						"columnName": "ogSprache",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": true,
+					"columnNames": [
+						"id"
+					]
+				}
+			},
+			{
+				"tableName": "kartentexte",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL, `gesehen` INTEGER NOT NULL, `besprochen` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`id`) REFERENCES `lokalisierungen`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "lokalisierungID",
+						"columnName": "id",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "selbstErstellt",
+						"columnName": "selbstErstellt",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "inaktiv",
+						"columnName": "inaktiv",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "favorisiert",
+						"columnName": "favorisiert",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "gesehen",
+						"columnName": "gesehen",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "besprochen",
+						"columnName": "besprochen",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"id"
+					]
+				},
+				"foreignKeys": [
+					{
+						"table": "lokalisierungen",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"id"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			},
+			{
+				"tableName": "kategorien",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`id`) REFERENCES `lokalisierungen`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "lokalisierungID",
+						"columnName": "id",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "selbstErstellt",
+						"columnName": "selbstErstellt",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "inaktiv",
+						"columnName": "inaktiv",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "favorisiert",
+						"columnName": "favorisiert",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"id"
+					]
+				},
+				"foreignKeys": [
+					{
+						"table": "lokalisierungen",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"id"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			},
+			{
+				"tableName": "spiele",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `selbstErstellt` INTEGER NOT NULL, `inaktiv` INTEGER NOT NULL, `favorisiert` INTEGER NOT NULL, `bildDateiname` TEXT, `anleitung` TEXT, `texteProKarte` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`id`) REFERENCES `lokalisierungen`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "lokalisierungID",
+						"columnName": "id",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "selbstErstellt",
+						"columnName": "selbstErstellt",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "inaktiv",
+						"columnName": "inaktiv",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "favorisiert",
+						"columnName": "favorisiert",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "bildDateiname",
+						"columnName": "bildDateiname",
+						"affinity": "TEXT"
+					},
+					{
+						"fieldPath": "anleitung",
+						"columnName": "anleitung",
+						"affinity": "TEXT"
+					},
+					{
+						"fieldPath": "texteProKarte",
+						"columnName": "texteProKarte",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"id"
+					]
+				},
+				"foreignKeys": [
+					{
+						"table": "lokalisierungen",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"id"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			},
+			{
+				"tableName": "kategorie_x_kartentext",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`kategorieID` INTEGER NOT NULL, `kartentextID` INTEGER NOT NULL, PRIMARY KEY(`kategorieID`, `kartentextID`), FOREIGN KEY(`kategorieID`) REFERENCES `kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kartentextID`) REFERENCES `kartentexte`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "sammlungID",
+						"columnName": "kategorieID",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "bestandteilID",
+						"columnName": "kartentextID",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"kategorieID",
+						"kartentextID"
+					]
+				},
+				"indices": [
+					{
+						"name": "index_kategorie_x_kartentext_kategorieID",
+						"unique": false,
+						"columnNames": [
+							"kategorieID"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_kategorie_x_kartentext_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
+					},
+					{
+						"name": "index_kategorie_x_kartentext_kartentextID",
+						"unique": false,
+						"columnNames": [
+							"kartentextID"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_kategorie_x_kartentext_kartentextID` ON `${TABLE_NAME}` (`kartentextID`)"
+					}
+				],
+				"foreignKeys": [
+					{
+						"table": "kategorien",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"kategorieID"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					},
+					{
+						"table": "kartentexte",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"kartentextID"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			},
+			{
+				"tableName": "spiel_x_kategorie",
+				"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`spielID` INTEGER NOT NULL, `kategorieID` INTEGER NOT NULL, PRIMARY KEY(`spielID`, `kategorieID`), FOREIGN KEY(`spielID`) REFERENCES `spiele`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`kategorieID`) REFERENCES `kategorien`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+				"fields": [
+					{
+						"fieldPath": "sammlungID",
+						"columnName": "spielID",
+						"affinity": "INTEGER",
+						"notNull": true
+					},
+					{
+						"fieldPath": "bestandteilID",
+						"columnName": "kategorieID",
+						"affinity": "INTEGER",
+						"notNull": true
+					}
+				],
+				"primaryKey": {
+					"autoGenerate": false,
+					"columnNames": [
+						"spielID",
+						"kategorieID"
+					]
+				},
+				"indices": [
+					{
+						"name": "index_spiel_x_kategorie_spielID",
+						"unique": false,
+						"columnNames": [
+							"spielID"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_spiel_x_kategorie_spielID` ON `${TABLE_NAME}` (`spielID`)"
+					},
+					{
+						"name": "index_spiel_x_kategorie_kategorieID",
+						"unique": false,
+						"columnNames": [
+							"kategorieID"
+						],
+						"orders": [],
+						"createSql": "CREATE INDEX IF NOT EXISTS `index_spiel_x_kategorie_kategorieID` ON `${TABLE_NAME}` (`kategorieID`)"
+					}
+				],
+				"foreignKeys": [
+					{
+						"table": "spiele",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"spielID"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					},
+					{
+						"table": "kategorien",
+						"onDelete": "CASCADE",
+						"onUpdate": "NO ACTION",
+						"columns": [
+							"kategorieID"
+						],
+						"referencedColumns": [
+							"id"
+						]
+					}
+				]
+			}
+		],
+		"setupQueries": [
+			"CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+			"INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c73e55b06acf8ff9175242b035d37126')"
+		]
+	}
+}

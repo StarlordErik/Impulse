@@ -1,4 +1,4 @@
-package de.seleri.core.data
+package de.seleri.core.data.database
 
 import androidx.room.TypeConverter
 import de.seleri.core.common.Sprache
